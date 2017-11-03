@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="{% block lang %}{{ config_get('app.locale') }}{% endblock %}">
+<head>
+    {% block head %}
+        {% include 'partials/head.twig' %}
+        <title>{% block title %}{% endblock %} – {{ config_get('app.name') }}</title>
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+    {% block navigation %}
+        {% include 'partials/navigation.twig' %}
+    {% endblock %}
+{% block container %}
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}
+    {% block footer %}
+        {% include 'partials/footer.twig' %}
+    {% endblock %}
+{% block scripts %}
+    <script src="{{ asset('js/manifest.js') }}"></script>
+    <script src="{{ asset('js/vendor.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}
+{% endblock %}
+</body>
+</html>

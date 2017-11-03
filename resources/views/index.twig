@@ -1,0 +1,11 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('home.title') }}{% endblock %}
+{% block content %}
+    <main>
+        <h1>Dit is paginainhoud.</h1>
+        <p>
+            Om templates op een efficiënte manier te maken is het belangrijk om de Twig-documentatie door te lezen.
+        </p>
+        <a href="{{ route('signup') }}">{{ trans('home.signup_link') }}</a>
+    </main>
+{% endblock %}

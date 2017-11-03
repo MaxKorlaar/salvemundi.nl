@@ -1,0 +1,3 @@
+{% extends 'errors/error.twig' %}
+{% block error %}{{ trans('error.400') }}{% endblock %}
+{% block message %}{{ error | default('Bad Request') }}{% endblock %}

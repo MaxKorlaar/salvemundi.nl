@@ -1,0 +1,10 @@
+.signup {
+  form {
+    input {
+      transition: .2s background-color;
+      &:invalid {
+        background: theme-color-level(danger, -5);
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html class="error-page" lang="{{ config_get('app.locale') }}">
+<head>
+    {% include 'partials/head.twig' %}
+    <title>{% block error %}{% endblock %} - {{ config_get('app.name') }}</title>
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <div class="title">{{ block('error') }}</div>
+        {% if block("message") is defined %}
+            <div class="message">{% block message %}{% endblock %}</div>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
