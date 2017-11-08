@@ -22,8 +22,24 @@
 
             /**
              * @param Signup $request
+             *
+             * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
              */
-            public function signup(Signup $request) {
-                dd($request->all());
+            public function getConfirmationPage(Signup $request) {
+                $request->flash();
+                return view('confirm_signup');
+            }
+
+            /**
+             * @param Request $request
+             *
+             * @return \Illuminate\Http\RedirectResponse
+             */
+            public function signup(Request $request) {
+                if($request->old('pcn') === null) return back(); // Stuur de gebruiker weg als er geen inschrijfgegevens in de sessie zitten
+
+
+
+                dd($request->old(), $request->all());
             }
         }

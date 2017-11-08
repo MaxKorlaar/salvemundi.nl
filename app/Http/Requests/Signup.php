@@ -19,6 +19,7 @@
                 return true;
             }
 
+
             /**
              * Get the validation rules that apply to the request.
              *
@@ -30,7 +31,7 @@
                     'name'     => 'required|string',
                     'address'  => 'required|min:5|max:150',
                     'city'     => 'required|min:3|max:150',
-                    'postal'   => 'required|length:6',
+                    'postal'   => 'required|string|size:6|regex:/^[0-9]{4}[A-Z]{2}$/',
                     'birthday' => 'required|date|before:-16 years',
                     'phone'    => 'required|max:15',
                     'email'    => 'required|email|confirmed',

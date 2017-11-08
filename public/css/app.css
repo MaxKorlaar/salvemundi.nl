@@ -9726,3 +9726,7 @@ a.text-dark:hover {
   background: #ea868f;
 }
 
+.signup form label {
+  font-weight: bold;
+}
+
