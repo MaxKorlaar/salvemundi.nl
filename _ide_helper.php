@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.5.19 on 2017-11-03.
+ * Generated for Laravel 5.5.19 on 2017-11-08.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12175,6 +12175,986 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace TwigBridge\Facade { 
+
+    class Twig {
+        
+        /**
+         * Get the Laravel app.
+         *
+         * @return \Illuminate\Contracts\Container\Container 
+         * @static 
+         */ 
+        public static function getApplication()
+        {
+            return \TwigBridge\Bridge::getApplication();
+        }
+        
+        /**
+         * Set the Laravel app.
+         *
+         * @param \Illuminate\Contracts\Container\Container $app
+         * @return void 
+         * @static 
+         */ 
+        public static function setApplication($app)
+        {
+            \TwigBridge\Bridge::setApplication($app);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function loadTemplate($name, $index = null)
+        {
+            return \TwigBridge\Bridge::loadTemplate($name, $index);
+        }
+        
+        /**
+         * Lint (check) the syntax of a file on the view paths.
+         *
+         * @param string $file File to check. Supports dot-syntax.
+         * @return bool Whether the file passed or not.
+         * @static 
+         */ 
+        public static function lint($file)
+        {
+            return \TwigBridge\Bridge::lint($file);
+        }
+        
+        /**
+         * Merges a context with the shared variables, same as mergeGlobals()
+         *
+         * @param array $context An array representing the context
+         * @return array The context merged with the globals
+         * @static 
+         */ 
+        public static function mergeShared($context)
+        {
+            return \TwigBridge\Bridge::mergeShared($context);
+        }
+        
+        /**
+         * Gets the base template class for compiled templates.
+         *
+         * @return string The base template class name
+         * @static 
+         */ 
+        public static function getBaseTemplateClass()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getBaseTemplateClass();
+        }
+        
+        /**
+         * Sets the base template class for compiled templates.
+         *
+         * @param string $class The base template class name
+         * @static 
+         */ 
+        public static function setBaseTemplateClass($class)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::setBaseTemplateClass($class);
+        }
+        
+        /**
+         * Enables debugging mode.
+         *
+         * @static 
+         */ 
+        public static function enableDebug()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::enableDebug();
+        }
+        
+        /**
+         * Disables debugging mode.
+         *
+         * @static 
+         */ 
+        public static function disableDebug()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::disableDebug();
+        }
+        
+        /**
+         * Checks if debug mode is enabled.
+         *
+         * @return bool true if debug mode is enabled, false otherwise
+         * @static 
+         */ 
+        public static function isDebug()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::isDebug();
+        }
+        
+        /**
+         * Enables the auto_reload option.
+         *
+         * @static 
+         */ 
+        public static function enableAutoReload()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::enableAutoReload();
+        }
+        
+        /**
+         * Disables the auto_reload option.
+         *
+         * @static 
+         */ 
+        public static function disableAutoReload()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::disableAutoReload();
+        }
+        
+        /**
+         * Checks if the auto_reload option is enabled.
+         *
+         * @return bool true if auto_reload is enabled, false otherwise
+         * @static 
+         */ 
+        public static function isAutoReload()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::isAutoReload();
+        }
+        
+        /**
+         * Enables the strict_variables option.
+         *
+         * @static 
+         */ 
+        public static function enableStrictVariables()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::enableStrictVariables();
+        }
+        
+        /**
+         * Disables the strict_variables option.
+         *
+         * @static 
+         */ 
+        public static function disableStrictVariables()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::disableStrictVariables();
+        }
+        
+        /**
+         * Checks if the strict_variables option is enabled.
+         *
+         * @return bool true if strict_variables is enabled, false otherwise
+         * @static 
+         */ 
+        public static function isStrictVariables()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::isStrictVariables();
+        }
+        
+        /**
+         * Gets the current cache implementation.
+         *
+         * @param bool $original Whether to return the original cache option or the real cache instance
+         * @return \Twig_CacheInterface|string|false A Twig_CacheInterface implementation,
+         *                                          an absolute path to the compiled templates,
+         *                                          or false to disable cache
+         * @static 
+         */ 
+        public static function getCache($original = true)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getCache($original);
+        }
+        
+        /**
+         * Sets the current cache implementation.
+         *
+         * @param \Twig_CacheInterface|string|false $cache A Twig_CacheInterface implementation,
+         *                                                an absolute path to the compiled templates,
+         *                                                or false to disable cache
+         * @static 
+         */ 
+        public static function setCache($cache)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::setCache($cache);
+        }
+        
+        /**
+         * Gets the cache filename for a given template.
+         *
+         * @param string $name The template name
+         * @return string|false The cache file name or false when caching is disabled
+         * @deprecated since 1.22 (to be removed in 2.0)
+         * @static 
+         */ 
+        public static function getCacheFilename($name)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getCacheFilename($name);
+        }
+        
+        /**
+         * Gets the template class associated with the given string.
+         * 
+         * The generated template class is based on the following parameters:
+         * 
+         *  * The cache key for the given template;
+         *  * The currently enabled extensions;
+         *  * Whether the Twig C extension is available or not;
+         *  * PHP version;
+         *  * Twig version;
+         *  * Options with what environment was created.
+         *
+         * @param string $name The name for which to calculate the template class name
+         * @param int|null $index The index if it is an embedded template
+         * @return string The template class name
+         * @static 
+         */ 
+        public static function getTemplateClass($name, $index = null)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getTemplateClass($name, $index);
+        }
+        
+        /**
+         * Gets the template class prefix.
+         *
+         * @return string The template class prefix
+         * @deprecated since 1.22 (to be removed in 2.0)
+         * @static 
+         */ 
+        public static function getTemplateClassPrefix()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getTemplateClassPrefix();
+        }
+        
+        /**
+         * Renders a template.
+         *
+         * @param string $name The template name
+         * @param array $context An array of parameters to pass to the template
+         * @return string The rendered template
+         * @throws Twig_Error_Loader  When the template cannot be found
+         * @throws Twig_Error_Syntax  When an error occurred during compilation
+         * @throws Twig_Error_Runtime When an error occurred during rendering
+         * @static 
+         */ 
+        public static function render($name, $context = array())
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::render($name, $context);
+        }
+        
+        /**
+         * Displays a template.
+         *
+         * @param string $name The template name
+         * @param array $context An array of parameters to pass to the template
+         * @throws Twig_Error_Loader  When the template cannot be found
+         * @throws Twig_Error_Syntax  When an error occurred during compilation
+         * @throws Twig_Error_Runtime When an error occurred during rendering
+         * @static 
+         */ 
+        public static function display($name, $context = array())
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::display($name, $context);
+        }
+        
+        /**
+         * Loads a template.
+         *
+         * @param string|\Twig_TemplateWrapper|\Twig_Template $name The template name
+         * @throws Twig_Error_Loader  When the template cannot be found
+         * @throws Twig_Error_Runtime When a previously generated cache is corrupted
+         * @throws Twig_Error_Syntax  When an error occurred during compilation
+         * @return \Twig_TemplateWrapper 
+         * @static 
+         */ 
+        public static function load($name)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::load($name);
+        }
+        
+        /**
+         * Creates a template from source.
+         * 
+         * This method should not be used as a generic way to load templates.
+         *
+         * @param string $template The template name
+         * @return \Twig_Template A template instance representing the given template name
+         * @throws Twig_Error_Loader When the template cannot be found
+         * @throws Twig_Error_Syntax When an error occurred during compilation
+         * @static 
+         */ 
+        public static function createTemplate($template)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::createTemplate($template);
+        }
+        
+        /**
+         * Returns true if the template is still fresh.
+         * 
+         * Besides checking the loader for freshness information,
+         * this method also checks if the enabled extensions have
+         * not changed.
+         *
+         * @param string $name The template name
+         * @param int $time The last modification time of the cached template
+         * @return bool true if the template is fresh, false otherwise
+         * @static 
+         */ 
+        public static function isTemplateFresh($name, $time)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::isTemplateFresh($name, $time);
+        }
+        
+        /**
+         * Tries to load a template consecutively from an array.
+         * 
+         * Similar to loadTemplate() but it also accepts Twig_TemplateInterface instances and an array
+         * of templates where each is tried to be loaded.
+         *
+         * @param string|\Twig_Template|array $names A template or an array of templates to try consecutively
+         * @return \Twig_Template 
+         * @throws Twig_Error_Loader When none of the templates can be found
+         * @throws Twig_Error_Syntax When an error occurred during compilation
+         * @static 
+         */ 
+        public static function resolveTemplate($names)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::resolveTemplate($names);
+        }
+        
+        /**
+         * Clears the internal template cache.
+         *
+         * @deprecated since 1.18.3 (to be removed in 2.0)
+         * @static 
+         */ 
+        public static function clearTemplateCache()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::clearTemplateCache();
+        }
+        
+        /**
+         * Clears the template cache files on the filesystem.
+         *
+         * @deprecated since 1.22 (to be removed in 2.0)
+         * @static 
+         */ 
+        public static function clearCacheFiles()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::clearCacheFiles();
+        }
+        
+        /**
+         * Gets the Lexer instance.
+         *
+         * @return \Twig_LexerInterface 
+         * @deprecated since 1.25 (to be removed in 2.0)
+         * @static 
+         */ 
+        public static function getLexer()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getLexer();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setLexer($lexer)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::setLexer($lexer);
+        }
+        
+        /**
+         * Tokenizes a source code.
+         *
+         * @param string|\Twig_Source $source The template source code
+         * @param string $name The template name (deprecated)
+         * @return \Twig_TokenStream 
+         * @throws Twig_Error_Syntax When the code is syntactically wrong
+         * @static 
+         */ 
+        public static function tokenize($source, $name = null)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::tokenize($source, $name);
+        }
+        
+        /**
+         * Gets the Parser instance.
+         *
+         * @return \Twig_ParserInterface 
+         * @deprecated since 1.25 (to be removed in 2.0)
+         * @static 
+         */ 
+        public static function getParser()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getParser();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setParser($parser)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::setParser($parser);
+        }
+        
+        /**
+         * Converts a token stream to a node tree.
+         *
+         * @return \Twig_Node_Module 
+         * @throws Twig_Error_Syntax When the token stream is syntactically or semantically wrong
+         * @static 
+         */ 
+        public static function parse($stream)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::parse($stream);
+        }
+        
+        /**
+         * Gets the Compiler instance.
+         *
+         * @return \Twig_CompilerInterface 
+         * @deprecated since 1.25 (to be removed in 2.0)
+         * @static 
+         */ 
+        public static function getCompiler()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getCompiler();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setCompiler($compiler)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::setCompiler($compiler);
+        }
+        
+        /**
+         * Compiles a node and returns the PHP code.
+         *
+         * @return string The compiled PHP source code
+         * @static 
+         */ 
+        public static function compile($node)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::compile($node);
+        }
+        
+        /**
+         * Compiles a template source code.
+         *
+         * @param string|\Twig_Source $source The template source code
+         * @param string $name The template name (deprecated)
+         * @return string The compiled PHP source code
+         * @throws Twig_Error_Syntax When there was an error during tokenizing, parsing or compiling
+         * @static 
+         */ 
+        public static function compileSource($source, $name = null)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::compileSource($source, $name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function setLoader($loader)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::setLoader($loader);
+        }
+        
+        /**
+         * Gets the Loader instance.
+         *
+         * @return \Twig_LoaderInterface 
+         * @static 
+         */ 
+        public static function getLoader()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getLoader();
+        }
+        
+        /**
+         * Sets the default template charset.
+         *
+         * @param string $charset The default charset
+         * @static 
+         */ 
+        public static function setCharset($charset)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::setCharset($charset);
+        }
+        
+        /**
+         * Gets the default template charset.
+         *
+         * @return string The default charset
+         * @static 
+         */ 
+        public static function getCharset()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getCharset();
+        }
+        
+        /**
+         * Initializes the runtime environment.
+         *
+         * @deprecated since 1.23 (to be removed in 2.0)
+         * @static 
+         */ 
+        public static function initRuntime()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::initRuntime();
+        }
+        
+        /**
+         * Returns true if the given extension is registered.
+         *
+         * @param string $class The extension class name
+         * @return bool Whether the extension is registered or not
+         * @static 
+         */ 
+        public static function hasExtension($class)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::hasExtension($class);
+        }
+        
+        /**
+         * Adds a runtime loader.
+         *
+         * @static 
+         */ 
+        public static function addRuntimeLoader($loader)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::addRuntimeLoader($loader);
+        }
+        
+        /**
+         * Gets an extension by class name.
+         *
+         * @param string $class The extension class name
+         * @return \Twig_ExtensionInterface 
+         * @static 
+         */ 
+        public static function getExtension($class)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getExtension($class);
+        }
+        
+        /**
+         * Returns the runtime implementation of a Twig element (filter/function/test).
+         *
+         * @param string $class A runtime class name
+         * @return object The runtime implementation
+         * @throws Twig_Error_Runtime When the template cannot be found
+         * @static 
+         */ 
+        public static function getRuntime($class)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getRuntime($class);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addExtension($extension)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::addExtension($extension);
+        }
+        
+        /**
+         * Removes an extension by name.
+         * 
+         * This method is deprecated and you should not use it.
+         *
+         * @param string $name The extension name
+         * @deprecated since 1.12 (to be removed in 2.0)
+         * @static 
+         */ 
+        public static function removeExtension($name)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::removeExtension($name);
+        }
+        
+        /**
+         * Registers an array of extensions.
+         *
+         * @param array $extensions An array of extensions
+         * @static 
+         */ 
+        public static function setExtensions($extensions)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::setExtensions($extensions);
+        }
+        
+        /**
+         * Returns all registered extensions.
+         *
+         * @return \Twig_ExtensionInterface[] An array of extensions (keys are for internal usage only and should not be relied on)
+         * @static 
+         */ 
+        public static function getExtensions()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getExtensions();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addTokenParser($parser)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::addTokenParser($parser);
+        }
+        
+        /**
+         * Gets the registered Token Parsers.
+         *
+         * @return \Twig_TokenParserBrokerInterface 
+         * @internal 
+         * @static 
+         */ 
+        public static function getTokenParsers()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getTokenParsers();
+        }
+        
+        /**
+         * Gets registered tags.
+         * 
+         * Be warned that this method cannot return tags defined by Twig_TokenParserBrokerInterface classes.
+         *
+         * @return \Twig_TokenParserInterface[] 
+         * @internal 
+         * @static 
+         */ 
+        public static function getTags()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getTags();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function addNodeVisitor($visitor)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::addNodeVisitor($visitor);
+        }
+        
+        /**
+         * Gets the registered Node Visitors.
+         *
+         * @return \Twig_NodeVisitorInterface[] 
+         * @internal 
+         * @static 
+         */ 
+        public static function getNodeVisitors()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getNodeVisitors();
+        }
+        
+        /**
+         * Registers a Filter.
+         *
+         * @param string|\Twig_SimpleFilter $name The filter name or a Twig_SimpleFilter instance
+         * @param \Twig_FilterInterface|\Twig_SimpleFilter $filter
+         * @static 
+         */ 
+        public static function addFilter($name, $filter = null)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::addFilter($name, $filter);
+        }
+        
+        /**
+         * Get a filter by name.
+         * 
+         * Subclasses may override this method and load filters differently;
+         * so no list of filters is available.
+         *
+         * @param string $name The filter name
+         * @return \Twig_Filter|false A Twig_Filter instance or false if the filter does not exist
+         * @internal 
+         * @static 
+         */ 
+        public static function getFilter($name)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getFilter($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function registerUndefinedFilterCallback($callable)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::registerUndefinedFilterCallback($callable);
+        }
+        
+        /**
+         * Gets the registered Filters.
+         * 
+         * Be warned that this method cannot return filters defined with registerUndefinedFilterCallback.
+         *
+         * @return \Twig_FilterInterface[] 
+         * @see registerUndefinedFilterCallback
+         * @internal 
+         * @static 
+         */ 
+        public static function getFilters()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getFilters();
+        }
+        
+        /**
+         * Registers a Test.
+         *
+         * @param string|\Twig_SimpleTest $name The test name or a Twig_SimpleTest instance
+         * @param \Twig_TestInterface|\Twig_SimpleTest $test A Twig_TestInterface instance or a Twig_SimpleTest instance
+         * @static 
+         */ 
+        public static function addTest($name, $test = null)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::addTest($name, $test);
+        }
+        
+        /**
+         * Gets the registered Tests.
+         *
+         * @return \Twig_TestInterface[] 
+         * @internal 
+         * @static 
+         */ 
+        public static function getTests()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getTests();
+        }
+        
+        /**
+         * Gets a test by name.
+         *
+         * @param string $name The test name
+         * @return \Twig_Test|false A Twig_Test instance or false if the test does not exist
+         * @internal 
+         * @static 
+         */ 
+        public static function getTest($name)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getTest($name);
+        }
+        
+        /**
+         * Registers a Function.
+         *
+         * @param string|\Twig_SimpleFunction $name The function name or a Twig_SimpleFunction instance
+         * @param \Twig_FunctionInterface|\Twig_SimpleFunction $function
+         * @static 
+         */ 
+        public static function addFunction($name, $function = null)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::addFunction($name, $function);
+        }
+        
+        /**
+         * Get a function by name.
+         * 
+         * Subclasses may override this method and load functions differently;
+         * so no list of functions is available.
+         *
+         * @param string $name function name
+         * @return \Twig_Function|false A Twig_Function instance or false if the function does not exist
+         * @internal 
+         * @static 
+         */ 
+        public static function getFunction($name)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getFunction($name);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function registerUndefinedFunctionCallback($callable)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::registerUndefinedFunctionCallback($callable);
+        }
+        
+        /**
+         * Gets registered functions.
+         * 
+         * Be warned that this method cannot return functions defined with registerUndefinedFunctionCallback.
+         *
+         * @return \Twig_FunctionInterface[] 
+         * @see registerUndefinedFunctionCallback
+         * @internal 
+         * @static 
+         */ 
+        public static function getFunctions()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getFunctions();
+        }
+        
+        /**
+         * Registers a Global.
+         * 
+         * New globals can be added before compiling or rendering a template;
+         * but after, you can only update existing globals.
+         *
+         * @param string $name The global name
+         * @param mixed $value The global value
+         * @static 
+         */ 
+        public static function addGlobal($name, $value)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::addGlobal($name, $value);
+        }
+        
+        /**
+         * Gets the registered Globals.
+         *
+         * @return array An array of globals
+         * @internal 
+         * @static 
+         */ 
+        public static function getGlobals()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getGlobals();
+        }
+        
+        /**
+         * Merges a context with the defined globals.
+         *
+         * @param array $context An array representing the context
+         * @return array The context merged with the globals
+         * @static 
+         */ 
+        public static function mergeGlobals($context)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::mergeGlobals($context);
+        }
+        
+        /**
+         * Gets the registered unary Operators.
+         *
+         * @return array An array of unary operators
+         * @internal 
+         * @static 
+         */ 
+        public static function getUnaryOperators()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getUnaryOperators();
+        }
+        
+        /**
+         * Gets the registered binary Operators.
+         *
+         * @return array An array of binary operators
+         * @internal 
+         * @static 
+         */ 
+        public static function getBinaryOperators()
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::getBinaryOperators();
+        }
+        
+        /**
+         * 
+         *
+         * @deprecated since 1.23 (to be removed in 2.0)
+         * @static 
+         */ 
+        public static function computeAlternatives($name, $items)
+        {
+            //Method inherited from \Twig_Environment            
+            return \TwigBridge\Bridge::computeAlternatives($name, $items);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -14287,6 +15267,8 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class Twig extends \TwigBridge\Facade\Twig {}
  
 }
 

@@ -11,8 +11,13 @@
             <div class="col-md-4">
                 <form action="{{ route('signup.send') }}" method="POST">
                     {{ csrf_field() }}
+                    {% if errors.has('signup') %}
+                        <div class="alert alert-danger">
+                            {{ errors.first('signup') }}
+                        </div>
+                    {% endif %}
                     <div class="form-group">
-                        <input type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid'}}" placeholder="{{ trans('signup.pcn') }}" name="pcn" value="{{ old('pcn') }}" maxlength="6">
+                        <input type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}" placeholder="{{ trans('signup.pcn') }}" name="pcn" value="{{ old('pcn') }}" maxlength="6">
                         <div class="invalid-feedback">
                             {{ errors.first('pcn')|capitalize }}
                         </div>

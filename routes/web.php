@@ -17,5 +17,5 @@ Route::get('/', function () {
 
 Route::get('/inschrijven', 'SignupController@index')->name('signup');
 Route::post('/inschrijven/bevestigen', 'SignupController@getConfirmationPage')->name('signup.send');
-Route::get('/inschrijven/bevestigen', 'SignupController@index');
+Route::get('/inschrijven/bevestigen', 'SignupController@redirectToIndex');
 Route::post('/inschrijven', 'SignupController@signup')->name('signup.confirm');

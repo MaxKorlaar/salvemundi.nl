@@ -15,14 +15,18 @@
         public function up() {
             Schema::create('member_applications', function (Blueprint $table) {
                 $table->increments('id');
-                $table->integer('pcn')->unique();
+                $table->string('pcn')->unique();
                 $table->string('name');
                 $table->string('address');
                 $table->string('city');
                 $table->string('postal');
                 $table->date('birthday');
-                $table->string('phone');
+                $table->string('phone')->unique();
                 $table->string('email')->unique();
+                $table->enum('status', ['approved', 'on_hold', 'new', 'denied', 'under_review', 'blocked', 'email_unconfirmed']);
+                $table->string('ip_address');
+                $table->string('application_hash');
+                $table->string('email_confirmation_token');
                 $table->timestamps();
             });
         }

@@ -1,0 +1,11 @@
+{{ trans('email.confirm_application.greeting', { name: application.name }) }}
+<br/>
+<br/>
+{{ trans('email.confirm_application.instructions') }}
+<br/>
+{{ trans('email.confirm_application.link', { url: application.email_confirmation_token })|raw }}
+<br/>
+<br/>
+{{ trans('email.signature')|nl2br }}
+<hr>
+<small>{{ trans('email.disclaimer') }}</small>
