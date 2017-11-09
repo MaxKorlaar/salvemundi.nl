@@ -28,6 +28,7 @@ Schakel de plugins in voor dit project.
 
 ### Lokaal instellen
 
+* npm installeren
 * `npm install`
 * `composer install`
 * Gebruik Homestead (vagrant) voor een lokale VM. [Zie de Laravel-documentatie](https://laravel.com/docs/5.5/homestead#per-project-installation).

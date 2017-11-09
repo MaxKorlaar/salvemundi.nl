@@ -3,7 +3,7 @@
        'confirm_application' => [
            'subject' => 'Bevestig je inschrijving',
            'greeting' => 'Hoi :name,',
-           'instructions' => 'Om je inschrijving én email-adres bij Salve Mundi te bevestigen hoef je nu alleen nog maar op deze link te klikken.
+           'instructions' => 'Om je inschrijving én email-adres bij Salve Mundi te bevestigen hoef je nu alleen nog maar op de link in dit bericht te klikken.
            Heb je deze email niet aangevraagd? Dan kan je hem gerust negeren.',
            'link' => '<a href=":url">Bevestig je inschrijving</a>',
        ],
