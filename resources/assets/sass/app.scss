@@ -1,9 +1,7 @@
 // Variables
 @import "variables";
-
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
-
 @import "signup";
 // Doe hier je SASS-dingen.
 header {
@@ -41,7 +39,6 @@ header {
   }
 }
 
-
 .landing {
   height: 100vh;
   background-color: aqua;
@@ -51,9 +48,18 @@ header {
   text-align: center;
 }
 
-main {
-  padding-top: 50px;
-  h1 {
-   color: $brand-primary;
+.content {
+  padding-top: 150px;
+  main {
+    padding-top: 50px;
+    h1 {
+      color: $brand-primary;
+    }
   }
+}
+
+footer {
+  width: 100%;
+  background-color: $brand-primary;
+  height: 150px;
 }

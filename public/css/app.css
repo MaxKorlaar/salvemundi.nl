@@ -9776,11 +9776,21 @@ header nav div ul a:hover {
   text-align: center;
 }
 
-main {
+.content {
+  padding-top: 150px;
+}
+
+.content main {
   padding-top: 50px;
 }
 
-main h1 {
+.content main h1 {
   color: #663265;
+}
+
+footer {
+  width: 100%;
+  background-color: #663265;
+  height: 150px;
 }
 
