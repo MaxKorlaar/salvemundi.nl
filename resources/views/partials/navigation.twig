@@ -1,6 +1,12 @@
-<nav class="">
-    <div class="container">
-        <a class="" href="{{ route('home') }}">{{ config_get('app.name') }}</a>
-    </div>
-    {# Doe je ding. #}
-</nav>
+<header>
+    <nav class="">
+        <div class="container">
+            <img src="img/logo.svg" alt="logo">
+            <ul>
+                <a href="{{ route('home') }}"><il>{{ trans('nav.home') }}</il></a>
+                <a href="{{ route('home') }}"><il>{{ trans('nav.about') }}</il></a>
+                <a href="{{ route('signup') }}"><il>{{ trans('nav.signUp') }}</il></a>
+            </ul>
+        </div>
+    </nav>
+</header>

@@ -2,10 +2,34 @@
 {% block title %}{{ trans('home.title') }}{% endblock %}
 {% block content %}
     <main>
-        <h1>Dit is paginainhoud.</h1>
-        <p>
-            Om templates op een efficiënte manier te maken is het belangrijk om de Twig-documentatie door te lezen.
-        </p>
-        <a href="{{ route('signup') }}">{{ trans('home.signup_link') }}</a>
+
+        <section class="desc">
+            <p>Welkom op de (tijdelijke) website van Salve Mundi! Tot op heden is het enkel mogelijk in te schrijven, maar verwacht in de nabije toekomst een uitgebreide website vol informatie.<br />Salve Mundi is de nieuwe studievereniging van Fontys Hogescholen ICT, opgericht in 2017 door Mohammed Mighiss en Luuk Hendriks. Het is Latijn voor &ldquo;Hello World&rdquo;, een typische zin die menig programmeur maar al te goed kent.</p>
+            <p>De vereniging organiseert veel activiteiten, zowel studie bemiddelend als voor de lol, of een combinatie van de twee. Denk hierbij aan:&nbsp;</p>
+            <ul>
+                <li>Lezingen</li>
+                <li>Excursies</li>
+                <li>Workshops</li>
+                <li>Bedrijven bezoeken</li>
+                <li>Elke woensdag bijlessen</li>
+            </ul>
+            <p>Voor de uitgaande studenten:</p>
+            <ul>
+                <li>Op stap bij onze stamkroeg Villa Fiesta&nbsp;</li>
+                <li>Casinoavonden</li>
+                <li>Pubquiz-avonden</li>
+                <li>Willekeurige spontane activiteiten</li>
+            </ul>
+            <p>En voor de wat minder uitgaande studenten:</p>
+            <ul>
+                <li>Jaarlijks op kamp</li>
+                <li>Game Nights (bordspellen&nbsp;&amp;&nbsp;eSports)</li>
+                <li>Partnership met een grote hackathon</li>
+                <li>Uitjes naar bijvoorbeeld pretparken</li>
+            </ul>
+            <p>Naast deze activiteiten verzorgt Salve Mundi ook de introductie van FHICT van top tot teen.</p>
+            <a href="{{ route('signup') }}">{{ trans('home.signup_link') }}</a>
+        </section>
+
     </main>
 {% endblock %}

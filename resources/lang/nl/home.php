@@ -1,4 +1,5 @@
 <?php
     return [
-       'title' => 'Home'
+       'title' => 'Home',
+        'signup_link' => 'Aanmelden'
     ];
