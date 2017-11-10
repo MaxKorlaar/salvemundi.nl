@@ -11,6 +11,7 @@
         'phone'              => 'Telefoonnummer',
         'email'              => 'E-mail-adres',
         'email_confirmation' => 'Bevestig je e-mail-adres',
+        'sign_up'            => 'Versturen',
         'please_confirm'     => 'Controleer alsjeblieft de onderstaande gegevens voordat je de inschrijving verstuurt. Het kost ons extra tijd om fouten later te corrigeren.',
         'i_agree_terms'      => 'Door op bevestigen te drukken ga je akkoord met de [algemene voorwaarden] van Salve Mundi.',
         'confirm'            => 'Schrijf me in!',
