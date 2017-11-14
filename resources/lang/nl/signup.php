@@ -1,6 +1,6 @@
 <?php
     return [
-        'title'              => 'Inschrijven',
+        'title'              => 'Aanmelden',
         'pcn'                => 'Fontys PCN',
         'name'               => 'Voor- en achternaam',
         'address'            => 'Straat en huisnummer',

@@ -16,6 +16,8 @@
         class SignupController extends Controller {
 
             /**
+             * @param Request $request
+             *
              * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
              */
             public function index(Request $request) {
@@ -52,7 +54,7 @@
 
                 $application = new MemberApplication($request->old());
 
-                $current = MemberApplication::where('application_hash', '=', $application->getApplicationHash())->count();
+                $current = MemberApplication::where('pcn', '=', $application->pcn)->count();
 
                 if ($current > 0) {
                     // Er is al een inschrijving met dezelfde PCN

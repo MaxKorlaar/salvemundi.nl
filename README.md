@@ -28,8 +28,12 @@ Schakel de plugins in voor dit project.
 
 ### Lokaal instellen
 
-* npm installeren
+Alle `commando's` dienen, tenzij anders vermeld, uitgevoerd te worden in je terminal/commandoprompt met als huidige map die van dit project (De map waarin dit bestand staat)
+
+* Installeer npm via de instructies op de website van NodeJS (Is nogal een gedoe met macOS High Sierra, Google is je vriend)
+* Install composer via de instructies op de website van Composer (je kan ook alleen composer.phar downloaden en in deze map zetten als je hem niet in je hele systeem wil hebben, maar dan moet je wel `php composer.phar` gebruiken in plaats van slechts `composer`, bij commando's)
 * `npm install`
 * `composer install`
-* Gebruik Homestead (vagrant) voor een lokale VM. [Zie de Laravel-documentatie](https://laravel.com/docs/5.5/homestead#per-project-installation).
+* Gebruik Homestead (vagrant) voor een lokale VM. [Zie de Laravel-documentatie](https://laravel.com/docs/5.5/homestead#per-project-installation). Kijk hierbij onder 'Per project installation'
 * `vagrant up`, wanneer draaiende gebruik `npm run watch`
+* Voor Vagrant is een VM-manager nodig; Makkelijkste is Virtualbox - Deze heeft gewoon een installer voor Mac en Windows. Bij Mac is het nodig om naar Instellingen.app -> Beveiliging te gaan om onderaan in dat venster toestemming te geven aan de Virtualbox installer, nadat de installatie automatisch mislukt door geweigerde toegang.
