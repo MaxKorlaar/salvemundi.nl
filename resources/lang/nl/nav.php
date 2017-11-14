@@ -2,5 +2,5 @@
 return [
     'home' => 'Home',
     'about' => 'Over ons',
-    'signUp' => 'Aanmelden'
+    'sign_up' => 'Aanmelden'
 ];
