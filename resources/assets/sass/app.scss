@@ -21,19 +21,24 @@ header {
       ul {
         float: right;
         text-align: right;
-        a {
-          line-height: 150px;
-          color: white;
-          padding: 10px;
-          font-size: 18px;
-          margin: 5px;
-          transition: 0.3s ease;
-          &:hover {
-            background-color: white;
-            color: $brand-primary;
-            text-decoration: none;
+        li {
+          list-style: none;
+          display: inline-block;
+          a {
+            line-height: 150px;
+            color: white;
+            padding: 10px;
+            font-size: 18px;
+            margin: 5px;
+            transition: 0.3s ease;
+            &:hover {
+              background-color: white;
+              color: $brand-primary;
+              text-decoration: none;
+            }
           }
         }
+
       }
     }
   }

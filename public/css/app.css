@@ -9751,7 +9751,12 @@ header nav div ul {
   text-align: right;
 }
 
-header nav div ul a {
+header nav div ul li {
+  list-style: none;
+  display: inline-block;
+}
+
+header nav div ul li a {
   line-height: 150px;
   color: white;
   padding: 10px;
@@ -9761,7 +9766,7 @@ header nav div ul a {
   transition: 0.3s ease;
 }
 
-header nav div ul a:hover {
+header nav div ul li a:hover {
   background-color: white;
   color: #663265;
   text-decoration: none;
