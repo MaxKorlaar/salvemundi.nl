@@ -9789,9 +9789,8 @@ header .navNoBG {
   background-position: bottom;
   width: 100vw;
   margin: 0;
-  padding-top: calc(50vh - 35px + 100px);
+  padding-top: calc(50vh - 75px);
   text-align: center;
-  max-height: calc(100vw + 150px);
   color: white;
 }
 
