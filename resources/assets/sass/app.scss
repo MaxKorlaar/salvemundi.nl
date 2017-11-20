@@ -4,11 +4,15 @@
 @import "~bootstrap/scss/bootstrap";
 @import "signup";
 // Doe hier je SASS-dingen.
+body {
+  outline: none !important;
+}
 header {
   nav {
     width: 100vw;
     height: 150px;
     position: fixed;
+    z-index: 100000;
     margin: 0;
     box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.28);
     background-color: $brand-primary;
@@ -42,15 +46,22 @@ header {
       }
     }
   }
+  .navNoBG {
+    background: none;
+    box-shadow: none;
+  }
 }
 
 .landing {
   height: 100vh;
-  background-color: aqua;
+  background-size: cover;
+  background-position: bottom;
   width: 100vw;
   margin: 0;
   padding-top: calc(50vh - 35px + 100px);
   text-align: center;
+  max-height: calc(100vw + 150px);
+  color: white;
 }
 
 .content {
@@ -60,7 +71,38 @@ header {
     h1 {
       color: $brand-primary;
     }
+    section {
+      padding-top: 50px;
+    }
+
+    .form-group:focus {
+      outline: $brand-primary;
+    }
+    input {
+      border: none;
+      background: none;
+      border-bottom: thin solid gray;
+      border-radius: 0;
+      &:focus {
+        background: none;
+        outline: 0 !important;
+        border-color: $brand-primary;
+      }
+    }
+    .button {
+      background-color: $brand-primary;
+      color: white;
+      padding: 10px;
+      &:hover {
+        background-color: white;
+        color: $brand-primary;
+        border: none;
+      }
+    }
   }
+}
+.index {
+  padding-top: 0;
 }
 
 footer {

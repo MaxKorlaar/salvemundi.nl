@@ -1,84 +1,105 @@
 {% extends 'partials/page.twig' %}
 {% block title %}{{ trans('signup.title') }}{% endblock %}
 {% block content %}
-    <main class="signup">
-        <h1>{{ trans('signup.title') }}</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur excepturi facere mollitia ratione veniam. Facilis id praesentium
-            provident quisquam quod! Aliquid cum dicta fuga hic libero molestias quam? Ipsa, itaque?
-        </p>
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <form action="{{ route('signup.send') }}" method="POST">
-                    {{ csrf_field() }}
-                    {% if errors.has('signup') %}
-                        <div class="alert alert-danger">
-                            {{ errors.first('signup') }}
-                        </div>
-                    {% endif %}
-                    <div class="form-group">
-                        <input type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}" placeholder="{{ trans('signup.pcn') }}" name="pcn" value="{{ old('pcn') }}" maxlength="6">
-                        <div class="invalid-feedback">
-                            {{ errors.first('pcn')|capitalize }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control {{ errors.has('name') ? 'is-invalid' }}" placeholder="{{ trans('signup.name') }}" name="name" value="{{ old('name') }}" maxlength="50">
-                        <div class="invalid-feedback">
-                            {{ errors.first('name')|capitalize }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control {{ errors.has('address') ? 'is-invalid' }}" placeholder="{{ trans('signup.address') }}" name="address" value="{{ old('address') }}" maxlength="150">
-                        <div class="invalid-feedback">
-                            {{ errors.first('address')|capitalize }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control {{ errors.has('city') ? 'is-invalid' }}" placeholder="{{ trans('signup.city') }}" name="city" value="{{ old('city') }}" maxlength="150">
-                        <div class="invalid-feedback">
-                            {{ errors.first('city')|capitalize }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}" placeholder="{{ trans('signup.postal_code') }}" name="postal" value="{{ old('postal') }}" maxlength="6" pattern="^[0-9]{4}[A-Z]{2}$">
-                        <div class="invalid-feedback">
-                            {{ errors.first('postal')|capitalize }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="birthday">{{ trans('signup.birthday') }}</label>
-                        <input id="birthday" type="date" class="form-control {{ errors.has('birthday') ? 'is-invalid' }}" placeholder="{{ trans('signup.birthday_format') }}" name="birthday" value="{{ old('birthday') }}" maxlength="10">
-                        <div class="invalid-feedback">
-                            {{ errors.first('birthday')|capitalize }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="tel" class="form-control {{ errors.has('phone') ? 'is-invalid' }}" placeholder="{{ trans('signup.phone') }}" name="phone" value="{{ old('phone') }}" maxlength="15">
-                        <div class="invalid-feedback">
-                            {{ errors.first('phone')|capitalize }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control {{ errors.has('email') ? 'is-invalid' }}" placeholder="{{ trans('signup.email') }}" name="email" value="{{ old('email') }}" maxlength="50">
-                        <div class="invalid-feedback">
-                            {{ errors.first('email')|capitalize }}
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control {{ errors.has('email_confirmation') ? 'is-invalid' }}" placeholder="{{ trans('signup.email_confirmation') }}" name="email_confirmation" value="{{ old('email_confirmation') }}" maxlength="50">
-                        <div class="invalid-feedback">
-                            {{ errors.first('email_confirmation')|capitalize }}
-                        </div>
-                    </div>
-                    {{ dump(errors.all()) }}
-                    <div class="form-group">
-                        <input type="submit" class="button" value="{{ trans('signup.sign_up') }}">
-                    </div>
-                </form>
-            </div>
-        </div>
-
-
-    </main>
+	<div class="container content">
+		<main class="signup">
+			<h1>{{ trans('signup.title') }}</h1>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur excepturi facere mollitia ratione
+				veniam. Facilis id praesentium
+				provident quisquam quod! Aliquid cum dicta fuga hic libero molestias quam? Ipsa, itaque?
+			</p>
+			<div class="row justify-content-center">
+				<div class="col-md-4">
+					<form action="{{ route('signup.send') }}" method="POST">
+						{{ csrf_field() }}
+						{% if errors.has('signup') %}
+							<div class="alert alert-danger">
+								{{ errors.first('signup') }}
+							</div>
+						{% endif %}
+						<div class="form-group">
+							<input type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}"
+							       placeholder="{{ trans('signup.pcn') }}" name="pcn" value="{{ old('pcn') }}"
+							       maxlength="6">
+							<div class="invalid-feedback">
+								{{ errors.first('pcn')|capitalize }}
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control {{ errors.has('name') ? 'is-invalid' }}"
+							       placeholder="{{ trans('signup.name') }}" name="name" value="{{ old('name') }}"
+							       maxlength="50">
+							<div class="invalid-feedback">
+								{{ errors.first('name')|capitalize }}
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control {{ errors.has('address') ? 'is-invalid' }}"
+							       placeholder="{{ trans('signup.address') }}" name="address"
+							       value="{{ old('address') }}" maxlength="150">
+							<div class="invalid-feedback">
+								{{ errors.first('address')|capitalize }}
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control {{ errors.has('city') ? 'is-invalid' }}"
+							       placeholder="{{ trans('signup.city') }}" name="city" value="{{ old('city') }}"
+							       maxlength="150">
+							<div class="invalid-feedback">
+								{{ errors.first('city')|capitalize }}
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
+							       placeholder="{{ trans('signup.postal_code') }}" name="postal"
+							       value="{{ old('postal') }}" maxlength="6" pattern="^[0-9]{4}[A-Z]{2}$">
+							<div class="invalid-feedback">
+								{{ errors.first('postal')|capitalize }}
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="birthday">{{ trans('signup.birthday') }}</label>
+							<input id="birthday" type="date"
+							       class="form-control {{ errors.has('birthday') ? 'is-invalid' }}"
+							       placeholder="{{ trans('signup.birthday_format') }}" name="birthday"
+							       value="{{ old('birthday') }}" maxlength="10">
+							<div class="invalid-feedback">
+								{{ errors.first('birthday')|capitalize }}
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="tel" class="form-control {{ errors.has('phone') ? 'is-invalid' }}"
+							       placeholder="{{ trans('signup.phone') }}" name="phone" value="{{ old('phone') }}"
+							       maxlength="15">
+							<div class="invalid-feedback">
+								{{ errors.first('phone')|capitalize }}
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control {{ errors.has('email') ? 'is-invalid' }}"
+							       placeholder="{{ trans('signup.email') }}" name="email" value="{{ old('email') }}"
+							       maxlength="50">
+							<div class="invalid-feedback">
+								{{ errors.first('email')|capitalize }}
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="email"
+							       class="form-control {{ errors.has('email_confirmation') ? 'is-invalid' }}"
+							       placeholder="{{ trans('signup.email_confirmation') }}" name="email_confirmation"
+							       value="{{ old('email_confirmation') }}" maxlength="50">
+							<div class="invalid-feedback">
+								{{ errors.first('email_confirmation')|capitalize }}
+							</div>
+						</div>
+						{{ dump(errors.all()) }}
+						<div class="form-group">
+							<input type="submit" class="button" value="{{ trans('signup.sign_up') }}">
+						</div>
+					</form>
+				</div>
+			</div>
+		</main>
+	</div>
 {% endblock %}

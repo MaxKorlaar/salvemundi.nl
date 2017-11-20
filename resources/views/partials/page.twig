@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="{% block lang %}{{ config_get('app.locale') }}{% endblock %}">
-<head>
-	{% block head %}
-		{% include 'partials/head.twig' %}
-		<title>{% block title %}{% endblock %} – {{ config_get('app.name') }}</title>
-	{% endblock %}
-</head>
-<body>
-{% block body %}
-	{% block navigation %}
-		{% include 'partials/navigation.twig' %}
-	{% endblock %}
-{% block landing %}
-{% endblock %}
-{% block container %}
-	<div class="container content">
-		{% block content %}
+	<head>
+		{% block head %}
+			{% include 'partials/head.twig' %}
+			<title>{% block title %}{% endblock %} – {{ config_get('app.name') }}</title>
+			<script
+					src="https://code.jquery.com/jquery-3.2.1.js"
+					integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+					crossorigin="anonymous"></script>
+
 		{% endblock %}
-	</div>
-{% endblock %}
-	{% block footer %}
-		{% include 'partials/footer.twig' %}
-	{% endblock %}
-{% block scripts %}
-	<script src="{{ asset('js/manifest.js') }}"></script>
-	<script src="{{ asset('js/vendor.js') }}"></script>
-	<script src="{{ asset('js/app.js') }}"></script>
-{% endblock %}
-{% endblock %}
-</body>
+	</head>
+	<body>
+		{% block body %}
+			{% block navigation %}
+				{% include 'partials/navigation.twig' %}
+			{% endblock %}
+			{% block landing %}
+			{% endblock %}
+		{% block container %}
+				{% block content %}
+				{% endblock %}
+		{% endblock %}
+			{% block footer %}
+				{% include 'partials/footer.twig' %}
+			{% endblock %}
+		{% block scripts %}
+			<script src="{{ asset('js/manifest.js') }}"></script>
+			<script src="{{ asset('js/vendor.js') }}"></script>
+			<script src="{{ asset('js/app.js') }}"></script>
+			<script src={{ asset("js/main.js") }}></script>
+		{% endblock %}
+		{% endblock %}
+	</body>
 </html>
