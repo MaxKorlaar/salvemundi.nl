@@ -9734,6 +9734,25 @@ body {
   outline: none !important;
 }
 
+body a {
+  padding: 10px;
+  background-color: #663265;
+  color: white;
+  -webkit-transition: .2s ease;
+  transition: .2s ease;
+  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.28);
+          box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.28);
+}
+
+body a:hover {
+  background-color: #fff;
+  color: #663265;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.28);
+          box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.28);
+}
+
 header nav {
   width: 100vw;
   height: 150px;
@@ -9743,6 +9762,18 @@ header nav {
   -webkit-box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.28);
           box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.28);
   background-color: #663265;
+}
+
+header nav a {
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+header nav a:hover {
+  background-color: #fff;
+  color: #663265;
+  cursor: pointer;
 }
 
 header nav div img {
@@ -9769,6 +9800,7 @@ header nav div ul li a {
   margin: 5px;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
+  background: none;
 }
 
 header nav div ul li a:hover {
@@ -9786,7 +9818,7 @@ header .navNoBG {
 .landing {
   height: 100vh;
   background-size: cover;
-  background-position: bottom;
+  background: no-repeat bottom;
   width: 100vw;
   margin: 0;
   padding-top: calc(50vh - 75px);
@@ -9794,12 +9826,24 @@ header .navNoBG {
   color: white;
 }
 
-.content {
-  padding-top: 150px;
+.landing h1 {
+  font-weight: 100;
 }
 
-.content main {
-  padding-top: 50px;
+.landing .singUpBtnLanding {
+  margin: 30px;
+  padding: 15px;
+  font-size: 24px;
+}
+
+.landing .singUpBtnLanding:hover {
+  background-color: #fff;
+  color: #663265;
+  cursor: pointer;
+}
+
+.content {
+  padding: 150px 0 0 0;
 }
 
 .content main h1 {
@@ -9807,7 +9851,18 @@ header .navNoBG {
 }
 
 .content main section {
-  padding-top: 50px;
+  padding: 100px 0 100px 0;
+}
+
+.content main section p {
+  padding: 0 15px 0 15px;
+}
+
+.content main .events {
+  background-color: #663265;
+  color: #fff;
+  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.28);
+          box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.28);
 }
 
 .content main .form-group:focus {

@@ -2,14 +2,16 @@
 {% block title %}{{ trans('home.title') }}{% endblock %}
 {% block landing %}
 	<section class="landing" style="background-image: url(img/glowGroup.jpg)">
-		<h1>[TEST LANDING]</h1>
+		<h1>Welkom bij Salve Mundi</h1><br>
+		<h5>Meld je vandaag nog aan!</h5><br>
+		<a class="singUpBtnLanding" href="{{ route('signup') }}">{{ trans('home.signup_link') }}</a>
 	</section>
 {% endblock %}
 {% block content %}
-	<div class="container content index">
+	<div class="container-fluid content index">
 		<main>
 
-			<section class="desc">
+			<section class="desc container">
 				<p>Welkom op de (tijdelijke) website van Salve Mundi! Tot op heden is het enkel mogelijk in te
 					schrijven, maar verwacht in de nabije toekomst een uitgebreide website vol informatie.<br/>Salve
 					Mundi is de nieuwe studievereniging van Fontys Hogescholen ICT, opgericht in 2017 door Mohammed
@@ -42,30 +44,53 @@
 				<a href="{{ route('signup') }}">{{ trans('home.signup_link') }}</a>
 			</section>
 			<section class="events">
-				<h2>Aankomende evenementen</h2>
+				<div class="container">
+					<h2>Aankomende evenementen</h2>
+					<div class="event row">
+						<h4 class="col-md-6">22 November</h4>
+						<h5 class="col-md-6">Eerste feest</h5>
+					</div>
+					<hr>
+					<div class="event row">
+						<h4 class="col-md-6">24 Januari</h4>
+						<h5 class="col-md-6">Nieuwjaarsborrel</h5>
+					</div>
+					<hr>
+					<div class="event row">
+						<h4 class="col-md-6">22 November</h4>
+						<h5 class="col-md-6">Eerste feest</h5>
+					</div>
+					<hr>
+					<div class="event row">
+						<h4 class="col-md-6">22 November</h4>
+						<h5 class="col-md-6">Eerste feest</h5>
+					</div>
+					<hr>
+					<div class="event row">
+						<h4 class="col-md-6">22 November</h4>
+						<h5 class="col-md-6">Eerste feest</h5>
+					</div>
+					<hr>
+				</div>
+
+
+			</section>
+			<section class="commisie container">
+				<h3>Bij Salve Mundi hebben we verschillende commisies zoals:</h3>
+				<hr>
 				<div class="event row">
-					<h4 class="col-md-6">22 November</h4>
-					<h5 class="col-md-6">Eerste feest</h5>
+					<h4 class="col-md-12">Media commisie</h4>
+					<p>Verantwoordelijk voor alle media geralateerde producten zoals het maken en het onderhouden van de website etc.</p>
 				</div>
 				<hr>
 				<div class="event row">
-					<h4 class="col-md-6">22 November</h4>
-					<h5 class="col-md-6">Eerste feest</h5>
+					<h4 class="col-md-12">Feest commisie</h4>
+					<p>Een van de meest gewilde commisies in de s.v. verantwoordelijk voor de mooiste feesten het van A tot Z organiseren van de enige echte intro.</p>
 				</div>
 				<hr>
 				<div class="event row">
-					<h4 class="col-md-6">22 November</h4>
-					<h5 class="col-md-6">Eerste feest</h5>
-				</div>
-				<hr>
-				<div class="event row">
-					<h4 class="col-md-6">22 November</h4>
-					<h5 class="col-md-6">Eerste feest</h5>
-				</div>
-				<hr>
-				<div class="event row">
-					<h4 class="col-md-6">22 November</h4>
-					<h5 class="col-md-6">Eerste feest</h5>
+					<h4 class="col-md-12">Kamp commisie</h4><br>
+					<p>Zij regelen het jaarlijks terugkerende kamp</p>
 				</div>
 				<hr>
 
