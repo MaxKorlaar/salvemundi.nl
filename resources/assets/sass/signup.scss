@@ -10,4 +10,22 @@
       font-weight: bold;
     }
   }
+
+  .checkmark-wrapper {
+    text-align: center;
+    .checkmark {
+      // Ik heb even snel iets in elkaar geplakt voor een vinkje in een cirkeltje
+      font-size: 7rem;
+      background: $brand-primary;
+      color: $white;
+      border-radius: 100%;
+      display: inline-block;
+      width: 10rem;
+      height: 10rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+  }
+
 }
