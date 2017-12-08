@@ -9730,50 +9730,32 @@ a.text-dark:hover {
   font-weight: bold;
 }
 
-body {
-  outline: none !important;
+.signup .checkmark-wrapper {
+  text-align: center;
 }
 
-body a {
-  padding: 10px;
-  background-color: #663265;
-  color: white;
-  -webkit-transition: .2s ease;
-  transition: .2s ease;
-  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.28);
-          box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.28);
-}
-
-body a:hover {
-  background-color: #fff;
-  color: #663265;
-  cursor: pointer;
-  text-decoration: none;
-  -webkit-box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.28);
-          box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.28);
+.signup .checkmark-wrapper .checkmark {
+  font-size: 7rem;
+  background: #663265;
+  color: #fff;
+  border-radius: 100%;
+  display: inline-block;
+  width: 10rem;
+  height: 10rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1;
 }
 
 header nav {
   width: 100vw;
   height: 150px;
   position: fixed;
-  z-index: 100000;
   margin: 0;
   -webkit-box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.28);
           box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.28);
   background-color: #663265;
-}
-
-header nav a {
-  background: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-header nav a:hover {
-  background-color: #fff;
-  color: #663265;
-  cursor: pointer;
+  z-index: 999;
 }
 
 header nav div img {
@@ -9800,7 +9782,6 @@ header nav div ul li a {
   margin: 5px;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
-  background: none;
 }
 
 header nav div ul li a:hover {
@@ -9809,93 +9790,25 @@ header nav div ul li a:hover {
   text-decoration: none;
 }
 
-header .navNoBG {
-  background: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
 .landing {
   height: 100vh;
-  background-size: cover;
-  background: no-repeat bottom;
+  background-color: aqua;
   width: 100vw;
   margin: 0;
-  padding-top: calc(50vh - 75px);
+  padding-top: calc(50vh - 35px + 100px);
   text-align: center;
-  color: white;
-}
-
-.landing h1 {
-  font-weight: 100;
-}
-
-.landing .singUpBtnLanding {
-  margin: 30px;
-  padding: 15px;
-  font-size: 24px;
-}
-
-.landing .singUpBtnLanding:hover {
-  background-color: #fff;
-  color: #663265;
-  cursor: pointer;
 }
 
 .content {
-  padding: 150px 0 0 0;
+  padding-top: 150px;
+}
+
+.content main {
+  padding-top: 50px;
 }
 
 .content main h1 {
   color: #663265;
-}
-
-.content main section {
-  padding: 100px 0 100px 0;
-}
-
-.content main section p {
-  padding: 0 15px 0 15px;
-}
-
-.content main .events {
-  background-color: #663265;
-  color: #fff;
-  -webkit-box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.28);
-          box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.28);
-}
-
-.content main .form-group:focus {
-  outline: #663265;
-}
-
-.content main input {
-  border: none;
-  background: none;
-  border-bottom: thin solid gray;
-  border-radius: 0;
-}
-
-.content main input:focus {
-  background: none;
-  outline: 0 !important;
-  border-color: #663265;
-}
-
-.content main .button {
-  background-color: #663265;
-  color: white;
-  padding: 10px;
-}
-
-.content main .button:hover {
-  background-color: white;
-  color: #663265;
-  border: none;
-}
-
-.index {
-  padding-top: 0;
 }
 
 footer {

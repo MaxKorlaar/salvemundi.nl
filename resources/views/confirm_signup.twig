@@ -9,45 +9,44 @@
         </p>
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <form action="{{ route('signup.confirm') }}" method="POST">
+                <form action="{{ route('signup.confirm') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <p class="alert alert-info">{{ trans('signup.please_confirm') }}</p>
-                    {#'pcn'             => 'Fontys PCN',
-        'name'            => 'Voor- en achternaam',
-        'address'         => 'Straat en huisnummer',
-        'city'            => 'Woonplaats',
-        'postal_code'     => 'Postcode (1234AB)',
-        'birthday'        => 'Geboortedatum',
-        'birthday_format' => 'dd-mm-jjjj (' . \Carbon\Carbon::now()->format('d-m-Y') . ')',
-        'phone' => 'Telefoonnummer',
-        'email' => 'E-mail-adres',
-        'email_confirmation' => 'Bevestig je e-mail-adres',#}
                     <div class="form-group">
-                        <label>{{ trans('signup.pcn') }}:</label> {{ input_get('pcn') }}
+                        <label>{{ trans('signup.pcn') }}:</label> {{ session_get('signup_data.pcn') }}
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('signup.name') }}:</label> {{ input_get('name') }}
+                        <label>{{ trans('signup.name') }}:</label> {{ session_get('signup_data.name') }}
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('signup.address') }}:</label> {{ input_get('address') }}
+                        <label>{{ trans('signup.address') }}:</label> {{ session_get('signup_data.address') }}
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('signup.city') }}:</label> {{ input_get('city') }}
+                        <label>{{ trans('signup.city') }}:</label> {{ session_get('signup_data.city') }}
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('signup.postal_code') }}:</label> {{ input_get('postal') }}
+                        <label>{{ trans('signup.postal_code') }}:</label> {{ session_get('signup_data.postal') }}
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('signup.birthday') }}:</label> {{ input_get('birthday')|date(trans('datetime.format.date')) }}
+                        <label>{{ trans('signup.birthday') }}:</label> {{ session_get('signup_data.birthday')|date(trans('datetime.format.date')) }}
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('signup.phone') }}:</label> {{ input_get('phone') }}
+                        <label>{{ trans('signup.phone') }}:</label> {{ session_get('signup_data.phone') }}
                     </div>
                     <div class="form-group">
-                        <label>{{ trans('signup.email') }}:</label> {{ input_get('email') }}
+                        <label>{{ trans('signup.email') }}:</label> {{ session_get('signup_data.email') }}
                     </div>
                     <div class="form-group">
                         <p>{{ trans('signup.i_agree_terms') }}</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control {{ errors.has('picture') ? 'is-invalid' }}" placeholder="{{ trans('signup.picture') }}" name="picture">
+                        <p class="help">
+                            {{ trans('signup.picture_help') }}
+                        </p>
+                        <div class="invalid-feedback">
+                            {{ errors.first('picture')|capitalize }}
+                        </div>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="button" value="{{ trans('signup.confirm') }}">

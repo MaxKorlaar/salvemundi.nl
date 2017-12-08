@@ -5,7 +5,10 @@
            'greeting' => 'Hoi :name,',
            'instructions' => 'Om je inschrijving én email-adres bij Salve Mundi te bevestigen hoef je nu alleen nog maar op de link in dit bericht te klikken.
            Heb je deze email niet aangevraagd? Dan kan je hem gerust negeren.',
-           'link' => '<a href=":url">Bevestig je inschrijving</a>',
+           'not_complete' => 'Je inschrijving is echter nog niet compleet. We willen graag dat je nog een pasfoto opstuurt naar info@salvemundi.nl
+           en €25,- overmaakt naar NL77 RABO 0171 5165 91. Benoem hierbij je naam en \'Salve Mundi\' bij de beschrijving, dat maakt het voor ons overzichtelijker. ',
+           'when_done' => 'Als je dit allemaal hebt gedaan, ontvang je zo snel mogelijk je pasje.',
+           'link' => 'Bevestig je inschrijving',
        ],
        'signature' => 'Met vriendelijke groet,
        s.v. Salve Mundi

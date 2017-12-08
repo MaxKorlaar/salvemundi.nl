@@ -1,0 +1,17 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('signup.email_confirmed') }}{% endblock %}
+{% block content %}
+    <main class="signup">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="checkmark-wrapper">
+                    <div class="checkmark">&check;</div>
+                </div>
+                {# <-- Dit is commentaar overigens #}
+                {# Ik heb het verder niet heel veel uitgewerkt, maar het leek me mooi om een paarse cirkel met een wit vinkje erin neer te zetten #}
+                <h3>{{ trans('signup.email_confirmed') }}</h3>
+                <p>{{ trans('signup.thanks_for_confirming', { name: application.name }) }}</p>
+            </div>
+        </div>
+    </main>
+{% endblock %}

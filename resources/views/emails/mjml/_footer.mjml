@@ -1,0 +1,7 @@
+<mj-section padding=0 text-align="center">
+  <mj-column>
+    <mj-text align="center" font-size="10" color="#495057">
+      {{ trans('email.disclaimer') }}
+    </mj-text>
+  </mj-column>
+</mj-section>

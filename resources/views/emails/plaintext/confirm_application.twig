@@ -1,0 +1,16 @@
+{{ trans('email.confirm_application.greeting', { name: application.name }) }}
+
+
+{{ trans('email.confirm_application.instructions') }}
+
+{{ trans('email.confirm_application.not_complete') }}
+
+{{ trans('email.confirm_application.when_done') }}
+
+{{ route('signup.confirm_email', { id: application.id, token: application.email_confirmation_token }) }}
+
+
+{{ trans('email.signature') }}
+
+---
+{{ trans('email.disclaimer') }}
