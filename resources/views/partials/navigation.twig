@@ -1,5 +1,5 @@
 <header>
-    <nav class="navNoBG">
+    <nav class="{% block nav_classes %}{% endblock %}">
         <div class="container">
             <a href="{{ route('home') }}"><img src="{{ asset('images/logo.svg') }}" alt="Salve Mundi"></a>
             <ul>

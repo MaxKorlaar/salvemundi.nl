@@ -1,5 +1,6 @@
 {% extends 'partials/page.twig' %}
 {% block title %}{{ trans('home.title') }}{% endblock %}
+{% block nav_classes %}no-bg{% endblock %}
 {% block landing %}
 	<section class="landing" style="background-image: url(img/glowGroup.jpg)">
 		<h1>Welkom bij Salve Mundi</h1><br>
@@ -97,4 +98,8 @@
 			</section>
 		</main>
 	</div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src={{ asset("js/main.js") }}></script>
 {% endblock %}

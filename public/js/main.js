@@ -1,8 +1,9 @@
+let scrollThreshold = $('.landing').height();
 $(window).scroll(function () {
-    if ($(this).scrollTop() > 750) {
-        $("nav").removeClass("navNoBG");
+    if ($(this).scrollTop() > scrollThreshold) {
+        $("nav").removeClass("no-bg");
     }
     else {
-        $("nav").addClass("navNoBG")
+        $("nav").addClass("no-bg");
     }
 });

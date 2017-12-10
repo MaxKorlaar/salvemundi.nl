@@ -26,7 +26,7 @@
              */
             public function rules() {
                 return [
-                    'picture' => 'file|image|required|max:5000'
+                    'picture' => 'file|image|required|max:5000|dimensions:min_width=200,min_height=300'
                 ];
             }
 

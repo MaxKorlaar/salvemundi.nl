@@ -37,3 +37,13 @@ Alle `commando's` dienen, tenzij anders vermeld, uitgevoerd te worden in je term
 * Gebruik Homestead (vagrant) voor een lokale VM. [Zie de Laravel-documentatie](https://laravel.com/docs/5.5/homestead#per-project-installation). Kijk hierbij onder 'Per project installation'
 * `vagrant up`, wanneer draaiende gebruik `npm run watch`
 * Voor Vagrant is een VM-manager nodig; Makkelijkste is Virtualbox - Deze heeft gewoon een installer voor Mac en Windows. Bij Mac is het nodig om naar Instellingen.app -> Beveiliging te gaan om onderaan in dat venster toestemming te geven aan de Virtualbox installer, nadat de installatie automatisch mislukt door geweigerde toegang.
+
+### Bijwerken
+
+Nadat je de bestanden hebt bijgewerkt vanuit git, is het mogelijk dat er wijzigingen zijn aangebracht in de databasestructuur. Deze kunnen automatisch worden toegepast door de volgende commando's uit te voeren:
+
+* Als je op een lokale machine werkt, eerst `vagrant ssh` typen om in de VM te komen.
+* Navigeer naar het pad van dit project (In de VM is dat `cd code/` (De locatie van het project in Vagrant is `/home/vagrant/code`).
+* Voer `php artisan down` uit om het project in een onderhoudsmodus te brengen (Hoeft lokaal niet per se).
+* Voer `php artisan migrate` uit om de migraties uit te voeren.
+* Indien de onderhoudsmodus aanstaat, deze uitzetten via `php artisan up`.
