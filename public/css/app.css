@@ -9836,6 +9836,12 @@ header nav div ul li a:hover {
   text-decoration: none;
 }
 
+header .navNoBG {
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .landing {
   height: 100vh;
   background-size: cover;
