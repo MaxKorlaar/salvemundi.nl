@@ -53,6 +53,20 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+        'fontys' => [
+            'driver' => 'mysql',
+            'host' => 'studmysql01.fhict.local',
+            'port' => 3306,
+            'database' => 'salvemundi',
+            'username' =>'salvemundi',
+            'password' => env('FHICT_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',

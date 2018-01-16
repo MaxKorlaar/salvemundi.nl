@@ -23,11 +23,13 @@ body {
 }
 
 header {
-  nav {
-    &.no-bg {
+  &.no-bg {
+    nav {
       background: none;
       box-shadow: none;
     }
+  }
+  nav {
     transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     width: 100vw;
     height: 150px;
@@ -81,12 +83,12 @@ header {
 .landing {
   height: 100vh;
   background-size: cover;
-  background: no-repeat bottom;
   width: 100vw;
   margin: 0;
   padding-top: calc(50vh - 75px);
   text-align: center;
   color: white;
+  background: url(../images/glowGroup.jpg) no-repeat bottom;
   h1 {
     font-weight: 100;
   }

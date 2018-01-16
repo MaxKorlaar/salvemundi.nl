@@ -1,3 +1,4 @@
+// noinspection JSAnnotator
 const {mix} = require('laravel-mix');
 
 /*
@@ -11,15 +12,16 @@ const {mix} = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
+mix.setPublicPath('public_html').js('resources/assets/js/app.js', 'public/js')
     .extract(['vue', 'jquery', 'axios', 'popper.js', 'bootstrap'])
     .autoload({
         jquery:      ['$', 'jQuery', 'jquery'],
         'popper.js': ['Popper', 'window.Popper']
     })
-   .sass('resources/assets/sass/app.scss', 'public/css');
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .version();
 mix.browserSync({
-    proxy: '0.0.0.0:8000',
+    proxy: '0.0.0.0:8000'
     // files: [
     //   "resources/views/**/*.twig"
     // ],
