@@ -5,13 +5,16 @@
     <title>{% block error %}{% endblock %} - {{ config_get('app.name') }}</title>
 </head>
 <body>
-<div class="container">
-    <div class="content">
-        <div class="title">{{ block('error') }}</div>
-        {% if block("message") is defined %}
-            <div class="message">{% block message %}{% endblock %}</div>
-        {% endif %}
+    <div class="container">
+        <div class="content">
+            <div class="logo">
+                <img src="{{ asset('images/logo.svg') }}" class="img-fluid" alt="Salve Mundi logo">
+            </div>
+            <div class="title">{{ block('error') }}</div>
+            {% if block("message") is defined %}
+                <div class="message">{% block message %}{% endblock %}</div>
+            {% endif %}
+        </div>
     </div>
-</div>
 </body>
 </html>

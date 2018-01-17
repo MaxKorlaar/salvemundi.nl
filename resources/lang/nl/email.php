@@ -10,6 +10,12 @@
            'when_done' => 'Als je dit allemaal hebt gedaan, ontvang je zo snel mogelijk je pasje.',
            'link' => 'Bevestig je inschrijving',
        ],
+       'new_member_application' => [
+         'subject' => 'Nieuwe inschrijving van :name',
+         'greeting' => 'Hallo bestuur,',
+         'intro_text' => 'Er is een nieuwe aanmelding voor Salve Mundi ingezonden. Het email-adres van deze gebruiker is bevestigd.',
+         'sent_from' => 'Deze aanmelding is verzonden vanaf :ip.',
+       ],
        'signature' => 'Met vriendelijke groet,
        s.v. Salve Mundi
        info@salvemundi.nl',

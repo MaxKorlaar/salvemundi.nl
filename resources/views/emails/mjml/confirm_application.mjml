@@ -9,7 +9,7 @@
       <mj-include path="_header" />
       <mj-section>
         <mj-column>
-          <mj-text>{{ trans('email.confirm_application.greeting', { name: application.name }) }}</mj-text>
+          <mj-text>{{ trans('email.confirm_application.greeting', { name: application.first_name }) }}</mj-text>
 
           <mj-text>{{ trans('email.confirm_application.instructions') }}</mj-text>
 

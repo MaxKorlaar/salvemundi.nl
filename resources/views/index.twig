@@ -1,3 +1,4 @@
+{% set nav_background = false %}
 {% extends 'partials/page.twig' %}
 {% block title %}{{ trans('home.title') }}{% endblock %}
 {% block container %}
@@ -5,7 +6,7 @@
         <section class="landing">
             <h1>Welkom bij Salve Mundi</h1><br>
             <h5>Meld je vandaag nog aan!</h5><br>
-            <a class="singUpBtnLanding" href="{{ route('signup') }}">{{ trans('home.signup_link') }}</a>
+            <a class="signup-btn button" href="{{ route('signup') }}">{{ trans('home.signup_link') }}</a>
         </section>
     {% endblock %}
     {% block content %}
@@ -41,7 +42,7 @@
                         <li>Uitjes naar bijvoorbeeld pretparken</li>
                     </ul>
                     <p>Naast deze activiteiten verzorgt Salve Mundi ook de introductie van FHICT van top tot teen.</p>
-                    <a href="{{ route('signup') }}">{{ trans('home.signup_link') }}</a>
+                    <a href="{{ route('signup') }}" class="button">{{ trans('home.signup_link') }}</a>
                 </section>
                 <section class="events">
                     <div class="container">
@@ -101,6 +102,7 @@
     {% endblock %}
 {% endblock %}
 {% block scripts %}
-    {{ parent() }}
-    <script src={{ asset("js/main.js") }}></script>
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/landing.js') }}"></script>
 {% endblock %}

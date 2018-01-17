@@ -2,6 +2,11 @@
 
 return [
 
+    'to' => [
+        'address' => env('MAIL_TO_ADDRESS', 'hello@salvemundi.nl'),
+        'name'    => env('MAIL_TO_NAME', 's.v. Salve Mundi'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Mail Driver
@@ -56,7 +61,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@salvemundi.nl'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hallo@salvemundi.nl'),
         'name' => env('MAIL_FROM_NAME', 's.v. Salve Mundi'),
     ],
 

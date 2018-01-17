@@ -1,11 +1,15 @@
 <?php
     return [
         'title'                 => 'Aanmelden',
+        'text'                  => 'Om Salvemundi te bekostigen, vragen we een vergoeding van €20,- per jaar voor het lidmaatschap
+        en een eenmalige vergoeding van €5,- voor de ledenpas.',
         'pcn'                   => 'Fontys PCN',
-        'name'                  => 'Voor- en achternaam',
+        'first_name'            => 'Voornaam',
+        'last_name'             => 'Achternaam',
         'address'               => 'Straat en huisnummer',
         'city'                  => 'Woonplaats',
         'postal_code'           => 'Postcode',
+        'postal'           => 'Postcode',
         'birthday'              => 'Geboortedatum',
         'birthday_format'       => 'dd-mm-jjjj (' . \Carbon\Carbon::now()->format('d-m-Y') . ')',
         'phone'                 => 'Telefoonnummer',
@@ -16,7 +20,7 @@
         Afbeeldingen mogen maximaal 5 MB groot zijn en moeten minimaal 200 bij 300 pixels groot zijn.',
         'sign_up'               => 'Versturen',
         'please_confirm'        => 'Controleer alsjeblieft de onderstaande gegevens voordat je de inschrijving verstuurt. Het kost ons extra tijd om fouten later te corrigeren.',
-        'i_agree_terms'         => 'Door op bevestigen te drukken ga je akkoord met de [algemene voorwaarden] van Salve Mundi.',
+        'i_agree_terms'         => 'Door op bevestigen te drukken ga je akkoord met de <a target="_blank" href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp">Algemene voorwaarden</a> van Salve Mundi.',
         'confirm'               => 'Schrijf me in!',
         'completed'             => 'Inschrijving verzonden',
         'email_instructions'    => 'Je inschrijving is echter nog niet compleet! Om hem geldig te maken moet je eerst nog de instructies volgen in een email die je zojuist hebt ontvangen.

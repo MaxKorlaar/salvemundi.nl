@@ -7,47 +7,51 @@
     use Intervention\Image\Facades\Image;
 
     /**
-     * Class MemberApplication
-     *
-     * @package App
-     * @mixin \Eloquent
-     * @property int                 $id
-     * @property int                 $pcn
-     * @property string              $name
-     * @property string              $address
-     * @property string              $city
-     * @property string              $postal
-     * @property \Carbon\Carbon      $birthday
-     * @property string              $phone
-     * @property string              $email
-     * @property \Carbon\Carbon|null $created_at
-     * @property \Carbon\Carbon|null $updated_at
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereAddress($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereBirthday($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereCity($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereEmail($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePcn($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePhone($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePostal($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereUpdatedAt($value)
-     * @property string              $status
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereStatus($value)
-     * @property string              $ip_address
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereIpAddress($value)
-     * @property string              $application_hash
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereApplicationHash($value)
-     * @property string              $email_confirmation_token
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereEmailConfirmationToken($value)
-     * @property string              $picture_name
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePictureName($value)
-     */
+ * Class MemberApplication
+ *
+ * @package App
+ * @mixin \Eloquent
+ * @property int                 $id
+ * @property int                 $pcn
+ * @property string              $name
+ * @property string              $address
+ * @property string              $city
+ * @property string              $postal
+ * @property \Carbon\Carbon      $birthday
+ * @property string              $phone
+ * @property string              $email
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereBirthday($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePcn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePhone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePostal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereUpdatedAt($value)
+ * @property string              $status
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereStatus($value)
+ * @property string              $ip_address
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereIpAddress($value)
+ * @property string              $application_hash
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereApplicationHash($value)
+ * @property string              $email_confirmation_token
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereEmailConfirmationToken($value)
+ * @property string              $picture_name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePictureName($value)
+ * @property string $first_name
+ * @property string $last_name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereFirstName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereLastName($value)
+ */
     class MemberApplication extends Model {
 
         use HasEncryptedAttributes;
-        protected $encrypted = ['pcn', 'name', 'address', 'city', 'postal', 'phone', 'email', 'ip_address', 'picture_name'];
+        protected $encrypted = ['pcn', 'first_name', 'last_name', 'address', 'city', 'postal', 'phone', 'email', 'ip_address', 'picture_name'];
 
         /**
          * Status is een enum. (['approved', 'on_hold', 'new', 'denied', 'under_review', 'blocked', 'email_unconfirmed'])
@@ -59,7 +63,7 @@
             STATUS_UNDER_REVIEW = 'under_review', STATUS_BLOCKED = 'blocked',
             STATUS_EMAIL_UNCONFIRMED = 'email_unconfirmed';
 
-        public $fillable = ['pcn', 'name', 'address', 'city', 'postal', 'birthday', 'phone', 'email'];
+        public $fillable = ['pcn', 'first_name', 'last_name', 'address', 'city', 'postal', 'birthday', 'phone', 'email'];
         protected $attributes = [
             'status' => self::STATUS_EMAIL_UNCONFIRMED
         ];
@@ -87,9 +91,16 @@
         }
 
         /**
+         * @return string
+         */
+        public function getImagePath() {
+            return storage_path('app/member_photos/' . $this->picture_name);
+        }
+
+        /**
          * @return mixed
          */
         public function getPicture() {
-            return Image::make(storage_path('app/member_photos/' . $this->picture_name))->response();
+            return Image::make($this->getImagePath())->response();
         }
     }

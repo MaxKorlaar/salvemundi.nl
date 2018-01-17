@@ -22,6 +22,11 @@
 
     Route::get('/inschrijven/bevestigen/{application}/{token}', 'SignupController@confirmEmail')->name('signup.confirm_email');
 
+    Route::get('/inschrijving/{application}', function(\App\MemberApplication $application) {
+        $mail = new \App\Mail\NewMemberApplication($application);
+        return $mail->render();
+    });
+
     Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admin/', 'middleware' => ['auth', 'auth.admin']], function () {
         Route::resource('aanmeldingen', 'ApplicationsController')->names('applications');
         Route::get('/aanmeldingen/{application}/pasfoto', 'SignupController@afbeelding');

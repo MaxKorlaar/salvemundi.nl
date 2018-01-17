@@ -1,60 +1,65 @@
 {% extends 'partials/page.twig' %}
 {% block title %}{{ trans('signup.title') }}{% endblock %}
 {% block content %}
-    <main class="signup">
-        <h1>{{ trans('signup.title') }}</h1>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur excepturi facere mollitia ratione veniam. Facilis id praesentium
-            provident quisquam quod! Aliquid cum dicta fuga hic libero molestias quam? Ipsa, itaque?
-        </p>
-        <div class="row justify-content-center">
-            <div class="col-md-4">
-                <form action="{{ route('signup.confirm') }}" method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <p class="alert alert-info">{{ trans('signup.please_confirm') }}</p>
-                    <div class="form-group">
-                        <label>{{ trans('signup.pcn') }}:</label> {{ session_get('signup_data.pcn') }}
-                    </div>
-                    <div class="form-group">
-                        <label>{{ trans('signup.name') }}:</label> {{ session_get('signup_data.name') }}
-                    </div>
-                    <div class="form-group">
-                        <label>{{ trans('signup.address') }}:</label> {{ session_get('signup_data.address') }}
-                    </div>
-                    <div class="form-group">
-                        <label>{{ trans('signup.city') }}:</label> {{ session_get('signup_data.city') }}
-                    </div>
-                    <div class="form-group">
-                        <label>{{ trans('signup.postal_code') }}:</label> {{ session_get('signup_data.postal') }}
-                    </div>
-                    <div class="form-group">
-                        <label>{{ trans('signup.birthday') }}:</label> {{ session_get('signup_data.birthday')|date(trans('datetime.format.date')) }}
-                    </div>
-                    <div class="form-group">
-                        <label>{{ trans('signup.phone') }}:</label> {{ session_get('signup_data.phone') }}
-                    </div>
-                    <div class="form-group">
-                        <label>{{ trans('signup.email') }}:</label> {{ session_get('signup_data.email') }}
-                    </div>
-                    <div class="form-group">
-                        <p>{{ trans('signup.i_agree_terms') }}</p>
-                    </div>
-                    <div class="form-group">
-                        <input type="file" class="form-control {{ errors.has('picture') ? 'is-invalid' }}" placeholder="{{ trans('signup.picture') }}" name="picture">
-                        <p class="help">
-                            {{ trans('signup.picture_help') }}
-                        </p>
-                        <div class="invalid-feedback">
-                            {{ errors.first('picture')|capitalize }}
+    <div class="container content">
+        <main class="signup">
+            <h1>{{ trans('signup.title') }}</h1>
+            <p>
+                {{ trans('signup.text') }}
+            </p>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form action="{{ route('signup.confirm') }}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <p class="alert alert-info">{{ trans('signup.please_confirm') }}</p>
+                        <div class="form-group">
+                            <label>{{ trans('signup.pcn') }}:</label> {{ session_get('signup_data.pcn') }}
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" class="button" value="{{ trans('signup.confirm') }}">
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label>{{ trans('signup.first_name') }}:</label> {{ session_get('signup_data.first_name') }}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ trans('signup.last_name') }}:</label> {{ session_get('signup_data.last_name') }}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ trans('signup.address') }}:</label> {{ session_get('signup_data.address') }}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ trans('signup.city') }}:</label> {{ session_get('signup_data.city') }}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ trans('signup.postal_code') }}:</label> {{ session_get('signup_data.postal') }}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ trans('signup.birthday') }}
+                                :</label> {{ session_get('signup_data.birthday')|date(trans('datetime.format.date')) }}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ trans('signup.phone') }}:</label> {{ session_get('signup_data.phone') }}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ trans('signup.email') }}:</label> {{ session_get('signup_data.email') }}
+                        </div>
+                        <div class="form-group">
+                            <p>{{ trans('signup.i_agree_terms')|raw }}</p>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" class="form-control {{ errors.has('picture') ? 'is-invalid' }}" placeholder="{{ trans('signup.picture') }}" name="picture">
+                            <p class="help">
+                                {{ trans('signup.picture_help') }}
+                            </p>
+                            <div class="invalid-feedback">
+                                {{ errors.first('picture')|capitalize }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="button" value="{{ trans('signup.confirm') }}">
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
 
 
-    </main>
+        </main>
+    </div>
 {% endblock %}

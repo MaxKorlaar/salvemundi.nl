@@ -4,7 +4,7 @@
 <meta name="author" content="s.v. Salve Mundi">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="apple-mobile-web-app-title" content="{{ config_get('app.name') }}">
-<link type="text/css" rel="stylesheet" href="{{ asset('css/app.css') }}" media="screen,projection"/>
+<link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}" media="screen,projection"/>
 <script>
     window.Laravel = {csrfToken: "{{ csrf_token() }}"};
 </script>

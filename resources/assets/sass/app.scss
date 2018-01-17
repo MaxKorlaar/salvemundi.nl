@@ -3,16 +3,29 @@
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
 @import "signup";
+@import "nav";
+@import "error";
 // Doe hier je SASS-dingen.
 body {
   outline: none !important;
-  a {
+}
+
+a {
+  color: $brand-primary;
+  transition: .2s ease;
+  padding: 0;
+  @include hover-focus-active {
+    position: relative;
+    background: $brand-primary;
+    color: $white;
+    text-decoration: none;
+  }
+  &.button {
     padding: 10px;
     background-color: $brand-primary;
     color: white;
-    transition: .2s ease;
     box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.28);
-    &:hover {
+    @include hover-focus-active {
       background-color: $white;
       color: $brand-primary;
       cursor: pointer;
@@ -22,68 +35,9 @@ body {
   }
 }
 
-header {
-  &.no-bg {
-    nav {
-      background: none;
-      box-shadow: none;
-    }
-  }
-  nav {
-    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    width: 100vw;
-    height: 150px;
-    position: fixed;
-    z-index: 100000;
-    margin: 0;
-    box-shadow: 0px 0px 10px 4px rgba(0, 0, 0, 0.28);
-    background-color: $brand-primary;
-    a {
-      background: none;
-      box-shadow: none;
-      &:hover {
-        background-color: $white;
-        color: $brand-primary;
-        cursor: pointer;
-      }
-    }
-    div {
-      img {
-        height: 150px;
-        padding: 30px;
-        float: left;
-      }
-      ul {
-        float: right;
-        text-align: right;
-        li {
-          list-style: none;
-          display: inline-block;
-          a {
-            line-height: 150px;
-            color: white;
-            padding: 10px;
-            font-size: 18px;
-            margin: 5px;
-            transition: 0.3s ease;
-            background: none;
-            &:hover {
-              background-color: white;
-              color: $brand-primary;
-              text-decoration: none;
-            }
-          }
-        }
-
-      }
-    }
-  }
-}
-
 .landing {
   height: 100vh;
   background-size: cover;
-  width: 100vw;
   margin: 0;
   padding-top: calc(50vh - 75px);
   text-align: center;
@@ -92,11 +46,11 @@ header {
   h1 {
     font-weight: 100;
   }
-  .singUpBtnLanding {
+  .signup-btn {
     margin: 30px;
     padding: 15px;
     font-size: 24px;
-    &:hover {
+    @include hover-focus-active {
       background-color: $white;
       color: $brand-primary;
       cursor: pointer;
@@ -105,7 +59,7 @@ header {
 }
 
 .content {
-  padding: 150px 0 0 0;
+  padding: 110px 0 0 0;
   main {
     h1 {
       color: $brand-primary;
@@ -136,11 +90,11 @@ header {
         border-color: $brand-primary;
       }
     }
-    .button {
+    .button, button, input[type=button] {
       background-color: $brand-primary;
       color: white;
       padding: 10px;
-      &:hover {
+      @include hover-focus-active {
         background-color: white;
         color: $brand-primary;
         border: none;

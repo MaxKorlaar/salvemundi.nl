@@ -2,36 +2,36 @@
 
     namespace App\Mail;
 
-        use App\MemberApplication;
-        use Illuminate\Bus\Queueable;
-        use Illuminate\Mail\Mailable;
-        use Illuminate\Queue\SerializesModels;
+    use App\MemberApplication;
+    use Illuminate\Bus\Queueable;
+    use Illuminate\Mail\Mailable;
+    use Illuminate\Queue\SerializesModels;
+
+    /**
+     * Class ConfirmApplication
+     *
+     * @package App\Mail
+     */
+    class ConfirmApplication extends Mailable {
+        use Queueable, SerializesModels;
+        public $application;
 
         /**
-         * Class ConfirmApplication
+         * Create a new message instance.
          *
-         * @package App\Mail
+         * @param MemberApplication $application
          */
-        class ConfirmApplication extends Mailable {
-            use Queueable, SerializesModels;
-            public $application;
-
-            /**
-             * Create a new message instance.
-             *
-             * @param MemberApplication $application
-             */
-            public function __construct(MemberApplication $application) {
-                $this->application = $application;
-                $this->subject(trans('email.confirm_application.subject'));
-            }
-
-            /**
-             * Build the message.
-             *
-             * @return $this
-             */
-            public function build() {
-                return $this->view('emails.confirm_application');
-            }
+        public function __construct(MemberApplication $application) {
+            $this->application = $application;
+            $this->subject(trans('email.confirm_application.subject', ['name' => $application->first_name . ' ' . $application->last_name]));
         }
+
+        /**
+         * Build the message.
+         *
+         * @return $this
+         */
+        public function build() {
+            return $this->view('emails.confirm_application')->text('emails.plaintext.confirm_application');
+        }
+    }
