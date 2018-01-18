@@ -57,7 +57,7 @@ a {
   text-align: center;
   color: white;
   background-color: lighten($brand-primary, 10%);
-  background-image: url(../images/glow-group-cut-jpeg50.jpg);
+  background-image: url(../images/bestuur_index.jpg);
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -66,6 +66,10 @@ a {
   }
   h1 {
     font-weight: 100;
+    margin-bottom: 2rem;
+  }
+  h5 {
+    margin-bottom: 2rem;
   }
   .signup-btn {
     margin: 30px;
@@ -80,7 +84,7 @@ a {
 }
 
 .content {
-  padding: 110px 0 0 0;
+  padding-top: 110px;
   main {
     h1, h2, h3, h4 {
       color: theme-color(primary);
@@ -93,10 +97,19 @@ a {
       background-color: $brand-primary;
       color: $white;
       box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.28);
-      .error, .loading {
+      .error, .loading, .no-events {
         padding: 1rem;
         p {
           margin-bottom: 0;
+        }
+      }
+      .no-events {
+        a {
+          color: theme-color-level(info, -1);
+          @include hover-focus-active {
+            background: $white;
+            color: $brand-primary;
+          }
         }
       }
       .error {
@@ -199,6 +212,36 @@ a {
         &:last-child {
           border-bottom: none;
         }
+
+        @include media-breakpoint-down(sm) {
+          .date-container {
+            margin-right: .5rem;
+          }
+          .event-content {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            p {
+              display: none;
+            }
+          }
+          .background {
+            background-position-y: initial !important;
+          }
+        }
+        @include media-breakpoint-down(xs) {
+
+          .event-content {
+            h3 {
+              font-size: $font-size-lg;
+            }
+          }
+
+        }
       }
     }
 
@@ -259,18 +302,168 @@ a {
 .index {
   padding-top: 0;
   section {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     @include media-breakpoint-up(md) {
-      padding: 100px 0 100px 0;
+      padding-top: 100px;
+      padding-bottom: 100px;
     }
   }
 }
 
 .committee {
+  &.media-committee {
+    .image-logo {
+      margin: 0;
+      img {
+        max-height: 5rem;
+      }
+    }
+  }
+  &.camping-committee, &.women-committee {
+    .members {
+      .member {
+        .inner {
+          min-height: 15rem;
+        }
+      }
+    }
+  }
+  &.women-committee {
+    .tagline {
+      h4, h5 {
+        color: theme-color(primary);
+        text-transform: uppercase;
+      }
+      h4 {
+        font-weight: bolder;
+      }
+    }
+  }
   .image {
     margin: 1rem 0;
     img {
       margin: 0 auto;
       display: block;
+    }
+    .caption {
+      text-align: center;
+      padding-top: .5rem;
+      font-style: italic;
+      color: $text-color;
+    }
+  }
+  .members {
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background: theme-color(primary);
+    box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.28);
+
+    &, h2, h3, h4 {
+      color: $white;
+    }
+    h2 {
+      padding-left: .5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      @include media-breakpoint-down(md) {
+        grid-template-columns: 1fr;
+      }
+      @include media-breakpoint-down(sm) {
+        grid-auto-rows: auto;
+      }
+    }
+    .member {
+      padding: .5rem;
+      &.has-image {
+        .inner {
+          .content {
+            width: 60%;
+            @include media-breakpoint-down(sm) {
+              width: 100%;
+              padding: 0;
+              p {
+                margin-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+      .inner {
+        transition: .2s ease;
+        height: 100%;
+        padding: .5rem;
+        h4 {
+          transition: .2s ease;
+          color: theme-color(primary);
+        }
+        background: $body-bg;
+        color: $body-color;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        &.reverse {
+          flex-direction: row-reverse;
+          .content {
+            padding: 0 0 0 .5rem;
+          }
+          @include media-breakpoint-down(md) {
+            flex-direction: row;
+            .content {
+              padding: 0 .5rem 0 0;
+            }
+          }
+        }
+        @include media-breakpoint-down(sm) {
+          flex-direction: column;
+          justify-content: space-between;
+        }
+        .content {
+          padding: 0 .5rem 0 0;
+          text-align: justify;
+        }
+        .image {
+          //width: 100%;
+          margin: 0;
+          min-width: 40%;
+          @include media-breakpoint-down(sm) {
+            min-width: 100%;
+            height: 40vh;
+          }
+          //noinspection CssOptimizeSimilarProperties
+          .img {
+            transition: .2s ease;
+            background-color: scale-color(theme-color(primary), $saturation: 10%, $lightness: 30%);
+            display: block;
+            background-blend-mode: multiply;
+            height: 100%;
+            width: 100%;
+            background-size: cover;
+            background-position: center center;
+          }
+        }
+      }
+      &[href] {
+        @include hover-focus-active {
+          .inner {
+            box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.28);
+            color: $body-bg;
+            background-color: theme-color(primary);
+            h4 {
+              color: $body-bg;
+            }
+            .image {
+              .img {
+                background-color: $body-bg;
+              }
+            }
+          }
+        }
+      }
+
     }
   }
 }

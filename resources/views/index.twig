@@ -4,44 +4,39 @@
 {% block container %}
     {% block landing %}
         <section class="landing">
-            <h1>Welkom bij Salve Mundi</h1><br>
-            <h5>Meld je vandaag nog aan!</h5><br>
+            <h1>{{ trans('home.landing.title') }}</h1>
+            <h5>{{ trans('home.landing.subtitle') }}</h5>
             <a class="signup-btn button" href="{{ route('signup') }}">{{ trans('home.signup_link') }}</a>
         </section>
     {% endblock %}
     {% block content %}
-        <div class="container-fluid content index">
+        <div class="content index">
             <main>
                 <section class="desc container">
-                    <p>Welkom op de (tijdelijke) website van Salve Mundi! Tot op heden is het enkel mogelijk in te
-                       schrijven, maar verwacht in de nabije toekomst een uitgebreide website vol informatie.<br/>Salve
-                       Mundi is de nieuwe studievereniging van Fontys Hogescholen ICT, opgericht in 2017 door Mohammed
-                       Mighiss en Luuk Hendriks. Het is Latijn voor &ldquo;Hello World&rdquo;, een typische zin die menig
-                       programmeur maar al te goed kent.</p>
-                    <p>De vereniging organiseert veel activiteiten, zowel studie bemiddelend als voor de lol, of een
-                       combinatie van de twee. Denk hierbij aan:&nbsp;</p>
+                    <div class="warning">
+                        Hoi! Momenteel werk <abbr title="Max Korlaar, mediacommissie">ik</abbr> nog hard aan de nieuwe website en daarom kunnen er wat dingen ontbreken. Mocht je vragen of opmerkingen hebben over de vereniging, stuur dan een mailtje naar info@salvemundi.nl.
+                    </div>
+                    {% for text in trans('home.welcome_text') %}
+                        <p>{{ text }}</p>
+                    {% endfor %}
                     <ul>
-                        <li>Lezingen</li>
-                        <li>Excursies</li>
-                        <li>Workshops</li>
-                        <li>Bedrijven bezoeken</li>
-                        <li>Elke woensdag bijlessen</li>
+                        {% for text in trans('home.study_perks') %}
+                            <li>{{ text }}</li>
+                        {% endfor %}
                     </ul>
-                    <p>Voor de uitgaande studenten:</p>
+                    <p>{{ trans('home.for_nightlife_students') }}</p>
                     <ul>
-                        <li>Op stap bij onze stamkroeg Villa Fiesta&nbsp;</li>
-                        <li>Casinoavonden</li>
-                        <li>Pubquiz-avonden</li>
-                        <li>Willekeurige spontane activiteiten</li>
+                        {% for text in trans('home.nightlife_perks') %}
+                            <li>{{ text }}</li>
+                        {% endfor %}
                     </ul>
-                    <p>En voor de wat minder uitgaande studenten:</p>
+                    <p>{{ trans('home.for_other_students') }}</p>
                     <ul>
-                        <li>Jaarlijks op kamp</li>
-                        <li>Game Nights (bordspellen&nbsp;&amp;&nbsp;eSports)</li>
-                        <li>Partnership met een grote hackathon</li>
-                        <li>Uitjes naar bijvoorbeeld pretparken</li>
+                        {% for text in trans('home.other_perks') %}
+                            <li>{{ text }}</li>
+                        {% endfor %}
                     </ul>
-                    <p>Naast deze activiteiten verzorgt Salve Mundi ook de introductie van FHICT van top tot teen.</p>
+                    <p>{{ trans('home.intro') }}</p>
                     <a href="{{ route('signup') }}" class="button">{{ trans('home.signup_link') }}</a>
                 </section>
                 <section class="events" id="events" data-url="{{ route('facebook_events') }}">
@@ -53,6 +48,10 @@
                         <div v-cloak class="error text-center" v-if="error">
                             <h3>{{ trans('home.events.error') }}</h3>
                             <p>{{ trans('home.events.try_again_later') }}</p>
+                        </div>
+                        <div v-cloak class="no-events text-center" v-if="events.length < 1">
+                            <h3>{{ trans('home.events.no_events') }}</h3>
+                            <p>{{ trans('home.events.keep_an_eye_on_us')|raw }}</p>
                         </div>
                         <a :href="event.url" target="_blank" v-cloak class="event" v-for="event in events" :class="{ background: event.cover }" :data-background="event.cover ? event.cover.source : null">
                             <div class="background" v-if="event.cover" :style="{ backgroundImage: 'url(' + event.cover.source + ')', backgroundPositionY: -event.cover.offset_y + 'px' }"></div>
@@ -83,10 +82,10 @@
                     <hr>
                     <div class="buttons">
                         <a href="{{ route('committees/administration') }}" class="button">{{ trans('committee.administration.title') }}</a>
-                        <a href="#" class="button">{{ trans('committee.party.title') }}</a>
-                        <a href="#" class="button">{{ trans('committee.media.title') }}</a>
-                        <a href="#" class="button">{{ trans('committee.camping.title') }}</a>
-                        <a href="#" class="button">{{ trans('committee.women.title') }}</a>
+                        <a href="{{ route('committees/party') }}" class="button">{{ trans('committee.party.title') }}</a>
+                        <a href="{{ route('committees/media') }}" class="button">{{ trans('committee.media.title') }}</a>
+                        <a href="{{ route('committees/camping') }}" class="button">{{ trans('committee.camping.title') }}</a>
+                        <a href="{{ route('committees/women') }}" class="button">{{ trans('committee.women.title') }}</a>
                     </div>
                 </section>
             </main>

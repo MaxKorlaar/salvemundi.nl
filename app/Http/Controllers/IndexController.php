@@ -28,7 +28,6 @@
          * @return array
          */
         public function getFacebookEvents(Request $request) {
-
             return Cache::remember('facebook_events', 60, function () {
                 $fb = new \Facebook\Facebook([
                     'app_id'                => config('facebook.app_id'),

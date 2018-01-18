@@ -1,0 +1,47 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('committee.media.title') }}{% endblock %}
+{% block content %}
+    <div class="content">
+        <main class="committee media-committee">
+            <div class="container">
+                <h1>{{ trans('committee.media.title') }}</h1>
+                <section>
+                    <h3>{{ trans('committee.media.heading') }}</h3>
+                    <div class="row">
+                        <div class="col-md-7">
+                            {% for text in trans('committee.media.about_text') %}
+                                <p>{{ text }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-5 image">
+                            <img src="{{ asset('images/commissies/media/shirts_open_dag.jpg') }}" class="img-fluid">
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <section class="members">
+                <div class="container">
+                    <h2>{{ trans('committee.media.meet_the_team') }}</h2>
+                    <div class="grid">
+                        {% for member in trans('committee.media.members') %}
+                            {#href="{{ member.url }}" target="_blank"#}
+                            <div class="member has-image" id="{{ member.name|str_slug }}">
+                                <div class="inner {{ member.reverse ? 'reverse' }}">
+                                    <div class="content">
+                                        <h4>{{ member.name }}</h4>
+                                        <p>{{ member.text }}</p>
+                                    </div>
+                                    <div class="image">
+                                        <div class="img" style="background-image: url('{{ asset('images/commissies/media/' ~ member.image) }}');">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+{% endblock %}

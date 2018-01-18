@@ -1,3 +1,9 @@
 {% extends 'errors/error.twig' %}
 {% block error %}{{ trans('error.503') }}{% endblock %}
-{% block message %}{{ trans('error.be_right_back')|nl2br }}{% endblock %}
+{% block message %}
+    {{ trans('error.be_right_back')|nl2br }}
+    <br>
+    <br>
+    <br>
+    <a href="mailto:m.korlaar@student.fontys.nl" class="button">{{ trans('error.website_comment') }}</a>
+{% endblock %}

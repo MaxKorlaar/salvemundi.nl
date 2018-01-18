@@ -8,7 +8,12 @@ require('./app');
 
  */
 
-let scrollThreshold = $('.landing').height();
+let scrollThreshold = window.innerHeight - 150; // 100vh = 100% van de hoogte van het scherm
+
+$(window).on('resize', function () {
+    scrollThreshold = window.innerHeight - 150;
+});
+
 $(window).scroll(function () {
     if ($(this).scrollTop() > scrollThreshold) {
         $("header").removeClass("no-background");

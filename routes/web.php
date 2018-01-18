@@ -19,6 +19,10 @@
 
     Route::group(['prefix' => 'commissies', 'as' => 'committees/'], function () {
         Route::get('bestuur', 'CommitteeController@getAdministrationPage')->name('administration');
+        Route::get('feest', 'CommitteeController@getPartyPage')->name('party');
+        Route::get('media', 'CommitteeController@getMediaPage')->name('media');
+        Route::get('kamp', 'CommitteeController@getCampingPage')->name('camping');
+        Route::get('dames', 'CommitteeController@getWomenPage')->name('women');
     });
 
     Route::get('/evenementen/facebook', 'IndexController@getFacebookEvents')->name('facebook_events');
@@ -26,6 +30,7 @@
     Route::get('/inschrijven', 'SignupController@index')->name('signup');
     Route::get('/inschrijven/bevestigen', 'SignupController@getConfirmationPageWithoutSignup')->name('signup.confirmation');
     Route::post('/inschrijven/bevestigen', 'SignupController@getConfirmationPage')->name('signup.send');
+
     Route::post('/inschrijven', 'SignupController@signup')->name('signup.confirm');
 
     Route::get('/inschrijven/bevestigen/{application}/{token}', 'SignupController@confirmEmail')->name('signup.confirm_email');
@@ -40,5 +45,5 @@
 
     });
 
-    Route::auth();
+   // Route::auth();
 

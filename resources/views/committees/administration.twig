@@ -1,38 +1,50 @@
 {% extends 'partials/page.twig' %}
 {% block title %}{{ trans('committee.administration.title') }}{% endblock %}
 {% block content %}
-    <div class="container content">
+    <div class="content">
         <main class="committee">
-            <h1>{{ trans('committee.administration.title') }}</h1>
-            <h2>{{ trans('committee.administration.heading') }}</h2>
-            <!-- Ga er maar even bij zitten -->
-            <section>
-                <h3>{{ trans('committee.administration.founders') }}</h3>
-                <p>{{ trans('committee.administration.founders_text') }}</p>
-            </section>
-            <section>
-                <h3>{{ trans('committee.administration.first_administration') }}</h3>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>{{ trans('committee.administration.first_administration_text') }}</p>
-                    </div>
-                    <div class="col-md-6 image">
-                        <img src="{{ asset('images/bestuur_insta.jpg') }}" class="img-fluid">
-                    </div>
-                </div>
-
-
-            </section>
-            <section>
-                <h3>{{ trans('committee.administration.meet_the_members') }}</h3>
-                <div class="row">
-                    {% for member in trans('committee.administration.members') %}
-                        <div class="col-md-6 col-sm-12 col-lg-3" id="{{ member.name|str_slug }}">
-                            <h4>{{ member.name }}</h4>
-                            <p>{{ member.text }}</p>
+            <div class="container">
+                <h1>{{ trans('committee.administration.title') }}</h1>
+                <h2>{{ trans('committee.administration.heading') }}</h2>
+                <!-- Ga er maar even bij zitten -->
+                <section>
+                    <h3>{{ trans('committee.administration.founders') }}</h3>
+                    <p>{{ trans('committee.administration.founders_text') }}</p>
+                </section>
+                <section>
+                    <h3>{{ trans('committee.administration.first_administration') }}</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>{{ trans('committee.administration.first_administration_text') }}</p>
                         </div>
-                    {% endfor %}
+                        <div class="col-md-6 image">
+                            <img src="{{ asset('images/bestuur_insta.jpg') }}" class="img-fluid">
+                            <p class="caption">{{ trans('committee.administration.image_caption') }}</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <section class="members">
+                <div class="container">
+                    <h2>{{ trans('committee.administration.meet_the_members') }}</h2>
+                    <div class="grid">
+                        {% for member in trans('committee.administration.members') %}
+                            <div class="member has-image" id="{{ member.name|str_slug }}">
+                                <div class="inner">
+                                    <div class="content">
+                                        <h4>{{ member.name }}</h4>
+                                        <p>{{ member.text }}</p>
+                                    </div>
+                                    <div class="image">
+                                        <div class="img" style="background-image: url('{{ asset('images/commissies/bestuur/' ~ member.image) }}');">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
+
 
             </section>
 

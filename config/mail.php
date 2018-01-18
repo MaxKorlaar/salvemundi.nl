@@ -2,7 +2,7 @@
 
 return [
 
-    'to' => [
+    'application_to' => [
         'address' => env('MAIL_TO_ADDRESS', 'hello@salvemundi.nl'),
         'name'    => env('MAIL_TO_NAME', 's.v. Salve Mundi'),
     ],
