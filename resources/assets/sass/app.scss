@@ -4,6 +4,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import "signup";
 @import "nav";
+@import "footer";
 @import "error";
 // Doe hier je SASS-dingen.
 body {
@@ -35,14 +36,34 @@ a {
   }
 }
 
+@keyframes landing-background {
+  0% {
+    background-position: bottom left;
+    animation-timing-function: linear;
+  }
+  90% {
+    background-position: bottom right;
+  }
+  100% {
+    background-position: bottom center;
+  }
+}
+
+//noinspection CssOptimizeSimilarProperties
 .landing {
   height: 100vh;
-  background-size: cover;
   margin: 0;
   padding-top: calc(50vh - 75px);
   text-align: center;
   color: white;
-  background: url(../images/glowGroup.jpg) no-repeat bottom;
+  background-color: lighten($brand-primary, 10%);
+  background-image: url(../images/glow-group-cut-jpeg50.jpg);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @include media-breakpoint-down(md) {
+    animation: landing-background 25s ease forwards;
+  }
   h1 {
     font-weight: 100;
   }
@@ -61,19 +82,151 @@ a {
 .content {
   padding: 110px 0 0 0;
   main {
-    h1 {
-      color: $brand-primary;
+    h1, h2, h3, h4 {
+      color: theme-color(primary);
     }
-    section {
-      padding: 100px 0 100px 0;
-      p {
-        padding: 0 15px 0 15px;
-      }
-    }
+
     .events {
+      h1, h3 {
+        color: $white;
+      }
       background-color: $brand-primary;
       color: $white;
-      box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.28);
+      .error, .loading {
+        padding: 1rem;
+        p {
+          margin-bottom: 0;
+        }
+      }
+      .error {
+        color: theme-color(danger);
+        background: $body-bg;
+        box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.28);
+      }
+      //noinspection CssOptimizeSimilarProperties
+      .event {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid darken(theme-color(primary), 5%);
+        display: flex;
+        flex-direction: row;
+        color: $white;
+        background-clip: content-box;
+        position: relative;
+        z-index: 1;
+        .event-content {
+          padding: 1.5rem;
+        }
+        .background {
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: theme-color(primary);
+          background-size: cover;
+          background-repeat: no-repeat;
+          z-index: -1;
+          opacity: 0.15;
+          transition: .2s ease;
+        }
+
+        @include hover-focus-active {
+          box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.28);
+
+          .background {
+            opacity: 0.5;
+          }
+
+          //color: theme-color(primary);
+          //background-color: $body-bg;
+          //h3 {
+          //  //color: theme-color(primary);
+          //}
+          //.date-container {
+          //  .date, .place {
+          //    color: $body-bg;
+          //    background-color: theme-color(primary);
+          //  }
+          //}
+        }
+        p {
+          padding-left: 0;
+          margin-bottom: 0;
+        }
+        .date-container {
+          margin-right: 1rem;
+          .date {
+            transition: .2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: $body-bg;
+            //display: inline-block;
+            padding: 0 1rem;
+            text-align: center;
+            color: theme-color(primary);
+            height: 90px;
+            width: 90px;
+            .day {
+              display: block;
+              font-size: 2.5rem;
+              font-weight: bold;
+            }
+            .month {
+              text-transform: uppercase;
+              font-size: 0.8rem;
+            }
+          }
+
+          .place {
+            transition: .2s ease;
+            text-align: center;
+            font-size: 1rem;
+            margin-top: 1rem;
+            padding: 0 1rem;
+            hyphens: auto;
+            width: 90px;
+            background: $body-bg;
+            color: theme-color(primary);
+          }
+        }
+        h4, h5 {
+          margin-bottom: 0;
+        }
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+
+    .committees {
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        @include media-breakpoint-down(lg) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        @include media-breakpoint-down(md) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        @include media-breakpoint-down(xs) {
+          grid-template-columns: 1fr;
+        }
+        .button {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          margin: 1rem;
+          min-height: 4rem;
+          hyphens: auto;
+        }
+      }
     }
 
     .form-group:focus {
@@ -105,10 +258,23 @@ a {
 
 .index {
   padding-top: 0;
+  section {
+    @include media-breakpoint-up(md) {
+      padding: 100px 0 100px 0;
+    }
+  }
 }
 
-footer {
-  width: 100%;
-  background-color: $brand-primary;
-  height: 150px;
+.committee {
+  .image {
+    margin: 1rem 0;
+    img {
+      margin: 0 auto;
+      display: block;
+    }
+  }
+}
+
+[v-cloak] {
+  display: none !important;
 }

@@ -11,9 +11,17 @@
     |
     */
 
-    Route::get('/', function () {
-        return view('index');
-    })->name('home');
+    Route::get('/', 'IndexController@getHomePage')->name('home');
+
+    /*
+     * Commissies
+     */
+
+    Route::group(['prefix' => 'commissies', 'as' => 'committees/'], function () {
+        Route::get('bestuur', 'CommitteeController@getAdministrationPage')->name('administration');
+    });
+
+    Route::get('/evenementen/facebook', 'IndexController@getFacebookEvents')->name('facebook_events');
 
     Route::get('/inschrijven', 'SignupController@index')->name('signup');
     Route::get('/inschrijven/bevestigen', 'SignupController@getConfirmationPageWithoutSignup')->name('signup.confirmation');
@@ -21,11 +29,6 @@
     Route::post('/inschrijven', 'SignupController@signup')->name('signup.confirm');
 
     Route::get('/inschrijven/bevestigen/{application}/{token}', 'SignupController@confirmEmail')->name('signup.confirm_email');
-
-    Route::get('/inschrijving/{application}', function(\App\MemberApplication $application) {
-        $mail = new \App\Mail\NewMemberApplication($application);
-        return $mail->render();
-    });
 
     Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admin/', 'middleware' => ['auth', 'auth.admin']], function () {
         Route::resource('aanmeldingen', 'ApplicationsController')->names('applications');

@@ -2,6 +2,7 @@
 
     namespace App\Providers;
 
+        use Illuminate\Routing\UrlGenerator;
         use Illuminate\Support\ServiceProvider;
 
         /**
@@ -13,10 +14,14 @@
             /**
              * Bootstrap any application services.
              *
+             * @param UrlGenerator $urlGenerator
+             *
              * @return void
              */
-            public function boot() {
-                //
+            public function boot(UrlGenerator $urlGenerator) {
+                if (app()->environment() == 'production') {
+                    $urlGenerator->forceScheme('https');
+                }
             }
 
             /**

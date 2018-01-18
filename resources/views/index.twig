@@ -44,58 +44,50 @@
                     <p>Naast deze activiteiten verzorgt Salve Mundi ook de introductie van FHICT van top tot teen.</p>
                     <a href="{{ route('signup') }}" class="button">{{ trans('home.signup_link') }}</a>
                 </section>
-                <section class="events">
+                <section class="events" id="events" data-url="{{ route('facebook_events') }}">
                     <div class="container">
-                        <h2>Aankomende evenementen</h2>
-                        <div class="event row">
-                            <h4 class="col-md-6">22 November</h4>
-                            <h5 class="col-md-6">Eerste feest</h5>
+                        <h1>{{ trans('home.events.upcoming') }}</h1>
+                        <div class="loading text-center" v-if="loading">
+                            <h3>{{ trans('home.events.loading') }}</h3>
                         </div>
-                        <hr>
-                        <div class="event row">
-                            <h4 class="col-md-6">24 Januari</h4>
-                            <h5 class="col-md-6">Nieuwjaarsborrel</h5>
+                        <div v-cloak class="error text-center" v-if="error">
+                            <h3>{{ trans('home.events.error') }}</h3>
+                            <p>{{ trans('home.events.try_again_later') }}</p>
                         </div>
-                        <hr>
-                        <div class="event row">
-                            <h4 class="col-md-6">22 November</h4>
-                            <h5 class="col-md-6">Eerste feest</h5>
-                        </div>
-                        <hr>
-                        <div class="event row">
-                            <h4 class="col-md-6">22 November</h4>
-                            <h5 class="col-md-6">Eerste feest</h5>
-                        </div>
-                        <hr>
-                        <div class="event row">
-                            <h4 class="col-md-6">22 November</h4>
-                            <h5 class="col-md-6">Eerste feest</h5>
-                        </div>
-                        <hr>
+                        <a :href="event.url" target="_blank" v-cloak class="event" v-for="event in events" :class="{ background: event.cover }" :data-background="event.cover ? event.cover.source : null">
+                            <div class="background" v-if="event.cover" :style="{ backgroundImage: 'url(' + event.cover.source + ')', backgroundPositionY: -event.cover.offset_y + 'px' }"></div>
+                            <div class="date-container">
+                                <div class="date">
+                                    <span class="day">{{ "{{ event.date.day }}" }}</span>
+                                    <span class="month">{{ "{{ event.date.month }}" }}</span>
+                                </div>
+                                <div class="place" v-if="event.place">
+                                    {{ "{{ event.place.name }}" }}
+                                </div>
+                            </div>
+                            <div class="event-content">
+                                <h3>{{ "{{ event.name }}" }}</h3>
+                                <p>
+                                    <template v-for="line in event.description.split('\n')">
+                                        {{ "{{ line }}" }}<br>
+                                    </template>
+                                </p>
+                            </div>
+                        </a>
                     </div>
-
-
                 </section>
-                <section class="commisie container">
-                    <h3>Bij Salve Mundi hebben we verschillende commisies zoals:</h3>
-                    <hr>
-                    <div class="event row">
-                        <h4 class="col-md-12">Media commisie</h4>
-                        <p>Verantwoordelijk voor alle media geralateerde producten zoals het maken en het onderhouden van de website etc.</p>
-                    </div>
-                    <hr>
-                    <div class="event row">
-                        <h4 class="col-md-12">Feest commisie</h4>
-                        <p>Een van de meest gewilde commisies in de s.v. verantwoordelijk voor de mooiste feesten het van A tot Z organiseren van de
-                           enige echte intro.</p>
-                    </div>
-                    <hr>
-                    <div class="event row">
-                        <h4 class="col-md-12">Kamp commisie</h4><br>
-                        <p>Zij regelen het jaarlijks terugkerende kamp</p>
-                    </div>
-                    <hr>
 
+                <section class="committees container" id="committees">
+                    <h3>{{ trans('home.committees.heading') }}</h3>
+                    <p>{{ trans('home.committees.description') }}</p>
+                    <hr>
+                    <div class="buttons">
+                        <a href="{{ route('committees/administration') }}" class="button">{{ trans('committee.administration.title') }}</a>
+                        <a href="#" class="button">{{ trans('committee.party.title') }}</a>
+                        <a href="#" class="button">{{ trans('committee.media.title') }}</a>
+                        <a href="#" class="button">{{ trans('committee.camping.title') }}</a>
+                        <a href="#" class="button">{{ trans('committee.women.title') }}</a>
+                    </div>
                 </section>
             </main>
         </div>
