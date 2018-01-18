@@ -9,7 +9,6 @@
     use App\MemberApplication;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Mail;
-    use function GuzzleHttp\Promise\queue;
 
     /**
      * Class SignupController
@@ -51,7 +50,6 @@
          */
         public function getConfirmationPageWithoutSignup(Request $request) {
             if ($request->session()->get('signup_data') === null) {
-                dd($request->session());
                 return $this->redirectToIndex();
             }
             return view('confirm_signup');
@@ -85,7 +83,7 @@
             if (app()->environment() === 'production') $request->session()->pull('signup_data');
 
             $mail = new ConfirmApplication($application);
-            $mail->to($application->email, $application->first_name . $application->last_name);
+            $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
             Mail::queue($mail);
 
             return view('signup_confirmation');
@@ -108,7 +106,7 @@
             $application->saveOrFail();
 
             $mail = new NewMemberApplication($application);
-            $mail->to(config('mail.to.address'), config('mail.to.name'));
+            $mail->to(config('mail.application_to.address'), config('mail.application_to.name'));
 
             Mail::queue($mail);
 
