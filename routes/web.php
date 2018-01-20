@@ -46,6 +46,6 @@
     });
 
     Route::get('privacybeleid', 'MetaController@getPrivacyPage')->name('privacy');
-
+    Route::get('/sitemap.xml', 'MetaController@getSitemap')->name('sitemap');
     // Route::auth();
 

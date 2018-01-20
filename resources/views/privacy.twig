@@ -1,5 +1,9 @@
 {% extends 'partials/page.twig' %}
 {% block title %}{{ trans('privacy.title') }}{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}
 {% block content %}
     <div class="container content">
         <main class="privacy">

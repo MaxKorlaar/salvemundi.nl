@@ -5,6 +5,13 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="apple-mobile-web-app-title" content="{{ config_get('app.name') }}">
 <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}" media="screen,projection"/>
+<link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicons/apple-touch-icon.png') }}">
+<link rel="icon" href="{{ asset('images/favicons/favicon.ico') }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicons/favicon-32x32.png') }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicons/favicon-16x16.png') }}">
+<link rel="manifest" href="{{ asset('images/favicons/manifest.json') }}">
+<link rel="mask-icon" href="{{ asset('images/favicons/safari-pinned-tab.svg') }}" color="#663265">
+<meta name="theme-color" content="#663265">
 <script>
     window.Laravel = {csrfToken: "{{ csrf_token() }}"};
 </script>

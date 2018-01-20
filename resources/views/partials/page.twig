@@ -17,6 +17,23 @@
 <head>
     {% block head %}
         {% include 'partials/head.twig' %}
+        {% block social_meta %}
+            <meta name="description" content="{% block social_description %}{{ trans('meta.social.description') }}{% endblock %}">
+            <meta name="twitter:description" content="{{ block('social_description') }}">
+            <meta property="og:description" content="{{ block('social_description') }}">
+            <meta name="twitter:title" content="{{ block('title') }}"/>
+            <meta property="og:title" content="{{ block('title') }}"/>
+            <meta name="twitter:image" content="{% block social_image %}{{ asset('images/intro_social.jpg?v=1') }}{% endblock %}"/>
+            <meta property="og:image" content="{{ block('social_image') }}"/>
+            <meta property="og:image:width" content="{% block social_image_width %}1500{% endblock %}"/>
+            <meta property="og:image:height" content="{% block social_image_height %}743{% endblock %}"/>
+            <meta name="twitter:card" content="summary"/>
+            <meta name="twitter:url" content="{% block social_url %}{{ url(app.request.requestUri) }}{% endblock %}"/>
+            <meta property="og:url" content="{{ block('social_url') }}"/>
+            <meta property="og:type" content="{% block social_type %}website{% endblock %}"/>
+            <meta property="fb:app_id" content="{{ config_get('facebook.app_id') }}">
+            {#<meta name="twitter:site" content="@MaxKorlaar"/>#}
+        {% endblock %}
         <title>{% block title %}{% endblock %} – {{ config_get('app.name') }}</title>
     {% endblock %}
 </head>
