@@ -103,19 +103,19 @@
 
                 [
                     'name'  => 'Max Korlaar',
-                    'text'  => 'Studeert momenteel ICT & Media Design. Max regelt de technische aspecten van de website, en heeft een bijbaantje bij Scholieren.com.',
+                    'text'  => 'Studeert momenteel ICT & Media Design. Max is verantwoordelijk voor zowel het uiterlijk als de functionaliteit van de website, en heeft een bijbaantje bij Scholieren.com.',
                     'image' => 'Max.jpg',
                     'url'   => '//maxkorlaar.nl'
                 ],
                 [
                     'name'  => 'Mathijs van der Kuijp',
                     'text'  => 'Studeert momenteel ICT & Media Design. Mathijs ontwerpt documenten en notuleert bij besprekingen.',
-                    'image' => 'Mathijs.jpg',
+                    'image' => 'Mathijs-fb.jpg',
                     'url'   => '//mvdk.eu/'
                 ],
                 [
                     'name'  => 'Mick Jasker',
-                    'text'  => 'Studeert momenteel ICT & Media Design. Mick zorgt voor het uiterlijk van de site.',
+                    'text'  => 'Studeert momenteel ICT & Media Design. Mick werkt aan de huisstijl en het uiterlijk van de website.',
                     'image' => 'Mick.jpg'
                 ],
                 [
