@@ -52,14 +52,14 @@
             'meet_the_members' => 'Dit zijn de feestgangers',
             'members'          => [
                 [
+                    'name'  => 'Luuk Hendriks',
+                    'text'  => 'De voorzitter Luuk Hendriks weet binnen de feestcommissie van alles wat. Hij springt in waar nodig en leidt de organisatie in goede banen. Voor veel leden van de commissie betekent dit slechts dat hij werk op ze afschuift wat eigenlijk aan hem is opgedragen. Luuk is altijd voorzichtig geweest met het aannemen van nieuwe commissieleden. Deze leden zijn zorgvuldig gekozen om een team samen te stellen wat van alles wat kan. Tevens was ook de feestcommissie de hoofdreden dat Luuk de organisatie van Salve Mundi samen met Mohammed in gang heeft gezet. Ook bij deze commissie is de harde maar eerlijke houding van Luuk erg van toepassing. Dat betekent wel dat hij alles op alles zet voor het beste eindresultaat.',
+                    'image' => 'Luuk.jpg'
+                ],
+                [
                     'name'  => 'Chiel Schrijvers',
                     'text'  => 'Chiel word vaak gezien als de rechterhand van de voorzitter, door het feit dat veel van de belangrijke taken zoals contact met de buitenwereld en het nakijken van facturen bij hem terecht komen. Taken die de voorzitter eigenlijk zou moeten doen, maar welke hij niet kan doen. Zijn focus ligt veelal bij de intro en de zaken eromheen.',
                     'image' => 'Chiel.jpg'
-                ],
-                [
-                    'name'  => 'Gijs Hendrikx',
-                    'text'  => 'Gijs is de eigenhuis-boekhouder van de commissie. Hij heeft misschien nog een beetje training nodig, maar hij vraagt wel precies wat je wilt. De meeste studenten hebben 3 werkdagen bedenktijd nodig voor het verwerken van feedback. Gijs niet, Gijs heeft het af voordat jij klaar bent met het geven van de feedback. Hij is stiller dan ons gemiddelde lid, wat helemaal niet moeilijk of erg is. Maar de meeste ideeën waar hij mee komt zijn goed gegrond en realistisch. Als het nieuwste lid hebben de andere leden hem zo ver gekregen om een hele nacht een paardenmasker te dragen. Hierbij de feestcommissie-ontgroening geboren: draag een masker met ontzettend slecht zicht tijdens het eerste feest van jouw lidmaatschap.',
-                    'image' => 'Gijs.png'
                 ],
                 [
                     'name'  => 'Joshua Gompel',
@@ -67,14 +67,14 @@
                     'image' => 'Joshua.jpg'
                 ],
                 [
-                    'name'  => 'Luuk Hendriks',
-                    'text'  => 'De voorzitter Luuk Hendriks weet binnen de feestcommissie van alles wat. Hij springt in waar nodig en leidt de organisatie in goede banen. Voor veel leden van de commissie betekent dit slechts dat hij werk op ze afschuift wat eigenlijk aan hem is opgedragen. Luuk is altijd voorzichtig geweest met het aannemen van nieuwe commissieleden. Deze leden zijn zorgvuldig gekozen om een team samen te stellen wat van alles wat kan. Tevens was ook de feestcommissie de hoofdreden dat Luuk de organisatie van Salve Mundi samen met Mohammed in gang heeft gezet. Ook bij deze commissie is de harde maar eerlijke houding van Luuk erg van toepassing. Dat betekent wel dat hij alles op alles zet voor het beste eindresultaat.',
-                    'image' => 'Luuk.jpg'
-                ],
-                [
                     'name'  => 'Stefan Janssen',
                     'text'  => 'Stefan is een van de latere toevoegingen tot het team. Zijn lidmaatschap kwam samen met zijn connecties die hij had bij de huidige stamkroeg: Villa Fiësta. De onderhandelingen zijn destijds ook grotendeels door hem uitgevoerd. Zijn connectie heeft ons de geweldige deal gegeven die we daar hebben, en een hoop werk van onze schouders afgenomen. Stefan is dan ook vrijwel alleen verantwoordelijk voor activiteiten in de kroeg. De beslissingen nemen we samen, de uitvoering doet hij.',
                     'image' => 'Stefan.jpg'
+                ],
+                [
+                    'name'  => 'Gijs Hendrikx',
+                    'text'  => 'Gijs is de eigenhuis-boekhouder van de commissie. Hij heeft misschien nog een beetje training nodig, maar hij vraagt wel precies wat je wilt. De meeste studenten hebben 3 werkdagen bedenktijd nodig voor het verwerken van feedback. Gijs niet, Gijs heeft het af voordat jij klaar bent met het geven van de feedback. Hij is stiller dan ons gemiddelde lid, wat helemaal niet moeilijk of erg is. Maar de meeste ideeën waar hij mee komt zijn goed gegrond en realistisch. Als het nieuwste lid hebben de andere leden hem zo ver gekregen om een hele nacht een paardenmasker te dragen. Hierbij de feestcommissie-ontgroening geboren: draag een masker met ontzettend slecht zicht tijdens het eerste feest van jouw lidmaatschap.',
+                    'image' => 'Gijs.png'
                 ],
             ]
 
@@ -92,19 +92,19 @@
             'members'       => [
                 [
                     'name'  => 'Chiel Schrijvers',
-                    'text'  => 'Studeert momenteel ICT & Business. Chiel houdt de boel op orde en verdeelt de taken',
+                    'text'  => 'Studeert momenteel ICT & Business. Chiel houdt de boel op orde en verdeelt de taken onder de mediastudenten.',
                     'image' => 'Chiel.jpg'
                 ],
                 [
                     'name'  => 'Daniëlle Ooms',
-                    'text'  => 'Studeert momenteel ICT & Media Design. Daniëlle maakt ontwerpen, van flyers tot kleding.',
+                    'text'  => 'Studeert momenteel ICT & Media Design. Daniëlle maakt ontwerpen, van flyers tot kleding en runt hiernaast haar eigen mediabureau.',
                     'image' => '17058.jpeg'
                 ],
 
                 [
                     'name'  => 'Max Korlaar',
-                    'text'  => 'Studeert momenteel ICT & Media Design. Max regelt de technische aspecten van de website.',
-                    'image' => 'Max-flugel.jpg',
+                    'text'  => 'Studeert momenteel ICT & Media Design. Max regelt de technische aspecten van de website, en heeft een bijbaantje bij Scholieren.com.',
+                    'image' => 'Max.jpg',
                     'url'   => '//maxkorlaar.nl'
                 ],
                 [

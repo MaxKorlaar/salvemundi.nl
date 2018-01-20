@@ -320,7 +320,7 @@ a {
       }
     }
   }
-  &.camping-committee, &.women-committee {
+  &.camping-committee, &.women-committee, &.media-committee {
     .members {
       .member {
         .inner {
@@ -446,23 +446,23 @@ a {
           }
         }
       }
-      &[href] {
-        @include hover-focus-active {
-          .inner {
-            box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.28);
+      //&[href] {
+      @include hover-focus-active {
+        .inner {
+          box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.28);
+          /*color: $body-bg;
+          background-color: theme-color(primary);
+          h4 {
             color: $body-bg;
-            background-color: theme-color(primary);
-            h4 {
-              color: $body-bg;
-            }
-            .image {
-              .img {
-                background-color: $body-bg;
-              }
+          }*/
+          .image {
+            .img {
+              background-color: #FFFFFF;
             }
           }
         }
       }
+      //}
 
     }
   }
