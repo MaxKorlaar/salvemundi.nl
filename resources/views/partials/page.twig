@@ -32,11 +32,24 @@
         {% block footer %}
             {% include 'partials/footer.twig' %}
         {% endblock %}
-        {% block scripts %}
-            <script src="{{ mix('js/manifest.js') }}"></script>
-            <script src="{{ mix('js/vendor.js') }}"></script>
-            <script src="{{ mix('js/app.js') }}"></script>
-        {% endblock %}
+    {% block scripts %}
+        <script src="{{ mix('js/manifest.js') }}"></script>
+        <script src="{{ mix('js/vendor.js') }}"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
+    {% endblock %}
+    {% block analytics %}
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112797049-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {dataLayer.push(arguments);}
+
+            gtag('js', new Date());
+
+            gtag('config', 'UA-112797049-1');
+        </script>
+    {% endblock %}
     {% endblock %}
 </body>
 </html>

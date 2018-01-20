@@ -45,5 +45,7 @@
 
     });
 
-   // Route::auth();
+    Route::get('privacybeleid', 'MetaController@getPrivacyPage')->name('privacy');
+
+    // Route::auth();
 

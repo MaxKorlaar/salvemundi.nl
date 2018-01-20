@@ -1,0 +1,12 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('privacy.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="privacy">
+            <h1>{{ trans('privacy.title') }}</h1>
+            {% for text in trans('privacy.policy') %}
+                <p>{{ text|raw|nl2br }}</p>
+            {% endfor %}
+        </main>
+    </div>
+{% endblock %}

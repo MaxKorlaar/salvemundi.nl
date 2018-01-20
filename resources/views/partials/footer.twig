@@ -3,8 +3,9 @@
         <div class="copyright">
             {{ trans('footer.copyright') }}
         </div>
-        <div class="social">
-            <a href="https://facebook.com/{{ config_get('facebook.url') }}" target="_blank">{{ trans('footer.facebook') }}</a>
+        <div class="links">
+            <a href="https://facebook.com/{{ config_get('facebook.url') }}" target="_blank">{{ trans('footer.facebook') }}</a> &centerdot;
+            <a href="{{ route('privacy') }}">{{ trans('footer.privacy') }}</a>
         </div>
     </div>
 </footer>
