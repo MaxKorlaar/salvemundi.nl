@@ -60,9 +60,16 @@
                                     <span class="day">{{ "{{ event.date.day }}" }}</span>
                                     <span class="month">{{ "{{ event.date.month }}" }}</span>
                                 </div>
-                                <div class="place" v-if="event.place">
-                                    {{ "{{ event.place.name }}" }}
-                                </div>
+                                <transition name="fade" mode="out-in">
+                                    <div class="place fade-enter-active fade-leave-active" v-if="event.place && showPlace" key="place">
+                                        {{ "{{ event.place.name }}" }}
+                                    </div>
+                                    <div class="attending" v-else key="attending">
+                                        <span class="count">{{ "{{ event.attending_count }}" }}</span>
+                                        <span class="text">{{ trans('home.events.attending') }}</span>
+                                    </div>
+                                </transition>
+
                             </div>
                             <div class="event-content">
                                 <h3>{{ "{{ event.name }}" }}</h3>

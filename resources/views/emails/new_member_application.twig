@@ -167,7 +167,7 @@
                                         </tr>
                                         <tr>
                                             <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                                                <table cellpadding="0" cellspacing="0" style="cellspacing:0px;color:#000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;table-layout:auto;" width="100%" border="0">{% set fields = ['last_name', 'first_name', 'postal', 'address', 'city', 'birthday', 'phone', 'email', 'pcn'] %} {% for field in fields %}
+                                                <table cellpadding="0" cellspacing="0" style="cellspacing:0px;color:#000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;table-layout:auto;" width="100%" border="0">{% set fields = ['first_name', 'last_name', 'postal', 'address', 'city', 'birthday', 'phone', 'email', 'pcn'] %} {% for field in fields %}
                                                         <tr>
                                                             <td style="padding: 1rem 1rem 0 0;font-weight:bold;">
                                                                 {{ trans('signup.' ~ field) }}
@@ -177,6 +177,26 @@
                                                             </td>
                                                         </tr>
                                                     {% endfor %}</table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
+                                                <table cellpadding="0" cellspacing="0" style="cellspacing:0px;color:#000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;table-layout:auto;" width="100%" border="0">
+                                                    <!--<thead>
+              <tr>{% set excel_fields = ['member_id', 'last_name', 'first_name', 'postal', 'address', 'city', 'birthday', 'phone', 'email', 'pcn', 'photo'] %}
+                {% for field in excel_fields %}
+                <th>{{ trans('signup.' ~ field) }}</th>
+                {% endfor %}
+              </tr>
+            </thead>-->
+                                                    <tbody style="user-select: all;">
+                                                        <tr>
+                                                            {% for field in excel_fields %}
+                                                                <td style="border:1px solid #ecedee">{{ application[field]|default('-') }}</td>
+                                                            {% endfor %}
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </td>
                                         </tr>
                                         <tr>

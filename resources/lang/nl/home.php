@@ -34,7 +34,7 @@
             'Partnership met een grote hackathon',
             'Uitjes naar bijvoorbeeld pretparken'
         ],
-        'intro' => 'Naast deze activiteiten verzorgt Salve Mundi ook de introductie van FHICT van top tot teen.',
+        'intro'                  => 'Naast deze activiteiten verzorgt Salve Mundi ook de introductie van FHICT van top tot teen.',
 
         'events'     => [
             'upcoming'          => 'Aankomende evenementen',
@@ -42,7 +42,8 @@
             'no_events'         => 'Er staan momenteel geen evenementen op de planning.',
             'keep_an_eye_on_us' => 'Volg ons op <a href="https://facebook.com/sv.salvemundi" target="_blank">Facebook</a> om altijd op de hoogte te blijven van nieuwe evenementen.',
             'error'             => 'Er ging iets mis tijdens het opvragen van de evenementen',
-            'try_again_later'   => 'Probeer het later nogmaals'
+            'try_again_later'   => 'Probeer het later nogmaals',
+            'attending'         => 'Gaan'
         ],
         'committees' => [
             'heading'     => 'Commissies',

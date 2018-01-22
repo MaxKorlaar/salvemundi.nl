@@ -13,10 +13,9 @@
 
           <mj-text>{{ trans('email.new_member_application.intro_text') }}</mj-text>
 
-          
-           <mj-table>
-             {% set fields = ['last_name', 'first_name', 'postal', 'address', 'city', 'birthday', 'phone', 'email', 'pcn'] %}
-             {% for field in fields %}
+
+          <mj-table>
+            {% set fields = ['first_name', 'last_name', 'postal', 'address', 'city', 'birthday', 'phone', 'email', 'pcn'] %} {% for field in fields %}
             <tr>
               <td style="padding: 1rem 1rem 0 0;font-weight:bold;">
                 {{ trans('signup.' ~ field) }}
@@ -25,10 +24,27 @@
                 {{ application[field] }}
               </td>
             </tr>
-             {% endfor %}
-            
+            {% endfor %}
+
           </mj-table>
-          
+
+          <mj-table>
+            <!--<thead>
+              <tr>{% set excel_fields = ['member_id', 'last_name', 'first_name', 'postal', 'address', 'city', 'birthday', 'phone', 'email', 'pcn', 'photo'] %}
+                {% for field in excel_fields %}
+                <th>{{ trans('signup.' ~ field) }}</th>
+                {% endfor %}
+              </tr>
+            </thead>-->
+            <tbody style="user-select: all;">
+              <tr>
+                {% for field in excel_fields %}
+                <td style="border:1px solid #ecedee">{{ application[field]|default('-') }}</td>
+                {% endfor %}
+              </tr>
+            </tbody>
+          </mj-table>
+
           <!--<mj-button background-color="#663265" href="{{ route('signup.confirm_email', { id: application.id, token: application.email_confirmation_token }) }}">{{ trans('email.confirm_application.link') }}
           </mj-button>-->
 

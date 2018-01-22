@@ -170,9 +170,19 @@ a {
           margin-bottom: 0;
         }
         .date-container {
+          div {
+            opacity: 1;
+          }
+          .fade-enter-active, .fade-leave-active {
+            transition: opacity 2s ease;
+          }
+          .fade-enter, .fade-leave-to {
+            opacity: 0;
+          }
+
           margin-right: 1rem;
-          .date {
-            transition: .2s ease;
+          .date, .attending {
+            transition: all .2s ease, opacity .5s ease;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -183,6 +193,8 @@ a {
             color: theme-color(primary);
             height: 90px;
             width: 90px;
+          }
+          .date {
             .day {
               display: block;
               font-size: 2.5rem;
@@ -194,15 +206,33 @@ a {
             }
           }
 
+          .attending {
+            margin-top: 1rem;
+            .count {
+              display: block;
+              font-size: 2.5rem;
+              font-weight: bold;
+            }
+            .text {
+              text-transform: uppercase;
+              font-size: 0.8rem;
+            }
+          }
+
           .place {
-            transition: .2s ease;
+            transition: all .2s ease, opacity .5s ease;
             text-align: center;
-            font-size: 1rem;
+            font-size: 1.2rem;
             margin-top: 1rem;
             padding: 0 1rem;
             hyphens: auto;
             width: 90px;
+            min-height: 90px;
             background: $body-bg;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             color: theme-color(primary);
           }
         }
@@ -323,15 +353,7 @@ a {
       }
     }
   }
-  &.camping-committee, &.women-committee, &.media-committee {
-    .members {
-      .member {
-        .inner {
-          min-height: 15rem;
-        }
-      }
-    }
-  }
+
   &.women-committee {
     .tagline {
       h4, h5 {
@@ -396,6 +418,7 @@ a {
         }
       }
       .inner {
+        min-height: 15rem;
         transition: .2s ease;
         height: 100%;
         padding: .5rem;
@@ -427,6 +450,10 @@ a {
         .content {
           padding: 0 .5rem 0 0;
           text-align: justify;
+          p {
+            opacity: 0;
+            transition: .2s ease;
+          }
         }
         .image {
           //width: 100%;
@@ -458,6 +485,11 @@ a {
           h4 {
             color: $body-bg;
           }*/
+          .content {
+            p {
+              opacity: 1;
+            }
+          }
           .image {
             .img {
               background-color: #FFFFFF;

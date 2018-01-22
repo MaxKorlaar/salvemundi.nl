@@ -33,7 +33,8 @@ new Vue({
         events:     {},
         loading:    true,
         error:      false,
-        events_url: null
+        events_url: null,
+        showPlace: true,
     },
     methods: {
         getEvents() {
@@ -56,5 +57,9 @@ new Vue({
     mounted() {
         this.events_url = this.$el.attributes['data-url'].value;
         this.getEvents();
+
+        setInterval(() => {
+            this.showPlace = !this.showPlace;
+        }, 5000);
     },
 });
