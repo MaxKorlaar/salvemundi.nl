@@ -307,6 +307,9 @@ a {
     @include media-breakpoint-up(md) {
       padding-top: 100px;
       padding-bottom: 100px;
+      .description {
+        padding-top: 1rem;
+      }
     }
   }
 }

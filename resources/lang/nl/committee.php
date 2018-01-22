@@ -62,7 +62,7 @@
                     'image' => 'Chiel.jpg'
                 ],
                 [
-                    'name'  => 'Joshua Gompel',
+                    'name'  => 'Joshua van Gompel',
                     'text'  => 'Joshua is de creatieveling van de commissie als de enige met de studierichting ICT & Media Design. Ideeën goed of slecht: hij heeft ze allemaal. In een gemiddelde vergadering worden 80% van zijn ideeën uitgelachen of meteen weggeduwd. Maar de 20% die overblijft is verantwoordelijk voor de leukste dingen die Salve Mundi ooit heeft gedaan. Zijn out-of-the-box thinking heeft Salve Mundi een groot beentje voor gegeven als het gaat om activiteiten en ook hij is onmisbaar.',
                     'image' => 'Joshua.jpg'
                 ],
@@ -103,7 +103,7 @@
 
                 [
                     'name'  => 'Max Korlaar',
-                    'text'  => 'Studeert momenteel ICT & Media Design. Max is verantwoordelijk voor zowel het uiterlijk als de functionaliteit van de website, en heeft een bijbaantje bij Scholieren.com.',
+                    'text'  => 'Studeert momenteel ICT & Media Design. Max is verantwoordelijk voor zowel het uiterlijk als de functionaliteit van de website, en is werkzaam als webdeveloper.',
                     'image' => 'Max.jpg',
                     'url'   => '//maxkorlaar.nl'
                 ],
@@ -120,7 +120,7 @@
                 ],
                 [
                     'name'  => 'Patrick van der Laan',
-                    'text'  => 'Studeert momenteel ICT & Media Design. Patrick maakt foto\'s van evenementen en bewerkt deze en werkt aan onze huisstijl.',
+                    'text'  => 'Studeert momenteel ICT & Media Design. Patrick maakt foto\'s van evenementen en bewerkt deze en werkt aan onze huisstijl. Tevens zorgt Patrick ervoor dat we onze mooie ledenpassen kunnen gebruiken.',
                     'image' => 'Patrick.jpg',
                     'url'   => 'http://patrick.frl'
                 ],
@@ -141,24 +141,33 @@
                     'name'    => 'Femke',
                     'image'   => 'Femke Technology.jpg',
                     'profile' => 'ICT & Technology'
-                ], [
+                ],
+                [
                     'name'    => 'Ilse',
                     'image'   => 'Ilse.jpg',
-                    'profile' => 'ICT & Media'
+                    'profile' => 'ICT & Media Design'
                 ],
                 [
                     'name'    => 'Luuk',
                     'image'   => 'Luuk Business.jpg',
                     'profile' => 'ICT & Business'
-                ], [
+                ],
+                [
+                    'name'    => 'Patrick',
+                    'image'   => 'Patrick.jpg',
+                    'profile' => 'ICT & Media Design'
+                ],
+                [
                     'name'    => 'Wesley',
                     'image'   => 'Wesley Software.jpg',
                     'profile' => 'ICT & Software'
-                ], [
+                ],
+                [
                     'name'    => 'Yorick',
                     'image'   => 'Yorick Business.jpg',
                     'profile' => 'ICT & Business'
-                ], [
+                ],
+                [
                     'name'    => 'Youri',
                     'image'   => 'Youri Software.jpg',
                     'profile' => 'ICT & Software'
