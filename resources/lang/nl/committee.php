@@ -12,7 +12,7 @@
             'members'                   => [
                 [
                     'name'    => 'Mohammed Mighiss',
-                    'profile' => 'Educatie',
+                    'profile' => 'ICT & Technology',
                     'text'    => 'Bij het oprichten van de vereniging werd duidelijk dat Mohammed graag aan de kennis gerelateerde vakken wilde werken. Met lesgeven en netwerken had hij ervaring en dit ging hem makkelijk af op school. Al snel bleek dat je met een netwerk op school veel verder komt dan een gemiddelde student. Dit genot en deze gemakkelijkheid wilde hij delen met iedereen zo goed als het kon. "Je kunt op van de opleiding aflopen met een papiertje, of met een vaste baan bij een miljoenen bedrijf." Mohammed is dan ook verantwoordelijk geweest voor de kennis-zaken van Salve Mundi. Bij Mohammed kan je altijd terecht voor een knuffel wanneer het minder gaat.',
                     'image'   => 'Mohammed.jpg'
                 ],
@@ -42,7 +42,7 @@
                 ],
                 [
                     'name'    => 'Mitchell Vermeulen',
-                    'profile' => 'ICT',
+                    'profile' => 'ICT & Software',
                     'text'    => 'Dit lid is tijdens het schrijven van deze tekst pas net een bestuurslid. Zijn stuk tekst zal dus nog tijd nodig hebben om te veranderen van beloften naar daden. Deze beloften zijn echter goed geplaatst en passen geweldig bij Salve Mundi. Aangevende: "Al voordat ik mijn eerste lesdag had gehad wist ik dat ik iets wilde doen bij een vereniging." Hij wil zich vooral bezighouden met de sociale taken. Eerder al aangegeven te hebben dat hij bij de feestcommissie wilde is zijn inzet en motivatie al duidelijk. We kijken er naar uit om zijn werk te zien.',
                     'image'   => '17022.jpg'
                 ]

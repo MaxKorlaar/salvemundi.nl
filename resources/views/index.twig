@@ -36,7 +36,10 @@
                     <p>{{ trans('home.intro') }}</p>
                     <a href="{{ route('signup') }}" class="button">{{ trans('home.signup_link') }}</a>
                     <div class="warning">
-                        Hoi! Momenteel wordt er nog hard aan de nieuwe website <abbr title="Door de mediacommissie, vragen en opmerkingen kan je sturen naar media@salvemundi.nl of m.korlaar@student.fontys.nl">gewerkt</abbr> en daarom kunnen er wat dingen ontbreken. Mocht je vragen of opmerkingen hebben over de vereniging, stuur dan een mailtje naar info@salvemundi.nl.
+                        Hoi! Momenteel wordt er nog hard aan de nieuwe website
+                        <abbr title="Door de mediacommissie, vragen en opmerkingen kan je sturen naar media@salvemundi.nl of m.korlaar@student.fontys.nl">gewerkt</abbr>
+                        en daarom kunnen er wat dingen ontbreken. Mocht je vragen of opmerkingen hebben over de vereniging, stuur dan een mailtje naar
+                        info@salvemundi.nl.
                     </div>
                 </section>
                 <section class="events" id="events" data-url="{{ route('facebook_events') }}">
@@ -60,8 +63,8 @@
                                     <span class="day">{{ "{{ event.date.day }}" }}</span>
                                     <span class="month">{{ "{{ event.date.month }}" }}</span>
                                 </div>
-                                <transition name="fade" mode="out-in">
-                                    <div class="place fade-enter-active fade-leave-active" v-if="event.place && showPlace" key="place">
+                                <transition name="fade" mode="in-out">
+                                    <div class="place fade-enter-active fade-leave-active" v-if="event.place && showPlace" key="place" :class="{ small: event.place.name.length > 20 }">
                                         {{ "{{ event.place.name }}" }}
                                     </div>
                                     <div class="attending" v-else key="attending">

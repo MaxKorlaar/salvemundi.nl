@@ -182,7 +182,7 @@ a {
 
           margin-right: 1rem;
           .date, .attending {
-            transition: all .2s ease, opacity .5s ease;
+            transition: all .2s ease, opacity .5s;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -217,14 +217,19 @@ a {
               text-transform: uppercase;
               font-size: 0.8rem;
             }
+            position: absolute;
           }
-
+          min-height: 2 * 90px + 16px;
           .place {
-            transition: all .2s ease, opacity .5s ease;
+            position: absolute;
+            transition: all .2s ease, opacity .5s;
             text-align: center;
             font-size: 1.2rem;
+            &.small {
+              font-size: 1rem;
+            }
             margin-top: 1rem;
-            padding: 0 1rem;
+            padding: 0 .1rem;
             hyphens: auto;
             width: 90px;
             min-height: 90px;
@@ -451,7 +456,7 @@ a {
           padding: 0 .5rem 0 0;
           text-align: justify;
           p {
-            opacity: 0;
+            //opacity: 0;
             transition: .2s ease;
           }
         }
