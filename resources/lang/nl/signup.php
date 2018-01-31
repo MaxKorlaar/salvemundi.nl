@@ -9,7 +9,7 @@
         'address'               => 'Straat en huisnummer',
         'city'                  => 'Woonplaats',
         'postal_code'           => 'Postcode',
-        'postal'           => 'Postcode',
+        'postal'                => 'Postcode',
         'birthday'              => 'Geboortedatum',
         'birthday_format'       => 'dd-mm-jjjj (' . \Carbon\Carbon::now()->format('d-m-Y') . ')',
         'phone'                 => 'Telefoonnummer',
@@ -34,5 +34,5 @@
         ],
         'email_confirmed'       => 'Inschrijving bevestigd',
         'thanks_for_confirming' => 'Bedankt voor het bevestigen van je e-mail-adres, :name. Je bent nu écht bijna klaar:
-        Het laatste wat we willen is dat je €25,- overmaakt naar NL77 RABO 0171 5165 91. Benoem hierbij je naam en PCN bij de beschrijving, dat maakt het voor ons overzichtelijker.'
+        Het laatste wat we willen is dat je €25,- overmaakt naar NL97 RABO 0326 3418 11. Benoem hierbij je naam en PCN bij de beschrijving, dat maakt het voor ons overzichtelijker.'
     ];

@@ -1,0 +1,13 @@
+{{ trans('email.camping.confirm_application.greeting', { name: application.first_name }) }}
+
+
+{{ trans('email.camping.confirm_application.instructions') }}
+
+
+{{ route('camping.signup.confirm_email', { id: application.id, token: application.email_confirmation_token }) }}
+
+
+{{ trans('email.signature') }}
+
+---
+{{ trans('email.disclaimer') }}

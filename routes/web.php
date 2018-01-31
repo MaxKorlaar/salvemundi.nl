@@ -35,9 +35,13 @@
 
     Route::get('/inschrijven/bevestigen/{application}/{token}', 'SignupController@confirmEmail')->name('signup.confirm_email');
 
+    Route::get('/kamp/inschrijven', 'CampingController@getSignupForm')->name('camping.signup');
+    Route::post('/kamp/inschrijven', 'CampingController@signup')->name('camping.signup.send');
+    Route::get('/kamp/inschrijven/bevestigen/{application}/{token}', 'CampingController@confirmEmail')->name('camping.signup.confirm_email');
+
     Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admin/', 'middleware' => ['auth', 'auth.admin']], function () {
-        Route::resource('aanmeldingen', 'ApplicationsController')->names('applications');
-        Route::get('/aanmeldingen/{application}/pasfoto', 'SignupController@afbeelding');
+        //Route::resource('aanmeldingen', 'ApplicationsController')->names('applications');
+        //Route::get('/aanmeldingen/{application}/pasfoto', 'SignupController@afbeelding');
         //        Route::get('account', 'AccountController@getView')->name('account');
         //        Route::put('account', 'AccountController@update')->name('update_account');
         //        Route::get('account/delete', 'AccountController@getDeleteView')->name('account_deletion');

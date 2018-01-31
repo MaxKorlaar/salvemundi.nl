@@ -3,8 +3,12 @@
 return [
 
     'application_to' => [
-        'address' => env('MAIL_TO_ADDRESS', 'hello@salvemundi.nl'),
+        'address' => env('MAIL_TO_ADDRESS', 'info@salvemundi.nl'),
         'name'    => env('MAIL_TO_NAME', 's.v. Salve Mundi'),
+    ],
+    'camping_to' => [
+        'address' => env('MAIL_CAMPING_TO_ADDRESS', 'kampcommissie@salvemundi.nl'),
+        'name'    => env('MAIL_CAMPING_TO_NAME', 'Kampcommissie s.v. Salve Mundi'),
     ],
 
     /*

@@ -21,7 +21,7 @@
                                    placeholder="{{ trans('signup.pcn') }}" name="pcn" value="{{ old('pcn') }}"
                                    maxlength="6">
                             <div class="invalid-feedback">
-                                {{ errors.first('pcn')|capitalize }}
+                                {{ errors.first('pcn')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -29,7 +29,7 @@
                                    placeholder="{{ trans('signup.first_name') }}" name="first_name" value="{{ old('first_name') }}"
                                    maxlength="50">
                             <div class="invalid-feedback">
-                                {{ errors.first('first_name')|capitalize }}
+                                {{ errors.first('first_name')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -37,7 +37,7 @@
                                    placeholder="{{ trans('signup.last_name') }}" name="last_name" value="{{ old('last_name') }}"
                                    maxlength="50">
                             <div class="invalid-feedback">
-                                {{ errors.first('last_name')|capitalize }}
+                                {{ errors.first('last_name')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -45,7 +45,7 @@
                                    placeholder="{{ trans('signup.address') }}" name="address"
                                    value="{{ old('address') }}" maxlength="150">
                             <div class="invalid-feedback">
-                                {{ errors.first('address')|capitalize }}
+                                {{ errors.first('address')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -53,7 +53,7 @@
                                    placeholder="{{ trans('signup.city') }}" name="city" value="{{ old('city') }}"
                                    maxlength="150">
                             <div class="invalid-feedback">
-                                {{ errors.first('city')|capitalize }}
+                                {{ errors.first('city')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -61,7 +61,7 @@
                                    placeholder="{{ trans('signup.postal_code') }}" name="postal"
                                    value="{{ old('postal') }}" maxlength="6" pattern="^[0-9]{4}[A-Z]{2}$">
                             <div class="invalid-feedback">
-                                {{ errors.first('postal')|capitalize }}
+                                {{ errors.first('postal')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -71,7 +71,7 @@
                                    placeholder="{{ trans('signup.birthday_format') }}" name="birthday"
                                    value="{{ old('birthday') }}" maxlength="10">
                             <div class="invalid-feedback">
-                                {{ errors.first('birthday')|capitalize }}
+                                {{ errors.first('birthday')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -79,7 +79,7 @@
                                    placeholder="{{ trans('signup.phone') }}" name="phone" value="{{ old('phone') }}"
                                    maxlength="15">
                             <div class="invalid-feedback">
-                                {{ errors.first('phone')|capitalize }}
+                                {{ errors.first('phone')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -87,7 +87,7 @@
                                    placeholder="{{ trans('signup.email') }}" name="email" value="{{ old('email') }}"
                                    maxlength="50">
                             <div class="invalid-feedback">
-                                {{ errors.first('email')|capitalize }}
+                                {{ errors.first('email')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -96,7 +96,7 @@
                                    placeholder="{{ trans('signup.email_confirmation') }}" name="email_confirmation"
                                    value="{{ old('email_confirmation') }}" maxlength="50">
                             <div class="invalid-feedback">
-                                {{ errors.first('email_confirmation')|capitalize }}
+                                {{ errors.first('email_confirmation')|ucfirst }}
                             </div>
                         </div>
 
