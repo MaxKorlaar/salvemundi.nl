@@ -10,6 +10,7 @@
                     </div>
                     <h3>{{ trans('camping.signup.email_confirmed') }}</h3>
                     <p>{{ trans('camping.signup.thanks_for_confirming', { name: application.first_name }) }}</p>
+                    <p>{{ trans('camping.signup.instructions', { id: application.transaction_id })|raw }}</p>
                 </div>
             </div>
         </main>

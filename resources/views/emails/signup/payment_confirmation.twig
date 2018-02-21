@@ -157,51 +157,17 @@
                                     <tbody>
                                         <tr>
                                             <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.camping.new_application.greeting') }}</div>
+                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.signup.payment_confirmation.greeting', { name: application.first_name }) }}</div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.camping.new_application.intro_text') }}</div>
+                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.signup.payment_confirmation.instructions') }}</div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                                                <table cellpadding="0" cellspacing="0" style="cellspacing:0px;color:#000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;table-layout:auto;" width="100%" border="0">{% set fields = ['first_name', 'last_name', 'phone', 'email', 'pcn', 'birthday', 'address', 'city', 'postal', 'remarks'] %} {% for field in fields %}
-                                                        <tr>
-                                                            <td style="padding: 1rem 1rem 0 0;font-weight:bold;">
-                                                                {{ trans('camping.signup.' ~ field) }}
-                                                            </td>
-                                                            <td style="padding: 1rem 1rem 0 0;">
-                                                                {{ application[field] }}
-                                                            </td>
-                                                        </tr>
-                                                    {% endfor %}</table>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                                                <table cellpadding="0" cellspacing="0" style="cellspacing:0px;color:#000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;table-layout:auto;" width="100%" border="0">
-                                                    <!--<thead>
-              <tr>{% set excel_fields = ['last_name', 'first_name', 'phone', 'email', 'pcn', 'birthday', 'address', 'city', 'postal', 'remarks'] %}
-                {% for field in excel_fields %}
-                <th>{{ trans('camping.signup.' ~ field) }}</th>
-                {% endfor %}
-              </tr>
-            </thead>-->
-                                                    <tbody style="user-select: all;">
-                                                        <tr>
-                                                            {% for field in excel_fields %}
-                                                                <td style="border:1px solid #ecedee">{{ application[field]|default('-') }}</td>
-                                                            {% endfor %}
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.camping.new_application.sent_from', { ip: application.ip_address}) }}</div>
+                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.signup.payment_confirmation.more_info') }}</div>
                                             </td>
                                         </tr>
                                         <tr>

@@ -1,0 +1,25 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Helvetica Neue', Helvetica, sans-serif" font-size="16px"></mj-all>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#FFF">
+    <mj-container width="800px" background-color="#f5f8fa">
+      <mj-include path="_header" />
+      <mj-section>
+        <mj-column>
+          <mj-text>{{ trans('email.camping.payment_confirmation.greeting', { name: application.first_name }) }}</mj-text>
+
+          <mj-text>{{ trans('email.camping.payment_confirmation.instructions') }}</mj-text>
+
+          <mj-text>{{ trans('email.confirm_application.when_done') }}
+          </mj-text>
+
+          <mj-text>{{ trans('email.signature')|nl2br }}</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="_footer" />
+    </mj-container>
+  </mj-body>
+</mjml>

@@ -5,11 +5,11 @@
     use Illuminate\Foundation\Http\FormRequest;
 
     /**
-     * Class CampingSignup
+     * Class IntroSignup
      *
      * @package App\Http\Requests
      */
-    class CampingSignup extends FormRequest {
+    class IntroSignup extends FormRequest {
         /**
          * Determine if the user is authorized to make this request.
          *
@@ -26,18 +26,19 @@
          */
         public function rules() {
             return [
-                'pcn'              => 'required|integer',
+                'pcn'              => 'nullable|integer',
                 'first_name'       => 'required|string|max:150',
                 'last_name'        => 'required|string|max:150',
                 'phone'            => 'required|max:15',
                 'email'            => 'required|email|confirmed',
-//                'agree_salvemundi' => 'required|boolean',
-//                'agree_buitenjan' => 'required|boolean'
-                'address'  => 'required|min:5|max:150',
-                'city'     => 'required|min:3|max:150',
-                'postal'   => 'required|string|size:6|regex:/^[0-9]{4}[A-Z]{2}$/',
-                'remarks' => 'nullable|string|max:1500',
-                'birthday' => 'required|date|before:-16 years',
+                'birthday'         => 'required|date|before:-15 years',
+                'shirt_size'       => 'required|in:' . join(",", trans('intro.signup.shirt_sizes')),
+                'alcohol'          => 'boolean',
+                'extra_shirt'      => 'boolean',
+                'same_sex_rooms'   => 'boolean',
+                'remarks'          => 'nullable|string|max:1500',
+                'agree_salvemundi' => 'required|boolean',
+                'agree_buitenjan'  => 'required|boolean'
             ];
         }
 
@@ -60,8 +61,9 @@
          */
         public function attributes() {
             return [
-                'agree_salvemundi' => trans('camping.signup.terms'),
-                'agree_buitenjan' => trans('camping.signup.terms')
+                'agree_salvemundi' => trans('intro.signup.terms'),
+                'agree_buitenjan'  => trans('intro.signup.terms'),
+                'remarks'          => trans('intro.signup.remarks'),
             ];
         }
     }

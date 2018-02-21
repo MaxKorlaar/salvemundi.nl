@@ -9,14 +9,11 @@
       <mj-include path="_header" />
       <mj-section>
         <mj-column>
-          <mj-text>{{ trans('email.camping.confirm_application.greeting', { name: application.first_name }) }}</mj-text>
+          <mj-text>{{ trans('email.signup.payment_confirmation.greeting', { name: application.first_name }) }}</mj-text>
 
-          <mj-text>{{ trans('email.camping.confirm_application.instructions') }}</mj-text>
+          <mj-text>{{ trans('email.signup.payment_confirmation.instructions') }}</mj-text>
 
-          <mj-button background-color="#663265" href="{{ route('camping.signup.confirm_email', { id: application.id, token: application.email_confirmation_token }) }}">{{ trans('email.camping.confirm_application.link') }}
-          </mj-button>
-
-          <mj-text>{{ trans('email.confirm_application.when_done') }}
+          <mj-text>{{ trans('email.signup.payment_confirmation.more_info') }}
           </mj-text>
 
           <mj-text>{{ trans('email.signature')|nl2br }}</mj-text>

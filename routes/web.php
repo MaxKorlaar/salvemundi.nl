@@ -27,17 +27,31 @@
 
     Route::get('/evenementen/facebook', 'IndexController@getFacebookEvents')->name('facebook_events');
 
-    Route::get('/inschrijven', 'SignupController@index')->name('signup');
-    Route::get('/inschrijven/bevestigen', 'SignupController@getConfirmationPageWithoutSignup')->name('signup.confirmation');
-    Route::post('/inschrijven/bevestigen', 'SignupController@getConfirmationPage')->name('signup.send');
+    Route::group(['prefix' => 'inschrijven', 'as' => 'signup.'], function () {
+        Route::get('/', 'SignupController@index')->name('signup');
+        Route::post('/', 'SignupController@signup')->name('confirm');
+        Route::get('/bevestigen', 'SignupController@getConfirmationPageWithoutSignup')->name('confirmation');
+        Route::post('/bevestigen', 'SignupController@getConfirmationPage')->name('send');
+        Route::get('/bevestigen/{application}/{token}', 'SignupController@confirmEmail')->name('confirm_email');
 
-    Route::post('/inschrijven', 'SignupController@signup')->name('signup.confirm');
+        Route::get('/bevestigen/betaling/', 'SignupController@confirmPayment')->name('confirm_payment');
+    });
+    Route::post('/webhook/betaling/inschrijven/{application}', 'SignupController@confirmPaymentWebhook')->name('webhook.payment.signup');
 
-    Route::get('/inschrijven/bevestigen/{application}/{token}', 'SignupController@confirmEmail')->name('signup.confirm_email');
-
+    Route::get('/kamp', 'CampingController@index')->name('camping');
     Route::get('/kamp/inschrijven', 'CampingController@getSignupForm')->name('camping.signup');
     Route::post('/kamp/inschrijven', 'CampingController@signup')->name('camping.signup.send');
     Route::get('/kamp/inschrijven/bevestigen/{application}/{token}', 'CampingController@confirmEmail')->name('camping.signup.confirm_email');
+
+    Route::get('/kamp/inschrijven/bevestigen/betaling/', 'CampingController@confirmPayment')->name('camping.signup.confirm_payment');
+    Route::post('/webhook/betaling/kamp/{application}', 'CampingController@confirmPaymentWebhook')->name('webhook.payment.camping');
+
+
+    Route::group(['prefix' => 'intro', 'as' => 'intro.'], function() {
+        Route::get('inschrijven', 'IntroController@getSignupForm')->name('signup');
+        Route::post('inschrijven', 'IntroController@signup')->name('signup.send');
+        Route::get('inschrijven/bevestigen/{application}/{token}', 'IntroController@confirmEmail')->name('signup.confirm_email');
+    });
 
     Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admin/', 'middleware' => ['auth', 'auth.admin']], function () {
         //Route::resource('aanmeldingen', 'ApplicationsController')->names('applications');

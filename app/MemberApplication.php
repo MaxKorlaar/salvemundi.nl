@@ -3,51 +3,55 @@
     namespace App;
 
     use App\Helpers\HasEncryptedAttributes;
+    use Carbon\Carbon;
+    use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
     use Intervention\Image\Facades\Image;
 
     /**
- * Class MemberApplication
- *
- * @package App
- * @mixin \Eloquent
- * @property int                 $id
- * @property int                 $pcn
- * @property string              $name
- * @property string              $address
- * @property string              $city
- * @property string              $postal
- * @property \Carbon\Carbon      $birthday
- * @property string              $phone
- * @property string              $email
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereBirthday($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereCity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePcn($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePostal($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereUpdatedAt($value)
- * @property string              $status
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereStatus($value)
- * @property string              $ip_address
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereIpAddress($value)
- * @property string              $application_hash
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereApplicationHash($value)
- * @property string              $email_confirmation_token
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereEmailConfirmationToken($value)
- * @property string              $picture_name
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication wherePictureName($value)
- * @property string $first_name
- * @property string $last_name
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereFirstName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereLastName($value)
- */
+     * Class MemberApplication
+     *
+     * @package App
+     * @property int                 $id
+     * @property string              $pcn
+     * @property string              $first_name
+     * @property string              $address
+     * @property string              $city
+     * @property string              $postal
+     * @property \Carbon\Carbon      $birthday
+     * @property string              $phone
+     * @property string              $email
+     * @property string              $status
+     * @property string              $ip_address
+     * @property string|null         $email_confirmation_token
+     * @property \Carbon\Carbon|null $created_at
+     * @property \Carbon\Carbon|null $updated_at
+     * @property string              $picture_name
+     * @property string              $last_name
+     * @property string              $transaction_id
+     * @property string              $transaction_status
+     * @property float               $transaction_amount
+     * @method static Builder|MemberApplication whereAddress($value)
+     * @method static Builder|MemberApplication whereBirthday($value)
+     * @method static Builder|MemberApplication whereCity($value)
+     * @method static Builder|MemberApplication whereCreatedAt($value)
+     * @method static Builder|MemberApplication whereEmail($value)
+     * @method static Builder|MemberApplication whereEmailConfirmationToken($value)
+     * @method static Builder|MemberApplication whereFirstName($value)
+     * @method static Builder|MemberApplication whereId($value)
+     * @method static Builder|MemberApplication whereIpAddress($value)
+     * @method static Builder|MemberApplication whereLastName($value)
+     * @method static Builder|MemberApplication wherePcn($value)
+     * @method static Builder|MemberApplication wherePhone($value)
+     * @method static Builder|MemberApplication wherePictureName($value)
+     * @method static Builder|MemberApplication wherePostal($value)
+     * @method static Builder|MemberApplication whereStatus($value)
+     * @method static Builder|MemberApplication whereTransactionAmount($value)
+     * @method static Builder|MemberApplication whereTransactionId($value)
+     * @method static Builder|MemberApplication whereTransactionStatus($value)
+     * @method static Builder|MemberApplication whereUpdatedAt($value)
+     * @mixin \Eloquent
+     */
     class MemberApplication extends Model {
 
         use HasEncryptedAttributes;
@@ -71,12 +75,24 @@
             'birthday' => 'date'
         ];
 
+        protected $dates = [
+            'birthday'
+        ];
+
         /**
-         * @return string
+         * @param $birthday
+         *
+         * @return \Carbon\Carbon
          */
-        public function getApplicationHash() {
-            return sha1($this->pcn);
+        public function setBirthdayAttribute($birthday) {
+            try {
+                return $this->attributes['birthday'] = Carbon::createFromTimestamp(strtotime($birthday));
+
+            } catch (\InvalidArgumentException $exception) {
+                return $this->attributes['birthday'] = null;
+            }
         }
+
 
         /**
          * Save the model to the database.
@@ -86,7 +102,6 @@
          * @return bool
          */
         public function save(array $options = []) {
-            $this->application_hash = $this->getApplicationHash();
             return parent::save($options);
         }
 
@@ -102,5 +117,16 @@
          */
         public function getPicture() {
             return Image::make($this->getImagePath())->response();
+        }
+
+        /**
+         * @return bool|null
+         * @throws \Exception
+         */
+        public function delete() {
+            if(!\Storage::delete('member_photos/' . $this->picture_name)) {
+                throw new \Exception("Kon pasfoto niet verwijderen bij het verwijderen van een MemberApplication");
+            }
+            return parent::delete();
         }
     }

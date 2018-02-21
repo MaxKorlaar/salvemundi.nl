@@ -6,7 +6,7 @@
         <section class="landing">
             <h1>{{ trans('home.landing.title') }}</h1>
             <h5>{{ trans('home.landing.subtitle') }}</h5>
-            <a class="signup-btn button" href="{{ route('signup') }}">{{ trans('home.signup_link') }}</a>
+            <a class="signup-btn button" href="{{ route('signup.signup') }}">{{ trans('home.signup_link') }}</a>
         </section>
     {% endblock %}
     {% block content %}
@@ -34,7 +34,7 @@
                         {% endfor %}
                     </ul>
                     <p>{{ trans('home.intro') }}</p>
-                    <a href="{{ route('signup') }}" class="button">{{ trans('home.signup_link') }}</a>
+                    <a href="{{ route('signup.signup') }}" class="button">{{ trans('home.signup_link') }}</a>
                     <div class="warning">
                         Hoi! Momenteel wordt er nog hard aan de nieuwe website
                         <abbr title="Door de mediacommissie, vragen en opmerkingen kan je sturen naar media@salvemundi.nl of m.korlaar@student.fontys.nl">gewerkt</abbr>

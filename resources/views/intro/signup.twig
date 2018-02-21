@@ -1,0 +1,153 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('intro.signup.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="signup">
+            <h1>{{ trans('intro.signup.title') }}</h1>
+            <p>
+                {{ trans('intro.signup.text') }}
+            </p>
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <form action="{{ route('intro.signup.send') }}" method="POST">
+                        {{ csrf_field() }}
+                        {% if errors.has('signup') %}
+                            <div class="alert alert-danger">
+                                {{ errors.first('signup') }}
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.pcn') }}" name="pcn" value="{{ old('pcn') }}"
+                                   maxlength="6">
+                            <div class="invalid-feedback">
+                                {{ errors.first('pcn')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('first_name') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.first_name') }}" name="first_name" value="{{ old('first_name') }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('first_name')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('last_name') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.last_name') }}" name="last_name" value="{{ old('last_name') }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('last_name')|ucfirst }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="tel" class="form-control {{ errors.has('phone') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.phone') }}" name="phone" value="{{ old('phone') }}"
+                                   maxlength="15">
+                            <div class="invalid-feedback">
+                                {{ errors.first('phone')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control {{ errors.has('email') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.email') }}" name="email" value="{{ old('email') }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('email')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email"
+                                   class="form-control {{ errors.has('email_confirmation') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.email_confirmation') }}" name="email_confirmation"
+                                   value="{{ old('email_confirmation') }}" maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('email_confirmation')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthday">{{ trans('intro.signup.birthday') }}</label>
+                            <input id="birthday" type="date"
+                                   class="form-control {{ errors.has('birthday') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.birthday_format') }}" name="birthday"
+                                   value="{{ old('birthday') }}" maxlength="10">
+                            <div class="invalid-feedback">
+                                {{ errors.first('birthday')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="shirt_size">Welke shirtmaat heb je? (Unisex)</label>
+                            <select required id="shirt_size" name="shirt_size" class="form-control {{ errors.has('shirt_size') ? 'is-invalid' }}">
+                                {% for size in trans('intro.signup.shirt_sizes') %}
+                                    <option {{ old('shirt_size') == size ? 'selected' }}>{{ size }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">
+                                {{ errors.first('shirt_size')|ucfirst }}
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('alcohol') ? 'is-invalid' }}" value="1" type="checkbox" id="alcohol" name="alcohol" {{ old('alcohol') ? 'checked' }}>
+                            <label class="form-check-label" for="alcohol">
+                                {{ trans('intro.signup.alcohol')|raw }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('alcohol')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('extra_shirt') ? 'is-invalid' }}" value="1" type="checkbox" id="extra_shirt" name="extra_shirt" {{ old('extra_shirt') ? 'checked' }}>
+                            <label class="form-check-label" for="extra_shirt">
+                                {{ trans('intro.signup.extra_shirt')|raw }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('extra_shirt')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('same_sex_rooms') ? 'is-invalid' }}" value="1" type="checkbox" id="same_sex_rooms" name="same_sex_rooms" {{ old('same_sex_rooms') ? 'checked' }}>
+                            <label class="form-check-label" for="same_sex_rooms">
+                                {{ trans('intro.signup.same_sex_rooms')|raw }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('same_sex_rooms')|ucfirst }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <textarea name="remarks" maxlength="1500" placeholder="{{ trans('intro.signup.remarks_placeholder') }}" class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks') }}</textarea>
+                            <div class="invalid-feedback">
+                                {{ errors.first('remarks')|ucfirst }}
+                            </div>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('agree_salvemundi') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_salvemundi" name="agree_salvemundi" {{ old('agree_salvemundi') ? 'checked' }}>
+                            <label class="form-check-label" for="agree_salvemundi">
+                                {{ trans('intro.signup.agree_salvemundi')|raw }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('agree_salvemundi')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('agree_buitenjan') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_buitenjan" name="agree_buitenjan" {{ old('agree_buitenjan') ? 'checked' }}>
+                            <label class="form-check-label" for="agree_buitenjan">
+                                {{ trans('intro.signup.agree_buitenjan')|raw }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('agree_buitenjan')|ucfirst }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="button" value="{{ trans('intro.signup.sign_up') }}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

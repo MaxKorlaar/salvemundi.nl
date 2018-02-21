@@ -16,6 +16,6 @@
              * @var array
              */
             protected $except = [
-                //
+                'webhook/*'
             ];
         }

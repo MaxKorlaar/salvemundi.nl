@@ -40,13 +40,46 @@
                                 {{ errors.first('last_name')|ucfirst }}
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('address') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('camping.signup.address') }}" name="address"
+                                   value="{{ old('address') }}" maxlength="150">
+                            <div class="invalid-feedback">
+                                {{ errors.first('address')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('city') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('camping.signup.city') }}" name="city" value="{{ old('city') }}"
+                                   maxlength="150">
+                            <div class="invalid-feedback">
+                                {{ errors.first('city')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('camping.signup.postal_code') }}" name="postal"
+                                   value="{{ old('postal') }}" maxlength="6" pattern="^[0-9]{4}[A-Z]{2}$">
+                            <div class="invalid-feedback">
+                                {{ errors.first('postal')|ucfirst }}
+                            </div>
+                        </div>
                         <div class="form-group">
                             <input type="tel" class="form-control {{ errors.has('phone') ? 'is-invalid' }}"
                                    placeholder="{{ trans('camping.signup.phone') }}" name="phone" value="{{ old('phone') }}"
                                    maxlength="15">
                             <div class="invalid-feedback">
                                 {{ errors.first('phone')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthday">{{ trans('camping.signup.birthday') }}</label>
+                            <input id="birthday" type="date"
+                                   class="form-control {{ errors.has('birthday') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('camping.signup.birthday_format') }}" name="birthday"
+                                   value="{{ old('birthday') }}" maxlength="10">
+                            <div class="invalid-feedback">
+                                {{ errors.first('birthday')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -66,7 +99,14 @@
                                 {{ errors.first('email_confirmation')|ucfirst }}
                             </div>
                         </div>
-                        <div class="form-check">
+                        <div class="form-group">
+                            <textarea rows="4" name="remarks" maxlength="1500" placeholder="{{ trans('camping.signup.remarks_placeholder') }}" class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks') }}</textarea>
+                            <div class="invalid-feedback">
+                                {{ errors.first('remarks')|ucfirst }}
+                            </div>
+                        </div>
+
+                        {#<div class="form-check">
                             <input class="form-control form-check-input {{ errors.has('agree_salvemundi') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_salvemundi" name="agree_salvemundi">
                             <label class="form-check-label" for="agree_salvemundi">
                                 {{ trans('camping.signup.agree_salvemundi')|raw }}
@@ -83,7 +123,10 @@
                             <div class="invalid-feedback">
                                 {{ errors.first('agree_buitenjan')|ucfirst }}
                             </div>
-                        </div>
+                        </div>#}
+                        <p>
+                            {{ trans('camping.signup.agree_terms')|raw }}
+                        </p>
 
                         <div class="form-group">
                             <input type="submit" class="button" value="{{ trans('camping.signup.sign_up') }}">

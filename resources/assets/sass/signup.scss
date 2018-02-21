@@ -18,8 +18,22 @@
         }
       }
     }
+    textarea {
+      border: none;
+      background: none;
+      border-bottom: thin solid gray;
+      border-radius: 0;
+      &:focus {
+        background: none;
+        outline: 0 !important;
+        border-color: $brand-primary;
+      }
+    }
     label {
       font-weight: bold;
+    }
+    .form-check-input.form-control {
+      width: auto;
     }
 
   }
@@ -38,6 +52,43 @@
       padding: 1.5rem;
       margin-bottom: 1rem;
       line-height: 1;
+    }
+  }
+
+  @keyframes fade {
+    0%, 100% {
+      opacity: .4;
+      border-radius: 100%;
+    }
+    30% {
+      opacity: 1;
+      border-radius: 25%;
+    }
+  }
+.payment-page {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+  .loader {
+    text-align: center;
+    //font-size: 5rem;
+    //line-height: 1;
+    margin-bottom: 1rem;
+    span {
+      margin: 0 1rem;
+      width: 3rem;
+      height: 3rem;
+      display: inline-block;
+      border-radius: 100%;
+      background: theme-color(primary);
+      animation: fade 1.5s infinite both;
+      &:nth-child(2) {
+        animation-delay: .5s;
+      }
+      &:nth-child(3) {
+        animation-delay: 1s;
+      }
+
     }
   }
 

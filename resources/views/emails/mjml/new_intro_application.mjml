@@ -1,0 +1,58 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Helvetica Neue', Helvetica, sans-serif" font-size="16px"></mj-all>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#FFF">
+    <mj-container width="800px" background-color="#f5f8fa">
+      <mj-include path="_header" />
+      <mj-section>
+        <mj-column>
+          <mj-text>{{ trans('email.intro.new_application.greeting') }}</mj-text>
+
+          <mj-text>{{ trans('email.intro.new_application.intro_text') }}</mj-text>
+
+
+          <mj-table>
+            {% set fields = ['first_name', 'last_name', 'birthday', 'phone', 'email', 'pcn', 'shirt_size', 'alcohol', 'extra_shirt', 'same_sex_rooms', 'remarks', 'transaction_id'] %} {% for field in fields %}
+            <tr>
+              <td style="padding: 1rem 1rem 0 0;font-weight:bold;">
+                {{ trans('intro.signup.' ~ field)|raw }}
+              </td>
+              <td style="padding: 1rem 1rem 0 0;">
+                {% if application[field] is same as(false) %} {{ trans('email.intro.new_application.false') }} {% elseif application[field] is same as(true) %} {{ trans('email.intro.new_application.true') }} {% else %} {{ application[field] }} {% endif %}
+              </td>
+            </tr>
+            {% endfor %}
+
+          </mj-table>
+
+          <mj-table>
+            <!--<thead>
+              <tr>{% set excel_fields = ['last_name', 'first_name', 'birthday', 'phone', 'email', 'pcn', 'shirt_size', 'alcohol', 'extra_shirt', 'same_sex_rooms', 'remarks', 'transaction_id'] %}
+                {% for field in excel_fields %}
+                <th>{{ trans('intro.signup.' ~ field) }}</th>
+                {% endfor %}
+              </tr>
+            </thead>-->
+            <tbody style="user-select: all;">
+              <tr>
+                {% for field in excel_fields %}
+                <td style="border:1px solid #ecedee">
+                  {% if application[field] is same as(false) %} {{ trans('email.intro.new_application.false') }} {% elseif application[field] is same as(true) %} {{ trans('email.intro.new_application.true') }} {% else %} {{ application[field]|default('-') }} {% endif %}
+                </td>
+                {% endfor %}
+              </tr>
+            </tbody>
+          </mj-table>
+
+          <mj-text>{{ trans('email.intro.new_application.sent_from', { ip: application.ip_address}) }}</mj-text>
+
+          <mj-text>{{ trans('email.signature')|nl2br }}</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="_footer" />
+    </mj-container>
+  </mj-body>
+</mjml>

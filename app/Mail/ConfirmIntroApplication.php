@@ -2,28 +2,28 @@
 
     namespace App\Mail;
 
-    use App\CampingApplication;
+    use App\IntroApplication;
     use Illuminate\Bus\Queueable;
     use Illuminate\Mail\Mailable;
     use Illuminate\Queue\SerializesModels;
 
     /**
-     * Class ConfirmCampingApplication
+     * Class ConfirmIntroApplication
      *
      * @package App\Mail
      */
-    class ConfirmCampingApplication extends Mailable {
+    class ConfirmIntroApplication extends Mailable {
         use Queueable, SerializesModels;
         public $application;
 
         /**
          * Create a new message instance.
          *
-         * @param CampingApplication $application
+         * @param IntroApplication $application
          */
-        public function __construct(CampingApplication $application) {
+        public function __construct(IntroApplication $application) {
             $this->application = $application;
-            $this->subject(trans('email.camping.confirm_application.subject', ['name' => $application->first_name . ' ' . $application->last_name]));
+            $this->subject(trans('email.intro.confirm_application.subject', ['name' => $application->first_name . ' ' . $application->last_name]));
         }
 
         /**
@@ -32,6 +32,6 @@
          * @return $this
          */
         public function build() {
-            return $this->view('emails.camping.confirm_application')->text('emails.plaintext.camping.confirm_application');
+            return $this->view('emails.intro.confirm_application')->text('emails.plaintext.intro.confirm_application');
         }
     }

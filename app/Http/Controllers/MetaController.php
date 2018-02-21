@@ -33,7 +33,7 @@
                     'frequency' => 'weekly'
                 ],
                 [
-                    'url'      => route('signup', [], false),
+                    'url'      => route('signup.signup', [], false),
                     'priority' => 1,
                     'frequency' => 'monthly'
                 ],
