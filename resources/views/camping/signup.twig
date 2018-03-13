@@ -4,25 +4,38 @@
     <div class="container content">
         <main class="signup">
             <h1>{{ trans('camping.signup.title') }}</h1>
-            <p>
-                {{ trans('camping.signup.text') }}
+            {% for content in trans('camping.signup.questions') %}
+                <h4>{{ content[0] }}</h4>
+                <p>{{ content[1] }}</p>
+            {% endfor %}
+            <p id="signup">
+                {{ trans('camping.signup.text')|raw }}
             </p>
+            {#<div class="signup-count">#}
+                {#<div class="inner">#}
+                    {#<div class="count">{{ signup_count }}</div>#}
+                    {#{{ trans('camping.signup.confirmed_signups') }}#}
+                {#</div>#}
+            {#</div>#}
             <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <form action="{{ route('camping.signup.send') }}" method="POST">
+                    <form action="{{ route('camping.signup.send') }}#signup" method="POST">
                         {{ csrf_field() }}
                         {% if errors.has('signup') %}
-                            <div class="alert alert-danger">
+                            <div class="warning no-margin">
                                 {{ errors.first('signup') }}
                             </div>
                         {% endif %}
                         <div class="form-group">
-                            <input type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('camping.signup.pcn') }}" name="pcn" value="{{ old('pcn') }}"
-                                   maxlength="6">
+                            <input type="text" class="form-control {{ errors.has('member_id') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('camping.signup.member_id') }}" name="member_id" value="{{ old('member_id') }}"
+                                   maxlength="10">
                             <div class="invalid-feedback">
-                                {{ errors.first('pcn')|ucfirst }}
+                                {{ errors.first('member_id')|ucfirst }}
                             </div>
+                            <p class="help-text">
+                                {{ trans('camping.signup.member_id_help')|raw }}
+                            </p>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control {{ errors.has('first_name') ? 'is-invalid' }}"
@@ -59,7 +72,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
                                    placeholder="{{ trans('camping.signup.postal_code') }}" name="postal"
-                                   value="{{ old('postal') }}" maxlength="6" pattern="^[0-9]{4}[A-Z]{2}$">
+                                   value="{{ old('postal') }}" maxlength="6" pattern="^[0-9]{4}[A-Za-z]{2}$">
                             <div class="invalid-feedback">
                                 {{ errors.first('postal')|ucfirst }}
                             </div>

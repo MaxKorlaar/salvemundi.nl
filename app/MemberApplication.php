@@ -55,8 +55,6 @@
     class MemberApplication extends Model {
 
         use HasEncryptedAttributes;
-        protected $encrypted = ['pcn', 'first_name', 'last_name', 'address', 'city', 'postal', 'phone', 'email', 'ip_address', 'picture_name'];
-
         /**
          * Status is een enum. (['approved', 'on_hold', 'new', 'denied', 'under_review', 'blocked', 'email_unconfirmed'])
          * Blocked houdt in dat de PCN, het telefoonnummer en het email adres geblokkeerd worden bij nieuwe inschrijvingen
@@ -66,8 +64,8 @@
             STATUS_NEW = 'new', STATUS_DENIED = 'denied',
             STATUS_UNDER_REVIEW = 'under_review', STATUS_BLOCKED = 'blocked',
             STATUS_EMAIL_UNCONFIRMED = 'email_unconfirmed';
-
         public $fillable = ['pcn', 'first_name', 'last_name', 'address', 'city', 'postal', 'birthday', 'phone', 'email'];
+        protected $encrypted = ['pcn', 'first_name', 'last_name', 'address', 'city', 'postal', 'phone', 'email', 'ip_address', 'picture_name'];
         protected $attributes = [
             'status' => self::STATUS_EMAIL_UNCONFIRMED
         ];
@@ -106,13 +104,6 @@
         }
 
         /**
-         * @return string
-         */
-        public function getImagePath() {
-            return storage_path('app/member_photos/' . $this->picture_name);
-        }
-
-        /**
          * @return mixed
          */
         public function getPicture() {
@@ -120,11 +111,18 @@
         }
 
         /**
+         * @return string
+         */
+        public function getImagePath() {
+            return storage_path('app/member_photos/' . $this->picture_name);
+        }
+
+        /**
          * @return bool|null
          * @throws \Exception
          */
         public function delete() {
-            if(!\Storage::delete('member_photos/' . $this->picture_name)) {
+            if (!\Storage::delete('member_photos/' . $this->picture_name)) {
                 throw new \Exception("Kon pasfoto niet verwijderen bij het verwijderen van een MemberApplication");
             }
             return parent::delete();

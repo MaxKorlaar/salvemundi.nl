@@ -84,7 +84,7 @@
 
             $mollie  = new PaymentHelper();
             $payment = $mollie->payments->create([
-                "amount"      => 25.29,
+                "amount"      => 25.00,
                 "description" => trans('signup.payment.description', ['first_name' => $application->first_name, 'last_name' => $application->last_name]),
                 "redirectUrl" => route('signup.confirm_payment'),
                 "webhookUrl"  => route('webhook.payment.signup', ['application' => $application]),

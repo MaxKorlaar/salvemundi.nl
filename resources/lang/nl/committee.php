@@ -44,16 +44,17 @@
                     'name'    => 'Mitchell Vermeulen',
                     'profile' => 'ICT & Software',
                     'text'    => 'Dit lid is tijdens het schrijven van deze tekst pas net een bestuurslid. Zijn stuk tekst zal dus nog tijd nodig hebben om te veranderen van beloften naar daden. Deze beloften zijn echter goed geplaatst en passen geweldig bij Salve Mundi. Aangevende: "Al voordat ik mijn eerste lesdag had gehad wist ik dat ik iets wilde doen bij een vereniging." Hij wil zich vooral bezighouden met de sociale taken. Eerder al aangegeven te hebben dat hij bij de feestcommissie wilde is zijn inzet en motivatie al duidelijk. We kijken er naar uit om zijn werk te zien.',
-                    'image'   => '17022.jpg'
+                    'image'   => 'Mitchell.jpg'
                 ]
             ]
         ],
         'party'          => [
             'title'            => 'Feestcommissie',
             'about_text'       => [
-                'De feestcommissie bij Salve Mundi is voor alles verantwoordelijk binnen Salve Mundi was met sociale leasure activiteiten te maken heeft. Dit houd in dat zij verantwoordelijk zijn voor alle feesten en de introductie. Dit omdat hier vaak veel dezelfde raakvlakken in zitten en het team zo efficiënt kan werken.',
-                'De feestcommissie was de eerste commissie van Salve Mundi, met zijn oprichting in februari 2017 was het er snel bij. Het team begon met een samenwerking van Luuk Hendriks, Chiel Schrijvers en Joshua Gompel. Zonder draaiboeken of enig andere vorm van voorgaande kennis zijn de 3 begonnen aan het organiseren van een introductie.',
-                'Het is wel een grote grondslag geweest over hoe de intro in de komende jaren zal zijn. Na deze intro zijn er twee intro-"papa\'s" blijven hangen als feestcommissie waarna hij officieel benoemd werd.'
+                'De feestcommissie van Salve Mundi zorgt voor alle sociale leasure activiteiten binnen de studievereniging. Dit houdt in dat de feestcommissie alle feesten en de jaarlijkse introductie organiseert.',
+'De feestcommissie was, met haar oprichting in februari 2017, de eerste commissie van de studievereniging. Het team begon met een samenwerking van Luuk Hendriks, Chiel Schrijvers en Joshua van Gompel.',
+                'Zonder draaiboeken of enig andere vorm van voorgaande kennis zijn de 3 begonnen aan het organiseren van de introductie.
+Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal komen te zien. Na de eerste introductie zijn er twee intro –“papa’s” blijven hangen bij feestcommissie. Dit zijn Stefan Jansen en Gijs Hendrikx.'
             ],
             'meet_the_members' => 'Dit zijn de feestgangers',
             'members'          => [
@@ -158,7 +159,7 @@
                 [
                     'name'    => 'Femke',
                     'image'   => 'Femke Technology.jpg',
-                    'profile' => 'ICT & Technology'
+                    'profile' => 'ICT & Media Design'
                 ],
                 [
                     'name'    => 'Ilse',

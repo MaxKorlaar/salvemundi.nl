@@ -16,11 +16,9 @@
      */
     class IntroController extends Controller {
         /**
-         * @param Request $request
-         *
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function getSignupForm(Request $request) {
+        public function getSignupForm() {
             return view('intro.signup');
         }
 
@@ -72,5 +70,20 @@
                 'application' => $application
             ]);
 
+        }
+
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getSupervisorInfo() {
+            return view('intro.supervisor.info');
+        }
+
+        /**
+         * @return string
+         */
+        public function getSupervisorSignupForm() {
+            return view('intro.supervisor.signup');
         }
     }

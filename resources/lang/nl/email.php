@@ -20,7 +20,7 @@
                 'subject'      => 'Bedankt voor je inschrijving!',
                 'greeting'     => 'Hoi :name,',
                 'instructions' => 'Goed nieuws! We hebben zojuist je betaling ontvangen en dat betekent dat we automatisch je aanmelding hebben bevestigd. Welkom bij Salve Mundi!',
-                'more_info'    => 'Dus, als bevestiging: We hebben zojuist 25,29 euro van je ontvangen en deze gekoppeld aan je aanmelding. Deze kosten bestaan uit 20 euro voor het lidmaatschap voor 1 jaar, 5 euro voor je ledenpas en 29 cent verwerkingskosten. Je zal nog van ons horen, maar wees niet bang om vragen te stellen aan ons door te mailen naar info@salvemundi.nl of door ons aan te spreken op school.'
+                'more_info'    => 'Dus ter bevestiging: We hebben zojuist 25 euro van je ontvangen en deze gekoppeld aan je aanmelding. Deze kosten bestaan uit 20 euro voor het lidmaatschap voor 1 jaar en 5 euro voor je ledenpas. Je zal nog van ons horen, maar wees niet bang om vragen te stellen aan ons door te mailen naar info@salvemundi.nl of door ons aan te spreken op school.'
             ],
         ],
         'camping'                => [
@@ -28,7 +28,7 @@
                 'subject'      => 'Bedankt voor je aanmelding!',
                 'greeting'     => 'Hoi :name,',
                 'instructions' => 'Goed nieuws! We hebben zojuist je betaling ontvangen en dat betekent dat we automatisch je aanmelding hebben bevestigd. Het lijkt er dus op dat je meegaat op kamp, gezellig!',
-                'more_info'    => 'Dus, als bevestiging: We hebben zojuist 35,29 euro van je ontvangen en deze gekoppeld aan je aanmelding. Je zal nog van ons horen, maar wees niet bang om vragen te stellen aan ons door te mailen naar kamp@salvemundi.nl of door ons aan te spreken op school.'
+                'more_info'    => 'Dus ter bevestiging: We hebben zojuist ' . number_format(config('mollie.camping_costs'), 2, ',', '.') . ' euro van je ontvangen en deze gekoppeld aan je aanmelding. Je zal nog van ons horen, maar wees niet bang om vragen te stellen aan ons door te mailen naar kamp@salvemundi.nl of door ons aan te spreken op school. Blijf vooral ook de Facebook-pagina van het kamp in de gaten houden voor de laatste updates!'
             ],
             'new_application'     => [
                 'subject'    => 'Nieuwe kamp-aanmelding van :name',

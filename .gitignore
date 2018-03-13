@@ -12,3 +12,5 @@ yarn-error.log
 .env
 .DS_STORE
 composer.phar
+.idea/deployment.xml
+.idea/webServers.xml

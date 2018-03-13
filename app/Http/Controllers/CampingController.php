@@ -32,7 +32,11 @@
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
         public function getSignupForm(Request $request) {
-            return view('camping.signup');
+            return view('camping.signup',
+                [
+                    'signup_count' => CampingApplication::where('transaction_status', '=', 'paid')->count()
+                ]
+            );
         }
 
         /**
@@ -48,13 +52,14 @@
             $application->transaction_id           = '';
             $application->transaction_status       = '';
             $application->transaction_amount       = 0;
-
+            if($application->member_id === null) {
+                $application->member_id = '(onbekend)';
+            }
 
             $application->saveOrFail();
-
             $mollie  = new PaymentHelper();
             $payment = $mollie->payments->create([
-                "amount"      => 35.29,
+                "amount"      => config('mollie.camping_costs'),
                 "description" => trans('camping.signup.payment.description', ['first_name' => $application->first_name, 'last_name' => $application->last_name]),
                 "redirectUrl" => route('camping.signup.confirm_payment'),
                 "webhookUrl"  => route('webhook.payment.camping', ['application' => $application]),

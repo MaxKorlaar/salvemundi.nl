@@ -35,6 +35,12 @@
             'Uitjes naar bijvoorbeeld pretparken'
         ],
         'intro'                  => 'Naast deze activiteiten verzorgt Salve Mundi ook de introductie van FHICT van top tot teen.',
+        'camping'                => [
+            'header'     => 'Inschrijven kamp',
+            'text'       => 'Het is dan eindelijk zo ver! Het is nu mogelijk om je in te schrijven voor het jaarlijkse kamp van Salve Mundi, over welke meer informatie is te vinden <a href="#events">bij de evenementen hieronder</a> of op de inschrijfpagina zelf. Betalen voor het kamp is onderdeel van het inschrijfproces, waardoor je je geen zorgen meer hoeft te
+maken over de afhandeling van je inschrijving. Waar wacht je nog op?',
+            'sign_me_up' => 'Nou, schrijf me in!'
+        ],
 
         'events'     => [
             'upcoming'          => 'Aankomende evenementen',

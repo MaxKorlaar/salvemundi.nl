@@ -46,10 +46,14 @@
     Route::get('/kamp/inschrijven/bevestigen/betaling/', 'CampingController@confirmPayment')->name('camping.signup.confirm_payment');
     Route::post('/webhook/betaling/kamp/{application}', 'CampingController@confirmPaymentWebhook')->name('webhook.payment.camping');
 
-
-    Route::group(['prefix' => 'intro', 'as' => 'intro.'], function() {
+    Route::group(['prefix' => 'intro', 'as' => 'intro.'], function () {
         Route::get('inschrijven', 'IntroController@getSignupForm')->name('signup');
         Route::post('inschrijven', 'IntroController@signup')->name('signup.send');
+
+        Route::get('inschrijven/papas-en-mamas', 'IntroController@getSupervisorInfo')->name('supervisor_info');
+        Route::get('inschrijven/papas-en-mamas/gegevens', 'IntroController@getSupervisorSignupForm')->name('supervisor_signup');
+        Route::post('inschrijven/papas-en-mamas/gegevens', 'IntroController@supervisorSignup')->name('supervisor_signup.send');
+
         Route::get('inschrijven/bevestigen/{application}/{token}', 'IntroController@confirmEmail')->name('signup.confirm_email');
     });
 
@@ -60,7 +64,7 @@
         //        Route::put('account', 'AccountController@update')->name('update_account');
         //        Route::get('account/delete', 'AccountController@getDeleteView')->name('account_deletion');
         //        Route::delete('account', 'AccountController@delete')->name('do_delete_account');
-
+        Route::get('kamp', 'CampingController@getSignups')->name('camping');
     });
 
     Route::get('privacybeleid', 'MetaController@getPrivacyPage')->name('privacy');

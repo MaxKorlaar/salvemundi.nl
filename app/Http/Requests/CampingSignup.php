@@ -26,18 +26,18 @@
          */
         public function rules() {
             return [
-                'pcn'              => 'required|integer',
-                'first_name'       => 'required|string|max:150',
-                'last_name'        => 'required|string|max:150',
-                'phone'            => 'required|max:15',
-                'email'            => 'required|email|confirmed',
-//                'agree_salvemundi' => 'required|boolean',
-//                'agree_buitenjan' => 'required|boolean'
-                'address'  => 'required|min:5|max:150',
-                'city'     => 'required|min:3|max:150',
-                'postal'   => 'required|string|size:6|regex:/^[0-9]{4}[A-Z]{2}$/',
-                'remarks' => 'nullable|string|max:1500',
-                'birthday' => 'required|date|before:-16 years',
+                'member_id'  => 'required|integer',
+                'first_name' => 'required|string|max:150',
+                'last_name'  => 'required|string|max:150',
+                'phone'      => 'required|max:15',
+                'email'      => 'required|email|confirmed',
+                //                'agree_salvemundi' => 'required|boolean',
+                //                'agree_buitenjan' => 'required|boolean'
+                'address'    => 'required|min:5|max:150',
+                'city'       => 'required|min:3|max:150',
+                'postal'     => 'required|string|size:6|regex:/^[0-9]{4}[A-Za-z]{2}$/',
+                'remarks'    => 'nullable|string|max:1500',
+                'birthday'   => 'required|date|before:-16 years',
             ];
         }
 
@@ -50,6 +50,7 @@
             return [
                 'agree_salvemundi.required' => trans('camping.signup.errors.agree_salvemundi'),
                 'agree_buitenjan.required'  => trans('camping.signup.errors.agree_buitenjan'),
+                'birthday.before' => trans('camping.signup.errors.minimum_age_not_met')
             ];
         }
 
@@ -61,7 +62,8 @@
         public function attributes() {
             return [
                 'agree_salvemundi' => trans('camping.signup.terms'),
-                'agree_buitenjan' => trans('camping.signup.terms')
+                'agree_buitenjan'  => trans('camping.signup.terms'),
+                'member_id' => trans('camping.signup.member_id')
             ];
         }
     }

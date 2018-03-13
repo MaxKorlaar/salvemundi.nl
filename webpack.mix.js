@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 const path  = require("path");
 // noinspection JSAnnotator
 const {mix} = require('laravel-mix');
@@ -31,12 +33,19 @@ mix.setPublicPath('public_html')
             paths: glob.sync([
                 path.join(__dirname, 'resources/views/**/*.twig'),
                 path.join(__dirname, 'resources/assets/js/**/*.js')
-            ])
+            ]),
+            purifyOptions: {
+                info: true,
+                whitelist: ['*form*']
+            }
+
         }, // Remove unused CSS selectors.
 //   uglify: {}, // Uglify-specific options. https://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
 //   postCss: [] // Post-CSS options: https://github.com/postcss/postcss/blob/master/docs/plugins.md
     })
-    .version();
+    .version().then(() => {
+    axios.post('https://maker.ifttt.com/trigger/webpack_build_complete/with/key/csrYq0ka2NZcdyYW40oQxx', {});
+});
 mix.browserSync({
     proxy: '0.0.0.0:8000',
     files: [

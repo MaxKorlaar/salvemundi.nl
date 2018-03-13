@@ -12,7 +12,7 @@ body {
 }
 
 a {
-  color: $brand-primary;
+  color: lighten($brand-primary, 10%);
   transition: .2s ease;
   padding: 0;
   @include hover-focus-active {
@@ -88,6 +88,18 @@ a {
   main {
     h1, h2, h3, h4 {
       color: theme-color(primary);
+    }
+    .description {
+      padding-bottom: 0;
+    }
+    .description + .camping {
+      padding-top: 0;
+    }
+    .description + .events {
+      margin-top: 1rem;
+      @include media-breakpoint-up(md) {
+        margin-top: 100px;
+      }
     }
 
     .events {

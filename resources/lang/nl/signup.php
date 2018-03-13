@@ -1,8 +1,7 @@
 <?php
     return [
         'title'              => 'Aanmelden',
-        'text'               => 'Om Salvemundi te bekostigen, vragen we een vergoeding van €20,- per jaar voor het lidmaatschap
-        en een eenmalige vergoeding van €5,- voor de ledenpas.',
+        'text'               => 'Om Salvemundi te bekostigen, vragen we een vergoeding van €20,- per jaar voor het lidmaatschap en een eenmalige vergoeding van €5,- voor de ledenpas.',
         'pcn'                => 'Fontys PCN',
         'first_name'         => 'Voornaam',
         'last_name'          => 'Achternaam',
@@ -20,8 +19,9 @@
         Afbeeldingen mogen maximaal 5 MB groot zijn en moeten minimaal 200 bij 300 pixels groot zijn.',
         'sign_up'            => 'Versturen',
         'please_confirm'     => 'Controleer alsjeblieft de onderstaande gegevens voordat je de inschrijving verstuurt. Het kost ons extra tijd om fouten later te corrigeren.',
-        'i_agree_terms'      => 'Door op bevestigen te drukken ga je akkoord met de <a target="_blank" href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp">Algemene voorwaarden</a> van Salve Mundi.',
-        'confirm'            => 'Schrijf me in!',
+        'i_agree_terms'      => 'Door verder te gaan met je inschrijving ga je akkoord met de <a target="_blank" href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp">algemene voorwaarden</a> van Salve Mundi en ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>.',
+        'payment_redirect' => 'Door op \'Door naar betalen\' te klikken zullen je gegevens bewaard worden volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a> en zal je worden doorgestuurd naar de betalingspagina. Het is hier mogelijk om met iDeal te betalen. Indien je de betaling annuleert zullen je gegevens direct worden verwijderd en gaat je inschrijving niet door. Het is dan mogelijk om je opnieuw in te schrijven.',
+        'confirm'            => 'Door naar betalen',
 
         'errors'                => [
             'minimum_age_not_met'  => 'Je moet minstens 16 jaar oud zijn om jezelf in te mogen schrijven.

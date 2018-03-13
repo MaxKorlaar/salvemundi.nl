@@ -31,7 +31,7 @@
                 'last_name'  => 'required|string|max:150',
                 'address'    => 'required|min:5|max:150',
                 'city'       => 'required|min:3|max:150',
-                'postal'     => 'required|string|size:6|regex:/^[0-9]{4}[A-Z]{2}$/',
+                'postal'     => 'required|string|size:6|regex:/^[0-9]{4}[A-Za-z]{2}$/',
                 'birthday'   => 'required|date|before:-16 years',
                 'phone'      => 'required|max:15',
                 'email'      => 'required|email|confirmed',

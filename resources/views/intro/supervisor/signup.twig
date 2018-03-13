@@ -1,0 +1,193 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('intro.supervisor.signup.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="signup supervisor-signup">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('intro.supervisor.signup.title') }}</h1>
+                    <div class="warning">
+                        {{ trans('intro.supervisor.info.supervisors_only')|raw }}
+                    </div>
+                    {% for content in trans('intro.supervisor.signup.content') %}
+                        <p>{{ content }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    {#Naam: VarChar
+Achternaam: VarChar
+Email-address: Varchar
+papa of mama:
+Salve Mundi Lidnummer (te vinden op je pas):Integer
+Telefoonnummer:(integer of varchar net wat je uitkomt)
+Leeftijd te 22 augustus 2018:Integer
+Ik vind het niet erg om een ingedeelde avond nuchter te blijven: Boolean/bit
+Ik heb een actief rijbewijs: Checkbox
+Ik heb te 22 augustus een : actief BHV brevet, Actief EHBO brevet, geen van beiden. Checkboxen
+Ik wil mij inschrijven als papa/mama type: A, B of C (checkbox)
+Mijn shirtmaat (in unisex shirts) is : s m l xl xxl Dropdown
+Het lidnummer van mijn gewenste partner (De partners gelden alleen op woensdag Type A of B maakt dus niets uit): integer. Null Is mag ook natuurlijk
+Medicatie: Ik heb medicijnen voor …. varchar
+Eten: niet vegetarisch / vegetarisch boolean
+Ik ga akkoord met de introductie voorwaarden : Bestand Introductie voorwaarden.
+Ik ga akkoord met de voorwaarden en informatie gegeven op de vorige pagina  (Hyperlink openen in nieuw tab om terug te kijken. 
+Overige info: Max 250 char
+#}
+                    <p>{{ trans('intro.supervisor.signup.instructions') }}</p>
+                    <form action="{{ route('intro.supervisor_signup.send') }}" method="POST">
+                        {{ csrf_field() }}
+                        {% if errors.has('signup') %}
+                            <div class="alert alert-danger">
+                                {{ errors.first('signup') }}
+                            </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('member_id') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.supervisor.signup.member_id') }}" name="member_id" value="{{ old('member_id') }}"
+                                   maxlength="6">
+                            <div class="invalid-feedback">
+                                {{ errors.first('member_id')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('first_name') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.supervisor.signup.first_name') }}" name="first_name" value="{{ old('first_name') }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('first_name')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('last_name') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.supervisor.signup.last_name') }}" name="last_name" value="{{ old('last_name') }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('last_name')|ucfirst }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="tel" class="form-control {{ errors.has('phone') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.supervisor.signup.phone') }}" name="phone" value="{{ old('phone') }}"
+                                   maxlength="15">
+                            <div class="invalid-feedback">
+                                {{ errors.first('phone')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control {{ errors.has('email') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.supervisor.signup.email') }}" name="email" value="{{ old('email') }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('email')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email"
+                                   class="form-control {{ errors.has('email_confirmation') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.supervisor.signup.email_confirmation') }}" name="email_confirmation"
+                                   value="{{ old('email_confirmation') }}" maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('email_confirmation')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input id="age_at_intro" type="number" placeholder="{{ trans('intro.supervisor.signup.age_at_intro') }}" class="form-control {{ errors.has('age_at_intro') ? 'is-invalid' }}" name="age_at_intro"
+                                   value="{{ old('age_at_intro') }}" maxlength="2">
+                            <div class="invalid-feedback">
+                                {{ errors.first('age_at_intro')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="shirt_size">{{ trans('intro.supervisor.signup.shirt_size') }}</label>
+                            <select required id="shirt_size" name="shirt_size" class="form-control {{ errors.has('shirt_size') ? 'is-invalid' }}">
+                                {% for size in trans('intro.supervisor.signup.shirt_sizes') %}
+                                    <option {{ old('shirt_size') == size ? 'selected' }}>{{ size }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">
+                                {{ errors.first('shirt_size')|ucfirst }}
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('remain_sober') ? 'is-invalid' }}" value="1" type="checkbox" id="remain_sober" name="remain_sober" {{ old('remain_sober') ? 'checked' }}>
+                            <label class="form-check-label" for="remain_sober">
+                                {{ trans('intro.supervisor.signup.remain_sober')|raw }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('remain_sober')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('drivers_license') ? 'is-invalid' }}" value="1" type="checkbox" id="drivers_license" name="drivers_license" {{ old('drivers_license') ? 'checked' }}>
+                            <label class="form-check-label" for="drivers_license">
+                                {{ trans('intro.supervisor.signup.drivers_license')|raw }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('drivers_license')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('first_aid_license') ? 'is-invalid' }}" value="1" type="checkbox" id="first_aid_license" name="first_aid_license" {{ old('first_aid_license') ? 'checked' }}>
+                            <label class="form-check-label" for="first_aid_license">
+                                {{ trans('intro.supervisor.signup.first_aid_license')|raw }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('first_aid_license')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('company_first_response_license') ? 'is-invalid' }}" value="1" type="checkbox" id="company_first_response_license" name="company_first_response_license" {{ old('company_first_response_license') ? 'checked' }}>
+                            <label class="form-check-label" for="company_first_response_license">
+                                {{ trans('intro.supervisor.signup.company_first_response_license')|raw }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('company_first_response_license')|ucfirst }}
+                            </div>
+                        </div>
+
+                        {% for route in trans('intro.supervisor.signup.routes') %}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="route_type" id="route_type_{{ route }}" value="{{ route }}">
+                                <label class="form-check-label" for="route_type_{{ route }}">{{ trans('intro.supervisor.signup.route_type', { route: route}) }}</label>
+                            </div>
+                        {% endfor %}
+
+                        <div class="form-group">
+                            <textarea name="remarks" maxlength="1500" placeholder="{{ trans('intro.supervisor.signup.remarks_placeholder') }}" class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks') }}</textarea>
+                            <div class="invalid-feedback">
+                                {{ errors.first('remarks')|ucfirst }}
+                            </div>
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('agree_salvemundi') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_salvemundi" name="agree_salvemundi" {{ old('agree_salvemundi') ? 'checked' }}>
+                            <label class="form-check-label" for="agree_salvemundi">
+                                {{ trans('intro.supervisor.signup.agree_salvemundi')|raw }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('agree_salvemundi')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('agree_intro_terms') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_intro_terms" name="agree_intro_terms" {{ old('agree_intro_terms') ? 'checked' }}>
+                            <label class="form-check-label" for="agree_intro_terms">
+                                {{ trans('intro.supervisor.signup.agree_intro_terms')|raw }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('agree_intro_terms')|ucfirst }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="button" value="{{ trans('intro.supervisor.signup.sign_up') }}">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

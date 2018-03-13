@@ -1,0 +1,38 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('intro.supervisor.info.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="signup supervisor-info">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('intro.supervisor.info.title') }}</h1>
+                    <div class="warning">
+                        {{ trans('intro.supervisor.info.supervisors_only')|raw }}
+                    </div>
+                    {% for content in trans('intro.supervisor.info.content') %}
+                        <p>{{ content }}</p>
+                    {% endfor %}
+                    <p>{{ trans('intro.supervisor.info.three_routes') }}</p>
+                    <ol type="A">
+                        {% for content in trans('intro.supervisor.info.routes') %}
+                            <li>{{ content }}</li>
+                        {% endfor %}
+                    </ol>
+                    {% for content in trans('intro.supervisor.info.more_content') %}
+                        <p>{{ content|raw }}</p>
+                    {% endfor %}
+                    <p>{{ trans('intro.supervisor.info.requirements_for_signup') }}</p>
+                    <ol>
+                        {% for content in trans('intro.supervisor.info.requirements') %}
+                            <li>{{ content }}</li>
+                        {% endfor %}
+                    </ol>
+                    <p>
+                        {{ trans('intro.supervisor.info.for_questions')|raw }}
+                    </p>
+                    <a href="{{ route('intro.supervisor_signup') }}" class="button">{{ trans('intro.supervisor.info.click_to_sign_up') }}</a>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
