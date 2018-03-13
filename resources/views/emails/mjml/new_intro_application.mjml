@@ -15,7 +15,7 @@
 
 
           <mj-table>
-            {% set fields = ['first_name', 'last_name', 'birthday', 'phone', 'email', 'pcn', 'shirt_size', 'alcohol', 'extra_shirt', 'same_sex_rooms', 'remarks', 'transaction_id'] %} {% for field in fields %}
+            {% set fields = ['first_name', 'last_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'same_sex_rooms', 'remarks', 'transaction_id', 'transaction_amount'] %} {% for field in fields %}
             <tr>
               <td style="padding: 1rem 1rem 0 0;font-weight:bold;">
                 {{ trans('intro.signup.' ~ field)|raw }}
@@ -30,7 +30,7 @@
 
           <mj-table>
             <!--<thead>
-              <tr>{% set excel_fields = ['last_name', 'first_name', 'birthday', 'phone', 'email', 'pcn', 'shirt_size', 'alcohol', 'extra_shirt', 'same_sex_rooms', 'remarks', 'transaction_id'] %}
+              <tr>{% set excel_fields = ['last_name', 'first_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'same_sex_rooms', 'remarks', 'transaction_id', 'transaction_amount'] %}
                 {% for field in excel_fields %}
                 <th>{{ trans('intro.signup.' ~ field) }}</th>
                 {% endfor %}

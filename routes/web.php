@@ -47,6 +47,7 @@
     Route::post('/webhook/betaling/kamp/{application}', 'CampingController@confirmPaymentWebhook')->name('webhook.payment.camping');
 
     Route::group(['prefix' => 'intro', 'as' => 'intro.'], function () {
+        Route::get('/', 'IntroController@getInfo')->name('info');
         Route::get('inschrijven', 'IntroController@getSignupForm')->name('signup');
         Route::post('inschrijven', 'IntroController@signup')->name('signup.send');
 
@@ -55,7 +56,11 @@
         Route::post('inschrijven/papas-en-mamas/gegevens', 'IntroController@supervisorSignup')->name('supervisor_signup.send');
 
         Route::get('inschrijven/bevestigen/{application}/{token}', 'IntroController@confirmEmail')->name('signup.confirm_email');
+
+        Route::get('inschrijven/bevestigen/betaling/', 'IntroController@confirmPayment')->name('signup.confirm_payment');
+
     });
+    Route::post('/webhook/betaling/intro/{application}', 'IntroController@confirmPaymentWebhook')->name('webhook.payment.intro');
 
     Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admin/', 'middleware' => ['auth', 'auth.admin']], function () {
         //Route::resource('aanmeldingen', 'ApplicationsController')->names('applications');

@@ -33,7 +33,7 @@
                 'email'      => 'required|email|confirmed',
                 //                'agree_salvemundi' => 'required|boolean',
                 //                'agree_buitenjan' => 'required|boolean'
-                'address'    => 'required|min:5|max:150',
+                'address'    => 'required|min:3|max:150',
                 'city'       => 'required|min:3|max:150',
                 'postal'     => 'required|string|size:6|regex:/^[0-9]{4}[A-Za-z]{2}$/',
                 'remarks'    => 'nullable|string|max:1500',

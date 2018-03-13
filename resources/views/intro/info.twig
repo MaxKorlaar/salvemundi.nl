@@ -1,0 +1,28 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('intro.info.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="signup supervisor-info">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('intro.info.title') }}</h1>
+                    <a href="{{ route('intro.signup') }}" class="button btn-block text-center">{{ trans('intro.info.click_to_sign_up') }}</a>
+                    <div class="warning">
+                        {{ trans('intro.info.students_only')|raw }}
+                    </div>
+                    {% for content in trans('intro.info.intro') %}
+                        <p>{{ content }}</p>
+                    {% endfor %}
+                    {% for content in trans('intro.info.content') %}
+                        <h4>{{ content[0] }}</h4>
+                        <p>{{ content[1] }}</p>
+                    {% endfor %}
+                    {% for content in trans('intro.info.more_info') %}
+                        <p>{{ content }}</p>
+                    {% endfor %}
+                    <a href="{{ route('intro.signup') }}" class="button btn-block text-center">{{ trans('intro.info.click_to_sign_up') }}</a>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

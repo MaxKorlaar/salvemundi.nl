@@ -53,7 +53,6 @@
             'birthday_format'     => 'dd-mm-jjjj (' . \Carbon\Carbon::now()->format('d-m-Y') . ')',
             'phone'               => 'Telefoonnummer',
             'transaction_id' => 'Transactie-ID',
-            '' => '',
             'email'               => 'E-mail-adres',
             'email_confirmation'  => 'Bevestig je e-mail-adres',
             'agree_salvemundi'    => 'Ik ga akkoord met (TBD) <a href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp">de kampvoorwaarden van Salve Mundi</a>',

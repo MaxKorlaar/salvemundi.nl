@@ -49,10 +49,16 @@
             'new_application'     => [
                 'subject'    => 'Nieuwe intro-inschrijving van :name',
                 'greeting'   => 'Hallo bestuur,',
-                'intro_text' => 'Er is een nieuwe aanmelding voor de intro ingezonden. Het email-adres van deze gebruiker is bevestigd.',
+                'intro_text' => 'Er is een nieuwe aanmelding voor de intro ingezonden. De gebruiker heeft zijn/haar email-adres bevestigd.',
                 'true'       => 'Ja',
                 'false'      => 'Nee',
                 'sent_from'  => 'Deze aanmelding is verzonden vanaf :ip.',
+            ],
+            'payment_confirmation' => [
+                'subject'      => 'Bedankt voor je aanmelding!',
+                'greeting'     => 'Hoi :name,',
+                'instructions' => 'Goed nieuws! We hebben zojuist je betaling ontvangen en dat betekent dat we automatisch je aanmelding hebben bevestigd. Het lijkt er dus op dat je meedoet met de FHICT intro van 2018, georganiseerd door Salve Mundi!',
+                'more_info'    => 'Dus ter bevestiging: We hebben zojuist :amount euro van je ontvangen en deze gekoppeld aan je aanmelding. Je zal nog van ons horen, maar wees niet bang om vragen te stellen aan ons door te mailen naar info@salvemundi.nl.'
             ],
         ],
 

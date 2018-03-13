@@ -30,6 +30,7 @@
                 'first_name'       => 'required|string|max:150',
                 'last_name'        => 'required|string|max:150',
                 'phone'            => 'required|max:15',
+                'contact_phone'    => 'required|max:15',
                 'email'            => 'required|email|confirmed',
                 'birthday'         => 'required|date|before:-15 years',
                 'shirt_size'       => 'required|in:' . join(",", trans('intro.signup.shirt_sizes')),
@@ -37,6 +38,10 @@
                 'extra_shirt'      => 'boolean',
                 'same_sex_rooms'   => 'boolean',
                 'remarks'          => 'nullable|string|max:1500',
+                'gender'           => 'required|in:' . join(",", trans('intro.signup.genders')),
+                'address' => 'required|min:3|max:150',
+                'city'    => 'required|min:3|max:150',
+                'postal'  => 'required|string|size:6|regex:/^[0-9]{4}[A-Za-z]{2}$/',
                 'agree_salvemundi' => 'required|boolean',
                 'agree_buitenjan'  => 'required|boolean'
             ];
@@ -64,6 +69,7 @@
                 'agree_salvemundi' => trans('intro.signup.terms'),
                 'agree_buitenjan'  => trans('intro.signup.terms'),
                 'remarks'          => trans('intro.signup.remarks'),
+                'contact_phone'    => trans('intro.signup.contact_phone')
             ];
         }
     }

@@ -1,41 +1,86 @@
 <?php
     return [
+        'info'       => [
+
+            'title'            => 'Inschrijven Intro FHICT 2018',
+            'click_to_sign_up' => 'Klik hier om je in te schrijven',
+            'students_only'    => 'Deze pagina is bedoeld voor deelnemers, en niet voor begeleiding!',
+            'intro'            => [
+                'Hallo nieuwe studenten!',
+                'Dit jaar zal er tijdens de introductieweek de mogelijkheid zijn om te blijven overnachten. Wij vanuit Salve Mundi zijn druk bezig geweest om dit mogelijk te maken voor de nieuwe studenten. Om hier gebruik van te maken vragen wij een relatief kleine vergoeding. Deze vergoeding zal maximaal 60 euro zijn en wordt in de loop der weken nader bekend gemaakt in een nieuwsbrief. De prijs is lager omdat onze school een lekkere bijdrage doet in de intro. Voor deze maximaal 60 euro krijg je: 2 nachten met vervoer van en naar de slaaplocatie, eten, een festival en veel meer. '
+            ],
+            'content' => [
+                [
+                  'Hoe ziet de slaaplocatie eruit?',
+                  'Onze slaaplocatie is in Veldhoven. Het vervoer zal via het openbaar vervoer gaan. Er is een bushalte voor de locatie. Het pand heeft meerdere slaapruimtes waar stapelbedden staan. Je ligt hier met 4, 6 of 12 mensen op een kamer. Natuurlijk hebben we ook aan de versnaperingen gedacht, dus zal er een bar geplaatst worden en hebben we een feestzaal, waar we tot de late uurtjes door kunnen gaan. Drinken (fris en bier) kan middels consumptiemunten gehaald worden aan de bar. Deze munten zijn verkrijgbaar bij de muntenverkoop op de slaaplocatie.'
+                ],
+                [
+                    'Wat gaan we allemaal doen?',
+                    'Op woensdag worden jullie allemaal op school verwacht om kennis te maken met jullie nieuwe klas. Het is de bedoeling dat je dan alvast je overnachting spullen meeneemt en voorziet van een label met je naam. Wij zorgen er dan voor dat de spullen op de slaaplocatie aankomen.'
+                ]
+            ],
+            'more_info' => [
+                'Tijdens deze eerste dag maken jullie kennis met jullie klasgenoten. Daarna zullen de papa’s en mama’s vanuit onze vereniging binnenkomen en nemen we jullie mee de stad in. We zullen tijdens de middag ons door Eindhoven begeven en is er natuurlijk een kans om een drankje te drinken in onze stamkroeg de Villa Fiësta. Na het middagprogramma zullen we ons met bussen begeven naar de slaaplocatie. Hier zal een kamerindeling gemaakt worden en wordt er friet met snacks gebakken. Hierna zullen we ons rustig aan begeven naar de feestzaal toe. In de feestzaal volgt een avond vol activiteiten, afsluitend met een feest.',
+                'Donderdag zullen we op tijd weer wakker worden om gezamenlijk te ontbijten. Na het ontbijt gaan we met de bus weer terug naar Eindhoven om naar het Purple festival te gaan. Dit is een festival voor alle nieuwe studenten van alle opleidingen op Fontys Hogeschool. Na een middag vol feesten en dansen zullen we in de avond weer terug gaan naar de slaaplocatie. Hier zal de feestzaal weer geopend worden zodat we nog een mooi laatste feestje kunnen geven.',
+                'Op vrijdag zullen we ook weer op tijd wakker worden om te gaan opruimen. Het is de bedoeling dat alle kamers worden geveegd en schoon worden achtergelaten door de studenten die hier geslapen hebben. Daarna zit de introductie erop en kan je op de slaaplocatie worden opgehaald of via het openbaar vervoer naar Eindhoven om daar te worden opgehaald.',
+                'Wil jij ook graag je introductie extra leuk maken en lijkt het je leuk om je nieuwe studiegenoten alvast te leren kennen? Twijfel dan niet en meld je aan voor het introductiekamp!'
+            ]
+
+        ],
         'signup'     => [
-            'title'                 => 'Aanmelden voor de intro van 2018',
-            'text'                  => 'Het is mogelijk om je als aankomend student in te schrijven voor de intro van 2018. Deze wordt georganiseerd door Salve Mundi, de studievereniging van FHICT in Eindhoven.',
-            'pcn'                   => 'Fontys PCN (Indien bekend)',
-            'first_name'            => 'Voornaam',
-            'last_name'             => 'Achternaam',
-            'birthday'              => 'Geboortedatum',
-            'birthday_format'       => 'dd-mm-jjjj (' . \Carbon\Carbon::now()->format('d-m-Y') . ')',
-            'phone'                 => 'Telefoonnummer',
-            'email'                 => 'E-mail-adres',
-            'email_confirmation'    => 'Bevestig je e-mail-adres',
-            'shirt_size'            => 'Welke shirtmaat heb je? (Unisex)',
-            'shirt_sizes'           => [
+            'title'                    => 'Inschrijven voor de FHICT intro van 2018',
+            'text'                     => 'Deze inschrijving is gratis en vrijblijvend. Rond juni zullen we mails versturen met een link om te betalen voor de intro. Wel is het handig om jezelf in te schrijven: Er zijn namelijk slechts 200 plekken voor de 550 inschrijvingen op de opleiding zelf. Het is dus belangrijk om je hier aan te melden. Zorg ook dat je een e-mail stuurt naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a> wanneer je toch een andere opleiding gaat volgen en je jezelf dus wilt afmelden. Zo houden we het voor iedereen eerlijk!',
+            'pcn'                      => 'Fontys PCN (Indien bekend)',
+            'first_name'               => 'Voornaam',
+            'last_name'                => 'Achternaam',
+            'birthday'                 => 'Geboortedatum',
+            'birthday_format'          => 'dd-mm-jjjj (' . \Carbon\Carbon::now()->format('d-m-Y') . ')',
+            'address'                  => 'Straat en huisnummer',
+            'city'                     => 'Woonplaats',
+            'postal_code'              => 'Postcode',
+            'postal'                   => 'Postcode',
+            'phone'                    => 'Telefoonnummer student',
+            'contact_phone'            => 'Telefoonnummer contactpersoon',
+            'email'                    => 'E-mail-adres',
+            'email_confirmation'       => 'Bevestig je e-mail-adres',
+            'gender'                   => 'Geslacht',
+            'genders'                  => ['Man', 'Vrouw', 'Overige'],
+            'shirt_size'               => 'Welke shirtmaat heb je? (Unisex)',
+            'shirt_sizes'              => [
                 'S', 'M', 'L', 'XL', '2X', '3X'
             ],
-            'alcohol'               => 'Ik mag en wil alcohol nuttigen',
-            'extra_shirt'           => 'Ik wil graag een extra shirt aanschaffen (€9,-)',
-            'same_sex_rooms'        => 'Ik vind het <strong>niet</strong> prettig om een kamer te delen met mensen van het andere geslacht',
-            'remarks'               => 'Opmerkingen',
-            'remarks_placeholder'   => 'Opmerkingen (Bijvoorbeeld allergie-informatie of medicijngebruik)',
-            'agree_salvemundi'      => 'Ik ga akkoord met <a href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp">de voorwaarden van Salve Mundi</a>',
-            'agree_buitenjan'       => 'Ik ga akkoord met (TBD) <a href="#?">de algemene voorwaarden van De Buitenjan</a>',
-            'transaction_id'        => 'Betalingskenmerk',
-            'sign_up'               => 'Schrijf me in',
-            'terms'                 => 'Akkoord voorwaarden',
-            'errors'                => [
+            'alcohol'                  => 'Ik mag en wil alcohol nuttigen',
+            'extra_shirt'              => 'Ik wil graag een extra shirt aanschaffen (€9,-)',
+            'same_sex_rooms'           => 'Ik vind het <strong>niet</strong> prettig om een kamer te delen met mensen van het andere geslacht',
+            'remarks'                  => 'Opmerkingen',
+            'remarks_placeholder'      => 'Opmerkingen (Bijvoorbeeld allergie-informatie of medicijngebruik)',
+            'agree_salvemundi'         => 'Ik ga akkoord met <a href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp">de voorwaarden van Salve Mundi</a>',
+            'agree_buitenjan'          => 'Ik ga akkoord met (TBD) <a href="#?">de algemene voorwaarden van De Buitenjan</a>',
+            'transaction_id'           => 'Betalingskenmerk',
+            'transaction_amount'       => 'Bedrag transactie',
+            'sign_up'                  => 'Schrijf me in',
+            'terms'                    => 'Akkoord voorwaarden',
+            'errors'                   => [
                 'agree_salvemundi'     => 'Je moet akkoord gaan met de voorwaarden van Salve Mundi',
                 'agree_buitenjan'      => 'Je moet akkoord gaan met algemene voorwaarden van De Buitenjan',
-                'existing_application' => 'Er is al een aanmelding verzonden met dit PCN. Neem contact op met info@salvemundi.nl voor vragen.'
+                'existing_application' => 'Er is al een aanmelding verzonden met dit PCN. Neem contact op met intro@salvemundi.nl voor vragen.'
             ],
-            'completed'             => 'Aanmelding verzonden',
-            'email_instructions'    => 'Je aanmelding is echter nog niet bevestigd! Om hem geldig te maken moet je eerst nog de instructies volgen in een email die je zojuist hebt ontvangen.',
-            'email_confirmed'       => 'Aanmelding intro 2018 bevestigd',
-            'thanks_for_confirming' => 'Bedankt voor het bevestigen van je e-mail-adres, :name. Je aanmelding voor de intro van 2018 is bevestigd bij ons.',
-            'instructions'          => 'Je bent nu bijna klaar. Om mee te doen aan de intro is het nodig om contributie te betalen. Je dient <b>€:amount</b> over te maken op rekeningnummer <b>NL97 RABO 0326 3418 11</b> t.n.v. <b>s.v. Salve Mundi</b> onder vermelding van het volgende kenmerk in de omschrijving: <b>:id</b>.',
-            'sent_email'            => 'Deze gegevens staan ook in de email die je zojuist hebt ontvangen, waardoor je op deze pagina terecht kwam.',
+            'completed'                => 'Aanmelding verzonden',
+            'email_instructions'       => 'Je aanmelding is echter nog niet bevestigd! Om hem geldig te maken moet je eerst nog de instructies volgen in een e-mail we je zojuist hebben gestuurd.',
+            'email_confirmed'          => 'Aanmelding intro 2018 bevestigd',
+            'thanks_for_confirming'    => 'Bedankt voor het bevestigen van je e-mail-adres, :name. Je aanmelding voor de intro van 2018 is bevestigd bij ons.',
+            'instructions'             => 'Je bent nu bijna klaar. Rest van de instructies volgen nog',
+            'sent_email'               => 'Deze gegevens staan ook in de e-mail die je zojuist hebt ontvangen, waardoor je op deze pagina terecht kwam.',
+            // Betalingen
+            'payment'                  => [
+                'description'             => 'Contributie Intro FHICT 2018 van Salve Mundi',
+                'description_extra_shirt' => 'Contributie Intro FHICT 2018 + extra shirt van Salve Mundi',
+                'failed'                  => 'Er is iets misgegaan tijdens de transactie. De betaling is mogelijk geannuleerd of verlopen. Probeer het nogmaals'
+            ],
+            //            'email_instructions'       => 'Bedankt voor je aanmelding voor het kamp! Je betaling wordt momenteel verwerkt in ons systeem, maar zodra deze succesvol is afgerond krijg je van ons automatisch een mailtje ter bevestiging. Dit gebeurt normaalgesproken automatisch binnen een paar minuten. Hopelijk tot ziens op de intro!',
+            'redirecting'              => 'Je wordt zo doorgestuurd...',
+            'redirecting_instructions' => 'Je wordt nu naar onze betalingsprovider Mollie doorgestuurd, om de contributie voor de intro aan ons te betalen. Als je dit hebt gedaan wordt de aanmelding automatisch bevestigd. Indien je de betaling annuleert zal de aanmelding verwijderd worden.',
+
         ],
         'supervisor' => [
             'info'   => [
@@ -71,34 +116,34 @@
 
             ],
             'signup' => [
-                'title'              => 'Aanmelden voor de intro als intropapa of -mama',
-                'instructions' => 'Niet alle selectievakjes zijn verplicht. Vink slechts aan wat van toepassing is voor jouw situatie.',
-                'member_id' => 'Lidnummer (zoals te vinden op je ledenpas)',
-                'first_name'         => 'Voornaam',
-                'last_name'          => 'Achternaam',
-                'phone'              => 'Telefoonnummer',
-                'email'              => 'E-mail-adres',
-                'email_confirmation' => 'Bevestig e-mail-adres',
-                'age_at_intro'       => 'Leeftijd te 22 augustus 2018',
-                'shirt_size'         => 'Welke shirtmaat heb je? (Unisex)',
-                'shirt_sizes'        => [
+                'title'                          => 'Aanmelden voor de intro als intropapa of -mama',
+                'instructions'                   => 'Niet alle selectievakjes zijn verplicht. Vink slechts aan wat van toepassing is voor jouw situatie.',
+                'member_id'                      => 'Lidnummer (zoals te vinden op je ledenpas)',
+                'first_name'                     => 'Voornaam',
+                'last_name'                      => 'Achternaam',
+                'phone'                          => 'Telefoonnummer',
+                'email'                          => 'E-mail-adres',
+                'email_confirmation'             => 'Bevestig e-mail-adres',
+                'age_at_intro'                   => 'Leeftijd te 22 augustus 2018',
+                'shirt_size'                     => 'Welke shirtmaat heb je? (Unisex)',
+                'shirt_sizes'                    => [
                     'S', 'M', 'L', 'XL', '2X', '3X'
                 ],
-                'remain_sober' => 'Ik vind het niet erg om op een ingedeelde avond nuchter te blijven',
-                'drivers_license' => 'Ik heb een geldig rijbewijs',
-                'first_aid_license' => 'Te 22 augustus bezit ik een actief EHBO brevet',
+                'remain_sober'                   => 'Ik vind het niet erg om op een ingedeelde avond nuchter te blijven',
+                'drivers_license'                => 'Ik heb een geldig rijbewijs',
+                'first_aid_license'              => 'Te 22 augustus bezit ik een actief EHBO brevet',
                 'company_first_response_license' => 'Te 22 augustus bezit ik een actief BHV brevet',
-                'routes' => ['A', 'B', 'C'],
-                'genders' => [
+                'routes'                         => ['A', 'B', 'C'],
+                'genders'                        => [
                     'Papa',
                     'Mama'
                 ],
-                'route_type' => 'Route :route',
-                'remarks' => 'Opmerkingen',
-                'remarks_placeholder' => 'Opmerkingen (Bijvoorbeeld allergie-informatie, medicijngebruik en eetwensen)',
-                'agree_salvemundi' => 'Ik ga akkoord met <a target="_blank" href="#">de introductie-voorwaarden</a> (bestand todo)',
-                'agree_intro_terms' => 'Ik ga akkoord met <a target="_blank" href="' . route('intro.supervisor_info') . '">de voorwaarden gegeven op de informatiepagina</a> en heb alles goed doorgenomen',
-                'sign_up' => 'Aanmelden'
+                'route_type'                     => 'Route :route',
+                'remarks'                        => 'Opmerkingen',
+                'remarks_placeholder'            => 'Opmerkingen (Bijvoorbeeld allergie-informatie, medicijngebruik en eetwensen)',
+                'agree_salvemundi'               => 'Ik ga akkoord met <a target="_blank" href="#">de introductie-voorwaarden</a> (bestand todo)',
+                'agree_intro_terms'              => 'Ik ga akkoord met <a target="_blank" href="' . route('intro.supervisor_info') . '">de voorwaarden gegeven op de informatiepagina</a> en heb alles goed doorgenomen',
+                'sign_up'                        => 'Aanmelden'
             ]
         ]
     ];

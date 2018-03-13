@@ -5,14 +5,14 @@
         <main class="signup">
             <h1>{{ trans('intro.signup.title') }}</h1>
             <p>
-                {{ trans('intro.signup.text') }}
+                {{ trans('intro.signup.text')|raw }}
             </p>
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <form action="{{ route('intro.signup.send') }}" method="POST">
                         {{ csrf_field() }}
                         {% if errors.has('signup') %}
-                            <div class="alert alert-danger">
+                            <div class="warning">
                                 {{ errors.first('signup') }}
                             </div>
                         {% endif %}
@@ -40,13 +40,44 @@
                                 {{ errors.first('last_name')|ucfirst }}
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('address') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.address') }}" name="address"
+                                   value="{{ old('address') }}" maxlength="150">
+                            <div class="invalid-feedback">
+                                {{ errors.first('address')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('city') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.city') }}" name="city" value="{{ old('city') }}"
+                                   maxlength="150">
+                            <div class="invalid-feedback">
+                                {{ errors.first('city')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.postal_code') }}" name="postal"
+                                   value="{{ old('postal') }}" maxlength="6" pattern="^[0-9]{4}[A-Za-z]{2}$">
+                            <div class="invalid-feedback">
+                                {{ errors.first('postal')|ucfirst }}
+                            </div>
+                        </div>
                         <div class="form-group">
                             <input type="tel" class="form-control {{ errors.has('phone') ? 'is-invalid' }}"
                                    placeholder="{{ trans('intro.signup.phone') }}" name="phone" value="{{ old('phone') }}"
                                    maxlength="15">
                             <div class="invalid-feedback">
                                 {{ errors.first('phone')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control {{ errors.has('contact_phone') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.contact_phone') }}" name="contact_phone" value="{{ old('contact_phone') }}"
+                                   maxlength="15">
+                            <div class="invalid-feedback">
+                                {{ errors.first('contact_phone')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -76,6 +107,18 @@
                                 {{ errors.first('birthday')|ucfirst }}
                             </div>
                         </div>
+                        <div>
+                            <label>{{ trans('intro.signup.gender') }}</label>
+                        </div>
+                        {% for gender in trans('intro.signup.genders') %}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="gender_type_{{ gender }}" value="{{ gender }}">
+                                <label class="form-check-label" for="gender_type_{{ gender }}">{{ gender }}</label>
+                            </div>
+                        {% endfor %}
+                        <div class="text-danger">
+                            {{ errors.first('gender')|ucfirst }}
+                        </div>
                         <div class="form-group">
                             <label for="shirt_size">Welke shirtmaat heb je? (Unisex)</label>
                             <select required id="shirt_size" name="shirt_size" class="form-control {{ errors.has('shirt_size') ? 'is-invalid' }}">
@@ -88,7 +131,7 @@
                             </div>
                         </div>
 
-                        <div class="form-check">
+                        {#<div class="form-check">
                             <input class="form-control form-check-input {{ errors.has('alcohol') ? 'is-invalid' }}" value="1" type="checkbox" id="alcohol" name="alcohol" {{ old('alcohol') ? 'checked' }}>
                             <label class="form-check-label" for="alcohol">
                                 {{ trans('intro.signup.alcohol')|raw }}
@@ -105,7 +148,7 @@
                             <div class="invalid-feedback">
                                 {{ errors.first('extra_shirt')|ucfirst }}
                             </div>
-                        </div>
+                        </div>#}
                         <div class="form-check">
                             <input class="form-control form-check-input {{ errors.has('same_sex_rooms') ? 'is-invalid' }}" value="1" type="checkbox" id="same_sex_rooms" name="same_sex_rooms" {{ old('same_sex_rooms') ? 'checked' }}>
                             <label class="form-check-label" for="same_sex_rooms">
