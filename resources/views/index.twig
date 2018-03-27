@@ -6,13 +6,22 @@
         <section class="landing">
             <h1>{{ trans('home.landing.title') }}</h1>
             <h5>{{ trans('home.landing.subtitle') }}</h5>
-            <a class="signup-btn button" href="{{ route('signup.signup') }}">{{ trans('home.signup_link') }}</a>
+            {#<a class="signup-btn button" href="{{ route('signup.signup') }}">{{ trans('home.signup_link') }}</a>#}
+            <a class="signup-btn button" href="{{ route('intro.info') }}">{{ trans('home.intro_signup_link') }}</a>
         </section>
     {% endblock %}
     {% block content %}
         <div class="content index">
             <main>
+
                 <section class="description container">
+                    <div class="warning">
+                        <h2>{{ trans('home.intro_signup_header') }}</h2>
+                        {{ trans('home.intro_signup') }}
+                        <div class="text-center button-container">
+                            <a href="{{ route('intro.info') }}" class="button text-center">{{ trans('home.intro_signup_button') }}</a>
+                        </div>
+                    </div>
                     {% for text in trans('home.welcome_text') %}
                         <p>{{ text }}</p>
                     {% endfor %}
@@ -34,10 +43,7 @@
                         {% endfor %}
                     </ul>
                     <p>{{ trans('home.intro') }}</p>
-                    <a href="{{ route('signup.signup') }}" class="button">{{ trans('home.signup_link') }}</a>
-                    <div class="warning">
-                        Momenteel wordt er nog hard aan de nieuwe website gewerkt en daarom kunnen er wat dingen ontbreken. Mocht je vragen of opmerkingen hebben over de vereniging, stuur dan een mailtje naar info@salvemundi.nl.
-                    </div>
+                    {#<a href="{{ route('signup.signup') }}" class="button">{{ trans('home.signup_link') }}</a>#}
                 </section>
                 <section class="camping container">
                     <h1>{{ trans('home.camping.header') }}</h1>

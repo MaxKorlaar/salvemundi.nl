@@ -111,7 +111,14 @@ Overige info: Max 250 char
                                 {{ errors.first('shirt_size')|ucfirst }}
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('preferred_partner_id') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.supervisor.signup.preferred_partner_id') }}" name="preferred_partner_id" value="{{ old('preferred_partner_id') }}"
+                                   maxlength="6">
+                            <div class="invalid-feedback">
+                                {{ errors.first('preferred_partner_id')|ucfirst }}
+                            </div>
+                        </div>
                         <div class="form-check">
                             <input class="form-control form-check-input {{ errors.has('remain_sober') ? 'is-invalid' }}" value="1" type="checkbox" id="remain_sober" name="remain_sober" {{ old('remain_sober') ? 'checked' }}>
                             <label class="form-check-label" for="remain_sober">
@@ -151,10 +158,13 @@ Overige info: Max 250 char
 
                         {% for route in trans('intro.supervisor.signup.routes') %}
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="route_type" id="route_type_{{ route }}" value="{{ route }}">
-                                <label class="form-check-label" for="route_type_{{ route }}">{{ trans('intro.supervisor.signup.route_type', { route: route}) }}</label>
+                                <input class="form-check-input" {{ old('route_type') == route ? 'checked' }} type="radio" name="route_type" id="route_type_{{ route }}" value="{{ route }}">
+                                <label class="form-check-label" for="route_type_{{ route }}">{{ trans('intro.supervisor.signup.route', { route: route}) }}</label>
                             </div>
                         {% endfor %}
+                        <div class="text-danger">
+                            {{ errors.first('route_type')|ucfirst }}
+                        </div>
 
                         <div class="form-group">
                             <textarea name="remarks" maxlength="1500" placeholder="{{ trans('intro.supervisor.signup.remarks_placeholder') }}" class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks') }}</textarea>

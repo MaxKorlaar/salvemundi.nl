@@ -4,6 +4,10 @@
     <div class="container content">
         <main class="signup">
             <h1>{{ trans('intro.signup.title') }}</h1>
+            <h3 class="text-center">{{ trans('intro.info.dates') }}</h3>
+            <div class="warning">
+                {{ trans('intro.info.students_only')|raw }}
+            </div>
             <p>
                 {{ trans('intro.signup.text')|raw }}
             </p>
@@ -16,14 +20,14 @@
                                 {{ errors.first('signup') }}
                             </div>
                         {% endif %}
-                        <div class="form-group">
-                            <input type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('intro.signup.pcn') }}" name="pcn" value="{{ old('pcn') }}"
-                                   maxlength="6">
-                            <div class="invalid-feedback">
-                                {{ errors.first('pcn')|ucfirst }}
-                            </div>
-                        </div>
+                        {#<div class="form-group">#}
+                            {#<input type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}"#}
+                                   {#placeholder="{{ trans('intro.signup.pcn') }}" name="pcn" value="{{ old('pcn') }}"#}
+                                   {#maxlength="6">#}
+                            {#<div class="invalid-feedback">#}
+                                {#{{ errors.first('pcn')|ucfirst }}#}
+                            {#</div>#}
+                        {#</div>#}
                         <div class="form-group">
                             <input type="text" class="form-control {{ errors.has('first_name') ? 'is-invalid' }}"
                                    placeholder="{{ trans('intro.signup.first_name') }}" name="first_name" value="{{ old('first_name') }}"
@@ -112,10 +116,13 @@
                         </div>
                         {% for gender in trans('intro.signup.genders') %}
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="gender_type_{{ gender }}" value="{{ gender }}">
+                                <input class="form-check-input" {{ old('gender') == gender ? 'checked' }} type="radio" name="gender" id="gender_type_{{ gender }}" value="{{ gender }}">
                                 <label class="form-check-label" for="gender_type_{{ gender }}">{{ gender }}</label>
                             </div>
                         {% endfor %}
+                        <div class="form-group">
+                            {{ trans('intro.signup.same_sex_room') }}
+                        </div>
                         <div class="text-danger">
                             {{ errors.first('gender')|ucfirst }}
                         </div>
@@ -149,15 +156,16 @@
                                 {{ errors.first('extra_shirt')|ucfirst }}
                             </div>
                         </div>#}
-                        <div class="form-check">
-                            <input class="form-control form-check-input {{ errors.has('same_sex_rooms') ? 'is-invalid' }}" value="1" type="checkbox" id="same_sex_rooms" name="same_sex_rooms" {{ old('same_sex_rooms') ? 'checked' }}>
-                            <label class="form-check-label" for="same_sex_rooms">
-                                {{ trans('intro.signup.same_sex_rooms')|raw }}
-                            </label>
-                            <div class="invalid-feedback">
-                                {{ errors.first('same_sex_rooms')|ucfirst }}
-                            </div>
-                        </div>
+                        {#<div class="form-check">#}
+                            {#<input class="form-control form-check-input {{ errors.has('same_sex_rooms') ? 'is-invalid' }}" value="1" type="checkbox" id="same_sex_rooms" name="same_sex_rooms" {{ old('same_sex_rooms') ? 'checked' }}>#}
+                            {#<label class="form-check-label" for="same_sex_rooms">#}
+                                {#{{ trans('intro.signup.same_sex_rooms')|raw }}#}
+                            {#</label>#}
+                            {#<div class="invalid-feedback">#}
+                                {#{{ errors.first('same_sex_rooms')|ucfirst }}#}
+                            {#</div>#}
+                        {#</div>#}
+
 
                         <div class="form-group">
                             <textarea name="remarks" maxlength="1500" placeholder="{{ trans('intro.signup.remarks_placeholder') }}" class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks') }}</textarea>
@@ -175,15 +183,15 @@
                                 {{ errors.first('agree_salvemundi')|ucfirst }}
                             </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-control form-check-input {{ errors.has('agree_buitenjan') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_buitenjan" name="agree_buitenjan" {{ old('agree_buitenjan') ? 'checked' }}>
-                            <label class="form-check-label" for="agree_buitenjan">
-                                {{ trans('intro.signup.agree_buitenjan')|raw }}
-                            </label>
-                            <div class="invalid-feedback">
-                                {{ errors.first('agree_buitenjan')|ucfirst }}
-                            </div>
-                        </div>
+                        {#<div class="form-check">#}
+                            {#<input class="form-control form-check-input {{ errors.has('agree_buitenjan') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_buitenjan" name="agree_buitenjan" {{ old('agree_buitenjan') ? 'checked' }}>#}
+                            {#<label class="form-check-label" for="agree_buitenjan">#}
+                                {#{{ trans('intro.signup.agree_buitenjan')|raw }}#}
+                            {#</label>#}
+                            {#<div class="invalid-feedback">#}
+                                {#{{ errors.first('agree_buitenjan')|ucfirst }}#}
+                            {#</div>#}
+                        {#</div>#}
 
                         <div class="form-group">
                             <input type="submit" class="button" value="{{ trans('intro.signup.sign_up') }}">

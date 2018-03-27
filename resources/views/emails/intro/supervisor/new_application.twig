@@ -157,23 +157,24 @@
                                     <tbody>
                                         <tr>
                                             <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.intro.new_application.greeting') }}</div>
+                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.intro.supervisor.new_application.greeting') }}</div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.intro.new_application.intro_text') }}</div>
+                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.intro.supervisor.new_application.intro_text') }}</div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                                                <table cellpadding="0" cellspacing="0" style="cellspacing:0px;color:#000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;table-layout:auto;" width="100%" border="0">{% set fields = ['first_name', 'last_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'remarks', 'transaction_id', 'transaction_amount'] %} {% for field in fields %}
+                                                <table cellpadding="0" cellspacing="0" style="cellspacing:0px;color:#000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;table-layout:auto;" width="100%" border="0">{% set fields = ['member_id', 'first_name', 'last_name', 'phone', 'email', 'age_at_intro', 'shirt_size', 'preferred_partner_id', 'remain_sober', 'drivers_license', 'first_aid_license', 'company_first_response_license',
+                                                        'route_type', 'remarks'] %} {% for field in fields %}
                                                         <tr>
                                                             <td style="padding: 1rem 1rem 0 0;font-weight:bold;">
-                                                                {{ trans('intro.signup.' ~ field)|raw }}
+                                                                {{ trans('intro.supervisor.signup.' ~ field)|raw }}
                                                             </td>
                                                             <td style="padding: 1rem 1rem 0 0;">
-                                                                {% if application[field] is same as(false) %} {{ trans('email.intro.new_application.false') }} {% elseif application[field] is same as(true) %} {{ trans('email.intro.new_application.true') }} {% else %} {{ application[field] }} {% endif %}
+                                                                {% if application[field] is same as(false) %} {{ trans('email.intro.supervisor.new_application.false') }} {% elseif application[field] is same as(true) %} {{ trans('email.intro.supervisor.new_application.true') }} {% else %} {{ application[field] }} {% endif %}
                                                             </td>
                                                         </tr>
                                                     {% endfor %}</table>
@@ -183,9 +184,9 @@
                                             <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
                                                 <table cellpadding="0" cellspacing="0" style="cellspacing:0px;color:#000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;table-layout:auto;" width="100%" border="0">
                                                     <!--<thead>
-              <tr>{% set excel_fields = ['last_name', 'first_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'remarks', 'transaction_id', 'transaction_amount'] %}
+              <tr>{% set excel_fields = ['member_id', 'last_name', 'first_name', 'phone', 'email', 'age_at_intro', 'shirt_size', 'preferred_partner_id', 'remain_sober', 'drivers_license', 'first_aid_license', 'company_first_response_license', 'route_type', 'remarks'] %}
                 {% for field in excel_fields %}
-                <th>{{ trans('intro.signup.' ~ field) }}</th>
+                <th>{{ trans('intro.supervisor.signup.' ~ field) }}</th>
                 {% endfor %}
               </tr>
             </thead>-->
@@ -193,7 +194,7 @@
                                                         <tr>
                                                             {% for field in excel_fields %}
                                                                 <td style="border:1px solid #ecedee">
-                                                                    {% if application[field] is same as(false) %} {{ trans('email.intro.new_application.false') }} {% elseif application[field] is same as(true) %} {{ trans('email.intro.new_application.true') }} {% else %} {{ application[field]|default('-') }} {% endif %}
+                                                                    {% if application[field] is same as(false) %} {{ trans('email.intro.supervisor.new_application.false') }} {% elseif application[field] is same as(true) %} {{ trans('email.intro.supervisor.new_application.true') }} {% else %} {{ application[field]|default('-') }} {% endif %}
                                                                 </td>
                                                             {% endfor %}
                                                         </tr>
@@ -203,7 +204,7 @@
                                         </tr>
                                         <tr>
                                             <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.intro.new_application.sent_from', { ip: application.ip_address}) }}</div>
+                                                <div style="cursor:auto;color:#000000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;text-align:left;">{{ trans('email.intro.supervisor.new_application.sent_from', { ip: application.ip_address}) }}</div>
                                             </td>
                                         </tr>
                                         <tr>

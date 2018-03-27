@@ -10,6 +10,10 @@ return [
         'address' => env('MAIL_CAMPING_TO_ADDRESS', 'kampcommissie@salvemundi.nl'),
         'name'    => env('MAIL_CAMPING_TO_NAME', 'Kampcommissie s.v. Salve Mundi'),
     ],
+    'intro_to' => [
+        'address' => env('MAIL_INTRO_TO_ADDRESS', null),
+        'name' => env('MAIL_INTRO_TO_NAME', null)
+    ],
 
     /*
     |--------------------------------------------------------------------------

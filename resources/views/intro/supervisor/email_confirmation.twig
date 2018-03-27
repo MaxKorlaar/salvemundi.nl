@@ -1,0 +1,18 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('intro.supervisor.signup.email_confirmed') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="signup">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="checkmark-wrapper">
+                        <div class="checkmark">&check;</div>
+                    </div>
+                    <h3>{{ trans('intro.supervisor.signup.email_confirmed') }}</h3>
+                    <p>{{ trans('intro.supervisor.signup.thanks_for_confirming', { name: application.first_name }) }}</p>
+                    <p>{{ trans('intro.supervisor.signup.email_info') }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

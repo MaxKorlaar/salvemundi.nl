@@ -1,0 +1,27 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Helvetica Neue', Helvetica, sans-serif" font-size="16px"></mj-all>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#FFF">
+    <mj-container width="800px" background-color="#f5f8fa">
+      <mj-include path="_header" />
+      <mj-section>
+        <mj-column>
+          <mj-text>{{ trans('email.intro.supervisor.confirm_application.greeting', { name: application.first_name }) }}</mj-text>
+
+          <mj-text>{{ trans('email.intro.supervisor.confirm_application.instructions') }}</mj-text>
+
+          <mj-button background-color="#663265" href="{{ route('intro.supervisor_signup.confirm_email', { id: application.id, token: application.email_confirmation_token }) }}">{{ trans('email.intro.supervisor.confirm_application.link') }}
+          </mj-button>
+
+          <mj-text>{{ trans('email.intro.supervisor.confirm_application.when_done')|raw }}
+          </mj-text>
+          <mj-text>{{ trans('email.signature')|nl2br }}</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="_footer" />
+    </mj-container>
+  </mj-body>
+</mjml>

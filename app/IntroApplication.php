@@ -8,61 +8,61 @@
     use Illuminate\Database\Eloquent\Model;
 
     /**
-     * Class IntroApplication
-     *
-     * @package App
-     * @property int                 $id
-     * @property string|null         $pcn
-     * @property string              $first_name
-     * @property string              $last_name
-     * @property string              $phone
-     * @property string              $email
-     * @property \Carbon\Carbon      $birthday
-     * @property string              $shirt_size
-     * @property string              $remarks
-     * @property bool                $alcohol
-     * @property int                 $extra_shirt
-     * @property int                 $same_sex_rooms
-     * @property string              $status
-     * @property string              $ip_address
-     * @property string|null         $email_confirmation_token
-     * @property \Carbon\Carbon|null $created_at
-     * @property \Carbon\Carbon|null $updated_at
-     * @method static Builder|IntroApplication whereAlcohol($value)
-     * @method static Builder|IntroApplication whereBirthday($value)
-     * @method static Builder|IntroApplication whereCreatedAt($value)
-     * @method static Builder|IntroApplication whereEmail($value)
-     * @method static Builder|IntroApplication whereEmailConfirmationToken($value)
-     * @method static Builder|IntroApplication whereExtraShirt($value)
-     * @method static Builder|IntroApplication whereFirstName($value)
-     * @method static Builder|IntroApplication whereId($value)
-     * @method static Builder|IntroApplication whereIpAddress($value)
-     * @method static Builder|IntroApplication whereLastName($value)
-     * @method static Builder|IntroApplication wherePcn($value)
-     * @method static Builder|IntroApplication wherePhone($value)
-     * @method static Builder|IntroApplication whereRemarks($value)
-     * @method static Builder|IntroApplication whereSameSexRooms($value)
-     * @method static Builder|IntroApplication whereShirtSize($value)
-     * @method static Builder|IntroApplication whereStatus($value)
-     * @method static Builder|IntroApplication whereUpdatedAt($value)
-     * @mixin \Eloquent
-     * @property string              $transaction_id
-     * @property string              $transaction_status
-     * @property float               $transaction_amount
-     * @method static Builder|IntroApplication whereTransactionAmount($value)
-     * @method static Builder|IntroApplication whereTransactionId($value)
-     * @method static Builder|IntroApplication whereTransactionStatus($value)
-     * @property string              $contact_phone
-     * @property string              $gender
-     * @property string              $address
-     * @property string              $city
-     * @property string              $postal
-     * @method static Builder|IntroApplication whereAddress($value)
-     * @method static Builder|IntroApplication whereCity($value)
-     * @method static Builder|IntroApplication whereContactPhone($value)
-     * @method static Builder|IntroApplication whereGender($value)
-     * @method static Builder|IntroApplication wherePostal($value)
-     */
+ * Class IntroApplication
+ *
+ * @package App
+ * @property int                 $id
+ * @property string|null         $pcn
+ * @property string              $first_name
+ * @property string              $last_name
+ * @property string              $phone
+ * @property string              $email
+ * @property \Carbon\Carbon      $birthday
+ * @property string              $shirt_size
+ * @property string              $remarks
+ * @property bool                $alcohol
+ * @property int                 $extra_shirt
+ * @property int                 $same_sex_rooms
+ * @property string              $status
+ * @property string              $ip_address
+ * @property string|null         $email_confirmation_token
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static Builder|IntroApplication whereAlcohol($value)
+ * @method static Builder|IntroApplication whereBirthday($value)
+ * @method static Builder|IntroApplication whereCreatedAt($value)
+ * @method static Builder|IntroApplication whereEmail($value)
+ * @method static Builder|IntroApplication whereEmailConfirmationToken($value)
+ * @method static Builder|IntroApplication whereExtraShirt($value)
+ * @method static Builder|IntroApplication whereFirstName($value)
+ * @method static Builder|IntroApplication whereId($value)
+ * @method static Builder|IntroApplication whereIpAddress($value)
+ * @method static Builder|IntroApplication whereLastName($value)
+ * @method static Builder|IntroApplication wherePcn($value)
+ * @method static Builder|IntroApplication wherePhone($value)
+ * @method static Builder|IntroApplication whereRemarks($value)
+ * @method static Builder|IntroApplication whereSameSexRooms($value)
+ * @method static Builder|IntroApplication whereShirtSize($value)
+ * @method static Builder|IntroApplication whereStatus($value)
+ * @method static Builder|IntroApplication whereUpdatedAt($value)
+ * @mixin \Eloquent
+ * @property string              $transaction_id
+ * @property string              $transaction_status
+ * @property float               $transaction_amount
+ * @method static Builder|IntroApplication whereTransactionAmount($value)
+ * @method static Builder|IntroApplication whereTransactionId($value)
+ * @method static Builder|IntroApplication whereTransactionStatus($value)
+ * @property string              $contact_phone
+ * @property string              $gender
+ * @property string              $address
+ * @property string              $city
+ * @property string              $postal
+ * @method static Builder|IntroApplication whereAddress($value)
+ * @method static Builder|IntroApplication whereCity($value)
+ * @method static Builder|IntroApplication whereContactPhone($value)
+ * @method static Builder|IntroApplication whereGender($value)
+ * @method static Builder|IntroApplication wherePostal($value)
+ */
     class IntroApplication extends Model {
         use HasEncryptedAttributes;
         const STATUS_APPROVED = 'approved', STATUS_ON_HOLD = 'on_hold',

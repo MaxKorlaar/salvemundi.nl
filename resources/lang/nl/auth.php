@@ -1,20 +1,21 @@
 <?php
 
     return [
-        'failed'           => 'Deze combinatie van e-mailadres en wachtwoord is niet geldig.',
-        'throttle'         => 'Teveel mislukte login pogingen. Probeer het over :seconds seconden nogmaals.',
-        'log_in'           => 'Log in',
-        'email'            => 'E-mailadres',
-        'password'         => 'Wachtwoord',
-        'forgot_password'  => 'Wachtwoord vergeten?',
-        'remember_me'      => 'Onthoud mij',
-        'stay_logged_in'   => 'Blijf ingelogd',
-        'account_inactive' => 'Dit account is niet ingeschakeld',
-        '2fa_key'          => 'Tweestapsverificatie code',
-        '2fa_key_invalid'  => 'De tweeledige verificatiecode is ongeldig',
-        '2fa_key_missing'  => 'De tweeledige verificatiecode is vereist om in te loggen',
-        'register'         => 'Registreer',
-        'password_reset'   =>
+        'failed'                   => 'Deze combinatie van e-mailadres en wachtwoord is niet geldig.',
+        'throttle'                 => 'Teveel mislukte login pogingen. Probeer het over :seconds seconden nogmaals.',
+        'log_in'                   => 'Log in',
+        'no_member_with_pcn_found' => 'We kunnen geen lid vinden met jouw PCN. Ben je al <a href="' . route('signup.signup') . '">ingeschreven</a> voor de vereniging?',
+        'email'                    => 'E-mailadres',
+        'password'                 => 'Wachtwoord',
+        'forgot_password'          => 'Wachtwoord vergeten?',
+        'remember_me'              => 'Onthoud mij',
+        'stay_logged_in'           => 'Blijf ingelogd',
+        'account_inactive'         => 'Dit account is niet ingeschakeld',
+        '2fa_key'                  => 'Tweestapsverificatie code',
+        '2fa_key_invalid'          => 'De tweeledige verificatiecode is ongeldig',
+        '2fa_key_missing'          => 'De tweeledige verificatiecode is vereist om in te loggen',
+        'register'                 => 'Registreer',
+        'password_reset'           =>
             [
                 'title'            => 'Reset wachtwoord',
                 'email'            => 'E-mailadres',

@@ -11,6 +11,7 @@
         '403'                => 'Toegang geweigerd',
         '404'                => 'Niet gevonden',
         'method_not_allowed' => 'Aanvraagmethode niet toegestaan',
+        'no_permission' => 'Je hebt momenteel geen toestemming om deze pagina op te vragen',
         'something_went_wrong' => 'Er ging iets mis.',
         'file_not_found' => 'De opgevraagde pagina kon niet worden gevonden',
         '503' => 'Onderhoud',

@@ -52,7 +52,7 @@
             'title'            => 'Feestcommissie',
             'about_text'       => [
                 'De feestcommissie van Salve Mundi zorgt voor alle sociale leasure activiteiten binnen de studievereniging. Dit houdt in dat de feestcommissie alle feesten en de jaarlijkse introductie organiseert.',
-'De feestcommissie was, met haar oprichting in februari 2017, de eerste commissie van de studievereniging. Het team begon met een samenwerking van Luuk Hendriks, Chiel Schrijvers en Joshua van Gompel.',
+                'De feestcommissie was, met haar oprichting in februari 2017, de eerste commissie van de studievereniging. Het team begon met een samenwerking van Luuk Hendriks, Chiel Schrijvers en Joshua van Gompel.',
                 'Zonder draaiboeken of enig andere vorm van voorgaande kennis zijn de 3 begonnen aan het organiseren van de introductie.
 Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal komen te zien. Na de eerste introductie zijn er twee intro –“papa’s” blijven hangen bij feestcommissie. Dit zijn Stefan Jansen en Gijs Hendrikx.'
             ],
@@ -88,6 +88,18 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'text'    => 'Gijs is de eigenhuis-boekhouder van de commissie. Hij heeft misschien nog een beetje training nodig, maar hij vraagt wel precies wat je wilt. De meeste studenten hebben 3 werkdagen bedenktijd nodig voor het verwerken van feedback. Gijs niet, Gijs heeft het af voordat jij klaar bent met het geven van de feedback. Hij is stiller dan ons gemiddelde lid, wat helemaal niet moeilijk of erg is. Maar de meeste ideeën waar hij mee komt zijn goed gegrond en realistisch. Als het nieuwste lid hebben de andere leden hem zo ver gekregen om een hele nacht een paardenmasker te dragen. Hierbij de feestcommissie-ontgroening geboren: draag een masker met ontzettend slecht zicht tijdens het eerste feest van jouw lidmaatschap.',
                     'image'   => 'Gijs.png'
                 ],
+                [
+                    'name'    => 'Giovanni Kint',
+                    'profile' => 'Startsemester',
+                    'text'    => '',
+                    'image'   => 'Giovanni Kint.jpeg',
+                ],
+                [
+                    'name'    => 'Sven de Vries',
+                    'profile' => 'ICT & Software',
+                    'text'    => '',
+                    'image'   => '18025 Sven de Vries.jpg',
+                ]
             ]
 
         ],
@@ -102,12 +114,12 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
             ],
             'meet_the_team' => 'Een kijkje achter de beeldschermen',
             'members'       => [
-                [
-                    'name'    => 'Bart van Lier',
-                    'profile' => 'ICT & Media Design',
-                    'text'    => 'Studeert momenteel ICT & Media Design. Bart maakt ontwerpen voor de kleding en werkt aan onze huisstijl en marketing.',
-                    'image'   => 'Bart.jpg'
-                ],
+                //                [
+                //                    'name'    => 'Bart van Lier',
+                //                    'profile' => 'ICT & Media Design',
+                //                    'text'    => 'Studeert momenteel ICT & Media Design. Bart maakt ontwerpen voor de kleding en werkt aan onze huisstijl en marketing.',
+                //                    'image'   => 'Bart.jpg'
+                //                ],
                 [
                     'name'    => 'Chiel Schrijvers',
                     'profile' => 'ICT & Business',
@@ -135,12 +147,12 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'image'   => 'Mathijs-fb.jpg',
                     'url'     => '//mvdk.eu/'
                 ],
-                [
-                    'name'    => 'Mick Jasker',
-                    'profile' => 'ICT & Media Design',
-                    'text'    => 'Studeert momenteel ICT & Media Design. Mick werkt aan de huisstijl en het uiterlijk van de website.',
-                    'image'   => 'Mick.jpg'
-                ],
+                //                [
+                //                    'name'    => 'Mick Jasker',
+                //                    'profile' => 'ICT & Media Design',
+                //                    'text'    => 'Studeert momenteel ICT & Media Design. Mick werkt aan de huisstijl en het uiterlijk van de website.',
+                //                    'image'   => 'Mick.jpg'
+                //                ],
                 [
                     'name'    => 'Patrick van der Laan',
                     'profile' => 'ICT & Media Design',

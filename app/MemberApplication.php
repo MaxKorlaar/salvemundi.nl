@@ -118,13 +118,18 @@
         }
 
         /**
+         * @param bool $picture
+         *
          * @return bool|null
          * @throws \Exception
          */
-        public function delete() {
-            if (!\Storage::delete('member_photos/' . $this->picture_name)) {
-                throw new \Exception("Kon pasfoto niet verwijderen bij het verwijderen van een MemberApplication");
+        public function delete($picture = true) {
+            if($picture) {
+                if (!\Storage::delete('member_photos/' . $this->picture_name)) {
+                    throw new \Exception("Kon pasfoto niet verwijderen bij het verwijderen van een MemberApplication");
+                }
             }
+
             return parent::delete();
         }
     }
