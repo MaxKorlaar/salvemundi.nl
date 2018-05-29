@@ -228,13 +228,8 @@ Mis jij de gezelligheid van meiden onderling?',
                     'image'   => 'Carmen.jpeg',
                 ],
                 [
-                    'name'    => 'Daniëlle',
-                    'profile' => 'ICT & Media Design',
-                    'image'   => 'Danielle.jpeg',
-                ],
-                [
                     'name'    => 'Femke',
-                    'profile' => 'ICT & Technology',
+                    'profile' => 'ICT & Media Design',
                     'image'   => 'Femke.jpg',
                 ],
                 [
@@ -251,6 +246,11 @@ Mis jij de gezelligheid van meiden onderling?',
                     'name'    => 'Noesch',
                     'profile' => 'ICT',
                     'image'   => 'Noesch.PNG',
+                ],
+                [
+                    'name'    => 'Iris',
+                    'profile' => 'ICT',
+                    'image'   => 'Iris.jpg',
                 ],
             ]
         ],
