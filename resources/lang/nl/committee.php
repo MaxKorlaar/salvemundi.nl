@@ -90,7 +90,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                 ],
                 [
                     'name'    => 'Giovanni Kint',
-                    'profile' => 'Startsemester',
+                    'profile' => 'ICT & Software',
                     'text'    => '',
                     'image'   => 'Giovanni Kint.jpeg',
                 ],
@@ -114,18 +114,6 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
             ],
             'meet_the_team' => 'Een kijkje achter de beeldschermen',
             'members'       => [
-                //                [
-                //                    'name'    => 'Bart van Lier',
-                //                    'profile' => 'ICT & Media Design',
-                //                    'text'    => 'Studeert momenteel ICT & Media Design. Bart maakt ontwerpen voor de kleding en werkt aan onze huisstijl en marketing.',
-                //                    'image'   => 'Bart.jpg'
-                //                ],
-                [
-                    'name'    => 'Chiel Schrijvers',
-                    'profile' => 'ICT & Business',
-                    'text'    => 'Studeert momenteel ICT & Business. Chiel houdt de boel op orde en verdeelt de taken onder de mediastudenten.',
-                    'image'   => 'Chiel.jpg'
-                ],
                 [
                     'name'    => 'Daniëlle Ooms',
                     'profile' => 'ICT & Media Design',
@@ -147,18 +135,12 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'image'   => 'Mathijs-fb.jpg',
                     'url'     => '//mvdk.eu/'
                 ],
-                //                [
-                //                    'name'    => 'Mick Jasker',
-                //                    'profile' => 'ICT & Media Design',
-                //                    'text'    => 'Studeert momenteel ICT & Media Design. Mick werkt aan de huisstijl en het uiterlijk van de website.',
-                //                    'image'   => 'Mick.jpg'
-                //                ],
                 [
-                    'name'    => 'Patrick van der Laan',
+                    'name'    => 'Ruud Vissers',
                     'profile' => 'ICT & Media Design',
-                    'text'    => 'Studeert momenteel ICT & Media Design. Patrick maakt foto\'s van evenementen en bewerkt deze en werkt aan onze huisstijl. Tevens zorgt Patrick ervoor dat we onze mooie ledenpassen kunnen gebruiken.',
-                    'image'   => 'Patrick.jpg',
-                    'url'     => 'http://patrick.frl'
+                    'text'    => 'Studeert momenteel ICT & Media Design. Mede verantwoordelijk voor de website maar ook voor de fotografie.',
+                    'image'   => 'Ruud.jpg',
+                    'url'     => '//ruudvissers.nl/werkportfolio/'
                 ]
 
             ]
@@ -184,11 +166,6 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'profile' => 'ICT & Business'
                 ],
                 [
-                    'name'    => 'Patrick',
-                    'image'   => 'Patrick.jpg',
-                    'profile' => 'ICT & Media Design'
-                ],
-                [
                     'name'    => 'Wesley',
                     'image'   => 'Wesley Software.jpg',
                     'profile' => 'ICT & Software'
@@ -209,7 +186,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
             'title'          => 'Damescommissie',
             'about_text'     => [
                 'Hallo alle ICT-meiden!',
-                'Wij zijn de Damescommissie die vertegenwoordigd wordt door Femke, Daniëlle, Nina, Ilse, Noesch en Carmen.',
+                'Wij zijn de Damescommissie die vertegenwoordigd wordt door Femke, Carmen, Nina, Ilse, Noesch, Michelle en Iris.',
                 'Waarom een damescommissie?
 Heb jij soms ook het gevoel dat je wat girltalk mist op de studie?
 Ben jij ook een van de weinige meiden uit jouw klas? 
@@ -223,14 +200,14 @@ Mis jij de gezelligheid van meiden onderling?',
             'meet_the_women' => 'Maak kennis met de dames',
             'members'        => [
                 [
-                    'name'    => 'Carmen',
-                    'profile' => 'ICT & Media Design',
-                    'image'   => 'Carmen.jpeg',
-                ],
-                [
                     'name'    => 'Femke',
                     'profile' => 'ICT & Media Design',
                     'image'   => 'Femke.jpg',
+                ],
+                [
+                    'name'    => 'Carmen',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => 'Carmen.jpeg',
                 ],
                 [
                     'name'    => 'Ilse',
@@ -252,6 +229,63 @@ Mis jij de gezelligheid van meiden onderling?',
                     'profile' => 'ICT',
                     'image'   => 'Iris.jpg',
                 ],
+            ]
+        ],
+        'Study'          => [
+            'title'         => 'Studiecommissie',
+            'heading'       => 'placeholder',
+            'about_text'    => [
+                'placeholder'
+            ],
+            'meet_the_team' => 'Een kijkje achter de beeldschermen',
+            'members'       => [
+                [
+                    'name'    => 'Mohammed Mighiss',
+                    'profile' => 'ICT & Technology',
+                    'text'    => 'placeholder',
+                    'image'   => 'placehold.jpg'
+                ],
+
+                [
+                    'name'    => 'Arno van Kessel',
+                    'profile' => 'placeholder',
+                    'text'    => 'placeholder',
+                    'image'   => 'placeholder.jpg'
+                ]
+            ]
+        ],
+        'Members'          => [
+            'title'         => 'Commissie van ledenzaken',
+            'heading'       => 'placeholder',
+            'about_text'    => [
+                'placeholder'
+            ],
+            'meet_the_team' => 'Een kijkje achter de beeldschermen',
+            'members'       => [
+                [
+                    'name'    => 'Lloyd van Zaalen',
+                    'profile' => 'ICT & Software',
+                    'text'    => 'placeholder',
+                    'image'   => 'placehold.jpg'
+                ],
+                [
+                    'name'    => 'Lucas Beekmans',
+                    'profile' => 'ICT & Media Design',
+                    'text'    => 'placeholder',
+                    'image'   => 'placeholder.jpg'
+                ],
+                [
+                    'name'    => 'Olivier Bouchoms',
+                    'profile' => 'ICT & Software',
+                    'text'    => 'placeholder',
+                    'image'   => 'placehold.jpg'
+                ],
+                [
+                    'name'    => 'Noesch Bonne',
+                    'profile' => 'ICT',
+                    'text'    => 'placeholder',
+                    'image'   => 'placehold.jpg'
+                ]
             ]
         ],
     ];
