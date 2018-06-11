@@ -44,4 +44,18 @@
             return view('committees.women');
         }
 
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getStudyPage() {
+            return view('committees.study');
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getInternalAffairsPage() {
+            return view('committees.internal_affairs');
+        }
+
     }

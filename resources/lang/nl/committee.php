@@ -1,6 +1,6 @@
 <?php
     return [
-        'administration' => [
+        'administration'   => [
             'title'                     => 'Bestuur',
             'heading'                   => 'De geschiedenis van Salve Mundi',
             'founders'                  => 'De oprichters',
@@ -48,7 +48,7 @@
                 ]
             ]
         ],
-        'party'          => [
+        'party'            => [
             'title'            => 'Feestcommissie',
             'about_text'       => [
                 'De feestcommissie van Salve Mundi zorgt voor alle sociale leasure activiteiten binnen de studievereniging. Dit houdt in dat de feestcommissie alle feesten en de jaarlijkse introductie organiseert.',
@@ -103,7 +103,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
             ]
 
         ],
-        'media'          => [
+        'media'            => [
             'title'         => 'Mediacommissie',
             'heading'       => 'Zorgen voor de juiste branding',
             'about_text'    => [
@@ -145,7 +145,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
 
             ]
         ],
-        'camping'        => [
+        'camping'          => [
             'title'            => 'Kampcommissie',
             'about_text'       => 'Ieder jaar organiseert de Kampcommissie een kamp voor de leden van HBO-ICT Studievereniging Salve Mundi, van eerste tot laatstejaars en zelfs alumni zijn welkom tijdens dit geweldige evenement. Het zijn elke keer weer een paar fantastische dagen die je niet mag missen! Zien wij jou op ons volgende kamp?',
             'meet_the_members' => 'De kampeerders',
@@ -182,7 +182,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                 ],
             ]
         ],
-        'women'          => [
+        'women'            => [
             'title'          => 'Damescommissie',
             'about_text'     => [
                 'Hallo alle ICT-meiden!',
@@ -231,11 +231,11 @@ Mis jij de gezelligheid van meiden onderling?',
                 ],
             ]
         ],
-        'Study'          => [
+        'study'            => [
             'title'         => 'Studiecommissie',
-            'heading'       => 'placeholder',
+            'heading'       => '',
             'about_text'    => [
-                'placeholder'
+                ''
             ],
             'meet_the_team' => 'Een kijkje achter de beeldschermen',
             'members'       => [
@@ -243,22 +243,22 @@ Mis jij de gezelligheid van meiden onderling?',
                     'name'    => 'Mohammed Mighiss',
                     'profile' => 'ICT & Technology',
                     'text'    => 'placeholder',
-                    'image'   => 'placehold.jpg'
+                    'image'   => 'Mohammed.jpg'
                 ],
 
                 [
                     'name'    => 'Arno van Kessel',
-                    'profile' => 'placeholder',
+                    'profile' => 'ICT',
                     'text'    => 'placeholder',
                     'image'   => 'placeholder.jpg'
                 ]
             ]
         ],
-        'Members'          => [
+        'internal_affairs' => [
             'title'         => 'Commissie van ledenzaken',
-            'heading'       => 'placeholder',
+            'heading'       => '',
             'about_text'    => [
-                'placeholder'
+                ''
             ],
             'meet_the_team' => 'Een kijkje achter de beeldschermen',
             'members'       => [
@@ -266,7 +266,7 @@ Mis jij de gezelligheid van meiden onderling?',
                     'name'    => 'Lloyd van Zaalen',
                     'profile' => 'ICT & Software',
                     'text'    => 'placeholder',
-                    'image'   => 'placehold.jpg'
+                    'image'   => 'placeholder.jpg'
                 ],
                 [
                     'name'    => 'Lucas Beekmans',
@@ -278,13 +278,13 @@ Mis jij de gezelligheid van meiden onderling?',
                     'name'    => 'Olivier Bouchoms',
                     'profile' => 'ICT & Software',
                     'text'    => 'placeholder',
-                    'image'   => 'placehold.jpg'
+                    'image'   => 'placeholder.jpg'
                 ],
                 [
                     'name'    => 'Noesch Bonne',
                     'profile' => 'ICT',
                     'text'    => 'placeholder',
-                    'image'   => 'placehold.jpg'
+                    'image'   => 'Noesch.PNG'
                 ]
             ]
         ],

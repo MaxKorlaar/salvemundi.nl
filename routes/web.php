@@ -23,6 +23,8 @@
         Route::get('media', 'CommitteeController@getMediaPage')->name('media');
         Route::get('kamp', 'CommitteeController@getCampingPage')->name('camping');
         Route::get('dames', 'CommitteeController@getWomenPage')->name('women');
+        Route::get('studie', 'CommitteeController@getStudyPage')->name('study');
+        Route::get('ledenzaken', 'CommitteeController@getInternalAffairsPage')->name('internal_affairs');
     });
 
     Route::get('/evenementen/facebook', 'IndexController@getFacebookEvents')->name('facebook_events');
@@ -51,18 +53,19 @@
         Route::get('inschrijven', 'IntroController@getSignupForm')->name('signup');
         Route::post('inschrijven', 'IntroController@signup')->name('signup.send');
 
-        Route::get('inschrijven/papas-en-mamas', 'IntroController@getSupervisorInfo')->name('supervisor_info');
-        Route::get('inschrijven/papas-en-mamas/gegevens', 'IntroController@getSupervisorSignupForm')->name('supervisor_signup');
-        Route::post('inschrijven/papas-en-mamas/gegevens', 'IntroController@supervisorSignup')->name('supervisor_signup.send');
+        Route::get('papas-en-mamas', 'IntroController@getSupervisorInfo')->name('supervisor_info');
+        Route::get('papas-en-mamas/inschrijven', 'IntroController@getSupervisorSignupForm')->name('supervisor_signup');
+        Route::post('papas-en-mamas/inschrijven', 'IntroController@supervisorSignup')->name('supervisor_signup.send');
 
         Route::get('inschrijven/bevestigen/{application}/{token}', 'IntroController@confirmEmail')->name('signup.confirm_email');
+        Route::get('papas-en-mamas/inschrijven/bevestigen/{application}/{token}', 'IntroController@confirmSupervisorEmail')->name('supervisor_signup.confirm_email');
 
         Route::get('inschrijven/bevestigen/betaling/', 'IntroController@confirmPayment')->name('signup.confirm_payment');
 
     });
     Route::post('/webhook/betaling/intro/{application}', 'IntroController@confirmPaymentWebhook')->name('webhook.payment.intro');
 
-    Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admin/', 'middleware' => ['auth', 'auth.admin']], function () {
+    Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
         //Route::resource('aanmeldingen', 'ApplicationsController')->names('applications');
         //Route::get('/aanmeldingen/{application}/pasfoto', 'SignupController@afbeelding');
         //        Route::get('account', 'AccountController@getView')->name('account');
@@ -70,9 +73,22 @@
         //        Route::get('account/delete', 'AccountController@getDeleteView')->name('account_deletion');
         //        Route::delete('account', 'AccountController@delete')->name('do_delete_account');
         Route::get('kamp', 'CampingController@getSignups')->name('camping');
+        Route::get('intro/onbevestigd', 'IntroController@getUnconfirmedSignups');
+
+        Route::resource('leden', 'MemberController')->names('members');
+        Route::get('leden/{member}/afbeelding', 'MemberController@getPicture')->name('members.picture');
     });
+
+    Route::get('drive', 'IndexController@getDriveRedirect');
 
     Route::get('privacybeleid', 'MetaController@getPrivacyPage')->name('privacy');
     Route::get('/sitemap.xml', 'MetaController@getSitemap')->name('sitemap');
-    // Route::auth();
 
+    Route::get('uitschrijven', 'IndexController@getCancelPage');
+
+
+    Route::get('login', 'Auth\FHICTLoginController@getLoginView')->name('login');
+    Route::get('login/fhict', 'Auth\FHICTLoginController@redirect')->name('login.redirect');
+    Route::get('login/oauth', 'Auth\FHICTLoginController@afterLoginAuth')->name('login.redirect_url');
+    Route::get('log-uit', 'Auth\FHICTLoginController@logout')->name('logout');
+    // Route::auth();
