@@ -1,0 +1,109 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ application.first_name }} {{ application.last_name }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="intro application">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ application.first_name }} {{ application.last_name }}</h1>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <b>{{ trans('admin.intro.id') }}</b>
+                        {{ application.id }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.status') }}</b>
+                        {{ trans('admin.intro.status_' ~ application.status) }}
+                        {% if application.status == 'new' and application.email_confirmation_token == null %}
+                            – {{ trans('admin.intro.no_mail') }}
+                        {% endif %}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.first_name') }}</b>
+                        {{ application.first_name }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.last_name') }}</b>
+                        {{ application.last_name }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.address') }}</b>
+                        {{ application.address }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.city') }}</b>
+                        {{ application.city }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.postal') }}</b>
+                        {{ application.postal }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.phone') }}</b>
+                        {{ application.phone }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.contact_phone') }}</b>
+                        {{ application.phone }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.birthday') }}</b>
+                        {{ application.birthday|date(trans('datetime.format.date')) }}
+                    </div>
+                </div>
+                <div class="col-6">
+
+
+                    <div>
+                        <b>{{ trans('intro.signup.email') }}</b>
+                        {{ application.email }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.pcn') }}</b>
+                        {{ application.pcn }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.shirt_size') }}</b>
+                        {{ application.shirt_size }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.gender') }}</b>
+                        {{ application.gender }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.remarks') }}</b>
+                        {{ application.remarks }}
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.transaction_id') }}</b>
+                        <a href="{{ config_get('mollie.transaction_url') ~ application.transaction_id }}" target="_blank">{{ application.transaction_id }}</a>
+                    </div>
+                    <div>
+                        <b>{{ trans('intro.signup.transaction_amount') }}</b>
+                        {{ application.transaction_amount }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.transaction_status') }}</b>
+                        {{ application.transaction_status }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.created_at') }}</b>
+                        {{ application.created_at|date(trans('datetime.format.date_and_time')) }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.updated_at') }}</b>
+                        {{ application.updated_at|date(trans('datetime.format.date_and_time')) }}
+                    </div>
+                </div>
+                <div class="col-12 button-container">
+                    <a href="{{ route('admin.intro.index') }}" class="button">{{ trans('admin.intro.back_to_index') }}</a>
+                    {% if application.status != constant('STATUS_PAID', application) and application.status != constant('STATUS_OPEN', application) %}
+                        <a href="{{ route('admin.intro.delete_confirmation', { application: application }) }}" class="button danger pull-right">{{ trans('admin.intro.delete_application') }}</a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </main>
+    </div>
+{% endblock %}

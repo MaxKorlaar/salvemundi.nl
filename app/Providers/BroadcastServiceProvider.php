@@ -2,23 +2,23 @@
 
     namespace App\Providers;
 
-        use Illuminate\Support\Facades\Broadcast;
-        use Illuminate\Support\ServiceProvider;
+    use Illuminate\Support\Facades\Broadcast;
+    use Illuminate\Support\ServiceProvider;
 
+    /**
+     * Class BroadcastServiceProvider
+     *
+     * @package App\Providers
+     */
+    class BroadcastServiceProvider extends ServiceProvider {
         /**
-         * Class BroadcastServiceProvider
+         * Bootstrap any application services.
          *
-         * @package App\Providers
+         * @return void
          */
-        class BroadcastServiceProvider extends ServiceProvider {
-            /**
-             * Bootstrap any application services.
-             *
-             * @return void
-             */
-            public function boot() {
-                Broadcast::routes();
+        public function boot() {
+            Broadcast::routes();
 
-                require base_path('routes/channels.php');
-            }
+            require base_path('routes/channels.php');
         }
+    }

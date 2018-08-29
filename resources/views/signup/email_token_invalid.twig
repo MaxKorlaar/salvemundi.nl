@@ -1,0 +1,17 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('signup.email_token_invalid') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="signup">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="checkmark-wrapper">
+                        <div class="checkmark">?</div>
+                    </div>
+                    <h3>{{ trans('signup.email_token_invalid') }}</h3>
+                    <p>{{ trans('signup.email_already_confirmed') }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

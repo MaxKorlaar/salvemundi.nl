@@ -49,7 +49,7 @@ maken over de afhandeling van je inschrijving. Waar wacht je nog op?',
         'events'     => [
             'upcoming'          => 'Aankomende evenementen',
             'loading'           => 'Evenementen worden geladen…',
-            'no_events'         => 'Er staan momenteel geen evenementen op de planning.',
+            'no_events'         => 'Zie al onze evenementen op Facebook',
             'keep_an_eye_on_us' => 'Volg ons op <a href="https://facebook.com/sv.salvemundi" target="_blank">Facebook</a> om altijd op de hoogte te blijven van nieuwe evenementen.',
             'error'             => 'Er ging iets mis tijdens het opvragen van de evenementen',
             'try_again_later'   => 'Probeer het later nogmaals',

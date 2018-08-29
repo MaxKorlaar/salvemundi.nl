@@ -1,0 +1,143 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('member.about_me.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="member about-me">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('member.about_me.greeting', { name: member.first_name }) }}</h1>
+                </div>
+                {% block membership_errors %}
+                    {% if errors.has('renew_membership') %}
+                        <div class="col-md-12 d-flex flex-column justify-content-center">
+                            <div class="warning">
+                                {{ errors.first('renew_membership') }}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endblock %}
+                {% if not member.isCurrentlyMember() %}
+                    <div class="col-md-12 d-flex flex-column justify-content-center">
+                        <div class="warning">
+                            {{ trans('member.about_me.not_a_member')|raw }}
+                            {% if member.memberships.first() %}
+                                <br>{{ trans('member.about_me.your_previous_membership_expired', { date: member.memberships.last().valid_until|date(trans('datetime.format.date')) }) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="col-md-12">
+                    <p>
+                        {{ trans('member.about_me.change_your_info')|raw }}
+                    </p>
+                </div>
+                <div class="col-4">
+                    <div>
+                        <b>{{ trans('member.about_me.member_id') }}</b>
+                        {{ member.member_id }}
+                    </div>
+                    <div>
+                        <b>{{ trans('member.about_me.pcn') }}</b>
+                        {{ member.pcn }}
+                    </div>
+                    <div>
+                        <b>{{ trans('member.about_me.first_name') }}</b>
+                        {{ member.first_name }}
+                    </div>
+                    <div>
+                        <b>{{ trans('member.about_me.last_name') }}</b>
+                        {{ member.last_name }}
+                    </div>
+                    <div>
+                        <b>{{ trans('member.about_me.address') }}</b>
+                        {{ member.address }}
+                    </div>
+                    <div>
+                        <b>{{ trans('member.about_me.city') }}</b>
+                        {{ member.city }}
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div>
+                        <b>{{ trans('member.about_me.postal') }}</b>
+                        {{ member.postal }}
+                    </div>
+                    <div>
+                        <b>{{ trans('member.about_me.birthday') }}</b>
+                        {{ member.birthday|date(trans('datetime.format.date')) }}
+                    </div>
+                    <div>
+                        <b>{{ trans('member.about_me.phone') }}</b>
+                        {{ member.phone }}
+                    </div>
+                    <div>
+                        <b>{{ trans('member.about_me.email') }}</b>
+                        {{ member.email }}
+                    </div>
+                    <div>
+                        <b>{{ trans('member.about_me.fontys_email') }}</b>
+                        {{ user.email }}
+                    </div>
+                    <div>
+                        <b>{{ trans('member.about_me.fontys_name') }}</b>
+                        {{ user.official_name }}
+                    </div>
+                </div>
+                <div class="col-4">
+                    <img class="img-fluid" src="{{ route('member.own_photo') }}">
+                    <div>
+                        <i>{{ trans('member.about_me.this_should_be_you', { name: member.first_name }) }}</i>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h4>{{ trans('member.about_me.memberships') }}</h4>
+                    <table class="table membership-list table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ trans('member.memberships.transaction') }}</th>
+                                <th>{{ trans('member.memberships.valid_from') }}</th>
+                                <th>{{ trans('member.memberships.valid_until') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for membership in member.memberships %}
+                                <tr>
+                                    <td>
+                                        {% if membership.transaction %}
+                                            {{ trans('admin.transactions.status.' ~ membership.transaction.transaction_status) }}
+                                            <span class="paid-by">{{ membership.transaction.getMollieTransaction().details.consumerName }}</span>
+                                        {% else %}
+                                            <i>{{ trans('member.memberships.no_transaction') }}</i>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ membership.valid_from|date(trans('datetime.format.date')) }}</td>
+                                    <td>{{ membership.valid_until|date(trans('datetime.format.date')) }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% if not member.isCurrentlyMember() %}
+                    {{ block('membership_errors') }}
+                    <div class="col-md-12">
+                        <form action="{{ route('member.membership.renew') }}" method="post">
+                            {{ csrf_field() }}
+                            <h4>{{ trans('member.about_me.renew_membership') }}</h4>
+                            <p>{{ trans('member.about_me.renew_membership_here', {
+                                    from: year_from|date(trans('datetime.format.date')),
+                                    until: year_until|date(trans('datetime.format.date')),
+                                    amount: config_get('mollie.renew_costs')|number_format(2, ',')
+                                } ) }}</p>
+                            <p>{{ trans('member.about_me.renew_terms')|raw }}</p>
+                            <p>{{ trans('member.about_me.payment_redirect')|raw }}</p>
+                            <div class="text-center button-container">
+                                <button type="submit" class="button text-center">{{ trans('member.about_me.renew_membership_button') }}</button>
+                            </div>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+
+        </main>
+    </div>
+{% endblock %}

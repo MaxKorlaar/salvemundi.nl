@@ -113,6 +113,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
 '
             ],
             'meet_the_team' => 'Een kijkje achter de beeldschermen',
+            // Text en url worden momenteel niet gebruikt
             'members'       => [
                 [
                     'name'    => 'Daniëlle Ooms',
@@ -125,7 +126,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'name'    => 'Max Korlaar',
                     'profile' => 'ICT & Media Design',
                     'text'    => 'Studeert momenteel ICT & Media Design. Max is verantwoordelijk voor zowel het uiterlijk als de functionaliteit van de website, en is werkzaam als webdeveloper.',
-                    'image'   => 'Max.jpg',
+                    'image'   => 'Max_villa.jpg',
                     'url'     => '//maxkorlaar.nl'
                 ],
                 [
@@ -256,6 +257,7 @@ Mis jij de gezelligheid van meiden onderling?',
         ],
         'internal_affairs' => [
             'title'         => 'Commissie van ledenzaken',
+            'title_short'   => 'Ledenzaken',
             'heading'       => '',
             'about_text'    => [
                 ''

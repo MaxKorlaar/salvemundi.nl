@@ -43,21 +43,7 @@
         public function handle($request, Closure $next) {
             if ($this->app->isDownForMaintenance()) {
                 $data = json_decode(file_get_contents($this->app->storagePath() . '/framework/down'), true);
-                if ($request->cookies->has('bypass_maintenance')) {
-                    if ($request->cookies->get('bypass_maintenance') === env('BYPASS_MAINTENANCE')) {
-                        return $next($request);
-                    }
-                }
                 throw new MaintenanceModeException($data['time'], $data['retry'], $data['message']);
-            }
-            if ($request->cookies->has('bypass_maintenance')) {
-                if ($request->cookies->get('bypass_maintenance') === env('BYPASS_MAINTENANCE')) {
-                    config([
-                        'mollie.key'                  => 'test_Cvq8cNTVnbdKehJfNpt2BazkxJfUAr',
-                        'mail.application_to.address' => 'max+svtest@maxkorlaar.nl',
-                    ]);
-
-                }
             }
             return $next($request);
         }

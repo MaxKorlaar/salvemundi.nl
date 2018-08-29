@@ -1,0 +1,13 @@
+{{ trans('email.intro.payment_request.greeting', { name: application.first_name }) }}
+
+
+{{ trans('email.intro.payment_request.instructions') }}
+
+
+{{ route('intro.signup.payment_request', { application: application, token: application.email_confirmation_token }) }}
+
+
+{{ trans('email.intro.payment_request.signature') }}
+
+---
+{{ trans('email.disclaimer') }}

@@ -3,7 +3,7 @@ const axios = require('axios');
 const path  = require("path");
 // noinspection JSAnnotator
 const {mix} = require('laravel-mix');
-const glob  = require('glob-all');
+//const glob  = require('glob-all');
 
 /*
  |--------------------------------------------------------------------------
@@ -19,6 +19,7 @@ const glob  = require('glob-all');
 mix.setPublicPath('public_html')
     .js('resources/assets/js/app.js', 'js')
     .js('resources/assets/js/landing.js', 'js')
+    .js('resources/assets/js/spreadsheet.js', 'js')
     .extract(['vue', 'jquery', 'axios', 'popper.js', 'bootstrap'])
     .autoload({
         jquery:      ['$', 'jQuery', 'jquery'],
@@ -44,16 +45,16 @@ mix.setPublicPath('public_html')
 //   postCss: [] // Post-CSS options: https://github.com/postcss/postcss/blob/master/docs/plugins.md
     })
     .version().then(() => {
-    axios.post('https://maker.ifttt.com/trigger/webpack_build_complete/with/key/csrYq0ka2NZcdyYW40oQxx', {});
+    //axios.post('https://maker.ifttt.com/trigger/webpack_build_complete/with/key/csrYq0ka2NZcdyYW40oQxx', {});
 });
 mix.browserSync({
-    proxy: '0.0.0.0:8000',
-    files: [
+    proxy:       '0.0.0.0:8000',
+    files:       [
         "resources/views/**/*.twig",
         'app/**/*.php',
         'public_html/js/**/*.js',
         'public_html/css/**/*.css'
-      //  "public_html/**/*"
+        //  "public_html/**/*"
     ],
     serveStatic: ['.', 'public_html/css']
 

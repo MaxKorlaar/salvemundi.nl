@@ -2,21 +2,21 @@
 
     namespace App\Http\Middleware;
 
-        use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
+    use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 
+    /**
+     * Class TrimStrings
+     *
+     * @package App\Http\Middleware
+     */
+    class TrimStrings extends Middleware {
         /**
-         * Class TrimStrings
+         * The names of the attributes that should not be trimmed.
          *
-         * @package App\Http\Middleware
+         * @var array
          */
-        class TrimStrings extends Middleware {
-            /**
-             * The names of the attributes that should not be trimmed.
-             *
-             * @var array
-             */
-            protected $except = [
-                'password',
-                'password_confirmation',
-            ];
-        }
+        protected $except = [
+            'password',
+            'password_confirmation',
+        ];
+    }

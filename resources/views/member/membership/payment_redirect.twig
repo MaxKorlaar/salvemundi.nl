@@ -1,0 +1,24 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('member.membership.renew.title') }}{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <meta http-equiv="refresh" content="3; url={{ links.paymentUrl }}"/>
+{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="signup">
+            <h1>{{ trans('member.membership.renew.title') }}</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-4 payment-page">
+                    <div class="loader">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <h3>{{ trans('member.membership.renew.redirecting') }}</h3>
+                    <p>{{ trans('member.membership.renew.redirecting_instructions') }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

@@ -6,11 +6,22 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ trans('intro.info.title') }}</h1>
-                    <h3 class="text-center">{{ trans('intro.info.dates') }}</h3>
-                    <a href="{{ route('intro.signup') }}" class="button btn-block text-center">{{ trans('intro.info.click_to_sign_up') }}</a>
+                </div>
+                <div class="col-md-6 d-flex flex-column justify-content-center">
+                    {#<h3 class="text-center">{{ trans('intro.info.dates') }}</h3>#}
+                    {#<a href="{{ route('intro.signup') }}" class="button btn-block text-center">{{ trans('intro.info.click_to_sign_up') }}</a>#}
+                    <div class="warning">
+                        {{ trans('intro.info.closed_warning')|raw }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('images/intro2017.jpg') }}" class="img-fluid">
+                </div>
+                <div class="col-md-12">
+
 
                     {% for content in trans('intro.info.intro') %}
-                        <p>{{ content }}</p>
+                        <p>{{ content|raw }}</p>
                     {% endfor %}
                     {% for content in trans('intro.info.content') %}
                         <h4>{{ content[0] }}</h4>
@@ -19,8 +30,11 @@
                     {% for content in trans('intro.info.more_info') %}
                         <p>{{ content }}</p>
                     {% endfor %}
-                    <a href="{{ route('intro.signup') }}" class="button btn-block text-center">{{ trans('intro.info.click_to_sign_up') }}</a>
-                    <p>{{ trans('intro.info.supervisor_signup')|raw }}</p>
+                    {#<a href="{{ route('intro.signup') }}" class="button btn-block text-center">{{ trans('intro.info.click_to_sign_up') }}</a>#}
+                    <div class="warning">
+                        {{ trans('intro.info.closed_warning')|raw }}
+                    </div>
+                    {#<p>{{ trans('intro.info.supervisor_signup')|raw }}</p>#}
                 </div>
             </div>
         </main>

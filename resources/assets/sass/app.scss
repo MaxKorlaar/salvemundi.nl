@@ -6,12 +6,27 @@
 @import "nav";
 @import "footer";
 @import "admin";
+@import "member";
 @import "error";
 // Doe hier je SASS-dingen.
 body {
   outline: none !important;
 }
 
+.button {
+  padding: 10px;
+  background-color: $brand-primary;
+  color: white;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.28);
+  border: 0;
+  @include hover-focus-active {
+    background-color: $white;
+    color: $brand-primary;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 0 13px 2px rgba(0, 0, 0, 0.28);
+  }
+}
 a {
   color: lighten($brand-primary, 10%);
   transition: .2s ease;
@@ -22,21 +37,10 @@ a {
     color: $white;
     text-decoration: none;
   }
-  &.button {
-    padding: 10px;
-    background-color: $brand-primary;
-    color: white;
-    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.28);
-    @include hover-focus-active {
-      background-color: $white;
-      color: $brand-primary;
-      cursor: pointer;
-      text-decoration: none;
-      box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.28);
-    }
-  }
 }
-
+button {
+  @extend a;
+}
 @keyframes landing-background {
   0% {
     background-position: bottom left;
@@ -160,7 +164,7 @@ a {
         }
 
         @include hover-focus-active {
-          box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.28);
+          box-shadow: 0 0 13px 2px rgba(0, 0, 0, 0.28);
 
           .background {
             opacity: 0.5;
@@ -497,7 +501,7 @@ a {
       //&[href] {
       @include hover-focus-active {
         .inner {
-          box-shadow: 0px 0px 13px 2px rgba(0, 0, 0, 0.28);
+          box-shadow: 0 0 13px 2px rgba(0, 0, 0, 0.28);
           /*color: $body-bg;
           background-color: theme-color(primary);
           h4 {

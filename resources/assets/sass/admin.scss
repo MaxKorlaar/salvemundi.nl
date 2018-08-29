@@ -3,3 +3,142 @@
     display: block;
   }
 }
+
+.admin-nav {
+  margin-top: -10px;
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    div {
+      text-align: right;
+      display: flex;
+      align-items: center;
+      a {
+        color: darken(white, 10%);
+      }
+    }
+    ul {
+      margin-top: 0;
+    }
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    font-family: $font-family-sans-serif;
+    height: 1rem * 3;
+
+    li {
+      height: 100%;
+      line-height: 1rem * 3;
+      display: inline-block;
+      a {
+        color: darken(white, 10%);
+        padding: 1rem;
+        height: 100%;
+        text-decoration: none;
+      }
+      &.active, &:hover {
+        //background: lighten(#333, 10%);
+      }
+
+    }
+  }
+  color: darken(white, 25%);
+  background: theme-color-level(primary, 5);
+  width: 100%;
+}
+.intro {
+  .statistics {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 2rem;
+    .stat {
+      font-size: 4rem;
+      color: theme-color(primary);
+      font-weight: bold;
+      span {
+        display: block;
+        font-size: 1rem;
+        color: $text-color;
+      }
+    }
+  }
+  .button {
+    color: #FFF;
+    border: none;
+    transition: all .2s ease;
+    @include hover-focus-active {
+      background: #FFF;
+      color: #663265;
+      cursor: pointer;
+      -webkit-box-shadow: 0 0 13px 2px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 0 13px 2px rgba(0, 0, 0, 0.28);
+    }
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+    @extend .button;
+    &.danger {
+      background-color: theme-color-level(danger);
+      color: theme-color-level(danger, 8);
+    }
+  }
+  .button-container {
+    margin: .5rem 0;
+  }
+  .spreadsheet {
+    user-select: all;
+
+    tr {
+      td {
+        padding: .1rem;
+        font-size: 75%;
+      }
+    }
+  }
+  .paging_simple_numbers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    a {
+      padding: .5rem 1rem;
+    }
+  }
+  .application-list {
+    .approved {
+      color: theme-color-level(success, 2);
+      background: theme-color-level(success, -10);
+    }
+    .email-unconfirmed {
+      color: $gray-700;
+      background: $gray-100;
+    }
+    .under-review {
+      color: theme-color-level(warning, 2);
+      background: theme-color-level(warning, -10);
+    }
+    .new {
+      color: theme-color-level(danger, 2);
+      background: theme-color-level(danger, -10);
+    }
+  }
+}
+.member {
+  .button-container {
+    margin: .5rem 0;
+  }
+}
+.members {
+
+  &.overview {
+    .member-list {
+      .no-membership {
+        color: theme-color-level(danger, 2);
+        background: theme-color-level(danger, -10);
+      }
+    }
+  }
+}

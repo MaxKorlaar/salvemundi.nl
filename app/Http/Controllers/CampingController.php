@@ -46,13 +46,13 @@
          * @throws \Throwable
          */
         public function signup(CampingSignup $request) {
-            $application = new CampingApplication($request->all());
+            $application                           = new CampingApplication($request->all());
             $application->ip_address               = $request->ip();
             $application->email_confirmation_token = str_random(200);
             $application->transaction_id           = '';
             $application->transaction_status       = '';
             $application->transaction_amount       = 0;
-            if($application->member_id === null) {
+            if ($application->member_id === null) {
                 $application->member_id = '(onbekend)';
             }
 
@@ -152,7 +152,7 @@
 
             $mollie  = new PaymentHelper();
             $payment = $mollie->payments->get($application->transaction_id);
-            if(!$payment->isOpen() && !$payment->isPaid()) {
+            if (!$payment->isOpen() && !$payment->isPaid()) {
                 return redirect()->route('camping.signup')->withErrors(['signup' => trans('camping.signup.payment.failed')]);
             }
             return view('camping.signup_confirmation', [
@@ -170,7 +170,7 @@
          */
         public function confirmEmail(CampingApplication $application, $token) {
             if ($application->email_confirmation_token !== $token) {
-                abort(404);
+                return view('signup.email_token_invalid');
             }
 
             $application->status                   = CampingApplication::STATUS_NEW;

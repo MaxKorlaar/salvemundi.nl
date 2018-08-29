@@ -2,20 +2,20 @@
 
     namespace App\Http\Middleware;
 
-        use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
+    use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 
+    /**
+     * Class EncryptCookies
+     *
+     * @package App\Http\Middleware
+     */
+    class EncryptCookies extends Middleware {
         /**
-         * Class EncryptCookies
+         * The names of the cookies that should not be encrypted.
          *
-         * @package App\Http\Middleware
+         * @var array
          */
-        class EncryptCookies extends Middleware {
-            /**
-             * The names of the cookies that should not be encrypted.
-             *
-             * @var array
-             */
-            protected $except = [
-                //
-            ];
-        }
+        protected $except = [
+            //
+        ];
+    }

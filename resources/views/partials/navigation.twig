@@ -6,11 +6,20 @@
             </a>
             <ul>
                 {#<li>#}
-                    {#<a href="{{ route('intro.info') }}">{{ trans('nav.intro') }}</a>#}
+                {#<a href="{{ route('intro.info') }}">{{ trans('nav.intro') }}</a>#}
                 {#</li>#}
-                <li>
-                    <a href="{{ route('signup.signup') }}">{{ trans('nav.sign_up') }}</a>
-                </li>
+                {#<li>#}
+                {#<a href="{{ route('signup.signup') }}">{{ trans('nav.sign_up') }}</a>#}
+                {#</li>#}
+                {% if auth_user() %}
+                    <li>
+                        <a href="{{ route('member.about_me') }}">{{ trans('nav.my_account') }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ route('login.redirect') }}">{{ trans('nav.log_in') }}</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </nav>

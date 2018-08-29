@@ -7,6 +7,7 @@
     use Facebook\GraphNodes\GraphNode;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Cache;
+    use Illuminate\Support\Facades\Log;
 
     /**
      * Class IndexController
@@ -28,7 +29,39 @@
          * @return array
          */
         public function getFacebookEvents(Request $request) {
-            return Cache::remember('facebook_events', 60, function () {
+            return [];
+            return [
+                [
+                    'name'            => 'Grill & Chill',
+                    'description'     => 'Beste feestangers van Salve Mundi,
+
+Het einde van het schooljaar is in zicht en daarom staat er een bbq met een leuk feest gepland om dit jaar goed af te sluiten! Er is genoeg vlees aanwezig om een prima bodem te leggen. Na de bbq is er namenlijk nog een knallend eindfeest in de Villa Fiesta! 
+
+Natuurlijk moeten wij ook aan onze kas en budget denken en vragen wij dan ook maar een kleine vergoeding van 6€ voor leden en 10€ voor niet-leden. Je kan jezelf aanmelden via Google Forms: https://goo.gl/forms/pmfYYNQjwUoN6zC92 en geef hier ook even aan of je iemand mee wil brengen of dat je vegetarisch bent. Wij houden hier natuurlijk rekening mee. 
+
+Wij hopen jullie graag de 27ste allemaal te zien vanaf 17:00 uur bij de Villa Fiesta! 
+
+Tot dan!
+
+Groetjes, 
+De feestcommissie',
+                    'url'             => 'https://www.facebook.com/events/199477927352995/',
+                    'date'            => [
+                        'day'   => '27',
+                        'month' => 'juni',
+                        'year'  => '2018'
+                    ],
+                    'attending_count' => '?',
+                    'cover'           => [
+                        'source'   => 'https://scontent-amt2-1.xx.fbcdn.net/v/t1.0-9/34532240_837026896498310_1336634427136016384_o.jpg?_nc_cat=0&oh=4a5f5f8fcd4396a537c48c0e23ef0f06&oe=5BC2E16B',
+                        'offset_y' => 175
+                    ],
+                    'place'           => [
+                        'name' => 'Villa Fiesta'
+                    ]
+                ],
+            ];
+            $return = Cache::remember('facebook_events', 60, function () {
                 $fb = new \Facebook\Facebook([
                     'app_id'                => config('facebook.app_id'),
                     'app_secret'            => config('facebook.secret'),
@@ -41,8 +74,11 @@
                         '/' . config('facebook.page_id') . '/events?limit=200&time_filter=upcoming&fields=attending_count,category,description,end_time,id,cover,interested_count,name,place,start_time'
                     );
                 } catch (FacebookSDKException $e) {
+                    Log::warning("Facebook-evenementen konden niet worden opgevraagd", ['exception' => $e]);
+
                     return Cache::get('facebook_events_old');
                 }
+                Log::debug("FB Response", ['response' => $response->getRequest()->getUrl(), 'fb' => $fb]);
                 $graphEdge = $response->getGraphEdge();
                 $return    = [];
                 /** @var GraphNode $graphNode */
@@ -87,9 +123,31 @@
 
                 Cache::put('facebook_events_old', $return, 600);
                 return $return;
-            }) ?: abort(500);
+            });
+
+            if ($return || is_array($return)) {
+                return $return;
+            } else {
+                Log::warning("Evenementen konden niet worden opgevraagd", ['cache_result' => $return]);
+                abort(500, "Er ging iets mis tijdens het opvragen van de evenementen");
+            }
 
             //            $graphNode = $response->getGraphNode();
 
         }
+
+        /**
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+         */
+        public function getDriveRedirect() {
+            return redirect('https://drive.google.com/drive/folders/0Bz1jQEqeNpawdkRXRVNwVzZZbGM?usp=sharing');
+        }
+
+        /**
+         * @return string
+         */
+        public function getCancelPage() {
+            return "ik ook bedankt <img src='" . asset('images/dep.gif') . "'>";
+        }
+
     }

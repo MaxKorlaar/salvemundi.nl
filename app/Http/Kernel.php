@@ -2,6 +2,8 @@
 
     namespace App\Http;
 
+    use App\Http\Middleware\CheckAdminStatus;
+    use App\Http\Middleware\CheckCampingStatus;
     use App\Http\Middleware\CheckForMaintenanceMode;
     use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -24,7 +26,8 @@
             \App\Http\Middleware\TrimStrings::class,
             \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
             \App\Http\Middleware\TrustProxies::class,
-            CheckForMaintenanceMode::class
+            CheckForMaintenanceMode::class,
+            \App\Http\Middleware\CloudFlareProxies::class
         ];
 
         /**
@@ -57,11 +60,13 @@
          * @var array
          */
         protected $routeMiddleware = [
-            'auth'       => \Illuminate\Auth\Middleware\Authenticate::class,
-            'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-            'bindings'   => \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            'can'        => \Illuminate\Auth\Middleware\Authorize::class,
-            'guest'      => \App\Http\Middleware\RedirectIfAuthenticated::class,
-            'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+            'auth'         => \Illuminate\Auth\Middleware\Authenticate::class,
+            'auth.basic'   => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+            'auth.admin'   => CheckAdminStatus::class,
+            'auth.camping' => CheckCampingStatus::class,
+            'bindings'     => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'can'          => \Illuminate\Auth\Middleware\Authorize::class,
+            'guest'        => \App\Http\Middleware\RedirectIfAuthenticated::class,
+            'throttle'     => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         ];
     }

@@ -70,7 +70,7 @@
             ],
             'payment'             => [
                 'description' => 'De deelnamekosten voor het kamp van Salve Mundi voor :first_name :last_name',
-                'failed'      => 'Er is iets misgegaan tijdens de transactie. De betaling is mogelijk geannuleerd of verlopen. Probeer het nogmaals'
+                'failed'      => 'Er is iets misgegaan tijdens het verwerken van de transactie. De betaling is mogelijk geannuleerd of verlopen. Probeer het nogmaals'
             ],
 
             'redirecting'              => 'Je wordt zo doorgestuurd...',

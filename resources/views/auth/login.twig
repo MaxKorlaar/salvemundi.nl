@@ -1,35 +1,22 @@
 {% extends 'partials/page.twig' %}
-{% block title %}{{ trans('login.title') }}{% endblock %}
+{% block title %}{{ trans('auth.log_in') }}{% endblock %}
 {% block content %}
-    <main class="row justify-content-md-center">
-        <form method="POST" action="" class="col-md-auto form">
-            <h2 class="">{{ trans('auth.log_in') }}</h2>
-            {% if errors.any %}
-                <div class="message error">
-                    {% for error in errors.all %}
-                        <p class="center-align">{{ error }}</p>
-                    {% endfor %}
+    <div class="container content">
+        <main class="login-screen">
+            <h2 class="text-center">{{ trans('auth.log_in') }}</h2>
+
+            <div class="row justify-content-md-center text-center">
+                <div class="col-6">
+                    {% if errors.any %}
+                        <div class="warning error text-left">
+                            {% for error in errors.all %}
+                                <p class="center-align">{{ error|raw }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <a href="{{ route('login.redirect') }}" class="btn btn-primary">{{ trans('auth.log_in') }}</a>
                 </div>
-            {% endif %}
-            <div class="form-group">
-                <label for="email" class="col-form-label">{{ trans('login.email') }} <span class="error">{{ errors.first('email') }}</span></label>
-                <input autofocus id="email" minlength="3" type="email" name="email" placeholder="{{ trans('login.email') }}" class="form-control {{ errors.has('email') ? 'error' }}" value="{{ old('email') }}">
             </div>
-            <div class="form-group">
-                <label for="password" class="col-form-label">{{ trans('login.password') }}
-                    <span class="error">{{ errors.first('password') }}</span></label>
-                <input id="password" minlength="3" type="password" name="password" placeholder="{{ trans('login.password') }}" class="form-control {{ errors.has('password') ? 'error' }}">
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                    <input class="form-check-input" name="remember" type="checkbox" {{ old('remember') ? 'checked' : '' }}> {{ trans('auth.remember_me') }}
-                </label>
-            </div>
-            {{ csrf_field() }}
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">{{ trans('auth.log_in') }}</button>
-                <a href="{{ route('password.request') }}" class="btn">{{ trans('auth.forgot_password') }}</a>
-            </div>
-        </form>
-    </main>
+        </main>
+    </div>
 {% endblock %}

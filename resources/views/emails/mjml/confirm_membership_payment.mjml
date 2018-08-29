@@ -1,0 +1,22 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-all font-family="'Helvetica Neue', Helvetica, sans-serif" font-size="16px"></mj-all>
+    </mj-attributes>
+  </mj-head>
+  <mj-body background-color="#FFF">
+    <mj-container width="800px" background-color="#f5f8fa">
+      <mj-include path="_header.mjml" />
+      <mj-section>
+        <mj-column>
+          <mj-text>{{ trans('email.membership.payment_confirmation.greeting', { name: member.first_name }) }}</mj-text>
+
+          <mj-text>{{ trans('email.membership.payment_confirmation.membership_renewed', { valid_until: membership.valid_until|date(trans('datetime.format.date')) }) }}</mj-text>
+
+          <mj-text>{{ trans('email.signature')|nl2br }}</mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-include path="_footer.mjml" />
+    </mj-container>
+  </mj-body>
+</mjml>

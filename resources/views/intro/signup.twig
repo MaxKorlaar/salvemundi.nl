@@ -4,6 +4,11 @@
     <div class="container content">
         <main class="signup">
             <h1>{{ trans('intro.signup.title') }}</h1>
+            {% if errors.has('signup') %}
+                <div class="warning">
+                    {{ errors.first('signup') }}
+                </div>
+            {% endif %}
             <h3 class="text-center">{{ trans('intro.info.dates') }}</h3>
             <div class="warning">
                 {{ trans('intro.info.students_only')|raw }}
@@ -15,11 +20,7 @@
                 <div class="col-md-6">
                     <form action="{{ route('intro.signup.send') }}" method="POST">
                         {{ csrf_field() }}
-                        {% if errors.has('signup') %}
-                            <div class="warning">
-                                {{ errors.first('signup') }}
-                            </div>
-                        {% endif %}
+
                         {#<div class="form-group">#}
                             {#<input type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}"#}
                                    {#placeholder="{{ trans('intro.signup.pcn') }}" name="pcn" value="{{ old('pcn') }}"#}
@@ -173,7 +174,7 @@
                                 {{ errors.first('remarks')|ucfirst }}
                             </div>
                         </div>
-                        
+
                         <div class="form-check">
                             <input class="form-control form-check-input {{ errors.has('agree_salvemundi') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_salvemundi" name="agree_salvemundi" {{ old('agree_salvemundi') ? 'checked' }}>
                             <label class="form-check-label" for="agree_salvemundi">
@@ -192,9 +193,13 @@
                                 {#{{ errors.first('agree_buitenjan')|ucfirst }}#}
                             {#</div>#}
                         {#</div>#}
-
+                        <p>{{ trans('intro.signup.privacy_terms')|raw }}</p>
                         <div class="form-group">
-                            <input type="submit" class="button" value="{{ trans('intro.signup.sign_up') }}">
+                            {#<input type="submit" class="button" value="{{ trans('intro.signup.sign_up') }}">#}
+                            {# Request class toestaan #}
+                            <div class="warning">
+                                {{ trans('intro.info.closed_warning')|raw }}
+                            </div>
                         </div>
                     </form>
                 </div>

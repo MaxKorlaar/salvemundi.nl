@@ -1,0 +1,23 @@
+{% extends 'partials/page.twig' %}
+{% block container %}
+    <div class="content">
+        <div class="admin-nav">
+            <div class="inner container">
+                <ul>
+                    <li class="">
+                        <a href="{{ route('admin.intro.index') }}">{{ trans('admin.intro.title') }}</a>
+                    </li>
+                    <li class="">
+                        <a href="{{ route('admin.members.index') }}">{{ trans('admin.members.title') }}</a>
+                    </li>
+                </ul>
+                <div>
+                    {{ trans('admin.nav.welcome', { name: auth_user().official_name }) }}
+                    <a href="{{ route('logout') }}">{{ trans('admin.nav.log_out') }}</a>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}

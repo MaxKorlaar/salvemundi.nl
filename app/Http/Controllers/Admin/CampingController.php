@@ -12,6 +12,13 @@
      * @package App\Http\Controllers\Admin
      */
     class CampingController extends Controller {
+
+        public function __construct() {
+
+            $this->middleware('auth.camping');
+
+        }
+
         /**
          * @param Request $request
          *
@@ -34,7 +41,7 @@
                     trans('camping.signup.birthday')           => $application->birthday->format(trans('datetime.format.date')),
                     trans('camping.signup.remarks')            => $application->remarks,
                     trans('camping.signup.transaction_id')     => $application->transaction_id,
-                    trans('camping.signup.transaction_url') => config('mollie.transaction_url') . $application->transaction_id,
+                    trans('camping.signup.transaction_url')    => config('mollie.transaction_url') . $application->transaction_id,
                     trans('camping.signup.transaction_status') => $application->transaction_status,
                     trans('camping.signup.transaction_amount') => $application->transaction_amount,
                     //                   trans('camping.signup.status') => $application->status,

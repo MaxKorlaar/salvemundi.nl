@@ -1,0 +1,9 @@
+.member {
+  &.about-me {
+    .paid-by {
+      text-transform: uppercase;
+      color: $gray-700;
+      font-size: .8rem;
+    }
+  }
+}

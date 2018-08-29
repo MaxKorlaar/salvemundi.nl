@@ -16,7 +16,7 @@
          * @return bool
          */
         public function authorize() {
-            return true;
+            return false;
         }
 
         /**
@@ -39,11 +39,11 @@
                 'same_sex_rooms'   => 'boolean',
                 'remarks'          => 'nullable|string|max:1500',
                 'gender'           => 'required|in:' . join(",", trans('intro.signup.genders')),
-                'address' => 'required|min:3|max:150',
-                'city'    => 'required|min:3|max:150',
-                'postal'  => 'required|string|size:6|regex:/^[0-9]{4}[A-Za-z]{2}$/',
-                'agree_salvemundi' => 'required|boolean',
-                'agree_buitenjan'  => 'required|boolean'
+                'address'          => 'required|min:3|max:150',
+                'city'             => 'required|min:3|max:150',
+                'postal'           => 'required|string|size:6|regex:/^[0-9]{4}[A-Za-z]{2}$/',
+                'agree_salvemundi' => 'accepted',
+                //                'agree_buitenjan'  => 'required|boolean'
             ];
         }
 
@@ -54,8 +54,9 @@
          */
         public function messages() {
             return [
-                'agree_salvemundi.required' => trans('camping.signup.errors.agree_salvemundi'),
-                'agree_buitenjan.required'  => trans('camping.signup.errors.agree_buitenjan'),
+                'agree_salvemundi.required' => trans('intro.signup.errors.agree_salvemundi'),
+                'agree_buitenjan.required'  => trans('intro.signup.errors.agree_buitenjan'),
+                'birthday.before'           => trans('intro.signup.errors.minimum_age_not_met')
             ];
         }
 

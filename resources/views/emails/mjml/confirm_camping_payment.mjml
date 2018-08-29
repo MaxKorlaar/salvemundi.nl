@@ -6,7 +6,7 @@
   </mj-head>
   <mj-body background-color="#FFF">
     <mj-container width="800px" background-color="#f5f8fa">
-      <mj-include path="_header" />
+      <mj-include path="_header.mjml" />
       <mj-section>
         <mj-column>
           <mj-text>{{ trans('email.camping.payment_confirmation.greeting', { name: application.first_name }) }}</mj-text>
@@ -19,7 +19,7 @@
           <mj-text>{{ trans('email.signature')|nl2br }}</mj-text>
         </mj-column>
       </mj-section>
-      <mj-include path="_footer" />
+      <mj-include path="_footer.mjml" />
     </mj-container>
   </mj-body>
 </mjml>

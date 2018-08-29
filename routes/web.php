@@ -60,10 +60,23 @@
         Route::get('inschrijven/bevestigen/{application}/{token}', 'IntroController@confirmEmail')->name('signup.confirm_email');
         Route::get('papas-en-mamas/inschrijven/bevestigen/{application}/{token}', 'IntroController@confirmSupervisorEmail')->name('supervisor_signup.confirm_email');
 
+        Route::get('inschrijven/betalen/{application}/{token}', 'IntroController@getPaymentPage')->name('signup.payment_request');
+
         Route::get('inschrijven/bevestigen/betaling/', 'IntroController@confirmPayment')->name('signup.confirm_payment');
 
     });
     Route::post('/webhook/betaling/intro/{application}', 'IntroController@confirmPaymentWebhook')->name('webhook.payment.intro');
+
+    Route::group(['prefix' => 'lid', 'namespace' => 'Member', 'as' => 'member.', 'middleware' => ['auth']], function () {
+        Route::get('over-mij', 'IndexController@getAboutView')->name('about_me');
+        Route::get('over-mij/foto', 'IndexController@getOwnPhoto')->name('own_photo');
+        Route::post('lidmaatschap-verlengen', 'MembershipController@renew')->name('membership.renew');
+        Route::get('lidmaatschap-verlengen/bevestigen/betaling/{transaction}', 'MembershipController@confirmPayment')->name('membership.confirm_payment');
+    });
+
+
+    Route::post('/webhook/betaling/lidmaatschap/{member}', 'Member\MembershipController@confirmPaymentWebhook')->name('webhook.payment.renew_membership');
+
 
     Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
         //Route::resource('aanmeldingen', 'ApplicationsController')->names('applications');
@@ -73,9 +86,22 @@
         //        Route::get('account/delete', 'AccountController@getDeleteView')->name('account_deletion');
         //        Route::delete('account', 'AccountController@delete')->name('do_delete_account');
         Route::get('kamp', 'CampingController@getSignups')->name('camping');
-        Route::get('intro/onbevestigd', 'IntroController@getUnconfirmedSignups');
 
+        Route::get('intro/onbevestigd', 'IntroController@getUnconfirmedSignups');
+        Route::post('intro/genereer-tokens', 'IntroController@generateTokensForUnpaidSignups')->name('intro.generate_tokens');
+        Route::post('intro/stuur-email-herinnering', 'IntroController@sendConfirmEmailReminders')->name('intro.send_email_reminders');
+        Route::post('intro/stuur-betaal-herinnering', 'IntroController@sendPaymentReminders')->name('intro.send_payment_reminders');
+        Route::get('intro/spreadsheet', 'IntroController@spreadsheetIndex')->name('intro.spreadsheet');
+        Route::get('intro/{application}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.delete_confirmation');
+        Route::resource('intro', 'IntroController')->names('intro');
+
+
+        Route::get('aanmeldingen-naar-leden', 'MemberController@applicationsToMembers');
+
+        Route::resource('gebruikers', 'UserController')->names('users');
         Route::resource('leden', 'MemberController')->names('members');
+        Route::get('leden/{member}/verwijderen', 'MemberController@getDeleteConfirmation')->name('members.delete_confirmation');
+        Route::resource('leden.lidmaatschap', 'MembershipController')->names('members.membership');
         Route::get('leden/{member}/afbeelding', 'MemberController@getPicture')->name('members.picture');
     });
 
@@ -85,7 +111,6 @@
     Route::get('/sitemap.xml', 'MetaController@getSitemap')->name('sitemap');
 
     Route::get('uitschrijven', 'IndexController@getCancelPage');
-
 
     Route::get('login', 'Auth\FHICTLoginController@getLoginView')->name('login');
     Route::get('login/fhict', 'Auth\FHICTLoginController@redirect')->name('login.redirect');

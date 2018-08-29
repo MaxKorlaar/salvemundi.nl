@@ -6,14 +6,13 @@
         <section class="landing">
             <h1>{{ trans('home.landing.title') }}</h1>
             <h5>{{ trans('home.landing.subtitle') }}</h5>
-            {#<a class="signup-btn button" href="{{ route('signup.signup') }}">{{ trans('home.signup_link') }}</a>#}
-            <a class="signup-btn button" href="{{ route('intro.info') }}">{{ trans('home.intro_signup_link') }}</a>
+            <a class="signup-btn button" href="{{ route('signup.signup') }}">{{ trans('home.signup_link') }}</a>
+            {#<a class="signup-btn button" href="{{ route('intro.info') }}">{{ trans('home.intro_signup_link') }}</a>#}
         </section>
     {% endblock %}
     {% block content %}
         <div class="content index">
             <main>
-
                 <section class="description container">
                     <div class="warning">
                         <h2>{{ trans('home.intro_signup_header') }}</h2>
@@ -45,11 +44,11 @@
                     <p>{{ trans('home.intro') }}</p>
                     {#<a href="{{ route('signup.signup') }}" class="button">{{ trans('home.signup_link') }}</a>#}
                 </section>
-                <section class="camping container">
-                    <h1>{{ trans('home.camping.header') }}</h1>
-                    <p>{{ trans('home.camping.text')|raw }}</p>
-                    <a href="{{ route('camping.signup') }}" class="button">{{ trans('home.camping.sign_me_up') }}</a>
-                </section>
+                {#<section class="camping container">#}
+                {#<h1>{{ trans('home.camping.header') }}</h1>#}
+                {#<p>{{ trans('home.camping.text')|raw }}</p>#}
+                {#<a href="{{ route('camping.signup') }}" class="button">{{ trans('home.camping.sign_me_up') }}</a>#}
+                {#</section>#}
                 <section class="events" id="events" data-url="{{ route('facebook_events') }}">
                     <div class="container">
                         <h1>{{ trans('home.events.upcoming') }}</h1>
@@ -104,6 +103,8 @@
                         <a href="{{ route('committees/media') }}" class="button">{{ trans('committee.media.title') }}</a>
                         <a href="{{ route('committees/camping') }}" class="button">{{ trans('committee.camping.title') }}</a>
                         <a href="{{ route('committees/women') }}" class="button">{{ trans('committee.women.title') }}</a>
+                        <a href="{{ route('committees/study') }}" class="button">{{ trans('committee.study.title') }}</a>
+                        <a href="{{ route('committees/internal_affairs') }}" class="button">{{ trans('committee.internal_affairs.title_short') }}</a>
                     </div>
                 </section>
             </main>

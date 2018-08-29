@@ -5,10 +5,13 @@
     use App\Helpers\PaymentHelper;
     use App\Http\Requests\ConfirmSignup;
     use App\Http\Requests\Signup;
-    use App\Mail\ConfirmApplication;
     use App\Mail\MemberApplicationPaymentConfirmation;
     use App\Mail\NewMemberApplication;
+    use App\Member;
     use App\MemberApplication;
+    use App\Membership;
+    use App\Transaction;
+    use App\Year;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
@@ -27,13 +30,6 @@
          */
         public function index(Request $request) {
             return view('signup');
-        }
-
-        /**
-         * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-         */
-        public function redirectToIndex() {
-            return redirect(route('signup.signup'));
         }
 
         /**
@@ -59,6 +55,13 @@
         }
 
         /**
+         * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+         */
+        public function redirectToIndex() {
+            return redirect(route('signup.signup'));
+        }
+
+        /**
          * @param ConfirmSignup $request
          *
          * @return \Illuminate\Http\RedirectResponse
@@ -72,26 +75,37 @@
             $picture  = $request->file('picture');
             $filename = $request->session()->get('signup_data')['pcn'] . '-' . time() . '.' . $picture->extension();;
             $picture->storeAs('member_photos', $filename);
+            // todo Intervention gebruiken om afbeeldingen tot maximaal 4k bij 4k te verkleinen en verificatie
 
             $application->ip_address               = $request->ip();
             $application->email_confirmation_token = str_random(200);
             $application->picture_name             = $filename;
-            $application->transaction_id = '';
-            $application->transaction_status = '';
-            $application->transaction_amount = 0;
+            $application->transaction_id           = '';
+            $application->transaction_status       = '';
+            $application->transaction_amount       = 0;
 
             $application->saveOrFail();
 
+            $transaction = new Transaction();
+            $transaction->save();
+
             $mollie  = new PaymentHelper();
             $payment = $mollie->payments->create([
-                "amount"      => 25.00,
+                "amount"      => config('mollie.signup_costs'),
                 "description" => trans('signup.payment.description', ['first_name' => $application->first_name, 'last_name' => $application->last_name]),
                 "redirectUrl" => route('signup.confirm_payment'),
                 "webhookUrl"  => route('webhook.payment.signup', ['application' => $application]),
                 'metadata'    => [
-                    'id' => $application->id
+                    'id'             => $application->id,
+                    'transaction_id' => $transaction->id
                 ]
             ]);
+            $transaction->update([
+                'transaction_id'     => $payment->id,
+                'transaction_status' => $payment->status,
+                'transaction_amount' => $payment->amount
+            ]);
+
             if (app()->environment() !== 'production') $request->flash();
 
             $application->transaction_id     = $payment->id;
@@ -101,7 +115,6 @@
             $request->session()->put('signup.application', $application);
             if (app()->environment() === 'production') $request->session()->pull('signup_data');
             $request->session()->save();
-
 
             return view('signup.payment_redirect', [
                 'links' => $payment->links
@@ -153,12 +166,21 @@
                     abort(400);
                 }
                 \Log::debug('Webhook aangeroepen', ['payment' => $payment]);
-                if ($payment->isPaid()) {
+
+                /** @var Transaction $transaction */
+                $transaction = Transaction::findOrFail($payment->metadata->transaction_id);
+                $transaction->update([
+                    'transaction_id'     => $payment->id,
+                    'transaction_status' => $payment->status,
+                    'transaction_amount' => $payment->amount
+                ]);
+
+                if ($payment->isPaid() && !$payment->isRefunded()) {
                     if ($application->transaction_status != $payment->status) {
                         // De status is pas net bijgewerkt naar betaald.
                         $application->status = MemberApplication::STATUS_NEW;
 
-                        // Stuur een bevestiging naar de kampcommissie
+                        // Stuur een bevestiging naar de administratie
 
                         $mail = new NewMemberApplication($application);
                         $mail->to(config('mail.application_to.address'), config('mail.application_to.name'));
@@ -171,17 +193,32 @@
                         $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
                         Mail::queue($mail);
 
-                    }
-                }
-                $application->transaction_id     = $payment->id;
-                $application->transaction_status = $payment->status;
-                $application->transaction_amount = $payment->amount;
-                $application->saveOrFail();
+                        // Verander de aanmelding naar een werkelijk lid van de vereniging
+                        $member      = Member::createFromApplication($application);
+                        $transaction = $member->transactions()->save($transaction);
 
-                if ($payment->isCancelled() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
-                    Log::debug('De betaling is geannuleerd of is verlopen en de inschrijving zal worden verwijderd', ['payment' => $payment]);
-                    // Verwijder geannuleerde of verlopen inschrijvingen uit de database.
-                    $application->delete();
+                        $membership                 = Membership::createNewMembership();
+                        $membership->year_id        = Year::getCurrentYear()->id;
+                        $membership->transaction_id = $transaction->id;
+                        $member->memberships()->save($membership);
+
+                        Log::debug("Member aangemaakt", [$member]);
+                        $application->delete(false); // Aanmelding verwijderen, afbeelding behouden
+                    }
+                } else {
+                    if ($payment->isRefunded()) {
+                        $application->status = MemberApplication::STATUS_REFUNDED;
+                    }
+                    $application->transaction_id     = $payment->id;
+                    $application->transaction_status = $payment->status;
+                    $application->transaction_amount = $payment->amount;
+                    $application->saveOrFail();
+
+                    if ($payment->isCancelled() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
+                        Log::debug('De betaling is geannuleerd of is verlopen en de inschrijving zal worden verwijderd', ['payment' => $payment]);
+                        // Verwijder geannuleerde of verlopen inschrijvingen uit de database.
+                        $application->delete();
+                    }
                 }
 
             } catch (\Mollie_API_Exception $exception) {
@@ -201,7 +238,7 @@
          */
         public function confirmEmail(MemberApplication $application, $token) {
             if ($application->email_confirmation_token !== $token) {
-                abort(404);
+                return view('signup.email_token_invalid');
             }
 
             $application->status                   = MemberApplication::STATUS_NEW;
@@ -227,7 +264,6 @@
          * @return mixed
          */
         public function afbeelding(MemberApplication $application) {
-            //dd($application->picture_name);
             return $application->getPicture();
         }
 

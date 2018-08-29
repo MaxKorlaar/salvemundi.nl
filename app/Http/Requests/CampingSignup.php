@@ -16,7 +16,7 @@
          * @return bool
          */
         public function authorize() {
-            return true;
+            return false;
         }
 
         /**
@@ -50,7 +50,7 @@
             return [
                 'agree_salvemundi.required' => trans('camping.signup.errors.agree_salvemundi'),
                 'agree_buitenjan.required'  => trans('camping.signup.errors.agree_buitenjan'),
-                'birthday.before' => trans('camping.signup.errors.minimum_age_not_met')
+                'birthday.before'           => trans('camping.signup.errors.minimum_age_not_met')
             ];
         }
 
@@ -63,7 +63,7 @@
             return [
                 'agree_salvemundi' => trans('camping.signup.terms'),
                 'agree_buitenjan'  => trans('camping.signup.terms'),
-                'member_id' => trans('camping.signup.member_id')
+                'member_id'        => trans('camping.signup.member_id')
             ];
         }
     }
