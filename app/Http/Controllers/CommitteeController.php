@@ -57,4 +57,11 @@
             return view('committees.internal_affairs');
         }
 
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getVacanciesPage() {
+            return view('committees.vacancies');
+        }
+
     }

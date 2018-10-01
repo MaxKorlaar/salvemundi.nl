@@ -6,30 +6,31 @@
     use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
     use Illuminate\Support\Carbon;
+    use Intervention\Image\Constraint;
     use Intervention\Image\Facades\Image;
 
     /**
      * Class Member
      *
      * @package App
-     * @property int                                                              $id
-     * @property string                                                           $pcn
-     * @property string                                                           $first_name
-     * @property string                                                           $last_name
-     * @property string                                                           $address
-     * @property string                                                           $city
-     * @property string                                                           $postal
-     * @property string                                                           $birthday
-     * @property string                                                           $phone
-     * @property string                                                           $email
-     * @property string|null                                                      $status
-     * @property string                                                           $ip_address
-     * @property string                                                           $picture_name
-     * @property string                                                           $transaction_id
-     * @property string                                                           $transaction_status
-     * @property float                                                            $transaction_amount
-     * @property \Carbon\Carbon|null                                              $created_at
-     * @property \Carbon\Carbon|null                                              $updated_at
+     * @property int                                                                     $id
+     * @property string                                                                  $pcn
+     * @property string                                                                  $first_name
+     * @property string                                                                  $last_name
+     * @property string                                                                  $address
+     * @property string                                                                  $city
+     * @property string                                                                  $postal
+     * @property string                                                                  $birthday
+     * @property string                                                                  $phone
+     * @property string                                                                  $email
+     * @property string|null                                                             $status
+     * @property string                                                                  $ip_address
+     * @property string                                                                  $picture_name
+     * @property string                                                                  $transaction_id
+     * @property string                                                                  $transaction_status
+     * @property float                                                                   $transaction_amount
+     * @property \Carbon\Carbon|null                                                     $created_at
+     * @property \Carbon\Carbon|null                                                     $updated_at
      * @method static Builder|Member whereAddress($value)
      * @method static Builder|Member whereBirthday($value)
      * @method static Builder|Member whereCity($value)
@@ -49,17 +50,24 @@
      * @method static Builder|Member whereTransactionStatus($value)
      * @method static Builder|Member whereUpdatedAt($value)
      * @mixin \Eloquent
-     * @property string                                                           $member_id
+     * @property string                                                                  $member_id
      * @method static Builder|Member whereMemberId($value)
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Transaction[] $transactions
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Membership[]  $memberships
-     * @property-read \App\User                                                   $user
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Transaction[]        $transactions
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Membership[]         $memberships
+     * @property-read \App\User                                                          $user
+     * @property string                                                                  $card_status
+     * @property string|null                                                             $card_id
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Member whereCardId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Member whereCardStatus($value)
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\CampingApplication[] $campingApplications
      */
     class Member extends Model {
 
+        const CARD_UNPROCESSED = 'unprocessed', CARD_PROCESSED = 'processed', CARD_RECEIVED = 'received', CARD_NOT_PICKED_UP = 'not_picked_up', NO_CARD = 'no_card';
+
         use HasEncryptedAttributes;
 
-        public $fillable = ['pcn', 'member_id', 'first_name', 'last_name', 'address', 'city', 'postal', 'birthday', 'phone', 'email'];
+        public $fillable = ['pcn', 'member_id', 'first_name', 'last_name', 'address', 'city', 'postal', 'birthday', 'phone', 'email', 'card_status', 'card_id'];
         protected $encrypted = ['first_name', 'last_name', 'address', 'city', 'postal', 'phone', 'email', 'ip_address', 'picture_name'];
         protected $casts = [
             'birthday' => 'date'
@@ -136,6 +144,7 @@
          * @return \Intervention\Image\Image
          */
         public function getImageObject() {
+            ini_set('memory_limit', '256M');
             return Image::make($this->getImagePath());
         }
 
@@ -147,15 +156,64 @@
         }
 
         /**
+         * @param      $width
+         * @param null $height
+         * @param bool $returnObj
+         *
+         * @return \Image|\Intervention\Image\Image
+         */
+        public function getResizedCachedImage($width = null, $height = null, $returnObj = false) {
+            ini_set('memory_limit', '256M');
+            return Image::cache(function ($image) use ($height, $width) {
+                /** @var \Intervention\Image\Image $image */
+                $image->make($this->getImagePath());
+                $image->resize($width, $height, function (Constraint $constraint) {
+                    $constraint->aspectRatio();
+                });
+            }, null, $returnObj);
+        }
+
+        /**
+         * @param bool $returnObj
+         *
+         * @return \Image|\Intervention\Image\Image
+         */
+        public function getCachedImage($returnObj = false) {
+            ini_set('memory_limit', '256M');
+            return Image::cache(function ($image) {
+                /** @var \Intervention\Image\Image $image */
+                $image->make($this->getImagePath());
+            }, null, $returnObj);
+        }
+
+        /**
          * @return bool|null
          * @throws \Exception
          */
         public function delete() {
             $this->deletePicture();
-            if($this->user !== null) {
+            if ($this->user !== null) {
                 $this->user->delete();
             }
             return parent::delete();
+        }
+
+        /**
+         * @throws \Exception
+         */
+        public function deletePicture() {
+
+            if (\Storage::exists('member_photos/' . $this->picture_name) && !\Storage::delete('member_photos/' . $this->picture_name)) {
+                throw new \Exception("Kon pasfoto niet verwijderen bij het verwijderen van een Member");
+            }
+
+        }
+
+        /**
+         * @return bool
+         */
+        public function hasPicture() {
+            return \Storage::exists('member_photos/' . $this->picture_name);
         }
 
         /**
@@ -169,7 +227,7 @@
          * @return bool
          */
         public function isCurrentlyMember() {
-            return $this->memberships()->where('valid_from', '<', Carbon::today())->where('valid_until', '>', Carbon::today())->count() > 0;
+            return $this->memberships()->where('valid_from', '<=', Carbon::today())->where('valid_until', '>=', Carbon::today())->count() > 0;
         }
 
         /**
@@ -208,13 +266,9 @@
         }
 
         /**
-         * @throws \Exception
+         * @return \Illuminate\Database\Eloquent\Relations\HasMany
          */
-        public function deletePicture() {
-
-            if (\Storage::exists('member_photos/' . $this->picture_name) && !\Storage::delete('member_photos/' . $this->picture_name)) {
-                throw new \Exception("Kon pasfoto niet verwijderen bij het verwijderen van een Member");
-            }
-
+        public function campingApplications() {
+            return $this->hasMany(CampingApplication::class);
         }
     }

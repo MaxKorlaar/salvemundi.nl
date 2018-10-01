@@ -6,7 +6,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ trans('admin.members.title') }}</h1>
-                    <p><a href="{{ route('admin.members.create') }}" class="btn btn-primary">{{ trans('admin.members.new') }}</a></p>
+                    <p>
+                        <a href="{{ route('admin.members.create') }}" class="btn btn-primary">{{ trans('admin.members.new') }}</a>
+                        <a href="{{ route('admin.members.email') }}" class="btn btn-primary">{{ trans('admin.members.email_invalid_members') }}</a>
+                    </p>
                     <table class="table member-list table-striped">
                         <thead>
                             <tr>

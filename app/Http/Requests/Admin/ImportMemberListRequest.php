@@ -5,11 +5,11 @@
     use Illuminate\Foundation\Http\FormRequest;
 
     /**
-     * Class CreateMembershipRequest
+     * Class ImportMemberListRequest
      *
      * @package App\Http\Requests\Admin
      */
-    class CreateMembershipRequest extends FormRequest {
+    class ImportMemberListRequest extends FormRequest {
         /**
          * Determine if the user is authorized to make this request.
          *
@@ -26,8 +26,7 @@
          */
         public function rules() {
             return [
-                'valid_from'  => 'required|date',
-                'valid_until' => 'required|date',
+                'member-list' => 'required|file'
             ];
         }
     }

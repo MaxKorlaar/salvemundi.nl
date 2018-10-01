@@ -23,14 +23,16 @@
             return view('index');
         }
 
+
+
+
         /**
          * @param Request $request
          *
          * @return array
          */
         public function getFacebookEvents(Request $request) {
-            return [];
-            return [
+            $e =  [
                 [
                     'name'            => 'Grill & Chill',
                     'description'     => 'Beste feestangers van Salve Mundi,

@@ -1,0 +1,50 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.members.send_email.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="members overview">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.members.send_email.title') }}</h1>
+                    <form action="{{ route('admin.members.do_send_email') }}" method="POST" class="row">
+                        {{ csrf_field() }}
+                        <div class="col-12">
+                            {% if session('success') %}
+                                <div class="alert alert-success text-center success-message">
+                                    <span class="fa fa-check fa-2x pull-left"></span>
+                                    {{ session('success')|raw }}
+                                </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <input type="text" class="form-control {{ errors.has('subject') ? 'is-invalid' }}"
+                                       placeholder="{{ trans('admin.members.send_email.subject') }}" name="subject" value="{{ old('subject') }}"
+                                       maxlength="150">
+                                <div class="invalid-feedback">
+                                    {{ errors.first('subject')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea name="message_content" maxlength="5000" rows="15" placeholder="{{ trans('admin.members.send_email.message_content_placeholder') }}" class="form-control {{ errors.has('message_content') ? 'is-invalid' }}">{{ old('message_content', trans('admin.members.send_email.content')) }}</textarea>
+                                <div class="invalid-feedback">
+                                    {{ errors.first('message_content')|ucfirst }}
+                                </div>
+                                <p class="help-text">
+                                    {{ trans('admin.members.send_email.help_text') }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <input formtarget="_blank" formaction="{{ route('admin.members.preview_email') }}" type="submit" class="button" value="{{ trans('admin.members.send_email.preview') }}">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="button" value="{{ trans('admin.members.send_email.send', { count: invalid_count }) }}">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

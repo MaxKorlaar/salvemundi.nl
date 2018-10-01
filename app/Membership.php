@@ -44,10 +44,12 @@
         }
 
         /**
+         * @param null $now
+         *
          * @return Carbon
          */
-        public static function calculateFiscalYearStart() {
-            $now = Carbon::now();
+        public static function calculateFiscalYearStart($now = null) {
+            $now = $now ?? Carbon::now();
             if ($now->month < 2 || $now->month > 7) {
                 // Als het lidmaatschap ingaat vanaf augustus en vóór februari (septemberinstroom)
                 if ($now->month < 2) {
@@ -65,10 +67,12 @@
         }
 
         /**
+         * @param null $now
+         *
          * @return Carbon
          */
-        public static function calculateFiscalYearEnd() {
-            $now = Carbon::now();
+        public static function calculateFiscalYearEnd($now = null) {
+            $now = $now ?? Carbon::now();
             if ($now->month < 2 || $now->month > 7) {
                 // Als het lidmaatschap eindigt op 31 juli
                 if ($now->month < 2) {

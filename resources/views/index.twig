@@ -14,13 +14,13 @@
         <div class="content index">
             <main>
                 <section class="description container">
-                    <div class="warning">
-                        <h2>{{ trans('home.intro_signup_header') }}</h2>
-                        {{ trans('home.intro_signup') }}
-                        <div class="text-center button-container">
-                            <a href="{{ route('intro.info') }}" class="button text-center">{{ trans('home.intro_signup_button') }}</a>
-                        </div>
-                    </div>
+                    {#<div class="warning">#}
+                        {#<h2>{{ trans('home.intro_signup_header') }}</h2>#}
+                        {#{{ trans('home.intro_signup') }}#}
+                        {#<div class="text-center button-container">#}
+                            {#<a href="{{ route('intro.info') }}" class="button text-center">{{ trans('home.intro_signup_button') }}</a>#}
+                        {#</div>#}
+                    {#</div>#}
                     {% for text in trans('home.welcome_text') %}
                         <p>{{ text }}</p>
                     {% endfor %}
@@ -44,11 +44,11 @@
                     <p>{{ trans('home.intro') }}</p>
                     {#<a href="{{ route('signup.signup') }}" class="button">{{ trans('home.signup_link') }}</a>#}
                 </section>
-                {#<section class="camping container">#}
-                {#<h1>{{ trans('home.camping.header') }}</h1>#}
-                {#<p>{{ trans('home.camping.text')|raw }}</p>#}
-                {#<a href="{{ route('camping.signup') }}" class="button">{{ trans('home.camping.sign_me_up') }}</a>#}
-                {#</section>#}
+                <section class="camping container">
+                <h1>{{ trans('home.camping.header') }}</h1>
+                <p>{{ trans('home.camping.text')|raw }}</p>
+                <a href="{{ route('camping.signup') }}" class="button">{{ trans('home.camping.sign_me_up') }}</a>
+                </section>
                 <section class="events" id="events" data-url="{{ route('facebook_events') }}">
                     <div class="container">
                         <h1>{{ trans('home.events.upcoming') }}</h1>

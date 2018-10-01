@@ -40,8 +40,8 @@
          */
         public function create(Member $leden) {
             return view('admin.memberships.create', [
-                'member' => $leden,
-                'valid_from' => Membership::calculateFiscalYearStart(),
+                'member'      => $leden,
+                'valid_from'  => Membership::calculateFiscalYearStart(),
                 'valid_until' => Membership::calculateFiscalYearEnd()
             ]);
         }
@@ -57,8 +57,8 @@
          * @throws \Throwable
          */
         public function store(CreateMembershipRequest $request, Member $leden) {
-            $membership = new Membership($request->all());
-            $membership->year_id        = Year::getCurrentYear()->id;
+            $membership          = new Membership($request->all());
+            $membership->year_id = Year::getCurrentYear()->id;
             $leden->memberships()->save($membership);
             return redirect()->route('admin.members.show', [$leden])->with('success', trans('admin.memberships.create.created'));
         }

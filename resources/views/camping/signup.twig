@@ -1,151 +1,177 @@
-{% extends 'partials/page.twig' %}
+{% extends 'member/_page.twig' %}
 {% block title %}{{ trans('camping.signup.title') }}{% endblock %}
 {% block content %}
-    <div class="container content">
+    <div class="container">
         <main class="signup">
             <h1>{{ trans('camping.signup.title') }}</h1>
-            {% for content in trans('camping.signup.questions') %}
-                <h4>{{ content[0] }}</h4>
-                <p>{{ content[1] }}</p>
+            {% for i, content in trans('camping.signup.questions', { price: camp.price }) %}
+                <h4>{{ trans('camping.signup.questions.' ~ i ~ '.0', { price: camp.price }) }}</h4>
+                <p>{{ trans('camping.signup.questions.' ~ i ~ '.1', { price: camp.price }) }}</p>
             {% endfor %}
             <p id="signup">
-                {{ trans('camping.signup.text')|raw }}
+                {{ trans('camping.signup.text', { price: camp.price })|raw }}
             </p>
             {#<div class="signup-count">#}
-                {#<div class="inner">#}
-                    {#<div class="count">{{ signup_count }}</div>#}
-                    {#{{ trans('camping.signup.confirmed_signups') }}#}
-                {#</div>#}
+            {#<div class="inner">#}
+            {#<div class="count">{{ signup_count }}</div>#}
+            {#{{ trans('camping.signup.confirmed_signups') }}#}
+            {#</div>#}
             {#</div>#}
             <div class="row justify-content-center">
-                <div class="col-md-4">
-                    <form action="{{ route('camping.signup.send') }}#signup" method="POST">
-                        {{ csrf_field() }}
-                        {% if errors.has('signup') %}
-                            <div class="warning no-margin">
-                                {{ errors.first('signup') }}
-                            </div>
-                        {% endif %}
-                        <div class="form-group">
-                            <input type="text" class="form-control {{ errors.has('member_id') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('camping.signup.member_id') }}" name="member_id" value="{{ old('member_id') }}"
-                                   maxlength="10">
-                            <div class="invalid-feedback">
-                                {{ errors.first('member_id')|ucfirst }}
-                            </div>
-                            <p class="help-text">
-                                {{ trans('camping.signup.member_id_help')|raw }}
-                            </p>
+                {% if not member.isCurrentlyMember() %}
+                    <div class="col-md-12 d-flex flex-column justify-content-center">
+                        <div class="warning">
+                            {{ trans('member.about_me.not_a_member')|raw }}
+                            {% if member.memberships.first() %}
+                                <br>{{ trans('member.about_me.your_previous_membership_expired', { date: member.memberships.last().valid_until|date(trans('datetime.format.date')) }) }}
+                            {% endif %}
                         </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control {{ errors.has('first_name') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('camping.signup.first_name') }}" name="first_name" value="{{ old('first_name') }}"
-                                   maxlength="50">
-                            <div class="invalid-feedback">
-                                {{ errors.first('first_name')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control {{ errors.has('last_name') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('camping.signup.last_name') }}" name="last_name" value="{{ old('last_name') }}"
-                                   maxlength="50">
-                            <div class="invalid-feedback">
-                                {{ errors.first('last_name')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control {{ errors.has('address') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('camping.signup.address') }}" name="address"
-                                   value="{{ old('address') }}" maxlength="150">
-                            <div class="invalid-feedback">
-                                {{ errors.first('address')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control {{ errors.has('city') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('camping.signup.city') }}" name="city" value="{{ old('city') }}"
-                                   maxlength="150">
-                            <div class="invalid-feedback">
-                                {{ errors.first('city')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('camping.signup.postal_code') }}" name="postal"
-                                   value="{{ old('postal') }}" maxlength="6" pattern="^[0-9]{4}[A-Za-z]{2}$">
-                            <div class="invalid-feedback">
-                                {{ errors.first('postal')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control {{ errors.has('phone') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('camping.signup.phone') }}" name="phone" value="{{ old('phone') }}"
-                                   maxlength="15">
-                            <div class="invalid-feedback">
-                                {{ errors.first('phone')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="birthday">{{ trans('camping.signup.birthday') }}</label>
-                            <input id="birthday" type="date"
-                                   class="form-control {{ errors.has('birthday') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('camping.signup.birthday_format') }}" name="birthday"
-                                   value="{{ old('birthday') }}" maxlength="10">
-                            <div class="invalid-feedback">
-                                {{ errors.first('birthday')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control {{ errors.has('email') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('camping.signup.email') }}" name="email" value="{{ old('email') }}"
-                                   maxlength="50">
-                            <div class="invalid-feedback">
-                                {{ errors.first('email')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email"
-                                   class="form-control {{ errors.has('email_confirmation') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('camping.signup.email_confirmation') }}" name="email_confirmation"
-                                   value="{{ old('email_confirmation') }}" maxlength="50">
-                            <div class="invalid-feedback">
-                                {{ errors.first('email_confirmation')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <textarea rows="4" name="remarks" maxlength="1500" placeholder="{{ trans('camping.signup.remarks_placeholder') }}" class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks') }}</textarea>
-                            <div class="invalid-feedback">
-                                {{ errors.first('remarks')|ucfirst }}
-                            </div>
-                        </div>
+                    </div>
+                {% else %}
 
-                        {#<div class="form-check">
-                            <input class="form-control form-check-input {{ errors.has('agree_salvemundi') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_salvemundi" name="agree_salvemundi">
-                            <label class="form-check-label" for="agree_salvemundi">
-                                {{ trans('camping.signup.agree_salvemundi')|raw }}
-                            </label>
-                            <div class="invalid-feedback">
-                                {{ errors.first('agree_salvemundi')|ucfirst }}
+                    {% if camp is null %}
+                        <div class="col-md-12 d-flex flex-column justify-content-center">
+                            <div class="warning">
+                                {{ trans('camping.signup.signups_closed')|raw }}
                             </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-control form-check-input {{ errors.has('agree_buitenjan') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_buitenjan" name="agree_buitenjan">
-                            <label class="form-check-label" for="agree_buitenjan">
-                                {{ trans('camping.signup.agree_buitenjan')|raw }}
-                            </label>
-                            <div class="invalid-feedback">
-                                {{ errors.first('agree_buitenjan')|ucfirst }}
-                            </div>
-                        </div>#}
-                        <p>
-                            {{ trans('camping.signup.agree_terms')|raw }}
-                        </p>
+                    {% else %}
+                        <div class="col-md-6">
+                            <form action="{{ route('camping.signup.send') }}#signup" method="POST">
+                                {{ csrf_field() }}
+                                {% if errors.has('signup') %}
+                                    <div class="warning no-margin">
+                                        {{ errors.first('signup') }}
+                                    </div>
+                                {% endif %}
+                                <div class="form-group">
+                                    <label for="member_id">{{ trans('camping.signup.member_id') }}</label>
+                                    <input type="text" class="form-control {{ errors.has('member_id') ? 'is-invalid' }}"
+                                           placeholder="{{ trans('camping.signup.member_id') }}" name="member_id" disabled value="{{ member.member_id }}"
+                                           maxlength="10">
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('member_id')|ucfirst }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="first_name">{{ trans('camping.signup.first_name') }}</label>
+                                    <input type="text" class="form-control {{ errors.has('first_name') ? 'is-invalid' }}"
+                                           placeholder="{{ trans('camping.signup.first_name') }}" name="first_name" disabled value="{{ member.first_name }}"
+                                           maxlength="50">
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('first_name')|ucfirst }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name">{{ trans('camping.signup.last_name') }}</label>
+                                    <input type="text" class="form-control {{ errors.has('last_name') ? 'is-invalid' }}"
+                                           placeholder="{{ trans('camping.signup.last_name') }}" name="last_name" disabled value="{{ member.last_name }}"
+                                           maxlength="50">
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('last_name')|ucfirst }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">{{ trans('camping.signup.address') }}</label>
+                                    <input type="text" class="form-control {{ errors.has('address') ? 'is-invalid' }}"
+                                           placeholder="{{ trans('camping.signup.address') }}" name="address" disabled
+                                           value="{{ member.address }}" maxlength="150">
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('address')|ucfirst }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">{{ trans('camping.signup.city') }}</label>
+                                    <input type="text" class="form-control {{ errors.has('city') ? 'is-invalid' }}"
+                                           placeholder="{{ trans('camping.signup.city') }}" name="city" disabled value="{{ member.city }}"
+                                           maxlength="150">
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('city')|ucfirst }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="postal_code">{{ trans('camping.signup.postal_code') }}</label>
+                                    <input type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
+                                           placeholder="{{ trans('camping.signup.postal_code') }}" disabled name="postal"
+                                           value="{{ member.postal }}" maxlength="6" pattern="^[0-9]{4}[A-Za-z]{2}$">
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('postal')|ucfirst }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">{{ trans('camping.signup.phone') }}</label>
+                                    <input type="tel" class="form-control {{ errors.has('phone') ? 'is-invalid' }}"
+                                           placeholder="{{ trans('camping.signup.phone') }}" name="phone" disabled value="{{ member.phone }}"
+                                           maxlength="15">
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('phone')|ucfirst }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="birthday">{{ trans('camping.signup.birthday') }}</label>
+                                    <input id="birthday" type="date"
+                                           class="form-control {{ errors.has('birthday') ? 'is-invalid' }}"
+                                           placeholder="{{ trans('camping.signup.birthday_format') }}" name="birthday"
+                                           disabled value="{{ member.birthday|date('Y-m-d') }}" maxlength="10">
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('birthday')|ucfirst }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">{{ trans('camping.signup.email') }}</label>
+                                    <input type="email" class="form-control {{ errors.has('email') ? 'is-invalid' }}"
+                                           placeholder="{{ trans('camping.signup.email') }}" name="email" disabled value="{{ member.email }}"
+                                           maxlength="50">
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('email')|ucfirst }}
+                                    </div>
+                                </div>
 
-                        <div class="form-group">
-                            <input type="submit" class="button" value="{{ trans('camping.signup.sign_up') }}">
+                                <div class="form-group">
+                                    <label for="remarks">{{ trans('camping.signup.remarks') }}</label>
+                                    <textarea rows="4" name="remarks" maxlength="1500" placeholder="{{ trans('camping.signup.remarks_placeholder') }}" class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks') }}</textarea>
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('remarks')|ucfirst }}
+                                    </div>
+                                </div>
+
+                                {#<div class="form-check">
+                                    <input class="form-control form-check-input {{ errors.has('agree_salvemundi') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_salvemundi" name="agree_salvemundi">
+                                    <label class="form-check-label" for="agree_salvemundi">
+                                        {{ trans('camping.signup.agree_salvemundi')|raw }}
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('agree_salvemundi')|ucfirst }}
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-control form-check-input {{ errors.has('agree_buitenjan') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_buitenjan" name="agree_buitenjan">
+                                    <label class="form-check-label" for="agree_buitenjan">
+                                        {{ trans('camping.signup.agree_buitenjan')|raw }}
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        {{ errors.first('agree_buitenjan')|ucfirst }}
+                                    </div>
+                                </div>#}
+
+                                {#<div class="form-check">#}
+                                {#<input class="form-control form-check-input {{ errors.has('agree_salvemundi') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_salvemundi" name="agree_salvemundi" {{ old('agree_salvemundi') ? 'checked' }}>#}
+                                {#<label class="form-check-label" for="agree_salvemundi">#}
+                                {#{{ trans('camping.signup.agree_salvemundi')|raw }}#}
+                                {#</label>#}
+                                {#<div class="invalid-feedback">#}
+                                {#{{ errors.first('agree_salvemundi')|ucfirst }}#}
+                                {#</div>#}
+                                {#</div>#}
+                                <p>{{ trans('camping.signup.agree_terms')|raw }}</p>
+
+                                <div class="form-group">
+                                    <input type="submit" class="button" value="{{ trans('camping.signup.sign_up') }}">
+                                </div>
+                            </form>
                         </div>
-                    </form>
-                </div>
+                    {% endif %}
+                {% endif %}
             </div>
         </main>
     </div>

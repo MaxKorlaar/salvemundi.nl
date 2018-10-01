@@ -1,0 +1,23 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('committee.vacancies.title') }}{% endblock %}
+{% block social_description %}{{ trans('committee.vacancies.description') }}{% endblock %}
+{% block content %}
+    <div class="content">
+        <main class="committee vacancies">
+            <div class="container">
+                <h1>{{ trans('committee.vacancies.title') }}</h1>
+                <p>{{ trans('committee.vacancies.description') }}</p>
+                <section>
+                    {% for title, text in trans('committee.vacancies.vacancies') %}
+                        <h4>{{ title }}</h4>
+                        <p>{{ text|nl2br }}</p>
+                    {% endfor %}
+                </section>
+                <p>
+                    <a href="https://docs.google.com/forms/d/15K8BtyZmzyHdNpDzo9XC4aOvRiRxfAfmAaS2TNUWKok/edit">{{ trans('committee.vacancies.link_text') }}</a>
+                </p>
+            </div>
+
+        </main>
+    </div>
+{% endblock %}

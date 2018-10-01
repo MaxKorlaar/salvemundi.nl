@@ -26,6 +26,7 @@
         Route::get('studie', 'CommitteeController@getStudyPage')->name('study');
         Route::get('ledenzaken', 'CommitteeController@getInternalAffairsPage')->name('internal_affairs');
     });
+    Route::get('nieuwe-commissieleden', 'CommitteeController@getVacanciesPage')->name('vacancies');
 
     Route::get('/evenementen/facebook', 'IndexController@getFacebookEvents')->name('facebook_events');
 
@@ -85,7 +86,7 @@
         //        Route::put('account', 'AccountController@update')->name('update_account');
         //        Route::get('account/delete', 'AccountController@getDeleteView')->name('account_deletion');
         //        Route::delete('account', 'AccountController@delete')->name('do_delete_account');
-        Route::get('kamp', 'CampingController@getSignups')->name('camping');
+        Route::resource('kamp', 'CampingController')->names('camping');
 
         Route::get('intro/onbevestigd', 'IntroController@getUnconfirmedSignups');
         Route::post('intro/genereer-tokens', 'IntroController@generateTokensForUnpaidSignups')->name('intro.generate_tokens');
@@ -99,10 +100,17 @@
         Route::get('aanmeldingen-naar-leden', 'MemberController@applicationsToMembers');
 
         Route::resource('gebruikers', 'UserController')->names('users');
+        Route::get('leden/importeren', 'MemberController@showImportForm')->name('members.import');
+        Route::post('leden/importeren', 'MemberController@importList')->name('members.do_import');
+        Route::get('leden/email-verlenging-nodig', 'MemberController@getMailForm')->name('members.email');
+        Route::post('leden/email-verlenging-nodig/voorbeeld', 'MemberController@getMailPreview')->name('members.preview_email');
+        Route::post('leden/email-verlenging-nodig', 'MemberController@sendMail')->name('members.do_send_email');
         Route::resource('leden', 'MemberController')->names('members');
         Route::get('leden/{member}/verwijderen', 'MemberController@getDeleteConfirmation')->name('members.delete_confirmation');
         Route::resource('leden.lidmaatschap', 'MembershipController')->names('members.membership');
         Route::get('leden/{member}/afbeelding', 'MemberController@getPicture')->name('members.picture');
+        Route::get('leden/{member}/afbeelding/volledig', 'MemberController@getFullPicture')->name('members.full_picture');
+
     });
 
     Route::get('drive', 'IndexController@getDriveRedirect');
