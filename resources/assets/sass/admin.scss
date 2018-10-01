@@ -4,8 +4,12 @@
   }
 }
 
-.admin-nav {
+.admin-nav, .member-nav {
   margin-top: -10px;
+  margin-bottom: 10px;
+  //position: sticky;
+  //top: 100px;
+  z-index: 950;
   .inner {
     display: flex;
     justify-content: space-between;
@@ -21,33 +25,74 @@
       margin-top: 0;
     }
   }
+  &.footer-nav {
+    margin-top: 0;
+    margin-bottom: 0;
+    //transition: all .2s;
+    position: sticky;
+    bottom: -1px;
+    padding-bottom: 1px;
+    font-size: .6rem;
+    ul {
+      transition: all .5s;
+      height: 1.5rem;
+      li {
+        transition: all .5s;
+        transition-delay: 0s;
+        line-height: 1.5rem;
+        a {
+          transition-delay: -.5s;
+        }
+      }
+    }
+
+    @include hover-focus-active {
+      font-size: 1rem;
+      ul {
+        height: 3rem;
+        li {
+          line-height: 3rem;
+        }
+      }
+    }
+  }
   ul {
     list-style: none;
     margin: 0;
     padding-left: 0;
     font-family: $font-family-sans-serif;
     height: 1rem * 3;
-
+    &.nav {
+      li {
+        a {
+          color: darken(white, 10%);
+          padding: 1rem;
+          height: 100%;
+          text-decoration: none;
+        }
+      }
+    }
     li {
       height: 100%;
       line-height: 1rem * 3;
       display: inline-block;
-      a {
-        color: darken(white, 10%);
-        padding: 1rem;
-        height: 100%;
-        text-decoration: none;
-      }
+
       &.active, &:hover {
         //background: lighten(#333, 10%);
       }
 
     }
+
   }
   color: darken(white, 25%);
   background: theme-color-level(primary, 5);
   width: 100%;
 }
+
+.button-container {
+  margin: .5rem 0;
+}
+
 .intro {
   .statistics {
     display: flex;
@@ -85,9 +130,7 @@
       color: theme-color-level(danger, 8);
     }
   }
-  .button-container {
-    margin: .5rem 0;
-  }
+
   .spreadsheet {
     user-select: all;
 
@@ -126,11 +169,13 @@
     }
   }
 }
+
 .member {
   .button-container {
     margin: .5rem 0;
   }
 }
+
 .members {
 
   &.overview {

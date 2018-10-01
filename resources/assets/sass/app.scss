@@ -11,7 +11,16 @@
 // Doe hier je SASS-dingen.
 body {
   outline: none !important;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  > .content {
+    flex: 1;
+  }
 }
+
+
 
 .button {
   padding: 10px;

@@ -17,6 +17,13 @@
       font-size: 2.5 * $font-size-lg;
       font-weight: bold;
     }
+    a {
+      color: lighten($text-color, 20%);
+      text-decoration: underline;
+      @include hover-focus-active {
+        color: $white;
+      }
+    }
     .logo {
       img {
         height: 6rem;
@@ -27,6 +34,14 @@
       margin-top: 1rem;
       font-size: $font-size-lg;
     }
+  }
+}
+.sticky-top {
+  position: sticky;
+  top: 100px;
+  z-index: 955;
+  .warning {
+    margin-top: 0;
   }
 }
 .warning {

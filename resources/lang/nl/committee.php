@@ -290,4 +290,21 @@ Mis jij de gezelligheid van meiden onderling?',
                 ]
             ]
         ],
+        'vacancies'        => [
+            'title'       => 'Nieuwe commissieleden',
+            'description' => 'Voor Salve Mundi hebben wij nieuwe commissie- en bestuursleden nodig. Wat houdt dit in? Als lid van een commissie mag je allerlei dingen mee organiseren en -maken, als bestuurslid zorg je ervoor dat alles op rolletjes loopt. Iedereen mag zich inschrijven, ook startsemester!',
+            'vacancies'   => [
+                'Vicevoorzitter'        => 'Ben jij een harde werker, sta jij sterk in je schoenen en lijkt het jou leuk om aan het hoofd van een studievereniging te staan? Dan zijn wij op zoek naar jou! Deze taak is niet voor iedereen weggelegd dus laat ons weten waarom jij dit zou moeten worden! Meld je aan als vicevoorzitter en misschien zien we jou terug aan de tafel bij ons!',
+                'Penningmeester'        => 'Zijn getallen helemaal jou ding en ga je ook nauwkeurig om met geld? Ben je niet bang om de boekhouding te doen? Zou jij de penningmeester willen zijn van een studievereniging? Meld je dan aan en laat ons weten waarom nou juist jij de penningmeester van Salve Mundi moet worden!',
+                'Externe zaken'         => 'Heb jij een vlotte babbel, ben je niet onbekend op de werkvloer en ben je goed in doorpakken? Meld je aan voor externe zaken en zie wat er mogelijk is als studenten, scholen en bedrijven de handen in een slaan!',
+                'Mediacommissie'        => 'Ben jij een creatieveling die het leuk vind om mee te denken over de merchandise voor Salve Mundi? Of iemand die goed met een camera om kan gaan en foto’s wil maken op de evenementen? Ben jij een PHP genie eventueel met kennis over het Laraval framework, of wil je er graag mee leren werken? Meld je dan nu aan voor de mediacommissie en laat zien wat jij voor ons kunt betekenen.',
+                'Activiteitencommissie' => 'Ben jij nou echt zo iemand die het leuk vind om allerlei verschillende activiteiten te organiseren? Een dagje naar een pretpark of gewoon een keer een gezellige game-avond. Dan ben jij de persoon die we zoeken. Meld je aan voor de activiteitencommissie en misschien mag je binnenkort dan al je eerste evenement organiseren!',
+                'Studiecommissie'       => 'Lijkt het jou erg leuk om studiegerelateerde evenementen te organiseren? Denk aan een excursie naar een van Partners In Education of een workshop van iemand die erg veel weet over Cyber Security. Maar zou jij ook graag de bijlessen mee willen organiseren? Meld je dan snel aan voor de studiecommissie!',
+                'Feestcommissie'        => 'Hou jij van feesten, maar lijkt het je ook leuk om de feesten te organiseren! Ben jij iemand die zich helemaal inzet om een knalfeest te organiseren? Of zou je graag een keer een biercantus willen organiseren? Dan hebben wij jou nodig, meld je snel aan voor de feestcommissie en laat ons weten waarom jij erbij moet horen!',
+                'Kampcommissie' => 'Vind jij het leuk om een groot evenement te organiseren voor jouw studiegenoten? Meld je dan aan voor onze kampcommissie! Heb jij geen tijd om iets zoals een kamp te organiseren maar lijkt het je wel leuk om tijdens een van onze kampen mee te helpen? Dan zijn wij ook nog altijd op zoek naar mensen die tijdens onze evenementen willen helpen. Denk hierbij aan hulp met koken, drank inschenken, bier tappen, spullen klaarzetten etc.
+
+Tevens zijn wij altijd op zoek naar BHV-ers die bereid zijn ons een of meerdere dagen te helpen in ruil voor een kleine compensatie.'
+            ],
+            'link_text'   => 'Klik hier om je aan te melden voor een van de bovenstaande commissies!',
+        ]
     ];
