@@ -188,7 +188,9 @@
                                         {{ camping.id }}
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.camping.show', { camp: camping.camp }) }}">{{ camping.camp_id }}</a>
+                                        <a href="{{ route('admin.camping.show', { camp: camping.camp }) }}">
+                                            {{ camping.camp_id }} ({{ camping.camp.year.year }})
+                                        </a>
                                     </td>
                                     <td>
                                         {% if camping.transaction %}

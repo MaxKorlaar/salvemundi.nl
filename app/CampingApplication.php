@@ -10,25 +10,25 @@
     /**
      * App\CampingApplication
      *
-     * @property int                 $id
-     * @property string              $member_id
-     * @property string              $first_name
-     * @property string              $last_name
-     * @property string              $phone
-     * @property string              $email
-     * @property string              $status
-     * @property string              $ip_address
-     * @property string|null         $email_confirmation_token
-     * @property \Carbon\Carbon|null $created_at
-     * @property \Carbon\Carbon|null $updated_at
-     * @property string              $address
-     * @property string              $city
-     * @property string              $postal
-     * @property \Carbon\Carbon      $birthday
-     * @property string|null         $remarks
-     * @property string              $transaction_id
-     * @property string              $transaction_status
-     * @property float               $transaction_amount
+     * @property int                   $id
+     * @property string                $member_id
+     * @property string                $first_name
+     * @property string                $last_name
+     * @property string                $phone
+     * @property string                $email
+     * @property string                $status
+     * @property string                $ip_address
+     * @property string|null           $email_confirmation_token
+     * @property \Carbon\Carbon|null   $created_at
+     * @property \Carbon\Carbon|null   $updated_at
+     * @property string                $address
+     * @property string                $city
+     * @property string                $postal
+     * @property \Carbon\Carbon        $birthday
+     * @property string|null           $remarks
+     * @property string                $transaction_id
+     * @property string                $transaction_status
+     * @property float                 $transaction_amount
      * @method static Builder|CampingApplication whereAddress($value)
      * @method static Builder|CampingApplication whereBirthday($value)
      * @method static Builder|CampingApplication whereCity($value)
@@ -49,17 +49,21 @@
      * @method static Builder|CampingApplication whereTransactionStatus($value)
      * @method static Builder|CampingApplication whereUpdatedAt($value)
      * @mixin \Eloquent
+     * @property-read \App\Member      $member
+     * @property-read \App\Transaction $transaction
+     * @property int|null              $camp_id
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication whereCampId($value)
      */
     class CampingApplication extends Model {
         use HasEncryptedAttributes;
-        const STATUS_APPROVED = 'approved', STATUS_ON_HOLD = 'on_hold',
+        const STATUS_APPROVED = 'approved', STATUS_REFUNDED = 'on_hold',
             STATUS_NEW = 'new', STATUS_DENIED = 'denied',
             STATUS_UNDER_REVIEW = 'under_review', STATUS_BLOCKED = 'blocked',
             STATUS_EMAIL_UNCONFIRMED = 'email_unconfirmed';
-        public $fillable = ['member_id', 'first_name', 'last_name', 'phone', 'email', 'birthday', 'address', 'city', 'postal', 'remarks'];
+        public $fillable = ['first_name', 'last_name', 'phone', 'email', 'birthday', 'address', 'city', 'postal', 'remarks'];
         protected $encrypted = ['first_name', 'last_name', 'phone', 'email', 'ip_address', 'address', 'city', 'postal', 'remarks'];
         protected $attributes = [
-            'status' => self::STATUS_EMAIL_UNCONFIRMED
+            'status' => self::STATUS_NEW
         ];
         protected $casts = [
             'birthday' => 'date'
@@ -68,6 +72,27 @@
         protected $dates = [
             'birthday'
         ];
+
+        /**
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         */
+        public function member() {
+            return $this->belongsTo(Member::class);
+        }
+
+        /**
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         */
+        public function transaction() {
+            return $this->belongsTo(Transaction::class);
+        }
+
+        /**
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         */
+        public function camp() {
+            return $this->belongsTo(Camp::class);
+        }
 
         /**
          * @param $birthday

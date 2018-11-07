@@ -40,6 +40,7 @@
         'camping'      => [
             'title'          => 'Kamp',
             'id'             => 'ID',
+            'camping_id'     => 'Kamp',
             'year'           => 'Jaar',
             'price'          => 'Prijs',
             'new'            => 'Nieuw kamp',

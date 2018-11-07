@@ -2,12 +2,15 @@
 
     namespace App\Http\Controllers;
 
+    use App\Camp;
     use App\CampingApplication;
     use App\Helpers\PaymentHelper;
     use App\Http\Requests\CampingSignup;
     use App\Mail\CampingApplicationPaymentConfirmation;
     use App\Mail\NewCampingApplication;
+    use App\Transaction;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
 
@@ -18,6 +21,10 @@
      */
     class CampingController extends Controller {
 
+
+        public function __construct() {
+            $this->middleware('auth')->only(['getSignupForm', 'signup', 'confirmPayment']);
+        }
 
         /**
          * @return \Illuminate\Http\RedirectResponse
@@ -34,7 +41,9 @@
         public function getSignupForm(Request $request) {
             return view('camping.signup',
                 [
-                    'signup_count' => CampingApplication::where('transaction_status', '=', 'paid')->count()
+                    'signup_count' => CampingApplication::where('transaction_status', '=', 'paid')->count(),
+                    'member'       => Auth::user()->member,
+                    'camp'         => Camp::getCampWithOpenSignup()
                 ]
             );
         }
@@ -46,30 +55,52 @@
          * @throws \Throwable
          */
         public function signup(CampingSignup $request) {
-            $application                           = new CampingApplication($request->all());
+            $member = Auth::user()->member;
+            $camp   = Camp::getCampWithOpenSignup();
+            if ($camp === null) abort(403);
+            $application                           = new CampingApplication([
+                'first_name' => $member->first_name,
+                'last_name'  => $member->last_name,
+                'phone'      => $member->phone,
+                'email'      => $member->email,
+                'birthday'   => $member->birthday,
+                'address'    => $member->address,
+                'city'       => $member->city,
+                'postal'     => $member->postal,
+                'remarks'    => $request->get('remarks'),
+            ]);
             $application->ip_address               = $request->ip();
             $application->email_confirmation_token = str_random(200);
-            $application->transaction_id           = '';
             $application->transaction_status       = '';
             $application->transaction_amount       = 0;
-            if ($application->member_id === null) {
-                $application->member_id = '(onbekend)';
-            }
-
+            $application->member()->associate($member);
+            $application->camp()->associate($camp);
+            $transaction = new Transaction();
+            $transaction->save();
+            /** @var Transaction $transaction */
+            $application->transaction()->associate($transaction);
             $application->saveOrFail();
+            $transaction->member()->associate($member);
+
             $mollie  = new PaymentHelper();
             $payment = $mollie->payments->create([
-                "amount"      => config('mollie.camping_costs'),
+                "amount"      => $camp->price,
                 "description" => trans('camping.signup.payment.description', ['first_name' => $application->first_name, 'last_name' => $application->last_name]),
                 "redirectUrl" => route('camping.signup.confirm_payment'),
                 "webhookUrl"  => route('webhook.payment.camping', ['application' => $application]),
                 'metadata'    => [
-                    'id' => $application->id
+                    'id'             => $application->id,
+                    'transaction_id' => $transaction->id
                 ]
             ]);
+            $transaction->update([
+                'transaction_id'     => $payment->id,
+                'transaction_status' => $payment->status,
+                'transaction_amount' => $payment->amount
+            ]);
+
             if (app()->environment() !== 'production') $request->flash();
 
-            $application->transaction_id     = $payment->id;
             $application->transaction_status = $payment->status;
             $application->transaction_amount = $payment->amount;
             $application->saveOrFail();
@@ -100,8 +131,17 @@
                 if ($payment->metadata->id != $application->id) {
                     abort(400);
                 }
+                \Log::debug('Webhook aangeroepen', ['payment' => $payment]);
 
-                if ($payment->isPaid()) {
+                /** @var Transaction $transaction */
+                $transaction = Transaction::findOrFail($payment->metadata->transaction_id);
+                $transaction->update([
+                    'transaction_id'     => $payment->id,
+                    'transaction_status' => $payment->status,
+                    'transaction_amount' => $payment->amount
+                ]);
+
+                if ($payment->isPaid() && !$payment->isRefunded()) {
                     if ($application->transaction_status != $payment->status) {
                         // De status is pas net bijgewerkt naar betaald.
                         $application->status = CampingApplication::STATUS_NEW;
@@ -119,16 +159,24 @@
                         $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
                         Mail::queue($mail);
 
-                    }
-                }
-                $application->transaction_id     = $payment->id;
-                $application->transaction_status = $payment->status;
-                $application->transaction_amount = $payment->amount;
-                $application->saveOrFail();
 
-                if ($payment->isCancelled() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
-                    // Verwijder geannuleerde en verlopen inschrijvingen uit de database.
-                    $application->delete();
+
+                        // Verander de aanmelding naar een werkelijk lid van de vereniging
+                        $application->transaction()->associate($transaction);
+                    }
+                } else {
+                    if ($payment->isRefunded()) {
+                        $application->status = CampingApplication::STATUS_REFUNDED;
+                    }
+                    $application->transaction_status = $payment->status;
+                    $application->transaction_amount = $payment->amount;
+                    $application->saveOrFail();
+
+                    if ($payment->isCancelled() || $payment->isRefunded() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
+                        Log::debug('De betaling is geannuleerd of is verlopen en de kamp-inschrijving zal worden verwijderd', ['payment' => $payment]);
+                        // Verwijder geannuleerde of verlopen kamp-inschrijvingen uit de database.
+                        $application->delete();
+                    }
                 }
 
             } catch (\Mollie_API_Exception $exception) {
@@ -146,15 +194,17 @@
          * @throws \Mollie_API_Exception_IncompatiblePlatform
          */
         public function confirmPayment(Request $request) {
-            if (!$request->session()->has('camping.application')) abort(404);
+            //if (!$request->session()->has('camping.application')) abort(404);
             /** @var CampingApplication $application */
             $application = $request->session()->get('camping.application');
-
-            $mollie  = new PaymentHelper();
-            $payment = $mollie->payments->get($application->transaction_id);
-            if (!$payment->isOpen() && !$payment->isPaid()) {
-                return redirect()->route('camping.signup')->withErrors(['signup' => trans('camping.signup.payment.failed')]);
+            if ($application !== null) {
+                $mollie  = new PaymentHelper();
+                $payment = $mollie->payments->get($application->transaction->transaction_id);
+                if (!$payment->isOpen() && !$payment->isPaid()) {
+                    return redirect()->route('camping.signup')->withErrors(['signup' => trans('camping.signup.payment.failed')]);
+                }
             }
+
             return view('camping.signup_confirmation', [
                 'application' => $application
             ]);

@@ -2,6 +2,10 @@
     <div class="container">
         <div class="copyright">
             {{ trans('footer.copyright') }}
+            <div class="contact">
+                <hr>
+                {{ trans('footer.contact')|raw|nl2br }}
+            </div>
         </div>
         <div class="links">
             <a href="https://facebook.com/{{ config_get('facebook.url') }}" target="_blank">{{ trans('footer.facebook') }}</a> &centerdot;

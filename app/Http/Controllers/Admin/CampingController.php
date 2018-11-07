@@ -2,8 +2,12 @@
 
     namespace App\Http\Controllers\Admin;
 
+    use App\Camp;
     use App\CampingApplication;
     use App\Http\Controllers\Controller;
+    use App\Http\Requests\Admin\CreateCamp;
+    use App\Year;
+    use Carbon\Carbon;
     use Illuminate\Http\Request;
 
     /**
@@ -17,6 +21,72 @@
 
             $this->middleware('auth.camping');
 
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function index() {
+            return view('admin.camping.index', [
+                'camps' => Camp::with(['year', 'applications'])->get()
+            ]);
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function create() {
+            return view('admin.camping.create', [
+                'years'        => Year::all(),
+                'signup_open'  => Carbon::now(),
+                'signup_close' => Carbon::now()->addMonth()
+            ]);
+        }
+
+        /**
+         * @param Camp $kamp
+         *
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function edit(Camp $kamp) {
+            return view('admin.camping.edit', [
+                'years' => Year::all(),
+                'camp'  => $kamp
+            ]);
+        }
+
+        /**
+         * @param Camp $kamp
+         *
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function show(Camp $kamp) {
+            return view('admin.camping.show', [
+                'camp'  => $kamp
+            ]);
+        }
+
+        /**
+         * @param Camp       $kamp
+         * @param CreateCamp $request
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        public function update(Camp $kamp, CreateCamp $request) {
+            $kamp->update($request->all());
+            return redirect()->back()->with('success', trans('admin.campings.edit.updated'));
+        }
+
+        /**
+         * @param CreateCamp $request
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         * @throws \Throwable
+         */
+        public function store(CreateCamp $request) {
+            $camp = new Camp($request->all());
+            $camp->saveOrFail();
+            return redirect()->route('admin.camping.show', [$camp])->with('success', trans('admin.campings.create.created'));
         }
 
         /**
