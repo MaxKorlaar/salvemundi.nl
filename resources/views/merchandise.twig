@@ -1,0 +1,24 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('merchandise.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="merchandise">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('merchandise.info.title') }}</h1>
+                </div>
+                <div class="col-md-6">
+                    {% for content in trans('merchandise.info.intro') %}
+                        <p>{{ content|raw }}</p>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('images/merch/shirt.jpg') }}" class="img-fluid">
+                </div>
+                <div class="col-md-12">
+                    
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

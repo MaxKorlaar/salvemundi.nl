@@ -13,6 +13,7 @@
 
     Route::get('/', 'IndexController@getHomePage')->name('home');
 
+    Route::get('merchandise', 'MerchandiseController@getMerchandise')->name("merchandise");
     /*
      * Commissies
      */

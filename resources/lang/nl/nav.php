@@ -5,5 +5,6 @@
         'intro'      => 'Intro 2018',
         'sign_up'    => 'Aanmelden Salve Mundi',
         'log_in'     => 'Inloggen',
-        'my_account' => 'Mijn account'
+        'my_account' => 'Mijn account',
+        'merchandise' => 'Merchandise'
     ];
