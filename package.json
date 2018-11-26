@@ -12,19 +12,19 @@
   "devDependencies": {
     "axios": "^0.16.2",
     "bootstrap": "^4.0",
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.26.3",
     "browser-sync-webpack-plugin": "^1.2.0",
-    "cross-env": "^5.0.1",
-    "datatables.net": "^1.10.18",
+    "cross-env": "^5.2.0",
+    "datatables.net": "^1.10.19",
     "datatables.net-buttons": "^1.5.2",
-    "jquery": "^3.1.1",
+    "jquery": "^3.3.1",
     "jszip": "^3.1.5",
-    "laravel-mix": "^1.0",
-    "lodash": "^4.17.4",
-    "popper.js": "^1.12.6",
+    "laravel-mix": "^1.7.2",
+    "lodash": "^4.17.11",
+    "popper.js": "^1.14.5",
     "purify-css": "^1.2.5",
     "purifycss-webpack": "^0.7.0",
-    "vue": "^2.1.10"
+    "vue": "^2.5.17"
   },
   "dependencies": {
     "glob-all": "^3.1.0"
