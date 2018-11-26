@@ -126,5 +126,5 @@ De feestcommissie Salve Mundi'
         'signature'  => 'Met vriendelijke groet,
     s.v. Salve Mundi
     https://salvemundi.nl',
-        'disclaimer' => 'Dit bericht is automatisch verzonden. Antwoorden is hierop niet mogelijk'
+        'disclaimer' => "Dit bericht is automatisch verzonden. Antwoorden is hierop niet mogelijk.\nSalve Mundi, Rachelsmolen 1, Gebouw R1, 5612MA Eindhoven, KvK nr. 70280606"
     ];

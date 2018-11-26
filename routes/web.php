@@ -102,9 +102,19 @@
         Route::resource('gebruikers', 'UserController')->names('users');
         Route::get('leden/importeren', 'MemberController@showImportForm')->name('members.import');
         Route::post('leden/importeren', 'MemberController@importList')->name('members.do_import');
-        Route::get('leden/email-verlenging-nodig', 'MemberController@getMailForm')->name('members.email');
-        Route::post('leden/email-verlenging-nodig/voorbeeld', 'MemberController@getMailPreview')->name('members.preview_email');
-        Route::post('leden/email-verlenging-nodig', 'MemberController@sendMail')->name('members.do_send_email');
+
+        Route::get('leden/spreadsheet', 'MemberController@spreadsheetIndex')->name('members.spreadsheet');
+
+        Route::get('leden/email', 'MemberController@getMailForm')->name('members.email');
+        Route::post('leden/email/voorbeeld', 'MemberController@getMailPreview')->name('members.preview_email');
+        Route::post('leden/email', 'MemberController@sendMail')->name('members.do_send_email');
+        
+        Route::get('leden/email-verlenging-nodig', 'MemberController@getInactiveMailForm')->name('members.email_inactive');
+        Route::post('leden/email-verlenging-nodig/voorbeeld', 'MemberController@getInactiveMailPreview')->name('members.preview_email_inactive');
+        Route::post('leden/email-verlenging-nodig', 'MemberController@sendInactiveMail')->name('members.do_send_email_inactive');
+        
+        Route::get('leden/verwijder-inactieve', 'MemberController@deleteInactiveConfirmation')->name('members.delete_inactive_confirmation');
+        Route::delete('leden/verwijder-inactieve', 'MemberController@deleteInactive')->name('members.delete_inactive');
         Route::resource('leden', 'MemberController')->names('members');
         Route::get('leden/{member}/verwijderen', 'MemberController@getDeleteConfirmation')->name('members.delete_confirmation');
         Route::resource('leden.lidmaatschap', 'MembershipController')->names('members.membership');

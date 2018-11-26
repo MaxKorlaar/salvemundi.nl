@@ -1,0 +1,55 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.members.delete.inactive_confirmation') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="member">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.members.delete.inactive_confirmation') }}</h1>
+                </div>
+                <div class="col-md-12 text-danger">
+                    {{ trans('admin.members.delete.are_you_sure')|raw }}
+                </div>
+                <div class="col-md-12 text-danger">
+                    {{ trans('admin.members.delete.following_members') }}
+                </div>
+                <table class="table member-list table-striped">
+                    <thead>
+                        <tr>
+                            <th>{{ trans('admin.members.id') }}</th>
+                            <th>{{ trans('admin.members.member_id') }}</th>
+                            <th>{{ trans('admin.members.pcn') }}</th>
+                            <th>{{ trans('admin.members.last_name') }}</th>
+                            <th>{{ trans('admin.members.first_name') }}</th>
+                            <th>{{ trans('admin.members.member_until') }}</th>
+                            <th>{{ trans('admin.members.created_at') }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for member in members %}
+                            <tr class="{{ member.isCurrentlyMember() ? 'membership' : 'no-membership' }}">
+                                <td>{{ member.id }}</td>
+                                <td>{{ member.member_id }}</td>
+                                <td>{{ member.pcn }}</td>
+                                <td>{{ member.last_name }}</td>
+                                <td>{{ member.first_name }}</td>
+                                <td>{{ member.memberships.last().valid_from|date(trans('datetime.format.date')) }} – {{ member.memberships.last().valid_until|date(trans('datetime.format.date')) }}</td>
+
+                                <td>{{ member.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                <td>
+                                    <a href="{{ route('admin.members.show', { member: member }) }}">{{ trans('admin.members.details') }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <form class="col-md-12" action="{{ route('admin.members.delete_inactive') }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="button danger">{{ trans('admin.members.delete.delete_inactive') }}</button>
+                </form>
+            </div>
+        </main>
+    </div>
+{% endblock %}

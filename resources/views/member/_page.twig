@@ -5,8 +5,10 @@
             <div class="inner container">
                 <ul></ul>
                 <div>
-                    {{ trans('member.nav.welcome', { name: auth_user().official_name }) }}
-                    <a href="{{ route('logout') }}">{{ trans('member.nav.log_out') }}</a>
+                    <p>
+                        {{ trans('member.nav.welcome', { name: auth_user().official_name }) }}
+                        <a href="{{ route('logout') }}">{{ trans('member.nav.log_out') }}</a>
+                    </p>
                 </div>
             </div>
         </div>

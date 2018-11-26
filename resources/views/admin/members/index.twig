@@ -8,7 +8,9 @@
                     <h1>{{ trans('admin.members.title') }}</h1>
                     <p>
                         <a href="{{ route('admin.members.create') }}" class="btn btn-primary">{{ trans('admin.members.new') }}</a>
-                        <a href="{{ route('admin.members.email') }}" class="btn btn-primary">{{ trans('admin.members.email_invalid_members') }}</a>
+                        <a href="{{ route('admin.members.email_inactive') }}" class="btn btn-primary">{{ trans('admin.members.email_invalid_members') }}</a>
+                        <a href="{{ route('admin.members.email') }}" class="btn btn-primary">{{ trans('admin.members.email_members') }}</a>
+                        <a href="{{ route('admin.members.spreadsheet') }}" class="btn btn-primary">{{ trans('admin.members.view_spreadsheet') }}</a>
                     </p>
                     <table class="table member-list table-striped">
                         <thead>
@@ -41,7 +43,7 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                    <small>{{ trans_choice('admin.members.count', members.count, { count: members.count }) }} </small>
+                    <small>{{ trans_choice('admin.members.count', members.count, { count: members.count }) }} &sdot; <a href="{{ route('admin.members.delete_inactive_confirmation') }}">{{ trans('admin.members.delete_all_inactive') }}</a></small>
                 </div>
             </div>
         </main>

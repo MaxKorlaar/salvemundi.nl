@@ -5,6 +5,7 @@
     use App\Helpers\HasEncryptedAttributes;
     use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\SoftDeletes;
     use Illuminate\Support\Carbon;
     use Intervention\Image\Constraint;
     use Intervention\Image\Facades\Image;
@@ -57,12 +58,12 @@
      * @property-read \App\User                                                          $user
      * @property string                                                                  $card_status
      * @property string|null                                                             $card_id
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Member whereCardId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Member whereCardStatus($value)
+     * @method static Builder|Member whereCardId($value)
+     * @method static Builder|Member whereCardStatus($value)
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\CampingApplication[] $campingApplications
      */
     class Member extends Model {
-
+        use SoftDeletes;
         const CARD_UNPROCESSED = 'unprocessed', CARD_PROCESSED = 'processed', CARD_RECEIVED = 'received', CARD_NOT_PICKED_UP = 'not_picked_up', NO_CARD = 'no_card';
 
         use HasEncryptedAttributes;
@@ -74,7 +75,7 @@
         ];
 
         protected $dates = [
-            'birthday'
+            'birthday', 'deleted_at'
         ];
 
         /**
@@ -187,15 +188,29 @@
         }
 
         /**
+         * Delete the model from the database.
+         *
          * @return bool|null
+         *
          * @throws \Exception
          */
         public function delete() {
-            $this->deletePicture();
             if ($this->user !== null) {
                 $this->user->delete();
             }
             return parent::delete();
+        }
+
+        /**
+         * @return bool|null
+         * @throws \Exception
+         */
+        public function forceDelete() {
+            $this->deletePicture();
+            if ($this->user !== null) {
+                $this->user->delete();
+            }
+            return parent::forceDelete();
         }
 
         /**

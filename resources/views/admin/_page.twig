@@ -15,8 +15,10 @@
                     </li>
                 </ul>
                 <div>
-                    {{ trans('admin.nav.welcome', { name: auth_user().official_name }) }}
-                    <a href="{{ route('logout') }}">{{ trans('admin.nav.log_out') }}</a>
+                    <p>
+                        {{ trans('admin.nav.welcome', { name: auth_user().official_name }) }}
+                        <a href="{{ route('logout') }}">{{ trans('admin.nav.log_out') }}</a>
+                    </p>
                 </div>
             </div>
         </div>

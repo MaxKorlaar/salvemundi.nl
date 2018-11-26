@@ -29,6 +29,7 @@
         public function __construct() {
             $this->middleware('auth.admin');
             $this->middleware('throttle:1,1')->only('sendMail');
+            $this->middleware('throttle:1,1')->only('sendInactiveMail');
         }
 
 
@@ -331,7 +332,7 @@
         /**
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function getMailForm() {
+        public function getInactiveMailForm() {
             $members      = Member::with(['memberships'])->orderBy('member_id')->get();
             $invalidCount = 0;
             $members->each(function (Member $member) use (&$invalidCount) {
@@ -339,8 +340,24 @@
                     $invalidCount++;
                 }
             });
-            return view('admin.members.mail', [
+            return view('admin.members.mail_inactive', [
                 'invalid_count' => $invalidCount
+            ]);
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getMailForm() {
+            $members      = Member::with(['memberships'])->orderBy('member_id')->get();
+            $validCount = 0;
+            $members->each(function (Member $member) use (&$validCount) {
+                if ($member->isCurrentlyMember()) {
+                    $validCount++;
+                }
+            });
+            return view('admin.members.mail', [
+                'valid_count' => $validCount
             ]);
         }
 
@@ -362,13 +379,36 @@
          *
          * @return Blank
          */
+        public function getInactiveMailPreview(SendMailToMembers $request) {
+
+            $content = $request->get('message_content');
+            $content = $this->parseMailContents($content, \Auth::user()->member);
+            $title   = $request->get('subject');
+            $mail    = new Blank($content, $this->parseMailContents($title, \Auth::user()->member));
+            return $mail;
+        }
+
+        /**
+         * @param SendMailToMembers $request
+         *
+         * @return Blank
+         */
         public function getMailPreview(SendMailToMembers $request) {
 
             $content = $request->get('message_content');
             $content = $this->parseMailContents($content, \Auth::user()->member);
-            $title = $request->get('subject');
-            $mail = new Blank($content, $this->parseMailContents($title, \Auth::user()->member));
+            $title   = $request->get('subject');
+            $mail    = new Blank($content, $this->parseMailContents($title, \Auth::user()->member));
             return $mail;
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function spreadsheetIndex() {
+            return view('admin.members.spreadsheet', [
+                'members'            => Member::with(['memberships'])->orderBy('member_id')->get()
+            ]);
         }
 
         /**
@@ -376,11 +416,11 @@
          *
          * @return \Illuminate\Http\RedirectResponse
          */
-        public function sendMail(SendMailToMembers $request) {
+        public function sendInactiveMail(SendMailToMembers $request) {
             $members      = Member::with(['memberships'])->orderBy('member_id')->get();
             $invalidCount = 0;
             $content      = $request->get('message_content');
-            $title = $request->get('subject');
+            $title        = $request->get('subject');
             $members->each(function (Member $member) use ($title, $content, &$invalidCount) {
                 if (!$member->isCurrentlyMember()) {
                     $content = $this->parseMailContents($content, $member);
@@ -391,6 +431,28 @@
                 }
             });
             return back()->with('success', trans('admin.members.send_email.email_sent', ['members' => $invalidCount]));
+        }
+
+        /**
+         * @param SendMailToMembers $request
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        public function sendMail(SendMailToMembers $request) {
+            $members      = Member::with(['memberships'])->orderBy('member_id')->get();
+            $validCount = 0;
+            $content      = $request->get('message_content');
+            $title        = $request->get('subject');
+            $members->each(function (Member $member) use ($title, $content, &$validCount) {
+                if ($member->isCurrentlyMember()) {
+                    $content = $this->parseMailContents($content, $member);
+                    $mail    = new Blank($content, $this->parseMailContents($title, $member));
+                    $mail->to($member->email, $member->first_name . ' ' . $member->last_name);
+                    Mail::queue($mail);
+                    $validCount++;
+                }
+            });
+            return back()->with('success', trans('admin.members.send_email.email_sent', ['members' => $validCount]));
         }
 
         /**
@@ -424,6 +486,34 @@
                 $leden->saveOrFail();
             }
             return back()->with('success', trans('admin.members.edit.updated'));
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function deleteInactiveConfirmation() {
+            $members = Member::with(['memberships'])->orderBy('member_id')->get();
+
+            return view('admin.members.delete_inactive', [
+                'members' => $members->filter(function (Member $member) {
+                    return !$member->isCurrentlyMember();
+                })
+            ]);
+        }
+
+        /**
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        public function deleteInactive() {
+            $members      = Member::with(['memberships'])->orderBy('member_id')->get();
+            $invalidCount = 0;
+            $members->each(function (Member $member) use (&$invalidCount) {
+                if (!$member->isCurrentlyMember()) {
+                    $member->delete();
+                    $invalidCount++;
+                }
+            });
+            return redirect()->route('admin.members.index')->with('success', trans('admin.members.delete.inactive_deleted', ['count' => $invalidCount]));
         }
 
         /**

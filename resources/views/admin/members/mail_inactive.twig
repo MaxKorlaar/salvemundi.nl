@@ -5,8 +5,8 @@
         <main class="members overview">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>{{ trans('admin.members.send_email.title') }}</h1>
-                    <form action="{{ route('admin.members.do_send_email') }}" method="POST" class="row">
+                    <h1>{{ trans('admin.members.send_email.title_invalid') }}</h1>
+                    <form action="{{ route('admin.members.do_send_email_inactive') }}" method="POST" class="row">
                         {{ csrf_field() }}
                         <div class="col-12">
                             {% if session('success') %}
@@ -35,10 +35,10 @@
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <input formtarget="_blank" formaction="{{ route('admin.members.preview_email') }}" type="submit" class="button" value="{{ trans('admin.members.send_email.preview') }}">
+                                <input formtarget="_blank" formaction="{{ route('admin.members.preview_email_inactive') }}" type="submit" class="button" value="{{ trans('admin.members.send_email.preview') }}">
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="button" value="{{ trans('admin.members.send_email.send', { count: valid_count }) }}">
+                                <input type="submit" class="button" value="{{ trans('admin.members.send_email.send', { count: invalid_count }) }}">
                             </div>
                         </div>
 

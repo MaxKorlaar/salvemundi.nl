@@ -82,6 +82,7 @@
             'details'               => 'Details',
             'id'                    => 'ID',
             'leave_id_empty'        => 'Laat leeg om automatisch te genereren',
+            'member_from'           => 'Lid sinds',
             'member_until'          => 'Lid tot',
             'member_id'             => 'Lidnummer',
             'edit_member'           => 'Gegevens bewerken',
@@ -101,6 +102,8 @@
             'website_account'       => 'Websitegebruiker',
             'no_user'               => 'Geen account',
             'card'                  => 'Ledenpas',
+            'delete_all_inactive'   => 'Verwijder alle inactieve leden',
+            'view_spreadsheet'      => 'Bekijk spreadsheet',
             'temporary_card_number' => 'Tijdelijke pas',
             'card_status'           => [
                 'received'      => 'In ontvangst genomen',
@@ -122,6 +125,7 @@
             'not_a_member'          => 'Dit lid heeft momenteel geen actief lidmaatschap',
             'no_valid_membership'   => 'Lidmaatschap verlopen',
             'email_invalid_members' => 'E-mail leden zonder lidmaatschap',
+            'email_members'         => 'E-mail leden met lidmaatschap',
             'create'                => [
                 'title'        => 'Nieuw lid',
                 'create'       => 'Aanmaken',
@@ -133,12 +137,17 @@
                 'picture_help' => 'Afbeelding mag maximaal 5 MB groot zijn en zal de vorige afbeelding overschrijven.'
             ],
             'delete'                => [
-                'title'        => 'Lid verwijderen',
-                'are_you_sure' => 'Weet je het zeker?',
-                'delete'       => 'Lid permanent verwijderen'
+                'title'                 => 'Lid verwijderen',
+                'are_you_sure'          => 'Weet je het zeker?',
+                'delete'                => 'Lid verwijderen',
+                'delete_inactive'       => 'Bovenstaande leden verwijderen',
+                'inactive_confirmation' => 'Leden met een verlopen lidmaatschap verwijderen',
+                'following_members'     => 'De volgende leden zullen worden verwijderd uit het ledensysteem. Hun gebruikersaccounts worden verwijderd en zij kunnen hierdoor niet meer inloggen. Dit betekent ook dat ze niet meer hun lidmaatschap kunnen verlengen. Hiervoor moet een lid op tijd worden hersteld of moet een lid zichzelf opnieuw inschrijven.',
+                'inactive_deleted'      => ':count leden met een verlopen lidmaatschap zijn verwijderd'
             ],
             'send_email'            => [
                 'title'                       => 'Leden mailen',
+                'title_invalid'               => 'Leden met verlopen lidmaatschap mailen',
                 'subject'                     => 'Onderwerp',
                 'message_content_placeholder' => 'Typ hier je bericht. Het gebruik van HTML is toegestaan, al wordt het wel afgeraden. Berichten met minder opmaak hebben over het algemeen succes bij gebruikers: https://blog.chamaileon.io/choosing-between-plain-text-html-email/.',
                 'content'                     => "Beste {voornaam},\n\n(Jouw bericht hier)",
