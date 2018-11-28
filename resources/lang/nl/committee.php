@@ -119,21 +119,23 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'name'    => 'Daniëlle Ooms',
                     'profile' => 'ICT & Media Design',
                     'text'    => 'Studeert momenteel ICT & Media Design. Daniëlle maakt ontwerpen, van flyers tot kleding en runt hiernaast haar eigen mediabureau.',
-                    'image'   => '17058.jpeg'
+                    'image'   => 'Danielle.jpg'
                 ],
 
                 [
                     'name'    => 'Max Korlaar',
                     'profile' => 'ICT & Media Design',
-                    'text'    => 'Studeert momenteel ICT & Media Design. Max is verantwoordelijk voor zowel het uiterlijk als de functionaliteit van de website, en is werkzaam als webdeveloper.',
-                    'image'   => 'Max_villa.jpg',
+                    'text'    => 'Studeert momenteel ICT & Media Design. Max is verantwoordelijk voor zowel het uiterlijk als de functionaliteit van de website, en is werkzaam als webdeveloper.', // Max was hier :)
+                    // xoxo ~Max, 2018
+                    'image'   => 'Max.jpg',
+                    // todo: On hover veranderen naar foto met Youp en Niek
                     'url'     => '//maxkorlaar.nl'
                 ],
                 [
                     'name'    => 'Mathijs van der Kuijp',
                     'profile' => 'ICT & Media Design',
                     'text'    => 'Studeert momenteel ICT & Media Design. Mathijs ontwerpt documenten en notuleert bij besprekingen.',
-                    'image'   => 'Mathijs-fb.jpg',
+                    'image'   => 'Mathijs.jpg',
                     'url'     => '//mvdk.eu/'
                 ],
                 [
@@ -142,6 +144,36 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'text'    => 'Studeert momenteel ICT & Media Design. Mede verantwoordelijk voor de website maar ook voor de fotografie.',
                     'image'   => 'Ruud.jpg',
                     'url'     => '//ruudvissers.nl/werkportfolio/'
+                ],
+                [
+                    'name'    => 'Niek van Gogh',
+                    'profile' => 'ICT & Software',
+                    'text'    => '',
+                    'image'   => 'Niek.jpg',
+                ],
+                [
+                    'name'    => 'Kim van der Meulen',
+                    'profile' => 'ICT & Software',
+                    'text'    => '',
+                    'image'   => 'Kim.jpg',
+                ],
+                [
+                    'name'    => 'Kazimir Awsiej',
+                    'profile' => 'ICT & Technology',
+                    'text'    => '',
+                    'image'   => 'Kazimir.jpg',
+                ],
+                [
+                    'name'    => 'Youp Jansen',
+                    'profile' => 'ICT & Business',
+                    'text'    => '',
+                    'image'   => 'Youp.jpg',
+                ],
+                [
+                    'name'    => 'Bart van Lier',
+                    'profile' => 'ICT & Meda Design',
+                    'text'    => '',
+                    'image'   => 'Bart.jpg',
                 ]
 
             ]
@@ -301,7 +333,7 @@ Mis jij de gezelligheid van meiden onderling?',
                 'Activiteitencommissie' => 'Ben jij nou echt zo iemand die het leuk vind om allerlei verschillende activiteiten te organiseren? Een dagje naar een pretpark of gewoon een keer een gezellige game-avond. Dan ben jij de persoon die we zoeken. Meld je aan voor de activiteitencommissie en misschien mag je binnenkort dan al je eerste evenement organiseren!',
                 'Studiecommissie'       => 'Lijkt het jou erg leuk om studiegerelateerde evenementen te organiseren? Denk aan een excursie naar een van Partners In Education of een workshop van iemand die erg veel weet over Cyber Security. Maar zou jij ook graag de bijlessen mee willen organiseren? Meld je dan snel aan voor de studiecommissie!',
                 'Feestcommissie'        => 'Hou jij van feesten, maar lijkt het je ook leuk om de feesten te organiseren! Ben jij iemand die zich helemaal inzet om een knalfeest te organiseren? Of zou je graag een keer een biercantus willen organiseren? Dan hebben wij jou nodig, meld je snel aan voor de feestcommissie en laat ons weten waarom jij erbij moet horen!',
-                'Kampcommissie' => 'Vind jij het leuk om een groot evenement te organiseren voor jouw studiegenoten? Meld je dan aan voor onze kampcommissie! Heb jij geen tijd om iets zoals een kamp te organiseren maar lijkt het je wel leuk om tijdens een van onze kampen mee te helpen? Dan zijn wij ook nog altijd op zoek naar mensen die tijdens onze evenementen willen helpen. Denk hierbij aan hulp met koken, drank inschenken, bier tappen, spullen klaarzetten etc.
+                'Kampcommissie'         => 'Vind jij het leuk om een groot evenement te organiseren voor jouw studiegenoten? Meld je dan aan voor onze kampcommissie! Heb jij geen tijd om iets zoals een kamp te organiseren maar lijkt het je wel leuk om tijdens een van onze kampen mee te helpen? Dan zijn wij ook nog altijd op zoek naar mensen die tijdens onze evenementen willen helpen. Denk hierbij aan hulp met koken, drank inschenken, bier tappen, spullen klaarzetten etc.
 
 Tevens zijn wij altijd op zoek naar BHV-ers die bereid zijn ons een of meerdere dagen te helpen in ruil voor een kleine compensatie.'
             ],
