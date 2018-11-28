@@ -184,34 +184,29 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
             'meet_the_members' => 'De kampeerders',
             'members'          => [
                 [
-                    'name'    => 'Femke',
-                    'image'   => 'Femke Technology.jpg',
-                    'profile' => 'ICT & Media Design'
-                ],
-                [
-                    'name'    => 'Ilse',
-                    'image'   => 'Ilse.jpg',
-                    'profile' => 'ICT & Media Design'
-                ],
-                [
-                    'name'    => 'Luuk',
-                    'image'   => 'Luuk Business.jpg',
-                    'profile' => 'ICT & Business'
-                ],
-                [
-                    'name'    => 'Wesley',
+                    'name'    => 'Wesley Ingenbleek',
                     'image'   => 'Wesley Software.jpg',
                     'profile' => 'ICT & Software'
                 ],
                 [
-                    'name'    => 'Yorick',
+                    'name'    => 'Luuk Lenears',
+                    'image'   => 'Luuk Business.jpg',
+                    'profile' => 'ICT & Business'
+                ],
+                [
+                    'name'    => 'Femke Bronstein',
+                    'image'   => 'Femke.jpg',
+                    'profile' => 'ICT & Media Design'
+                ],
+                [
+                    'name'    => 'Yorik van den Berkmortel', // met of zonder c 🤔
                     'image'   => 'Yorick Business.jpg',
                     'profile' => 'ICT & Business'
                 ],
                 [
-                    'name'    => 'Youri',
-                    'image'   => 'Youri Software.jpg',
-                    'profile' => 'ICT & Software'
+                    'name'    => 'Youp Jansen',
+                    'image'   => 'Youp.jpg',
+                    'profile' => 'ICT & Business'
                 ],
             ]
         ],
