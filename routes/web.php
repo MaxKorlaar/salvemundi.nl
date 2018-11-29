@@ -123,6 +123,10 @@
 
     });
 
+    Route::get('discounts', 'DiscountController@getDefaultView')->name('discounts.index');
+    Route::get('discounts/villa', 'DiscountController@getVillaView')->name('discounts.villa');
+    Route::get('discounts/happi', 'DiscountController@getHappiView')->name('discounts.happi');
+
     Route::get('drive', 'IndexController@getDriveRedirect');
 
     Route::get('privacybeleid', 'MetaController@getPrivacyPage')->name('privacy');

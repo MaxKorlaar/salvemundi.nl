@@ -1,0 +1,49 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('discounts.title') }}{% endblock %}
+{% block head %}
+    {{ parent() }}
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="discounts">
+            <h1>{{ trans('discounts.title') }}</h1>
+            <p>{{ trans('discounts.intro') }}</p>
+            <h3>{{ trans('discounts.action_text') }}</h3>
+
+            <div class="my-4">
+                <a href="{{ route('discounts.villa') }}">
+                    <button class="button">Villa Fiesta</button>
+                </a>
+                <a href="{{ route('discounts.happi') }}">
+                    <button class="button">Happi</button>
+                </a>
+            </div>
+
+            {% if discounts is not null %}
+                <table class="table table-discounts">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"><img width="120px" src="{{ asset('images/logo.svg') }}"/></th>
+                        <th scope="col"><img width="120px" src="{{ asset('images/logo_paars.svg') }}"/></th>
+                    </tr>
+                    </thead>
+                    {% for discount in discounts %}
+                        <tbody>
+                        {% for key, value in discount %}
+                            <tr>
+                                <th scope="row">{{ key }}</th>
+                                <td>{{ value[0] }}</td>
+                                <td>{{ value[1] }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    {% endfor %}
+                </table>
+            {% endif %}
+
+
+        </main>
+    </div>
+{% endblock %}

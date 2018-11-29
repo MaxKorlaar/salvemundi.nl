@@ -17,6 +17,9 @@
                     </li>
                 {% else %}
                     <li>
+                        <a href="{{ route('discounts.index') }}">{{ trans('nav.discounts') }}</a>
+                    </li>
+                    <li>
                         <a href="{{ route('login.redirect') }}">{{ trans('nav.log_in') }}</a>
                     </li>
                 {% endif %}

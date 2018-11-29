@@ -1,0 +1,29 @@
+.discounts {
+
+  table.table-discounts {
+    width: 500px;
+
+    thead {
+      border: 0;
+      th {
+        border: 0;
+        text-align: center;
+      }
+    }
+
+    tbody {
+      border-color: #663265;
+
+      tr {
+        th, td {
+          border-top: none;
+          padding: 0;
+        }
+
+        td {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
