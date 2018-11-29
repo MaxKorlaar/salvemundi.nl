@@ -27,7 +27,8 @@ class DiscountController extends Controller
     {
         return view('discounts',
             [
-                'title' => "Happi",
+                'title' => "happii",
+                'image_url' => "images/promo/happii.png",
                 'discounts' => [
                     [
                         "Pizza's" => ["6,99", "5,50"],
@@ -36,6 +37,20 @@ class DiscountController extends Controller
                     [
                         "Broodje Doner" => ["3,00", "2,20"],
                         "Broodje Kipdoner" => ["3,50", "2,50"]
+                    ],
+                    [
+                        "Drum Doner" => ["4,75", "3,50"],
+                        "Drum Kip" => ["5,50", "5,50"],
+                    ],
+                    [
+                        "Kapsalon Doner of Kip" => ["6,50", "5,00"],
+                    ],
+                    [
+                        "Schotel Doner" => ["10,00", "8,00"],
+                        "Schotel Kip" => ["11,00", "8,50"],
+                    ],
+                    [
+                        "10 Nuggets of Hotwings" => ["5,50", "4,00"]
                     ]
                 ]
             ]
@@ -44,7 +59,11 @@ class DiscountController extends Controller
 
     public function getVillaView()
     {
-
+        return view('discounts',
+            [
+                'title'
+            ]
+        );
     }
 
 }

@@ -16,7 +16,7 @@
                     <button class="button">Villa Fiesta</button>
                 </a>
                 <a href="{{ route('discounts.happi') }}">
-                    <button class="button">Happi</button>
+                    <button class="button">Happii</button>
                 </a>
             </div>
 
@@ -25,7 +25,7 @@
                     <thead>
                     <tr>
                         <th scope="col"></th>
-                        <th scope="col"><img width="120px" src="{{ asset('images/logo.svg') }}"/></th>
+                        <th scope="col"><img width="120px" src="{{ asset(image_url) }}"/></th>
                         <th scope="col"><img width="120px" src="{{ asset('images/logo_paars.svg') }}"/></th>
                     </tr>
                     </thead>
@@ -34,8 +34,8 @@
                         {% for key, value in discount %}
                             <tr>
                                 <th scope="row">{{ key }}</th>
-                                <td>{{ value[0] }}</td>
-                                <td>{{ value[1] }}</td>
+                                <td class="original-price">&euro;{{ value[0] }}</td>
+                                <td>&euro;{{ value[1] }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

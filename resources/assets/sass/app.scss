@@ -16,11 +16,11 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
   > .content {
     flex: 1;
   }
 }
-
 
 
 .button {
@@ -79,13 +79,16 @@ button {
   @include media-breakpoint-down(md) {
     animation: landing-background 25s ease forwards;
   }
+
   h1 {
     font-weight: 100;
     margin-bottom: 2rem;
   }
+
   h5 {
     margin-bottom: 2rem;
   }
+
   .signup-btn {
     margin: 30px;
     padding: 15px;
@@ -100,16 +103,20 @@ button {
 
 .content {
   padding-top: 110px;
+
   main {
     h1, h2, h3, h4 {
       color: theme-color(primary);
     }
+
     .description {
       padding-bottom: 0;
     }
+
     .description + .camping {
       padding-top: 0;
     }
+
     .description + .events {
       margin-top: 1rem;
       @include media-breakpoint-up(md) {
@@ -121,15 +128,19 @@ button {
       h1, h3 {
         color: $white;
       }
+
       background-color: $brand-primary;
       color: $white;
       box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.28);
+
       .error, .loading, .no-events {
         padding: 1rem;
+
         p {
           margin-bottom: 0;
         }
       }
+
       .no-events {
         a {
           color: theme-color-level(info, -1);
@@ -139,11 +150,13 @@ button {
           }
         }
       }
+
       .error {
         color: theme-color(danger);
         background: $body-bg;
         box-shadow: 0 0 4px 2px rgba(0, 0, 0, 0.28);
       }
+
       //noinspection CssOptimizeSimilarProperties
       .event {
         margin-top: 1rem;
@@ -155,9 +168,11 @@ button {
         background-clip: content-box;
         position: relative;
         z-index: 1;
+
         .event-content {
           padding: 1.5rem;
         }
+
         .background {
           display: block;
           position: absolute;
@@ -192,22 +207,27 @@ button {
           //  }
           //}
         }
+
         p {
           padding-left: 0;
           margin-bottom: 0;
         }
+
         .date-container {
           div {
             opacity: 1;
           }
+
           .fade-enter-active, .fade-leave-active {
             transition: opacity 2s ease;
           }
+
           .fade-enter, .fade-leave-to {
             opacity: 0;
           }
 
           margin-right: 1rem;
+
           .date, .attending {
             transition: all .2s ease, opacity .5s;
             display: flex;
@@ -221,12 +241,14 @@ button {
             height: 90px;
             width: 90px;
           }
+
           .date {
             .day {
               display: block;
               font-size: 2.5rem;
               font-weight: bold;
             }
+
             .month {
               text-transform: uppercase;
               font-size: 0.8rem;
@@ -235,26 +257,33 @@ button {
 
           .attending {
             margin-top: 1rem;
+
             .count {
               display: block;
               font-size: 2.5rem;
               font-weight: bold;
             }
+
             .text {
               text-transform: uppercase;
               font-size: 0.8rem;
             }
+
             position: absolute;
           }
+
           min-height: 2 * 90px + 16px;
+
           .place {
             position: absolute;
             transition: all .2s ease, opacity .5s;
             text-align: center;
             font-size: 1.2rem;
+
             &.small {
               font-size: 1rem;
             }
+
             margin-top: 1rem;
             padding: 0 .1rem;
             hyphens: auto;
@@ -268,9 +297,11 @@ button {
             color: theme-color(primary);
           }
         }
+
         h4, h5 {
           margin-bottom: 0;
         }
+
         &:last-child {
           border-bottom: none;
         }
@@ -287,6 +318,7 @@ button {
             justify-content: center;
             text-align: center;
             width: 100%;
+
             p {
               display: none;
             }
@@ -320,6 +352,7 @@ button {
         @include media-breakpoint-down(xs) {
           grid-template-columns: 1fr;
         }
+
         .button {
           display: flex;
           flex-direction: column;
@@ -337,17 +370,20 @@ button {
     .form-group:focus {
       outline: $brand-primary;
     }
+
     input {
       border: none;
       background: none;
       border-bottom: thin solid gray;
       border-radius: 0;
+
       &:focus {
         background: none;
         outline: 0 !important;
         border-color: $brand-primary;
       }
     }
+
     .button, button, input[type=button] {
       background-color: $brand-primary;
       color: white;
@@ -363,6 +399,7 @@ button {
 
 .index {
   padding-top: 0;
+
   section {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -380,6 +417,7 @@ button {
   &.media-committee {
     .image-logo {
       margin: 0;
+
       img {
         max-height: 5rem;
       }
@@ -392,17 +430,21 @@ button {
         color: theme-color(primary);
         text-transform: uppercase;
       }
+
       h4 {
         font-weight: bolder;
       }
     }
   }
+
   .image {
     margin: 1rem 0;
+
     img {
       margin: 0 auto;
       display: block;
     }
+
     .caption {
       text-align: center;
       padding-top: .5rem;
@@ -410,6 +452,7 @@ button {
       color: $text-color;
     }
   }
+
   .members {
     padding-top: 100px;
     padding-bottom: 100px;
@@ -419,9 +462,11 @@ button {
     &, h2, h3, h4 {
       color: $white;
     }
+
     h2 {
       padding-left: .5rem;
     }
+
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -433,8 +478,10 @@ button {
         grid-auto-rows: auto;
       }
     }
+
     .member {
       padding: .5rem;
+
       &.has-image {
         .inner {
           .content {
@@ -449,25 +496,31 @@ button {
           }
         }
       }
+
       .inner {
         min-height: 15rem;
         transition: .2s ease;
         height: 100%;
         padding: .5rem;
+
         h4 {
           transition: .2s ease;
           color: theme-color(primary);
         }
+
         background: $body-bg;
         color: $body-color;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+
         &.reverse {
           flex-direction: row-reverse;
+
           .content {
             padding: 0 0 0 .5rem;
           }
+
           @include media-breakpoint-down(md) {
             flex-direction: row;
             .content {
@@ -475,18 +528,22 @@ button {
             }
           }
         }
+
         @include media-breakpoint-down(sm) {
           flex-direction: column;
           justify-content: space-between;
         }
+
         .content {
           padding: 0 .5rem 0 0;
           text-align: justify;
+
           p {
             //opacity: 0;
             transition: .2s ease;
           }
         }
+
         .image {
           //width: 100%;
           margin: 0;
@@ -508,6 +565,7 @@ button {
           }
         }
       }
+
       //&[href] {
       @include hover-focus-active {
         .inner {
@@ -522,6 +580,7 @@ button {
               opacity: 1;
             }
           }
+
           .image {
             .img {
               background-color: #FFFFFF;

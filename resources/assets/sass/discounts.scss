@@ -5,6 +5,7 @@
 
     thead {
       border: 0;
+
       th {
         border: 0;
         text-align: center;
@@ -14,6 +15,12 @@
     tbody {
       border-color: #663265;
 
+      &:before, &:after {
+        content: '';
+        display: block;
+        height: 10px;
+      }
+
       tr {
         th, td {
           border-top: none;
@@ -22,6 +29,10 @@
 
         td {
           text-align: center;
+        }
+
+        .original-price {
+          text-decoration: line-through;
         }
       }
     }
