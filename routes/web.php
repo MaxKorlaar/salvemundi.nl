@@ -14,6 +14,8 @@
     Route::get('/', 'IndexController@getHomePage')->name('home');
 
     Route::get('merchandise', 'MerchandiseController@getMerchandise')->name("merchandise");
+    Route::get('merchandise/vests', 'MerchandiseController@getVests')->name("merchandise.vests");
+    Route::get('merchandise/shirts', 'MerchandiseController@getShirts')->name("merchandise.shirts");
     /*
      * Commissies
      */

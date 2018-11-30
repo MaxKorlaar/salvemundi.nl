@@ -10,24 +10,23 @@ return [
     ],
     'collections' => [
         'title' => "Bekijk hieronder de Salve Mundi merchandise collectie",
-        'items' => [
-            "vest" => [
-                "name" => "Vest",
-                "description" => "Je hebt ze vast en zeker al een keer voorbij zien komen. De eerste editie van het Salve Mundi vest!",
-                "image_url" => "images/merch/vest.jpg",
-                "price" => "De prijs van het vest is €29,-",
-                "bullet_information" => [
-                    "Uniek ontwerp!",
-                    "Lekker zacht en warm",
-                    "Model voor zowel dames als heren!",
-                    "100% katoen???",
-                ],
-                "check_size" => "Bekijk hieronder of jouw maat nog beschikbaar is en bestel het verst!"
+    ],
+    'items' => [
+        "vests" => [
+            "name" => "Vest",
+            "description" => "Je hebt ze vast en zeker al een keer voorbij zien komen. De eerste editie van het Salve Mundi vest!",
+            "image_url" => "images/merch/vest.png",
+            "price" => "De prijs van het vest is €29,-",
+            "bullet_information" => [
+                "Uniek ontwerp!",
+                "Lekker zacht en warm",
+                "Model voor zowel dames als heren!",
+                "100% katoen???",
             ],
-            "shirt" => [
-                "name" => "Tshirt"
-            ]
+            "check_size" => "Bekijk hieronder of jouw maat nog beschikbaar is en bestel het verst!"
+        ],
+        "shirts" => [
+            "name" => "Tshirt"
         ]
     ]
-
 ];
