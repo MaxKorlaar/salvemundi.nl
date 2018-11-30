@@ -60,6 +60,13 @@
         /**
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
+        public function getExternalAffairsPage() {
+            return view('committees.external_affairs');
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
         public function getVacanciesPage() {
             return view('committees.vacancies');
         }

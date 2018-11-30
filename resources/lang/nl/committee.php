@@ -29,18 +29,6 @@
                     'image'   => 'Rex.jpg'
                 ],
                 [
-                    'name'    => 'Carmen Bijlaart',
-                    'profile' => 'ICT & Media Design',
-                    'text'    => 'Het bestuur staande 3 sterk zocht een vrouwelijke toevoeging aan het team. Het liefste eentje met een sterke mening en een zielskracht om haar dromen werkelijkheid te maken. Niemand past dit plaatje beter als Carmen dat doet. Carmen kwam bij de vereniging om de opleiding leuker te maken voor het vrouwelijke geslacht, bij ICT de overduidelijke minderheid. Deze minderheid zorgt ervoor dat de meeste dames vaak mannelijke vrienden hebben, wat helemaal niet erg is – leuk juist. Maar toch is het leuk om terug te kunnen vallen om mensen die je lijken te begrijpen voordat je iets überhaupt hebt uitgelegd. Carmen heeft aangegeven zich te willen inzetten op een beeld van ICT\'ers dat niet meteen schreeuwt "man". Carmen staat er dan ook om bekend om veel initiatief te nemen voor iets wat zij erg graag wil doen.',
-                    'image'   => 'Carmen.jpg'
-                ],
-                [
-                    'name'    => 'Chiel Schrijvers',
-                    'profile' => 'ICT & Business',
-                    'text'    => 'Chiel kwam niet lang na Carmen bij het bestuur, via de feest/introcommissie waar Luuk de leiding in nam. Als medeverantwoordelijke voor de geweldige intro van 2017 had Luuk zijn potentieel al lang gezien en deze gedeeld met het huidige bestuur. Toen tijdens het maken van de bestuur foto\'s Chiel werd gevraagd om er bij te staan, lichtte hij op als een lampje. Sindsdien is hij verantwoordelijk geweest voor de mediacommissie waarin hij de moeilijke taak heeft om studenten te motiveren voor vrijwilligerswerk. Chiel staat altijd open voor wat nieuws en verbindt goed met de studenten waarvan je in eerste instantie nooit zou zeggen dat het ICT\'ers zouden zijn. Met zijn lichaam van een bodybuilder maar een heel groot hart is Chiel een gedreven en onmisbaar bestuurslid.',
-                    'image'   => 'Chiel.jpg'
-                ],
-                [
                     'name'    => 'Mitchell Vermeulen',
                     'profile' => 'ICT & Software',
                     'text'    => 'Dit lid is tijdens het schrijven van deze tekst pas net een bestuurslid. Zijn stuk tekst zal dus nog tijd nodig hebben om te veranderen van beloften naar daden. Deze beloften zijn echter goed geplaatst en passen geweldig bij Salve Mundi. Aangevende: "Al voordat ik mijn eerste lesdag had gehad wist ik dat ik iets wilde doen bij een vereniging." Hij wil zich vooral bezighouden met de sociale taken. Eerder al aangegeven te hebben dat hij bij de feestcommissie wilde is zijn inzet en motivatie al duidelijk. We kijken er naar uit om zijn werk te zien.',
@@ -139,18 +127,24 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'url'     => '//mvdk.eu/'
                 ],
                 [
+                    'name'    => 'Bart van Lier',
+                    'profile' => 'ICT & Media Design',
+                    'text'    => '',
+                    'image'   => 'Bart.jpg',
+                ], [
+                    'name'    => 'Niek van Gogh',
+                    'profile' => 'ICT & Software',
+                    'text'    => '',
+                    'image'   => 'Niek.jpg',
+                ],
+                [
                     'name'    => 'Ruud Vissers',
                     'profile' => 'ICT & Media Design',
                     'text'    => 'Studeert momenteel ICT & Media Design. Mede verantwoordelijk voor de website maar ook voor de fotografie.',
                     'image'   => 'Ruud.jpg',
                     'url'     => '//ruudvissers.nl/werkportfolio/'
                 ],
-                [
-                    'name'    => 'Niek van Gogh',
-                    'profile' => 'ICT & Software',
-                    'text'    => '',
-                    'image'   => 'Niek.jpg',
-                ],
+
                 [
                     'name'    => 'Kim van der Meulen',
                     'profile' => 'ICT & Software',
@@ -168,12 +162,6 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'profile' => 'ICT & Business',
                     'text'    => '',
                     'image'   => 'Youp.jpg',
-                ],
-                [
-                    'name'    => 'Bart van Lier',
-                    'profile' => 'ICT & Meda Design',
-                    'text'    => '',
-                    'image'   => 'Bart.jpg',
                 ]
 
             ]
@@ -210,55 +198,6 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                 ],
             ]
         ],
-        'women'            => [
-            'title'          => 'Damescommissie',
-            'about_text'     => [
-                'Hallo alle ICT-meiden!',
-                'Wij zijn de Damescommissie die vertegenwoordigd wordt door Femke, Carmen, Nina, Ilse, Noesch, Michelle en Iris.',
-                'Waarom een damescommissie?
-Heb jij soms ook het gevoel dat je wat girltalk mist op de studie?
-Ben jij ook een van de weinige meiden uit jouw klas? 
-Mis jij de gezelligheid van meiden onderling?',
-                'Dan ben je bij ons bij het juiste adres. Wij organiseren namelijk leuke activiteiten en uitstapjes speciaal en alleen voor de dames! Denk hierbij aan Netflix-avonden, high tea of gewoon lekker wat bijpraten. Natuurlijk kunnen we met de input van jullie altijd nog op nieuwe ideeën komen.',
-                'We hebben deze commissie opgezet, omdat we het tijd vonden dat de meiden die er zijn, ook eens bij elkaar kunnen komen. Er zijn geen verplichtingen, alles mag, het gaat vooral om de gezelligheid en het maken van evt. nieuwe vriendinnen.',
-                'Natuurlijk kun je ook bij ons terecht als je vragen hebt over de studie of andere zaken. Je kan altijd bij ons aankloppen.'
-            ],
-            'world'          => 'Who run the world?',
-            'girls'          => 'Girls',
-            'meet_the_women' => 'Maak kennis met de dames',
-            'members'        => [
-                [
-                    'name'    => 'Femke',
-                    'profile' => 'ICT & Media Design',
-                    'image'   => 'Femke.jpg',
-                ],
-                [
-                    'name'    => 'Carmen',
-                    'profile' => 'ICT & Media Design',
-                    'image'   => 'Carmen.jpeg',
-                ],
-                [
-                    'name'    => 'Ilse',
-                    'profile' => 'ICT & Media Design',
-                    'image'   => 'Ilse.jpg',
-                ],
-                [
-                    'name'    => 'Nina',
-                    'profile' => 'ICT & Media Design',
-                    'image'   => 'Nina.jpeg',
-                ],
-                [
-                    'name'    => 'Noesch',
-                    'profile' => 'ICT',
-                    'image'   => 'Noesch.PNG',
-                ],
-                [
-                    'name'    => 'Iris',
-                    'profile' => 'ICT',
-                    'image'   => 'Iris.jpg',
-                ],
-            ]
-        ],
         'study'            => [
             'title'         => 'Studiecommissie',
             'heading'       => '',
@@ -287,33 +226,54 @@ Mis jij de gezelligheid van meiden onderling?',
             'title_short'   => 'Ledenzaken',
             'heading'       => '',
             'about_text'    => [
-                ''
+                'De Commissie van Ledenzaken is verantwoordelijk voor het bemiddelen bij geschillen binnen de studievereniging.',
+                'Ledenzaken is een plek waar alle leden hun ei kwijt kunnen. Dit binnen een vertrouwde en onpartijdige omgeving waar privacy gewaarborgd wordt.',
+                'Momenteel met een klein team, zorgt de commissie ervoor dat iedereen zich prettig kan voelen binnen de vereniging.'
             ],
             'meet_the_team' => 'Een kijkje achter de beeldschermen',
             'members'       => [
                 [
-                    'name'    => 'Lloyd van Zaalen',
-                    'profile' => 'ICT & Software',
-                    'text'    => 'placeholder',
-                    'image'   => 'placeholder.jpg'
-                ],
-                [
-                    'name'    => 'Lucas Beekmans',
-                    'profile' => 'ICT & Media Design',
-                    'text'    => 'placeholder',
-                    'image'   => 'placeholder.jpg'
-                ],
-                [
                     'name'    => 'Olivier Bouchoms',
                     'profile' => 'ICT & Software',
                     'text'    => 'placeholder',
-                    'image'   => 'placeholder.jpg'
+                    'image'   => 'Olivier_2.jpg'
                 ],
                 [
-                    'name'    => 'Noesch Bonne',
-                    'profile' => 'ICT',
+                    'name'    => 'Lucas Beekmans',
+                    'profile' => 'ICT & Media',
                     'text'    => 'placeholder',
-                    'image'   => 'Noesch.PNG'
+                    'image'   => 'Lucas.jpg'
+                ],
+
+            ]
+        ],
+        'external_affairs' => [
+            'title'         => 'Commissie van externe betrekkingen',
+            'title_short'   => 'Externe betrekkingen',
+            'heading'       => '',
+            'about_text'    => [
+                'De commissie externe betrekkingen onderhoudt de contacten met alle bedrijven en partners waar wij als studievereniging mee te maken kunnen krijgen. Denk aan Fontys zelf, maar ook bijvoorbeeld de 100+ ICT-partners van Fontys Hogescholen ICT.',
+                'Deze commissie zorgt ervoor dat iedereen elkaar weet te vinden en weet wat we aan elkaar hebben.'
+            ],
+            'meet_the_team' => 'Dit zijn de kletskousen',
+            'members'       => [
+                [
+                    'name'    => 'Arno van Kessel',
+                    'profile' => 'ICT & Software',
+                    'text'    => '',
+                    'image'   => 'Arno.jpg'
+                ],
+                [
+                    'name'    => 'Mohammed Mighiss',
+                    'profile' => 'ICT & Software',
+                    'text'    => '',
+                    'image'   => 'Mohammed.jpg'
+                ],
+                [
+                    'name'    => 'Mitchell Vermeulen',
+                    'profile' => 'ICT & Software',
+                    'text'    => '',
+                    'image'   => 'Mitchell.jpg'
                 ]
             ]
         ],

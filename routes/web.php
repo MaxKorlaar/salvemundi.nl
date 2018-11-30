@@ -25,6 +25,7 @@
         Route::get('dames', 'CommitteeController@getWomenPage')->name('women');
         Route::get('studie', 'CommitteeController@getStudyPage')->name('study');
         Route::get('ledenzaken', 'CommitteeController@getInternalAffairsPage')->name('internal_affairs');
+        Route::get('externe-betrekkingen', 'CommitteeController@getExternalAffairsPage')->name('external_affairs');
     });
     Route::get('nieuwe-commissieleden', 'CommitteeController@getVacanciesPage')->name('vacancies');
 
