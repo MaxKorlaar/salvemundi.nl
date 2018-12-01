@@ -61,7 +61,7 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 @-ms-viewport {
@@ -2275,11 +2275,6 @@ pre code {
 }
 
 .form-control::-webkit-input-placeholder {
-  color: #868E96;
-  opacity: 1;
-}
-
-.form-control:-ms-input-placeholder {
   color: #868E96;
   opacity: 1;
 }
@@ -11863,7 +11858,7 @@ button:active {
 .committee .members .member .inner .image .img {
   -webkit-transition: .2s ease;
   transition: .2s ease;
-  background-color: #b54fb3;
+  background-color: #FFFFFF;
   display: block;
   background-blend-mode: multiply;
   height: 100%;
@@ -11888,12 +11883,6 @@ button:active {
 .committee .members .member:focus .inner .content p,
 .committee .members .member:active .inner .content p {
   opacity: 1;
-}
-
-.committee .members .member:hover .inner .image .img,
-.committee .members .member:focus .inner .image .img,
-.committee .members .member:active .inner .image .img {
-  background-color: #FFFFFF;
 }
 
 [v-cloak] {

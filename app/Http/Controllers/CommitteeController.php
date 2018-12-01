@@ -39,8 +39,8 @@
         /**
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function getWomenPage() {
-            return view('committees.women');
+        public function getActivityPage() {
+            return view('committees.activity');
         }
 
         /**
@@ -55,6 +55,27 @@
          */
         public function getInternalAffairsPage() {
             return view('committees.internal_affairs');
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getExternalAffairsPage() {
+            return view('committees.external_affairs');
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getAlphaCentauriPage() {
+            return view('committees.alpha_centauri');
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getTreasurePage() {
+            return view('committees.treasure');
         }
 
         /**
