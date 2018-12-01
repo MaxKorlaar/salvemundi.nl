@@ -305,7 +305,7 @@ en Onderwijs gerelateerde activiteiten',
         ],
         'external_affairs' => [
             'title'         => 'Commissie van externe betrekkingen',
-            'title_short'   => 'Externe betrekkingen',
+            'title_short'   => 'Extern',
             'heading'       => '',
             'about_text'    => [
                 'De commissie externe betrekkingen onderhoudt de contacten met alle bedrijven en partners waar wij als studievereniging mee te maken kunnen krijgen. Denk aan Fontys zelf, maar ook bijvoorbeeld de 100+ ICT-partners van Fontys Hogescholen ICT.',
@@ -373,7 +373,7 @@ en Onderwijs gerelateerde activiteiten',
         ],
         'treasure'         => [
             'title'         => 'Kascommissie',
-            'title_short'   => 'Kas',
+            'title_short'   => 'Kascommissie',
             'about_text'    => [
                 'De kascommissie is verantwoordelijk voor het controleren van de financiële administratie en de financiële positie van Salve Mundi.'
             ],
