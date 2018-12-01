@@ -22,9 +22,12 @@
         Route::get('feest', 'CommitteeController@getPartyPage')->name('party');
         Route::get('media', 'CommitteeController@getMediaPage')->name('media');
         Route::get('kamp', 'CommitteeController@getCampingPage')->name('camping');
-        Route::get('dames', 'CommitteeController@getWomenPage')->name('women');
+        Route::get('activiteiten', 'CommitteeController@getActivityPage')->name('activity');
         Route::get('studie', 'CommitteeController@getStudyPage')->name('study');
         Route::get('ledenzaken', 'CommitteeController@getInternalAffairsPage')->name('internal_affairs');
+        Route::get('externe-betrekkingen', 'CommitteeController@getExternalAffairsPage')->name('external_affairs');
+        Route::get('alpha-centauri', 'CommitteeController@getAlphaCentauriPage')->name('alpha_centauri');
+        Route::get('kas', 'CommitteeController@getTreasurePage')->name('treasure');
     });
     Route::get('nieuwe-commissieleden', 'CommitteeController@getVacanciesPage')->name('vacancies');
 
