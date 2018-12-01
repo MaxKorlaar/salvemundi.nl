@@ -33,6 +33,24 @@
                     'profile' => 'ICT & Software',
                     'text'    => 'Dit lid is tijdens het schrijven van deze tekst pas net een bestuurslid. Zijn stuk tekst zal dus nog tijd nodig hebben om te veranderen van beloften naar daden. Deze beloften zijn echter goed geplaatst en passen geweldig bij Salve Mundi. Aangevende: "Al voordat ik mijn eerste lesdag had gehad wist ik dat ik iets wilde doen bij een vereniging." Hij wil zich vooral bezighouden met de sociale taken. Eerder al aangegeven te hebben dat hij bij de feestcommissie wilde is zijn inzet en motivatie al duidelijk. We kijken er naar uit om zijn werk te zien.',
                     'image'   => 'Mitchell.jpg'
+                ],
+                [
+                    'name'    => 'Ricky Muijters',
+                    'profile' => 'ICT & Software',
+                    'text'    => 'Ricky is pas kort lid van de vereniging. Na mee gedaan te hebben als deelnemer van de introductie van 2018 ging hij al snel op weg naar het worden van bestuurslid. Met zijn verse blik op de studie, en zijn nesteling binnen de eerstejaars is een vers lid binnen het bestuur nooit verkeerd. Zijn natuurlijk charisma was genoeg om de leden te overtuigen tijdens de ALV. Hij geeft aan een hoge inzet te hebben om hard te gaan werken.',
+                    'image'   => 'Ricky.jpg'
+                ],
+                [
+                    'name'    => 'Bastiaan Verhaar',
+                    'profile' => 'ICT & Software',
+                    'text'    => 'Bastiaan Verhaar is pas sinds kort een student op ICT, maar heeft al ervaring op het gebied van penningmeesterschap. Zelfs in zijn persoonlijke kringen is hij altijd bezig met de geldzaken als het gaat over vakanties en uitjes. Hij is iemand die gefocust op geld, maar vooral de duidelijkheid van de zaken er omheen. Vanaf het moment dat Bastiaan toegang kreeg tot de financiën werd er met een kritische blik gekeken naar de huidige stand van zaken. Direct had Bastiaan opmerkingen over mogelijke verbeteringen. Zijn scherpe blik op geldzaken maakt hem de juiste kandidaat voor de rol als nieuwe penningmeester binnen de studievereniging.',
+                    'image'   => 'Bastiaan.jpg'
+                ],
+                [
+                    'name'    => 'Joshua van Gompel',
+                    'profile' => 'ICT & Media Design',
+                    'text'    => 'Als een van de eerste leden is Joshua er al heel lang bij. Hij was aanwezig als organisator van de eerste georganiseerde introductie in 2017 en is hij al lang actief voor de vereniging met hart en ziel. Na 1,5 jaar gezocht te hebben naar zijn plek, heeft Joshua toch besloten om een functie binnen het bestuur aan te nemen. Hij neemt de plek als vicevoorzitter waarmee hij er voor gaat zorgen dat de commissies altijd met de juiste visie van het bestuur aan de slag gaan. Daarnaast helpt hij de voorzitter met het duidelijk maken van de punten. Joshua is een goede aanwinst voor het nieuwe bestuur.',
+                    'image'   => 'Joshua_2.jpg'
                 ]
             ]
         ],
@@ -53,40 +71,47 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'image'   => 'Luuk.jpg'
                 ],
                 [
-                    'name'    => 'Chiel Schrijvers',
-                    'profile' => 'ICT & Business',
-                    'text'    => 'Chiel word vaak gezien als de rechterhand van de voorzitter, door het feit dat veel van de belangrijke taken zoals contact met de buitenwereld en het nakijken van facturen bij hem terecht komen. Taken die de voorzitter eigenlijk zou moeten doen, maar welke hij niet kan doen. Zijn focus ligt veelal bij de intro en de zaken eromheen.',
-                    'image'   => 'Chiel.jpg'
-                ],
-                [
                     'name'    => 'Joshua van Gompel',
                     'profile' => 'ICT & Media Design',
                     'text'    => 'Joshua is de creatieveling van de commissie als de enige met de studierichting ICT & Media Design. Ideeën goed of slecht: hij heeft ze allemaal. In een gemiddelde vergadering worden 80% van zijn ideeën uitgelachen of meteen weggeduwd. Maar de 20% die overblijft is verantwoordelijk voor de leukste dingen die Salve Mundi ooit heeft gedaan. Zijn out-of-the-box thinking heeft Salve Mundi een groot beentje voor gegeven als het gaat om activiteiten en ook hij is onmisbaar.',
-                    'image'   => 'Joshua.jpg'
+                    'image'   => 'Joshua_2.jpg'
                 ],
                 [
                     'name'    => 'Stefan Janssen',
                     'profile' => 'ICT & Business',
                     'text'    => 'Stefan is een van de latere toevoegingen tot het team. Zijn lidmaatschap kwam samen met zijn connecties die hij had bij de huidige stamkroeg: Villa Fiësta. De onderhandelingen zijn destijds ook grotendeels door hem uitgevoerd. Zijn connectie heeft ons de geweldige deal gegeven die we daar hebben, en een hoop werk van onze schouders afgenomen. Stefan is dan ook vrijwel alleen verantwoordelijk voor activiteiten in de kroeg. De beslissingen nemen we samen, de uitvoering doet hij.',
-                    'image'   => 'Stefan.jpg'
+                    'image'   => 'Stefan_2.jpg'
                 ],
                 [
                     'name'    => 'Gijs Hendrikx',
                     'profile' => 'ICT & Business',
                     'text'    => 'Gijs is de eigenhuis-boekhouder van de commissie. Hij heeft misschien nog een beetje training nodig, maar hij vraagt wel precies wat je wilt. De meeste studenten hebben 3 werkdagen bedenktijd nodig voor het verwerken van feedback. Gijs niet, Gijs heeft het af voordat jij klaar bent met het geven van de feedback. Hij is stiller dan ons gemiddelde lid, wat helemaal niet moeilijk of erg is. Maar de meeste ideeën waar hij mee komt zijn goed gegrond en realistisch. Als het nieuwste lid hebben de andere leden hem zo ver gekregen om een hele nacht een paardenmasker te dragen. Hierbij de feestcommissie-ontgroening geboren: draag een masker met ontzettend slecht zicht tijdens het eerste feest van jouw lidmaatschap.',
-                    'image'   => 'Gijs.png'
+                    'image'   => 'GijsH.jpg'
                 ],
                 [
                     'name'    => 'Giovanni Kint',
                     'profile' => 'ICT & Software',
-                    'text'    => '',
-                    'image'   => 'Giovanni Kint.jpeg',
+                    'image'   => 'Giovanni.jpg',
                 ],
                 [
                     'name'    => 'Sven de Vries',
                     'profile' => 'ICT & Software',
-                    'text'    => '',
                     'image'   => '18025 Sven de Vries.jpg',
+                ],
+                [
+                    'name'    => 'Lucas Beekmans',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => 'Lucas.jpg',
+                ],
+                [
+                    'name'    => 'Gijs Zwegers',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'GijsZ.jpg',
+                ],
+                [
+                    'name'    => 'Britt van Amelsfoort',
+                    'profile' => 'ICT & Software en Technology',
+                    'image'   => 'Britt.jpg',
                 ]
             ]
 
@@ -200,25 +225,56 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
         ],
         'study'            => [
             'title'         => 'Studiecommissie',
-            'heading'       => '',
             'about_text'    => [
-                ''
+                'Een studievereniging kent 3 uitgangspunten, namelijk:
+Kennis gerelateerde activiteiten
+Gezelligheid gerelateerde activiteiten
+en Onderwijs gerelateerde activiteiten',
+                'Voor onderwijs gerelateerde activiteiten zijn wij de studiecommissie en houden wij ons vooral bezig met bijlessen, het verwelkomen van nieuwe studenten, studieondersteuning en verder alles wat intern op Fontys aangeboden wordt en kan worden.',
+                'Het streven van de studiecommissie is vooral om in samenwerking met school zo veel mogelijk draagvlak te bieden voor de medestudent om zo de semesters te behalen.'
             ],
             'meet_the_team' => 'Een kijkje achter de beeldschermen',
             'members'       => [
                 [
                     'name'    => 'Mohammed Mighiss',
                     'profile' => 'ICT & Technology',
-                    'text'    => 'placeholder',
                     'image'   => 'Mohammed.jpg'
                 ],
-
+                [
+                    'name'    => 'Vincent Venhuizen',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => 'Vincent.jpg'
+                ],
                 [
                     'name'    => 'Arno van Kessel',
-                    'profile' => 'ICT',
-                    'text'    => 'placeholder',
-                    'image'   => 'placeholder.jpg'
-                ]
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Arno.jpg'
+                ],
+                [
+                    'name'    => 'Karin Nguyen',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Karin.jpg'
+                ],
+                [
+                    'name'    => 'Robin Witmer',
+                    'profile' => 'ICT & Technology',
+                    'image'   => 'RobinW.jpg'
+                ],
+                [
+                    'name'    => 'Olivier Bouchoms',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Olivier_2.jpg'
+                ],
+                [
+                    'name'    => 'Wessel de Lorijn',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => 'Wessel.jpg'
+                ],
+                [
+                    'name'    => 'Roel Kuster',
+                    'profile' => 'ICT & Technology',
+                    'image'   => 'Roel.jpg'
+                ],
             ]
         ],
         'internal_affairs' => [
@@ -275,6 +331,150 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'text'    => '',
                     'image'   => 'Mitchell.jpg'
                 ]
+            ]
+        ],
+        'activity'         => [
+            'title'         => 'Activiteitencommissie',
+            'title_short'   => 'Activiteiten',
+            'about_text'    => [
+                'De activiteitencommissie verzorgt bijna alle activiteiten buiten Villa Fiesta en kamp om. Je moet bijvoorbeeld denken aan filmavonden, karten, spelletjes avond, lan party’s en nog veel meer! Leuke activiteiten die wij samen met de leden willen delen.',
+                'Wij organiseren deze activiteiten om de band tussen studenten te versterken en zo een hechtere groep te kunnen vormen, maar ook om nieuwe vrienden te kunnen maken!',
+                'Mocht je nog leuke activiteiten weten die je met ons wil delen, stuur een mailtje naar activiteiten@salvemundi.nl, dan gaan we het er over hebben en misschien zie je jouw activiteit terug!'
+            ],
+            'meet_the_team' => 'De actievelingen',
+            'members'       => [
+                [
+                    'name'    => 'Mitchell Vermeulen',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Mitchell.jpg'
+                ],
+                [
+                    'name'    => 'Louis Verbeet',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Louis.jpg'
+                ],
+                [
+                    'name'    => 'Ella Zuidema',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Ella.jpg'
+                ],
+                [
+                    'name'    => 'Robin Blom',
+                    'profile' => 'ICT & Software en Business',
+                    'image'   => 'RobinB.jpg'
+                ],
+                [
+                    'name'    => 'Alex van Dijk',
+                    'profile' => 'ICT & Software en Media Design',
+                    'image'   => 'Alex.jpg'
+                ],
+
+            ]
+        ],
+        'treasure'         => [
+            'title'         => 'Kascommissie',
+            'title_short'   => 'Kas',
+            'about_text'    => [
+                'De kascommissie is verantwoordelijk voor het controleren van de financiële administratie en de financiële positie van Salve Mundi.'
+            ],
+            'meet_the_team' => 'Ontmoet de leden',
+            'members'       => [
+                [
+                    'name'    => 'Rex Treurniet',
+                    'profile' => 'ICT & Business',
+                    'image'   => 'Rex.jpg'
+                ],
+                [
+                    'name'    => 'Bastiaan Verhaar',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Bastiaan.jpg'
+                ],
+                [
+                    'name'    => 'Daniël Scholte',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Daniel.jpg'
+                ],
+                [
+                    'name'    => 'Ella Zuidema',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Ella.jpg'
+                ],
+                [
+                    'name'    => 'Gijs Hendrikx',
+                    'profile' => 'ICT & Business',
+                    'image'   => 'GijsH.jpg'
+                ],
+                [
+                    'name'    => 'Luuk Lenaers',
+                    'profile' => 'ICT & Business',
+                    'image'   => 'Luuk.jpg'
+                ],
+                [
+                    'name'    => 'Mohammed Mighiss',
+                    'profile' => 'ICT & Technology',
+                    'image'   => 'Mohammed.jpg'
+                ],
+                [
+                    'name'    => 'Vincent Venhuizen',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => 'Vincent.jpg'
+                ],
+                [
+                    'name'    => 'Youp Jansen',
+                    'profile' => 'ICT & Business',
+                    'image'   => 'Youp.jpg'
+                ],
+            ]
+        ],
+        'alpha_centauri'   => [
+            'title'         => 'Alpha Centauri',
+            'title_short'   => 'Alpha Centauri',
+            'about_text'    => [
+                'Alpha Centauri is opgericht door een groep vrienden die graag meer willen bereiken in hun studie. Deze commissie richt zich op het vergaren en delen van kennis buiten het curriculum. Door middel van hackathons, workshops, lezingen en bedrijfsbezoeken willen we voor zowel Salve Mundi leden als studenten van FHICT die extra uitdaging zoeken. Hier is ook de naam van deze commissie van afgeleid; het Alpha Centauri-stelsel is het dichtstbijzijnde sterrenstelsel vanaf de zon en wordt gezien als de grootste volgende uitdaging voor de mensheid om te bereiken.'
+            ],
+            'meet_the_team' => 'Ontmoet de leden',
+            'members'       => [
+                [
+                    'name'    => 'Jeffrey Venerius',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Jeffrey.jpg'
+                ],
+                [
+                    'name'    => 'Mike Kotte',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Mike.jpg'
+                ],
+                [
+                    'name'    => 'Daniël Scholte',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Daniel.jpg'
+                ],
+                [
+                    'name'    => 'Nick Huegen',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Nick.jpg'
+                ],
+                [
+                    'name'    => 'Chiem Janssen',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Chiem.jpg'
+                ],
+                [
+                    'name'    => 'Toon van Strijp',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Toon.jpg'
+                ],
+                [
+                    'name'    => 'Kyle Ritchi',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Kyle.jpg'
+                ],
+                [
+                    'name'    => 'Bram Odenthal',
+                    'profile' => 'ICT & Technology',
+                    'image'   => 'Bram.jpg'
+                ],
+
             ]
         ],
         'vacancies'        => [

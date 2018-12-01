@@ -1,0 +1,38 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('committee.alpha_centauri.title') }}{% endblock %}
+{% block content %}
+    <div class="content">
+        <main class="committee alpha_centauri-committee">
+            <div class="container">
+                <h1>{{ trans('committee.alpha_centauri.title') }}</h1>
+                <section>
+                    {% for text in trans('committee.alpha_centauri.about_text') %}
+                        <p>{{ text|nl2br }}</p>
+                    {% endfor %}
+                </section>
+            </div>
+            <section class="members">
+                <div class="container">
+                    <h2>{{ trans('committee.alpha_centauri.meet_the_team') }}</h2>
+                    <div class="grid">
+                        {% for member in trans('committee.alpha_centauri.members') %}
+                            <div class="member has-image" id="{{ member.name|str_slug }}">
+                                <div class="inner">
+                                    <div class="content">
+                                        <h4>{{ member.name }}</h4>
+                                        <h5>{{ member.profile }}</h5>
+                                    </div>
+                                    <div class="image">
+                                        <div class="img" style="background-image: url('{{ asset('images/commissies/alpha_centauri/' ~ member.image) }}');">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+{% endblock %}
