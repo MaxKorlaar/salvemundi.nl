@@ -123,9 +123,9 @@
 
     });
 
-    Route::get('discounts', 'DiscountController@getDefaultView')->name('discounts.index');
-    Route::get('discounts/villa', 'DiscountController@getVillaView')->name('discounts.villa');
-    Route::get('discounts/happi', 'DiscountController@getHappiView')->name('discounts.happi');
+    Route::get('korting', 'DiscountController@getDefaultView')->name('discounts.index');
+    Route::get('korting/villa-fiesta', 'DiscountController@getVillaView')->name('discounts.villa_fiesta');
+    Route::get('korting/happii', 'DiscountController@getHappiView')->name('discounts.happii');
 
     Route::get('drive', 'IndexController@getDriveRedirect');
 
