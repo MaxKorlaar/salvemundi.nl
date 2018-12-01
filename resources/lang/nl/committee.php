@@ -227,13 +227,13 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
             'title'         => 'Studiecommissie',
             'about_text'    => [
                 'Een studievereniging kent 3 uitgangspunten, namelijk:
-Kennis gerelateerde activiteiten
-Gezelligheid gerelateerde activiteiten
-en Onderwijs gerelateerde activiteiten',
+kennis gerelateerde activiteiten;
+gezelligheid gerelateerde activiteiten;
+en onderwijs gerelateerde activiteiten',
                 'Voor onderwijs gerelateerde activiteiten zijn wij de studiecommissie en houden wij ons vooral bezig met bijlessen, het verwelkomen van nieuwe studenten, studieondersteuning en verder alles wat intern op Fontys aangeboden wordt en kan worden.',
                 'Het streven van de studiecommissie is vooral om in samenwerking met school zo veel mogelijk draagvlak te bieden voor de medestudent om zo de semesters te behalen.'
             ],
-            'meet_the_team' => 'Een kijkje achter de beeldschermen',
+            'meet_the_team' => 'De helpende handjes',
             'members'       => [
                 [
                     'name'    => 'Mohammed Mighiss',
@@ -280,13 +280,12 @@ en Onderwijs gerelateerde activiteiten',
         'internal_affairs' => [
             'title'         => 'Commissie van ledenzaken',
             'title_short'   => 'Ledenzaken',
-            'heading'       => '',
             'about_text'    => [
-                'De Commissie van Ledenzaken is verantwoordelijk voor het bemiddelen bij geschillen binnen de studievereniging.',
+                'De commissie van ledenzaken is verantwoordelijk voor het bemiddelen bij geschillen binnen de studievereniging.',
                 'Ledenzaken is een plek waar alle leden hun ei kwijt kunnen. Dit binnen een vertrouwde en onpartijdige omgeving waar privacy gewaarborgd wordt.',
                 'Momenteel met een klein team, zorgt de commissie ervoor dat iedereen zich prettig kan voelen binnen de vereniging.'
             ],
-            'meet_the_team' => 'Een kijkje achter de beeldschermen',
+            'meet_the_team' => 'De vertrouwenspersonen',
             'members'       => [
                 [
                     'name'    => 'Olivier Bouchoms',
@@ -296,17 +295,15 @@ en Onderwijs gerelateerde activiteiten',
                 ],
                 [
                     'name'    => 'Lucas Beekmans',
-                    'profile' => 'ICT & Media',
+                    'profile' => 'ICT & Media Design',
                     'text'    => 'placeholder',
                     'image'   => 'Lucas.jpg'
                 ],
-
             ]
         ],
         'external_affairs' => [
             'title'         => 'Commissie van externe betrekkingen',
             'title_short'   => 'Extern',
-            'heading'       => '',
             'about_text'    => [
                 'De commissie externe betrekkingen onderhoudt de contacten met alle bedrijven en partners waar wij als studievereniging mee te maken kunnen krijgen. Denk aan Fontys zelf, maar ook bijvoorbeeld de 100+ ICT-partners van Fontys Hogescholen ICT.',
                 'Deze commissie zorgt ervoor dat iedereen elkaar weet te vinden en weet wat we aan elkaar hebben.'
@@ -377,7 +374,7 @@ en Onderwijs gerelateerde activiteiten',
             'about_text'    => [
                 'De kascommissie is verantwoordelijk voor het controleren van de financiële administratie en de financiële positie van Salve Mundi.'
             ],
-            'meet_the_team' => 'Ontmoet de leden',
+            'meet_the_team' => 'Ontmoet de penningmeesters',
             'members'       => [
                 [
                     'name'    => 'Rex Treurniet',
