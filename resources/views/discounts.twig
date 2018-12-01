@@ -1,0 +1,53 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('discounts.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="discounts">
+            <h1>{{ trans('discounts.title') }}</h1>
+            <p>{{ trans('discounts.intro') }}</p>
+            <h3>{{ trans('discounts.action_text') }}</h3>
+
+            <div class="my-4 buttons">
+                <a class="button" href="{{ route('discounts.villa_fiesta') }}">
+                    {{ trans('discounts.villa_fiesta.title') }}
+                </a>
+                <a class="button" href="{{ route('discounts.happii') }}">
+                    {{ trans('discounts.happii.title') }}
+                </a>
+            </div>
+
+            {% if discounts is not null %}
+                <h3>{{ title }}</h3>
+                <table class="table table-discounts">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"><img alt="Logo {{ title }}" src="{{ asset(image_url) }}"/></th>
+                            <th scope="col"><img alt="Logo Salve Mundi" src="{{ asset('images/logo_paars.svg') }}"/></th>
+                        </tr>
+                    </thead>
+                    {% for discount in discounts %}
+                        <tbody>
+                            {% for key, value in discount %}
+                                <tr>
+                                    <th scope="row">{{ key }}</th>
+                                    <td class="original-price">&euro;{{ value[0] }}</td>
+                                    <td>&euro;{{ value[1] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    {% endfor %}
+                </table>
+            {% endif %}
+            {% if text is not null %}
+                <h3>{{ title }}</h3>
+                <img alt="Logo {{ title }}" class="right" src="{{ asset(image_url) }}"/>
+                {% for content in text %}
+                    <p>{{ content }}</p>
+                {% endfor %}
+            {% endif %}
+
+
+        </main>
+    </div>
+{% endblock %}

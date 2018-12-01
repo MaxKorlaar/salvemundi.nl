@@ -11060,10 +11060,54 @@ footer .container .links button:active {
   background: #f8d7da;
 }
 
-.member.about-me .paid-by {
-  text-transform: uppercase;
-  color: #495057;
-  font-size: .8rem;
+.discounts .buttons .button {
+  margin-right: 1rem;
+}
+
+.discounts img {
+  width: 120px;
+}
+
+.discounts img.right {
+  float: right;
+}
+
+.discounts table.table-discounts {
+  width: 500px;
+}
+
+.discounts table.table-discounts thead {
+  border: 0;
+}
+
+.discounts table.table-discounts thead th {
+  border: 0;
+  text-align: center;
+}
+
+.discounts table.table-discounts tbody {
+  border-color: #663265;
+}
+
+.discounts table.table-discounts tbody:before,
+.discounts table.table-discounts tbody:after {
+  content: '';
+  display: block;
+  height: 10px;
+}
+
+.discounts table.table-discounts tbody tr th,
+.discounts table.table-discounts tbody tr td {
+  border-top: none;
+  padding: 0;
+}
+
+.discounts table.table-discounts tbody tr td {
+  text-align: center;
+}
+
+.discounts table.table-discounts tbody tr .original-price {
+  text-decoration: line-through;
 }
 
 .error-page body {
@@ -11161,6 +11205,12 @@ footer .container .links button:active {
 
 .warning .button-container {
   margin-top: 1rem;
+}
+
+.member.about-me .paid-by {
+  text-transform: uppercase;
+  color: #495057;
+  font-size: .8rem;
 }
 
 body {
