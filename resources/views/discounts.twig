@@ -18,7 +18,7 @@
 
             {% if discounts is not null %}
                 <h3>{{ title }}</h3>
-                <table class="table table-discounts">
+                <table class="table table-responsive table-discounts">
                     <thead>
                         <tr>
                             <th scope="col"></th>
@@ -40,7 +40,9 @@
                 </table>
             {% endif %}
             {% if text is not null %}
-                <h3>{{ title }}</h3>
+                {% if discounts is null %}
+                    <h3>{{ title }}</h3>
+                {% endif %}
                 <img alt="Logo {{ title }}" class="right" src="{{ asset(image_url) }}"/>
                 {% for content in text %}
                     <p>{{ content }}</p>

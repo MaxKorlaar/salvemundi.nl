@@ -30,7 +30,8 @@
                 [
                     'title'     => trans('discounts.happii.title'),
                     'image_url' => "images/promo/happii.svg",
-                    'discounts' => trans('discounts.happii.discounts')
+                    'discounts' => trans('discounts.happii.discounts'),
+                    'text' => trans('discounts.happii.text')
                 ]
             );
         }

@@ -21,8 +21,8 @@ return [
                 "Broodje Kipdoner" => ["3,50", "2,50"]
             ],
             [
-                "Drum Doner" => ["4,75", "3,50"],
-                "Drum Kip"   => ["5,50", "5,50"],
+                "Durum Doner" => ["4,75", "3,50"],
+                "Durum Kip"   => ["5,50", "4,00"],
             ],
             [
                 "Kapsalon Doner of Kip" => ["6,50", "5,00"],
@@ -33,7 +33,13 @@ return [
             ],
             [
                 "10 Nuggets of Hotwings" => ["5,50", "4,00"]
+            ],
+            [
+                "Shisha" => ["10,00", "7,50"]
             ]
+        ],
+        'text' => [
+            'Verder krijg je 20% korting op de gehele menukaart, exclusief drankjes.'
         ]
     ]
 ];
