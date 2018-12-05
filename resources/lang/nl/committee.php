@@ -202,7 +202,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'profile' => 'ICT & Software'
                 ],
                 [
-                    'name'    => 'Luuk Lenears',
+                    'name'    => 'Luuk Lenaers',
                     'image'   => 'Luuk Business.jpg',
                     'profile' => 'ICT & Business'
                 ],
