@@ -1,13 +1,14 @@
 {% extends 'admin/_page.twig' %}
-{% block title %}{{ trans('admin.store.items.edit.title') }}{% endblock %}
+{% block title %}{{ trans('admin.store.items.edit.title', { name: item.name }) }}{% endblock %}
 {% block content %}
     <div class="container">
         <main class="store items">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>{{ trans('admin.store.items.edit.title') }}</h1>
-                    <form action="{{ route('admin.store.items.store') }}" method="POST" class="row">
+                    <h1>{{ trans('admin.store.items.edit.title', { name: item.name }) }}</h1>
+                    <form action="{{ route('admin.store.items.update', { item: item }) }}" method="POST" class="row">
                         {{ csrf_field() }}
+                        {{ method_field('PUT') }}
                         <div class="col-6">
                             <div class="form-group">
                                 <label for="name">{{ trans('admin.store.items.name') }}</label>

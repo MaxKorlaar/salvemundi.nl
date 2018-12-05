@@ -35,6 +35,7 @@
     class Stock extends Model {
         protected $table = 'store_stock';
         protected $fillable = ['name', 'description', 'price', 'in_stock'];
+        protected $visible = ['name', 'description', 'id', 'price', 'in_stock'];
 
         /**
          * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

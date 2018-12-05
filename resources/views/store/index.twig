@@ -1,0 +1,30 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('store.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="store">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('store.info.title') }}</h1>
+                    {% for content in trans('store.info.intro') %}
+                        <p>{{ content|raw }}</p>
+                    {% endfor %}
+                </div>
+                <div class="col-md-12">
+                    <h3>{{ trans('store.collections.title') }}</h3>
+                    <div class="store-grid">
+                        {{ dump(items) }}
+                        {% for item in items %}
+                        <a href="{{ route('store.view_item', { slug: item.slug }) }}" class="button">
+                            {{ item.name }}
+                        </a>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+
+            </div>
+        </main>
+    </div>
+{% endblock %}

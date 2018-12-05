@@ -4,8 +4,8 @@
 
     use App\Http\Controllers\Controller;
     use App\Http\Requests\Admin\Store\CreateItem;
+    use App\Http\Requests\Admin\Store\UpdateItem;
     use App\Store\Item;
-    use Illuminate\Http\Request;
 
     /**
      * Class ItemController
@@ -74,13 +74,15 @@
         /**
          * Update the specified resource in storage.
          *
-         * @param  \Illuminate\Http\Request $request
-         * @param  int                      $id
+         * @param UpdateItem $request
+         * @param Item       $item
          *
          * @return \Illuminate\Http\Response
          */
-        public function update(Request $request, $id) {
-            //
+        public function update(UpdateItem $request, Item $item) {
+            $item->slug = str_slug($item->name);
+            $item->update($request->all());
+            return redirect()->route('admin.store.items.edit', ['item' => $item]);
         }
 
         /**

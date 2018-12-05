@@ -1,0 +1,55 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('store.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="store">
+            {{ dump(item) }}
+
+            <div class="row" id="store-app">
+                <div class="col-md-12">
+                    <h1>{{ trans('store.info.title') }}</h1>
+                    {% for content in trans('store.info.intro') %}
+                        <p>{{ content|raw }}</p>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6">
+                    <div class="images-grid">
+
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>{{ item.name }}</h2>
+                    <p v-html="description">{{ item.description|nl2br|raw }}</p>
+                    <form>
+                        <div class="form-group row">
+                            <label for="stock_variant" class="col-sm-2 col-form-label">{{ trans('store.item.variant') }}</label>
+                            <div class="col-sm-4">
+                                <select v-model="selectedStock" class="form-control" id="stock_variant">
+                                    <option v-for="option in stock" :value="option">{{ "{{ option.name }}" }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-5">
+                            <div class="col-sm-2">
+                                <input type="hidden" name="stock_variant" :value="selectedStock.id">
+                                <a type="submit" class="button text-center">Bestellen</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        window.SalveMundi = window.SalveMundi || {};
+        window.SalveMundi.store = {{ script_data|json_encode|raw }};
+    </script>
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/store.js') }}"></script>
+{% endblock %}

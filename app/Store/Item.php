@@ -28,6 +28,7 @@
     class Item extends Model {
         protected $table = 'store_items';
         protected $fillable = ['name', 'description'];
+        protected $visible = ['name', 'description', 'id'];
 
         /**
          * @return mixed

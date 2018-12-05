@@ -139,13 +139,26 @@
         }
 
         /**
+         * @param Item  $item
+         * @param Stock $voorraad
+         *
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getDeleteConfirmation(Item $item, Stock $voorraad) {
+            return view('admin.store.items.stock.delete', ['item' => $item, 'stock' => $voorraad]);
+        }
+
+        /**
          * Remove the specified resource from storage.
          *
-         * @param  int $id
+         * @param Item  $item
+         * @param Stock $voorraad
          *
-         * @return \Illuminate\Http\Response
+         * @return \Illuminate\Http\RedirectResponse
+         * @throws \Exception
          */
-        public function destroy($id) {
-            //
+        public function destroy(Item $item, Stock $voorraad) {
+            $voorraad->delete();
+            return redirect()->route('admin.store.items.show', ['item' => $item]);
         }
     }

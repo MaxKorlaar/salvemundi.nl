@@ -13,6 +13,11 @@
 
     Route::get('/', 'IndexController@getHomePage')->name('home');
 
+    Route::group(['prefix' => 'winkel', 'as' => 'store.'], function () {
+        Route::get('/', 'StoreController@index')->name('index');
+        Route::get('/{slug}', 'StoreController@viewItem')->name('view_item');
+    });
+
     Route::get('merchandise', 'MerchandiseController@getMerchandise')->name("merchandise");
     Route::get('merchandise/vests', 'MerchandiseController@getVests')->name("merchandise.vests");
     Route::get('merchandise/shirts', 'MerchandiseController@getShirts')->name("merchandise.shirts");

@@ -1,4 +1,4 @@
-webpackJsonp([2],{
+webpackJsonp([1],{
 
 /***/ "./node_modules/lodash/_Symbol.js":
 /***/ (function(module, exports, __webpack_require__) {
@@ -1174,90 +1174,56 @@ if (token) {
 
 /***/ }),
 
-/***/ "./resources/assets/js/landing.js":
+/***/ "./resources/assets/js/store.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__("./node_modules/axios/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_truncate__ = __webpack_require__("./node_modules/lodash/truncate.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash_truncate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash_truncate__);
 __webpack_require__("./resources/assets/js/bootstrap.js");
 
 
-/*
-import {debounce} from "lodash/function";
 
-require('./app');
-
- */
-
-var scrollThreshold = window.innerHeight - 150; // 100vh = 100% van de hoogte van het scherm
-
-$(window).on('resize', function () {
-    scrollThreshold = window.innerHeight - 150;
-});
-
-$(window).scroll(function () {
-    if ($(this).scrollTop() > scrollThreshold) {
-        $("header").removeClass("no-background");
-    } else {
-        $("header").addClass("no-background");
-    }
-});
-if ($(window).scrollTop() > scrollThreshold) {
-    $("header").removeClass("no-background");
-}
 window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
 new Vue({
-    el: '#events',
+    el: '#store-app',
     data: {
-        events: {},
-        loading: true,
-        error: false,
-        events_url: null,
-        showPlace: true
+        item: {
+            description: ''
+        },
+        stock: [],
+        selectedStock: {
+            description: null
+        }
     },
-    methods: {
-        getEvents: function getEvents() {
-            var that = this;
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.events_url).then(function (response) {
-                var events = response.data;
-                events.forEach(function (item) {
-                    item.description = __WEBPACK_IMPORTED_MODULE_1_lodash_truncate___default()(item.description, { length: 600 });
-                });
-                that.events = events;
-                that.loading = false;
-            }).catch(function (error) {
-                console.error(error);
-                that.loading = false;
-                that.error = true;
-            });
+    methods: {},
+    computed: {
+        description: function description() {
+            if (this.selectedStock.description !== null) {
+                return this.selectedStock.description.replace(/(\r\n|\n\r|\r|\n)/g, "<br>");
+            }
+            return this.item.description.replace(/(\r\n|\n\r|\r|\n)/g, "<br>");
         }
     },
     mounted: function mounted() {
-        var _this = this;
-
-        this.events_url = this.$el.attributes['data-url'].value;
-        this.getEvents();
-
-        setInterval(function () {
-            _this.showPlace = !_this.showPlace;
-        }, 5000);
+        this.item = window.SalveMundi.store.item;
+        this.stock = window.SalveMundi.store.stock;
+        this.selectedStock = this.stock[0];
     }
 });
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
 
-/***/ 1:
+/***/ 2:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./resources/assets/js/landing.js");
+module.exports = __webpack_require__("./resources/assets/js/store.js");
 
 
 /***/ })
 
-},[1]);
+},[2]);

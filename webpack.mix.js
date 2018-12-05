@@ -19,6 +19,7 @@ const {mix} = require('laravel-mix');
 mix.setPublicPath('public_html')
     .js('resources/assets/js/app.js', 'js')
     .js('resources/assets/js/landing.js', 'js')
+    .js('resources/assets/js/store.js', 'js')
     .js('resources/assets/js/spreadsheet.js', 'js')
     .extract(['vue', 'jquery', 'axios', 'popper.js', 'bootstrap'])
     .autoload({

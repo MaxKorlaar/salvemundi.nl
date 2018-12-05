@@ -214,9 +214,14 @@
                 'in_stock'    => 'Op voorraad',
                 'created_at'  => 'Aangemaakt op',
                 'new'         => 'Nieuw item',
+                'details'     => 'Details',
                 'create'      => [
                     'title'  => 'Item aanmaken',
                     'create' => 'Opslaan'
+                ],
+                'edit'        => [
+                    'save'  => 'Opslaan',
+                    'title' => 'Item bewerken: :name'
                 ],
                 'stock'       => [
                     'title'                => 'Voorraad',
@@ -230,19 +235,21 @@
                     'images'               => 'Afbeeldingen',
                     'images_multiple'      => 'Afbeeldingen (meerdere toegestaan)',
                     'details'              => 'Bewerken',
+                    'new'                  => 'Nieuwe voorraad',
                     'create'               => [
                         'title'  => 'Voorraad aanmaken voor :item',
                         'create' => 'Opslaan'
                     ],
                     'edit'                 => [
-                        'title' => 'Voorraad bewerken voor :item',
-                        'save'  => 'Opslaan',
-                        'delete' => 'Voorraad verwijderen'
+                        'title'  => 'Voorraad bewerken voor :item',
+                        'save'   => 'Opslaan',
+                        'delete' => 'Voorraad verwijderen',
+                        'back'   => 'Terug naar item'
                     ],
-                    'delete' => [
-                        'title' => 'Voorraad verwijderen van :item',
+                    'delete'               => [
+                        'title'        => 'Voorraad verwijderen van :item',
                         'are_you_sure' => 'Weet je zeker dat je deze voorraad wil verwijderen? Dit kan niet ongedaan worden gemaakt.',
-                        'delete' => 'Verwijderen'
+                        'delete'       => 'Verwijderen'
                     ]
                 ]
             ]
