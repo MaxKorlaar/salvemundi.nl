@@ -38,6 +38,11 @@
                     'frequency' => 'monthly'
                 ],
                 [
+                    'url'       => route('member.about_me', [], false),
+                    'priority'  => 0.7,
+                    'frequency' => 'monthly'
+                ],
+                [
                     'url'       => route('camping.signup', [], false),
                     'priority'  => 1,
                     'frequency' => 'monthly'

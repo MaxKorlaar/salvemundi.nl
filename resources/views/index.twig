@@ -14,13 +14,13 @@
         <div class="content index">
             <main>
                 <section class="description container">
-                    <div class="warning">
-                        <h2>{{ trans('home.intro_signup_header') }}</h2>
-                        {{ trans('home.intro_signup') }}
-                        <div class="text-center button-container">
-                            <a href="{{ route('intro.info') }}" class="button text-center">{{ trans('home.intro_signup_button') }}</a>
-                        </div>
-                    </div>
+                    {#<div class="warning">#}
+                        {#<h2>{{ trans('home.intro_signup_header') }}</h2>#}
+                        {#{{ trans('home.intro_signup') }}#}
+                        {#<div class="text-center button-container">#}
+                            {#<a href="{{ route('intro.info') }}" class="button text-center">{{ trans('home.intro_signup_button') }}</a>#}
+                        {#</div>#}
+                    {#</div>#}
                     {% for text in trans('home.welcome_text') %}
                         <p>{{ text }}</p>
                     {% endfor %}
@@ -102,9 +102,12 @@
                         <a href="{{ route('committees/party') }}" class="button">{{ trans('committee.party.title') }}</a>
                         <a href="{{ route('committees/media') }}" class="button">{{ trans('committee.media.title') }}</a>
                         <a href="{{ route('committees/camping') }}" class="button">{{ trans('committee.camping.title') }}</a>
-                        <a href="{{ route('committees/women') }}" class="button">{{ trans('committee.women.title') }}</a>
                         <a href="{{ route('committees/study') }}" class="button">{{ trans('committee.study.title') }}</a>
                         <a href="{{ route('committees/internal_affairs') }}" class="button">{{ trans('committee.internal_affairs.title_short') }}</a>
+                        <a href="{{ route('committees/activity') }}" class="button">{{ trans('committee.activity.title_short') }}</a>
+                        <a href="{{ route('committees/external_affairs') }}" class="button">{{ trans('committee.external_affairs.title_short') }}</a>
+                        <a href="{{ route('committees/alpha_centauri') }}" class="button">{{ trans('committee.alpha_centauri.title_short') }}</a>
+                        <a href="{{ route('committees/treasure') }}" class="button">{{ trans('committee.treasure.title_short') }}</a>
                     </div>
                 </section>
             </main>

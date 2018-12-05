@@ -21,12 +21,15 @@
     "fideloper/proxy": "~3.3",
     "guzzlehttp/guzzle": "^6.3",
     "intervention/image": "^2.4",
+    "intervention/imagecache": "^2.3",
     "laravel/framework": "5.5.*",
     "laravel/tinker": "~1.0",
     "mollie/mollie-api-php": "^1.9",
+    "phpoffice/phpspreadsheet": "^1.4",
     "phpseclib/phpseclib": "^2.0",
     "rcrowe/twigbridge": "^0.9.5",
-    "s-ichikawa/laravel-sendgrid-driver": "^2.0"
+    "s-ichikawa/laravel-sendgrid-driver": "^2.0",
+    "ext-curl": "*"
   },
   "require-dev": {
     "ajthinking/tinx": "^2.1",

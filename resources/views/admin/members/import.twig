@@ -1,0 +1,28 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.members.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="members overview">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.members.title') }}</h1>
+                    <form action="{{ route('admin.members.do_import') }}" method="POST" class="row" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <input type="file" class="form-control {{ errors.has('member-list') ? 'is-invalid' }}" placeholder="{{ trans('admin.members.import.member-list') }}" name="member-list">
+                            <div class="invalid-feedback">
+                                {{ errors.first('member-list')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <input type="submit" class="button" value="{{ trans('admin.members.import.import') }}">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

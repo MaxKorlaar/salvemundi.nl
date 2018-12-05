@@ -22,7 +22,7 @@
         public function handle($request, Closure $next) {
             /** @var User $user */
             $user = $request->user();
-            if ($user->rank === 'camping') {
+            if ($user->rank === 'camping' || $user->isAdministrationMember()) {
                 return $next($request);
             }
             return abort(403);

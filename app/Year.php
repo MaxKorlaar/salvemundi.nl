@@ -36,11 +36,11 @@
          * @return Year|Model|null
          * @throws \Throwable
          */
-        public static function getYear($year) {
-            $year = Year::where('year', $year)->first();
+        public static function getYear($requestedYear) {
+            $year = Year::where('year', $requestedYear)->first();
             if ($year === null) {
                 $year       = new Year();
-                $year->year = $year;
+                $year->year = $requestedYear;
                 $year->saveOrFail();
             }
             return $year;

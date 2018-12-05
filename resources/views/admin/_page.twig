@@ -3,21 +3,41 @@
     <div class="content">
         <div class="admin-nav">
             <div class="inner container">
-                <ul>
+                <ul class="nav">
                     <li class="">
                         <a href="{{ route('admin.intro.index') }}">{{ trans('admin.intro.title') }}</a>
                     </li>
                     <li class="">
                         <a href="{{ route('admin.members.index') }}">{{ trans('admin.members.title') }}</a>
                     </li>
+                    <li class="">
+                        <a href="{{ route('admin.camping.index') }}">{{ trans('admin.camping.title') }}</a>
+                    </li>
                 </ul>
                 <div>
-                    {{ trans('admin.nav.welcome', { name: auth_user().official_name }) }}
-                    <a href="{{ route('logout') }}">{{ trans('admin.nav.log_out') }}</a>
+                    <p>
+                        {{ trans('admin.nav.welcome', { name: auth_user().official_name }) }}
+                        <a href="{{ route('logout') }}">{{ trans('admin.nav.log_out') }}</a>
+                    </p>
                 </div>
             </div>
         </div>
         {% block content %}
         {% endblock %}
+        <div class="admin-nav footer-nav">
+            <div class="inner container">
+                <ul>
+                    <li>
+                        v1 &centerdot;
+                    </li>
+                    <li>
+                        {{ trans('admin.nav.load_time', { seconds: (date().timestamp - constant('LARAVEL_START'))|round(3)}) }} &centerdot;
+                    </li>
+                    <li class="">
+                        {{ trans('admin.nav.credit')|raw }}
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 {% endblock %}

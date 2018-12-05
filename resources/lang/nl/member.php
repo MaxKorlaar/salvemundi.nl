@@ -1,6 +1,10 @@
 <?php
 
     return [
+        'nav'         => [
+            'welcome' => 'Hallo, :name',
+            'log_out' => 'Log uit'
+        ],
         'memberships' => [
             'transaction'    => 'Betaling',
             'valid_from'     => 'Geldig vanaf',
@@ -37,6 +41,7 @@
             'email'                            => 'E-mail-adres',
             'fontys_email'                     => 'Fontys-e-mail-adres',
             'fontys_name'                      => 'Fontys-naam',
+            'card'                             => 'Ledenpas',
             'this_should_be_you'               => 'Dit is hoe wij je in ons systeem hebben staan, :name. Lijkt dit niet bepaald (meer) op jou? Laat het ons dan even weten.',
             'not_a_member'                     => 'Volgens ons systeem ben je op het moment niet in het bezit van een actief lidmaatschap. Hierdoor ben je eigenlijk geen lid van de vereniging totdat je weer contributie betaalt voor het huidige schooljaar.',
             'your_previous_membership_expired' => 'Je vorige lidmaatschap is per :date verlopen.',

@@ -9,6 +9,7 @@
     use App\Membership;
     use App\Transaction;
     use App\Year;
+    use Carbon\Carbon;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Log;
@@ -134,7 +135,11 @@
                     }
                 } else {
                     if ($payment->isRefunded()) {
-                        // Iets mee doen?
+                        // Lidmaatschap stopzetten
+                        /** @var Membership $membership */
+                        $membership              = $member->memberships()->where('transaction_id', $transaction->id)->firstOrFail();
+                        $membership->valid_until = Carbon::today();
+                        $membership->saveOrFail();
                     }
                     if ($payment->isCancelled() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
                         Log::debug('De betaling is geannuleerd of is verlopen en het lidmaatschap zal niet worden verlengd', ['payment' => $payment]);

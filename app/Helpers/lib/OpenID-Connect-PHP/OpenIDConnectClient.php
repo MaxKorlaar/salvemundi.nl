@@ -170,10 +170,13 @@
          * @return bool
          * @throws OpenIDConnectClientException
          */
-        public function authenticate($state = null) {
+        public function authenticate() {
 
             // Do a preemptive check to see if the provider has thrown an error from a previous redirect
             if (isset($_REQUEST['error'])) {
+                if($_REQUEST['error'] === 'access_denied') {
+                    throw new OpenIDConnectClientException('Access denied', 403);
+                }
                 throw new OpenIDConnectClientException("Error: " . $_REQUEST['error'] . " Description: " . $_REQUEST['error_description']);
             }
 
@@ -189,6 +192,10 @@
 
                 // Do an OpenID Connect session check
                 if ($_REQUEST['state'] != \Illuminate\Support\Facades\Session::get('openid_connect_state')) {
+                    \Illuminate\Support\Facades\Log::error('Kon state niet opvragen bij inloggen', [
+                        'request' => request()->all(),
+                        'state' => \Illuminate\Support\Facades\Session::get('openid_connect_state')
+                    ]);
                     throw new OpenIDConnectClientException("Unable to determine state");
                 }
 
@@ -305,14 +312,15 @@
         }
 
         /**
-         * @param      $url
-         * @param null $post_body string If this is set the post type will be POST
-         * @param array() $headers Extra headers to be send with the request. Format as 'NameHeader: ValueHeader'
+         * @param       $url
+         * @param null  $post_body string If this is set the post type will be POST
+         * @param array $headers
+         * @param bool  $addToken
          *
-         * @throws OpenIDConnectClientException
          * @return mixed
+         * @throws OpenIDConnectClientException
          */
-        protected function fetchURL($url, $post_body = null, $headers = []) {
+        public function fetchURL($url, $post_body = null, $headers = [], $addToken = false) {
 
 
             // OK cool - then let's create a new cURL resource handle
@@ -337,10 +345,10 @@
 
             }
 
-            // Check if the access-token is set, and add it to the headers
-            // if(!empty($access_token)){
-            //   $headers[] = "Authorization: Bearer {$access_token}";
-            // }
+            //             Check if the access-token is set, and add it to the headers
+            if (!empty($this->accessToken) && $addToken) {
+                $headers[] = "Authorization: Bearer {$this->accessToken}";
+            }
 
             // If we set some heaers include them
             if (count($headers) > 0) {
@@ -381,7 +389,9 @@
                 throw new OpenIDConnectClientException('Curl error: ' . curl_error($ch));
             }
             // Close the cURL resource, and free system resources
+//            $info = curl_getinfo($ch);
             curl_close($ch);
+//            if ($info['http_code'] != 255 && $url !='https://identity.fhict.nl/connect/token' && $url !='https://identity.fhict.nl/.well-known/openid-configuration' && $url != 'https://identity.fhict.nl/.well-known/jwks' && $url != 'https://identity.fhict.nl/connect/userinfo?schema=openid' && $url != 'https://api.fhict.nl/permissions/picture_token') dd($url, $info, $output, $headers);
             return $output;
         }
 

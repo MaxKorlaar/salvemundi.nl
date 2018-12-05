@@ -1,14 +1,17 @@
-{% extends 'partials/page.twig' %}
+{% extends 'member/_page.twig' %}
 {% block title %}{{ trans('member.membership.renew.title') }}{% endblock %}
 {% block content %}
-    <div class="container content">
+    <div class="container">
         <main class="signup">
             <h1>{{ trans('member.membership.renew.title') }}</h1>
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="meme-wrapper">
-                        <img src="{{ asset('images/dep.gif') }}" alt="" class="img-fluid">
+                        <img src="{{ asset('images/uil.gif') }}" alt="" class="img-fluid">
                     </div>
+                    {#<div class="checkmark-wrapper">#}
+                        {#<div class="checkmark">&check;</div>#}
+                    {#</div>#}
                     <h3>{{ trans('member.membership.renew.completed') }}</h3>
                     <p>{{ trans('member.membership.renew.email_instructions') }}</p>
                 </div>

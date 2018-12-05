@@ -1,0 +1,47 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.camping.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="camping overview">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.camping.title') }}</h1>
+                    <p>
+                        <a href="{{ route('admin.camping.create') }}" class="btn btn-primary">{{ trans('admin.camping.new') }}</a>
+                    </p>
+                    <table class="table camp-list table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ trans('admin.camping.id') }}</th>
+                                <th>{{ trans('admin.camping.year') }}</th>
+                                <th>{{ trans('admin.camping.price') }}</th>
+                                <th>{{ trans('admin.camping.signups') }}</th>
+                                <th>{{ trans('admin.camping.signup_open') }}</th>
+                                <th>{{ trans('admin.camping.signup_close') }}</th>
+                                <th>{{ trans('admin.camping.created_at') }}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for camp in camps %}
+                                <tr>
+                                    <td>{{ camp.id }}</td>
+                                    <td>{{ camp.year.year }}</td>
+                                    <td>€{{ camp.price|number_format(2, ',') }}</td>
+                                    <td>{{ camp.applications.count }}</td>
+                                    <td>{{ camp.signup_open }}</td>
+                                    <td>{{ camp.signup_close }}</td>
+                                    <td>{{ camp.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.camping.show', { camp: camp }) }}">{{ trans('admin.camping.details') }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <small>{{ trans_choice('admin.camping.count', camps.count, { count: camps.count }) }} </small>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.members.title') }}{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <main class="members overview">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.members.title') }}</h1>
+                </div>
+                <div class="col-md-12">
+                    {% set excel_fields = ['member_id', 'last_name', 'first_name', 'birthday', 'address', 'city', 'postal', 'phone', 'email', 'pcn'] %}
+                    <table id="spreadsheet" class="table table-responsive table-sm member-list spreadsheet table-striped">
+                        <thead>
+                            <tr>
+                                {% for field in excel_fields %}
+                                    <th>{{ trans('admin.members.' ~ field) }}</th>
+                                {% endfor %}
+                                <th>{{ trans('admin.members.member_from') }}</th>
+                                <th>{{ trans('admin.members.member_until') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for member in members %}
+                                <tr class="{{ member.status|str_slug }}">
+                                    {% for field in excel_fields %}
+                                        <td>
+                                            {% if member[field] is same as(false) %} {{ trans('admin.members.false') }} {% elseif member[field] is same as(true) %} {{ trans('admin.members.true') }} {% else %} {{ member[field]|default('-') }} {% endif %}{{ "\t" }}
+                                        </td>
+                                    {% endfor %}
+                                    <td>
+                                        {{ member.memberships().first ? member.memberships().orderBy('valid_from').first.valid_from|date(trans('datetime.format.date')) : trans('admin.members.no_valid_membership') }}
+                                    </td>
+                                    <td>
+                                        {{ member.getCurrentMembership() ? member.getCurrentMembership().valid_until|date(trans('datetime.format.date')) : trans('admin.members.no_valid_membership') }}
+                                    </td>
+
+                                    {#{{ trans('admin.members.status_' ~ member.status) }}#}
+                                    {#{% if member.status == 'new' and member.email_confirmation_token == null %}#}
+                                    {#– {{ trans('admin.members.no_mail') }}#}
+                                    {#{% endif %}#}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <small>{{ trans_choice('admin.members.count', members.count, { count: members.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }} </small>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ mix('js/spreadsheet.js') }}"></script>
+{% endblock %}

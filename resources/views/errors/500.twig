@@ -1,3 +1,5 @@
 {% extends 'errors/error.twig' %}
 {% block error %}{{ trans('error.500') }}{% endblock %}
-{% block message %}{{ config_get('app.debug') ? exception.message : trans('error.something_went_wrong') }}{% endblock %}
+{% block message %}{{ config_get('app.debug') ? exception.message : trans('error.something_went_wrong') }}
+<br>{{ trans('error.contact_max')|raw }}
+{% endblock %}

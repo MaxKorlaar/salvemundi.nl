@@ -25,10 +25,14 @@
         Route::get('feest', 'CommitteeController@getPartyPage')->name('party');
         Route::get('media', 'CommitteeController@getMediaPage')->name('media');
         Route::get('kamp', 'CommitteeController@getCampingPage')->name('camping');
-        Route::get('dames', 'CommitteeController@getWomenPage')->name('women');
+        Route::get('activiteiten', 'CommitteeController@getActivityPage')->name('activity');
         Route::get('studie', 'CommitteeController@getStudyPage')->name('study');
         Route::get('ledenzaken', 'CommitteeController@getInternalAffairsPage')->name('internal_affairs');
+        Route::get('externe-betrekkingen', 'CommitteeController@getExternalAffairsPage')->name('external_affairs');
+        Route::get('alpha-centauri', 'CommitteeController@getAlphaCentauriPage')->name('alpha_centauri');
+        Route::get('kas', 'CommitteeController@getTreasurePage')->name('treasure');
     });
+    Route::get('nieuwe-commissieleden', 'CommitteeController@getVacanciesPage')->name('vacancies');
 
     Route::get('/evenementen/facebook', 'IndexController@getFacebookEvents')->name('facebook_events');
 
@@ -88,7 +92,7 @@
         //        Route::put('account', 'AccountController@update')->name('update_account');
         //        Route::get('account/delete', 'AccountController@getDeleteView')->name('account_deletion');
         //        Route::delete('account', 'AccountController@delete')->name('do_delete_account');
-        Route::get('kamp', 'CampingController@getSignups')->name('camping');
+        Route::resource('kamp', 'CampingController')->names('camping');
 
         Route::get('intro/onbevestigd', 'IntroController@getUnconfirmedSignups');
         Route::post('intro/genereer-tokens', 'IntroController@generateTokensForUnpaidSignups')->name('intro.generate_tokens');
@@ -102,11 +106,32 @@
         Route::get('aanmeldingen-naar-leden', 'MemberController@applicationsToMembers');
 
         Route::resource('gebruikers', 'UserController')->names('users');
+        Route::get('leden/importeren', 'MemberController@showImportForm')->name('members.import');
+        Route::post('leden/importeren', 'MemberController@importList')->name('members.do_import');
+
+        Route::get('leden/spreadsheet', 'MemberController@spreadsheetIndex')->name('members.spreadsheet');
+
+        Route::get('leden/email', 'MemberController@getMailForm')->name('members.email');
+        Route::post('leden/email/voorbeeld', 'MemberController@getMailPreview')->name('members.preview_email');
+        Route::post('leden/email', 'MemberController@sendMail')->name('members.do_send_email');
+        
+        Route::get('leden/email-verlenging-nodig', 'MemberController@getInactiveMailForm')->name('members.email_inactive');
+        Route::post('leden/email-verlenging-nodig/voorbeeld', 'MemberController@getInactiveMailPreview')->name('members.preview_email_inactive');
+        Route::post('leden/email-verlenging-nodig', 'MemberController@sendInactiveMail')->name('members.do_send_email_inactive');
+        
+        Route::get('leden/verwijder-inactieve', 'MemberController@deleteInactiveConfirmation')->name('members.delete_inactive_confirmation');
+        Route::delete('leden/verwijder-inactieve', 'MemberController@deleteInactive')->name('members.delete_inactive');
         Route::resource('leden', 'MemberController')->names('members');
         Route::get('leden/{member}/verwijderen', 'MemberController@getDeleteConfirmation')->name('members.delete_confirmation');
         Route::resource('leden.lidmaatschap', 'MembershipController')->names('members.membership');
         Route::get('leden/{member}/afbeelding', 'MemberController@getPicture')->name('members.picture');
+        Route::get('leden/{member}/afbeelding/volledig', 'MemberController@getFullPicture')->name('members.full_picture');
+
     });
+
+    Route::get('korting', 'DiscountController@getDefaultView')->name('discounts.index');
+    Route::get('korting/villa-fiesta', 'DiscountController@getVillaView')->name('discounts.villa_fiesta');
+    Route::get('korting/happii', 'DiscountController@getHappiView')->name('discounts.happii');
 
     Route::get('drive', 'IndexController@getDriveRedirect');
 

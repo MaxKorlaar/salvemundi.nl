@@ -2,8 +2,11 @@
 
     return [
         'nav'          => [
-            'welcome' => 'Welkom, :name.',
-            'log_out' => 'Log uit'
+            'welcome'   => 'Welkom, :name',
+            'log_out'   => 'Log uit',
+            'version'   => '0.5.0',
+            'load_time' => 'Laadtijd: :secondss',
+            'credit'    => 'Verenigingadministratiesysteem door <a target="_blank" href="//maxkorlaar.nl">Max Korlaar</a>'
         ],
         'transactions' => [
             'id'                 => 'ID',
@@ -14,7 +17,8 @@
                 'open'      => 'Betaling bezig',
                 'cancelled' => 'Geannuleerd',
                 'failed'    => 'Betaling mislukt',
-                'expired'   => 'Betaling verlopen'
+                'expired'   => 'Betaling verlopen',
+                'refunded'  => 'Teruggestort'
             ],
             'transaction_amount' => 'Bedrag',
             'created_at'         => 'Aangemaakt op',
@@ -33,51 +37,124 @@
             ],
             'create_membership' => 'Voeg lidmaatschap handmatig toe'
         ],
+        'camping'      => [
+            'title'          => 'Kamp',
+            'id'             => 'ID',
+            'camping_id'     => 'Kamp',
+            'year'           => 'Jaar',
+            'price'          => 'Prijs',
+            'new'            => 'Nieuw kamp',
+            'edit_camp'      => 'Kamp bewerken',
+            'signups'        => 'Aanmeldingen',
+            'signup_open'    => 'Inschrijvingen geopend',
+            'signup_close'   => 'Inschrijvingen gesloten',
+            'transaction'    => 'Transactie',
+            'no_transaction' => 'Geen transactie gekoppeld',
+            'created_at'     => 'Aangemaakt op',
+            'updated_at'     => 'Bijgewerkt op',
+            'details'        => 'Details',
+            'count'          => ':count kamp|:count kampen',
+            'member_count'   => ':count aanmelding|:count aanmeldingen',
+            'show'           => [
+                'title' => 'Kamp: :year'
+            ],
+            'edit'           => [
+                'title' => 'Kamp bewerken: :year',
+                'save'  => 'Opslaan',
+                'back'  => 'Terug'
+            ],
+            'create'         => [
+                'title'  => 'Kamp aanmaken',
+                'create' => 'Aanmaken',
+            ],
+            'applications'   => [
+                'title'          => 'Aanmeldingen',
+                'id'             => 'ID',
+                'member_name'    => 'Lid',
+                'transaction'    => 'Transactie',
+                'no_transaction' => 'Geen transactie gekoppeld',
+                'created_at'     => 'Aangemaakt op',
+                'updated_at'     => 'Bijgewerkt op',
+            ]
+        ],
         'members'      => [
-            'title'               => 'Ledenadministratie',
-            'details'             => 'Details',
-            'id'                  => 'ID',
-            'leave_id_empty'      => 'Laat leeg om automatisch te genereren',
-            'member_until'        => 'Lid tot',
-            'member_id'           => 'Lidnummer',
-            'edit_member'         => 'Gegevens bewerken',
-            'delete_member'       => 'Lid verwijderen',
-            'pcn'                 => 'PCN',
-            'last_name'           => 'Achternaam',
-            'first_name'          => 'Voornaam',
-            'address'             => 'Adres',
-            'city'                => 'Woonplaats',
-            'postal'              => 'Postcode',
-            'birthday'            => 'Geboortedatum',
-            'phone'               => 'Telefoonnummer',
-            'email'               => 'E-mail-adres',
-            'transaction_id'      => 'Transactie-id',
-            'transaction_amount'  => 'Bedrag transactie',
-            'transaction_status'  => 'Transactie-status',
-            'website_account'     => 'Websitegebruiker',
-            'no_user'             => 'Geen account',
-            'created_at'          => 'Aangemaakt op',
-            'updated_at'          => 'Bijgewerkt op',
-            'count'               => ':count lid|:count leden',
-            'new'                 => 'Nieuw lid',
-            'transactions'        => 'Transacties',
-            'memberships'         => 'Lidmaatschappen',
-            'not_a_member'        => 'Dit lid heeft momenteel geen actief lidmaatschap',
-            'no_valid_membership' => 'Lidmaatschap verlopen',
-            'create'              => [
+            'title'                 => 'Ledenadministratie',
+            'details'               => 'Details',
+            'id'                    => 'ID',
+            'leave_id_empty'        => 'Laat leeg om automatisch te genereren',
+            'member_from'           => 'Lid sinds',
+            'member_until'          => 'Lid tot',
+            'member_id'             => 'Lidnummer',
+            'edit_member'           => 'Gegevens bewerken',
+            'delete_member'         => 'Lid verwijderen',
+            'pcn'                   => 'PCN',
+            'last_name'             => 'Achternaam',
+            'first_name'            => 'Voornaam',
+            'address'               => 'Adres',
+            'city'                  => 'Woonplaats',
+            'postal'                => 'Postcode',
+            'birthday'              => 'Geboortedatum',
+            'phone'                 => 'Telefoonnummer',
+            'email'                 => 'E-mail-adres',
+            'transaction_id'        => 'Transactie-id',
+            'transaction_amount'    => 'Bedrag transactie',
+            'transaction_status'    => 'Transactie-status',
+            'website_account'       => 'Websitegebruiker',
+            'no_user'               => 'Geen account',
+            'card'                  => 'Ledenpas',
+            'delete_all_inactive'   => 'Verwijder alle inactieve leden',
+            'view_spreadsheet'      => 'Bekijk spreadsheet',
+            'temporary_card_number' => 'Tijdelijke pas',
+            'card_status'           => [
+                'received'      => 'In ontvangst genomen',
+                'unprocessed'   => 'Nog niet verwerkt',
+                'processed'     => 'Verwerkt',
+                'not_picked_up' => 'Niet opgehaald',
+                'no_card'       => 'Geen ledenpas'
+            ],
+            'import'                => [
+                'import' => 'Importeren'
+            ],
+            'created_at'            => 'Aangemaakt op',
+            'updated_at'            => 'Bijgewerkt op',
+            'count'                 => ':count lid|:count leden',
+            'new'                   => 'Nieuw lid',
+            'transactions'          => 'Transacties',
+            'memberships'           => 'Lidmaatschappen',
+            'campings'              => 'Kampen',
+            'not_a_member'          => 'Dit lid heeft momenteel geen actief lidmaatschap',
+            'no_valid_membership'   => 'Lidmaatschap verlopen',
+            'email_invalid_members' => 'E-mail leden zonder lidmaatschap',
+            'email_members'         => 'E-mail leden met lidmaatschap',
+            'create'                => [
                 'title'        => 'Nieuw lid',
                 'create'       => 'Aanmaken',
                 'picture_help' => 'Afbeelding mag maximaal 5 MB groot zijn.'
             ],
-            'edit'                => [
+            'edit'                  => [
                 'title'        => 'Lid bewerken',
                 'edit'         => 'Opslaan',
                 'picture_help' => 'Afbeelding mag maximaal 5 MB groot zijn en zal de vorige afbeelding overschrijven.'
             ],
-            'delete'              => [
-                'title' => 'Lid verwijderen',
-                'are_you_sure' => 'Weet je het zeker?',
-                'delete'       => 'Lid permanent verwijderen'
+            'delete'                => [
+                'title'                 => 'Lid verwijderen',
+                'are_you_sure'          => 'Weet je het zeker?',
+                'delete'                => 'Lid verwijderen',
+                'delete_inactive'       => 'Bovenstaande leden verwijderen',
+                'inactive_confirmation' => 'Leden met een verlopen lidmaatschap verwijderen',
+                'following_members'     => 'De volgende leden zullen worden verwijderd uit het ledensysteem. Hun gebruikersaccounts worden verwijderd en zij kunnen hierdoor niet meer inloggen. Dit betekent ook dat ze niet meer hun lidmaatschap kunnen verlengen. Hiervoor moet een lid op tijd worden hersteld of moet een lid zichzelf opnieuw inschrijven.',
+                'inactive_deleted'      => ':count leden met een verlopen lidmaatschap zijn verwijderd'
+            ],
+            'send_email'            => [
+                'title'                       => 'Leden mailen',
+                'title_invalid'               => 'Leden met verlopen lidmaatschap mailen',
+                'subject'                     => 'Onderwerp',
+                'message_content_placeholder' => 'Typ hier je bericht. Het gebruik van HTML is toegestaan, al wordt het wel afgeraden. Berichten met minder opmaak hebben over het algemeen succes bij gebruikers: https://blog.chamaileon.io/choosing-between-plain-text-html-email/.',
+                'content'                     => "Beste {voornaam},\n\n(Jouw bericht hier)",
+                'help_text'                   => 'Het is mogelijk om de voor- en achternaam van de ontvanger in het bericht te plaatsen. Gebruik \'{voornaam}\' en \'{achternaam}\', deze zullen automatisch vervangen worden door de juiste naam.',
+                'preview'                     => 'Bekijk voorbeeld van de e-mail',
+                'send'                        => 'Stuur email naar :count leden',
+                'email_sent'                  => 'E-mail verstuurd naar :members leden.'
             ]
         ],
         'intro'        => [

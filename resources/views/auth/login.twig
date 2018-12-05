@@ -1,10 +1,15 @@
 {% extends 'partials/page.twig' %}
 {% block title %}{{ trans('auth.log_in') }}{% endblock %}
+{% block head %}
+    {{ parent() }}
+    {% if session_get('redirect') is not null %}
+        <meta http-equiv="refresh" content="3; url={{ session_get('redirect') }}"/>
+    {% endif %}
+{% endblock %}
 {% block content %}
     <div class="container content">
         <main class="login-screen">
             <h2 class="text-center">{{ trans('auth.log_in') }}</h2>
-
             <div class="row justify-content-md-center text-center">
                 <div class="col-6">
                     {% if errors.any %}

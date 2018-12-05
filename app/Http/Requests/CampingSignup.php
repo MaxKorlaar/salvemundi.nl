@@ -16,6 +16,10 @@
          * @return bool
          */
         public function authorize() {
+            if(\Auth::check()) {
+                $member = \Auth::user()->member;
+                return $member->isCurrentlyMember();
+            }
             return false;
         }
 
@@ -26,6 +30,11 @@
          */
         public function rules() {
             return [
+                'remarks' => 'nullable|string|max:1500',
+                //'agree_salvemundi' => 'accepted',
+            ];
+            /*
+             return [
                 'member_id'  => 'required|integer',
                 'first_name' => 'required|string|max:150',
                 'last_name'  => 'required|string|max:150',
@@ -38,7 +47,10 @@
                 'postal'     => 'required|string|size:6|regex:/^[0-9]{4}[A-Za-z]{2}$/',
                 'remarks'    => 'nullable|string|max:1500',
                 'birthday'   => 'required|date|before:-16 years',
+                'agree_salvemundi' => 'accepted',
             ];
+             */
+
         }
 
         /**

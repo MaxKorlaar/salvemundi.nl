@@ -33,9 +33,7 @@
          */
         public function getOwnPhoto() {
             $member = Auth::user()->member;
-            return $member->getImageObject()->resize(400, null, function (Constraint $constraint) {
-                $constraint->aspectRatio();
-            })->response();
+            return $member->getResizedCachedImage(400, null, true)->response();
         }
 
     }

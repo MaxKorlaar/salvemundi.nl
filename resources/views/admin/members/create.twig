@@ -63,9 +63,6 @@
                                     {{ errors.first('city')|ucfirst }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-6">
-
                             <div class="form-group">
                                 <label for="postal">{{ trans('admin.members.postal') }}</label>
                                 <input id="postal" type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
@@ -83,6 +80,28 @@
                                        value="{{ old('birthday') }}" maxlength="10">
                                 <div class="invalid-feedback">
                                     {{ errors.first('birthday')|ucfirst }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="card_status">{{ trans('admin.members.card') }}</label>
+                                <select required id="card_status" name="card_status" class="form-control {{ errors.has('card_status') ? 'is-invalid' }}">
+                                    {% for status, value in trans('admin.members.card_status') %}
+                                        <option value="{{ status }}" {{ old('card_status') == status ? 'selected' }}>{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{ errors.first('card_status')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="card_id">{{ trans('admin.members.temporary_card_number') }}</label>
+                                <input id="card_id" type="number" class="form-control {{ errors.has('card_id') ? 'is-invalid' }}"
+                                       placeholder="{{ trans('admin.members.temporary_card_number') }}" name="card_id"
+                                       value="{{ old('card_id') }}" maxlength="6">
+                                <div class="invalid-feedback">
+                                    {{ errors.first('card_id')|ucfirst }}
                                 </div>
                             </div>
                             <div class="form-group">

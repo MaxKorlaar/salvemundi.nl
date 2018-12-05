@@ -4,23 +4,72 @@
   }
 }
 
-.admin-nav {
+.admin-nav, .member-nav {
   margin-top: -10px;
+  margin-bottom: 10px;
+  //position: sticky;
+  //top: 100px;
+  z-index: 950;
+
   .inner {
     display: flex;
     justify-content: space-between;
+
     div {
       text-align: right;
       display: flex;
       align-items: center;
-      a {
-        color: darken(white, 10%);
+
+      p {
+        margin: 0;
+
+        a {
+          color: darken(white, 10%);
+        }
       }
     }
+
     ul {
       margin-top: 0;
     }
   }
+
+  &.footer-nav {
+    margin-top: 0;
+    margin-bottom: 0;
+    //transition: all .2s;
+    position: sticky;
+    bottom: -1px;
+    padding-bottom: 1px;
+    font-size: .6rem;
+
+    ul {
+      transition: all .5s;
+      height: 1.5rem;
+
+      li {
+        transition: all .5s;
+        transition-delay: 0s;
+        line-height: 1.5rem;
+
+        a {
+          transition-delay: -.5s;
+        }
+      }
+    }
+
+    @include hover-focus-active {
+      font-size: 1rem;
+      ul {
+        height: 3rem;
+
+        li {
+          line-height: 3rem;
+        }
+      }
+    }
+  }
+
   ul {
     list-style: none;
     margin: 0;
@@ -28,26 +77,39 @@
     font-family: $font-family-sans-serif;
     height: 1rem * 3;
 
+    &.nav {
+      li {
+        a {
+          color: darken(white, 10%);
+          padding: 1rem;
+          height: 100%;
+          text-decoration: none;
+        }
+      }
+    }
+
     li {
       height: 100%;
       line-height: 1rem * 3;
       display: inline-block;
-      a {
-        color: darken(white, 10%);
-        padding: 1rem;
-        height: 100%;
-        text-decoration: none;
-      }
+
       &.active, &:hover {
         //background: lighten(#333, 10%);
       }
 
     }
+
   }
+
   color: darken(white, 25%);
   background: theme-color-level(primary, 5);
   width: 100%;
 }
+
+.button-container {
+  margin: .5rem 0;
+}
+
 .intro {
   .statistics {
     display: flex;
@@ -55,10 +117,12 @@
     align-items: center;
     justify-content: space-evenly;
     margin-bottom: 2rem;
+
     .stat {
       font-size: 4rem;
       color: theme-color(primary);
       font-weight: bold;
+
       span {
         display: block;
         font-size: 1rem;
@@ -66,6 +130,7 @@
       }
     }
   }
+
   .button {
     color: #FFF;
     border: none;
@@ -80,14 +145,13 @@
     margin-top: .25rem;
     margin-bottom: .25rem;
     @extend .button;
+
     &.danger {
       background-color: theme-color-level(danger);
       color: theme-color-level(danger, 8);
     }
   }
-  .button-container {
-    margin: .5rem 0;
-  }
+
   .spreadsheet {
     user-select: all;
 
@@ -98,39 +162,47 @@
       }
     }
   }
+
   .paging_simple_numbers {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+
     a {
       padding: .5rem 1rem;
     }
   }
+
   .application-list {
     .approved {
       color: theme-color-level(success, 2);
       background: theme-color-level(success, -10);
     }
+
     .email-unconfirmed {
       color: $gray-700;
       background: $gray-100;
     }
+
     .under-review {
       color: theme-color-level(warning, 2);
       background: theme-color-level(warning, -10);
     }
+
     .new {
       color: theme-color-level(danger, 2);
       background: theme-color-level(danger, -10);
     }
   }
 }
+
 .member {
   .button-container {
     margin: .5rem 0;
   }
 }
+
 .members {
 
   &.overview {

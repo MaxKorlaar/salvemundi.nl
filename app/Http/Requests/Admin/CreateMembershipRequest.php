@@ -26,7 +26,7 @@
          */
         public function rules() {
             return [
-                'valid_from' => 'required|date',
+                'valid_from'  => 'required|date',
                 'valid_until' => 'required|date',
             ];
         }

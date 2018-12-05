@@ -67,6 +67,16 @@
                         {% endif %}
                     </div>
                     <div>
+                        <b>{{ trans('admin.members.card') }}</b>
+                        {{ trans('admin.members.card_status.' ~ member.card_status) }}
+                    </div>
+                    {% if member.card_id is not null %}
+                        <div>
+                            <b>{{ trans('admin.members.temporary_card_number') }}</b>
+                            {{ member.card_id }}
+                        </div>
+                    {% endif %}
+                    <div>
                         <b>{{ trans('admin.members.created_at') }}</b>
                         {{ member.created_at|date(trans('datetime.format.date_and_time')) }}
                     </div>
@@ -76,7 +86,11 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <img class="img-fluid" src="{{ route('admin.members.picture', { member: member }) }}">
+                    {% if member.hasPicture() %}
+                        <a download="{{ member.picture_name }}" href="{{ route('admin.members.full_picture', { member: member }) }}" target="_blank">
+                            <img class="img-fluid" src="{{ route('admin.members.picture', { member: member }) }}">
+                        </a>
+                    {% endif %}
                     <i>{{ member.picture_name }}</i>
                 </div>
                 <div class="col-12 button-container">
@@ -103,7 +117,7 @@
                         </thead>
                         <tbody>
                             {% for transaction in member.transactions %}
-                                <tr>
+                                <tr id="transaction-{{ transaction.id }}">
                                     <td>{{ transaction.id }}</td>
                                     <td>
                                         <a target="_blank" href="{{ config_get('mollie.transaction_url') ~ transaction.transaction_id }}">{{ transaction.transaction_id }}</a>
@@ -132,11 +146,15 @@
                         <tbody>
                             {% for membership in member.memberships %}
                                 <tr>
-                                    <td>{{ membership.id }}</td>
+                                    <td>
+                                        {{ membership.id }}
+                                    </td>
                                     <td>
                                         {% if membership.transaction %}
-                                            {{ membership.transaction_id }}
-                                            ({{ trans('admin.transactions.status.' ~ membership.transaction.transaction_status) }})
+                                            <a href="#transaction-{{ membership.transaction_id }}">
+                                                {{ membership.transaction_id }}
+                                                ({{ trans('admin.transactions.status.' ~ membership.transaction.transaction_status) }})
+                                            </a>
                                         {% else %}
                                             {{ trans('admin.memberships.no_transaction') }}
                                         {% endif %}
@@ -151,6 +169,44 @@
                     <div class="button-container">
                         <a href="{{ route('admin.members.membership.create', { member: member }) }}" class="button">{{ trans('admin.memberships.create_membership') }}</a>
                     </div>
+                </div>
+                <div class="col-md-12">
+                    <h4>{{ trans('admin.members.campings') }}</h4>
+                    <table class="table camping-list table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ trans('admin.camping.id') }}</th>
+                                <th>{{ trans('admin.camping.camping_id') }}</th>
+                                <th>{{ trans('admin.camping.transaction') }}</th>
+                                <th>{{ trans('admin.camping.created_at') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for camping in member.campingApplications %}
+                                <tr>
+                                    <td>
+                                        {{ camping.id }}
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.camping.show', { camp: camping.camp }) }}">
+                                            {{ camping.camp_id }} ({{ camping.camp.year.year }})
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {% if camping.transaction %}
+                                            <a href="#transaction-{{ camping.transaction_id }}">
+                                                {{ camping.transaction_id }}
+                                                ({{ trans('admin.transactions.status.' ~ camping.transaction.transaction_status) }})
+                                            </a>
+                                        {% else %}
+                                            {{ trans('admin.camping.no_transaction') }}
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ camping.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>

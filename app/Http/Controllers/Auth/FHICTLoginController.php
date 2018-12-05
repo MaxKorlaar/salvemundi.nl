@@ -65,6 +65,9 @@
             try {
                 $this->client->authenticate();
             } catch (\OpenIDConnectClientException $e) {
+                if($e->getCode() === 403) {
+                    return redirect()->route('login')->withErrors(['login' => trans('auth.access_denied')])->with('redirect', route('login.redirect'));
+                }
                 if ($e->getMessage() !== null) {
                     $error = json_decode($e->getMessage());
                     if ($error !== null) {
@@ -78,8 +81,13 @@
 
             }
             $data = $this->client->requestUserInfo();
+            Log::debug('Gebruiker ingelogd via FHICT-login', ['member' => $data, 'ip' => $request->ip()]);
+
+            if (!isset($data->email)) {
+                return redirect()->route('login')->withErrors(['login' => trans('auth.email_missing')])->with('redirect', route('login.redirect'));
+            }
+
             \Session::put('fhict_login_data', $data);
-            Log::info('Gebruiker ingelogd via FHICT-login', ['member' => $data, 'ip' => $request->ip()]);
 
             $user = User::where('username', '=', $data->preferred_username)->first();
 
@@ -88,7 +96,23 @@
 
                 $member = Member::where('pcn', '=', $pcn)->first();
                 if ($member == null) {
-                    return redirect()->route('login')->withErrors(['login' => trans('auth.no_member_with_pcn_found')]);
+                    /*
+                     * Plaatjes doen het tijdelijk niet (schuld FHICT)
+                     *
+                      $pictureToken = $this->client->fetchURL(config('auth.fhict.api_url') . '/permissions/picture_token', '{}', [], true);
+                    $pictureToken = json_decode($pictureToken);
+                    if (is_string($pictureToken)) {
+                        dd($pictureToken, $data, $this->client->fetchURL($data->picture . '?access_token=' . $pictureToken, null, [], false));
+                    }
+                    dd($data, 0, $pictureToken);
+                     */
+                    return redirect()->route('signup.signup')->withErrors(['signup' => trans('auth.no_member_with_pcn_found')])->withInput([
+                        'pcn'                => $pcn,
+                        'first_name'         => $data->given_name,
+                        'last_name'          => $data->family_name,
+                        'email'              => $data->email,
+                        'email_confirmation' => $data->email,
+                    ]);
                 }
                 $user = User::createFromMember($member, $data);
                 $this->guard()->login($user, true);

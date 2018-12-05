@@ -1,0 +1,18 @@
+{% extends 'partials/page.twig' %}
+{% block container %}
+    <div class="content">
+        <div class="member-nav">
+            <div class="inner container">
+                <ul></ul>
+                <div>
+                    <p>
+                        {{ trans('member.nav.welcome', { name: auth_user().official_name }) }}
+                        <a href="{{ route('logout') }}">{{ trans('member.nav.log_out') }}</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}
