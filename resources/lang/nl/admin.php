@@ -204,5 +204,47 @@
                 'delete'       => 'Verwijder aanmelding permanent',
                 'deleted'      => 'De aanmelding is permanent verwijderd uit het systeem'
             ]
+        ],
+        'store'        => [
+            'items' => [
+                'title'       => 'Winkel-items',
+                'id'          => 'ID',
+                'name'        => 'Naam',
+                'description' => 'Beschrijving',
+                'in_stock'    => 'Op voorraad',
+                'created_at'  => 'Aangemaakt op',
+                'new'         => 'Nieuw item',
+                'create'      => [
+                    'title'  => 'Item aanmaken',
+                    'create' => 'Opslaan'
+                ],
+                'stock'       => [
+                    'title'                => 'Voorraad',
+                    'id'                   => 'ID',
+                    'name'                 => 'Naam',
+                    'name_variant'         => 'Naam/Variant/Versie',
+                    'price'                => 'Prijs',
+                    'description'          => 'Beschrijving',
+                    'description_optional' => 'Beschrijving (optioneel)',
+                    'in_stock'             => 'Voorraad',
+                    'images'               => 'Afbeeldingen',
+                    'images_multiple'      => 'Afbeeldingen (meerdere toegestaan)',
+                    'details'              => 'Bewerken',
+                    'create'               => [
+                        'title'  => 'Voorraad aanmaken voor :item',
+                        'create' => 'Opslaan'
+                    ],
+                    'edit'                 => [
+                        'title' => 'Voorraad bewerken voor :item',
+                        'save'  => 'Opslaan',
+                        'delete' => 'Voorraad verwijderen'
+                    ],
+                    'delete' => [
+                        'title' => 'Voorraad verwijderen van :item',
+                        'are_you_sure' => 'Weet je zeker dat je deze voorraad wil verwijderen? Dit kan niet ongedaan worden gemaakt.',
+                        'delete' => 'Verwijderen'
+                    ]
+                ]
+            ]
         ]
     ];

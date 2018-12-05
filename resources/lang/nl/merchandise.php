@@ -5,7 +5,8 @@ return [
     'info' => [
         'title' => 'Merchandise',
         'intro' => [
-            'Welkom bij de officiële merchandise pagina van Salve Mundi!\\nMet deze merchandixse kun je shinen op elke gelegenheid en laat je zien dat je onderdeel uit maakt van de studievereniging. Op deze pagina kun je bekijken welke merchandise er beschikbar is en kun je een bestelling plaatsen.'
+            "Welkom bij de officiële merchandise pagina van Salve Mundi!",
+            "Met deze merchandise kun je shinen op elke gelegenheid en laat je zien dat je onderdeel uit maakt van de studievereniging. Op deze pagina kun je bekijken welke merchandise er beschikbar is en kun je een bestelling plaatsen."
         ]
     ],
     'collections' => [

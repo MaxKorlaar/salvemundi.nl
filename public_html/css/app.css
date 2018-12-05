@@ -11065,6 +11065,17 @@ footer .container .links button:active {
   background: #f8d7da;
 }
 
+.store.stock .images-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 5px;
+}
+
+.store.stock .images-grid img {
+  display: block;
+  width: 100%;
+}
+
 .discounts .buttons .button {
   margin-right: 1rem;
 }

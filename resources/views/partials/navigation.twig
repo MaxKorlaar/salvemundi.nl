@@ -11,17 +11,17 @@
                 {#<li>#}
                 {#<a href="{{ route('signup.signup') }}">{{ trans('nav.sign_up') }}</a>#}
                 {#</li>#}
+                <li>
+                    <a href="{{ route('merchandise') }}">{{ trans('nav.merchandise') }}</a>
+                </li>
+                <li>
+                    <a href="{{ route('discounts.index') }}">{{ trans('nav.discounts') }}</a>
+                </li>
                 {% if auth_user() %}
                     <li>
                         <a href="{{ route('member.about_me') }}">{{ trans('nav.my_account') }}</a>
                     </li>
                 {% else %}
-                    <li>
-                        <a href="{{ route('merchandise') }}">{{ trans('nav.merchandise') }}</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('discounts.index') }}">{{ trans('nav.discounts') }}</a>
-                    </li>
                     <li>
                         <a href="{{ route('login.redirect') }}">{{ trans('nav.log_in') }}</a>
                     </li>

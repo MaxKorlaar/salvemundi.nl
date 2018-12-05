@@ -81,9 +81,7 @@
         Route::get('lidmaatschap-verlengen/bevestigen/betaling/{transaction}', 'MembershipController@confirmPayment')->name('membership.confirm_payment');
     });
 
-
     Route::post('/webhook/betaling/lidmaatschap/{member}', 'Member\MembershipController@confirmPaymentWebhook')->name('webhook.payment.renew_membership');
-
 
     Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
         //Route::resource('aanmeldingen', 'ApplicationsController')->names('applications');
@@ -102,6 +100,13 @@
         Route::get('intro/{application}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.delete_confirmation');
         Route::resource('intro', 'IntroController')->names('intro');
 
+        Route::group(['prefix' => 'winkel', 'namespace' => 'Store', 'as' => 'store.', 'middleware' => ['auth.admin']], function () {
+            Route::resource('items', 'ItemController');
+            Route::resource('items/{item}/voorraad', 'StockController')->names('items.stock');
+            Route::get('items/{item}/voorraad/{voorraad}/verwijderen', 'StockController@getDeleteConfirmation')->name('items.stock.delete_confirmation');
+            Route::get('items/{item}/voorraad/{voorraad}/afbeelding/{image}', 'StockController@getImage')->name('items.stock.image');
+            Route::get('items/{item}/voorraad/{voorraad}/afbeelding/{image}/volledig', 'StockController@getImageFull')->name('items.stock.image_full');
+        });
 
         Route::get('aanmeldingen-naar-leden', 'MemberController@applicationsToMembers');
 
@@ -114,11 +119,11 @@
         Route::get('leden/email', 'MemberController@getMailForm')->name('members.email');
         Route::post('leden/email/voorbeeld', 'MemberController@getMailPreview')->name('members.preview_email');
         Route::post('leden/email', 'MemberController@sendMail')->name('members.do_send_email');
-        
+
         Route::get('leden/email-verlenging-nodig', 'MemberController@getInactiveMailForm')->name('members.email_inactive');
         Route::post('leden/email-verlenging-nodig/voorbeeld', 'MemberController@getInactiveMailPreview')->name('members.preview_email_inactive');
         Route::post('leden/email-verlenging-nodig', 'MemberController@sendInactiveMail')->name('members.do_send_email_inactive');
-        
+
         Route::get('leden/verwijder-inactieve', 'MemberController@deleteInactiveConfirmation')->name('members.delete_inactive_confirmation');
         Route::delete('leden/verwijder-inactieve', 'MemberController@deleteInactive')->name('members.delete_inactive');
         Route::resource('leden', 'MemberController')->names('members');
