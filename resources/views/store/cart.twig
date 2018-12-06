@@ -1,0 +1,68 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('store.cart.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="store cart">
+            <h2>{{ trans('store.cart.title') }}</h2>
+
+            <table class="table item-list table-striped">
+                <thead>
+                    <tr>
+                        <th>{{ trans('store.cart.name') }}</th>
+                        <th>{{ trans('store.cart.variant') }}</th>
+                        <th>{{ trans('store.cart.amount') }}</th>
+                        <th>{{ trans('store.cart.price') }}</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.variant }}</td>
+                            <td>{{ item.amount }}</td>
+                            <td>{{ item.price|number_format(2, ',') }}</td>
+                            <td>
+                                <form method="post" action="{{ route('store.cart.remove_item', { index: item.index }) }}">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button class="remove-from-cart" type="submit"><span>&times;</span></button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr class="empty-cart">
+                            <td colspan="5">{{ trans('store.cart.empty_cart') }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr class="subtotal">
+                        <td colspan="3">{{ trans('store.cart.subtotal') }}</td>
+                        <td class="cart_price">€{{ subtotal|number_format(2, ',') }}</td>
+                        <td></td>
+                    </tr>
+                    <tr class="vat">
+                        <td colspan="3">{{ trans('store.cart.vat') }}</td>
+                        <td class="cart_price">€{{ vat|number_format(2, ',') }}</td>
+                        <td></td>
+                    </tr>
+                    <tr class="total">
+                        <td colspan="3">{{ trans('store.cart.total_amount') }}</td>
+                        <td class="cart_price">€{{ total|number_format(2, ',') }}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <form method="POST" action="{{ route('store.cart.place_order') }}">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <h4>{{ trans('store.cart.order') }}</h4>
+                    <p>{{ trans('store.cart.order_instructions') }}</p>
+                    <p>{{ trans('store.cart.order_terms')|raw }}</p>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="button" value="{{ trans('store.cart.place_order') }}">
+                </div>
+            </form>
+        </main>
+    </div>
+{% endblock %}

@@ -1,0 +1,96 @@
+.store {
+  &.cart {
+    .total, .vat, .subtotal {
+      font-weight: bold;
+      td:first-child {
+        text-align: right;
+      }
+    }
+    .empty-cart {
+      text-align: center;
+      td {
+        padding: 1rem;
+      }
+    }
+    .remove-from-cart {
+      background: none;
+      border: 1px solid theme-color(danger);
+      color: theme-color(danger);
+      width: 1rem;
+      height: 1rem;
+      line-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include hover-focus-active {
+        background: theme-color-level(danger, -5);
+        color: theme-color-level(danger, 2);
+        cursor: pointer;
+      }
+    }
+  }
+  .price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 2.5rem;
+    color: theme-color(primary);
+  }
+  .no-stock {
+    color: theme-color(danger);
+    font-weight: bold;
+  }
+  .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div {
+      margin: 0;
+    }
+  }
+  .images-grid {
+    display: grid;
+    grid-gap: 1rem;
+    margin-bottom: 1rem;
+    grid-template-columns: 1fr 1fr;
+    a {
+      @include hover-focus-active {
+        background: none;
+        img {
+          background: theme-color-level(primary, -7);
+          box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.28);
+        }
+      }
+    }
+    img {
+      @extend .img-fluid;
+      transition: $transition-base;
+    }
+  }
+  .loader {
+    text-align: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    span {
+      margin: 0 1rem;
+      width: 3rem;
+      height: 3rem;
+      display: inline-block;
+      border-radius: 100%;
+      background: theme-color(primary);
+      animation: fade 1.5s infinite both;
+
+      &:nth-child(2) {
+        animation-delay: .5s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 1s;
+      }
+    }
+  }
+}

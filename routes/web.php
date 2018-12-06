@@ -15,7 +15,16 @@
 
     Route::group(['prefix' => 'winkel', 'as' => 'store.'], function () {
         Route::get('/', 'StoreController@index')->name('index');
-        Route::get('/{slug}', 'StoreController@viewItem')->name('view_item');
+
+        Route::get('mandje', 'StoreController@viewCart')->name('cart');
+        Route::post('mandje', 'StoreController@addToCart')->name('add_to_cart');
+        Route::post('mandje/bestellen', 'StoreController@placeOrder')->name('cart.place_order');
+        Route::delete('mandje/{index}', 'StoreController@removeFromCart')->name('cart.remove_item');
+
+        Route::get('{slug}', 'StoreController@viewItem')->name('view_item');
+        Route::get('{slug}/{stock}/afbeelding/{image}', 'StoreController@getImage')->name('image');
+        Route::get('{slug}/{stock}/afbeelding/{image}/volledig', 'StoreController@getImageFull')->name('image_full');
+
     });
 
     Route::get('merchandise', 'MerchandiseController@getMerchandise')->name("merchandise");

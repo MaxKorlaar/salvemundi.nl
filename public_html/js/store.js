@@ -1192,6 +1192,7 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 new Vue({
     el: '#store-app',
     data: {
+        loaded: false,
         item: {
             description: ''
         },
@@ -1200,7 +1201,11 @@ new Vue({
             description: null
         }
     },
-    methods: {},
+    methods: {
+        formatPrice: function formatPrice(value) {
+            return parseFloat(value).toFixed(2).replace('.', ',');
+        }
+    },
     computed: {
         description: function description() {
             if (this.selectedStock.description !== null) {
@@ -1213,6 +1218,7 @@ new Vue({
         this.item = window.SalveMundi.store.item;
         this.stock = window.SalveMundi.store.stock;
         this.selectedStock = this.stock[0];
+        this.loaded = true;
     }
 });
 

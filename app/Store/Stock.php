@@ -41,7 +41,7 @@
          * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
          */
         public function item() {
-            return $this->belongsTo(Item::class);
+            return $this->belongsTo(Item::class, 'store_item_id');
         }
 
         /**
@@ -49,5 +49,21 @@
          */
         public function images() {
             return $this->hasMany(StockImage::class, 'store_stock_id');
+        }
+
+        /**
+         * @return array
+         */
+        public function jsonSerialize() {
+            $return = $this->toArray();
+            foreach ($this->images as $image) {
+                $return['images'][] = [
+                    'name' => $image->image_name,
+                    'url' => route('store.image', ['slug' => $this->item->slug, 'stock' => $this, 'image' => $image]),
+                    'full_url' => route('store.image_full', ['slug' => $this->item->slug, 'stock' => $this, 'image' => $image])
+                ];
+            }
+
+            return $return;
         }
     }

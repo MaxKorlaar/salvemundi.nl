@@ -11,21 +11,26 @@
     text-transform: uppercase;
     font-size: 1rem;
     width: 100%;
+
     .count {
       display: block;
       font-size: 6rem;
       line-height: 1;
       font-weight: bold;
     }
+
     margin-bottom: 1rem;
   }
-///
+
+  ///
   form {
     input {
       transition: .2s background-color;
+
       &:invalid {
         background: theme-color-level(danger, -5);
       }
+
       &.button {
         //@extend a;
         color: $white;
@@ -39,23 +44,28 @@
         }
       }
     }
+
     textarea, select {
       border: none;
       background: none;
       border-bottom: thin solid gray;
       border-radius: 0;
+
       &:focus {
         background: none;
         outline: 0 !important;
         border-color: $brand-primary;
       }
     }
+
     select {
       -webkit-appearance: button;
     }
+
     label {
       font-weight: bold;
     }
+
     .form-check-input.form-control {
       width: auto;
     }
@@ -64,6 +74,7 @@
 
   .checkmark-wrapper {
     text-align: center;
+
     .checkmark {
       // Ik heb even snel iets in elkaar geplakt voor een vinkje in een cirkeltje
       font-size: 7rem;
@@ -89,15 +100,18 @@
       border-radius: 25%;
     }
   }
-.payment-page {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-}
+
+  .payment-page {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
   .loader {
     text-align: center;
     //font-size: 5rem;
     //line-height: 1;
     margin-bottom: 1rem;
+
     span {
       margin: 0 1rem;
       width: 3rem;
@@ -106,9 +120,11 @@
       border-radius: 100%;
       background: theme-color(primary);
       animation: fade 1.5s infinite both;
+
       &:nth-child(2) {
         animation-delay: .5s;
       }
+
       &:nth-child(3) {
         animation-delay: 1s;
       }
