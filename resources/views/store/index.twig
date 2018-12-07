@@ -13,11 +13,17 @@
                 <div class="col-md-12">
                     <h3>{{ trans('store.collections.title') }}</h3>
                     <div class="store-grid">
-                        {{ dump(items) }}
                         {% for item in items %}
-                        <a href="{{ route('store.view_item', { slug: item.slug }) }}" class="button">
-                            {{ item.name }}
-                        </a>
+                            <div class="store-item">
+                                {% if item.stock[0] != null and item.stock[0].images[0] != null %}
+                                    <a class="image" href="{{ route('store.view_item', { slug: item.slug }) }}">
+                                        <img src="{{ route('store.image', { slug: item.slug, stock: item.stock[0], image: item.stock[0].images[0] }) }}" alt="" class="img-fluid">
+                                    </a>
+                                {% endif %}
+                                <a href="{{ route('store.view_item', { slug: item.slug }) }}" class="button">
+                                    {{ item.name }}
+                                </a>
+                            </div>
                         {% endfor %}
 
                     </div>

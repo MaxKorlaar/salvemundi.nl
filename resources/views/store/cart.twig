@@ -1,7 +1,7 @@
-{% extends 'partials/page.twig' %}
+{% extends 'member/_page.twig' %}
 {% block title %}{{ trans('store.cart.title') }}{% endblock %}
 {% block content %}
-    <div class="container content">
+    <div class="container">
         <main class="store cart">
             <h2>{{ trans('store.cart.title') }}</h2>
 
@@ -52,17 +52,19 @@
                     </tr>
                 </tbody>
             </table>
-            <form method="POST" action="{{ route('store.cart.place_order') }}">
-                {{ csrf_field() }}
-                <div class="form-group">
-                    <h4>{{ trans('store.cart.order') }}</h4>
-                    <p>{{ trans('store.cart.order_instructions') }}</p>
-                    <p>{{ trans('store.cart.order_terms')|raw }}</p>
-                </div>
-                <div class="form-group">
-                    <input type="submit" class="button" value="{{ trans('store.cart.place_order') }}">
-                </div>
-            </form>
+            {% if items is not empty %}
+                <form method="POST" action="{{ route('store.cart.place_order') }}">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <h4>{{ trans('store.cart.order') }}</h4>
+                        <p>{{ trans('store.cart.order_instructions') }}</p>
+                        <p>{{ trans('store.cart.order_terms')|raw }}</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="button" value="{{ trans('store.cart.place_order') }}">
+                    </div>
+                </form>
+            {% endif %}
         </main>
     </div>
 {% endblock %}

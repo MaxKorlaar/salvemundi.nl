@@ -19,6 +19,7 @@
         Route::get('mandje', 'StoreController@viewCart')->name('cart');
         Route::post('mandje', 'StoreController@addToCart')->name('add_to_cart');
         Route::post('mandje/bestellen', 'StoreController@placeOrder')->name('cart.place_order');
+        Route::get('mandje/bestellen', 'StoreController@viewCart');
         Route::delete('mandje/{index}', 'StoreController@removeFromCart')->name('cart.remove_item');
 
         Route::get('{slug}', 'StoreController@viewItem')->name('view_item');

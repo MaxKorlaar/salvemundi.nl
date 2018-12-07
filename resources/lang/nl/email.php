@@ -123,6 +123,25 @@ De feestcommissie Salve Mundi'
             ]
         ],
 
+        'store' => [
+            'order_confirmation' => [
+                'subject' => 'Bevestiging van bestelling :invoice',
+                'item_name' => 'Product',
+                'amount'    => 'Aantal',
+                'price'     => 'Prijs',
+                'greeting' => 'Hallo :name,',
+                'intro_text' => 'Hartelijk bedankt voor het plaatsen van je bestelling bij Salve Mundi. We hebben je bestelling ontvangen en zullen binnenkort contact opnemen over het afronden van je aankopen. Alvast veel plezier toegewenst met je producten!',
+            ],
+            'new_order' => [
+                'subject' => 'Nieuwe bestelling: :invoice',
+                'item_name' => 'Product',
+                'amount'    => 'Aantal',
+                'price'     => 'Prijs',
+                'greeting' => 'Hallo mediacommissie,',
+                'intro_text' => 'Er is onlangs een bestelling geplaatst door :name (:email). Er is geen betaling gekoppeld.',
+            ]
+        ],
+
         'signature'  => 'Met vriendelijke groet,
     s.v. Salve Mundi
     https://salvemundi.nl',

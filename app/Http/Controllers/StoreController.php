@@ -3,10 +3,15 @@
     namespace App\Http\Controllers;
 
     use App\Http\Requests\Store\AddToCart;
+    use App\Mail\NewOrder;
+    use App\Mail\OrderConfirmation;
     use App\Store\Item;
+    use App\Store\Order;
     use App\Store\Stock;
     use App\Store\StockImage;
+    use App\User;
     use Illuminate\Http\Request;
+    use Mail;
 
     /**
      * Class StoreController
@@ -80,10 +85,10 @@
 
             $cart  = $this->checkItemAvailability($request->session()->get('store.cart'));
             $found = false;
-            foreach ($cart as $index => &$item) {
-                if ($item['stock']->id === $stock->id) {
-                    $item['amount'] += $request->get('amount');
-                    $found          = true;
+            foreach ($cart as $index => &$sessionItem) {
+                if ($sessionItem['stock']->id === $stock->id) {
+                    $sessionItem['amount'] += $request->get('amount');
+                    $found                 = true;
                 }
             }
             if ($found) {
@@ -188,31 +193,48 @@
         public function placeOrder(Request $request) {
             $cart = $this->checkItemAvailability($request->session()->get('store.cart'));
 
-            if(empty($cart)) {
+            if (empty($cart)) {
                 return redirect()->back();
             }
+
             $request->session()->pull('store.cart');
 
+            /** @var User $user */
+            $user  = $request->user();
             $total = 0;
 
+            $order                 = new Order();
+            $order->transaction_id = null;
+            $order->status         = Order::STATUS_OPEN;
+            $order->user()->associate($user);
+            $order->saveOrFail();
             foreach ($cart as $index => $item) {
                 /** @var Stock $stock */
-                $stock         = $item['stock'];
+                $stock           = $item['stock'];
                 $stock->in_stock = $stock->in_stock - $item['amount'];
                 $stock->saveOrFail();
 
-                $items[] = [
-                    'index'   => $index,
-                    'amount'  => $item['amount'],
-                    'name'    => $item['item']->name,
-                    'variant' => $item['stock']->name,
-                    'price'   => $item['stock']->price * $item['amount']
-                ];
-                $total   += $item['stock']->price * $item['amount'];
+                $order->items()->create([
+                    'amount'         => $item['amount'],
+                    'price'          => $item['stock']->price,
+                    'store_stock_id' => $item['stock']->id
+                ]);
+                $total += $item['stock']->price * $item['amount'];
             }
 
+            // De bestelling is geplaatst. Mailtje sturen naar persoon zelf en de mediacommissie
 
-            $vat = 0.21 * $total;
+            // Stuur een bevestiging naar de gebruiker zelf
+
+            $mail = new OrderConfirmation($order);
+            $mail->to($user->member->email, $user->member->first_name . ' ' . $user->member->last_name);
+            Mail::queue($mail);
+
+            $mail = new NewOrder($order);
+            $mail->to(config('mail.store_to.address'), config('mail.store_to.name'));
+            Mail::queue($mail);
+
+            return view('store.thanks_for_ordering');
 
         }
     }

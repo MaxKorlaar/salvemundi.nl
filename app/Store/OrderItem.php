@@ -32,6 +32,8 @@
     class OrderItem extends Model {
         protected $table = 'store_order_items';
 
+        protected $fillable = ['amount', 'store_stock_id', 'price'];
+
         /**
          * @return \Illuminate\Database\Eloquent\Relations\HasOne
          */

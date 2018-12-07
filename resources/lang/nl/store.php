@@ -24,6 +24,13 @@
             'order_terms'        => 'Door op \'Bestellen\' te drukken ga je akkoord met <a href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp" target="_blank">de huisregels van Salve Mundi</a> en dat je gegevens worden verwerkt volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>.',
             'place_order'        => 'Plaats bestelling'
         ],
+        'order'       => [
+            'confirmation' => [
+                'title'              => 'Bestelling geplaatst',
+                'order_placed'       => 'We hebben je bestelling ontvangen',
+                'email_instructions' => 'Bedankt voor het plaatsen van je bestelling bij Salve Mundi! We hebben je bestelling ontvangen en nemen binnenkort contact met je op. Meer informatie over je bestelling is zojuist naar je e-mail-adres toegestuurd.'
+            ]
+        ],
         'item'        => [
             'variant'      => 'Uitvoering',
             'no_stock'     => 'Geen op voorraad',

@@ -15,11 +15,11 @@
             <main>
                 <section class="description container">
                     {#<div class="warning">#}
-                        {#<h2>{{ trans('home.intro_signup_header') }}</h2>#}
-                        {#{{ trans('home.intro_signup') }}#}
-                        {#<div class="text-center button-container">#}
-                            {#<a href="{{ route('intro.info') }}" class="button text-center">{{ trans('home.intro_signup_button') }}</a>#}
-                        {#</div>#}
+                    {#<h2>{{ trans('home.intro_signup_header') }}</h2>#}
+                    {#{{ trans('home.intro_signup') }}#}
+                    {#<div class="text-center button-container">#}
+                    {#<a href="{{ route('intro.info') }}" class="button text-center">{{ trans('home.intro_signup_button') }}</a>#}
+                    {#</div>#}
                     {#</div>#}
                     {% for text in trans('home.welcome_text') %}
                         <p>{{ text }}</p>
@@ -49,6 +49,11 @@
                 {#<p>{{ trans('home.camping.text')|raw }}</p>#}
                 {#<a href="{{ route('camping.signup') }}" class="button">{{ trans('home.camping.sign_me_up') }}</a>#}
                 {#</section>#}
+                <section class="store container">
+                    <h1>{{ trans('home.store.header') }}</h1>
+                    <p>{{ trans('home.store.text')|raw }}</p>
+                    <a href="{{ route('store.index') }}" class="button">{{ trans('home.store.take_a_look') }}</a>
+                </section>
                 <section class="events" id="events" data-url="{{ route('facebook_events') }}">
                     <div class="container">
                         <h1>{{ trans('home.events.upcoming') }}</h1>
