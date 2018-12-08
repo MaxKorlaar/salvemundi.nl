@@ -47,8 +47,8 @@ maken over de afhandeling van je inschrijving. Waar wacht je nog op?',
         ],
         'store'                  => [
             'header'      => 'Salve Mundi Merchandise',
-            'text'        => 'We hebben eindelijk onze eigen merchandisewinkel op onze site gezet! Het is nu heel makkelijk om zelf kleding van Salve Mundi te bestellen.',
-            'take_a_look' => 'Kijk naar het aanbod'
+            'text'        => 'Ben je benieuwd naar de officiële merchandise van Salve Mundi? We hebben een eigen merchandise pagina op de website. Het is nu mogelijk om de merchandise van Salve Mundi te bekijken en te bestellen. Houdt de merchandise pagina in de gaten voor de nieuwste merchandise.',
+            'take_a_look' => 'Bekijk de merchandise'
         ],
 
         'events'     => [

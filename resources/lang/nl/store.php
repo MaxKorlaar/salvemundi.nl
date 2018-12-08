@@ -34,7 +34,7 @@
         'item'        => [
             'variant'      => 'Uitvoering',
             'no_stock'     => 'Geen op voorraad',
-            'not_in_stock' => 'Niet meer op voorraad? Niet getreurd! Houd deze pagina in de gaten om op de hoogte blijven wanneer het product weer op voorraad is. Ook is het mogelijk om een mail naar media@salvemundi.nl te sturen om aan te geven dat jij interesse hebt in het volgende product!'
+            'not_in_stock' => 'Niet meer op voorraad? Niet getreurd! Houd deze pagina in de gaten om op de hoogte blijven wanneer het product weer op voorraad is. Ook is het mogelijk om een mail naar media@salvemundi.nl te sturen om aan te geven dat jij interesse hebt in dit product!'
         ],
         'collections' => [
             'title' => "Bekijk hieronder de Salve Mundi merchandise collectie",

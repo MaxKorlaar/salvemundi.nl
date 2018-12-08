@@ -42,14 +42,14 @@
               <td colspan="2" style="text-align:right;padding-right:1rem;">{{ trans('store.cart.subtotal') }}</td>
               <td class="cart_price">€{{ subtotal|number_format(2, ',') }}</td>
             </tr>
-            <tr class="vat" style="font-weight: bold;">
-              <td colspan="2" style="text-align:right;padding-right:1rem;">{{ trans('store.cart.vat') }}</td>
-              <td class="cart_price">€{{ vat|number_format(2, ',') }}</td>
-            </tr>
-            <tr class="total" style="font-weight: bold;">
-              <td colspan="2" style="text-align:right;padding-right:1rem;">{{ trans('store.cart.total_amount') }}</td>
-              <td class="cart_price">€{{ total|number_format(2, ',') }}</td>
-            </tr>
+              {#<tr class="vat" style="font-weight: bold;">
+                <td colspan="2" style="text-align:right;padding-right:1rem;">{{ trans('store.cart.vat') }}</td>
+                <td class="cart_price">€{{ vat|number_format(2, ',') }}</td>
+              </tr>
+              <tr class="total" style="font-weight: bold;">
+                <td colspan="2" style="text-align:right;padding-right:1rem;">{{ trans('store.cart.total_amount') }}</td>
+                <td class="cart_price">€{{ total|number_format(2, ',') }}</td>
+              </tr>#}
 
           </mj-table>
 

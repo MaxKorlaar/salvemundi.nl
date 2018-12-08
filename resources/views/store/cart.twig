@@ -35,7 +35,7 @@
                             <td colspan="5">{{ trans('store.cart.empty_cart') }}</td>
                         </tr>
                     {% endfor %}
-                    <tr class="subtotal">
+                    {#<tr class="subtotal">
                         <td colspan="3">{{ trans('store.cart.subtotal') }}</td>
                         <td class="cart_price">€{{ subtotal|number_format(2, ',') }}</td>
                         <td></td>
@@ -44,7 +44,7 @@
                         <td colspan="3">{{ trans('store.cart.vat') }}</td>
                         <td class="cart_price">€{{ vat|number_format(2, ',') }}</td>
                         <td></td>
-                    </tr>
+                    </tr>#}
                     <tr class="total">
                         <td colspan="3">{{ trans('store.cart.total_amount') }}</td>
                         <td class="cart_price">€{{ total|number_format(2, ',') }}</td>

@@ -56,7 +56,10 @@
          * @return mixed
          */
         public function getImage($slug, Stock $stock, StockImage $image) {
-            return $image->getResizedCachedImage(500, 500, true)->response();
+            /** @var \Illuminate\Http\Response $response */
+            $response = $image->getResizedCachedImage(500, 500, true)->response();
+            $response->header('Cache-Control', 'public, max-age=2678400');
+            return $response;
         }
 
         /**
@@ -67,7 +70,10 @@
          * @return mixed
          */
         public function getImageFull($slug, Stock $stock, StockImage $image) {
-            return $image->getResizedCachedImage(4000, 4000, true)->response();
+            /** @var \Illuminate\Http\Response $response */
+            $response = $image->getResizedCachedImage(4000, 4000, true)->response();
+            $response->header('Cache-Control', 'public, max-age=2678400');
+            return $response;
         }
 
         /**
