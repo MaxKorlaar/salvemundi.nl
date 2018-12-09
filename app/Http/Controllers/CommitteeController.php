@@ -18,6 +18,28 @@
         /**
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
+        public function get2017() {
+            return view('committees.administration',
+                [
+                    'administration_title' => trans('administration.administration_versions.2017.title'),
+                    'administration_text' => trans('administration.administration_versions.2017.text')
+                ]);
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function get2018() {
+            return view('committees.administration',
+                [
+                    'title' => trans('administration.administration_versions.2018.title'),
+                    'text' => trans('administration.administration_versions.2018.text')
+                ]);
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
         public function getPartyPage() {
             return view('committees.party');
         }

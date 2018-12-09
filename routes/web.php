@@ -19,6 +19,9 @@
 
     Route::group(['prefix' => 'commissies', 'as' => 'committees/'], function () {
         Route::get('bestuur', 'CommitteeController@getAdministrationPage')->name('administration');
+        Route::get('bestuur/2017', 'CommitteeController@get2017')->name('administration.2017');
+        Route::get('bestuur/2018', 'CommitteeController@get2018')->name('administration.2018');
+
         Route::get('feest', 'CommitteeController@getPartyPage')->name('party');
         Route::get('media', 'CommitteeController@getMediaPage')->name('media');
         Route::get('kamp', 'CommitteeController@getCampingPage')->name('camping');
