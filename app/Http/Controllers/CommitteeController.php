@@ -21,8 +21,10 @@
         public function get2017() {
             return view('committees.administration',
                 [
-                    'administration_title' => trans('administration.administration_versions.2017.title'),
-                    'administration_text' => trans('administration.administration_versions.2017.text')
+                    'administration_title' => trans('committee.administration.administration_versions.2017.title'),
+                    'administration_text' => trans('committee.administration.administration_versions.2017.text'),
+                    'administration_image' => 'images/bestuur_2017.jpg',
+                    'administration_caption' => trans('committee.administration.administration_versions.2017.caption')
                 ]);
         }
 
@@ -32,8 +34,10 @@
         public function get2018() {
             return view('committees.administration',
                 [
-                    'title' => trans('administration.administration_versions.2018.title'),
-                    'text' => trans('administration.administration_versions.2018.text')
+                    'administration_title' => trans('committee.administration.administration_versions.2018.title'),
+                    'administration_text' => trans('committee.administration.administration_versions.2018.text'),
+                    'administration_image' => 'images/bestuur_2018.jpg',
+                    'administration_caption' => trans('committee.administration.administration_versions.2018.caption')
                 ]);
         }
 

@@ -9,14 +9,14 @@
                 "2017" => [
                     "title" => "Het eerste bestuur (2017-2018)",
                     "text" => 'Naast de twee oprichters bestaat het bestuur uit nog vier andere leden. Rex Treurniet als penningmeester en Carmen Bijlaart, Chiel Schrijvers en later ook Mitchell Vermeulen als algemeen bestuurslid. Dit zestal is verantwoordelijk voor het eerste jaar van Salve Mundi en haar daverende succes. Voor de vereniging officieel was telde deze al 70 gemotiveerde leden, welke geduldig door het eerste halfjaar van de vereniging heen zijn gekomen. Dit was een tijd van lang afwachten omdat het bestuur simpelweg te druk was met het opzetten van de vereniging. Het eerste bestuur heeft het contract gesloten met de stamkroeg Villa Fiësta, een van de betere intro\'s in de afgelopen vijf jaar georganiseerd, een wekelijkse bijles opgezet die op zijn drukst 3 klaslokalen opvulde, een aanspreekpunt gecreëerd voor de dames op de opleiding, de studievereniging opgezet, verscheidene feesten gegeven, en nog veel meer.',
+                    "caption" => 'Vanaf links: Chiel, Mohammed, Carmen, Luuk en Rex. Totop heden is het nog onduidelijk waar ze precies naartoe keken.'
                 ],
                 "2018" => [
-                    "head_title" => "Het eerste bestuur (2017-2018)",
-                    "head_text' => 'Naast de twee oprichters bestaat het bestuur uit nog vier andere leden. Rex Treurniet als penningmeester en Carmen Bijlaart, Chiel Schrijvers en later ook Mitchell Vermeulen als algemeen bestuurslid. Dit zestal is verantwoordelijk voor het eerste jaar van Salve Mundi en haar daverende succes. Voor de vereniging officieel was telde deze al 70 gemotiveerde leden, welke geduldig door het eerste halfjaar van de vereniging heen zijn gekomen. Dit was een tijd van lang afwachten omdat het bestuur simpelweg te druk was met het opzetten van de vereniging. Het eerste bestuur heeft het contract gesloten met de stamkroeg Villa Fiësta, een van de betere intro\'s in de afgelopen vijf jaar georganiseerd, een wekelijkse bijles opgezet die op zijn drukst 3 klaslokalen opvulde, een aanspreekpunt gecreëerd voor de dames op de opleiding, de studievereniging opgezet, verscheidene feesten gegeven, en nog veel meer.",
+                    "title" => "",
+                    "text" => "",
+                    "caption" => ""
                 ],
-
             ],
-            'image_caption'             => 'Vanaf links: Chiel, Mohammed, Carmen, Luuk en Rex. Totop heden is het nog onduidelijk waar ze precies naartoe keken.',
             'meet_the_members'          => 'Ontmoet het bestuur',
             'members'                   => [
                 [
