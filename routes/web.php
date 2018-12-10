@@ -23,8 +23,9 @@
         Route::delete('mandje/{index}', 'StoreController@removeFromCart')->name('cart.remove_item');
 
         Route::get('{slug}', 'StoreController@viewItem')->name('view_item');
-        Route::get('{slug}/{stock}/afbeelding/{image}', 'StoreController@getImage')->name('image');
-        Route::get('{slug}/{stock}/afbeelding/{image}/volledig', 'StoreController@getImageFull')->name('image_full');
+        Route::get('{slug}/{stock}/afbeelding/{image}.pict', 'StoreController@getImage')->name('image');
+        // De .pict-extensie gebruiken om CloudFlare (CDN) te forceren om de afbeelding te cachen
+        Route::get('{slug}/{stock}/afbeelding/{image}/volledig.pict', 'StoreController@getImageFull')->name('image_full');
 
     });
 
