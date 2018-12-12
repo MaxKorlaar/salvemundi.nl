@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-bottom: 1rem;
+    grid-row-gap: 1.5rem;
     .store-item {
       display: flex;
       flex-direction: column;
@@ -20,7 +21,7 @@
       @include hover-focus-active {
         background: none;
         img {
-          background: theme-color-level(primary, -7);
+          //background: theme-color-level(primary, -7);
           box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.28);
         }
       }
