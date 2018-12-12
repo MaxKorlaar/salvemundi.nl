@@ -88,11 +88,22 @@
         /**
          * Remove the specified resource from storage.
          *
-         * @param  int $id
+         * @param Item $item
          *
-         * @return \Illuminate\Http\Response
+         * @return \Illuminate\Http\RedirectResponse
+         * @throws \Exception
          */
-        public function destroy($id) {
-            //
+        public function destroy(Item $item) {
+            $item->delete();
+            return redirect()->route('admin.store.items.index');
+        }
+
+        /**
+         * @param Item $item
+         *
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getDeleteConfirmation(Item $item) {
+            return view('admin.store.items.delete', ['item' => $item]);
         }
     }

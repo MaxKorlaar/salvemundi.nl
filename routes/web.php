@@ -119,6 +119,8 @@
         Route::group(['prefix' => 'winkel', 'namespace' => 'Store', 'as' => 'store.', 'middleware' => ['auth.admin']], function () {
             Route::resource('items', 'ItemController');
             Route::resource('items/{item}/voorraad', 'StockController')->names('items.stock');
+            Route::get('items/{item}/verwijderen', 'ItemController@getDeleteConfirmation')->name('items.delete_confirmation');
+
             Route::get('items/{item}/voorraad/{voorraad}/verwijderen', 'StockController@getDeleteConfirmation')->name('items.stock.delete_confirmation');
             Route::get('items/{item}/voorraad/{voorraad}/afbeelding/{image}', 'StockController@getImage')->name('items.stock.image');
             Route::get('items/{item}/voorraad/{voorraad}/afbeelding/{image}/volledig', 'StockController@getImageFull')->name('items.stock.image_full');

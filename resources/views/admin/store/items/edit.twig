@@ -58,6 +58,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <input type="submit" class="button" value="{{ trans('admin.store.items.edit.save') }}">
+                                <a href="{{ route('admin.store.items.delete_confirmation', { item: item }) }}" class="button delete">{{ trans('admin.store.items.edit.delete') }}</a>
                             </div>
                         </div>
 

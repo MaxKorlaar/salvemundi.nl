@@ -4,12 +4,12 @@
     <div class="container content">
         <main class="store">
             <div id="store-app">
-                <div v-if="!loaded" class="loader">
+                <div v-if="!loaded || stock.length == 0" class="loader">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div>
-                <div v-cloak="" class="row">
+                <div v-else v-cloak="" class="row">
                     <div class="col-md-12">
                         <h1>{{ trans('store.info.title') }}</h1>
                         {% for content in trans('store.info.intro') %}

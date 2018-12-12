@@ -160,6 +160,10 @@
                 /** @var Stock $stock */
                 $stock         = $item['stock'];
                 $item['stock'] = $stock->fresh();
+                if($item['stock'] === null) {
+                    continue;
+                    // Het item bestaat niet meer. Schrap het item
+                }
                 $available     = $item['stock']->in_stock;
                 if ($available > 0) {
                     if ($amount <= $available) {

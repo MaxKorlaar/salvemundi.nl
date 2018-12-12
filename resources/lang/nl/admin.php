@@ -221,7 +221,13 @@
                 ],
                 'edit'        => [
                     'save'  => 'Opslaan',
-                    'title' => 'Item bewerken: :name'
+                    'title' => 'Item bewerken: :name',
+                    'delete' => 'Item verwijderen'
+                ],
+                'delete'      => [
+                    'title'        => ':item verwijderen',
+                    'are_you_sure' => 'Weet je zeker dat je dit item wil verwijderen? Dit kan niet ongedaan worden gemaakt.',
+                    'delete'       => 'Permanent verwijderen'
                 ],
                 'stock'       => [
                     'title'                => 'Voorraad',
