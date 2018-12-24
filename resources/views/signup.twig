@@ -59,7 +59,7 @@
                         <div class="form-group">
                             <input type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
                                    placeholder="{{ trans('signup.postal_code') }}" name="postal"
-                                   value="{{ old('postal') }}" maxlength="6" pattern="^[0-9]{4}[A-Za-z]{2}$">
+                                   value="{{ old('postal') }}">
                             <div class="invalid-feedback">
                                 {{ errors.first('postal')|ucfirst }}
                             </div>

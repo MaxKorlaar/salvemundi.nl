@@ -9,77 +9,80 @@
     use Illuminate\Support\Carbon;
     use Intervention\Image\Constraint;
     use Intervention\Image\Facades\Image;
+    use Mollie\Api\Resources\Payment;
 
     /**
- * Class Member
- *
- * @package App
- * @property int                                                                     $id
- * @property string                                                                  $pcn
- * @property string                                                                  $first_name
- * @property string                                                                  $last_name
- * @property string                                                                  $address
- * @property string                                                                  $city
- * @property string                                                                  $postal
- * @property string                                                                  $birthday
- * @property string                                                                  $phone
- * @property string                                                                  $email
- * @property string|null                                                             $status
- * @property string                                                                  $ip_address
- * @property string                                                                  $picture_name
- * @property string                                                                  $transaction_id
- * @property string                                                                  $transaction_status
- * @property float                                                                   $transaction_amount
- * @property \Carbon\Carbon|null                                                     $created_at
- * @property \Carbon\Carbon|null                                                     $updated_at
- * @method static Builder|Member whereAddress($value)
- * @method static Builder|Member whereBirthday($value)
- * @method static Builder|Member whereCity($value)
- * @method static Builder|Member whereCreatedAt($value)
- * @method static Builder|Member whereEmail($value)
- * @method static Builder|Member whereFirstName($value)
- * @method static Builder|Member whereId($value)
- * @method static Builder|Member whereIpAddress($value)
- * @method static Builder|Member whereLastName($value)
- * @method static Builder|Member wherePcn($value)
- * @method static Builder|Member wherePhone($value)
- * @method static Builder|Member wherePictureName($value)
- * @method static Builder|Member wherePostal($value)
- * @method static Builder|Member whereStatus($value)
- * @method static Builder|Member whereTransactionAmount($value)
- * @method static Builder|Member whereTransactionId($value)
- * @method static Builder|Member whereTransactionStatus($value)
- * @method static Builder|Member whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property string                                                                  $member_id
- * @method static Builder|Member whereMemberId($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Transaction[]        $transactions
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Membership[]         $memberships
- * @property-read \App\User                                                          $user
- * @property string                                                                  $card_status
- * @property string|null                                                             $card_id
- * @method static Builder|Member whereCardId($value)
- * @method static Builder|Member whereCardStatus($value)
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\CampingApplication[] $campingApplications
- * @property \Carbon\Carbon|null $deleted_at
- * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Query\Builder|\App\Member onlyTrashed()
- * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Member whereDeletedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Member withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Member withoutTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Member newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Member newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Member query()
- */
+     * Class Member
+     *
+     * @package App
+     * @property int                                                                     $id
+     * @property string                                                                  $pcn
+     * @property string                                                                  $first_name
+     * @property string                                                                  $last_name
+     * @property string                                                                  $address
+     * @property string                                                                  $city
+     * @property string                                                                  $postal
+     * @property string                                                                  $birthday
+     * @property string                                                                  $phone
+     * @property string                                                                  $email
+     * @property string|null                                                             $status
+     * @property string                                                                  $ip_address
+     * @property string                                                                  $picture_name
+     * @property string                                                                  $transaction_id
+     * @property string                                                                  $transaction_status
+     * @property float                                                                   $transaction_amount
+     * @property \Carbon\Carbon|null                                                     $created_at
+     * @property \Carbon\Carbon|null                                                     $updated_at
+     * @method static Builder|Member whereAddress($value)
+     * @method static Builder|Member whereBirthday($value)
+     * @method static Builder|Member whereCity($value)
+     * @method static Builder|Member whereCreatedAt($value)
+     * @method static Builder|Member whereEmail($value)
+     * @method static Builder|Member whereFirstName($value)
+     * @method static Builder|Member whereId($value)
+     * @method static Builder|Member whereIpAddress($value)
+     * @method static Builder|Member whereLastName($value)
+     * @method static Builder|Member wherePcn($value)
+     * @method static Builder|Member wherePhone($value)
+     * @method static Builder|Member wherePictureName($value)
+     * @method static Builder|Member wherePostal($value)
+     * @method static Builder|Member whereStatus($value)
+     * @method static Builder|Member whereTransactionAmount($value)
+     * @method static Builder|Member whereTransactionId($value)
+     * @method static Builder|Member whereTransactionStatus($value)
+     * @method static Builder|Member whereUpdatedAt($value)
+     * @mixin \Eloquent
+     * @property string                                                                  $member_id
+     * @method static Builder|Member whereMemberId($value)
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Transaction[]        $transactions
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Membership[]         $memberships
+     * @property-read \App\User                                                          $user
+     * @property string                                                                  $card_status
+     * @property string|null                                                             $card_id
+     * @method static Builder|Member whereCardId($value)
+     * @method static Builder|Member whereCardStatus($value)
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\CampingApplication[] $campingApplications
+     * @property \Carbon\Carbon|null                                                     $deleted_at
+     * @method static bool|null forceDelete()
+     * @method static \Illuminate\Database\Query\Builder|Member onlyTrashed()
+     * @method static bool|null restore()
+     * @method static Builder|Member whereDeletedAt($value)
+     * @method static \Illuminate\Database\Query\Builder|Member withTrashed()
+     * @method static \Illuminate\Database\Query\Builder|Member withoutTrashed()
+     * @method static Builder|Member newModelQuery()
+     * @method static Builder|Member newQuery()
+     * @method static Builder|Member query()
+     * @property string|null                                                             $country
+     * @method static Builder|Member whereCountry($value)
+     */
     class Member extends Model {
         use SoftDeletes;
         const CARD_UNPROCESSED = 'unprocessed', CARD_PROCESSED = 'processed', CARD_RECEIVED = 'received', CARD_NOT_PICKED_UP = 'not_picked_up', NO_CARD = 'no_card';
 
         use HasEncryptedAttributes;
 
-        public $fillable = ['pcn', 'member_id', 'first_name', 'last_name', 'address', 'city', 'postal', 'birthday', 'phone', 'email', 'card_status', 'card_id'];
-        protected $encrypted = ['first_name', 'last_name', 'address', 'city', 'postal', 'phone', 'email', 'ip_address', 'picture_name'];
+        public $fillable = ['pcn', 'member_id', 'first_name', 'last_name', 'address', 'city', 'postal', 'country', 'birthday', 'phone', 'email', 'card_status', 'card_id'];
+        protected $encrypted = ['first_name', 'last_name', 'address', 'city', 'postal', 'country', 'phone', 'email', 'ip_address', 'picture_name'];
         protected $casts = [
             'birthday' => 'date'
         ];
@@ -270,11 +273,11 @@
         }
 
         /**
-         * @param \Mollie_API_Object_Payment $molliePayment
+         * @param Payment $molliePayment
          *
          * @return false|Transaction
          */
-        public function addTransaction(\Mollie_API_Object_Payment $molliePayment) {
+        public function addTransaction(Payment $molliePayment) {
             $transaction = new Transaction([
                 'transaction_id'     => $molliePayment->id,
                 'transaction_status' => $molliePayment->status,

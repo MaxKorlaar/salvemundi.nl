@@ -19,8 +19,11 @@
         Route::get('mandje', 'StoreController@viewCart')->name('cart');
         Route::post('mandje', 'StoreController@addToCart')->name('add_to_cart');
         Route::post('mandje/bestellen', 'StoreController@placeOrder')->name('cart.place_order');
+        Route::post('mandje/bestellen/betalen', 'StoreController@placeOrderAndPay')->name('cart.pay');
         Route::get('mandje/bestellen', 'StoreController@viewCart');
         Route::delete('mandje/{index}', 'StoreController@removeFromCart')->name('cart.remove_item');
+
+        Route::get('/mandje/bestellen/betalen/bevestigen', 'StoreController@confirmPayment')->name('cart.confirm_payment');
 
         Route::get('{slug}', 'StoreController@viewItem')->name('view_item');
         Route::get('{slug}/{stock}/afbeelding/{image}.pict', 'StoreController@getImage')->name('image');
@@ -29,9 +32,7 @@
 
     });
 
-    Route::get('merchandise', 'MerchandiseController@getMerchandise')->name("merchandise");
-    Route::get('merchandise/vests', 'MerchandiseController@getVests')->name("merchandise.vests");
-    Route::get('merchandise/shirts', 'MerchandiseController@getShirts')->name("merchandise.shirts");
+    Route::post('/webhook/betaling/winkel/{order}', 'StoreController@confirmPaymentWebhook')->name('webhook.payment.store');
     /*
      * Commissies
      */
@@ -93,6 +94,10 @@
     Route::group(['prefix' => 'lid', 'namespace' => 'Member', 'as' => 'member.', 'middleware' => ['auth']], function () {
         Route::get('over-mij', 'IndexController@getAboutView')->name('about_me');
         Route::get('over-mij/foto', 'IndexController@getOwnPhoto')->name('own_photo');
+
+        Route::get('mijn-info-bijwerken', 'IndexController@getUpdatePage')->name('update_info');
+        Route::put('mijn-info-bijwerken', 'IndexController@updateOwnInfo')->name('do_update_info');
+
         Route::post('lidmaatschap-verlengen', 'MembershipController@renew')->name('membership.renew');
         Route::get('lidmaatschap-verlengen/bevestigen/betaling/{transaction}', 'MembershipController@confirmPayment')->name('membership.confirm_payment');
     });

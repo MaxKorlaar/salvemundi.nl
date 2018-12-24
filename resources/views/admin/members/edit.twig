@@ -68,9 +68,20 @@
                                 <label for="postal">{{ trans('admin.members.postal') }}</label>
                                 <input id="postal" type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
                                        placeholder="{{ trans('admin.members.postal') }}" name="postal"
-                                       value="{{ old('postal', member.postal) }}" maxlength="6" pattern="^[0-9]{4}[A-Za-z]{2}$">
+                                       value="{{ old('postal', member.postal) }}">
                                 <div class="invalid-feedback">
                                     {{ errors.first('postal')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">{{ trans('admin.members.country') }}</label>
+                                <select required id="country" name="country" class="form-control {{ errors.has('country') ? 'is-invalid' }}">
+                                    {% for code, name in trans('address.country') %}
+                                        <option value="{{ code }}" {{ old('country', member.country) == code ? 'selected' }}>{{ name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{ errors.first('country')|ucfirst }}
                                 </div>
                             </div>
                             <div class="form-group">

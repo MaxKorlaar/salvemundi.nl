@@ -93,6 +93,8 @@
             'address'               => 'Adres',
             'city'                  => 'Woonplaats',
             'postal'                => 'Postcode',
+            'country'               => 'Land',
+            'none_given'            => 'Geen land opgegeven!',
             'birthday'              => 'Geboortedatum',
             'phone'                 => 'Telefoonnummer',
             'email'                 => 'E-mail-adres',
@@ -220,8 +222,8 @@
                     'create' => 'Opslaan'
                 ],
                 'edit'        => [
-                    'save'  => 'Opslaan',
-                    'title' => 'Item bewerken: :name',
+                    'save'   => 'Opslaan',
+                    'title'  => 'Item bewerken: :name',
                     'delete' => 'Item verwijderen'
                 ],
                 'delete'      => [

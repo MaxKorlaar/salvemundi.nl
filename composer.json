@@ -24,7 +24,7 @@
     "intervention/imagecache": "^2.3",
     "laravel/framework": "5.5.*",
     "laravel/tinker": "~1.0",
-    "mollie/mollie-api-php": "^1.9",
+    "mollie/mollie-api-php": "^2",
     "phpoffice/phpspreadsheet": "^1.4",
     "phpseclib/phpseclib": "^2.0",
     "rcrowe/twigbridge": "^0.9.5",

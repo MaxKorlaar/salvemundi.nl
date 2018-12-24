@@ -6,6 +6,7 @@
     use App\User;
     use App\Year;
     use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Support\Facades\Log;
 
     /**
      * App\Store\Order
@@ -29,11 +30,12 @@
      * @method static \Illuminate\Database\Eloquent\Builder|Order query()
      * @property string|null                                                          $status
      * @method static \Illuminate\Database\Eloquent\Builder|Order whereStatus($value)
+     * @property int|null                                                             $mollie_order_id
+     * @method static \Illuminate\Database\Eloquent\Builder|Order whereMollieOrderId($value)
      */
     class Order extends Model {
-        protected $table = 'store_orders';
-
         const STATUS_NONE = null, STATUS_FULFILLED = 'fulfilled', STATUS_OPEN = 'open', STATUS_SEE_TRANSACTION = 'see_transaction';
+        protected $table = 'store_orders';
 
         /**
          * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -43,10 +45,10 @@
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\HasOne
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
          */
         public function transaction() {
-            return $this->hasOne(Transaction::class);
+            return $this->belongsTo(Transaction::class);
         }
 
         /**
@@ -62,5 +64,20 @@
          */
         public function calculateInvoiceNumber() {
             return Year::getCurrentYear()->year . '-' . $this->id;
+        }
+
+        /**
+         * @throws \Throwable
+         */
+        public function undoOrder() {
+            foreach ($this->items as $item) {
+                $stock = $item->item;
+                if($stock !== null) {
+                    $stock->in_stock = $stock->in_stock + $item->amount;
+                    $stock->saveOrFail();
+                }
+                $item->delete();
+            }
+            $this->delete();
         }
     }

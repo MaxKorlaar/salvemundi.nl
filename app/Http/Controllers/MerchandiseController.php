@@ -10,6 +10,7 @@
 
     /**
      * Class MerchandiseController
+     * @deprecated
      *
      * @package App\Http\Controllers
      */

@@ -9,52 +9,52 @@
     use Intervention\Image\Facades\Image;
 
     /**
- * Class MemberApplication
- *
- * @package App
- * @property int                 $id
- * @property string              $pcn
- * @property string              $first_name
- * @property string              $address
- * @property string              $city
- * @property string              $postal
- * @property \Carbon\Carbon      $birthday
- * @property string              $phone
- * @property string              $email
- * @property string              $status
- * @property string              $ip_address
- * @property string|null         $email_confirmation_token
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property string              $picture_name
- * @property string              $last_name
- * @property string              $transaction_id
- * @property string              $transaction_status
- * @property float               $transaction_amount
- * @method static Builder|MemberApplication whereAddress($value)
- * @method static Builder|MemberApplication whereBirthday($value)
- * @method static Builder|MemberApplication whereCity($value)
- * @method static Builder|MemberApplication whereCreatedAt($value)
- * @method static Builder|MemberApplication whereEmail($value)
- * @method static Builder|MemberApplication whereEmailConfirmationToken($value)
- * @method static Builder|MemberApplication whereFirstName($value)
- * @method static Builder|MemberApplication whereId($value)
- * @method static Builder|MemberApplication whereIpAddress($value)
- * @method static Builder|MemberApplication whereLastName($value)
- * @method static Builder|MemberApplication wherePcn($value)
- * @method static Builder|MemberApplication wherePhone($value)
- * @method static Builder|MemberApplication wherePictureName($value)
- * @method static Builder|MemberApplication wherePostal($value)
- * @method static Builder|MemberApplication whereStatus($value)
- * @method static Builder|MemberApplication whereTransactionAmount($value)
- * @method static Builder|MemberApplication whereTransactionId($value)
- * @method static Builder|MemberApplication whereTransactionStatus($value)
- * @method static Builder|MemberApplication whereUpdatedAt($value)
- * @mixin \Eloquent
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication query()
- */
+     * Class MemberApplication
+     *
+     * @package App
+     * @property int                 $id
+     * @property string              $pcn
+     * @property string              $first_name
+     * @property string              $address
+     * @property string              $city
+     * @property string              $postal
+     * @property \Carbon\Carbon      $birthday
+     * @property string              $phone
+     * @property string              $email
+     * @property string              $status
+     * @property string              $ip_address
+     * @property string|null         $email_confirmation_token
+     * @property \Carbon\Carbon|null $created_at
+     * @property \Carbon\Carbon|null $updated_at
+     * @property string              $picture_name
+     * @property string              $last_name
+     * @property string              $transaction_id
+     * @property string              $transaction_status
+     * @property float               $transaction_amount
+     * @method static Builder|MemberApplication whereAddress($value)
+     * @method static Builder|MemberApplication whereBirthday($value)
+     * @method static Builder|MemberApplication whereCity($value)
+     * @method static Builder|MemberApplication whereCreatedAt($value)
+     * @method static Builder|MemberApplication whereEmail($value)
+     * @method static Builder|MemberApplication whereEmailConfirmationToken($value)
+     * @method static Builder|MemberApplication whereFirstName($value)
+     * @method static Builder|MemberApplication whereId($value)
+     * @method static Builder|MemberApplication whereIpAddress($value)
+     * @method static Builder|MemberApplication whereLastName($value)
+     * @method static Builder|MemberApplication wherePcn($value)
+     * @method static Builder|MemberApplication wherePhone($value)
+     * @method static Builder|MemberApplication wherePictureName($value)
+     * @method static Builder|MemberApplication wherePostal($value)
+     * @method static Builder|MemberApplication whereStatus($value)
+     * @method static Builder|MemberApplication whereTransactionAmount($value)
+     * @method static Builder|MemberApplication whereTransactionId($value)
+     * @method static Builder|MemberApplication whereTransactionStatus($value)
+     * @method static Builder|MemberApplication whereUpdatedAt($value)
+     * @mixin \Eloquent
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication query()
+     */
     class MemberApplication extends Model {
 
         use HasEncryptedAttributes;

@@ -224,6 +224,16 @@
                                     <tr>
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 
+                                            <div style="font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:1;text-align:left;color:#000000;">
+                                                {% if order.transaction is not null %} {{ trans('email.store.new_order.payment_status', { status: trans('admin.transactions.status.' ~ order.transaction.transaction_status)}) }} {% else %} {{ trans('email.store.new_order.no_payment_attached') }} {% endif %}
+                                            </div>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+
                                             <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;table-layout:auto;width:100%;">
                                                 <tr>
                                                     <td style="padding: 1rem 1rem 0 0;font-weight:bold;">

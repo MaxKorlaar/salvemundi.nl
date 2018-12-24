@@ -36,7 +36,7 @@
                 'subject'      => 'Bedankt voor je aanmelding!',
                 'greeting'     => 'Hoi :name,',
                 'instructions' => 'Goed nieuws! We hebben zojuist je betaling ontvangen en dat betekent dat we automatisch je aanmelding hebben bevestigd. Het lijkt er dus op dat je meegaat op kamp, gezellig!',
-                'more_info'    => 'Dus ter bevestiging: We hebben zojuist ' . number_format(config('mollie.camping_costs'), 2, ',', '.') . ' euro van je ontvangen en deze gekoppeld aan je aanmelding. Je zal nog van ons horen, maar wees niet bang om vragen te stellen aan ons door te mailen naar kamp@salvemundi.nl of door ons aan te spreken op school. Blijf vooral ook de Facebook-pagina van het kamp in de gaten houden voor de laatste updates!'
+                'more_info'    => 'Dus ter bevestiging: We hebben zojuist :amount euro van je ontvangen en deze gekoppeld aan je aanmelding. Je zal nog van ons horen, maar wees niet bang om vragen te stellen aan ons door te mailen naar kamp@salvemundi.nl of door ons aan te spreken op school. Blijf vooral ook de Facebook-pagina van het kamp in de gaten houden voor de laatste updates!'
             ],
             'new_application'      => [
                 'subject'    => 'Nieuwe kamp-aanmelding van :name',
@@ -138,7 +138,9 @@ De feestcommissie Salve Mundi'
                 'amount'    => 'Aantal',
                 'price'     => 'Prijs',
                 'greeting' => 'Hallo mediacommissie,',
-                'intro_text' => 'Er is onlangs een bestelling geplaatst door :name (:email). Er is geen betaling gekoppeld.',
+                'intro_text' => 'Er is onlangs een bestelling geplaatst door :name (:email).',
+                'no_payment_attached' => 'Er is geen betaling gekoppeld aan deze bestelling.',
+                'payment_status' => 'Er is een betaling gekoppeld aan deze bestelling. De status hiervan is: :status'
             ]
         ],
 

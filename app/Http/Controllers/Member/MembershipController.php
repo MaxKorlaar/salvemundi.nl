@@ -14,6 +14,7 @@
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
+    use Mollie\Api\Exceptions\ApiException;
 
     /**
      * Class MembershipController
@@ -23,8 +24,8 @@
     class MembershipController extends Controller {
         /**
          * @return \Illuminate\Http\RedirectResponse
-         * @throws \Mollie_API_Exception
-         * @throws \Mollie_API_Exception_IncompatiblePlatform
+         * @throws \Mollie\Api\Exceptions\ApiException
+         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
          */
         public function renew() {
             $user   = Auth::user();
@@ -40,7 +41,10 @@
 
             $mollie  = new PaymentHelper();
             $payment = $mollie->payments->create([
-                "amount"      => config('mollie.renew_costs'),
+                "amount" => [
+                    'currency' => 'EUR',
+                    'value'    => config('mollie.renew_costs')
+                ],
                 "description" => trans('member.membership.payment.description', ['first_name' => $member->first_name, 'last_name' => $member->last_name]),
                 "redirectUrl" => route('member.membership.confirm_payment', ['transaction' => $transaction]),
                 "webhookUrl"  => route('webhook.payment.renew_membership', ['member' => $member]),
@@ -53,10 +57,10 @@
                 'member_id'          => $member->id,
                 'transaction_id'     => $payment->id,
                 'transaction_status' => $payment->status,
-                'transaction_amount' => $payment->amount
+                'transaction_amount' => $payment->amount->value
             ]);
             return view('member.membership.payment_redirect', [
-                'links' => $payment->links
+                'links' => $payment->_links
             ]);
         }
 
@@ -64,8 +68,8 @@
          * @param Transaction $transaction
          *
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
-         * @throws \Mollie_API_Exception
-         * @throws \Mollie_API_Exception_IncompatiblePlatform
+         * @throws \Mollie\Api\Exceptions\ApiException
+         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
          */
         public function confirmPayment(Transaction $transaction) {
             $user   = Auth::user();
@@ -89,8 +93,6 @@
          * @param Request $request
          *
          * @return string
-         * @throws \Mollie_API_Exception
-         * @throws \Mollie_API_Exception_IncompatiblePlatform
          * @throws \Throwable
          */
         public function confirmPaymentWebhook(Member $member, Request $request) {
@@ -109,11 +111,11 @@
                 $transaction = Transaction::findOrFail($payment->metadata->transaction_id);
                 $transaction->update([
                     'transaction_id'     => $payment->id,
-                    'transaction_status' => $payment->status,
-                    'transaction_amount' => $payment->amount
+                    'transaction_status' => $payment->hasRefunds() ? 'refunded' : $payment->status,
+                    'transaction_amount' => $payment->amount->value
                 ]);
 
-                if ($payment->isPaid() && !$payment->isRefunded()) {
+                if ($payment->isPaid() && !$payment->hasRefunds()) {
                     if (!$member->isCurrentlyMember()) {
                         // Stuur een bevestiging naar de administratie
                         //                        $mail = new NewMemberApplication($application);
@@ -134,19 +136,19 @@
                         Log::debug("Lidmaatschap verlengd", [$member, $membership]);
                     }
                 } else {
-                    if ($payment->isRefunded()) {
+                    if ($payment->hasRefunds()) {
                         // Lidmaatschap stopzetten
                         /** @var Membership $membership */
                         $membership              = $member->memberships()->where('transaction_id', $transaction->id)->firstOrFail();
                         $membership->valid_until = Carbon::today();
                         $membership->saveOrFail();
                     }
-                    if ($payment->isCancelled() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
+                    if ($payment->isCanceled() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
                         Log::debug('De betaling is geannuleerd of is verlopen en het lidmaatschap zal niet worden verlengd', ['payment' => $payment]);
                     }
                 }
 
-            } catch (\Mollie_API_Exception $exception) {
+            } catch (ApiException $exception) {
                 Log::error($exception);
                 abort(400);
             }

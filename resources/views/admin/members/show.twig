@@ -43,6 +43,10 @@
                         <b>{{ trans('admin.members.postal') }}</b>
                         {{ member.postal }}
                     </div>
+                    <div>
+                        <b>{{ trans('admin.members.country') }}</b>
+                        {{ member.country ? trans('address.country.' ~ member.country) : trans('admin.members.none_given') }}
+                    </div>
 
                 </div>
                 <div class="col-4">

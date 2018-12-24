@@ -236,4 +236,31 @@ return [
 
     ],
 
+    'debug_blacklist' => [
+        '_SERVER' => [
+            'APP_KEY',
+            'DB_DATABASE',
+            'DB_USERNAME',
+            'DB_PASSWORD',
+            'FHICT_PASSWORD',
+            'REDIS_PASSWORD',
+            'SENDGRID_API_KEY',
+            'FB_SECRET',
+            'MOLLIE_KEY',
+            'FONTYS_API_SECRET'
+        ],
+        '_ENV'    => [
+            'APP_KEY',
+            'DB_DATABASE',
+            'DB_USERNAME',
+            'DB_PASSWORD',
+            'FHICT_PASSWORD',
+            'REDIS_PASSWORD',
+            'SENDGRID_API_KEY',
+            'FB_SECRET',
+            'MOLLIE_KEY',
+            'FONTYS_API_SECRET'
+        ],
+    ]
+
 ];
