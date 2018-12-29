@@ -181,12 +181,6 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'profile' => 'ICT & Technology',
                     'text'    => '',
                     'image'   => 'Kazimir.jpg',
-                ],
-                [
-                    'name'    => 'Youp Jansen',
-                    'profile' => 'ICT & Business',
-                    'text'    => '',
-                    'image'   => 'Youp.jpg',
                 ]
 
             ]
@@ -218,9 +212,10 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                 ],
                 [
                     'name'    => 'Youp Jansen',
-                    'image'   => 'Youp.jpg',
-                    'profile' => 'ICT & Business'
-                ],
+                    'profile' => 'ICT & Business',
+                    'image'   => 'Youp.jpg'
+                ]
+
             ]
         ],
         'study'            => [
@@ -415,11 +410,6 @@ en onderwijs gerelateerde activiteiten',
                     'name'    => 'Vincent Venhuizen',
                     'profile' => 'ICT & Media Design',
                     'image'   => 'Vincent.jpg'
-                ],
-                [
-                    'name'    => 'Youp Jansen',
-                    'profile' => 'ICT & Business',
-                    'image'   => 'Youp.jpg'
                 ],
             ]
         ],
