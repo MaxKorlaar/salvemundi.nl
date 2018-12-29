@@ -260,7 +260,7 @@
          */
         public function index() {
             return view('admin.members.index', [
-                'members' => Member::with(['memberships'])->orderBy('member_id')->get()
+                'members' => Member::with(['memberships', 'user'])->orderBy('member_id')->get()
             ]);
         }
 

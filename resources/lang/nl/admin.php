@@ -16,15 +16,18 @@
                 'paid'      => 'Betaald',
                 'open'      => 'Betaling bezig',
                 'cancelled' => 'Geannuleerd',
+                'canceled'  => 'Geannuleerd',
                 'failed'    => 'Betaling mislukt',
                 'expired'   => 'Betaling verlopen',
-                'refunded'  => 'Teruggestort'
+                'refunded'  => 'Teruggestort',
+                'n/a'       => 'Fout (status onbekend)',
             ],
             'transaction_amount' => 'Bedrag',
             'created_at'         => 'Aangemaakt op',
             'updated_at'         => 'Bijgewerkt op'
         ],
-        'memberships'  => [
+
+        'memberships' => [
             'id'                => 'ID',
             'transaction'       => 'Transactie',
             'no_transaction'    => 'Geen transactie gekoppeld',
@@ -37,7 +40,7 @@
             ],
             'create_membership' => 'Voeg lidmaatschap handmatig toe'
         ],
-        'camping'      => [
+        'camping'     => [
             'title'          => 'Kamp',
             'id'             => 'ID',
             'camping_id'     => 'Kamp',
@@ -77,7 +80,7 @@
                 'updated_at'     => 'Bijgewerkt op',
             ]
         ],
-        'members'      => [
+        'members'     => [
             'title'                 => 'Ledenadministratie',
             'details'               => 'Details',
             'id'                    => 'ID',
@@ -124,6 +127,7 @@
             'transactions'          => 'Transacties',
             'memberships'           => 'Lidmaatschappen',
             'campings'              => 'Kampen',
+            'orders'                => 'Bestellingen',
             'not_a_member'          => 'Dit lid heeft momenteel geen actief lidmaatschap',
             'no_valid_membership'   => 'Lidmaatschap verlopen',
             'email_invalid_members' => 'E-mail leden zonder lidmaatschap',
@@ -159,7 +163,7 @@
                 'email_sent'                  => 'E-mail verstuurd naar :members leden.'
             ]
         ],
-        'intro'        => [
+        'intro'       => [
             'title'                    => 'FHICT Introductie 2018',
             'amount'                   => 'Aanmeldingen',
             'confirmed_amount'         => 'Betaalde aanmeldingen',
@@ -207,8 +211,19 @@
                 'deleted'      => 'De aanmelding is permanent verwijderd uit het systeem'
             ]
         ],
-        'store'        => [
-            'items' => [
+        'store'       => [
+            'orders' => [
+                'id'             => 'ID',
+                'current_status' => 'Status',
+                'transaction'    => 'Transactie',
+                'created_at'     => 'Aangemaakt op',
+                'no_transaction' => 'Geen transactie (handmatig)',
+                'status'         => [
+                    'see_transaction' => 'Zie transactie',
+                    'open'            => 'Open'
+                ]
+            ],
+            'items'  => [
                 'title'       => 'Winkel-items',
                 'id'          => 'ID',
                 'name'        => 'Naam',

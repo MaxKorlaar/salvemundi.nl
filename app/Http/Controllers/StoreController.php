@@ -250,7 +250,7 @@
             if (empty($cart)) {
                 return redirect()->back();
             }
-            if (app()->environment() === 'production') $request->session()->pull('store.cart');
+            $request->session()->pull('store.cart');
 
             /** @var User $user */
             $user = $request->user();
@@ -269,7 +269,7 @@
             $order->saveOrFail();
 
             $mollieItems = [];
-
+            $vat         = config('mollie.vat_percentage');
             foreach ($cart as $index => $item) {
                 /** @var Stock $stock */
                 $stock           = $item['stock'];
@@ -281,7 +281,7 @@
                     'price'          => $stock->price,
                     'store_stock_id' => $item['stock']->id
                 ]);
-
+                $totalForItem  = $item['amount'] * $stock->price;
                 $mollieItems[] = [
                     "type"        => "physical",
                     "sku"         => $stock->item->id . $stock->id,
@@ -296,11 +296,11 @@
                     ],
                     "totalAmount" => [
                         "currency" => "EUR",
-                        "value"    => (string)number_format($stock->price, 2)
+                        "value"    => (string)number_format($totalForItem, 2)
                     ],
                     "vatAmount"   => [
                         "currency" => "EUR",
-                        "value"    => (string)number_format($stock->price * (config('mollie.vat_percentage') / (100 + config('mollie.vat_percentage'))), 2)]];
+                        "value"    => (string)number_format($totalForItem * ($vat / (100 + $vat)), 2)]];
 
                 $total += $item['stock']->price * $item['amount'];
             }
@@ -333,8 +333,12 @@
                 "locale"         => "nl_NL",
                 "orderNumber"    => (string)$order->id,
                 "redirectUrl"    => route('store.cart.confirm_payment'),
-                "webhookUrl"     => route('webhook.payment.store', ['order' => $order]),
-                "lines"          => $mollieItems
+                "webhookUrl"     => route('webhook.payment.store_order', ['order' => $order]),
+                "lines"          => $mollieItems,
+                'payment'        => [
+                    'issuer'     => $bank,
+                    'webhookUrl' => route('webhook.payment.store_payment', ['order' => $order])
+                ]
             ]);
             /*
              * Todo: Wachten op implementatie Order payments in Mollie PHP client
@@ -377,9 +381,7 @@
             if ($order !== null) {
                 $mollie  = new PaymentHelper();
                 $payment = $mollie->payments->get($order->transaction->transaction_id);
-
                 if (!$payment->isOpen() && !$payment->isPaid()) {
-                    $this->updatePayment($order, $order->mollie_order_id);
                     return redirect()->route('store.cart')->withErrors(['payment' => trans('store.cart.payment.failed')]);
                 }
             }
@@ -400,6 +402,19 @@
          * @throws \Throwable
          */
         public function confirmPaymentWebhook(Order $order, Request $request) {
+            return $this->updatePayment($order, $order->mollie_order_id);
+        }
+
+        /**
+         * @param Order   $order
+         * @param Request $request
+         *
+         * @return string
+         * @throws ApiException
+         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
+         * @throws \Throwable
+         */
+        public function confirmOrderWebhook(Order $order, Request $request) {
             if (!$request->has('id')) abort(400);
             return $this->updatePayment($order, $request->get('id'));
         }
@@ -424,7 +439,7 @@
                     Log::debug('Order niet gelijk aan mollie order', [$mollieOrder->metadata, $order->id]);
                     abort(400);
                 }
-               // Log::debug('Mollie order webhook', ['order' => $mollieOrder]);
+                // Log::debug('Mollie order webhook', ['order' => $mollieOrder]);
 
                 // Todo: Tempfix weghalen
                 /** @var Payment $payment */
@@ -439,7 +454,7 @@
                 ]);
                 if ($payment->isPaid() && !$payment->hasRefunds()) {
                     Log::debug('Er is betaald voor de bestelling in de webshop');
-                    if($mollieOrder->isCompleted()) {
+                    if ($mollieOrder->isCompleted()) {
                         // De order is gemarkeerd als compleet. Er was echter al betaald voor de items, dus het is niet nodig om nog eens een
                         // email te sturen.
                     } else {
@@ -466,8 +481,9 @@
                     //                        Mail::queue($mail);
                 } else {
                     if ($payment->isCanceled() || $payment->hasRefunds() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
-                        Log::debug('De betaling is geannuleerd of is verlopen en de bestelling zal worden verwijderd', ['order' => $mollieOrder, 'payment' => $payment]);
-                        $order->undoOrder();
+                        Log::debug('De betaling is geannuleerd of is verlopen en de bestelling zal worden verwijderd', ['order' => $mollieOrder->id, 'payment' => $payment->id, 'cancelable' => $mollieOrder->isCancelable]);
+                        $order->undoOrder($mollieOrder->isCancelable);
+                        if($mollieOrder->isCancelable) $mollieOrder->cancel();
                     }
                 }
 

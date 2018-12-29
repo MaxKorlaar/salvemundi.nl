@@ -212,6 +212,44 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="col-md-12">
+                    <h4>{{ trans('admin.members.orders') }}</h4>
+                    <table class="table order-list table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ trans('admin.store.orders.id') }}</th>
+                                <th>{{ trans('admin.store.orders.current_status') }}</th>
+                                <th>{{ trans('admin.store.orders.transaction') }}</th>
+                                <th>{{ trans('admin.store.orders.created_at') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in member.user.orders %}
+                                <tr>
+                                    <td>
+                                        {{ order.id }}
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.store.orders.show', { order: order }) }}">
+                                            {{ trans('admin.store.orders.status.' ~ order.status) }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        {% if order.transaction %}
+                                            <a href="#transaction-{{ order.transaction_id }}">
+                                                {{ order.transaction_id }}
+                                                ({{ trans('admin.transactions.status.' ~ order.transaction.transaction_status) }})
+                                            </a>
+                                        {% else %}
+                                            {{ trans('admin.store.orders.no_transaction') }}
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ order.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </main>
     </div>

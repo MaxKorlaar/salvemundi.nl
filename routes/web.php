@@ -32,7 +32,8 @@
 
     });
 
-    Route::post('/webhook/betaling/winkel/{order}', 'StoreController@confirmPaymentWebhook')->name('webhook.payment.store');
+    Route::post('/webhook/betaling/winkel/order/{order}', 'StoreController@confirmOrderWebhook')->name('webhook.payment.store_order');
+    Route::post('/webhook/betaling/winkel/betaling/{order}', 'StoreController@confirmPaymentWebhook')->name('webhook.payment.store_payment');
     /*
      * Commissies
      */
@@ -122,6 +123,9 @@
         Route::resource('intro', 'IntroController')->names('intro');
 
         Route::group(['prefix' => 'winkel', 'namespace' => 'Store', 'as' => 'store.', 'middleware' => ['auth.admin']], function () {
+            Route::resource('bestellingen', 'OrderController')->names('orders');
+
+
             Route::resource('items', 'ItemController');
             Route::resource('items/{item}/voorraad', 'StockController')->names('items.stock');
             Route::get('items/{item}/verwijderen', 'ItemController@getDeleteConfirmation')->name('items.delete_confirmation');

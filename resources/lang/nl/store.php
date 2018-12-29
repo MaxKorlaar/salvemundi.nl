@@ -36,6 +36,7 @@
             'payment_description'         => 'Bestelling van Salve Mundi webshop',
             'redirecting'                 => 'Je wordt zo doorgestuurd...',
             'redirecting_instructions'    => 'Je wordt nu naar onze betalingsprovider Mollie doorgestuurd, om voor je bestelling te betalen.',
+            'payment_failed'              => 'Er is iets misgegaan tijdens het verwerken van de transactie. De betaling is mogelijk geannuleerd of verlopen. Je bestelling is niet geplaatst. Probeer het later nogmaals',
             'payment_confirmation'        => [
                 'title'              => 'Betaling voltooid',
                 'completed'          => 'Bedankt voor je bestelling!',

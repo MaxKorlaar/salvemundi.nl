@@ -67,17 +67,19 @@
         }
 
         /**
+         * @param bool $deleteOrder
+         *
          * @throws \Throwable
          */
-        public function undoOrder() {
+        public function undoOrder($deleteOrder = false) {
             foreach ($this->items as $item) {
                 $stock = $item->item;
                 if($stock !== null) {
                     $stock->in_stock = $stock->in_stock + $item->amount;
                     $stock->saveOrFail();
                 }
-                $item->delete();
+                if($deleteOrder) $item->delete();
             }
-            $this->delete();
+            if($deleteOrder) $this->delete();
         }
     }
