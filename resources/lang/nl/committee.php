@@ -411,6 +411,11 @@ en onderwijs gerelateerde activiteiten',
                     'profile' => 'ICT & Media Design',
                     'image'   => 'Vincent.jpg'
                 ],
+                [
+                    'name'    => 'Kim van der Meulen',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Kim.jpg',
+                ],
             ]
         ],
         'alpha_centauri'   => [
