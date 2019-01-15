@@ -151,6 +151,8 @@
         Route::post('leden/email-verlenging-nodig/voorbeeld', 'MemberController@getInactiveMailPreview')->name('members.preview_email_inactive');
         Route::post('leden/email-verlenging-nodig', 'MemberController@sendInactiveMail')->name('members.do_send_email_inactive');
 
+        Route::get('leden/inzicht-gegevens', 'MemberController@getMembersWithFullAccess');
+
         Route::get('leden/verwijder-inactieve', 'MemberController@deleteInactiveConfirmation')->name('members.delete_inactive_confirmation');
         Route::delete('leden/verwijder-inactieve', 'MemberController@deleteInactive')->name('members.delete_inactive');
         Route::resource('leden', 'MemberController')->names('members');
@@ -158,6 +160,7 @@
         Route::resource('leden.lidmaatschap', 'MembershipController')->names('members.membership');
         Route::get('leden/{member}/afbeelding', 'MemberController@getPicture')->name('members.picture');
         Route::get('leden/{member}/afbeelding/volledig', 'MemberController@getFullPicture')->name('members.full_picture');
+
 
     });
 
@@ -170,7 +173,7 @@
     Route::get('privacybeleid', 'MetaController@getPrivacyPage')->name('privacy');
     Route::get('/sitemap.xml', 'MetaController@getSitemap')->name('sitemap');
 
-    Route::get('uitschrijven', 'IndexController@getCancelPage');
+//    Route::get('uitschrijven', 'IndexController@getCancelPage');
 
     Route::get('login', 'Auth\FHICTLoginController@getLoginView')->name('login');
     Route::get('login/fhict', 'Auth\FHICTLoginController@redirect')->name('login.redirect');

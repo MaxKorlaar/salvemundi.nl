@@ -67,8 +67,8 @@
             STATUS_NEW = 'new', STATUS_DENIED = 'denied',
             STATUS_UNDER_REVIEW = 'under_review', STATUS_BLOCKED = 'blocked',
             STATUS_EMAIL_UNCONFIRMED = 'email_unconfirmed';
-        public $fillable = ['pcn', 'first_name', 'last_name', 'address', 'city', 'postal', 'birthday', 'phone', 'email'];
-        protected $encrypted = ['pcn', 'first_name', 'last_name', 'address', 'city', 'postal', 'phone', 'email', 'ip_address', 'picture_name'];
+        public $fillable = ['pcn', 'first_name', 'last_name', 'address', 'city', 'postal', 'country', 'birthday', 'phone', 'email'];
+        protected $encrypted = ['pcn', 'first_name', 'last_name', 'address', 'city', 'postal', 'country', 'phone', 'email', 'ip_address', 'picture_name'];
         protected $attributes = [
             'status' => self::STATUS_EMAIL_UNCONFIRMED
         ];

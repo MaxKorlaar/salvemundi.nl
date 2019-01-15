@@ -106,6 +106,7 @@
             $member->address            = $application->address;
             $member->city               = $application->city;
             $member->postal             = $application->postal;
+            $member->country            = $application->country;
             $member->birthday           = $application->birthday;
             $member->phone              = $application->phone;
             $member->email              = $application->email;
