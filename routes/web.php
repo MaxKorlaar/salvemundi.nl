@@ -18,7 +18,7 @@
      */
 
     Route::group(['prefix' => 'commissies', 'as' => 'committees/'], function () {
-        Route::get('bestuur', 'CommitteeController@getAdministrationPage')->name('administration');
+        Route::get('bestuur', 'CommitteeController@getFounders')->name('administration');
         Route::get('bestuur/2017', 'CommitteeController@get2017')->name('administration.2017');
         Route::get('bestuur/2018', 'CommitteeController@get2018')->name('administration.2018');
 
@@ -114,11 +114,11 @@
         Route::get('leden/email', 'MemberController@getMailForm')->name('members.email');
         Route::post('leden/email/voorbeeld', 'MemberController@getMailPreview')->name('members.preview_email');
         Route::post('leden/email', 'MemberController@sendMail')->name('members.do_send_email');
-        
+
         Route::get('leden/email-verlenging-nodig', 'MemberController@getInactiveMailForm')->name('members.email_inactive');
         Route::post('leden/email-verlenging-nodig/voorbeeld', 'MemberController@getInactiveMailPreview')->name('members.preview_email_inactive');
         Route::post('leden/email-verlenging-nodig', 'MemberController@sendInactiveMail')->name('members.do_send_email_inactive');
-        
+
         Route::get('leden/verwijder-inactieve', 'MemberController@deleteInactiveConfirmation')->name('members.delete_inactive_confirmation');
         Route::delete('leden/verwijder-inactieve', 'MemberController@deleteInactive')->name('members.delete_inactive');
         Route::resource('leden', 'MemberController')->names('members');

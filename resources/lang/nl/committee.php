@@ -12,8 +12,8 @@
                     "caption" => 'Vanaf links: Chiel, Mohammed, Carmen, Luuk en Rex. Totop heden is het nog onduidelijk waar ze precies naartoe keken.'
                 ],
                 "2018" => [
-                    "title" => "",
-                    "text" => "",
+                    "title" => "Het tweede bestuur (2018-2019)",
+                    "text" => "Het tweede bestuur van Salve Mundi bestaat voor een groot deel uit het eerste bestuur. Mohammed Mighiss als voorzitter, Luuk Hendriks als vicevoorzitter, Rex treurniet als penningmeester en tot slot Chiel schrijvers en Mitchell Vermeulen als algemeen bestuurslid.<br><br>Met de leden was afgesproken dat de bestuursleden van het eerste bestuur, met genoeg motivatie, door mochten werken met hun eigen opzet. Dit om te garanderen dat Salve Mundi nog vele jaren succesvol kan bestaan. In deze tijd is de samensmelting van Overflow, de voormalige studievereniging van FHICT, met Salve Mundi gelukt, zijn er twee kampen georganiseerd door de kampcommissie en heeft de feestcommissie de opzet voor een grotere introductie gemaakt en succesvol uitgevoerd. Het bestuur heeft een constructie opgezet welke het stage bestuur wordt genoemd. Hierin worden enkele leden voor een volgend bestuur al gekozen in oktober, om zo een volledige bestuurswisseling te voorkomen. Hiernaast heeft de mediacommissie een infrastructuur achter de schermen ontwikkeld waar de feestcommissie, kampcommissie en het bestuur actief gebruik van maken. Ook zijn in dit bestuursjaar verschillende commissies opgericht zoals de activiteitencommissie, Alpha centauri en ledenzaken.<br><br>Het tweede bestuur heeft een lang en druk jaar achter de rug. Het is een erg succesvol jaar geweest vol waardevolle lessen en veel nieuwe leden. Het aantal actieve leden is gigantisch gegroeid met veel meer commissies en taken. Het tweede bestuur mag trots zijn op de prestaties.",
                     "caption" => ""
                 ],
             ],
