@@ -57,6 +57,11 @@
         Route::get('inschrijven', 'IntroController@getSignupForm')->name('signup');
         Route::post('inschrijven', 'IntroController@signup')->name('signup.send');
 
+        Route::group(['prefix' => '2019', 'as' => '2019.'], function () {
+            Route::get('/', 'IntroController@get2019Info')->name('info');
+            Route::get('planning', 'IntroController@get2019Schedule')->name('schedule');
+        });
+
         Route::get('papas-en-mamas', 'IntroController@getSupervisorInfo')->name('supervisor_info');
         Route::get('papas-en-mamas/inschrijven', 'IntroController@getSupervisorSignupForm')->name('supervisor_signup');
         Route::post('papas-en-mamas/inschrijven', 'IntroController@supervisorSignup')->name('supervisor_signup.send');

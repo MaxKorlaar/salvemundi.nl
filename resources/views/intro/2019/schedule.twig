@@ -1,0 +1,119 @@
+{% extends 'partials/page.twig' %}
+{% block title %}Planning Intro FHICT 2019{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="intro">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('intro.schedule.title') }}</h1>
+                    <div class="button-menu my-3">
+                        <a href="{{ route('intro.2019.info') }}">
+                            <button class="button mx-1">Algemene informatie</button>
+                        </a>
+                        <a href="{{ route('intro.2019.schedule') }}">
+                            <button class="button mx-1">Planning</button>
+                        </a>
+                        <a href="{{ route('intro.signup') }}">
+                            <button class="button mx-1">Aanmelden</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h2>Planning</h2>
+                    <div>
+                        <h3>Maandag</h3>
+                        <p>
+                            Op maandag zullen jullie zelf naar de locatie komen door middel van het openbaar vervoer of
+                            gebracht
+                            worden. Er is helaas geen parkeerruimte om zelf met de auto te komen. Een auto of fiets zal
+                            tijdens de
+                            introductie ook niet nodig zijn, er wordt namelijk gebruik gemaakt van touringcars.
+                            Na de incheck krijgt iedereen de tijd om zijn bed klaar te maken en spullen op te bergen. Na
+                            een
+                            goede
+                            maaltijd komen de bussen iedereen ophalen om naar het Stratumseind te gaan. Hier laten we
+                            jullie
+                            kennis maken met onze stamkroeg Villa Fiesta. Tijdens deze week mogen jullie mee genieten
+                            van de
+                            korting die wij als Salve Mundi bij Villa Fiesta krijgen.
+                        </p>
+                        <h3>Dinsdag</h3>
+                        <p>
+                            Na de eerste dag worden we wakker en krijgen we een stevig ontbijt. Om iedereen goed wakker
+                            te
+                            maken bestaat de ochtend uit teambuilding. Hierbij zullen jullie in groepen verdeeld worden
+                            en
+                            leuke
+                            buiten/bos activiteiten gaan doen om elkaar beter te leren kennen. De dinsdagmiddag is
+                            verder
+                            een vrij
+                            rustige middag. De energie wordt bespaard voor de woensdag en de donderdag.
+                            Het programma speelt zich af op onze slaaplocatie en hier gaan wij deze dag ook niet weg.
+                            Verder
+                            kun je
+                            activiteiten zoals een pubquiz en karaoke avond verwachten. Het eten wordt ook weer door ons
+                            verzorgt.
+                        </p>
+                        <h3>Woensdag</h3>
+                        <p>
+                            Op woensdag gaan we ’s ochtends naar de Rachelsmolen campus. Hier zullen jullie voor het
+                            eerst
+                            met je
+                            klas voor het eerste semester samen zijn (alle studenten moeten hierbij aanwezig zijn). Ook
+                            ontmoeten
+                            alle studenten hier zijn/haar Slb’ers (Studie Loopbaan Begeleiders).
+                            Woensdag middag gaat weer door in het thema van teambuilding, maar vooral het verkennen van
+                            Eindhoven en de kortingen welke wij presenteren namens Salve Mundi. Hierna heeft Fontys een
+                            feest
+                            georganiseerd op het stadhuisplein, gevolgd door een feest op het Stratumseind. Tot slot
+                            wordt
+                            er nog
+                            een afterparty op onze slaaplocatie gegeven, waarbij de feestbeesten dus nog door kunnen
+                            gaan,
+                            maar
+                            de wat rustigere niet verplicht zijn om mee te feesten.
+                        </p>
+                        <h3>Donderdag</h3>
+                        <p>
+                            Op donderdag kunt je een klein beetje uitslapen om bij te komen van de zware woensdagavond.
+                            Wederom wordt er voor een ontbijt gezorgd. Daarna zullen de touringcars vertrekken naar
+                            Purple
+                            Festival. Purple wordt georganiseerd door Fontys en is speciaal voor alle studenten van
+                            Fontys.
+                            De
+                            entreeprijs hiervoor zit inbegrepen bij de inschrijving. Hiervoor hoeven alleen mogelijke
+                            consumpties
+                            afgerekend te worden. Tot slot om de introductie af te sluiten geven we nog een laatste
+                            feest
+                            voor de
+                            studenten die niet gestopt kunnen worden.
+                        </p>
+                        <h3>Vrijdag</h3>
+                        <p>
+                            Op de vrijdag ochtend moeten we al vroeg uit de veren. Iedereen moet meehelpen met opruimen
+                            zodat
+                            we op de locatie nog een jaartje langer terug mogen komen. Hierna is het terrein goed
+                            bereikbaar, en
+                            rijden er genoeg bussen om iedereen weer netjes thuis te krijgen.
+                            Let op! Deze planning is een momentopname. Wegens omstandigheden kan deze aangepast worden.
+                            Studenten die zich hebben ingeschreven zullen hiervan op de hoogte worden gebracht.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-12 mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image1.jpg') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image2.jpg') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image3.jpg') }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

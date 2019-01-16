@@ -1,0 +1,71 @@
+{% extends 'partials/page.twig' %}
+{% block title %}Inschrijven Intro FHICT 2019{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="intro">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('intro.info.title') }}</h1>
+                    <div class="button-menu my-3">
+                        <a href="{{ route('intro.2019.info') }}">
+                            <button class="button mx-1">Algemene informatie</button>
+                        </a>
+                        <a href="{{ route('intro.2019.schedule') }}">
+                            <button class="button mx-1">Planning</button>
+                        </a>
+                        <a href="{{ route('intro.signup') }}">
+                            <button class="button mx-1">Aanmelden</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>Hallo nieuwe studenten!</h2>
+                    <p>
+                        De FHICT introductie is de leukste manier om je
+                        medestudenten te leren kennen. Het is een week
+                        vol avontuur en teambuilding in Eindhoven. Zo
+                        leer je ook de stad beter kennen. Wij vanuit Salve
+                        Mundi zijn druk bezig geweest om dit allemaal
+                        mogelijk te maken voor de nieuwe studenten. De
+                        introductie vindt plaats van maandag 26 augustus
+                        tot en met vrijdag 30 augustus. Houdt onze
+                        website en Facebook in de gaten voor updates!
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <img src="{{ asset('images/intro2018.png') }}" class="img-fluid">
+                </div>
+                <div class="col-md-12">
+                    <h2>Algemene informatie</h2>
+                    <p>
+                        Dit jaar is de intro niet 3, maar 5 dagen! De slaaplocatie is in Mierlo. Het vervoer wordt
+                        geregeld door Salve Mundi, dus daar hoef je je niet druk om te maken. Er zijn verschillende
+                        kamers waar je met een aantal mensen kunt slapen. Ook is er een feestzaal waar een bar staat,
+                        zodat we tot in de late uurtjes door kunnen gaan. Er wordt gebruik gemaakt van consumptiebonnen
+                        voor drinken (fris, bier en wijn). De volledige planning is te vinden onder ‘planning’, maar
+                        hier is al een kleine impressie. Op maandag word je verwacht op school. ’s Avonds gaan we naar
+                        onze stam kroeg Villa Fiesta op Stratumseind. Dinsdag zijn we de hele dag op onze slaaplocatie
+                        waar verschillende activiteiten zijn. Woensdag gaan we de stad in voor het beruchte crazy 88,ja
+                        waarna we naar het stadhuisplein gaan, nog even naar Villa Fiesta en afsluiten op de
+                        slaaplocatie met een afterparty. Donderdag is pruple festival en gooien we nog een afterparty op
+                        de slaaplocatie. Vrijdag ruimen we met z’n allen op en kunnen we na een hele week gezelligheid
+                        naar huis.
+                    </p>
+                </div>
+                <div class="col-md-12 mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image1.jpg') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image2.jpg') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image3.jpg') }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
