@@ -178,7 +178,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                 ],
                 [
                     'name'    => 'Kazimir Awsiej',
-                    'profile' => 'ICT & Technology',
+                    'profile' => 'ICT & Media',
                     'text'    => '',
                     'image'   => 'Kazimir.jpg',
                 ]
