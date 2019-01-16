@@ -165,5 +165,18 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
                 'thanks_for_confirming'          => 'Bedankt voor het bevestigen van je e-mail-adres, :name. Je aanmelding als papa of mama voor de intro van 2018 is bevestigd bij ons.',
                 'email_info'                     => 'We zullen nog contact met je opnemen indien je meedoet als begeleider. We kunnen namelijk maar een beperkt aantal intro-ouders mee laten doen met de intro van 2018. Mocht je nog vragen of opmerkingen hebben dan kan je een e-mail sturen naar intro@salvemundi.nl of onze website (salvemundi.nl) bezoeken. Wij zien al uit naar een mooi feestje.'
             ]
+        ],
+        '2019' => [
+            'info_page' => [
+                'title' => 'Inschrijven Intro FHICT 2018',
+                'intro' => [
+                    'title' => 'Hallo nieuwe studenten!',
+                    'text' => "De FHICT introductie is de leukste manier om je medestudenten te leren kennen. Het is een week vol avontuur en teambuilding in Eindhoven. Zo leer je ook de stad beter kennen. Wij vanuit Salve Mundi zijn druk bezig geweest om dit allemaal mogelijk te maken voor de nieuwe studenten. De introductie vindt plaats van maandag 26 augustus tot en met vrijdag 30 augustus. Houdt onze website en Facebook in de gaten voor updates!",
+                ],
+                'information' => [
+                    'title' => 'Algemene informatie',
+                    'text' => ' Dit jaar is de intro niet 3, maar 5 dagen! De slaaplocatie is in Mierlo. Het vervoer wordt geregeld door Salve Mundi, dus daar hoef je je niet druk om te maken. Er zijn verschillende kamers waar je met een aantal mensen kunt slapen. Ook is er een feestzaal waar een bar staat, zodat we tot in de late uurtjes door kunnen gaan. Er wordt gebruik gemaakt van consumptiebonnen voor drinken (fris, bier en wijn). De volledige planning is te vinden onder ‘planning’, maar hier is al een kleine impressie. Op maandag word je verwacht op school. ’s Avonds gaan we naar onze stam kroeg Villa Fiesta op Stratumseind. Dinsdag zijn we de hele dag op onze slaaplocatie waar verschillende activiteiten zijn. Woensdag gaan we de stad in voor het beruchte crazy 88,ja waarna we naar het stadhuisplein gaan, nog even naar Villa Fiesta en afsluiten op de slaaplocatie met een afterparty. Donderdag is pruple festival en gooien we nog een afterparty op de slaaplocatie. Vrijdag ruimen we met z’n allen op en kunnen we na een hele week gezelligheid naar huis.'
+                ]
+            ]
         ]
     ];
