@@ -1,5 +1,5 @@
 ## Salvemundi.nl
-
+[![pipeline status](https://git.fhict.nl/I380671/salvemundi.nl/badges/master/pipeline.svg)](https://git.fhict.nl/I380671/salvemundi.nl/commits/master)
 Deze website is gemaakt middels het Laravel-framework. Max Korlaar is verantwoordelijk voor het back-end op het moment.
 
 Het is **belangrijk** om de Laravel-documentatie goed door te lezen alvorens aan de slag te gaan met dit project, zowel front- als backend. Kom je hier niet uit, vraag het dan aan Max / iemand die hier verstand van heeft binnen de mediacommissie.
