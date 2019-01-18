@@ -7,9 +7,9 @@ stages:
 # Variables
 variables:
   MYSQL_ROOT_PASSWORD: root
-  MYSQL_USER: mysql_user
-  MYSQL_PASSWORD: mysql_password
-  MYSQL_DATABASE: mysql_db
+  MYSQL_USER: homestead
+  MYSQL_PASSWORD: secret
+  MYSQL_DATABASE: homestead
   DB_HOST: mysql
 
 cache:
@@ -71,7 +71,7 @@ build-assets:
 db-seeding:
   stage: building
   services:
-    - mysql:latest
+    - mysql:5.7
   image: edbizarro/gitlab-ci-pipeline-php:latest
   # Download the artifacts for these jobs
   dependencies:
@@ -88,7 +88,7 @@ db-seeding:
 phpunit:
   stage: testing
   services:
-    - mysql:latest
+    - mysql:5.7
   image: edbizarro/gitlab-ci-pipeline-php:latest
   # Download the artifacts for these jobs
   dependencies:
