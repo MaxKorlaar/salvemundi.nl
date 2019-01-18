@@ -5,7 +5,6 @@
     use App\Http\Controllers\Controller;
     use App\Membership;
     use Illuminate\Support\Facades\Auth;
-    use Intervention\Image\Constraint;
 
     /**
      * Class IndexController

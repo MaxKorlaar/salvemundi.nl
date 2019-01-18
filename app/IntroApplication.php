@@ -120,7 +120,6 @@
         public function setBirthdayAttribute($birthday) {
             try {
                 return $this->attributes['birthday'] = Carbon::createFromTimestamp(strtotime($birthday));
-
             } catch (\InvalidArgumentException $exception) {
                 return $this->attributes['birthday'] = null;
             }
@@ -148,6 +147,4 @@
         public function save(array $options = []) {
             return parent::save($options);
         }
-
-
     }

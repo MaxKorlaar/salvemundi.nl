@@ -67,7 +67,6 @@
         Route::get('inschrijven/betalen/{application}/{token}', 'IntroController@getPaymentPage')->name('signup.payment_request');
 
         Route::get('inschrijven/bevestigen/betaling/', 'IntroController@confirmPayment')->name('signup.confirm_payment');
-
     });
     Route::post('/webhook/betaling/intro/{application}', 'IntroController@confirmPaymentWebhook')->name('webhook.payment.intro');
 
@@ -78,9 +77,7 @@
         Route::get('lidmaatschap-verlengen/bevestigen/betaling/{transaction}', 'MembershipController@confirmPayment')->name('membership.confirm_payment');
     });
 
-
     Route::post('/webhook/betaling/lidmaatschap/{member}', 'Member\MembershipController@confirmPaymentWebhook')->name('webhook.payment.renew_membership');
-
 
     Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
         //Route::resource('aanmeldingen', 'ApplicationsController')->names('applications');
@@ -99,7 +96,6 @@
         Route::get('intro/{application}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.delete_confirmation');
         Route::resource('intro', 'IntroController')->names('intro');
 
-
         Route::get('aanmeldingen-naar-leden', 'MemberController@applicationsToMembers');
 
         Route::resource('gebruikers', 'UserController')->names('users');
@@ -111,11 +107,11 @@
         Route::get('leden/email', 'MemberController@getMailForm')->name('members.email');
         Route::post('leden/email/voorbeeld', 'MemberController@getMailPreview')->name('members.preview_email');
         Route::post('leden/email', 'MemberController@sendMail')->name('members.do_send_email');
-        
+
         Route::get('leden/email-verlenging-nodig', 'MemberController@getInactiveMailForm')->name('members.email_inactive');
         Route::post('leden/email-verlenging-nodig/voorbeeld', 'MemberController@getInactiveMailPreview')->name('members.preview_email_inactive');
         Route::post('leden/email-verlenging-nodig', 'MemberController@sendInactiveMail')->name('members.do_send_email_inactive');
-        
+
         Route::get('leden/verwijder-inactieve', 'MemberController@deleteInactiveConfirmation')->name('members.delete_inactive_confirmation');
         Route::delete('leden/verwijder-inactieve', 'MemberController@deleteInactive')->name('members.delete_inactive');
         Route::resource('leden', 'MemberController')->names('members');
@@ -123,7 +119,6 @@
         Route::resource('leden.lidmaatschap', 'MembershipController')->names('members.membership');
         Route::get('leden/{member}/afbeelding', 'MemberController@getPicture')->name('members.picture');
         Route::get('leden/{member}/afbeelding/volledig', 'MemberController@getFullPicture')->name('members.full_picture');
-
     });
 
     Route::get('korting', 'DiscountController@getDefaultView')->name('discounts.index');

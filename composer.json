@@ -13,7 +13,7 @@
   "license": "",
   "type": "project",
   "require": {
-    "php": ">=7.0.0",
+    "php": ">=7",
     "ext-json": "*",
     "barryvdh/laravel-ide-helper": "^2.4",
     "doctrine/dbal": "^2.6",
@@ -37,7 +37,8 @@
     "fzaninotto/faker": "~1.4",
     "laravel/homestead": "^6.5",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "~6.0"
+    "phpunit/phpunit": "~6.0",
+    "squizlabs/php_codesniffer": "3.4.0"
   },
   "autoload": {
     "classmap": [
@@ -69,7 +70,8 @@
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover"
-    ]
+    ],
+    "phpcs": "phpcs --standard=phpcs.xml"
   },
   "config": {
     "preferred-install": "dist",

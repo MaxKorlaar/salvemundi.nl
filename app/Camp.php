@@ -29,6 +29,14 @@
         public $fillable = ['year_id', 'signup_open', 'signup_close', 'price'];
 
         /**
+         * @return Camp
+         */
+        public static function getCampWithOpenSignup() {
+            return self::where('signup_open', '<', Carbon::now())
+                ->where('signup_close', '>', Carbon::now())->first();
+        }
+
+        /**
          * @return \Illuminate\Database\Eloquent\Relations\HasMany
          */
         public function applications() {
@@ -40,14 +48,5 @@
          */
         public function year() {
             return $this->belongsTo(Year::class);
-        }
-
-
-        /**
-         * @return Camp
-         */
-        public static function getCampWithOpenSignup() {
-            return self::where('signup_open', '<', Carbon::now())
-                ->where('signup_close', '>', Carbon::now())->first();
         }
     }

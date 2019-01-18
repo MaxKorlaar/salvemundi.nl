@@ -16,7 +16,7 @@ const {mix} = require('laravel-mix');
  |
  */
 
-mix.setPublicPath('public_html')
+mix.setPublicPath('public')
     .js('resources/assets/js/app.js', 'js')
     .js('resources/assets/js/landing.js', 'js')
     .js('resources/assets/js/spreadsheet.js', 'js')
@@ -52,11 +52,11 @@ mix.browserSync({
     files:       [
         "resources/views/**/*.twig",
         'app/**/*.php',
-        'public_html/js/**/*.js',
-        'public_html/css/**/*.css'
-        //  "public_html/**/*"
+        'public/js/**/*.js',
+        'public/css/**/*.css'
+        //  "public/**/*"
     ],
-    serveStatic: ['.', 'public_html/css']
+    serveStatic: ['.', 'public/css']
 
     // snippetOptions: {
     //     ignorePaths: "templates/*.html",

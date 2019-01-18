@@ -35,7 +35,7 @@ Alle `commando's` dienen, tenzij anders vermeld, uitgevoerd te worden in je term
 * `npm install`
 * `composer install`
 * Gebruik Homestead (vagrant) voor een lokale VM. [Zie de Laravel-documentatie](https://laravel.com/docs/5.5/homestead#per-project-installation). Kijk hierbij onder 'Per project installation'
-* Stel in `Homestead.yaml` in dat de mapping van `homestead.test` gelinkt is aan `/home/vagrant/code/public_html` (in plaats van slechts `public` op het einde)
+* Stel in `Homestead.yaml` in dat de mapping van `homestead.test` gelinkt is aan `/home/vagrant/code/public` (in plaats van slechts `public` op het einde)
 * `vagrant up`, wanneer draaiende gebruik `npm run watch`
 * Voor Vagrant is een VM-manager nodig; Makkelijkste is Virtualbox - Deze heeft gewoon een installer voor Mac en Windows. Bij Mac is het nodig om naar Instellingen.app -> Beveiliging te gaan om onderaan in dat venster toestemming te geven aan de Virtualbox installer, nadat de installatie automatisch mislukt door geweigerde toegang.
 

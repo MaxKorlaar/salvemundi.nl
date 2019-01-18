@@ -110,5 +110,4 @@
         public function transaction() {
             return $this->belongsTo(Transaction::class);
         }
-
     }
