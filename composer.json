@@ -29,6 +29,7 @@
     "mollie/mollie-api-php": "^1.9",
     "phpoffice/phpspreadsheet": "^1.4",
     "phpseclib/phpseclib": "^2.0",
+    "predis/predis": "^1.1",
     "rcrowe/twigbridge": "^0.9.5",
     "s-ichikawa/laravel-sendgrid-driver": "^2.0"
   },
