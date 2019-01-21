@@ -31,7 +31,7 @@
     "phpseclib/phpseclib": "^2.0",
     "predis/predis": "^1.1",
     "rcrowe/twigbridge": "^0.9.5",
-    "s-ichikawa/laravel-sendgrid-driver": "^2.0"
+    "s-ichikawa/laravel-sendgrid-driver": "^2.0",
     "spatie/laravel-permission": "^2.29"
   },
   "require-dev": {

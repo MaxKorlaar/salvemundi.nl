@@ -153,6 +153,6 @@ deployment:
     - ssh-add <(echo "$DEPLOYER_KEY")
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
-    - ssh deployer@192.168.25.81 "cd /var/www/html/salvemundi.nl/ && php artisan down && git fetch && git checkout master && git pull && composer install && php artisan config:cache && php artisan route:cache && php artisan migrate && php artisan up"
+    - ssh deployer@192.168.25.81 "cd /var/www/html/salvemundi.nl/ && php artisan down && git fetch && git checkout master && git pull && composer install && npm run production --progress false && php artisan config:cache && php artisan route:cache && php artisan migrate && php artisan up"
   only:
     - master
