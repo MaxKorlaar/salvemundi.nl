@@ -11,6 +11,7 @@
     use App\Member;
     use App\MemberApplication;
     use App\Membership;
+    use App\User;
     use App\Year;
     use Carbon\Carbon;
     use Exception;
@@ -542,5 +543,21 @@
             }
             $leden->delete();
             return redirect()->route('admin.members.index')->with('success', trans('admin.members.delete.deleted'));
+        }
+
+        /**
+         * @return User[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+         */
+        public function getMembersWithFullAccess() {
+            // Todo rechtensysteem implementeren
+            $members = User::with(['member'])->where('rank', 'admin')->orWhere('rank', 'camping')->get();
+            $return  = [];
+            foreach ($members as $member) {
+                $return[] = [
+                    'username'      => $member->username,
+                    'official_name' => $member->official_name,
+                ];
+            }
+            return $return;
         }
     }
