@@ -174,7 +174,7 @@
 
             // Do a preemptive check to see if the provider has thrown an error from a previous redirect
             if (isset($_REQUEST['error'])) {
-                if($_REQUEST['error'] === 'access_denied') {
+                if ($_REQUEST['error'] === 'access_denied') {
                     throw new OpenIDConnectClientException('Access denied', 403);
                 }
                 throw new OpenIDConnectClientException("Error: " . $_REQUEST['error'] . " Description: " . $_REQUEST['error_description']);
@@ -194,7 +194,7 @@
                 if ($_REQUEST['state'] != \Illuminate\Support\Facades\Session::get('openid_connect_state')) {
                     \Illuminate\Support\Facades\Log::error('Kon state niet opvragen bij inloggen', [
                         'request' => request()->all(),
-                        'state' => \Illuminate\Support\Facades\Session::get('openid_connect_state')
+                        'state'   => \Illuminate\Support\Facades\Session::get('openid_connect_state')
                     ]);
                     throw new OpenIDConnectClientException("Unable to determine state");
                 }
@@ -389,9 +389,9 @@
                 throw new OpenIDConnectClientException('Curl error: ' . curl_error($ch));
             }
             // Close the cURL resource, and free system resources
-//            $info = curl_getinfo($ch);
+            //            $info = curl_getinfo($ch);
             curl_close($ch);
-//            if ($info['http_code'] != 255 && $url !='https://identity.fhict.nl/connect/token' && $url !='https://identity.fhict.nl/.well-known/openid-configuration' && $url != 'https://identity.fhict.nl/.well-known/jwks' && $url != 'https://identity.fhict.nl/connect/userinfo?schema=openid' && $url != 'https://api.fhict.nl/permissions/picture_token') dd($url, $info, $output, $headers);
+            //            if ($info['http_code'] != 255 && $url !='https://identity.fhict.nl/connect/token' && $url !='https://identity.fhict.nl/.well-known/openid-configuration' && $url != 'https://identity.fhict.nl/.well-known/jwks' && $url != 'https://identity.fhict.nl/connect/userinfo?schema=openid' && $url != 'https://api.fhict.nl/permissions/picture_token') dd($url, $info, $output, $headers);
             return $output;
         }
 

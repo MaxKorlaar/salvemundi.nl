@@ -131,7 +131,6 @@
         public function setBirthdayAttribute($birthday) {
             try {
                 return $this->attributes['birthday'] = Carbon::createFromTimestamp(strtotime($birthday));
-
             } catch (\InvalidArgumentException $exception) {
                 return $this->attributes['birthday'] = null;
             }
@@ -235,7 +234,6 @@
             if (\Storage::exists('member_photos/' . $this->picture_name) && !\Storage::delete('member_photos/' . $this->picture_name)) {
                 throw new \Exception("Kon pasfoto niet verwijderen bij het verwijderen van een Member");
             }
-
         }
 
         /**

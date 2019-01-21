@@ -31,7 +31,7 @@
                     'title'     => trans('discounts.happii.title'),
                     'image_url' => "images/promo/happii.svg",
                     'discounts' => trans('discounts.happii.discounts'),
-                    'text' => trans('discounts.happii.text')
+                    'text'      => trans('discounts.happii.text')
                 ]
             );
         }
@@ -42,9 +42,9 @@
         public function getVillaView() {
             return view('discounts',
                 [
-                    'title' => trans('discounts.villa_fiesta.title'),
+                    'title'     => trans('discounts.villa_fiesta.title'),
                     'image_url' => "images/promo/villa.svg",
-                    'text' => trans('discounts.villa_fiesta.text')
+                    'text'      => trans('discounts.villa_fiesta.text')
                 ]
             );
         }

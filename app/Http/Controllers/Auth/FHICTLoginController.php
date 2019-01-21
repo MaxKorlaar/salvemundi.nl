@@ -65,7 +65,7 @@
             try {
                 $this->client->authenticate();
             } catch (\OpenIDConnectClientException $e) {
-                if($e->getCode() === 403) {
+                if ($e->getCode() === 403) {
                     return redirect()->route('login')->withErrors(['login' => trans('auth.access_denied')])->with('redirect', route('login.redirect'));
                 }
                 if ($e->getMessage() !== null) {

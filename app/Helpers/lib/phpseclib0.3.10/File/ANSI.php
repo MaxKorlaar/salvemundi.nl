@@ -552,6 +552,16 @@
         }
 
         /**
+         * Returns the current screen
+         *
+         * @access public
+         * @return String
+         */
+        function getScreen() {
+            return '<pre style="color: white; background: black" width="' . ($this->max_x + 1) . '">' . $this->_getScreen() . '</pre>';
+        }
+
+        /**
          * Returns the current screen without preformating
          *
          * @access private
@@ -571,15 +581,5 @@
                 $output .= "\r\n";
             }
             return rtrim($output);
-        }
-
-        /**
-         * Returns the current screen
-         *
-         * @access public
-         * @return String
-         */
-        function getScreen() {
-            return '<pre style="color: white; background: black" width="' . ($this->max_x + 1) . '">' . $this->_getScreen() . '</pre>';
         }
     }

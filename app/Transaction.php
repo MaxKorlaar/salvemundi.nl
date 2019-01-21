@@ -71,5 +71,4 @@
             $payment = $mollie->payments->get($this->transaction_id);
             return $payment;
         }
-
     }

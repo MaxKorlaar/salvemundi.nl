@@ -6,7 +6,6 @@
     use App\Http\Requests\Member\UpdateOwnInfo;
     use App\Membership;
     use Illuminate\Support\Facades\Auth;
-    use Intervention\Image\Constraint;
 
     /**
      * Class IndexController

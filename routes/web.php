@@ -88,7 +88,6 @@
         Route::get('inschrijven/betalen/{application}/{token}', 'IntroController@getPaymentPage')->name('signup.payment_request');
 
         Route::get('inschrijven/bevestigen/betaling/', 'IntroController@confirmPayment')->name('signup.confirm_payment');
-
     });
     Route::post('/webhook/betaling/intro/{application}', 'IntroController@confirmPaymentWebhook')->name('webhook.payment.intro');
 
