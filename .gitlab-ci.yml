@@ -1,8 +1,8 @@
 stages:
-  - preparation
-  - building
-  - testing
-  - security
+#  - preparation
+#  - building
+#  - testing
+#  - security
   - deploy
 
 # Variables
@@ -142,6 +142,7 @@ sensiolabs:
 
 deployment:
   stage: deploy
+  image: edbizarro/gitlab-ci-pipeline-php:latest
   environment:
     name: production
     url: https://salvemundi.nl
