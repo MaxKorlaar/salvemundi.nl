@@ -1,0 +1,77 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ item.name }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="store">
+            <div id="store-app">
+                <div v-if="!loaded || stock.length == 0" class="loader">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div v-else v-cloak="" class="row">
+                    <div class="col-md-12">
+                        <h1>{{ trans('store.info.title') }}</h1>
+                        {% for content in trans('store.info.intro') %}
+                            <p>{{ content|raw }}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-6">
+                        <div class="images-grid">
+                            <div v-for="image in selectedStock.images">
+                                <a :href="image.full_url" target="_blank">
+                                    <img :src="image.url" :alt="image.name">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2>{{ item.name }}</h2>
+                        <form class="row" method="POST" action="{{ route('store.add_to_cart') }}">
+                            {{ csrf_field() }}
+                            <div class="col-md-4">
+                                <div class="form-group price">
+                                    €{{ "{{ formatPrice(selectedStock.price) }}" }}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="stock_variant">{{ trans('store.item.variant') }}</label>
+                                    <select v-model="selectedStock" class="form-control" id="stock_variant">
+                                        <option v-for="option in stock" :value="option">{{ "{{ option.name }}" }}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 center">
+                                <div class="form-group" v-if="selectedStock.in_stock > 0">
+                                    <input type="hidden" name="stock_variant" :value="selectedStock.id">
+                                    <input type="hidden" name="item" value="{{ item.id }}">
+                                    <input type="hidden" name="amount" value="1">
+                                    <button type="submit" class="button text-center">Bestellen</button>
+                                </div>
+                                <div v-else class="no-stock">
+                                    {{ trans('store.item.no_stock') }}
+                                </div>
+                            </div>
+                        </form>
+                        <div class="warning" v-if="selectedStock.in_stock == 0">
+                            {{ trans('store.item.not_in_stock') }}
+                        </div>
+                        <p v-html="description">{{ item.description|nl2br|raw }}</p>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        window.SalveMundi       = window.SalveMundi || {};
+        window.SalveMundi.store = {{ script_data|json_encode|raw }};
+    </script>
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/store.js') }}"></script>
+{% endblock %}

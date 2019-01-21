@@ -15,6 +15,7 @@
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
+    use Mollie\Api\Exceptions\ApiException;
 
     /**
      * Class SignupController
@@ -91,7 +92,10 @@
 
             $mollie  = new PaymentHelper();
             $payment = $mollie->payments->create([
-                "amount"      => config('mollie.signup_costs'),
+                "amount" => [
+                    'currency' => 'EUR',
+                    'value'    => config('mollie.signup_costs')
+                ],
                 "description" => trans('signup.payment.description', ['first_name' => $application->first_name, 'last_name' => $application->last_name]),
                 "redirectUrl" => route('signup.confirm_payment'),
                 "webhookUrl"  => route('webhook.payment.signup', ['application' => $application]),
@@ -100,24 +104,25 @@
                     'transaction_id' => $transaction->id
                 ]
             ]);
+
             $transaction->update([
                 'transaction_id'     => $payment->id,
                 'transaction_status' => $payment->status,
-                'transaction_amount' => $payment->amount
+                'transaction_amount' => $payment->amount->value
             ]);
 
             if (app()->environment() !== 'production') $request->flash();
 
             $application->transaction_id     = $payment->id;
             $application->transaction_status = $payment->status;
-            $application->transaction_amount = $payment->amount;
+            $application->transaction_amount = $payment->amount->value;
             $application->saveOrFail();
             $request->session()->put('signup.application', $application);
             if (app()->environment() === 'production') $request->session()->pull('signup_data');
             $request->session()->save();
 
             return view('signup.payment_redirect', [
-                'links' => $payment->links
+                'links' => $payment->_links
             ]);
         }
 
@@ -126,8 +131,8 @@
          * @param Request $request
          *
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Mollie_API_Exception
-         * @throws \Mollie_API_Exception_IncompatiblePlatform
+         * @throws \Mollie\Api\Exceptions\ApiException
+         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
          */
         public function confirmPayment(Request $request) {
             if (!$request->session()->has('signup.application')) abort(404);
@@ -150,9 +155,8 @@
          * @param Request           $request
          *
          * @return string
-         * @throws \Exception
-         * @throws \Mollie_API_Exception
-         * @throws \Mollie_API_Exception_IncompatiblePlatform
+         * @throws \Mollie\Api\Exceptions\ApiException
+         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
          * @throws \Throwable
          */
         public function confirmPaymentWebhook(MemberApplication $application, Request $request) {
@@ -171,11 +175,11 @@
                 $transaction = Transaction::findOrFail($payment->metadata->transaction_id);
                 $transaction->update([
                     'transaction_id'     => $payment->id,
-                    'transaction_status' => $payment->status,
-                    'transaction_amount' => $payment->amount
+                    'transaction_status' => $payment->hasRefunds() ? 'refunded' : $payment->status,
+                    'transaction_amount' => $payment->amount->value
                 ]);
 
-                if ($payment->isPaid() && !$payment->isRefunded()) {
+                if ($payment->isPaid() && !$payment->hasRefunds()) {
                     if ($application->transaction_status != $payment->status) {
                         // De status is pas net bijgewerkt naar betaald.
                         $application->status = MemberApplication::STATUS_NEW;
@@ -206,22 +210,22 @@
                         $application->delete(false); // Aanmelding verwijderen, afbeelding behouden
                     }
                 } else {
-                    if ($payment->isRefunded()) {
+                    if ($payment->hasRefunds()) {
                         $application->status = MemberApplication::STATUS_REFUNDED;
                     }
                     $application->transaction_id     = $payment->id;
                     $application->transaction_status = $payment->status;
-                    $application->transaction_amount = $payment->amount;
+                    $application->transaction_amount = $payment->amount->value;
                     $application->saveOrFail();
 
-                    if ($payment->isCancelled() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
+                    if ($payment->isCanceled() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
                         Log::debug('De betaling is geannuleerd of is verlopen en de inschrijving zal worden verwijderd', ['payment' => $payment]);
                         // Verwijder geannuleerde of verlopen inschrijvingen uit de database.
                         $application->delete();
                     }
                 }
 
-            } catch (\Mollie_API_Exception $exception) {
+            } catch (ApiException $exception) {
                 Log::error($exception);
                 abort(400);
             }

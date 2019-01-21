@@ -53,6 +53,10 @@
      * @property-read \App\Transaction $transaction
      * @property int|null              $camp_id
      * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication whereCampId($value)
+     * @property-read \App\Camp|null   $camp
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication query()
      */
     class CampingApplication extends Model {
         use HasEncryptedAttributes;

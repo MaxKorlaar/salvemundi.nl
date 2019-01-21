@@ -52,6 +52,9 @@
   border-left: 1rem solid theme-color-level(primary);
   margin-bottom: 1rem;
   margin-top: 1rem;
+  ul {
+    margin: 0;
+  }
   abbr {
     text-decoration: none;
     border-bottom: 2px dotted theme-color-level(primary, 5);

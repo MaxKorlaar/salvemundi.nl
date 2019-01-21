@@ -9,6 +9,7 @@
     use Illuminate\Support\Carbon;
     use Intervention\Image\Constraint;
     use Intervention\Image\Facades\Image;
+    use Mollie\Api\Resources\Payment;
 
     /**
      * Class Member
@@ -61,6 +62,18 @@
      * @method static Builder|Member whereCardId($value)
      * @method static Builder|Member whereCardStatus($value)
      * @property-read \Illuminate\Database\Eloquent\Collection|\App\CampingApplication[] $campingApplications
+     * @property \Carbon\Carbon|null                                                     $deleted_at
+     * @method static bool|null forceDelete()
+     * @method static \Illuminate\Database\Query\Builder|Member onlyTrashed()
+     * @method static bool|null restore()
+     * @method static Builder|Member whereDeletedAt($value)
+     * @method static \Illuminate\Database\Query\Builder|Member withTrashed()
+     * @method static \Illuminate\Database\Query\Builder|Member withoutTrashed()
+     * @method static Builder|Member newModelQuery()
+     * @method static Builder|Member newQuery()
+     * @method static Builder|Member query()
+     * @property string|null                                                             $country
+     * @method static Builder|Member whereCountry($value)
      */
     class Member extends Model {
         use SoftDeletes;
@@ -68,8 +81,8 @@
 
         use HasEncryptedAttributes;
 
-        public $fillable = ['pcn', 'member_id', 'first_name', 'last_name', 'address', 'city', 'postal', 'birthday', 'phone', 'email', 'card_status', 'card_id'];
-        protected $encrypted = ['first_name', 'last_name', 'address', 'city', 'postal', 'phone', 'email', 'ip_address', 'picture_name'];
+        public $fillable = ['pcn', 'member_id', 'first_name', 'last_name', 'address', 'city', 'postal', 'country', 'birthday', 'phone', 'email', 'card_status', 'card_id'];
+        protected $encrypted = ['first_name', 'last_name', 'address', 'city', 'postal', 'country', 'phone', 'email', 'ip_address', 'picture_name'];
         protected $casts = [
             'birthday' => 'date'
         ];
@@ -93,6 +106,7 @@
             $member->address            = $application->address;
             $member->city               = $application->city;
             $member->postal             = $application->postal;
+            $member->country            = $application->country;
             $member->birthday           = $application->birthday;
             $member->phone              = $application->phone;
             $member->email              = $application->email;
@@ -258,11 +272,11 @@
         }
 
         /**
-         * @param \Mollie_API_Object_Payment $molliePayment
+         * @param Payment $molliePayment
          *
          * @return false|Transaction
          */
-        public function addTransaction(\Mollie_API_Object_Payment $molliePayment) {
+        public function addTransaction(Payment $molliePayment) {
             $transaction = new Transaction([
                 'transaction_id'     => $molliePayment->id,
                 'transaction_status' => $molliePayment->status,

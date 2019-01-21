@@ -52,6 +52,9 @@
      * @mixin \Eloquent
      * @property string              $route_type
      * @method static Builder|IntroSupervisorApplication whereRouteType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroSupervisorApplication newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroSupervisorApplication newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroSupervisorApplication query()
      */
     class IntroSupervisorApplication extends Model {
         use HasEncryptedAttributes;

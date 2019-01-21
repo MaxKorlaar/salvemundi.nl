@@ -62,6 +62,9 @@
      * @method static Builder|IntroApplication whereContactPhone($value)
      * @method static Builder|IntroApplication whereGender($value)
      * @method static Builder|IntroApplication wherePostal($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroApplication newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroApplication newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroApplication query()
      */
     class IntroApplication extends Model {
         use HasEncryptedAttributes;

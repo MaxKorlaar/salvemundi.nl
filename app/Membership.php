@@ -28,6 +28,9 @@
      * @property-read \App\Member|null $member
      * @property-read \App\Transaction $transaction
      * @property-read \App\Year        $year
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership query()
      */
     class Membership extends Model {
 

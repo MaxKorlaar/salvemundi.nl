@@ -42,7 +42,7 @@ new Vue({
             axios.get(this.events_url).then(function (response) {
                 let events = response.data;
                 events.forEach(function (item) {
-                    item.description = truncate(item.description, {length: 600});
+                    item.description = truncate(item.description, {length: 400});
                 });
                 that.events  = events;
                 that.loading = false;

@@ -50,7 +50,10 @@
             $application->saveOrFail();
             $mollie                          = new PaymentHelper();
             $payment                         = $mollie->payments->create([
-                "amount"      => $application->calculateIntroCosts(),
+                "amount" => [
+                    'currency' => 'EUR',
+                    'value'    => $application->calculateIntroCosts()
+                ],
                 "description" => trans($application->extra_shirt ? 'intro.signup.payment.description_extra_shirt' : 'intro.signup.payment.description', ['first_name' => $application->first_name, 'last_name' => $application->last_name]),
                 "redirectUrl" => route('intro.signup.confirm_payment'),
                 "webhookUrl"  => route('webhook.payment.intro', ['application' => $application]),
@@ -60,7 +63,7 @@
             ]);
             $application->transaction_id     = $payment->id;
             $application->transaction_status = $payment->status;
-            $application->transaction_amount = $payment->amount;
+            $application->transaction_amount = $payment->amount->value;
 
             if (app()->environment() !== 'production') $request->flash();
 
@@ -68,7 +71,7 @@
             $request->session()->put('intro.application', $application);
             $request->session()->save();
             return view('intro.payment_redirect', [
-                'links' => $payment->links
+                'links' => $payment->_links
             ]);
 
             //            $mail = new ConfirmIntroApplication($application);
@@ -150,7 +153,7 @@
                 }
                 $application->transaction_id     = $payment->id;
                 $application->transaction_status = $payment->status;
-                $application->transaction_amount = $payment->amount;
+                $application->transaction_amount = $payment->amount->value;
                 $application->saveOrFail();
 
                 if ($payment->isCancelled() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
@@ -233,7 +236,10 @@
             }
             if ($new) {
                 $payment = $mollie->payments->create([
-                    "amount"      => $application->calculateIntroCosts(),
+                    "amount" => [
+                        'currency' => 'EUR',
+                        'value'    => $application->calculateIntroCosts()
+                    ],
                     "description" => trans($application->extra_shirt ? 'intro.signup.payment.description_extra_shirt' : 'intro.signup.payment.description', ['first_name' => $application->first_name, 'last_name' => $application->last_name]),
                     "redirectUrl" => route('intro.signup.confirm_payment'),
                     "webhookUrl"  => route('webhook.payment.intro', ['application' => $application]),
@@ -245,7 +251,7 @@
 
             $application->transaction_id     = $payment->id;
             $application->transaction_status = $payment->status;
-            $application->transaction_amount = $payment->amount;
+            $application->transaction_amount = $payment->amount->value;
 
             if (app()->environment() !== 'production') $request->flash();
 
@@ -254,7 +260,7 @@
             //Log::info('Sessie opgeslagen', [$request->session()->isStarted(), $request->session()->getId()]);
             $request->session()->save();
             return view('intro.payment_redirect', [
-                'links' => $payment->links
+                'links' => $payment->_links
             ]);
         }
 

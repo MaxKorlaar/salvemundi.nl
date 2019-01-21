@@ -19,6 +19,9 @@
      * @method static \Illuminate\Database\Eloquent\Builder|Year whereLastMemberId($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Year whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Year whereYear($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Year newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Year newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Year query()
      */
     class Year extends Model {
         //

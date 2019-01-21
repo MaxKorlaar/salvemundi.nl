@@ -26,6 +26,9 @@
      * @property-read \App\Member             $member
      * @property-read \App\Membership         $membership
      * @property-read \App\CampingApplication $campingApplication
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Transaction newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Transaction newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Transaction query()
      */
     class Transaction extends Model {
 
@@ -57,9 +60,11 @@
             return $this->belongsTo(CampingApplication::class);
         }
 
+
         /**
-         * @throws \Mollie_API_Exception
-         * @throws \Mollie_API_Exception_IncompatiblePlatform
+         * @return \Mollie\Api\Resources\Payment
+         * @throws \Mollie\Api\Exceptions\ApiException
+         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
          */
         public function getMollieTransaction() {
             $mollie  = new PaymentHelper();

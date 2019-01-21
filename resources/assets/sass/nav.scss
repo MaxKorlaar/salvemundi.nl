@@ -3,16 +3,20 @@ header {
   width: 100%;
   position: fixed;
   z-index: 999;
+
   &.no-background {
     pointer-events: none;
+
     nav {
       height: 150px;
       background: none;
       box-shadow: none;
+
       .container {
         .logo, ul {
           pointer-events: auto;
         }
+
         .logo {
           img {
             padding: 30px 30px 30px 0;
@@ -21,6 +25,7 @@ header {
       }
     }
   }
+
   nav {
     transition: background $transition-timing ease-in-out $transition-timing/2, box-shadow $transition-timing ease-in-out $transition-timing/2, height $transition-timing ease-in-out;
     height: 100px;
@@ -28,6 +33,7 @@ header {
     width: 100%;
     box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.28);
     background-color: $brand-primary;
+
     a {
       background: none;
       box-shadow: none;
@@ -36,6 +42,7 @@ header {
         color: $brand-primary;
         cursor: pointer;
       }
+
       &.logo {
         @include hover-focus-active {
           box-shadow: none;
@@ -43,12 +50,17 @@ header {
         }
       }
     }
+
     .container {
       height: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+
       .logo {
+        @include media-breakpoint-down(sm) {
+          width: 100%;
+        }
         img {
           transition: padding $transition-timing ease-in-out;
           height: 100%;
@@ -56,13 +68,16 @@ header {
           padding: $logo-padding $logo-padding $logo-padding 0;
         }
       }
+
       ul {
         align-self: center;
         margin-top: 0;
         margin-bottom: 0;
+
         li {
           list-style: none;
           display: inline-block;
+
           a {
             line-height: 1;
             color: white;
@@ -71,6 +86,7 @@ header {
             margin: 5px;
             transition: 0.3s ease;
             background: none;
+
             &:hover {
               background-color: white;
               color: $brand-primary;

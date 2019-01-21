@@ -3,6 +3,7 @@
     namespace App;
 
     use App\Helpers\HasEncryptedAttributes;
+    use App\Store\Order;
     use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Foundation\Auth\User as Authenticatable;
     use Illuminate\Notifications\Notifiable;
@@ -39,6 +40,9 @@
      * @property string|null                                                                                                    $rank
      * @property-read \App\Member|null                                                                                          $member
      * @method static Builder|User whereRank($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\User query()
      */
     class User extends Authenticatable {
         use Notifiable, HasEncryptedAttributes;
@@ -104,5 +108,12 @@
          */
         public function isAdministrationMember() {
             return $this->rank === 'admin';
+        }
+
+        /**
+         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         */
+        public function orders() {
+            return $this->hasMany(Order::class);
         }
     }

@@ -1,4 +1,4 @@
-webpackJsonp([1],{
+webpackJsonp([2],{
 
 /***/ "./node_modules/lodash/_Symbol.js":
 /***/ (function(module, exports, __webpack_require__) {
@@ -1226,7 +1226,7 @@ new Vue({
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(this.events_url).then(function (response) {
                 var events = response.data;
                 events.forEach(function (item) {
-                    item.description = __WEBPACK_IMPORTED_MODULE_1_lodash_truncate___default()(item.description, { length: 600 });
+                    item.description = __WEBPACK_IMPORTED_MODULE_1_lodash_truncate___default()(item.description, { length: 400 });
                 });
                 that.events = events;
                 that.loading = false;
