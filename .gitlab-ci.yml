@@ -149,7 +149,7 @@ deployment:
   script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - ssh-add <(echo "$DEPLOYER_KEY")
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - ssh deployer@192.168.25.81 "cd /var/www/html/salvemundi.nl/ && php artisan down && git fetch && git checkout master && git pull && cp .env.example_dev .env && composer install && php artisan migrate && php artisan up"
