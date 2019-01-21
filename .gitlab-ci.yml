@@ -1,9 +1,10 @@
 stages:
+  - deploy
 #  - preparation
 #  - building
 #  - testing
 #  - security
-  - deploy
+
 
 # Variables
 variables:
