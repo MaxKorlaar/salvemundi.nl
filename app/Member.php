@@ -158,8 +158,7 @@
          * @return \Intervention\Image\Image
          */
         public function getImageObject() {
-            ini_set('memory_limit', '256M');
-            return Image::make($this->getImagePath());
+            return Image::make($this->getImagePath())->orientate();
         }
 
         /**
@@ -177,10 +176,9 @@
          * @return \Image|\Intervention\Image\Image
          */
         public function getResizedCachedImage($width = null, $height = null, $returnObj = false) {
-            ini_set('memory_limit', '256M');
             return Image::cache(function ($image) use ($height, $width) {
                 /** @var \Intervention\Image\Image $image */
-                $image->make($this->getImagePath());
+                $image->make($this->getImagePath())->orientate();
                 $image->resize($width, $height, function (Constraint $constraint) {
                     $constraint->aspectRatio();
                 });
@@ -193,10 +191,9 @@
          * @return \Image|\Intervention\Image\Image
          */
         public function getCachedImage($returnObj = false) {
-            ini_set('memory_limit', '256M');
             return Image::cache(function ($image) {
                 /** @var \Intervention\Image\Image $image */
-                $image->make($this->getImagePath());
+                $image->make($this->getImagePath())->orientate();
             }, null, $returnObj);
         }
 
