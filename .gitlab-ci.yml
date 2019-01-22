@@ -21,6 +21,7 @@ composer:
   stage: preparation
   services:
     - mysql:5.7
+    - redis:latest
   image: edbizarro/gitlab-ci-pipeline-php:latest
   script:
     - php -v
@@ -74,6 +75,7 @@ db-seeding:
   stage: building
   services:
     - mysql:5.7
+    - redis:latest
   image: edbizarro/gitlab-ci-pipeline-php:latest
   # Download the artifacts for these jobs
   dependencies:
@@ -91,6 +93,7 @@ phpunit:
   stage: testing
   services:
     - mysql:5.7
+    - redis:latest
   image: edbizarro/gitlab-ci-pipeline-php:latest
   # Download the artifacts for these jobs
   dependencies:

@@ -33,6 +33,21 @@
                     'frequency' => 'weekly'
                 ],
                 [
+                    'url'       => route('discounts.index', [], false),
+                    'priority'  => 1,
+                    'frequency' => 'weekly'
+                ],
+                [
+                    'url'       => route('discounts.villa_fiesta', [], false),
+                    'priority'  => 0.8,
+                    'frequency' => 'weekly'
+                ],
+                [
+                    'url'       => route('discounts.happii', [], false),
+                    'priority'  => 0.8,
+                    'frequency' => 'weekly'
+                ],
+                [
                     'url'       => route('signup.signup', [], false),
                     'priority'  => 1,
                     'frequency' => 'monthly'
@@ -88,8 +103,33 @@
                     'frequency' => 'monthly'
                 ],
                 [
-                    'url'       => route('committees/women', [], false),
+                    'url'       => route('committees/activity', [], false),
                     'priority'  => 0.9,
+                    'frequency' => 'monthly'
+                ],
+                [
+                    'url'       => route('committees/study', [], false),
+                    'priority'  => 0.9,
+                    'frequency' => 'monthly'
+                ],
+                [
+                    'url'       => route('committees/alpha_centauri', [], false),
+                    'priority'  => 0.9,
+                    'frequency' => 'monthly'
+                ],
+                [
+                    'url'       => route('committees/internal_affairs', [], false),
+                    'priority'  => 0.5,
+                    'frequency' => 'monthly'
+                ],
+                [
+                    'url'       => route('committees/external_affairs', [], false),
+                    'priority'  => 0.5,
+                    'frequency' => 'monthly'
+                ],
+                [
+                    'url'       => route('committees/treasure', [], false),
+                    'priority'  => 0.5,
                     'frequency' => 'monthly'
                 ],
             ];
