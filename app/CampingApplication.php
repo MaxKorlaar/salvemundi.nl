@@ -53,6 +53,10 @@
      * @property-read \App\Transaction $transaction
      * @property int|null              $camp_id
      * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication whereCampId($value)
+     * @property-read \App\Camp|null   $camp
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication query()
      */
     class CampingApplication extends Model {
         use HasEncryptedAttributes;
@@ -102,7 +106,6 @@
         public function setBirthdayAttribute($birthday) {
             try {
                 return $this->attributes['birthday'] = Carbon::createFromTimestamp(strtotime($birthday));
-
             } catch (\InvalidArgumentException $exception) {
                 return $this->attributes['birthday'] = null;
             }
@@ -118,5 +121,4 @@
         public function save(array $options = []) {
             return parent::save($options);
         }
-
     }

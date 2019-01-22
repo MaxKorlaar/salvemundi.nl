@@ -1,3 +1,4 @@
 *
 !public/
+!store_photos/
 !.gitignore

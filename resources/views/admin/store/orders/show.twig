@@ -1,0 +1,104 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.store.orders.show.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="order">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.store.orders.show.title') }}</h1>
+                </div>
+
+                <div class="col-4">
+                    <div>
+                        <b>{{ trans('admin.store.orders.id') }}</b>
+                        {{ order.id }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.store.orders.current_status') }}</b>
+                        {{ trans('admin.store.orders.status.' ~ order.status) }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.store.orders.transaction_id') }}</b>
+                        {{ order.transaction.transaction_id ?: trans('admin.orders.no_transaction') }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.store.orders.transaction_status') }}</b>
+                        {{ order.transaction.transaction_status ?: trans('admin.orders.no_transaction') }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.store.orders.transaction_amount') }}</b>
+                        {{ order.transaction.transaction_amount ? '€' ~ order.transaction.transaction_amount|number_format(2, ',') : trans('admin.orders.no_transaction') }}
+                    </div>
+
+
+                </div>
+                <div class="col-4">
+
+                    <div>
+                        <b>{{ trans('admin.store.orders.user') }}</b>
+                        {% if order.user %}
+                            <a href="{{ route('admin.members.show', { member: order.user.member }) }}">
+                                {{ order.user.member.first_name }} {{ order.user.member.last_name }}
+                            </a>
+                        {% else %}
+                            <i>{{ trans('admin.store.orders.no_user') }}</i>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.store.orders.created_at') }}</b>
+                        {{ order.created_at|date(trans('datetime.format.date_and_time')) }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.store.orders.updated_at') }}</b>
+                        {{ order.updated_at|date(trans('datetime.format.date_and_time')) }}
+                    </div>
+                </div>
+                <div class="col-4">
+                    (Mollie order info)
+                </div>
+                <div class="col-12">
+                    {% if order.status == constant('STATUS_OPEN', order) %}
+                        Markeer als afgehandeld | Annuleer bestelling en herstel voorraad
+                    {% elseif order.status == constant('STATUS_SEE_TRANSACTION', order) %}
+                        doe iets met {{ order.transaction.transaction_status }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>{{ trans('admin.store.orders.items') }}</h4>
+                    <table class="table item-list table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ trans('store.cart.name') }}</th>
+                                <th>{{ trans('store.cart.variant') }}</th>
+                                <th>{{ trans('store.cart.amount') }}</th>
+                                <th>{{ trans('store.cart.price') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order.items %}
+                                <tr>
+                                    <td>{{ item.item.item.name }}</td>
+                                    <td>{{ item.item.name }}</td>
+                                    <td>{{ item.amount }}</td>
+                                    <td>€{{ item.price|number_format(2, ',') }}</td>
+                                </tr>
+                            {% else %}
+                                <tr class="empty-cart">
+                                    <td colspan="4">{{ trans('store.cart.empty_cart') }}</td>
+                                </tr>
+                            {% endfor %}
+
+                            <tr class="total">
+                                <td colspan="3">{{ trans('store.cart.total_amount') }}</td>
+                                <td class="cart_price">€{{ total|number_format(2, ',') }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </main>
+    </div>
+{% endblock %}

@@ -5,9 +5,18 @@
             'heading'                   => 'De geschiedenis van Salve Mundi',
             'founders'                  => 'De oprichters',
             'founders_text'             => 'Mohammed Mighiss en Luuk Hendriks hebben in januari 2017 het idee Salve Mundi bedacht. De visie: Studenten van FHICT te Eindhoven moeten meer uit hun opleiding kunnen halen dan slechts alleen een diploma. Studenten verdienen een netwerk van vrienden en zakelijke contacten, waarmee zij in hun toekomst hun voordeel kunnen doen. De missie: Het leveren van connecties aan de leden van Salve Mundi. Dit door het organiseren van evenementen welke het sociale omgaan met medestudenten en/of het zakelijke omgaan met bedrijven zullen bevorderen. Hun plan van het organiseren van deze vereniging is in december 2017 vereeuwigd bij de Kamer van Koophandel.',
-            'first_administration'      => 'Het eerste bestuur (2017-2018)',
-            'first_administration_text' => 'Naast de twee oprichters bestaat het bestuur uit nog vier andere leden. Rex Treurniet als penningmeester en Carmen Bijlaart, Chiel Schrijvers en later ook Mitchell Vermeulen als algemeen bestuurslid. Dit zestal is verantwoordelijk voor het eerste jaar van Salve Mundi en haar daverende succes. Voor de vereniging officieel was telde deze al 70 gemotiveerde leden, welke geduldig door het eerste halfjaar van de vereniging heen zijn gekomen. Dit was een tijd van lang afwachten omdat het bestuur simpelweg te druk was met het opzetten van de vereniging. Het eerste bestuur heeft het contract gesloten met de stamkroeg Villa Fiësta, een van de betere intro\'s in de afgelopen vijf jaar georganiseerd, een wekelijkse bijles opgezet die op zijn drukst 3 klaslokalen opvulde, een aanspreekpunt gecreëerd voor de dames op de opleiding, de studievereniging opgezet, verscheidene feesten gegeven, en nog veel meer. ',
-            'image_caption'             => 'Vanaf links: Chiel, Mohammed, Carmen, Luuk en Rex. Totop heden is het nog onduidelijk waar ze precies naartoe keken.',
+            "administration_versions" => [
+                "2017" => [
+                    "title" => "Het eerste bestuur (2017-2018)",
+                    "text" => 'Naast de twee oprichters bestaat het bestuur uit nog vier andere leden. Rex Treurniet als penningmeester en Carmen Bijlaart, Chiel Schrijvers en later ook Mitchell Vermeulen als algemeen bestuurslid. Dit zestal is verantwoordelijk voor het eerste jaar van Salve Mundi en haar daverende succes. Voor de vereniging officieel was telde deze al 70 gemotiveerde leden, welke geduldig door het eerste halfjaar van de vereniging heen zijn gekomen. Dit was een tijd van lang afwachten omdat het bestuur simpelweg te druk was met het opzetten van de vereniging. Het eerste bestuur heeft het contract gesloten met de stamkroeg Villa Fiësta, een van de betere intro\'s in de afgelopen vijf jaar georganiseerd, een wekelijkse bijles opgezet die op zijn drukst 3 klaslokalen opvulde, een aanspreekpunt gecreëerd voor de dames op de opleiding, de studievereniging opgezet, verscheidene feesten gegeven, en nog veel meer.',
+                    "caption" => 'Vanaf links: Chiel, Mohammed, Carmen, Luuk en Rex. Totop heden is het nog onduidelijk waar ze precies naartoe keken.'
+                ],
+                "2018" => [
+                    "title" => "Het tweede bestuur (2018-2019)",
+                    "text" => "Het tweede bestuur van Salve Mundi bestaat voor een groot deel uit het eerste bestuur. Mohammed Mighiss als voorzitter, Luuk Hendriks als vicevoorzitter, Rex treurniet als penningmeester en tot slot Chiel schrijvers en Mitchell Vermeulen als algemeen bestuurslid.<br><br>Met de leden was afgesproken dat de bestuursleden van het eerste bestuur, met genoeg motivatie, door mochten werken met hun eigen opzet. Dit om te garanderen dat Salve Mundi nog vele jaren succesvol kan bestaan. In deze tijd is de samensmelting van Overflow, de voormalige studievereniging van FHICT, met Salve Mundi gelukt, zijn er twee kampen georganiseerd door de kampcommissie en heeft de feestcommissie de opzet voor een grotere introductie gemaakt en succesvol uitgevoerd. Het bestuur heeft een constructie opgezet welke het stage bestuur wordt genoemd. Hierin worden enkele leden voor een volgend bestuur al gekozen in oktober, om zo een volledige bestuurswisseling te voorkomen. Hiernaast heeft de mediacommissie een infrastructuur achter de schermen ontwikkeld waar de feestcommissie, kampcommissie en het bestuur actief gebruik van maken. Ook zijn in dit bestuursjaar verschillende commissies opgericht zoals de activiteitencommissie, Alpha centauri en ledenzaken.<br><br>Het tweede bestuur heeft een lang en druk jaar achter de rug. Het is een erg succesvol jaar geweest vol waardevolle lessen en veel nieuwe leden. Het aantal actieve leden is gigantisch gegroeid met veel meer commissies en taken. Het tweede bestuur mag trots zijn op de prestaties.",
+                    "caption" => ""
+                ],
+            ],
             'meet_the_members'          => 'Ontmoet het bestuur',
             'members'                   => [
                 [
@@ -178,15 +187,9 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                 ],
                 [
                     'name'    => 'Kazimir Awsiej',
-                    'profile' => 'ICT & Technology',
+                    'profile' => 'ICT & Media',
                     'text'    => '',
                     'image'   => 'Kazimir.jpg',
-                ],
-                [
-                    'name'    => 'Youp Jansen',
-                    'profile' => 'ICT & Business',
-                    'text'    => '',
-                    'image'   => 'Youp.jpg',
                 ]
 
             ]
@@ -218,9 +221,10 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                 ],
                 [
                     'name'    => 'Youp Jansen',
-                    'image'   => 'Youp.jpg',
-                    'profile' => 'ICT & Business'
-                ],
+                    'profile' => 'ICT & Business',
+                    'image'   => 'Youp.jpg'
+                ]
+
             ]
         ],
         'study'            => [
@@ -417,9 +421,9 @@ en onderwijs gerelateerde activiteiten',
                     'image'   => 'Vincent.jpg'
                 ],
                 [
-                    'name'    => 'Youp Jansen',
-                    'profile' => 'ICT & Business',
-                    'image'   => 'Youp.jpg'
+                    'name'    => 'Kim van der Meulen',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'Kim.jpg',
                 ],
             ]
         ],

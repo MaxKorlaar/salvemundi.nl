@@ -12,11 +12,13 @@
   "keywords": [],
   "license": "",
   "type": "project",
+
   "require": {
-    "php": ">=7.0.0",
+    "php": ">=7",
+    "ext-curl": "*",
     "ext-json": "*",
     "barryvdh/laravel-ide-helper": "^2.4",
-    "doctrine/dbal": "^2.6",
+    "doctrine/dbal": "^2",
     "facebook/graph-sdk": "^5.6",
     "fideloper/proxy": "~3.3",
     "guzzlehttp/guzzle": "^6.3",
@@ -24,20 +26,22 @@
     "intervention/imagecache": "^2.3",
     "laravel/framework": "5.5.*",
     "laravel/tinker": "~1.0",
-    "mollie/mollie-api-php": "^1.9",
+    "mollie/mollie-api-php": "^2",
     "phpoffice/phpspreadsheet": "^1.4",
     "phpseclib/phpseclib": "^2.0",
+    "predis/predis": "^1.1",
     "rcrowe/twigbridge": "^0.9.5",
     "s-ichikawa/laravel-sendgrid-driver": "^2.0",
-    "ext-curl": "*"
+    "spatie/laravel-permission": "^2.29"
   },
   "require-dev": {
     "ajthinking/tinx": "^2.1",
     "filp/whoops": "~2.0",
     "fzaninotto/faker": "~1.4",
-    "laravel/homestead": "^6.5",
+    "laravel/homestead": "^7.19",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "~6.0"
+    "phpunit/phpunit": "~6.0",
+    "squizlabs/php_codesniffer": "3.4.0"
   },
   "autoload": {
     "classmap": [
@@ -69,7 +73,8 @@
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover"
-    ]
+    ],
+    "phpcs": "phpcs --standard=phpcs.xml"
   },
   "config": {
     "preferred-install": "dist",

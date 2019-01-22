@@ -27,7 +27,7 @@
         public function rules() {
             return [
                 'message_content' => 'required|string|min:50|max:5000',
-                'subject'           => 'required|min:5|max:40|string'
+                'subject'         => 'required|min:5|max:40|string'
             ];
         }
     }

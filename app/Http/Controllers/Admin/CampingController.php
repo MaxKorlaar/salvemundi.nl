@@ -62,7 +62,7 @@
          */
         public function show(Camp $kamp) {
             return view('admin.camping.show', [
-                'camp'  => $kamp
+                'camp' => $kamp
             ]);
         }
 

@@ -42,8 +42,8 @@
             {% if text is not null %}
                 {% if discounts is null %}
                     <h3>{{ title }}</h3>
+                    <img alt="Logo {{ title }}" class="right" src="{{ asset(image_url) }}"/>
                 {% endif %}
-                <img alt="Logo {{ title }}" class="right" src="{{ asset(image_url) }}"/>
                 {% for content in text %}
                     <p>{{ content }}</p>
                 {% endfor %}

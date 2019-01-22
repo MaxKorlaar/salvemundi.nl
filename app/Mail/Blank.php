@@ -19,6 +19,7 @@
          * Create a new message instance.
          *
          * @param $content
+         * @param $subject
          */
         public function __construct($content, $subject) {
             $this->content = $content;

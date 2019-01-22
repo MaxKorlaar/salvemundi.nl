@@ -4518,6 +4518,18 @@
         }
 
         /**
+         * Returns a list of all extensions in use in certificate, CSR or CRL
+         *
+         * @param array $cert optional
+         *
+         * @access public
+         * @return Array
+         */
+        function getExtensions($cert = null) {
+            return $this->_getExtensions($cert);
+        }
+
+        /**
          * Returns a list of all extensions in use
          *
          * @param array  $cert optional
@@ -4537,18 +4549,6 @@
             }
 
             return $extensions;
-        }
-
-        /**
-         * Returns a list of all extensions in use in certificate, CSR or CRL
-         *
-         * @param array $cert optional
-         *
-         * @access public
-         * @return Array
-         */
-        function getExtensions($cert = null) {
-            return $this->_getExtensions($cert);
         }
 
         /**

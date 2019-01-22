@@ -14,6 +14,11 @@ return [
         'address' => env('MAIL_INTRO_TO_ADDRESS', null),
         'name' => env('MAIL_INTRO_TO_NAME', null)
     ],
+    'store_to' => [
+        'address' => env('MAIL_STORE_TO_ADDRESS', null),
+        'name' => env('MAIL_STORE_TO_NAME', null)
+    ],
+
 
     /*
     |--------------------------------------------------------------------------

@@ -11,6 +11,7 @@
     use App\Member;
     use App\MemberApplication;
     use App\Membership;
+    use App\User;
     use App\Year;
     use Carbon\Carbon;
     use Exception;
@@ -260,7 +261,7 @@
          */
         public function index() {
             return view('admin.members.index', [
-                'members' => Member::with(['memberships'])->orderBy('member_id')->get()
+                'members' => Member::with(['memberships', 'user'])->orderBy('member_id')->get()
             ]);
         }
 
@@ -349,7 +350,7 @@
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
         public function getMailForm() {
-            $members      = Member::with(['memberships'])->orderBy('member_id')->get();
+            $members    = Member::with(['memberships'])->orderBy('member_id')->get();
             $validCount = 0;
             $members->each(function (Member $member) use (&$validCount) {
                 if ($member->isCurrentlyMember()) {
@@ -359,19 +360,6 @@
             return view('admin.members.mail', [
                 'valid_count' => $validCount
             ]);
-        }
-
-        /**
-         * @param        $content
-         * @param Member $member
-         *
-         * @return mixed
-         */
-        private function parseMailContents($content, Member $member) {
-            $content = nl2br($content);
-            $content = str_replace('{voornaam}', $member->first_name, $content);
-            $content = str_replace('{achternaam}', $member->last_name, $content);
-            return $content;
         }
 
         /**
@@ -386,6 +374,19 @@
             $title   = $request->get('subject');
             $mail    = new Blank($content, $this->parseMailContents($title, \Auth::user()->member));
             return $mail;
+        }
+
+        /**
+         * @param        $content
+         * @param Member $member
+         *
+         * @return mixed
+         */
+        private function parseMailContents($content, Member $member) {
+            $content = nl2br($content);
+            $content = str_replace('{voornaam}', $member->first_name, $content);
+            $content = str_replace('{achternaam}', $member->last_name, $content);
+            return $content;
         }
 
         /**
@@ -407,7 +408,7 @@
          */
         public function spreadsheetIndex() {
             return view('admin.members.spreadsheet', [
-                'members'            => Member::with(['memberships'])->orderBy('member_id')->get()
+                'members' => Member::with(['memberships'])->orderBy('member_id')->get()
             ]);
         }
 
@@ -439,10 +440,10 @@
          * @return \Illuminate\Http\RedirectResponse
          */
         public function sendMail(SendMailToMembers $request) {
-            $members      = Member::with(['memberships'])->orderBy('member_id')->get();
+            $members    = Member::with(['memberships'])->orderBy('member_id')->get();
             $validCount = 0;
-            $content      = $request->get('message_content');
-            $title        = $request->get('subject');
+            $content    = $request->get('message_content');
+            $title      = $request->get('subject');
             $members->each(function (Member $member) use ($title, $content, &$validCount) {
                 if ($member->isCurrentlyMember()) {
                     $content = $this->parseMailContents($content, $member);
@@ -542,5 +543,21 @@
             }
             $leden->delete();
             return redirect()->route('admin.members.index')->with('success', trans('admin.members.delete.deleted'));
+        }
+
+        /**
+         * @return User[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+         */
+        public function getMembersWithFullAccess() {
+            // Todo rechtensysteem implementeren
+            $members = User::with(['member'])->where('rank', 'admin')->orWhere('rank', 'camping')->get();
+            $return  = [];
+            foreach ($members as $member) {
+                $return[] = [
+                    'username'      => $member->username,
+                    'official_name' => $member->official_name,
+                ];
+            }
+            return $return;
         }
     }

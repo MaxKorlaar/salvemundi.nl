@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Store\Item;
     use Illuminate\Http\Request;
 
     /**
@@ -30,6 +31,26 @@
                 [
                     'url'       => '/',
                     'priority'  => 1,
+                    'frequency' => 'weekly'
+                ],
+                [
+                    'url'       => route('store.index', [], false),
+                    'priority'  => 1,
+                    'frequency' => 'weekly'
+                ],
+                [
+                    'url'       => route('discounts.index', [], false),
+                    'priority'  => 1,
+                    'frequency' => 'weekly'
+                ],
+                [
+                    'url'       => route('discounts.villa_fiesta', [], false),
+                    'priority'  => 0.8,
+                    'frequency' => 'weekly'
+                ],
+                [
+                    'url'       => route('discounts.happii', [], false),
+                    'priority'  => 0.8,
                     'frequency' => 'weekly'
                 ],
                 [
@@ -88,11 +109,43 @@
                     'frequency' => 'monthly'
                 ],
                 [
-                    'url'       => route('committees/women', [], false),
+                    'url'       => route('committees/activity', [], false),
                     'priority'  => 0.9,
                     'frequency' => 'monthly'
                 ],
+                [
+                    'url'       => route('committees/study', [], false),
+                    'priority'  => 0.9,
+                    'frequency' => 'monthly'
+                ],
+                [
+                    'url'       => route('committees/alpha_centauri', [], false),
+                    'priority'  => 0.9,
+                    'frequency' => 'monthly'
+                ],
+                [
+                    'url'       => route('committees/internal_affairs', [], false),
+                    'priority'  => 0.5,
+                    'frequency' => 'monthly'
+                ],
+                [
+                    'url'       => route('committees/external_affairs', [], false),
+                    'priority'  => 0.5,
+                    'frequency' => 'monthly'
+                ],
+                [
+                    'url'       => route('committees/treasure', [], false),
+                    'priority'  => 0.5,
+                    'frequency' => 'monthly'
+                ],
             ];
+            Item::all()->each(function(Item $item) use (&$pages) {
+                $pages[] = [
+                  'url' => route('store.view_item', ['item' => $item->slug], false),
+                  'priority' => 0.7,
+                  'frequency' => 'weekly'
+                ];
+            });
 
             foreach ($pages as &$page) {
                 $page['path'] = $page['url'];

@@ -16,15 +16,18 @@
                 'paid'      => 'Betaald',
                 'open'      => 'Betaling bezig',
                 'cancelled' => 'Geannuleerd',
+                'canceled'  => 'Geannuleerd',
                 'failed'    => 'Betaling mislukt',
                 'expired'   => 'Betaling verlopen',
-                'refunded'  => 'Teruggestort'
+                'refunded'  => 'Teruggestort',
+                'n/a'       => 'Fout (status onbekend)',
             ],
             'transaction_amount' => 'Bedrag',
             'created_at'         => 'Aangemaakt op',
             'updated_at'         => 'Bijgewerkt op'
         ],
-        'memberships'  => [
+
+        'memberships' => [
             'id'                => 'ID',
             'transaction'       => 'Transactie',
             'no_transaction'    => 'Geen transactie gekoppeld',
@@ -37,7 +40,7 @@
             ],
             'create_membership' => 'Voeg lidmaatschap handmatig toe'
         ],
-        'camping'      => [
+        'camping'     => [
             'title'          => 'Kamp',
             'id'             => 'ID',
             'camping_id'     => 'Kamp',
@@ -77,7 +80,7 @@
                 'updated_at'     => 'Bijgewerkt op',
             ]
         ],
-        'members'      => [
+        'members'     => [
             'title'                 => 'Ledenadministratie',
             'details'               => 'Details',
             'id'                    => 'ID',
@@ -93,6 +96,8 @@
             'address'               => 'Adres',
             'city'                  => 'Woonplaats',
             'postal'                => 'Postcode',
+            'country'               => 'Land',
+            'none_given'            => 'Geen land opgegeven!',
             'birthday'              => 'Geboortedatum',
             'phone'                 => 'Telefoonnummer',
             'email'                 => 'E-mail-adres',
@@ -122,6 +127,7 @@
             'transactions'          => 'Transacties',
             'memberships'           => 'Lidmaatschappen',
             'campings'              => 'Kampen',
+            'orders'                => 'Bestellingen',
             'not_a_member'          => 'Dit lid heeft momenteel geen actief lidmaatschap',
             'no_valid_membership'   => 'Lidmaatschap verlopen',
             'email_invalid_members' => 'E-mail leden zonder lidmaatschap',
@@ -157,7 +163,7 @@
                 'email_sent'                  => 'E-mail verstuurd naar :members leden.'
             ]
         ],
-        'intro'        => [
+        'intro'       => [
             'title'                    => 'FHICT Introductie 2018',
             'amount'                   => 'Aanmeldingen',
             'confirmed_amount'         => 'Betaalde aanmeldingen',
@@ -203,6 +209,72 @@
                 'are_you_sure' => 'Weet je zeker dat je deze aanmelding wil verwijderen? Dit kan <b>niet</b> ongedaan worden gemaakt. Alle gegevens gerelateerd aan deze aanmelding zullen onherstelbaar worden verwijderd. Mocht deze aanmelding gekoppeld zijn aan een Mollie-betaling, dan zal deze betaling blijven bestaan in Mollie.',
                 'delete'       => 'Verwijder aanmelding permanent',
                 'deleted'      => 'De aanmelding is permanent verwijderd uit het systeem'
+            ]
+        ],
+        'store'       => [
+            'orders' => [
+                'id'             => 'ID',
+                'current_status' => 'Status',
+                'transaction'    => 'Transactie',
+                'created_at'     => 'Aangemaakt op',
+                'no_transaction' => 'Geen transactie (handmatig)',
+                'status'         => [
+                    'see_transaction' => 'Zie transactie',
+                    'open'            => 'Open'
+                ]
+            ],
+            'items'  => [
+                'title'       => 'Winkel-items',
+                'id'          => 'ID',
+                'name'        => 'Naam',
+                'description' => 'Beschrijving',
+                'in_stock'    => 'Op voorraad',
+                'created_at'  => 'Aangemaakt op',
+                'new'         => 'Nieuw item',
+                'details'     => 'Details',
+                'create'      => [
+                    'title'  => 'Item aanmaken',
+                    'create' => 'Opslaan'
+                ],
+                'edit'        => [
+                    'save'   => 'Opslaan',
+                    'title'  => 'Item bewerken: :name',
+                    'delete' => 'Item verwijderen'
+                ],
+                'delete'      => [
+                    'title'        => ':item verwijderen',
+                    'are_you_sure' => 'Weet je zeker dat je dit item wil verwijderen? Dit kan niet ongedaan worden gemaakt.',
+                    'delete'       => 'Permanent verwijderen'
+                ],
+                'stock'       => [
+                    'title'                => 'Voorraad',
+                    'id'                   => 'ID',
+                    'name'                 => 'Naam',
+                    'name_variant'         => 'Naam/Variant/Versie',
+                    'price'                => 'Prijs',
+                    'description'          => 'Beschrijving',
+                    'description_optional' => 'Beschrijving (optioneel)',
+                    'in_stock'             => 'Voorraad',
+                    'images'               => 'Afbeeldingen',
+                    'images_multiple'      => 'Afbeeldingen (meerdere toegestaan)',
+                    'details'              => 'Bewerken',
+                    'new'                  => 'Nieuwe voorraad',
+                    'create'               => [
+                        'title'  => 'Voorraad aanmaken voor :item',
+                        'create' => 'Opslaan'
+                    ],
+                    'edit'                 => [
+                        'title'  => 'Voorraad bewerken voor :item',
+                        'save'   => 'Opslaan',
+                        'delete' => 'Voorraad verwijderen',
+                        'back'   => 'Terug naar item'
+                    ],
+                    'delete'               => [
+                        'title'        => 'Voorraad verwijderen van :item',
+                        'are_you_sure' => 'Weet je zeker dat je deze voorraad wil verwijderen? Dit kan niet ongedaan worden gemaakt.',
+                        'delete'       => 'Verwijderen'
+                    ]
+                ]
             ]
         ]
     ];

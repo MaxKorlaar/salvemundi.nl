@@ -1,0 +1,40 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.store.items.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="store items overview">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.store.items.title') }}</h1>
+                    <p>
+                        <a href="{{ route('admin.store.items.create') }}" class="btn btn-primary">{{ trans('admin.store.items.new') }}</a>
+                    </p>
+                    <table class="table item-list table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ trans('admin.store.items.id') }}</th>
+                                <th>{{ trans('admin.store.items.name') }}</th>
+                                <th>{{ trans('admin.store.items.in_stock') }}</th>
+                                <th>{{ trans('admin.store.items.created_at') }}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                                <tr>
+                                    <td>{{ item.id }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.getTotalStockAmount() }}</td>
+                                    <td>{{ item.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.store.items.show', { item: item }) }}">{{ trans('admin.store.items.details') }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
