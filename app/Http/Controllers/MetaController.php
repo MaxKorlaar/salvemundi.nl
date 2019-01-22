@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Store\Item;
     use Illuminate\Http\Request;
 
     /**
@@ -29,6 +30,11 @@
             $pages = [
                 [
                     'url'       => '/',
+                    'priority'  => 1,
+                    'frequency' => 'weekly'
+                ],
+                [
+                    'url'       => route('store.index', [], false),
                     'priority'  => 1,
                     'frequency' => 'weekly'
                 ],
@@ -133,6 +139,13 @@
                     'frequency' => 'monthly'
                 ],
             ];
+            Item::all()->each(function(Item $item) use (&$pages) {
+                $pages[] = [
+                  'url' => route('store.view_item', ['item' => $item->slug], false),
+                  'priority' => 0.7,
+                  'frequency' => 'weekly'
+                ];
+            });
 
             foreach ($pages as &$page) {
                 $page['path'] = $page['url'];
