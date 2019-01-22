@@ -51,9 +51,9 @@
                 'subject'      => 'Bevestig je inschrijving voor de intro',
                 'greeting'     => 'Geachte :name,',
                 // 'instructions' => 'Tof dat je je hebt aangemeld voor het introductiekamp 2018. Het belooft een fantastische introductie te worden. Tijdens deze introductie zal je kennismaken met je studiegenoten en met het echte studentenleven. Deze introductie is georganiseerd door Salve Mundi, de studievereniging van Fontys Hogescholen ICT.',
-                'instructions' => 'Je hebt je ingeschreven voor de introductie van FHICT 2018-2019. Dit vinden wij erg leuk, maar wat wij minder leuk vinden is dat je je e-mailadres nog niet bevestigd hebt. Op deze manier kunnen wij geen betaalverzoek sturen. Wij willen je verzoeken om je e-mailadres te bevestigen zodat we een betaalverzoek kunnen sturen en hopelijk ook jou terug mogen zien bij de introductie van FHICT 2018-2019!',
+                'instructions' => 'Je hebt je ingeschreven voor de introductie van FHICT :year. Dit vinden wij erg leuk, maar wat wij minder leuk vinden is dat je je e-mailadres nog niet bevestigd hebt. Op deze manier kunnen wij geen betaalverzoek sturen. Wij willen je verzoeken om je e-mailadres te bevestigen zodat we een betaalverzoek kunnen sturen en hopelijk ook jou terug mogen zien bij de introductie van FHICT :year!',
                 'link'         => 'Bevestig je inschrijving',
-                'when_done'    => 'LET OP: je aanmelding wordt pas definitief bevestigd wanneer je hebt betaald. Hiervoor is het eerst nodig om nu direct je e-mail-adres te bevestigen. Je kan rond juli een e-mail van ons verwachten waarin we je verzoeken om aan de betaling te voldoen. Na deze betaling hoef je geen verdere acties te ondernemen.'
+                'when_done'    => 'LET OP: Je reservering wordt pas definitief bevestigd wanneer je hebt betaald. Hiervoor is het eerst nodig om nu direct je e-mail-adres te bevestigen. Je kan rond juli een e-mail van ons verwachten waarin we je verzoeken om aan de betaling te voldoen. Na deze betaling hoef je geen verdere acties te ondernemen.'
             ],
             'new_application'          => [
                 'subject'    => 'Betaald: Nieuwe intro-inschrijving van :name',
@@ -66,8 +66,8 @@
             'payment_request'          => [
                 'subject'      => 'Verzoek tot betaling intro FHICT',
                 'greeting'     => 'Hallo :name!',
-                'instructions' => 'Het is bijna zover, de introductie van FHICT 2018-2019 kan bijna van start gaan!
-Je hebt dit mailtje ontvangen omdat je jezelf hebt ingeschreven voor de introductie van 2018-2019. Hierbij krijg je dan ook van ons de link om de betaling over te kunnen maken. Wij vragen hiervoor 60 euro en daar komt nog 20 euro borg bij voor de overnachting. Deze 20 euro krijg je op het einde van de intro terug.',
+                'instructions' => 'Het is bijna zover, de introductie van FHICT :year kan bijna van start gaan!
+Je hebt dit mailtje ontvangen omdat je jezelf hebt ingeschreven voor de introductie van :year. Hierbij krijg je dan ook van ons de link om de betaling over te kunnen maken. Wij vragen hiervoor 60 euro en daar komt nog 20 euro borg bij voor de overnachting. Deze 20 euro krijg je op het einde van de intro terug.',
                 'link'         => 'Open de betaling',
                 'when_done'    => 'Het is de bedoeling dat dit voor 1 augustus 2018 gebeurt. Wij hopen graag iedereen die zich ingeschreven heeft terug te zien bij de introductie van FHICT 2018-2019! Wanneer de betaling succesvol is zal je aanmelding definitief bevestigd worden en zullen we je hiervan op de hoogte stellen.',
                 'signature'    => 'Tot dan!!

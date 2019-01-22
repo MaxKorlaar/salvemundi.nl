@@ -3,9 +3,12 @@
     namespace App\Http\Controllers\Admin;
 
     use App\Http\Controllers\Controller;
+    use App\Http\Requests\Admin\Intro\CreateIntro;
     use App\IntroApplication;
+    use App\Introduction;
     use App\Mail\ConfirmIntroApplication;
     use App\Mail\IntroApplicationPaymentRequest;
+    use App\Year;
     use Carbon\Carbon;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Mail;
@@ -27,58 +30,48 @@
          */
         public function index() {
             return view('admin.intro.index', [
-                'applications'            => IntroApplication::all(),
-                'confirmed_count'         => IntroApplication::where('status', '=', IntroApplication::STATUS_PAID)->count(),
-                'email_unconfirmed_count' => IntroApplication::where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)->count()
+                'introductions' => Introduction::with(['year', 'applications'])->get()
             ]);
         }
 
-
         /**
-         * @param IntroApplication $application
+         * @param Introduction $intro
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function getDeleteConfirmation(IntroApplication $application) {
-            if ($application->status == IntroApplication::STATUS_PAID || $application->status == IntroApplication::STATUS_OPEN) {
-                return back();
-            }
-            return view('admin.intro.delete', ['application' => $application]);
-        }
-
-        /**
-         * @param IntroApplication $intro
-         *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Exception
-         */
-        public function destroy(IntroApplication $intro) {
-            if ($intro->status == IntroApplication::STATUS_PAID || $intro->status == IntroApplication::STATUS_OPEN) {
-                return back();
-            }
-            $intro->delete();
-            return redirect()->route('admin.intro.index')->with('success', trans('admin.intro.delete.deleted'));
+        public function show(Introduction $intro) {
+            return view('admin.intro.show', [
+                'introduction' => $intro
+            ]);
         }
 
         /**
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
-        public function spreadsheetIndex() {
-            return view('admin.intro.spreadsheet', [
-                'applications'            => IntroApplication::all(),
-                'confirmed_count'         => IntroApplication::where('status', '=', IntroApplication::STATUS_PAID)->count(),
-                'email_unconfirmed_count' => IntroApplication::where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)->count()
+        public function create() {
+            return view('admin.intro.create', [
+                'years'             => Year::all(),
+                'reservations_open' => Carbon::now(),
+                'signup_open'       => Carbon::now()->addMonth(),
+                'signup_close'      => Carbon::now()->addMonths(2)
             ]);
         }
 
         /**
-         * @param IntroApplication $intro
+         * @param CreateIntro $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return \Illuminate\Http\RedirectResponse
+         * @throws \Throwable
          */
-        public function show(IntroApplication $intro) {
-            return view('admin.intro.show', ['application' => $intro]);
+        public function store(CreateIntro $request) {
+            $intro = new Introduction($request->all());
+            if($request->has('mail_reservations')) {
+                $intro->mail_reservations_at = $request->get('signup_open');
+            }
+            $intro->saveOrFail();
+            return redirect()->route('admin.intro.show', [$intro])->with('success', trans('admin.intro.create.created'));
         }
+
 
         /**
          * @param Request $request
@@ -160,30 +153,4 @@
             return back()->with('success', trans('admin.intro.tokens_generated', ['count' => $signups->count()]));
         }
 
-        /**
-         * @return array
-         */
-        public function getUnconfirmedSignups() {
-            abort(403);
-            $signups = IntroApplication::where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)->get();
-
-            $return = [];
-
-            $signups->each(function (IntroApplication $application) use (&$return) {
-
-                $fields = ['last_name', 'first_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'remarks', 'transaction_id', 'transaction_amount'];
-                $intro  = [];
-                foreach ($fields as $field) {
-                    if ($field == 'birthday') {
-                        $intro[trans('intro.signup.' . $field)] = $application->birthday->format(trans('datetime.format.date'));
-                    } else {
-                        $intro[trans('intro.signup.' . $field)] = $application->getAttribute($field);
-                    }
-                }
-
-                $return[] = $intro;
-            });
-
-            return $return;
-        }
     }

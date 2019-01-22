@@ -1,5 +1,5 @@
 {% extends 'partials/page.twig' %}
-{% block title %}Inschrijven Intro FHICT 2019{% endblock %}
+{% block title %}Introductie FHICT {{ introduction.year.year }}{% endblock %}
 {% block content %}
     <div class="container content">
         <main class="intro">
@@ -7,14 +7,14 @@
                 <div class="col-md-12">
                     <h1>{{ trans('intro.2019.title') }}</h1>
                     <div class="button-menu my-3">
-                        <a href="{{ route('intro.2019.info') }}">
-                            <button class="button mx-1">Algemene informatie</button>
+                        <a class="button mx-1" href="{{ route('intro.by_id.info', { introduction: introduction, year: year } ) }}">
+                            Algemene informatie
                         </a>
-                        <a href="{{ route('intro.2019.schedule') }}">
-                            <button class="button mx-1">Planning</button>
+                        <a class="button mx-1" href="{{ route('intro.2019.schedule') }}">
+                            Planning
                         </a>
-                        <a href="{{ route('intro.signup') }}">
-                            <button class="button mx-1">Aanmelden</button>
+                        <a class="button mx-1" href="{{ route('intro.by_id.signup', { introduction: introduction, year: year }) }}">
+                            Aanmelden
                         </a>
                     </div>
                 </div>

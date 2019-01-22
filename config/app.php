@@ -167,7 +167,7 @@
             /*
              * Package Service Providers...
              */
-            Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+            //Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
             TwigBridge\ServiceProvider::class,
             Intervention\Image\ImageServiceProvider::class,
             Sichikawa\LaravelSendgridDriver\SendgridTransportServiceProvider::class,

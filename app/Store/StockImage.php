@@ -7,24 +7,24 @@
     use Intervention\Image\Constraint;
 
     /**
-     * App\Store\StockImage
-     *
-     * @property int                   $id
-     * @property string|null           $image_name
-     * @property int                   $store_stock_id
-     * @property \Carbon\Carbon|null   $created_at
-     * @property \Carbon\Carbon|null   $updated_at
-     * @method static \Illuminate\Database\Eloquent\Builder|StockImage whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|StockImage whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|StockImage whereImageName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|StockImage whereStoreStockId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|StockImage whereUpdatedAt($value)
-     * @mixin \Eloquent
-     * @method static \Illuminate\Database\Eloquent\Builder|StockImage newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|StockImage newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|StockImage query()
-     * @property-read \App\Store\Stock $stock
-     */
+ * App\Store\StockImage
+ *
+ * @property int                   $id
+ * @property string|null           $image_name
+ * @property int                   $store_stock_id
+ * @property \Carbon\Carbon|null   $created_at
+ * @property \Carbon\Carbon|null   $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|StockImage whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StockImage whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StockImage whereImageName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StockImage whereStoreStockId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|StockImage whereUpdatedAt($value)
+ * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|StockImage newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StockImage newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|StockImage query()
+ * @property-read \App\Store\Stock $stock
+ */
     class StockImage extends Model {
         protected $table = 'store_stock_images';
         protected $fillable = ['image_name'];

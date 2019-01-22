@@ -77,11 +77,15 @@
 
     Route::group(['prefix' => 'intro', 'as' => 'intro.'], function () {
         Route::get('/', 'IntroController@getInfo')->name('info');
+        Route::get('/{introduction}/{year}', 'IntroController@getIntroByYearAndId')->name('by_id.info');
+        Route::get('/{introduction}/{year}/inschrijven', 'IntroController@getSignupFormByYearAndId')->name('by_id.signup');
+        Route::post('/{introduction}/{year}/inschrijven', 'IntroController@signupByYearAndId')->name('by_id.signup.send');
+
+
         Route::get('inschrijven', 'IntroController@getSignupForm')->name('signup');
         Route::post('inschrijven', 'IntroController@signup')->name('signup.send');
 
         Route::group(['prefix' => '2019', 'as' => '2019.'], function () {
-            Route::get('/', 'IntroController@get2019Info')->name('info');
             Route::get('planning', 'IntroController@get2019Schedule')->name('schedule');
         });
 
