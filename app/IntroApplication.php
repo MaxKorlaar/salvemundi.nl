@@ -62,6 +62,9 @@
      * @method static Builder|IntroApplication whereContactPhone($value)
      * @method static Builder|IntroApplication whereGender($value)
      * @method static Builder|IntroApplication wherePostal($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroApplication newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroApplication newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroApplication query()
      */
     class IntroApplication extends Model {
         use HasEncryptedAttributes;
@@ -120,7 +123,6 @@
         public function setBirthdayAttribute($birthday) {
             try {
                 return $this->attributes['birthday'] = Carbon::createFromTimestamp(strtotime($birthday));
-
             } catch (\InvalidArgumentException $exception) {
                 return $this->attributes['birthday'] = null;
             }
@@ -148,6 +150,4 @@
         public function save(array $options = []) {
             return parent::save($options);
         }
-
-
     }

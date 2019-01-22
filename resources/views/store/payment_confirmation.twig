@@ -1,0 +1,21 @@
+{% extends 'member/_page.twig' %}
+{% block title %}{{ trans('store.cart.payment_confirmation.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="signup">
+            <h1>{{ trans('store.cart.payment_confirmation.title') }}</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="meme-wrapper">
+                        <img src="{{ asset('images/uil.gif') }}" alt="" class="img-fluid">
+                    </div>
+                    {#<div class="checkmark-wrapper">#}
+                        {#<div class="checkmark">&check;</div>#}
+                    {#</div>#}
+                    <h3>{{ trans('store.cart.payment_confirmation.completed') }}</h3>
+                    <p>{{ trans('store.cart.payment_confirmation.email_instructions') }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

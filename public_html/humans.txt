@@ -1,3 +1,0 @@
-De Media Commissie van Salve Mundi 2017 verantwoordelijk voor dit stukje techniek:
-Mick Jasker (frontend)
-Max Korlaar (frontend, backend, sysops, handsome, proofreading) <max@maxkorlaar.nl>

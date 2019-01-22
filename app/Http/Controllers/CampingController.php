@@ -13,6 +13,7 @@
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
+    use Mollie\Api\Exceptions\ApiException;
 
     /**
      * Class CampingController
@@ -82,9 +83,13 @@
             $application->saveOrFail();
             $transaction->member()->associate($member);
 
-            $mollie  = new PaymentHelper();
+            $mollie = new PaymentHelper();
+
             $payment = $mollie->payments->create([
-                "amount"      => $camp->price,
+                "amount"      => [
+                    'currency' => 'EUR',
+                    'value'    => (string) number_format($camp->price, 2)
+                ],
                 "description" => trans('camping.signup.payment.description', ['first_name' => $application->first_name, 'last_name' => $application->last_name]),
                 "redirectUrl" => route('camping.signup.confirm_payment'),
                 "webhookUrl"  => route('webhook.payment.camping', ['application' => $application]),
@@ -96,18 +101,18 @@
             $transaction->update([
                 'transaction_id'     => $payment->id,
                 'transaction_status' => $payment->status,
-                'transaction_amount' => $payment->amount
+                'transaction_amount' => $payment->amount->value
             ]);
 
             if (app()->environment() !== 'production') $request->flash();
 
             $application->transaction_status = $payment->status;
-            $application->transaction_amount = $payment->amount;
+            $application->transaction_amount = $payment->amount->value;
             $application->saveOrFail();
             $request->session()->put('camping.application', $application);
             $request->session()->save();
             return view('camping.payment_redirect', [
-                'links' => $payment->links
+                'links' => $payment->_links
             ]);
         }
 
@@ -117,8 +122,8 @@
          * @param Request            $request
          *
          * @return string
-         * @throws \Mollie_API_Exception
-         * @throws \Mollie_API_Exception_IncompatiblePlatform
+         * @throws \Mollie\Api\Exceptions\ApiException
+         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
          * @throws \Throwable
          */
         public function confirmPaymentWebhook(CampingApplication $application, Request $request) {
@@ -137,11 +142,11 @@
                 $transaction = Transaction::findOrFail($payment->metadata->transaction_id);
                 $transaction->update([
                     'transaction_id'     => $payment->id,
-                    'transaction_status' => $payment->status,
-                    'transaction_amount' => $payment->amount
+                    'transaction_status' => $payment->hasRefunds() ? 'refunded' : $payment->status,
+                    'transaction_amount' => $payment->amount->value
                 ]);
 
-                if ($payment->isPaid() && !$payment->isRefunded()) {
+                if ($payment->isPaid() && !$payment->hasRefunds()) {
                     if ($application->transaction_status != $payment->status) {
                         // De status is pas net bijgewerkt naar betaald.
                         $application->status = CampingApplication::STATUS_NEW;
@@ -159,27 +164,25 @@
                         $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
                         Mail::queue($mail);
 
-
-
                         // Verander de aanmelding naar een werkelijk lid van de vereniging
                         $application->transaction()->associate($transaction);
                     }
                 } else {
-                    if ($payment->isRefunded()) {
-                        $application->status = CampingApplication::STATUS_REFUNDED;
+                    if ($payment->hasRefunds()) {
+                        $application->status             = CampingApplication::STATUS_REFUNDED;
                     }
                     $application->transaction_status = $payment->status;
-                    $application->transaction_amount = $payment->amount;
+                    $application->transaction_amount = $payment->amount->value;
                     $application->saveOrFail();
 
-                    if ($payment->isCancelled() || $payment->isRefunded() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
+                    if ($payment->isCanceled() || $payment->hasRefunds() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
                         Log::debug('De betaling is geannuleerd of is verlopen en de kamp-inschrijving zal worden verwijderd', ['payment' => $payment]);
                         // Verwijder geannuleerde of verlopen kamp-inschrijvingen uit de database.
                         $application->delete();
                     }
                 }
 
-            } catch (\Mollie_API_Exception $exception) {
+            } catch (ApiException $exception) {
                 Log::error($exception);
                 abort(400);
             }
@@ -190,8 +193,8 @@
          * @param Request $request
          *
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Mollie_API_Exception
-         * @throws \Mollie_API_Exception_IncompatiblePlatform
+         * @throws ApiException
+         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
          */
         public function confirmPayment(Request $request) {
             //if (!$request->session()->has('camping.application')) abort(404);

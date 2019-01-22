@@ -52,6 +52,9 @@
      * @mixin \Eloquent
      * @property string              $route_type
      * @method static Builder|IntroSupervisorApplication whereRouteType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroSupervisorApplication newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroSupervisorApplication newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroSupervisorApplication query()
      */
     class IntroSupervisorApplication extends Model {
         use HasEncryptedAttributes;
@@ -85,7 +88,6 @@
         public function setBirthdayAttribute($birthday) {
             try {
                 return $this->attributes['birthday'] = Carbon::createFromTimestamp(strtotime($birthday));
-
             } catch (\InvalidArgumentException $exception) {
                 return $this->attributes['birthday'] = null;
             }

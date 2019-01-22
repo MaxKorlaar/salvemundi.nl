@@ -1,0 +1,86 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.store.items.stock.edit.title', { item: item.name }) }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="store stock">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.store.items.stock.edit.title', { item: item.name }) }}</h1>
+                    <form action="{{ route('admin.store.items.stock.update', { item: item, stock: stock }) }}" method="POST" class="row" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        {{ method_field('PUT') }}
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="name">{{ trans('admin.store.items.stock.name_variant') }}</label>
+                                <input id="name" type="text" class="form-control {{ errors.has('name') ? 'is-invalid' }}" name="name" value="{{ old('name', stock.name) }}">
+                                <div class="invalid-feedback">
+                                    {{ errors.first('name')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">{{ trans('admin.store.items.stock.description_optional') }}</label>
+                                <textarea name="description" id="description" cols="20" rows="10" class="form-control {{ errors.has('description') ? 'is-invalid' }}">{{ old('description', stock.description) }}</textarea>
+                                <div class="invalid-feedback">
+                                    {{ errors.first('description')|ucfirst }}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="price">{{ trans('admin.store.items.stock.price') }}</label>
+                                <input step="0.01" id="price" type="number" class="form-control {{ errors.has('price') ? 'is-invalid' }}"
+                                       placeholder="12.34" name="price"
+                                       value="{{ old('price', stock.price) }}">
+                                <div class="invalid-feedback">
+                                    {{ errors.first('price')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="in_stock">{{ trans('admin.store.items.stock.in_stock') }}</label>
+                                <input step="1" id="in_stock" type="number" class="form-control {{ errors.has('in_stock') ? 'is-invalid' }}"
+                                       placeholder="15" name="in_stock"
+                                       value="{{ old('in_stock', stock.in_stock) }}">
+                                <div class="invalid-feedback">
+                                    {{ errors.first('in_stock')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="images">{{ trans('admin.store.items.stock.images_multiple') }}</label>
+                                <div class="images-grid">
+                                    {% for image in stock.images %}
+                                        <div>
+                                            <a href="{{ route('admin.store.items.stock.image_full', { item: item, stock: stock, image: image }) }}" target="_blank">
+                                                <img src="{{ route('admin.store.items.stock.image', { item: item, stock: stock, image: image }) }}" alt="{{ image.image_name }}">
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <input type="file" class="form-control {{ (errors.get('images.*') | length or errors.has('images')) ? 'is-invalid' }}" name="images[]" multiple="multiple">
+                                <div class="invalid-feedback">
+                                    {{ errors.first('images')|ucfirst }}
+                                    {% for index in errors.get('images.*') %}
+                                        {% for error in index %}
+                                            {{ error|ucfirst }}<br>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <input type="submit" class="button" value="{{ trans('admin.store.items.stock.edit.save') }}">
+                                <a href="{{ route('admin.store.items.stock.delete_confirmation', { item: item, stock: stock }) }}" class="button delete">{{ trans('admin.store.items.stock.edit.delete') }}</a>
+                            </div>
+                            <div class="form-group">
+                                <a href="{{ route('admin.store.items.show', { item: item }) }}" class="button">{{ trans('admin.store.items.stock.edit.back') }}</a>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

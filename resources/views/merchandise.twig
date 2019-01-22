@@ -1,0 +1,95 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('merchandise.title') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="merchandise">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('merchandise.info.title') }}</h1>
+                    {% for content in trans('merchandise.info.intro') %}
+                        <p>{{ content|raw }}</p>
+                    {% endfor %}
+                </div>
+                <div class="col-md-12">
+                    <h3>{{ trans('merchandise.collections.title') }}</h3>
+                    <div class="mt-5 mb-5">
+                        <a href="{{ route('merchandise.vests') }}">
+                            <button class="button text-center mr-3">{{ trans('merchandise.items.vests.name') }}</button>
+                        </a>
+                        <a href="{{ route('merchandise.shirts') }}">
+                            <button class="button text-center">{{ trans('merchandise.items.shirts.name') }}</button>
+                        </a>
+                    </div>
+                </div>
+                {% if data %}
+
+                    <div class="col-md-12 my-3">
+                        <img height="250" src="{{ asset(data.image_url) }}" alt="image"/>
+                    </div>
+
+                    <div class="col-md-6">
+                        <p>{{ trans('merchandise.items.' + product + '.description') }}</p>
+                        <ul>
+                            {% for content in trans('merchandise.items.' + product + '.bullet_information') %}
+                                <li>{{ content }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p>{{ trans('merchandise.items.' + product + '.price') }}</p>
+                        <p>{{ trans('merchandise.items.' + product + '.check_size') }}</p>
+
+
+                        <form>
+                            <div class="form-group row">
+                                <label for="select_gender" class="col-sm-2 col-form-label">Geslacht:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" name="select_gender" id="select_gender">
+                                        <option value="">Man</option>
+                                        <option value="">Vrouw</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="select_size" class="col-sm-2 col-form-label">Maat:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" name="select_size" id="select_size">
+                                        <option value="">XS</option>
+                                        <option value="">S</option>
+                                        <option value="">M</option>
+                                        <option value="">L</option>
+                                        <option value="">XL</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            {# if its available #}
+                            <div>
+                                <h3>Deze maat is nog beschikbaar!</h3>
+                                <p>
+                                    Door op bestellen te drukken, wordt je aanvraag doorgestuurd naar de mediacomissie.
+                                    Zij
+                                    zullen contact met je opnemen over het ophalen van je bestelling. De betaling kan
+                                    met
+                                    pin gedaan worden op het moment van ophalen.
+                                </p>
+                            </div>
+                            {# if it's not available #}
+                            <div>
+                                <h3>Deze maat is niet beschikbaar op het moment!</h3>
+                                <p>Spam Danielle als je hem toch wilt!</p>
+                            </div>
+
+                            <div class="form-group row mb-5">
+                                <div class="col-sm-2">
+                                    <a type="submit" class="button text-center">Bestellen</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                {% endif %}
+
+
+            </div>
+        </main>
+    </div>
+{% endblock %}

@@ -13,7 +13,7 @@
 
           <mj-text>{{ trans('email.camping.payment_confirmation.instructions') }}</mj-text>
 
-          <mj-text>{{ trans('email.confirm_application.when_done') }}
+          <mj-text>{{ trans('email.camping.payment_confirmation.more_info', { amount: application.transaction_amount|number_format(2, ',') }) }}
           </mj-text>
 
           <mj-text>{{ trans('email.signature')|nl2br }}</mj-text>

@@ -2,7 +2,7 @@
 {% block title %}{{ trans('signup.title') }}{% endblock %}
 {% block head %}
     {{ parent() }}
-    <meta http-equiv="refresh" content="3; url={{ links.paymentUrl }}"/>
+    <meta http-equiv="refresh" content="3; url={{ links.checkout.href }}"/>
 {% endblock %}
 {% block content %}
     <div class="container content">

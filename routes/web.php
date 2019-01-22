@@ -13,6 +13,26 @@
 
     Route::get('/', 'IndexController@getHomePage')->name('home');
 
+    Route::group(['prefix' => 'winkel', 'as' => 'store.'], function () {
+        Route::get('/', 'StoreController@index')->name('index');
+
+        Route::get('mandje', 'StoreController@viewCart')->name('cart');
+        Route::post('mandje', 'StoreController@addToCart')->name('add_to_cart');
+        Route::post('mandje/bestellen', 'StoreController@placeOrder')->name('cart.place_order');
+        Route::post('mandje/bestellen/betalen', 'StoreController@placeOrderAndPay')->name('cart.pay');
+        Route::get('mandje/bestellen', 'StoreController@viewCart');
+        Route::delete('mandje/{index}', 'StoreController@removeFromCart')->name('cart.remove_item');
+
+        Route::get('/mandje/bestellen/betalen/bevestigen', 'StoreController@confirmPayment')->name('cart.confirm_payment');
+
+        Route::get('{slug}', 'StoreController@viewItem')->name('view_item');
+        Route::get('{slug}/{stock}/afbeelding/{image}.pict', 'StoreController@getImage')->name('image');
+        // De .pict-extensie gebruiken om CloudFlare (CDN) te forceren om de afbeelding te cachen
+        Route::get('{slug}/{stock}/afbeelding/{image}/volledig.pict', 'StoreController@getImageFull')->name('image_full');
+    });
+
+    Route::post('/webhook/betaling/winkel/order/{order}', 'StoreController@confirmOrderWebhook')->name('webhook.payment.store_order');
+    Route::post('/webhook/betaling/winkel/betaling/{order}', 'StoreController@confirmPaymentWebhook')->name('webhook.payment.store_payment');
     /*
      * Commissies
      */
@@ -70,20 +90,21 @@
         Route::get('inschrijven/betalen/{application}/{token}', 'IntroController@getPaymentPage')->name('signup.payment_request');
 
         Route::get('inschrijven/bevestigen/betaling/', 'IntroController@confirmPayment')->name('signup.confirm_payment');
-
     });
     Route::post('/webhook/betaling/intro/{application}', 'IntroController@confirmPaymentWebhook')->name('webhook.payment.intro');
 
     Route::group(['prefix' => 'lid', 'namespace' => 'Member', 'as' => 'member.', 'middleware' => ['auth']], function () {
         Route::get('over-mij', 'IndexController@getAboutView')->name('about_me');
         Route::get('over-mij/foto', 'IndexController@getOwnPhoto')->name('own_photo');
+
+        Route::get('mijn-info-bijwerken', 'IndexController@getUpdatePage')->name('update_info');
+        Route::put('mijn-info-bijwerken', 'IndexController@updateOwnInfo')->name('do_update_info');
+
         Route::post('lidmaatschap-verlengen', 'MembershipController@renew')->name('membership.renew');
         Route::get('lidmaatschap-verlengen/bevestigen/betaling/{transaction}', 'MembershipController@confirmPayment')->name('membership.confirm_payment');
     });
 
-
     Route::post('/webhook/betaling/lidmaatschap/{member}', 'Member\MembershipController@confirmPaymentWebhook')->name('webhook.payment.renew_membership');
-
 
     Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware' => ['auth']], function () {
         //Route::resource('aanmeldingen', 'ApplicationsController')->names('applications');
@@ -102,6 +123,18 @@
         Route::get('intro/{application}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.delete_confirmation');
         Route::resource('intro', 'IntroController')->names('intro');
 
+        Route::group(['prefix' => 'winkel', 'namespace' => 'Store', 'as' => 'store.', 'middleware' => ['auth.admin']], function () {
+            Route::resource('bestellingen', 'OrderController')->names('orders');
+
+
+            Route::resource('items', 'ItemController');
+            Route::resource('items/{item}/voorraad', 'StockController')->names('items.stock');
+            Route::get('items/{item}/verwijderen', 'ItemController@getDeleteConfirmation')->name('items.delete_confirmation');
+
+            Route::get('items/{item}/voorraad/{voorraad}/verwijderen', 'StockController@getDeleteConfirmation')->name('items.stock.delete_confirmation');
+            Route::get('items/{item}/voorraad/{voorraad}/afbeelding/{image}', 'StockController@getImage')->name('items.stock.image');
+            Route::get('items/{item}/voorraad/{voorraad}/afbeelding/{image}/volledig', 'StockController@getImageFull')->name('items.stock.image_full');
+        });
 
         Route::get('aanmeldingen-naar-leden', 'MemberController@applicationsToMembers');
 
@@ -119,6 +152,8 @@
         Route::post('leden/email-verlenging-nodig/voorbeeld', 'MemberController@getInactiveMailPreview')->name('members.preview_email_inactive');
         Route::post('leden/email-verlenging-nodig', 'MemberController@sendInactiveMail')->name('members.do_send_email_inactive');
 
+        Route::get('leden/inzicht-gegevens', 'MemberController@getMembersWithFullAccess');
+
         Route::get('leden/verwijder-inactieve', 'MemberController@deleteInactiveConfirmation')->name('members.delete_inactive_confirmation');
         Route::delete('leden/verwijder-inactieve', 'MemberController@deleteInactive')->name('members.delete_inactive');
         Route::resource('leden', 'MemberController')->names('members');
@@ -126,7 +161,6 @@
         Route::resource('leden.lidmaatschap', 'MembershipController')->names('members.membership');
         Route::get('leden/{member}/afbeelding', 'MemberController@getPicture')->name('members.picture');
         Route::get('leden/{member}/afbeelding/volledig', 'MemberController@getFullPicture')->name('members.full_picture');
-
     });
 
     Route::get('korting', 'DiscountController@getDefaultView')->name('discounts.index');
@@ -138,7 +172,7 @@
     Route::get('privacybeleid', 'MetaController@getPrivacyPage')->name('privacy');
     Route::get('/sitemap.xml', 'MetaController@getSitemap')->name('sitemap');
 
-    Route::get('uitschrijven', 'IndexController@getCancelPage');
+//    Route::get('uitschrijven', 'IndexController@getCancelPage');
 
     Route::get('login', 'Auth\FHICTLoginController@getLoginView')->name('login');
     Route::get('login/fhict', 'Auth\FHICTLoginController@redirect')->name('login.redirect');

@@ -1,0 +1,18 @@
+{% extends 'member/_page.twig' %}
+{% block title %}{{ trans('store.order.confirmation.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="store order-confirmation">
+            <h1>{{ trans('store.order.confirmation.title') }}</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="meme-wrapper">
+                        <img src="{{ asset('images/uil.gif') }}" alt="" class="img-fluid">
+                    </div>
+                    <h3>{{ trans('store.order.confirmation.order_placed') }}</h3>
+                    <p>{{ trans('store.order.confirmation.email_instructions') }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

@@ -26,6 +26,7 @@
                         </div>
                     </div>
                 {% endif %}
+
                 <div class="col-md-12">
                     <p>
                         {{ trans('member.about_me.change_your_info')|raw }}
@@ -61,6 +62,10 @@
                     <div>
                         <b>{{ trans('member.about_me.postal') }}</b>
                         {{ member.postal }}
+                    </div>
+                    <div>
+                        <b>{{ trans('member.about_me.country') }}</b>
+                        {{ member.country ? trans('address.country.' ~ member.country) : trans('member.about_me.none_given') }}
                     </div>
                     <div>
                         <b>{{ trans('member.about_me.birthday') }}</b>

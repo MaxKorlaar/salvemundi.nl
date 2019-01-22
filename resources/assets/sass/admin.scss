@@ -1,4 +1,4 @@
-.member {
+.member, .order {
   div > b {
     display: block;
   }
@@ -210,6 +210,21 @@
       .no-membership {
         color: theme-color-level(danger, 2);
         background: theme-color-level(danger, -10);
+      }
+    }
+  }
+}
+
+.store {
+  &.stock {
+    .images-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 5px;
+
+      img {
+        display: block;
+        width:100%;
       }
     }
   }

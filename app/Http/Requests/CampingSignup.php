@@ -16,7 +16,7 @@
          * @return bool
          */
         public function authorize() {
-            if(\Auth::check()) {
+            if (\Auth::check()) {
                 $member = \Auth::user()->member;
                 return $member->isCurrentlyMember();
             }
