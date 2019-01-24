@@ -14,3 +14,6 @@ yarn-error.log
 composer.phar
 .idea/deployment.xml
 .idea/webServers.xml
+public/js/*.js
+public/css/*.css
+public/mix-manifest.json

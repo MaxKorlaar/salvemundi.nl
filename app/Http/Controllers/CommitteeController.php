@@ -18,6 +18,42 @@
         /**
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
+        public function getFounders() {
+            return view('committees.administration', [
+                'administration_title' => trans('committee.administration.founders'),
+                'administration_text' => trans('committee.administration.founders_text'),
+            ]);
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function get2017() {
+            return view('committees.administration',
+                [
+                    'administration_title' => trans('committee.administration.administration_versions.2017.title'),
+                    'administration_text' => trans('committee.administration.administration_versions.2017.text'),
+                    'administration_image' => 'images/bestuur_2017.jpg',
+                    'administration_caption' => trans('committee.administration.administration_versions.2017.caption')
+                ]);
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function get2018() {
+            return view('committees.administration',
+                [
+                    'administration_title' => trans('committee.administration.administration_versions.2018.title'),
+                    'administration_text' => trans('committee.administration.administration_versions.2018.text'),
+                    'administration_image' => null,
+                    'administration_caption' => trans('committee.administration.administration_versions.2018.caption')
+                ]);
+        }
+
+        /**
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
         public function getPartyPage() {
             return view('committees.party');
         }

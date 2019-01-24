@@ -29,7 +29,6 @@
         Route::get('{slug}/{stock}/afbeelding/{image}.pict', 'StoreController@getImage')->name('image');
         // De .pict-extensie gebruiken om CloudFlare (CDN) te forceren om de afbeelding te cachen
         Route::get('{slug}/{stock}/afbeelding/{image}/volledig.pict', 'StoreController@getImageFull')->name('image_full');
-
     });
 
     Route::post('/webhook/betaling/winkel/order/{order}', 'StoreController@confirmOrderWebhook')->name('webhook.payment.store_order');
@@ -39,7 +38,10 @@
      */
 
     Route::group(['prefix' => 'commissies', 'as' => 'committees/'], function () {
-        Route::get('bestuur', 'CommitteeController@getAdministrationPage')->name('administration');
+        Route::get('bestuur', 'CommitteeController@getFounders')->name('administration');
+        Route::get('bestuur/2017', 'CommitteeController@get2017')->name('administration.2017');
+        Route::get('bestuur/2018', 'CommitteeController@get2018')->name('administration.2018');
+
         Route::get('feest', 'CommitteeController@getPartyPage')->name('party');
         Route::get('media', 'CommitteeController@getMediaPage')->name('media');
         Route::get('kamp', 'CommitteeController@getCampingPage')->name('camping');
@@ -159,8 +161,6 @@
         Route::resource('leden.lidmaatschap', 'MembershipController')->names('members.membership');
         Route::get('leden/{member}/afbeelding', 'MemberController@getPicture')->name('members.picture');
         Route::get('leden/{member}/afbeelding/volledig', 'MemberController@getFullPicture')->name('members.full_picture');
-
-
     });
 
     Route::get('korting', 'DiscountController@getDefaultView')->name('discounts.index');
