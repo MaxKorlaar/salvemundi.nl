@@ -19,15 +19,19 @@
                     {{ trans('intro.info.students_only')|raw }}
                 </div>
             {% endif %}
-
             {% if introduction.signupsAreOpen() %}
-                <p>
-                    {{ trans('intro.signup.signup_text')|raw }}
-                </p>
+                {% if(introduction.allowSignups()) %}
+                    <p>{{ trans('intro.signup.signup_text')|raw }}</p>
+                {% elseif introduction.allowReservations() %}
+                    <div class="warning">
+                        {{ trans('intro.signup.signup_full_warning')|raw }}
+                    </div>
+                    <p>{{ trans('intro.signup.signup_full_reservation_text')|raw }}</p>
+                {% else %}
+                    <p>{{ trans('intro.signup.signup_full_text')|raw }}</p>
+                {% endif %}
             {% else %}
-                <p>
-                    {{ trans('intro.signup.reservation_text')|raw }}
-                </p>
+                <p>{{ trans('intro.signup.reservation_text')|raw }}</p>
             {% endif %}
 
             <div class="row justify-content-center">
@@ -219,15 +223,18 @@
                         {#</div>#}
                         {#</div>#}
 
-                        {% if introduction.signupsAreOpen() %}
+                        {% if introduction.signupsAreOpen() and introduction.allowSignups() %}
                             <p>{{ trans('intro.signup.privacy_terms_signup', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
-                        {% else %}
+                        {% elseif not introduction.allowSignups() and introduction.allowReservations() %}
+                            <p>{{ trans('intro.signup.privacy_terms_signup_full_reservation', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
+                        {% elseif introduction.allowReservations() %}
                             <p>{{ trans('intro.signup.privacy_terms_reservation', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
                         {% endif %}
 
 
                         <div class="form-group">
-                            {% if introduction.reservationsAreOpen() or introduction.signupsAreOpen() %}
+                            {% if (introduction.reservationsAreOpen() or introduction.signupsAreOpen())
+                                and (introduction.allowSignups() or introduction.allowReservations()) %}
                                 <input type="submit" class="button" value="{{ trans('intro.signup.sign_up') }}">
                             {% else %}
                                 {# Request class toestaan #}

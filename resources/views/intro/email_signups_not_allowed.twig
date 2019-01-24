@@ -1,0 +1,17 @@
+{% extends 'partials/page.twig' %}
+{% block title %}{{ trans('intro.signup.email_signups_not_allowed') }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="signup intro-signup">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="checkmark-wrapper">
+                        <div class="checkmark">☹</div>
+                    </div>
+                    <h3>{{ trans('intro.signup.email_signups_not_allowed') }}</h3>
+                    <p>{{ trans('intro.signup.email_signups_check_back_later') }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

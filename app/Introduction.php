@@ -41,6 +41,9 @@
     class Introduction extends Model {
         public $fillable = ['year_id', 'reservations_open', 'signup_open', 'signup_close', 'price', 'max_signups', 'allow_reservations_after_limit'];
 
+        public $casts = [
+            'allow_reservations_after_limit' => 'boolean'
+        ];
 
         /**
          * @return Introduction
@@ -84,5 +87,45 @@
          */
         public function year() {
             return $this->belongsTo(Year::class);
+        }
+
+        /**
+         * @return int
+         */
+        public function getConfirmedReservationsAndSignups() {
+            return $this->applications()->where('status', IntroApplication::STATUS_RESERVED)
+                ->orWhere('status', IntroApplication::STATUS_SEE_TRANSACTION)
+                ->orWhere('status', IntroApplication::STATUS_PAID)->count();
+        }
+
+        /**
+         * @return int
+         */
+        public function getSignups() {
+            return $this->applications()->where('status', IntroApplication::STATUS_PAID)
+                ->orWhere('status', IntroApplication::STATUS_SEE_TRANSACTION)->count();
+        }
+
+        /**
+         * @return int|null
+         */
+        public function getOpenSpots() {
+            if ($this->max_signups === null) return null;
+            return $this->max_signups - $this->getSignups();
+        }
+
+        /**
+         * @return bool
+         */
+        public function allowSignups() {
+            return $this->getOpenSpots() > 0;
+        }
+
+        /**
+         * @return bool
+         */
+        public function allowReservations() {
+            if ($this->getOpenSpots() <= 0) return $this->allow_reservations_after_limit;
+            return true;
         }
     }

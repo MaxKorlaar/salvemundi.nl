@@ -9,7 +9,7 @@
                     <div class="checkmark-wrapper">
                         <div class="checkmark">&check;</div>
                     </div>
-                    {% if introduction.areSignupsOpen() %}
+                    {% if type == 'signup' %}
                         <h3>{{ trans('intro.signup.completed.signup') }}</h3>
                         <p>{{ trans('intro.signup.email_instructions.signup') }}</p>
                     {% else %}

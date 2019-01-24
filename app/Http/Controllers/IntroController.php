@@ -14,10 +14,12 @@
     use App\Mail\IntroApplicationPaymentRequest;
     use App\Mail\NewIntroApplication;
     use App\Mail\NewIntroSupervisorApplication;
+    use App\Transaction;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
     use Mollie\Api\Exceptions\ApiException;
+    use Mollie\Api\Resources\Payment;
 
     /**
      * Class IntroController
@@ -27,61 +29,70 @@
     class IntroController extends Controller {
         /**
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @throws \Throwable
          */
         public function getSignupForm() {
-            return view('intro.signup');
+            $currentIntro = Introduction::getIntroductionForCurrentYear();
+            if ($currentIntro === null) abort(404);
+            return redirect()->route('intro.by_id.signup', ['year' => $currentIntro->year->year, 'id' => $currentIntro->id]);
         }
 
         /**
-         * @param IntroSignup $request
+         * @param Introduction $introduction
+         * @param IntroSignup  $request
          *
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+         * @throws ApiException
+         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
          * @throws \Throwable
          */
-        public function signup(IntroSignup $request) {
+        public function signup(Introduction $introduction, IntroSignup $request) {
             $application                 = new IntroApplication($request->all());
             $application->same_sex_rooms = $request->has('same_sex_rooms');
             $application->alcohol        = $request->has('alcohol');
             $application->extra_shirt    = $request->has('extra_shirt');
             $application->ip_address     = $request->ip();
-            //$application->email_confirmation_token = str_random(200);
-            $application->transaction_id     = 'n.v.t.';
-            $application->transaction_status = '';
-            $application->transaction_amount = 0;
-            $application->status             = IntroApplication::STATUS_OPEN;
-
+            $application->status         = IntroApplication::STATUS_SEE_TRANSACTION;
+            $application->type           = IntroApplication::TYPE_SIGNUP;
             $application->saveOrFail();
-            $mollie                          = new PaymentHelper();
-            $payment                         = $mollie->payments->create([
+            $introduction->applications()->save($application);
+
+            if (app()->environment() !== 'production') $request->flash();
+            $request->session()->put('intro.application', $application);
+            $request->session()->save();
+
+            $mollie      = new PaymentHelper();
+            $transaction = new Transaction();
+            $transaction->save();
+
+            $payment = $mollie->payments->create([
                 "amount"      => [
                     'currency' => 'EUR',
-                    'value'    => $application->calculateIntroCosts()
+                    'value'    => (string)number_format($application->calculateIntroCosts(), 2)
                 ],
-                "description" => trans($application->extra_shirt ? 'intro.signup.payment.description_extra_shirt' : 'intro.signup.payment.description', ['first_name' => $application->first_name, 'last_name' => $application->last_name]),
+                "description" => trans($application->extra_shirt ? 'intro.signup.payment.description_extra_shirt' : 'intro.signup.payment.description',
+                    ['first_name' => $application->first_name, 'last_name' => $application->last_name, 'year' => $introduction->year->year]),
                 "redirectUrl" => route('intro.signup.confirm_payment'),
                 "webhookUrl"  => route('webhook.payment.intro', ['application' => $application]),
                 'metadata'    => [
-                    'id' => $application->id
+                    'id'             => $application->id,
+                    'transaction_id' => $transaction->id
                 ]
             ]);
-            $application->transaction_id     = $payment->id;
-            $application->transaction_status = $payment->status;
-            $application->transaction_amount = $payment->amount->value;
-
+            $transaction->update([
+                'transaction_id'     => $payment->id,
+                'transaction_status' => $payment->status,
+                'transaction_amount' => $payment->amount->value
+            ]);
+            $application->transaction()->associate($transaction);
+            $application->saveOrFail();
             if (app()->environment() !== 'production') $request->flash();
 
-            $application->saveOrFail();
             $request->session()->put('intro.application', $application);
             $request->session()->save();
             return view('intro.payment_redirect', [
                 'links' => $payment->_links
             ]);
-
-            //            $mail = new ConfirmIntroApplication($application);
-            //            $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
-            //            Mail::queue($mail);
-
-            //            return view('intro.signup_confirmation');
         }
 
         /**
@@ -96,17 +107,19 @@
             /** @var IntroApplication $application */
             $application = $request->session()->get('intro.application');
 
-            $mollie  = new PaymentHelper();
-            $payment = $mollie->payments->get($application->transaction_id);
+            $payment = $application->transaction->getMollieTransaction();
+
             if (!$payment->isOpen() && !$payment->isPaid()) {
-                if ($application->email_confirmation_token === null) {
+                if ($application->type === IntroApplication::TYPE_SIGNUP) {
                     return redirect()->route('intro.signup')->withErrors(['signup' => trans('intro.signup.payment.failed')]);
                 } else {
                     return redirect()->route('intro.signup')->withErrors(['signup' => trans('intro.signup.payment.failed_from_mail')]);
                 }
             }
             return view('intro.signup_confirmation', [
-                'application' => $application
+                'application'  => $application,
+                'introduction' => $application->introduction,
+                'type'         => 'signup'
             ]);
         }
 
@@ -128,6 +141,13 @@
                 if ($payment->metadata->id != $application->id) {
                     abort(400);
                 }
+                /** @var Transaction $transaction */
+                $transaction = Transaction::findOrFail($payment->metadata->transaction_id);
+                $transaction->update([
+                    'transaction_id'     => $payment->id,
+                    'transaction_status' => $payment->hasRefunds() ? 'refunded' : $payment->status,
+                    'transaction_amount' => $payment->amount->value
+                ]);
 
                 if ($payment->isPaid() && !$payment->hasRefunds()) {
                     if ($application->transaction_status != $payment->status) {
@@ -139,30 +159,32 @@
                         $mail = new NewIntroApplication($application);
                         $mail->to(config('mail.intro_to.address'), config('mail.intro_to.name'));
 
-                        Mail::queue($mail);
+                        // Mail::queue($mail);
 
                         // Stuur een bevestiging naar de gebruiker zelf
 
                         $mail = new IntroApplicationPaymentConfirmation($application);
                         $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
-                        Mail::queue($mail);
+                        //  Mail::queue($mail);
 
                     }
                 }
                 if ($payment->hasRefunds()) {
                     $application->status = IntroApplication::STATUS_REFUNDED;
                 }
-                $application->transaction_id     = $payment->id;
-                $application->transaction_status = $payment->status;
-                $application->transaction_amount = $payment->amount->value;
+
                 $application->saveOrFail();
 
-                if ($payment->isCanceled() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
+                if (!$payment->hasRefunds() &&
+                    ($payment->isCanceled() || $payment->isExpired() || $payment->isFailed() ||
+                        (!$payment->isPaid() && !$payment->isOpen()))) {
                     // Verwijder geannuleerde en verlopen inschrijvingen uit de database.
 
                     // Verwijder alleen als de betaling _niet_ is gestart vanuit de email
-                    if ($application->email_confirmation_token === null) {
+                    if ($application->type === IntroApplication::TYPE_SIGNUP) {
                         $application->delete();
+                    } else {
+                        $application->update(['status', IntroApplication::STATUS_RESERVED]);
                     }
                 }
 
@@ -187,14 +209,9 @@
                 //abort(404);
             }
 
-            $application->status                   = IntroApplication::STATUS_NEW;
+            $application->status                   = IntroApplication::STATUS_RESERVED;
             $application->email_confirmation_token = null;
             $application->saveOrFail();
-            // Sla mail naar introcommissie over
-            //            $mail = new NewIntroApplication($application);
-            //            $mail->to(config('mail.intro_to.address'), config('mail.intro_to.name'));
-            //
-            //            Mail::queue($mail);
 
             $application->email_confirmation_token = str_random(64);
             $mail                                  = new IntroApplicationPaymentRequest($application);
@@ -202,6 +219,11 @@
             Mail::send($mail);
             $application->saveOrFail();
 
+            // Sla mail naar introcommissie over
+            //            $mail = new NewIntroApplication($application);
+            //            $mail->to(config('mail.intro_to.address'), config('mail.intro_to.name'));
+            //
+            //            Mail::queue($mail);
             return view('intro.email_confirmation', [
                 'application' => $application
             ]);
@@ -209,6 +231,8 @@
         }
 
         /**
+         * Krijg de Mollie-betaalpagina wanneer de link in de e-mail wordt aangevraagd
+         *
          * @param IntroApplication $application
          * @param                  $token
          *
@@ -218,43 +242,55 @@
          * @throws \Throwable
          */
         public function getPaymentPage(IntroApplication $application, $token, Request $request) {
-            if ($application->email_confirmation_token !== $token || $application->status !== IntroApplication::STATUS_NEW) {
+            if ($application->email_confirmation_token !== $token || $application->status !== IntroApplication::STATUS_RESERVED) {
                 abort(404);
             }
-
-            return view('intro.signups_closed', [
-            ]);
-
+            /** @var Transaction $transaction */
+            /** @var Payment $payment */
             $mollie = new PaymentHelper();
             $new    = false;
-            if ($application->transaction_id === 'n.v.t.') {
+            if ($application->transaction_id === null) {
                 $new = true;
             } else {
-                $payment = $mollie->payments->get($application->transaction_id);
+                $transaction = $application->transaction;
+                $payment     = $transaction->getMollieTransaction();
                 if (!$payment->isOpen()) $new = true;
             }
             if ($new) {
+
+                // Check of het nog wel mogelijk is om in te schrijven
+                $introduction = $application->introduction;
+                if(!$introduction->allowSignups()) {
+                    return view('intro.email_signups_not_allowed');
+                }
+
+                $transaction = new Transaction();
+                $transaction->save();
                 $payment = $mollie->payments->create([
                     "amount"      => [
                         'currency' => 'EUR',
-                        'value'    => $application->calculateIntroCosts()
+                        'value'    => (string)number_format($application->calculateIntroCosts(), 2)
                     ],
-                    "description" => trans($application->extra_shirt ? 'intro.signup.payment.description_extra_shirt' : 'intro.signup.payment.description', ['first_name' => $application->first_name, 'last_name' => $application->last_name]),
+                    "description" => trans($application->extra_shirt ? 'intro.signup.payment.description_extra_shirt' : 'intro.signup.payment.description',
+                        ['first_name' => $application->first_name, 'last_name' => $application->last_name, 'year' => $introduction->year->year]),
                     "redirectUrl" => route('intro.signup.confirm_payment'),
                     "webhookUrl"  => route('webhook.payment.intro', ['application' => $application]),
                     'metadata'    => [
-                        'id' => $application->id
+                        'id'             => $application->id,
+                        'transaction_id' => $transaction->id
                     ]
                 ]);
             }
-
-            $application->transaction_id     = $payment->id;
-            $application->transaction_status = $payment->status;
-            $application->transaction_amount = $payment->amount->value;
-
+            $transaction->update([
+                'transaction_id'     => $payment->id,
+                'transaction_status' => $payment->status,
+                'transaction_amount' => $payment->amount->value
+            ]);
+            $application->status = IntroApplication::STATUS_SEE_TRANSACTION;
+            $application->transaction()->associate($transaction);
+            $application->saveOrFail();
             if (app()->environment() !== 'production') $request->flash();
 
-            $application->saveOrFail();
             $request->session()->put('intro.application', $application);
             //Log::info('Sessie opgeslagen', [$request->session()->isStarted(), $request->session()->getId()]);
             $request->session()->save();
@@ -313,16 +349,15 @@
         public function signupByYearAndId(Introduction $introduction, $year, IntroSignup $request) {
 
             if (!$introduction->reservationsAreOpen() && !$introduction->signupsAreOpen()) abort(403);
-
-            if ($introduction->signupsAreOpen()) {
+            if ($introduction->signupsAreOpen() && $introduction->allowSignups()) {
                 // Maak een aanmelding aan
-
-            } else {
+                return $this->signup($introduction, $request);
+            } elseif ($introduction->allowReservations()) {
                 // Maak een reservering aan
                 return $this->makeReservation($introduction, $request);
             }
+            return back()->withErrors(['signup' => trans('intro.signup.errors.all_spots_taken_no_reservations')]);
 
-            dd($request, $introduction);
         }
 
         /**
@@ -333,7 +368,6 @@
          * @throws \Throwable
          */
         public function makeReservation(Introduction $introduction, IntroSignup $request) {
-            /** @var IntroApplication $application */
             $application                           = new IntroApplication($request->all());
             $application->same_sex_rooms           = $request->has('same_sex_rooms');
             $application->alcohol                  = $request->has('alcohol');
@@ -353,7 +387,8 @@
             Mail::queue($mail);
 
             return view('intro.signup_confirmation', [
-                'introduction' => $introduction
+                'introduction' => $introduction,
+                'type'         => 'reservation'
             ]);
         }
 

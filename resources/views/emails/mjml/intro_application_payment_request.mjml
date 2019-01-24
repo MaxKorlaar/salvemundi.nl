@@ -11,12 +11,12 @@
         <mj-column>
           <mj-text>{{ trans('email.intro.payment_request.greeting', { name: application.first_name }) }}</mj-text>
 
-          <mj-text>{{ trans('email.intro.payment_request.instructions') }}</mj-text>
+          <mj-text>{{ trans('email.intro.payment_request.instructions', { year: application.introduction.year.year, price: application.calculateIntroCosts() }) }}</mj-text>
 
           <mj-button background-color="#663265" href="{{ route('intro.signup.payment_request', { application: application, token: application.email_confirmation_token }) }}">{{ trans('email.intro.payment_request.link') }}
           </mj-button>
 
-          <mj-text>{{ trans('email.intro.payment_request.when_done')|raw }}
+          <mj-text>{{ trans('email.intro.payment_request.when_done', { year: application.introduction.year.year, price: application.calculateIntroCosts() })|raw }}
           </mj-text>
           <mj-text>{{ trans('email.intro.payment_request.signature')|nl2br }}</mj-text>
         </mj-column>

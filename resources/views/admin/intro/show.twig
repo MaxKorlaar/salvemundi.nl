@@ -85,7 +85,7 @@
                                             {{ application.transaction_id }}
                                             ({{ trans('admin.transactions.status.' ~ application.transaction.transaction_status) }})
                                         {% else %}
-                                            {{ trans('admin.intro.applications.no_transaction') }}
+                                            {{ application.status }}
                                         {% endif %}
                                     </td>
                                     <td>{{ application.created_at|date(trans('datetime.format.date_and_time')) }}</td>
