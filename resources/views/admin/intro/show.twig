@@ -60,6 +60,34 @@
                     <a href="{{ route('admin.intro.edit', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.edit_introduction') }}</a>
                     {#<a href="{{ route('admin.intro.delete_confirmation', { introduction: introduction }) }}" class="button danger pull-right">{{ trans('admin.intro.delete_introduction') }}</a>#}
                 </div>
+
+                <div class="col-12 text-center statistics">
+                    <div class="stat">
+                        {{ confirmed_count }}
+                        <span>
+                            {{ trans('admin.intro.applications.confirmed_amount') }}
+                        </span>
+                    </div>
+                    <div class="stat">
+                        {{ (confirmed_count / introduction.max_signups * 100)|number_format(0) }}%
+                        <span>
+                            {{ trans('admin.intro.applications.confirmed_percentage', { max_signups: introduction.max_signups }) }}
+                        </span>
+                    </div>
+                    <div class="stat">
+                        {{ reservations_count }}
+                        <span>
+                            {{ trans('admin.intro.applications.reservations_amount') }}
+                        </span>
+                    </div>
+                    <div class="stat">
+                        {{ introduction.applications.count }}
+                        <span>
+                            {{ trans('admin.intro.applications.amount') }}
+                        </span>
+                    </div>
+                </div>
+
             </div>
             <div class="row">
                 <div class="col-md-12">
@@ -93,7 +121,7 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                    <small>{{ trans_choice('admin.intro.applications.member_count', introduction.applications.count, { count: introduction.applications.count }) }} </small>
+                    <small>{{ trans_choice('admin.intro.applications.count', introduction.applications.count, { count: introduction.applications.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }}</small>
                 </div>
             </div>
         </main>

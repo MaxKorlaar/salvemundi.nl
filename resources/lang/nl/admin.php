@@ -165,8 +165,6 @@
         ],
         'intro'       => [
             'title'                  => 'Introducties',
-            'amount'                 => 'Aanmeldingen',
-            'confirmed_amount'       => 'Betaalde aanmeldingen',
             'generate_tokens'        => 'Genereer betaalverzoeken en verstuur ze per mail',
             'send_email_reminders'   => 'Stuur herinneringen naar onbevestigde email-adressen',
             'send_payment_reminders' => 'Stuur herinneringen naar aanmeldingen met betaalverzoek',
@@ -198,6 +196,10 @@
             ],
 
             'applications' => [
+                'amount'                   => 'Aanmeldingen',
+                'reservations_amount'      => 'Reserveringen',
+                'confirmed_amount'         => 'Betaalde aanmeldingen',
+                'confirmed_percentage'         => 'Bereikt van :max_signups',
                 'id'                       => 'ID',
                 'status'                   => 'Status',
                 'status_approved'          => 'Betaald',

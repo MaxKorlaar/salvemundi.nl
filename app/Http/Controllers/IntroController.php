@@ -11,7 +11,6 @@
     use App\Mail\ConfirmIntroApplication;
     use App\Mail\ConfirmIntroSupervisorApplication;
     use App\Mail\IntroApplicationPaymentConfirmation;
-    use App\Mail\IntroApplicationPaymentRequest;
     use App\Mail\NewIntroApplication;
     use App\Mail\NewIntroSupervisorApplication;
     use App\Transaction;
@@ -91,7 +90,8 @@
             $request->session()->put('intro.application', $application);
             $request->session()->save();
             return view('intro.payment_redirect', [
-                'links' => $payment->_links
+                'links'        => $payment->_links,
+                'introduction' => $introduction
             ]);
         }
 
@@ -150,22 +150,21 @@
                 ]);
 
                 if ($payment->isPaid() && !$payment->hasRefunds()) {
-                    if ($application->transaction_status != $payment->status) {
+                    if ($application->status != IntroApplication::STATUS_PAID) {
                         // De status is pas net bijgewerkt naar betaald.
                         $application->status = IntroApplication::STATUS_PAID;
 
-                        // Stuur een bevestiging naar het bestuur
-
+                        // Stuur een bevestiging naar de introcommissie
                         $mail = new NewIntroApplication($application);
                         $mail->to(config('mail.intro_to.address'), config('mail.intro_to.name'));
 
-                        // Mail::queue($mail);
+                        Mail::queue($mail);
 
-                        // Stuur een bevestiging naar de gebruiker zelf
+                        //Stuur een bevestiging naar de gebruiker zelf
 
                         $mail = new IntroApplicationPaymentConfirmation($application);
                         $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
-                        //  Mail::queue($mail);
+                        Mail::queue($mail);
 
                     }
                 }
@@ -179,14 +178,15 @@
                     ($payment->isCanceled() || $payment->isExpired() || $payment->isFailed() ||
                         (!$payment->isPaid() && !$payment->isOpen()))) {
                     // Verwijder geannuleerde en verlopen inschrijvingen uit de database.
-
+                    Log::debug('Er gaat iets niet goed met een betaling', [$payment->id, $payment->status, $application->type]);
                     // Verwijder alleen als de betaling _niet_ is gestart vanuit de email
                     if ($application->type === IntroApplication::TYPE_SIGNUP) {
                         $application->delete();
                     } else {
-                        $application->update(['status', IntroApplication::STATUS_RESERVED]);
+                        $application->update(['status' => IntroApplication::STATUS_RESERVED]);
                     }
                 }
+                abort(400);
 
             } catch (ApiException $exception) {
                 Log::error($exception);
@@ -206,17 +206,10 @@
         public function confirmEmail(IntroApplication $application, $token) {
             if ($application->email_confirmation_token !== $token) {
                 return view('signup.email_token_invalid');
-                //abort(404);
             }
 
             $application->status                   = IntroApplication::STATUS_RESERVED;
             $application->email_confirmation_token = null;
-            $application->saveOrFail();
-
-            $application->email_confirmation_token = str_random(64);
-            $mail                                  = new IntroApplicationPaymentRequest($application);
-            $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
-            Mail::send($mail);
             $application->saveOrFail();
 
             // Sla mail naar introcommissie over
@@ -242,7 +235,8 @@
          * @throws \Throwable
          */
         public function getPaymentPage(IntroApplication $application, $token, Request $request) {
-            if ($application->email_confirmation_token !== $token || $application->status !== IntroApplication::STATUS_RESERVED) {
+            if ($application->email_confirmation_token !== $token ||
+                ($application->status !== IntroApplication::STATUS_RESERVED && $application->status !== IntroApplication::STATUS_SEE_TRANSACTION)) {
                 abort(404);
             }
             /** @var Transaction $transaction */
@@ -256,11 +250,11 @@
                 $payment     = $transaction->getMollieTransaction();
                 if (!$payment->isOpen()) $new = true;
             }
+            $introduction = $application->introduction;
             if ($new) {
 
                 // Check of het nog wel mogelijk is om in te schrijven
-                $introduction = $application->introduction;
-                if(!$introduction->allowSignups()) {
+                if (!$introduction->allowSignups()) {
                     return view('intro.email_signups_not_allowed');
                 }
 
@@ -295,7 +289,8 @@
             //Log::info('Sessie opgeslagen', [$request->session()->isStarted(), $request->session()->getId()]);
             $request->session()->save();
             return view('intro.payment_redirect', [
-                'links' => $payment->_links
+                'links'        => $payment->_links,
+                'introduction' => $introduction
             ]);
         }
 

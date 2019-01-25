@@ -57,7 +57,7 @@
             ],
             'new_application'          => [
                 'subject'    => 'Betaald: Nieuwe intro-inschrijving van :name',
-                'greeting'   => 'Hallo bestuur,',
+                'greeting'   => 'Hallo introcommissie,',
                 'intro_text' => 'Er is een nieuwe aanmelding voor de intro ingezonden. De gebruiker heeft betaald. Het bedrag staat hieronder vermeld.',
                 'true'       => 'Ja',
                 'false'      => 'Nee',
@@ -81,7 +81,7 @@ De feestcommissie van Salve Mundi'
             'payment_confirmation'     => [
                 'subject'      => 'Bedankt voor je aanmelding!',
                 'greeting'     => 'Hallo :name!',
-                'instructions' => 'Je hebt je inschrijving voltooid voor de introductie van FHICT 2018-2019 (woehoeeeee)! Je hebt je ingeschreven met de volgende gegevens:',
+                'instructions' => 'Je hebt je inschrijving voltooid voor de introductie van FHICT :year (woehoeeeee)! Je hebt je ingeschreven met de volgende gegevens:',
                 'more_info'    => 'Wij kijken erg uit om jou te ontmoeten bij de introductie op 22 augustus 2018. Je bent hier welkom om vanaf 10:00 om je spullen in te checken. Wij zorgen voor: je introductieshirt, slaapplek en natuurlijk een geweldige intro vol met leuke evenementen. Binnenkort krijg je hier meer informatie over.',
                 'packing_list' => 'Hier alvast een paklijst zodat je goed voorbereid bent!
                 <ul><li>Bevestiging van betaling (deze email)</li>

@@ -41,7 +41,10 @@
          */
         public function show(Introduction $intro) {
             return view('admin.intro.show', [
-                'introduction' => $intro
+                'introduction'            => $intro,
+                'confirmed_count'         => $intro->applications()->where('status', '=', IntroApplication::STATUS_PAID)->count(),
+                'reservations_count'      => $intro->applications()->where('status', '=', IntroApplication::STATUS_RESERVED)->count(),
+                'email_unconfirmed_count' => $intro->applications()->where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)->count()
             ]);
         }
 
@@ -65,7 +68,7 @@
          */
         public function store(CreateIntro $request) {
             $intro = new Introduction($request->all());
-            if($request->has('mail_reservations')) {
+            if ($request->has('mail_reservations')) {
                 $intro->mail_reservations_at = $request->get('signup_open');
             }
             $intro->saveOrFail();
