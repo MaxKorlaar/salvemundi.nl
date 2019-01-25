@@ -110,7 +110,7 @@
             $payment = $application->transaction->getMollieTransaction();
 
             if (!$payment->isOpen() && !$payment->isPaid()) {
-                if ($application->type === IntroApplication::TYPE_SIGNUP) {
+                if ($application->type === IntroApplication::TYPE_SIGNUP) { // TODO Foutmeldingen worden niet getoond
                     return redirect()->route('intro.signup')->withErrors(['signup' => trans('intro.signup.payment.failed')]);
                 } else {
                     return redirect()->route('intro.signup')->withErrors(['signup' => trans('intro.signup.payment.failed_from_mail')]);
@@ -184,9 +184,9 @@
                         $application->delete();
                     } else {
                         $application->update(['status' => IntroApplication::STATUS_RESERVED]);
+                        Log::debug('Instellen dat de betaling gereserveerd is', [$payment->id, $payment->status, $application->type]);
                     }
                 }
-                abort(400);
 
             } catch (ApiException $exception) {
                 Log::error($exception);
