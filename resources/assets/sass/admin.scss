@@ -176,53 +176,76 @@
 
   .application-list {
     .paid {
-      color: theme-color-level(success, 2);
+      &, a {
+        color: theme-color-level(success, 2);
+      }
+
       //background: theme-color-level(success, -10);
     }
 
     .email-unconfirmed {
-      color: $gray-700;
+      &, a {
+        color: $gray-700;
+      }
+
       //background: $gray-100;
     }
+
     @keyframes fade-colors {
       0%, 100% {
         background: theme-color-level(info, -4);
-        text-shadow: 0 0 10px rgba(theme-color-level(info, 3), 0);
+        //text-shadow: 0 0 10px rgba(theme-color-level(info, 3), 0);
       }
       50% {
         background: theme-color-level(info, -10);
-        text-shadow: 0 0 10px rgba(theme-color-level(info, 3), 1);
+        //text-shadow: 0 0 10px rgba(theme-color-level(info, 3), 1);
       }
     }
+
     .see-transaction {
       //color: theme-color-level(info, 2);
       td {
-        animation: fade-colors infinite forwards 1.5s;
+        animation: fade-colors infinite forwards 2s;
+
         &:nth-child(1) {
           animation-delay: .3s;
         }
+
         &:nth-child(2) {
           animation-delay: .6s;
         }
+
         &:nth-child(3) {
           animation-delay: .9s;
         }
+
         &:nth-child(4) {
           animation-delay: 1.2s;
         }
+
         &:nth-child(5) {
           animation-delay: 1.5s;
+        }
+
+        &:nth-child(6) {
+          animation-delay: 1.8s;
         }
       }
     }
 
     .refunded {
-      color: theme-color-level(warning, 2);
+      &, a {
+        color: theme-color-level(warning, 2);
+      }
+
       //background: theme-color-level(warning, -10);
     }
 
     .reserved {
-      color: theme-color-level(info, 2);
+      &, a {
+        color: theme-color-level(info, 2);
+      }
+
       //background: theme-color-level(danger, -10);
     }
   }
@@ -255,7 +278,7 @@
 
       img {
         display: block;
-        width:100%;
+        width: 100%;
       }
     }
   }

@@ -190,23 +190,30 @@
             'yes'                            => 'Ja',
             'no'                             => 'Nee',
             'new'                            => 'Nieuwe introductie',
+            'edit_introduction'              => 'Introductie bewerken',
+            'anonymisation_warning'          => 'Let op: Alle aanmeldingen zullen automatisch worden geanonimiseerd 2 maanden na het verstrijken van de uiterlijke aanmelddatum. Dit kan niet worden uitgeschakeld.',
             'create'                         => [
                 'title'  => 'Nieuwe introductie',
                 'create' => 'Aanmaken'
             ],
+            'show'                           => [
+                'title' => 'Introductie :year'
+            ],
 
             'applications' => [
+                'title'                    => 'Aanmeldingen',
                 'amount'                   => 'Aanmeldingen',
                 'reservations_amount'      => 'Reserveringen',
                 'confirmed_amount'         => 'Betaalde aanmeldingen',
-                'confirmed_percentage'         => 'Bereikt van :max_signups',
+                'confirmed_percentage'     => 'Bereikt van :max_signups',
                 'id'                       => 'ID',
                 'status'                   => 'Status',
-                'status_approved'          => 'Betaald',
-                'status_new'               => 'Niet betaald',
+                'transaction'              => 'Transactie',
+                'status_paid'              => 'Betaald',
+                'status_reserved'          => 'Niet betaald/Gereserveerd',
                 'status_email_unconfirmed' => 'E-mail niet bevestigd',
-                'status_on_hold'           => 'Transactie bezig',
-                'status_under_review'      => 'Teruggestort',
+                'status_see_transaction'   => 'Zie transactie',
+                'status_refunded'          => 'Teruggestort',
                 'no_mail'                  => 'Geen betaalverzoek',
                 'last_name'                => 'Achternaam',
                 'first_name'               => 'Voornaam',

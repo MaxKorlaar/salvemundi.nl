@@ -93,6 +93,9 @@
                                        placeholder="{{ trans('admin.intro.signup_close_format') }}" name="signup_close"
                                        min="{{ reservations_open|date('Y-m-d') }}"
                                        value="{{ old('signup_close', signup_close|date('Y-m-d')) }}">
+                                <p class="warning">
+                                    {{ trans('admin.intro.anonymisation_warning') }}
+                                </p>
                                 <div class="invalid-feedback">
                                     {{ errors.first('signup_close')|ucfirst }}
                                 </div>

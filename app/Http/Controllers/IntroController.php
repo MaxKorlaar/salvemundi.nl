@@ -111,9 +111,11 @@
 
             if (!$payment->isOpen() && !$payment->isPaid()) {
                 if ($application->type === IntroApplication::TYPE_SIGNUP) { // TODO Foutmeldingen worden niet getoond
-                    return redirect()->route('intro.signup')->withErrors(['signup' => trans('intro.signup.payment.failed')]);
+                    return redirect()->route('intro.by_id.signup', [$application->introduction, $application->introduction->year->year])
+                        ->withErrors(['signup' => trans('intro.signup.payment.failed')]);
                 } else {
-                    return redirect()->route('intro.signup')->withErrors(['signup' => trans('intro.signup.payment.failed_from_mail')]);
+                    return redirect()->route('intro.by_id.signup', [$application->introduction, $application->introduction->year->year])
+                        ->withErrors(['signup' => trans('intro.signup.payment.failed_from_mail')]);
                 }
             }
             return view('intro.signup_confirmation', [
@@ -178,13 +180,13 @@
                     ($payment->isCanceled() || $payment->isExpired() || $payment->isFailed() ||
                         (!$payment->isPaid() && !$payment->isOpen()))) {
                     // Verwijder geannuleerde en verlopen inschrijvingen uit de database.
-                    Log::debug('Er gaat iets niet goed met een betaling', [$payment->id, $payment->status, $application->type]);
+                    Log::debug('Er gaat iets niet goed met een betaling', [$payment->id, $payment->status, $application->status]);
                     // Verwijder alleen als de betaling _niet_ is gestart vanuit de email
                     if ($application->type === IntroApplication::TYPE_SIGNUP) {
                         $application->delete();
                     } else {
-                        $application->update(['status' => IntroApplication::STATUS_RESERVED]);
-                        Log::debug('Instellen dat de betaling gereserveerd is', [$payment->id, $payment->status, $application->type]);
+                        $application->status = IntroApplication::STATUS_RESERVED;
+                        $application->saveOrFail();
                     }
                 }
 
@@ -236,7 +238,8 @@
          */
         public function getPaymentPage(IntroApplication $application, $token, Request $request) {
             if ($application->email_confirmation_token !== $token ||
-                ($application->status !== IntroApplication::STATUS_RESERVED && $application->status !== IntroApplication::STATUS_SEE_TRANSACTION)) {
+                ($application->status !== IntroApplication::STATUS_RESERVED && $application->status !== IntroApplication::STATUS_SEE_TRANSACTION) ||
+                !$application->introduction->signupsAreOpen()) {
                 abort(404);
             }
             /** @var Transaction $transaction */

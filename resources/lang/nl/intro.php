@@ -66,9 +66,9 @@
             'transaction_id'               => 'Betalingskenmerk',
             'transaction_amount'           => 'Bedrag transactie',
 
-            'privacy_terms_signup'      => 'Door op \'Schrijf me in\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a> en zal je worden doorgestuurd naar de betalingspagina. Het is hier mogelijk om met iDeal te betalen. Indien je de betaling annuleert zullen je gegevens direct worden verwijderd en gaat je inschrijving niet door. Het is dan mogelijk om je opnieuw in te schrijven.
+            'privacy_terms_signup'                  => 'Door op \'Schrijf me in\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a> en zal je worden doorgestuurd naar de betalingspagina. Het is hier mogelijk om met iDeal te betalen. Indien je de betaling annuleert zullen je gegevens direct worden verwijderd en gaat je inschrijving niet door. Het is dan mogelijk om je opnieuw in te schrijven.
 De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de overnachting. Voor de betaling dient er dan ook in totaal <b>80 euro</b> betaald te worden. <b>De 20 euro borg wordt na afloop van de intro terugbetaald.</b>',
-            'privacy_terms_reservation' => 'Door op \'Schrijf me in\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>. Je zal later een betaalverzoek ontvangen voor €:costs, waarmee je je reservering omzet in een geldige aanmelding.</b>',
+            'privacy_terms_reservation'             => 'Door op \'Schrijf me in\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>. Je zal later een betaalverzoek ontvangen voor €:costs, waarmee je je reservering omzet in een geldige aanmelding.</b>',
             'privacy_terms_signup_full_reservation' => 'Door op \'Schrijf me in\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>. Indien er een plek beschikbaar komt, zal je een betaalverzoek ontvangen voor €:costs, waarmee je je reservering omzet in een geldige aanmelding. Je gegevens zullen na de introductie worden verwijderd.</b>',
 
             'sign_up'            => 'Schrijf me in',
@@ -85,27 +85,27 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
             ],
             'email_instructions' => [
                 'signup'      => 'Bedankt voor het aanmelden voor de intro van Salve Mundi! Je betaling wordt momenteel verwerkt in ons systeem, maar zodra deze succesvol is afgerond krijg je van ons een mailtje ter bevestiging. Mocht je de email niet krijgen binnen 2 werkdagen nadat de betaling is afgerond, kijk dan in je map voor ongewenste email of neem contact met ons op.',
-                'reservation' => 'Je aanmelding is echter nog niet bevestigd! Om hem geldig te maken moet je eerst nog de instructies volgen in een e-mail we je zojuist hebben gestuurd. Je aanmelding komt niet bij ons binnen indien je hem niet bevestigt via deze e-mail. Heb je na 5 minuten nog steeds geen e-mail ontvangen? Meld je dan opnieuw aan of neem anders direct contact met ons op door een e-mail te sturen naar intro@salvemundi.nl.'
+                'reservation' => 'Je aanmelding is echter nog niet bevestigd! Om hem geldig te maken moet je eerst nog de instructies volgen in een e-mail we je zojuist hebben gestuurd. Je aanmelding komt niet bij ons binnen indien je hem niet bevestigt via deze e-mail. Heb je na 1 werkdag nog steeds geen e-mail ontvangen? Meld je dan opnieuw aan of neem anders direct contact met ons op door een e-mail te sturen naar intro@salvemundi.nl.'
             ],
 
-            'email_confirmed'          => 'Aanmelding introductie bevestigd',
-            'thanks_for_confirming'    => 'Bedankt voor het bevestigen van je e-mail-adres, :name. Je aanmelding voor de intro van :year is gereserveerd bij ons.',
-            'instructions'             => 'Verder ontvang je binnenkort via dit e-mail-adres de nieuwsbrief. In deze nieuwsbrief staat alles wat je moet weten over de intro. Dus houd je mail goed in de gaten. Mocht je nog vragen of opmerkingen hebben dan kan je een e-mail sturen naar intro@salvemundi.nl of onze website (salvemundi.nl) bezoeken. Wij zien al uit naar een mooi feestje.',
-            'sent_email'               => 'Deze gegevens staan ook in de e-mail die je zojuist hebt ontvangen, waardoor je op deze pagina terecht kwam.',
+            'email_confirmed'       => 'Aanmelding introductie bevestigd',
+            'thanks_for_confirming' => 'Bedankt voor het bevestigen van je e-mail-adres, :name. Je aanmelding voor de intro van :year is gereserveerd bij ons.',
+            'instructions'          => 'Verder ontvang je binnenkort via dit e-mail-adres de nieuwsbrief. In deze nieuwsbrief staat alles wat je moet weten over de intro. Dus houd je mail goed in de gaten. Mocht je nog vragen of opmerkingen hebben dan kan je een e-mail sturen naar intro@salvemundi.nl of onze website (salvemundi.nl) bezoeken. Wij zien al uit naar een mooi feestje.',
+            'sent_email'            => 'Deze gegevens staan ook in de e-mail die je zojuist hebt ontvangen, waardoor je op deze pagina terecht kwam.',
 
-            'email_signups_not_allowed' => 'Aanmelding niet gelukt',
+            'email_signups_not_allowed'      => 'Aanmelding niet gelukt',
             'email_signups_check_back_later' => 'Momenteel zijn alle plekken van deze introductie helaas bezet. Als er toch plekken beschikbaar komen, gebruik dan opnieuw deze link in de e-mail die je van ons hebt ontvangen. We kunnen helaas geen plek bieden aan alle reserveringen die we krijgen.',
 
             // Betalingen
-            'payment'                  => [
+            'payment'                        => [
                 'description'             => 'Contributie Intro FHICT :year van Salve Mundi',
                 'description_extra_shirt' => 'Contributie Intro FHICT :year + extra shirt van Salve Mundi',
                 'failed'                  => 'Er is iets misgegaan tijdens het verwerken van de transactie. De betaling is mogelijk geannuleerd of verlopen. Probeer je nogmaals aan te melden',
                 'failed_from_mail'        => 'Er is iets misgegaan tijdens het verwerken van de transactie. De betaling is mogelijk geannuleerd of verlopen. Probeer het nogmaals door opnieuw de link te volgen in de e-mail die je hebt ontvangen.'
             ],
-            //            'email_instructions'       => 'Bedankt voor je aanmelding voor het kamp! Je betaling wordt momenteel verwerkt in ons systeem, maar zodra deze succesvol is afgerond krijg je van ons automatisch een mailtje ter bevestiging. Dit gebeurt normaalgesproken automatisch binnen een paar minuten. Hopelijk tot ziens op de intro!',
-            'redirecting'              => 'Je wordt zo doorgestuurd...',
-            'redirecting_instructions' => 'Je wordt nu naar onze betalingsprovider Mollie doorgestuurd, om de contributie voor de intro aan ons te betalen. Als je dit hebt gedaan wordt de aanmelding automatisch bevestigd. Indien je de betaling annuleert zal de aanmelding verwijderd worden.',
+
+            'redirecting'                    => 'Je wordt zo doorgestuurd...',
+            'redirecting_instructions'       => 'Je wordt nu naar onze betalingsprovider Mollie doorgestuurd, om de contributie voor de intro aan ons te betalen. Als je dit hebt gedaan wordt de aanmelding automatisch bevestigd. Indien je de betaling annuleert zal de aanmelding verwijderd worden.',
 
         ],
         'supervisor' => [
@@ -190,7 +190,7 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
                 ],
                 'information' => [
                     'title' => 'Algemene informatie',
-                    'text'  => ' Dit jaar is de intro niet 3, maar 5 dagen! De slaaplocatie is in Mierlo. Het vervoer wordt geregeld door Salve Mundi, dus daar hoef je je niet druk om te maken. Er zijn verschillende kamers waar je met een aantal mensen kunt slapen. Ook is er een feestzaal waar een bar staat, zodat we tot in de late uurtjes door kunnen gaan. Er wordt gebruik gemaakt van consumptiebonnen voor drinken (fris, bier en wijn). De volledige planning is te vinden onder ‘planning’, maar hier is al een kleine impressie: Op maandag word je verwacht op school, ’s avonds gaan we naar onze stamkroeg Villa Fiesta op Stratumseind. Dinsdag zijn we de hele dag op onze slaaplocatie waar verschillende activiteiten zijn. Woensdag gaan we de stad in voor de beruchte crazy 88, waarna we naar het stadhuisplein gaan, nog even naar Villa Fiesta en afsluiten op de slaaplocatie met een afterparty. Donderdag is Purple Festival en gooien we nog een afterparty op de slaaplocatie. Vrijdag ruimen we met z’n allen op en kunnen we na een hele week gezelligheid naar huis.'
+                    'text'  => 'Dit jaar is de intro niet 3, maar 5 dagen! De slaaplocatie is in Mierlo. Het vervoer wordt geregeld door Salve Mundi, dus daar hoef je je niet druk om te maken. Er zijn verschillende kamers waar je met een aantal mensen kunt slapen. Ook is er een feestzaal waar een bar staat, zodat we tot in de late uurtjes door kunnen gaan. Er wordt gebruik gemaakt van consumptiebonnen voor drinken (fris, bier en wijn). De volledige planning is te vinden onder ‘planning’, maar hier is al een kleine impressie: Op maandag word je verwacht op school, ’s avonds gaan we naar onze stamkroeg Villa Fiesta op Stratumseind. Dinsdag zijn we de hele dag op onze slaaplocatie waar verschillende activiteiten zijn. Woensdag gaan we de stad in voor de beruchte crazy 88, waarna we naar het stadhuisplein gaan, nog even naar Villa Fiesta en afsluiten op de slaaplocatie met een afterparty. Donderdag is Purple Festival en gooien we nog een afterparty op de slaaplocatie. Vrijdag ruimen we met z’n allen op en kunnen we na een hele week gezelligheid naar huis.'
                 ]
             ],
             'schedule_page' => [

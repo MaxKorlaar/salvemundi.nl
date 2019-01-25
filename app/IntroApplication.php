@@ -77,7 +77,7 @@
         const STATUS_PAID = 'paid', STATUS_SEE_TRANSACTION = 'see_transaction',
             STATUS_RESERVED = 'reserved', STATUS_REFUNDED = 'refunded',
             STATUS_EMAIL_UNCONFIRMED = 'email_unconfirmed';
-        const TYPE_RESERVATION = 'reservation', TYPE_SIGNUP = 'signup';
+        const TYPE_RESERVATION = 'reservation', TYPE_SIGNUP = 'signup', TYPE_ANONYMISED = 'anonymised';
         public $fillable = ['pcn', 'first_name', 'last_name', 'phone', 'email', 'address', 'city', 'postal', 'country', 'gender', 'contact_phone',
                             'birthday', 'shirt_size', 'remarks', 'alcohol', 'extra_shirt', 'same_sex_rooms'];
         protected $encrypted = ['pcn', 'first_name', 'last_name', 'phone', 'email', 'shirt_size', 'remarks', 'ip_address',
@@ -138,10 +138,10 @@
          * @return int
          */
         public function calculateIntroCosts() {
-//            $intro    = 60;
-//            $security = 20;
-//            $costs    = $intro + $security;
-//            if ($this->extra_shirt) $costs += 9;
+            //            $intro    = 60;
+            //            $security = 20;
+            //            $costs    = $intro + $security;
+            //            if ($this->extra_shirt) $costs += 9;
 
             return $this->introduction->price;
         }
@@ -169,5 +169,21 @@
          */
         public function save(array $options = []) {
             return parent::save($options);
+        }
+
+        /**
+         * @throws \Throwable
+         */
+        public function anonymise() {
+            $this->email_confirmation_token = null;
+            $this->pcn                      = null;
+            $this->type                     = self::TYPE_ANONYMISED;
+            $anonymiseFields                = [
+                'first_name', 'last_name', 'phone', 'email', 'birthday', 'remarks', 'ip_address', 'contact_phone', 'address'
+            ];
+            foreach ($anonymiseFields as $field) {
+                $this[$field] = '***';
+            }
+            return $this->saveOrFail();
         }
     }

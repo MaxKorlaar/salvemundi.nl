@@ -49,7 +49,9 @@
             $introduction = Introduction::where('mail_reservations_at', Carbon::today())->first();
             Log::debug('Dit heb ik gevonden', [$introduction]);
             if ($introduction !== null) {
-                $applications = $introduction->applications()->where('status', IntroApplication::STATUS_RESERVED)->get();
+                $applications = $introduction->applications()
+                    ->where('status', IntroApplication::STATUS_RESERVED)
+                    ->where('type', '!=', IntroApplication::TYPE_ANONYMISED)->get();
                 $applications->each(function (IntroApplication $application) {
                     $application->email_confirmation_token = str_random(64);
                     $mail = new IntroApplicationPaymentRequest($application);

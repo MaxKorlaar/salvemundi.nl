@@ -99,6 +99,7 @@
                                 <th>{{ trans('admin.intro.applications.last_name') }}</th>
                                 <th>{{ trans('admin.intro.applications.first_name') }}</th>
                                 <th>{{ trans('admin.intro.applications.status') }}</th>
+                                <th>{{ trans('admin.intro.applications.transaction') }}</th>
                                 <th>{{ trans('admin.intro.applications.created_at') }}</th>
                             </tr>
                         </thead>
@@ -109,11 +110,16 @@
                                     <td>{{ application.last_name }}</td>
                                     <td>{{ application.first_name }}</td>
                                     <td>
+                                        {{ trans('admin.intro.applications.status_' ~ application.status) }}
+                                    </td>
+                                    <td>
                                         {% if application.transaction %}
-                                            {{ application.transaction_id }}
-                                            ({{ trans('admin.transactions.status.' ~ application.transaction.transaction_status) }})
+                                            <a target="_blank" href="{{ config_get('mollie.transaction_url') ~ application.transaction.transaction_id }}">
+                                                {{ application.transaction_id }}
+                                                ({{ trans('admin.transactions.status.' ~ application.transaction.transaction_status) }})
+                                            </a>
                                         {% else %}
-                                            {{ application.status }}
+                                            -
                                         {% endif %}
                                     </td>
                                     <td>{{ application.created_at|date(trans('datetime.format.date_and_time')) }}</td>

@@ -26,11 +26,11 @@
          */
         public function rules() {
             return [
-                'reservations_open'              => 'required|date',
+                'reservations_open'              => 'required|date|after:-3 months',
                 'mail_reservations'              => 'boolean',
                 'allow_reservations_after_limit' => 'boolean',
-                'signup_open'                    => 'required|date',
-                'signup_close'                   => 'required|date',
+                'signup_open'                    => 'required|date|after:-2 months',
+                'signup_close'                   => 'required|date|after:-1 month',
                 'year_id'                        => 'required|exists:years,id',
                 'price'                          => 'required|numeric|min:0|max:500',
                 'max_signups'                    => 'required|integer|min:1',
