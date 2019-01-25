@@ -76,18 +76,18 @@
                         </tbody>
                     </table>
                     <small>{{ trans_choice('admin.intro.count', applications.count, { count: applications.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }} </small>
-                    <form action="{{ route('admin.intro.generate_tokens') }}" method="POST">
-                        {{ csrf_field() }}
-                        <button type="submit" class="button danger">{{ trans('admin.intro.generate_tokens') }}</button>
-                    </form>
-                    <form action="{{ route('admin.intro.send_email_reminders') }}" method="POST">
-                        {{ csrf_field() }}
-                        <button type="submit" class="button danger">{{ trans('admin.intro.send_email_reminders') }}</button>
-                    </form>
-                    <form action="{{ route('admin.intro.send_payment_reminders') }}" method="POST">
-                        {{ csrf_field() }}
-                        <button type="submit" class="button danger">{{ trans('admin.intro.send_payment_reminders') }}</button>
-                    </form>
+                    {#<form action="{{ route('admin.intro.generate_tokens') }}" method="POST">#}
+                        {#{{ csrf_field() }}#}
+                        {#<button type="submit" class="button danger">{{ trans('admin.intro.generate_tokens') }}</button>#}
+                    {#</form>#}
+                    {#<form action="{{ route('admin.intro.send_email_reminders') }}" method="POST">#}
+                        {#{{ csrf_field() }}#}
+                        {#<button type="submit" class="button danger">{{ trans('admin.intro.send_email_reminders') }}</button>#}
+                    {#</form>#}
+                    {#<form action="{{ route('admin.intro.send_payment_reminders') }}" method="POST">#}
+                        {#{{ csrf_field() }}#}
+                        {#<button type="submit" class="button danger">{{ trans('admin.intro.send_payment_reminders') }}</button>#}
+                    {#</form>#}
                 </div>
             </div>
         </main>
