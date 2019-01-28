@@ -57,8 +57,8 @@
             'birthday_format'     => 'dd-mm-jjjj (' . \Carbon\Carbon::now()->format('d-m-Y') . ')',
             'phone'               => 'Telefoonnummer',
             'transaction_id'      => 'Transactie-ID',
-            'email'               => 'E-mail-adres',
-            'email_confirmation'  => 'Bevestig je e-mail-adres',
+            'email'               => 'E-mailadres',
+            'email_confirmation'  => 'Bevestig je e-mailadres',
             'agree_salvemundi'    => 'Ik ga akkoord met (TBD) <a href="#voorwaarden">de kampvoorwaarden van Salve Mundi</a>',
             //            'agree_buitenjan'     => 'Ik ga akkoord met (TBD) <a href="#?">de algemene voorwaarden van De Buitenjan</a>',
             'agree_terms'         => 'Door op \'Schrijf me in\' te drukken geef je aan lid te zijn van studievereniging Salve Mundi, ga je akkoord met <a href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp" target="_blank">de huisregels van Salve Mundi</a> en dat je gegevens worden verwerkt volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>. Je zal dan automatisch worden doorgestuurd naar de betalingspagina, waar het mogelijk is om via iDeal te betalen. Indien de transactie niet succesvol is, zal je inschrijving automatisch worden verwijderd. Wanneer je inschrijving daadwerkelijk bevestigd is zal je hiervan een automatisch bericht ontvangen per email. Salve Mundi behoudt zich het recht om deelnemers zonder opgaaf van reden te weigeren.',
@@ -83,7 +83,7 @@
             'completed'             => 'Aanmelding verzonden',
             'email_instructions'    => 'Bedankt voor je aanmelding voor het kamp! Je betaling wordt momenteel verwerkt in ons systeem, maar zodra deze succesvol is afgerond krijg je van ons een mailtje ter bevestiging. Hopelijk tot ziens op het kamp!',
             'email_confirmed'       => 'Aanmelding kamp bevestigd',
-            'thanks_for_confirming' => 'Bedankt voor het bevestigen van je e-mail-adres, :name. Je aanmelding voor het kamp is nu ook automatisch bevestigd bij ons.',
+            'thanks_for_confirming' => 'Bedankt voor het bevestigen van je e-mailadres, :name. Je aanmelding voor het kamp is nu ook automatisch bevestigd bij ons.',
             //            'instructions'          => 'Om mee te doen aan het kamp is het nodig om contributie te betalen. Je dient <b>€35,-</b> over te maken op rekeningnummer <b>NL97 RABO 0326 3418 11</b> t.n.v. <b>s.v. Salve Mundi</b> onder vermelding van het volgende kenmerk in de omschrijving: <b>:id</b>.'
         ]
     ];

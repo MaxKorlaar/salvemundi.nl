@@ -46,8 +46,8 @@
             'country'          => 'Land',
             'birthday'         => 'Geboortedatum',
             'phone'            => 'Telefoonnummer',
-            'email'            => 'E-mail-adres',
-            'fontys_email'     => 'Fontys-e-mail-adres',
+            'email'            => 'E-mailadres',
+            'fontys_email'     => 'Fontys-e-mailadres',
             'fontys_name'      => 'Fontys-naam',
             'card'             => 'Ledenpas',
 

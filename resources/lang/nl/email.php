@@ -53,7 +53,7 @@
                  'instructions' => 'Tof dat een plekje hebt gereserveerd voor de introductie van FHICT in :year. Het belooft een fantastische introductie te worden. Tijdens deze introductie zal je kennismaken met je studiegenoten en met het echte studentenleven. Deze introductie is georganiseerd door Salve Mundi, de studievereniging van Fontys Hogescholen ICT.',
                 //'instructions' => 'Je hebt je ingeschreven voor de introductie van FHICT :year. Dit vinden wij erg leuk, maar wat wij minder leuk vinden is dat je je e-mailadres nog niet bevestigd hebt. Op deze manier kunnen wij geen betaalverzoek sturen. Wij willen je verzoeken om je e-mailadres te bevestigen zodat we een betaalverzoek kunnen sturen en hopelijk ook jou terug mogen zien bij de introductie van FHICT :year!',
                 'link'         => 'Bevestig je inschrijving',
-                'when_done'    => 'LET OP: Je inschrijving wordt pas definitief bevestigd wanneer je hebt betaald. Hiervoor is het eerst nodig om nu direct je e-mail-adres te bevestigen. Je kan rond juli een e-mail van ons verwachten waarin we je verzoeken om aan de betaling te voldoen. Na deze betaling hoef je geen verdere acties te ondernemen.'
+                'when_done'    => 'LET OP: Je inschrijving wordt pas definitief bevestigd wanneer je hebt betaald. Hiervoor is het eerst nodig om nu direct je e-mailadres te bevestigen. Je kan rond juli een e-mail van ons verwachten waarin we je verzoeken om aan de betaling te voldoen. Na deze betaling hoef je geen verdere acties te ondernemen.'
             ],
             'new_application'          => [
                 'subject'    => 'Betaald: Nieuwe intro-inschrijving van :name',
