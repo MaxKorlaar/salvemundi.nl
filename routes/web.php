@@ -125,11 +125,12 @@
 
         //Route::get('intro/onbevestigd', 'IntroController@getUnconfirmedSignups');
         //Route::post('intro/genereer-tokens', 'IntroController@generateTokensForUnpaidSignups')->name('intro.generate_tokens');
-        //Route::post('intro/stuur-email-herinnering', 'IntroController@sendConfirmEmailReminders')->name('intro.send_email_reminders');
 
         Route::get('intro/{intro}/spreadsheet', 'Intro\ApplicationController@spreadsheet')->name('intro.spreadsheet');
         Route::post('intro/{intro}/aanmeldingen/{application}/stuur-betaal-herinnering', 'Intro\ApplicationController@sendPaymentReminder')->name('intro.applications.send_payment_reminder');
-        Route::get('intro/{intro}/{application}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.applications.delete_confirmation');
+        Route::post('intro/{intro}/aanmeldingen/{application}/stuur-email-herinnering', 'Intro\ApplicationController@sendEmailConfirmationReminder')->name('intro.applications.send_email_confirmation_reminder');
+        Route::get('intro/{intro}/aanmeldingen/{application}/verwijderen', 'Intro\ApplicationController@getDeleteConfirmation')->name('intro.applications.delete_confirmation');
+        Route::get('intro/{intro}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.delete_confirmation');
         Route::resource('intro', 'IntroController')->names('intro');
         Route::resource('intro/{intro}/aanmeldingen', 'Intro\ApplicationController')->names('intro.applications');
 

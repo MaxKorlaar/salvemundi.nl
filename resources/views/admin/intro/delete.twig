@@ -1,0 +1,19 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.intro.delete.title', { year: introduction.year.year }) }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="introduction">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.intro.delete.title', { year: introduction.year.year }) }}</h1>
+                </div>
+                <div class="col-md-12 text-danger">{{ trans('admin.intro.delete.are_you_sure')|raw }}</div>
+                <form class="col-md-12" action="{{ route('admin.intro.destroy', { introduction: introduction }) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="button danger">{{ trans('admin.intro.delete.delete') }}</button>
+                </form>
+            </div>
+        </main>
+    </div>
+{% endblock %}

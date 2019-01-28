@@ -175,6 +175,7 @@
             'id'                             => 'ID',
             'year'                           => 'Jaar',
             'price'                          => 'Prijs',
+            'details'                        => 'Details',
             'max_signups'                    => 'Aanmeldingslimiet',
             'allow_reservations_after_limit' => 'Sta reserveringen toe nadat het aanmeldingslimiet is bereikt',
             'allow_reservations_help'        => 'Indien het maximum aantal betaalde aanmeldingen is bereikt, is het mogelijk om studenten zich alsnog te laten inschrijven. Hun inschrijving wordt dan aangemeld als een reservering, en werkt hetzelfde als andere reserveringen.',
@@ -204,6 +205,14 @@
                 'save'  => 'Opslaan',
                 'back'  => 'Terug'
             ],
+            'delete'                         => [
+                'title'        => 'Introductie :year verwijderen',
+                'are_you_sure' => 'Weet je zeker dat je deze introductie wil verwijderen? Dit kan <b>niet</b> ongedaan worden gemaakt. Alle gegevens gerelateerd aan deze introductie, inclusief alle aanmeldingen, zullen onherstelbaar worden verwijderd.',
+                'delete'       => 'Verwijder introductie permanent',
+                'deleted'      => 'De introductie is permanent verwijderd uit het systeem'
+            ],
+            'cannot_delete_until_anonymised' => 'Het is niet mogelijk om deze introductie te verwijderen totdat alle aanmeldingen geanonimiseerd zijn, of alle aanmeldingen bij deze introductie zijn verwijderd.',
+            'delete_introduction'            => 'Verwijder introductie en aanmeldingen',
             'spreadsheet'                    => [
                 'title' => 'Introductie :year spreadsheet'
             ],
@@ -251,14 +260,23 @@
                 'cannot_send_mails_signups_full'   => 'Het is niet mogelijk om een betaalverzoek te sturen naar :first_name :last_name, aangezien het aanmeldingslimiet van deze introductie bereikt is. Transacties die momenteel verwerkt worden tellen ook voor het aanmeldingslimiet.',
                 'count'                            => ':count aanmelding|:count aanmeldingen, waarvan :confirmed betaald zijn en :email_unconfirmed geen bevestigd email-adres hebben',
                 'send_payment_reminder'            => 'Verstuur herinnering van betaalverzoek',
+                'send_email_confirmation_reminder' => 'Verstuur herinnering om e-mailadres te bevestigen',
                 'reminder_throttle'                => 'Je kan maar eens in de 120 minuten een herinnering sturen per aanmelding.',
                 'payment_reminder_sent'            => 'Er is een herinnering verstuurd met het verzoek om te betalen.',
+                'email_confirmation_reminder_sent' => 'Er is een herinnering verstuurd met het verzoek om het e-mailadres te bevestigen.',
+                'automatic_payment_reminder'       => 'Het is momenteel mogelijk om betaald in te schrijven voor deze introductie. Wanneer :first_name :last_name zijn of haar e-mailadres bevestigt, zal er automatisch een verzoek tot betaling worden verzonden.',
+                'anonymised_warning'               => 'Deze aanmelding is automatisch geanonimiseerd. De persoonsgegevens die bij deze aanmelding horen, zijn onherstelbaar onbruikbaar gemaakt.',
+                'cannot_send_mails_anonymised'     => 'Het is niet mogelijk om e-mails te versturen naar geanonimiseerde aanmeldingen. Geanonimiseerde aanmeldingen kunnen alleen worden verwijderd. Dit kan niet ongedaan worden gemaakt.',
                 'back_to_index'                    => 'Terug naar overzicht',
                 'view_spreadsheet'                 => 'Bekijk spreadsheet',
                 'delete'                           => [
+                    'title'        => 'Aanmelding verwijderen: :first_name :last_name',
                     'are_you_sure' => 'Weet je zeker dat je deze aanmelding wil verwijderen? Dit kan <b>niet</b> ongedaan worden gemaakt. Alle gegevens gerelateerd aan deze aanmelding zullen onherstelbaar worden verwijderd. Mocht deze aanmelding gekoppeld zijn aan een Mollie-betaling, dan zal deze betaling blijven bestaan in Mollie.',
                     'delete'       => 'Verwijder aanmelding permanent',
                     'deleted'      => 'De aanmelding is permanent verwijderd uit het systeem'
+                ],
+                'show'                             => [
+                    'title' => 'Aanmelding: :first_name :last_name'
                 ]
             ]
 

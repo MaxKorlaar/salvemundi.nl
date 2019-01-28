@@ -132,6 +132,14 @@
                         </tbody>
                     </table>
                     <small>{{ trans_choice('admin.intro.applications.count', introduction.applications.count, { count: introduction.applications.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }}</small>
+                    {% if introduction.isAnonymised() %}
+                        <div class="button-container">
+                            <a href="{{ route('admin.intro.delete_confirmation', { intro: introduction }) }}"
+                               class="button danger pull-right">{{ trans('admin.intro.delete_introduction') }}</a>
+                        </div>
+                    {% else %}
+                        <p>{{ trans('admin.intro.cannot_delete_until_anonymised') }}</p>
+                    {% endif %}
                 </div>
             </div>
         </main>

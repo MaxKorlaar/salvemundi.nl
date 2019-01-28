@@ -2,11 +2,12 @@
     return [
         'title'             => 'Home',
         'signup_link'       => 'Aanmelden',
-        'intro_signup_link' => 'Aanmelden Intro',
+        'intro_signup_link' => 'Aanmelden Introductie',
 
         'landing' => [
             'title'    => 'Welkom bij Salve Mundi',
-            'subtitle' => 'Meld je vandaag nog aan!'
+            'subtitle' => 'Meld je vandaag nog aan!',
+            'introduction_subtitle' => 'Meld je vandaag nog aan voor de introductie van Fontys Hogescholen ICT!',
         ],
 
         'welcome_text'           => [

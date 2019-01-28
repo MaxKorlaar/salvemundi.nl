@@ -106,12 +106,6 @@
             parent::__construct($attributes);
         }
 
-        /**
-         * @return \Illuminate\Database\Eloquent\Collection|static[]
-         */
-        public static function getUnpaidApplicationsWithoutToken() {
-            return self::where('status', '=', 'new')->where('email_confirmation_token', '=', null)->get();
-        }
 
         /**
          * @return bool
@@ -186,4 +180,12 @@
             }
             return $this->saveOrFail();
         }
+
+        /**
+         * @return bool
+         */
+        public function isAnonymised() {
+            return $this->type === self::TYPE_ANONYMISED;
+        }
+
     }

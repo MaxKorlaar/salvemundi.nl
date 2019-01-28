@@ -1,21 +1,18 @@
 {% extends 'admin/_page.twig' %}
-{% block title %}{{ application.first_name }} {{ application.last_name }}{% endblock %}
+{% block title %}{{ trans('admin.intro.applications.delete.title', { first_name: application.first_name, last_name: application.last_name }) }}{% endblock %}
 {% block content %}
     <div class="container">
-        <main class="intro application">
+        <main class="introduction application">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>{{ application.first_name }} {{ application.last_name }}</h1>
-                    <h3>{{ trans('admin.intro.status_' ~ application.status) }}
-                        {% if application.status == 'new' and application.email_confirmation_token == null %}
-                            – {{ trans('admin.intro.no_mail') }}
-                        {% endif %}</h3>
+                    <h1>{{ trans('admin.intro.applications.delete.title', { first_name: application.first_name, last_name: application.last_name }) }}</h1>
+                    <h3>{{ trans('admin.intro.applications.status_' ~ application.status) }}</h3>
                 </div>
-                <div class="col-md-12 text-danger">{{ trans('admin.intro.delete.are_you_sure')|raw }}</div>
-                <form class="col-md-12" action="{{ route('admin.intro.destroy', { application: application }) }}" method="POST">
+                <div class="col-md-12 text-danger">{{ trans('admin.intro.applications.delete.are_you_sure')|raw }}</div>
+                <form class="col-md-12" action="{{ route('admin.intro.applications.destroy', { introduction: introduction, application: application }) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
-                    <button type="submit" class="button danger">{{ trans('admin.intro.delete.delete') }}</button>
+                    <button type="submit" class="button danger">{{ trans('admin.intro.applications.delete.delete') }}</button>
                 </form>
             </div>
         </main>

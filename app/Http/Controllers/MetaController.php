@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Introduction;
     use App\Store\Item;
     use Illuminate\Http\Request;
 
@@ -80,12 +81,12 @@
                 ],
                 [
                     'url'       => route('intro.supervisor_info', [], false),
-                    'priority'  => 0.8,
+                    'priority'  => 0.5,
                     'frequency' => 'monthly'
                 ],
                 [
                     'url'       => route('intro.supervisor_signup', [], false),
-                    'priority'  => 0.8,
+                    'priority'  => 0.5,
                     'frequency' => 'monthly'
                 ],
                 [
@@ -145,6 +146,18 @@
                   'priority' => 0.7,
                   'frequency' => 'weekly'
                 ];
+            });
+            Introduction::all()->each(function(Introduction $introduction) use (&$pages){
+               $pages[] = [
+                 'url' => route('intro.by_id.info', ['intro' => $introduction, 'year' => $introduction->year->year], false),
+                 'priority' => 0.85,
+                 'frequency' => 'monthly'
+               ];
+               $pages[] = [
+                 'url' => route('intro.by_id.signup', ['intro' => $introduction, 'year' => $introduction->year->year], false),
+                 'priority' => 0.85,
+                 'frequency' => 'monthly'
+               ];
             });
 
             foreach ($pages as &$page) {

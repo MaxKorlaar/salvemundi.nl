@@ -5,6 +5,7 @@
     use App\Http\Controllers\Controller;
     use App\IntroApplication;
     use App\Introduction;
+    use App\Mail\ConfirmIntroApplication;
     use App\Mail\IntroApplicationPaymentRequest;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Cache;
@@ -36,7 +37,7 @@
          *
          */
         public function create() {
-            abort(404);
+            abort(501);
         }
 
         /**
@@ -47,7 +48,7 @@
          * @param IntroApplication          $application
          */
         public function store(Request $request, Introduction $intro, IntroApplication $application) {
-            dd($intro, $application);
+            abort(501);
         }
 
         /**
@@ -69,10 +70,9 @@
          *
          * @param  int $id
          *
-         * @return \Illuminate\Http\Response
          */
         public function edit($id) {
-            //
+            abort(501);
         }
 
         /**
@@ -81,10 +81,30 @@
          * @param  \Illuminate\Http\Request $request
          * @param  int                      $id
          *
-         * @return \Illuminate\Http\Response
          */
         public function update(Request $request, $id) {
-            //
+            abort(501);
+        }
+
+        /**
+         * @param Introduction     $intro
+         * @param IntroApplication $application
+         * @param Request          $request
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         * @throws \Psr\SimpleCache\InvalidArgumentException
+         */
+        public function sendEmailConfirmationReminder(Introduction $intro, IntroApplication $application, Request $request) {
+            if ($application->isAnonymised()) abort(400);
+            $key = 'admin.intro.throttle.email_reminder.' . $application->id . ':' . $request->user()->id;
+            if (Cache::has($key)) {
+                return back()->withErrors(['mail' => trans('admin.intro.applications.reminder_throttle')]);
+            }
+            $mail = new ConfirmIntroApplication($application);
+            $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
+            Mail::queue($mail);
+            Cache::set($key, time(), 120);
+            return back()->with('success', trans('admin.intro.applications.email_confirmation_reminder_sent'));
         }
 
 
@@ -98,11 +118,12 @@
          * @throws \Throwable
          */
         public function sendPaymentReminder(Introduction $intro, IntroApplication $application, Request $request) {
+            if ($application->isAnonymised()) abort(400);
             $key = 'admin.intro.throttle.payment_reminder.' . $application->id . ':' . $request->user()->id;
             if (Cache::has($key)) {
                 return back()->withErrors(['mail' => trans('admin.intro.applications.reminder_throttle')]);
             }
-            if($application->email_confirmation_token === null) {
+            if ($application->email_confirmation_token === null) {
                 $application->email_confirmation_token = str_random(64);
                 $application->saveOrFail();
             }
@@ -115,15 +136,22 @@
         }
 
         /**
+         * @param Introduction     $intro
          * @param IntroApplication $application
          *
          * @return \Illuminate\Http\RedirectResponse
          */
-        public function getDeleteConfirmation(IntroApplication $application) {
-            if ($application->status == IntroApplication::STATUS_PAID || $application->status == IntroApplication::STATUS_SEE_TRANSACTION) {
-                return back();
+        public function getDeleteConfirmation(Introduction $intro, IntroApplication $application) {
+            if ($application->isAnonymised() ||
+                ($application->status != IntroApplication::STATUS_PAID &&
+                    $application->status != IntroApplication::STATUS_SEE_TRANSACTION)) {
+                return view('admin.intro.applications.delete', [
+                    'application'  => $application,
+                    'introduction' => $intro
+                ]);
             }
-            return view('admin.intro.delete', ['application' => $application]);
+            return back();
+
         }
 
 
@@ -142,16 +170,110 @@
         }
 
         /**
-         * @param IntroApplication $intro
+         * @param Introduction     $intro
+         *
+         * @param IntroApplication $aanmeldingen
          *
          * @return \Illuminate\Http\RedirectResponse
          * @throws \Exception
          */
-        public function destroy(IntroApplication $intro) {
-            if ($intro->status == IntroApplication::STATUS_PAID || $intro->status == IntroApplication::STATUS_SEE_TRANSACTION) {
-                return back();
+        public function destroy(Introduction $intro, IntroApplication $aanmeldingen) {
+            if ($aanmeldingen->isAnonymised() ||
+                ($aanmeldingen->status != IntroApplication::STATUS_PAID ||
+                    $aanmeldingen->status != IntroApplication::STATUS_SEE_TRANSACTION)) {
+                $aanmeldingen->delete();
+                return redirect()->route('admin.intro.show', ['intro' => $intro])->with('success', trans('admin.intro.applications.delete.deleted'));
             }
-            $intro->delete();
-            return redirect()->route('admin.intro.index')->with('success', trans('admin.intro.delete.deleted'));
+            return back();
         }
+
+        // De volgende functies zijn buiten gebruik omdat de functies nu individueel uitgevoerd kunnen worden per aanmelding.
+
+        /**
+         * @deprecated
+         *
+         * @param Request $request
+         *
+         * @return IntroApplication
+         */
+        public function sendConfirmEmailReminders(Request $request) {
+            $unconfirmedCount = IntroApplication::where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)->count();
+            $yesterday        = Carbon::yesterday()->format('Y-m-d H:i:s');
+            $signups          = IntroApplication::where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)->where('updated_at', '<', $yesterday)->get();
+
+            $signups->each(function (IntroApplication $application) {
+                $mail = new ConfirmIntroApplication($application);
+                $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
+                $application->updated_at = Carbon::now();
+                $application->saveOrFail();
+                Mail::queue($mail);
+            });
+            Log::info(trans('admin.intro.reminders_sent', [
+                'count'             => $signups->count(),
+                'unconfirmed_count' => $unconfirmedCount,
+                'date'              => $yesterday
+            ]), ['user' => $request->user()->official_name, 'ip' => $request->ip()]);
+            return back()->with('success', trans('admin.intro.reminders_sent', [
+                'count'             => $signups->count(),
+                'unconfirmed_count' => $unconfirmedCount,
+                'date'              => $yesterday
+            ]));
+        }
+
+        /**
+         * @deprecated
+         *
+         * @param Request $request
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        public function sendPaymentReminders(Request $request) {
+            $yesterday    = Carbon::yesterday()->format('Y-m-d H:i:s');
+            $signupsCount = IntroApplication::where('status', '=', IntroApplication::STATUS_NEW)->whereNotNull('email_confirmation_token')->count();
+            $signups      = IntroApplication::where('status', '=', IntroApplication::STATUS_NEW)->whereNotNull('email_confirmation_token')->where('updated_at', '<', $yesterday)->get();
+            $signups->each(function (IntroApplication $application) {
+                $mail = new IntroApplicationPaymentRequest($application);
+                $mail->subject(trans('email.intro.payment_request_reminder.subject', ['name' => $application->first_name . ' ' . $application->last_name]));
+                $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
+                Mail::send($mail);
+                $application->updated_at = Carbon::now();
+                $application->saveOrFail();
+            });
+            Log::info(trans('admin.intro.payment_reminders_sent', [
+                'count'        => $signupsCount,
+                'actual_count' => $signups->count(),
+                'date'         => $yesterday
+            ]), ['user' => $request->user()->official_name, 'ip' => $request->ip()]);
+            return back()->with('success', trans('admin.intro.payment_reminders_sent', [
+                'count'        => $signupsCount,
+                'actual_count' => $signups->count(),
+                'date'         => $yesterday
+            ]));
+        }
+
+        /**
+         * @deprecated
+         *
+         * @param Request $request
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         */
+        public function generateTokensForUnpaidSignups(Request $request) {
+
+            //return 'denk het niet job -wilders, ooit';
+
+            $signups = IntroApplication::getUnpaidApplicationsWithoutToken();
+            $signups->each(function (IntroApplication $application) {
+                $application->email_confirmation_token = str_random(64);
+                $mail                                  = new IntroApplicationPaymentRequest($application);
+                $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
+                Mail::send($mail);
+                $application->saveOrFail();
+            });
+            Log::info(trans('admin.intro.tokens_generated', ['count' => $signups->count()]),
+                ['user' => $request->user()->official_name, 'ip' => $request->ip()]);
+            return back()->with('success', trans('admin.intro.tokens_generated', ['count' => $signups->count()]));
+        }
+
+
     }
