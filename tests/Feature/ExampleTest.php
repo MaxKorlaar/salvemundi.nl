@@ -1,21 +1,26 @@
 <?php
 
-namespace Tests\Feature;
+    namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+    use Illuminate\Foundation\Testing\RefreshDatabase;
+    use Tests\TestCase;
 
-class ExampleTest extends TestCase
-{
     /**
-     * A basic test example.
+     * Class ExampleTest
      *
-     * @return void
+     * @package Tests\Feature
      */
-    public function testBasicTest()
-    {
-        $response = $this->get('/');
+    class ExampleTest extends TestCase {
+        use RefreshDatabase;
 
-        $response->assertStatus(200);
+        /**
+         * A basic test example.
+         *
+         * @return void
+         */
+        public function testBasicTest() {
+            $response = $this->get('/');
+
+            $response->assertStatus(200);
+        }
     }
-}
