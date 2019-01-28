@@ -82,7 +82,7 @@ De feestcommissie van Salve Mundi'
                 'subject'      => 'Bedankt voor je aanmelding!',
                 'greeting'     => 'Hallo :name!',
                 'instructions' => 'Je hebt je inschrijving voltooid voor de introductie van FHICT :year (woehoeeeee)! Je hebt je ingeschreven met de volgende gegevens:',
-                'more_info'    => 'Wij kijken erg uit om jou te ontmoeten bij de introductie op 22 augustus 2018. Je bent hier welkom om vanaf 10:00 om je spullen in te checken. Wij zorgen voor: je introductieshirt, slaapplek en natuurlijk een geweldige intro vol met leuke evenementen. Binnenkort krijg je hier meer informatie over.',
+                'more_info'    => 'Wij kijken erg uit om jou te ontmoeten bij de introductie op 26 augustus 2019. Je bent hier welkom om vanaf 10:00 om je spullen in te checken. Wij zorgen voor: je introductieshirt, slaapplek en natuurlijk een geweldige intro vol met leuke evenementen. Binnenkort krijg je hier meer informatie over.',
                 'packing_list' => 'Hier alvast een paklijst zodat je goed voorbereid bent!
                 <ul><li>Bevestiging van betaling (deze email)</li>
 <li>Douchespullen</li>
@@ -92,7 +92,7 @@ De feestcommissie van Salve Mundi'
 <li>Handdoek</li>
 <li>Identificatiebewijs</li>
 <li>Lampje</li>
-<li>Pinpas (met genoeg saldo voor 3 dagen feesten)</li>
+<li>Pinpas (met genoeg saldo voor 5 dagen feesten)</li>
 <li>Slaapzak (of ander beddengoed) Er is alleen een matras en kussen aanwezig, de rest moet zelf meegenomen worden.</li>
 <li>Slippers</li>
 <li>Warme kleding voor de avond</li>
@@ -108,9 +108,9 @@ De feestcommissie Salve Mundi'
                 'confirm_application' => [
                     'subject'      => 'Bevestig je inschrijving als begeleider voor de intro',
                     'greeting'     => 'Geachte :name,',
-                    'instructions' => 'Leuk dat je je hebt aangemeld als begeleider voor de intro van 2018. Het belooft een fantastische introductie te worden. Het is nodig om je inschrijving nog te bevestigen door te klikken op de link in deze e-mail.',
+                    'instructions' => 'Leuk dat je je hebt aangemeld als begeleider voor de intro van 2019. Het belooft een fantastische introductie te worden. Het is nodig om je inschrijving nog te bevestigen door te klikken op de link in deze e-mail.',
                     'link'         => 'Bevestig je inschrijving',
-                    'when_done'    => 'We zullen nog contact met je opnemen indien je meedoet als begeleider. We kunnen namelijk maar een beperkt aantal intro-ouders mee laten doen met de intro van 2018.'
+                    'when_done'    => 'We zullen nog contact met je opnemen indien je meedoet als begeleider. We kunnen namelijk maar een beperkt aantal intro-ouders mee laten doen met de intro van 2019.'
                 ],
                 'new_application'     => [
                     'subject'    => 'Papa/mama-inschrijving voor de intro van :name',

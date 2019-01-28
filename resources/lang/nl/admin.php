@@ -100,7 +100,7 @@
             'none_given'            => 'Geen land opgegeven!',
             'birthday'              => 'Geboortedatum',
             'phone'                 => 'Telefoonnummer',
-            'email'                 => 'E-mail-adres',
+            'email'                 => 'E-mailadres',
             'transaction_id'        => 'Transactie-id',
             'transaction_amount'    => 'Bedrag transactie',
             'transaction_status'    => 'Transactie-status',
@@ -170,7 +170,7 @@
             'send_payment_reminders' => 'Stuur herinneringen naar aanmeldingen met betaalverzoek',
             'reminders_sent'         => 'Er is een herinnering gestuurd naar :count van de :unconfirmed_count onbevestigde email-adressen. Er werden alleen herinneringen gestuurd naar aanmeldingen die het laatst bijgewerkt zijn voor :date of een laatste herinnering kregen voor :date.',
             'payment_reminders_sent' => 'Er is een herinnering gestuurd naar :actual_count van de :count aanmeldingen die reeds een betaalverzoek hebben ontvangen. Er werden alleen herinneringen gestuurd naar aanmeldingen die het laatst bijgewerkt zijn voor :date of een laatste herinnering kregen voor :date.',
-            'tokens_generated'       => 'Voor alle bevestigde e-mail-adressen zonder betaalverzoeken zijn :count unieke betaalverzoeken gegenereerd en verstuurd per mail. Ik hoop dat je niet per ongeluk op de knop drukte want holy shit deze emails gaan we dus allemaal niet meer terugkrijgen en dan zijn we flink genaaid.',
+            'tokens_generated'       => 'Voor alle bevestigde e-mailadressen zonder betaalverzoeken zijn :count unieke betaalverzoeken gegenereerd en verstuurd per mail. Ik hoop dat je niet per ongeluk op de knop drukte want holy shit deze emails gaan we dus allemaal niet meer terugkrijgen en dan zijn we flink genaaid.',
 
             'id'                             => 'ID',
             'year'                           => 'Jaar',
@@ -199,6 +199,11 @@
             'show'                           => [
                 'title' => 'Introductie :year'
             ],
+            'edit' => [
+                'title' => 'Introductie :year bewerken',
+                'save' => 'Opslaan',
+                'back' => 'Terug'
+            ],
 
             'applications' => [
                 'title'                    => 'Aanmeldingen',
@@ -224,7 +229,7 @@
                 'postal'                   => 'Postcode',
                 'phone'                    => 'Telefoonnummer student',
                 'contact_phone'            => 'Telefoonnummer contactpersoon',
-                'email'                    => 'E-mail-adres',
+                'email'                    => 'E-mailadres',
                 'gender'                   => 'Geslacht',
                 'shirt_size'               => 'Shirtmaat (Unisex)',
                 'same_sex_rooms'           => 'Kamer delen met alleen zelfde geslacht',
