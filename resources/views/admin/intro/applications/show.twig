@@ -6,6 +6,17 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ application.first_name }} {{ application.last_name }}</h1>
+                    {% if session('success') %}
+                        <div class="alert alert-success text-center success-message">
+                            <span class="fa fa-check fa-2x pull-left"></span>
+                            {{ session('success')|raw }}
+                        </div>
+                    {% endif %}
+                    {% if errors.has('mail') %}
+                        <div class="warning">
+                            {{ errors.first('mail') }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-4">
                     <div>
@@ -116,8 +127,11 @@
                     {% elseif application.status == constant('STATUS_RESERVED', application) %}
                         {% if introduction.signupsAreOpen() %}
                             {% if(introduction.allowSignups()) %}
-                                <div class="button-container">
-                                </div>
+                                <form class="button-container" method="POST"
+                                      action="{{ route('admin.intro.applications.send_payment_reminder', { intro: introduction, application: application }) }}">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="button danger">{{ trans('admin.intro.applications.send_payment_reminder') }}</button>
+                                </form>
                             {% else %}
                                 <p>
                                     {{ trans('admin.intro.applications.cannot_send_mails_signups_full',

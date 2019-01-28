@@ -250,6 +250,9 @@
                 'cannot_send_mails_signups_closed' => 'Het is niet mogelijk om een betaalverzoek te sturen naar :first_name :last_name, aangezien de uiterlijke aanmelddatum van deze introductie verstreken is.',
                 'cannot_send_mails_signups_full'   => 'Het is niet mogelijk om een betaalverzoek te sturen naar :first_name :last_name, aangezien het aanmeldingslimiet van deze introductie bereikt is. Transacties die momenteel verwerkt worden tellen ook voor het aanmeldingslimiet.',
                 'count'                            => ':count aanmelding|:count aanmeldingen, waarvan :confirmed betaald zijn en :email_unconfirmed geen bevestigd email-adres hebben',
+                'send_payment_reminder'            => 'Verstuur herinnering van betaalverzoek',
+                'reminder_throttle'                => 'Je kan maar eens in de 120 minuten een herinnering sturen per aanmelding.',
+                'payment_reminder_sent'            => 'Er is een herinnering verstuurd met het verzoek om te betalen.',
                 'back_to_index'                    => 'Terug naar overzicht',
                 'view_spreadsheet'                 => 'Bekijk spreadsheet',
                 'delete'                           => [

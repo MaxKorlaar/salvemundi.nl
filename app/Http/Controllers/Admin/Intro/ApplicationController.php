@@ -5,7 +5,10 @@
     use App\Http\Controllers\Controller;
     use App\IntroApplication;
     use App\Introduction;
+    use App\Mail\IntroApplicationPaymentRequest;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Cache;
+    use Illuminate\Support\Facades\Mail;
 
     /**
      * Class ApplicationController
@@ -82,6 +85,33 @@
          */
         public function update(Request $request, $id) {
             //
+        }
+
+
+        /**
+         * @param Introduction     $intro
+         * @param IntroApplication $application
+         * @param Request          $request
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         * @throws \Psr\SimpleCache\InvalidArgumentException
+         * @throws \Throwable
+         */
+        public function sendPaymentReminder(Introduction $intro, IntroApplication $application, Request $request) {
+            $key = 'admin.intro.throttle.payment_reminder.' . $application->id . ':' . $request->user()->id;
+            if (Cache::has($key)) {
+                return back()->withErrors(['mail' => trans('admin.intro.applications.reminder_throttle')]);
+            }
+            if($application->email_confirmation_token === null) {
+                $application->email_confirmation_token = str_random(64);
+                $application->saveOrFail();
+            }
+            $mail = new IntroApplicationPaymentRequest($application);
+            $mail->subject(trans('email.intro.payment_request_reminder.subject', ['name' => $application->first_name . ' ' . $application->last_name]));
+            $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
+            Mail::queue($mail);
+            Cache::set($key, time(), 120);
+            return back()->with('success', trans('admin.intro.applications.payment_reminder_sent'));
         }
 
         /**
