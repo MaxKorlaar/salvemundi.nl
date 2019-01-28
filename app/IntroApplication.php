@@ -187,5 +187,4 @@
         public function isAnonymised() {
             return $this->type === self::TYPE_ANONYMISED;
         }
-
     }
