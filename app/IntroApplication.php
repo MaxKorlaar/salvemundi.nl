@@ -179,7 +179,7 @@
             $this->pcn                      = null;
             $this->type                     = self::TYPE_ANONYMISED;
             $anonymiseFields                = [
-                'first_name', 'last_name', 'phone', 'email', 'birthday', 'remarks', 'ip_address', 'contact_phone', 'address'
+                'first_name', 'last_name', 'phone', 'email', 'birthday', 'remarks', 'ip_address', 'contact_phone', 'address', 'postal'
             ];
             foreach ($anonymiseFields as $field) {
                 $this[$field] = '***';

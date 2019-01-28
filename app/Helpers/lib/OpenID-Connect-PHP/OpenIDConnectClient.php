@@ -285,7 +285,11 @@
             // This is also known as auto "discovery"
             if (!isset($this->providerConfig[$param])) {
                 $well_known_config_url = rtrim($this->getProviderURL(), "/") . "/.well-known/openid-configuration";
-                $value                 = json_decode($this->fetchURL($well_known_config_url))->{$param};
+                $result = json_decode($this->fetchURL($well_known_config_url));
+                if($result === null) {
+                    throw new OpenIDConnectClientException("De provider heeft geen geldige openid-configuratie. Is er een probleem bij de provider?");
+                }
+                $value                 = $result->{$param};
 
                 if ($value) {
                     $this->providerConfig[$param] = $value;

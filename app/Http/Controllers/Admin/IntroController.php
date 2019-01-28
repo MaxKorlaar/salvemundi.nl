@@ -4,6 +4,7 @@
 
     use App\Http\Controllers\Controller;
     use App\Http\Requests\Admin\Intro\CreateIntro;
+    use App\Http\Requests\Admin\Intro\UpdateIntro;
     use App\IntroApplication;
     use App\Introduction;
     use App\Mail\ConfirmIntroApplication;
@@ -75,6 +76,35 @@
             return redirect()->route('admin.intro.show', [$intro])->with('success', trans('admin.intro.create.created'));
         }
 
+        /**
+         * @param Introduction $intro
+         *
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function edit(Introduction $intro) {
+            return view('admin.intro.edit', [
+                'years'        => Year::all(),
+                'introduction' => $intro
+            ]);
+        }
+
+        /**
+         * @param UpdateIntro  $request
+         * @param Introduction $intro
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         * @throws \Throwable
+         */
+        public function update(UpdateIntro $request, Introduction $intro) {
+            $intro->fill($request->all());
+            if ($request->has('mail_reservations')) {
+                $intro->mail_reservations_at = $request->get('signup_open');
+            } else {
+                $intro->mail_reservations_at = null;
+            }
+            $intro->saveOrFail();
+            return redirect()->back()->with('success', trans('admin.intro.edit.saved'));
+        }
 
         /**
          * @param Request $request

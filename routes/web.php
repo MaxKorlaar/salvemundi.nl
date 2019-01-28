@@ -81,7 +81,6 @@
         Route::get('/{introduction}/{year}/inschrijven', 'IntroController@getSignupFormByYearAndId')->name('by_id.signup');
         Route::post('/{introduction}/{year}/inschrijven', 'IntroController@signupByYearAndId')->name('by_id.signup.send');
 
-
         Route::get('inschrijven', 'IntroController@getSignupForm')->name('signup');
         Route::post('inschrijven', 'IntroController@signup')->name('signup.send');
 
@@ -124,17 +123,18 @@
         //        Route::delete('account', 'AccountController@delete')->name('do_delete_account');
         Route::resource('kamp', 'CampingController')->names('camping');
 
-        Route::get('intro/onbevestigd', 'IntroController@getUnconfirmedSignups');
-        Route::post('intro/genereer-tokens', 'IntroController@generateTokensForUnpaidSignups')->name('intro.generate_tokens');
-        Route::post('intro/stuur-email-herinnering', 'IntroController@sendConfirmEmailReminders')->name('intro.send_email_reminders');
-        Route::post('intro/stuur-betaal-herinnering', 'IntroController@sendPaymentReminders')->name('intro.send_payment_reminders');
-        Route::get('intro/spreadsheet', 'IntroController@spreadsheetIndex')->name('intro.spreadsheet');
-        Route::get('intro/{application}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.delete_confirmation');
+        //Route::get('intro/onbevestigd', 'IntroController@getUnconfirmedSignups');
+        //Route::post('intro/genereer-tokens', 'IntroController@generateTokensForUnpaidSignups')->name('intro.generate_tokens');
+        //Route::post('intro/stuur-email-herinnering', 'IntroController@sendConfirmEmailReminders')->name('intro.send_email_reminders');
+        //Route::post('intro/stuur-betaal-herinnering', 'IntroController@sendPaymentReminders')->name('intro.send_payment_reminders');
+
+        Route::get('intro/{intro}/spreadsheet', 'Intro\ApplicationController@spreadsheet')->name('intro.spreadsheet');
+        Route::get('intro/{intro}/{application}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.applications.delete_confirmation');
         Route::resource('intro', 'IntroController')->names('intro');
+        Route::resource('intro/{intro}/aanmeldingen', 'Intro\ApplicationController')->names('intro.applications');
 
         Route::group(['prefix' => 'winkel', 'namespace' => 'Store', 'as' => 'store.', 'middleware' => ['auth.admin']], function () {
             Route::resource('bestellingen', 'OrderController')->names('orders');
-
 
             Route::resource('items', 'ItemController');
             Route::resource('items/{item}/voorraad', 'StockController')->names('items.stock');
@@ -181,7 +181,7 @@
     Route::get('privacybeleid', 'MetaController@getPrivacyPage')->name('privacy');
     Route::get('/sitemap.xml', 'MetaController@getSitemap')->name('sitemap');
 
-//    Route::get('uitschrijven', 'IndexController@getCancelPage');
+    //    Route::get('uitschrijven', 'IndexController@getCancelPage');
 
     Route::get('login', 'Auth\FHICTLoginController@getLoginView')->name('login');
     Route::get('login/fhict', 'Auth\FHICTLoginController@redirect')->name('login.redirect');

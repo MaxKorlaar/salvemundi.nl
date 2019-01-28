@@ -11,6 +11,7 @@
     use App\Mail\ConfirmIntroApplication;
     use App\Mail\ConfirmIntroSupervisorApplication;
     use App\Mail\IntroApplicationPaymentConfirmation;
+    use App\Mail\IntroApplicationPaymentRequest;
     use App\Mail\NewIntroApplication;
     use App\Mail\NewIntroSupervisorApplication;
     use App\Transaction;
@@ -212,8 +213,16 @@
 
             $application->status                   = IntroApplication::STATUS_RESERVED;
             $application->email_confirmation_token = null;
-            $application->saveOrFail();
+            $introduction                          = $application->introduction;
 
+            // Controleer of het inmiddels al mogelijk is om te betalen & of er nog plek is voor betaalde inschrijvingen
+            if ($introduction->signupsAreOpen() && $introduction->allowSignups()) {
+                $application->email_confirmation_token = str_random(64);
+                $mail                                  = new IntroApplicationPaymentRequest($application);
+                $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
+                Mail::send($mail);
+            }
+            $application->saveOrFail();
             // Sla mail naar introcommissie over
             //            $mail = new NewIntroApplication($application);
             //            $mail->to(config('mail.intro_to.address'), config('mail.intro_to.name'));

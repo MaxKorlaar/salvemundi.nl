@@ -54,6 +54,7 @@
                 });
                 Log::debug("Aanmeldingen geanonimiseerd", ['count' => $applications->count()]);
                 $this->info("Aanmeldingen geanonimiseerd: " . $applications->count());
+                Log::info("Aanmeldingen zijn geanonimiseerd", ['intro' => $introduction]);
             } else {
                 $this->info("Geen introductie gevonden waarbij de uiterlijke aanmelddatum < " . Carbon::today()->subMonths(2));
             }

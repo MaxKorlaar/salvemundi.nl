@@ -101,6 +101,7 @@
                                 <th>{{ trans('admin.intro.applications.status') }}</th>
                                 <th>{{ trans('admin.intro.applications.transaction') }}</th>
                                 <th>{{ trans('admin.intro.applications.created_at') }}</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,6 +124,9 @@
                                         {% endif %}
                                     </td>
                                     <td>{{ application.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.intro.applications.show', { intro: introduction, application: application }) }}">{{ trans('admin.intro.applications.details') }}</a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                         </tbody>

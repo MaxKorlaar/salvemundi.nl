@@ -60,6 +60,7 @@
                     $application->saveOrFail();
                 });
                 Log::debug("Mails verstuurd naar inschrijvingen", ['count' => $applications->count()]);
+                Log::info("Automatische betaalverzoeken", ['intro' => $introduction]);
             }
         }
     }
