@@ -104,8 +104,8 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
                 'failed_from_mail'        => 'Er is iets misgegaan tijdens het verwerken van de transactie. De betaling is mogelijk geannuleerd of verlopen. Probeer het nogmaals door opnieuw de link te volgen in de e-mail die je hebt ontvangen.'
             ],
 
-            'redirecting'                    => 'Je wordt zo doorgestuurd...',
-            'redirecting_instructions'       => 'Je wordt nu naar onze betalingsprovider Mollie doorgestuurd, om de contributie voor de intro aan ons te betalen. Als je dit hebt gedaan wordt de aanmelding automatisch bevestigd. Indien je de betaling annuleert zal de aanmelding verwijderd worden.',
+            'redirecting'              => 'Je wordt zo doorgestuurd...',
+            'redirecting_instructions' => 'Je wordt nu naar onze betalingsprovider Mollie doorgestuurd, om de contributie voor de intro aan ons te betalen. Als je dit hebt gedaan wordt de aanmelding automatisch bevestigd. Indien je de betaling annuleert zal de aanmelding verwijderd worden.',
 
         ],
         'supervisor' => [
@@ -138,7 +138,8 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
                     'Voor B-begeleiding, welke blijft slapen, geldt ook de 20 euro borg per persoon voor de kamer. Dit wordt gedaan om een snelle opruiming te garanderen op vrijdagochtend.'
                 ],
                 'for_questions'           => 'Mocht je vragen hebben, stuur dan gerust een e-mail naar <a href="mailto:intro@salvemundi.nl?subject=Vragen intro begeleiding">intro@salvemundi.nl</a>.',
-                'click_to_sign_up'        => 'Klik hier om je in te schrijven als intropapa of -mama'
+                'click_to_sign_up'        => 'Klik hier om je in te schrijven als intropapa of -mama',
+                'closed_warning'          => 'Aanmeldingen voor deze introductie zijn momenteel gesloten.',
 
             ],
             'signup' => [
@@ -150,7 +151,7 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
                 'phone'                          => 'Telefoonnummer',
                 'email'                          => 'E-mailadres',
                 'email_confirmation'             => 'Bevestig e-mailadres',
-                'age_at_intro'                   => 'Leeftijd te 26 augustus 2018',
+                'age_at_intro'                   => 'Leeftijd te 26 augustus 2019',
                 'shirt_size'                     => 'Welke shirtmaat heb je? (Unisex)',
                 'shirt_sizes'                    => [
                     'S', 'M', 'L', 'XL', '2XL', '3XL'
@@ -175,15 +176,15 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
                 'sign_up'                        => 'Aanmelden',
                 'completed'                      => 'Bijna klaar...',
                 'email_instructions'             => 'Je aanmelding is echter nog niet bevestigd! Om hem geldig te maken moet je eerst nog de instructies volgen in een e-mail we je zojuist hebben gestuurd. Indien je niet je e-mailadres bevestigt, zal je aanmelding niet worden gecontroleerd. Heb je na 5 minuten nog steeds geen e-mail ontvangen? Meld je dan opnieuw aan of neem anders direct contact met ons op door een e-mail te sturen naar intro@salvemundi.nl',
-                'email_confirmed'                => 'Aanmelding intro-begeleider 2018 bevestigd',
-                'thanks_for_confirming'          => 'Bedankt voor het bevestigen van je e-mailadres, :name. Je aanmelding als papa of mama voor de intro van 2018 is bevestigd bij ons.',
-                'email_info'                     => 'We zullen nog contact met je opnemen indien je meedoet als begeleider. We kunnen namelijk maar een beperkt aantal intro-ouders mee laten doen met de intro van 2018. Mocht je nog vragen of opmerkingen hebben dan kan je een e-mail sturen naar intro@salvemundi.nl of onze website (salvemundi.nl) bezoeken. Wij zien al uit naar een mooi feestje.'
+                'email_confirmed'                => 'Aanmelding intro-begeleider :year bevestigd',
+                'thanks_for_confirming'          => 'Bedankt voor het bevestigen van je e-mailadres, :name. Je aanmelding als papa of mama voor de intro van :year is bevestigd bij ons.',
+                'email_info'                     => 'We zullen nog contact met je opnemen indien je meedoet als begeleider. We kunnen namelijk maar een beperkt aantal intro-ouders mee laten doen met de intro van :year. Mocht je nog vragen of opmerkingen hebben dan kan je een e-mail sturen naar intro@salvemundi.nl of onze website (salvemundi.nl) bezoeken. Wij zien al uit naar een mooi feestje.'
             ]
         ],
         '2019'       => [
             'title'         => 'Intro FHICT 2019',
             'info_page'     => [
-                'title'       => 'Inschrijven Intro FHICT 2018',
+                'title'       => 'Inschrijven Intro FHICT 2019',
                 'intro'       => [
                     'title' => 'Hallo nieuwe studenten!',
                     'text'  => "De FHICT introductie is de leukste manier om je medestudenten te leren kennen. Het is een week vol avontuur en teambuilding in Eindhoven. Zo leer je ook de stad beter kennen. Wij vanuit Salve Mundi zijn druk bezig geweest om dit allemaal mogelijk te maken voor de nieuwe studenten. De introductie vindt plaats van maandag 26 augustus tot en met vrijdag 30 augustus. Houdt onze website en Facebook in de gaten voor updates!",

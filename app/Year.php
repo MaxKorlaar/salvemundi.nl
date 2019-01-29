@@ -6,23 +6,23 @@
     use Illuminate\Database\Eloquent\Model;
 
     /**
- * App\Year
- *
- * @mixin \Eloquent
- * @property int                 $id
- * @property int                 $year
- * @property int                 $last_member_id
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Year whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Year whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Year whereLastMemberId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Year whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Year whereYear($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Year newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Year newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Year query()
- */
+     * App\Year
+     *
+     * @mixin \Eloquent
+     * @property int                 $id
+     * @property int                 $year
+     * @property int                 $last_member_id
+     * @property \Carbon\Carbon|null $created_at
+     * @property \Carbon\Carbon|null $updated_at
+     * @method static \Illuminate\Database\Eloquent\Builder|Year whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Year whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Year whereLastMemberId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Year whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Year whereYear($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Year newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Year newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Year query()
+     */
     class Year extends Model {
         //
         /**
@@ -34,7 +34,7 @@
         }
 
         /**
-         * @param $year
+         * @param $requestedYear
          *
          * @return Year|Model|null
          * @throws \Throwable

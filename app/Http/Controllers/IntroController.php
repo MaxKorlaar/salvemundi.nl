@@ -16,6 +16,7 @@
     use App\Mail\NewIntroSupervisorApplication;
     use App\Transaction;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
     use Mollie\Api\Exceptions\ApiException;
@@ -27,6 +28,11 @@
      * @package App\Http\Controllers
      */
     class IntroController extends Controller {
+
+        public function __construct() {
+            $this->middleware('auth')->only(['getSupervisorSignupFormByYearAndId', 'supervisorSignupByYearAndId']);
+        }
+
         /**
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          * @throws \Throwable
@@ -408,25 +414,63 @@
 
         /**
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @throws \Throwable
          */
         public function getSupervisorInfo() {
-            return view('intro.supervisor.info');
+            $currentIntro = Introduction::getIntroductionForCurrentYear();
+            if ($currentIntro === null) abort(404);
+            return redirect()->route('intro.by_id.supervisor.info', ['year' => $currentIntro->year->year, 'id' => $currentIntro->id]);
         }
 
         /**
          * @return string
+         * @throws \Throwable
          */
         public function getSupervisorSignupForm() {
-            return view('intro.supervisor.signup');
+            $currentIntro = Introduction::getIntroductionForCurrentYear();
+            if ($currentIntro === null) abort(404);
+            return redirect()->route('intro.by_id.supervisor.signup', ['year' => $currentIntro->year->year, 'id' => $currentIntro->id]);
         }
 
         /**
+         * @param Introduction $introduction
+         * @param              $year
+         *
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getSupervisorInfoByYearAndId(Introduction $introduction, $year) {
+            return view('intro.supervisor.info', [
+                'introduction' => $introduction,
+                'year'         => $year
+            ]);
+        }
+
+        /**
+         * @param Introduction $introduction
+         * @param              $year
+         *
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getSupervisorSignupFormByYearAndId(Introduction $introduction, $year) {
+            return view('intro.supervisor.signup', [
+                'introduction' => $introduction,
+                'year'         => $year,
+                'member'       => Auth::user()->member
+            ]);
+        }
+
+        /**
+         * @param Introduction          $introduction
+         * @param                       $year
          * @param IntroSupervisorSignup $request
          *
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          * @throws \Throwable
          */
-        public function supervisorSignup(IntroSupervisorSignup $request) {
+        public function supervisorSignupByYearAndId(Introduction $introduction, $year, IntroSupervisorSignup $request) {
+            if (!$introduction->reservationsAreOpen() && !$introduction->signupsAreOpen()) abort(403);
+            $member = Auth::user()->member;
+            if(!$member->isCurrentlyMember()) abort(403);
             $application                                 = new IntroSupervisorApplication($request->all());
             $application->ip_address                     = $request->ip();
             $application->email_confirmation_token       = str_random(200);
@@ -434,12 +478,14 @@
             $application->drivers_license                = $request->has('drivers_license');
             $application->first_aid_license              = $request->has('first_aid_license');
             $application->company_first_response_license = $request->has('company_first_response_license');
+            $application->member()->associate($member);
+            $application->introduction()->associate($introduction);
             if (app()->environment() !== 'production') $request->flash();
 
             $application->saveOrFail();
 
             $mail = new ConfirmIntroSupervisorApplication($application);
-            $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
+            $mail->to($application->member->email, $application->member->first_name . ' ' . $application->member->last_name);
             Mail::queue($mail);
 
             return view('intro.supervisor.signup_confirmation');
@@ -457,13 +503,12 @@
                 return view('signup.email_token_invalid');
             }
 
-            $application->status                   = IntroApplication::STATUS_NEW;
+            $application->status                   = IntroSupervisorApplication::STATUS_SIGNED_UP;
             $application->email_confirmation_token = null;
             $application->saveOrFail();
 
             $mail = new NewIntroSupervisorApplication($application);
             $mail->to(config('mail.intro_to.address'), config('mail.intro_to.name'));
-
             Mail::queue($mail);
 
             return view('intro.supervisor.email_confirmation', [

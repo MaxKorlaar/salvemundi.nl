@@ -1,0 +1,20 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.intro.supervisor_applications.delete.title', { first_name: application.member.first_name, last_name: application.member.last_name }) }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="introduction application">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.intro.supervisor_applications.delete.title', { first_name: application.member.first_name, last_name: application.member.last_name }) }}</h1>
+                    <h3>{{ trans('admin.intro.supervisor_applications.status_' ~ application.status) }}</h3>
+                </div>
+                <div class="col-md-12 text-danger">{{ trans('admin.intro.supervisor_applications.delete.are_you_sure')|raw }}</div>
+                <form class="col-md-12" action="{{ route('admin.intro.supervisor_applications.destroy', { introduction: introduction, application: application }) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="button danger">{{ trans('admin.intro.supervisor_applications.delete.delete') }}</button>
+                </form>
+            </div>
+        </main>
+    </div>
+{% endblock %}

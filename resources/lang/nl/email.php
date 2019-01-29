@@ -108,12 +108,12 @@ De feestcommissie Salve Mundi'
                 'confirm_application' => [
                     'subject'      => 'Bevestig je inschrijving als begeleider voor de intro',
                     'greeting'     => 'Geachte :name,',
-                    'instructions' => 'Leuk dat je je hebt aangemeld als begeleider voor de intro van 2019. Het belooft een fantastische introductie te worden. Het is nodig om je inschrijving nog te bevestigen door te klikken op de link in deze e-mail.',
+                    'instructions' => 'Leuk dat je je hebt aangemeld als begeleider voor de intro van :year. Het belooft een fantastische introductie te worden. Het is nodig om je inschrijving nog te bevestigen door te klikken op de link in deze e-mail.',
                     'link'         => 'Bevestig je inschrijving',
                     'when_done'    => 'We zullen nog contact met je opnemen indien je meedoet als begeleider. We kunnen namelijk maar een beperkt aantal intro-ouders mee laten doen met de intro van 2019.'
                 ],
                 'new_application'     => [
-                    'subject'    => 'Papa/mama-inschrijving voor de intro van :name',
+                    'subject'    => 'Introductie papa/mama-inschrijving van :name',
                     'greeting'   => 'Hallo bestuur,',
                     'intro_text' => 'Er is een nieuwe aanmelding voor de intro als papa of mama ingezonden. De gebruiker heeft zijn/haar email-adres bevestigd.',
                     'true'       => 'Ja',

@@ -6,32 +6,32 @@
     use Illuminate\Database\Eloquent\Model;
 
     /**
- * App\Membership
- *
- * @mixin \Eloquent
- * @property int                   $id
- * @property int                   $year_id
- * @property int|null              $member_id
- * @property int|null              $transaction_id
- * @property string                $valid_from
- * @property string                $valid_until
- * @property \Carbon\Carbon|null   $created_at
- * @property \Carbon\Carbon|null   $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereMemberId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereTransactionId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereValidFrom($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereValidUntil($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Membership whereYearId($value)
- * @property-read \App\Member|null $member
- * @property-read \App\Transaction $transaction
- * @property-read \App\Year        $year
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership query()
- */
+     * App\Membership
+     *
+     * @mixin \Eloquent
+     * @property int                   $id
+     * @property int                   $year_id
+     * @property int|null              $member_id
+     * @property int|null              $transaction_id
+     * @property string                $valid_from
+     * @property string                $valid_until
+     * @property \Carbon\Carbon|null   $created_at
+     * @property \Carbon\Carbon|null   $updated_at
+     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereMemberId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereTransactionId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUpdatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereValidFrom($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereValidUntil($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereYearId($value)
+     * @property-read \App\Member|null $member
+     * @property-read \App\Transaction $transaction
+     * @property-read \App\Year        $year
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership query()
+     */
     class Membership extends Model {
 
         public $fillable = ['valid_from', 'valid_until'];

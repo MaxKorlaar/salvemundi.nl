@@ -4,6 +4,7 @@
 
     use App\IntroApplication;
     use App\Introduction;
+    use App\IntroSupervisorApplication;
     use Carbon\Carbon;
     use Illuminate\Console\Command;
     use Illuminate\Support\Facades\Log;
@@ -50,6 +51,11 @@
                 $applications = $introduction->applications->where('type', '!=', IntroApplication::TYPE_ANONYMISED);
                 $applications->each(function (IntroApplication $application) {
                     Log::debug("Anonimiseren van aanmelding", ['id' => $application->id]);
+                    $application->anonymise();
+                });
+                $applications = $introduction->supervisorApplications->where('type', '!=', IntroSupervisorApplication::TYPE_ANONYMISED);
+                $applications->each(function (IntroSupervisorApplication $application) {
+                    Log::debug("Anonimiseren van ouder-aanmelding", ['id' => $application->id]);
                     $application->anonymise();
                 });
                 Log::debug("Aanmeldingen geanonimiseerd", ['count' => $applications->count()]);

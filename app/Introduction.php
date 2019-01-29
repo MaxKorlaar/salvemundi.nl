@@ -9,19 +9,19 @@
      * Class Introduction
      *
      * @package App
-     * @property int                                                                   $id
-     * @property int                                                                   $year_id
-     * @property string                                                                $reservations_open
-     * @property string                                                                $signup_open
-     * @property string                                                                $signup_close
-     * @property string|null                                                           $mail_reservations_at
-     * @property \Illuminate\Support\Carbon|null                                       $created_at
-     * @property \Illuminate\Support\Carbon|null                                       $updated_at
-     * @property float                                                                 $price
-     * @property int                                                                   $max_signups
-     * @property int                                                                   $allow_reservations_after_limit
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\IntroApplication[] $applications
-     * @property-read \App\Year                                                        $year
+     * @property int                                                                             $id
+     * @property int                                                                             $year_id
+     * @property string                                                                          $reservations_open
+     * @property string                                                                          $signup_open
+     * @property string                                                                          $signup_close
+     * @property string|null                                                                     $mail_reservations_at
+     * @property \Illuminate\Support\Carbon|null                                                 $created_at
+     * @property \Illuminate\Support\Carbon|null                                                 $updated_at
+     * @property float                                                                           $price
+     * @property int                                                                             $max_signups
+     * @property int                                                                             $allow_reservations_after_limit
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\IntroApplication[]           $applications
+     * @property-read \App\Year                                                                  $year
      * @method static \Illuminate\Database\Eloquent\Builder|Introduction newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Introduction newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|Introduction query()
@@ -37,6 +37,7 @@
      * @method static \Illuminate\Database\Eloquent\Builder|Introduction whereUpdatedAt($value)
      * @method static \Illuminate\Database\Eloquent\Builder|Introduction whereYearId($value)
      * @mixin \Eloquent
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\IntroSupervisorApplication[] $supervisorApplications
      */
     class Introduction extends Model {
         public $fillable = ['year_id', 'reservations_open', 'signup_open', 'signup_close', 'price', 'max_signups', 'allow_reservations_after_limit'];
@@ -76,13 +77,6 @@
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\HasMany
-         */
-        public function applications() {
-            return $this->hasMany(IntroApplication::class);
-        }
-
-        /**
          * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
          */
         public function year() {
@@ -99,11 +93,24 @@
         }
 
         /**
-         * @return int
+         * @return \Illuminate\Database\Eloquent\Relations\HasMany
          */
-        public function getSignups() {
-            return $this->applications()->where('status', IntroApplication::STATUS_PAID)
-                ->orWhere('status', IntroApplication::STATUS_SEE_TRANSACTION)->count();
+        public function applications() {
+            return $this->hasMany(IntroApplication::class);
+        }
+
+        /**
+         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         */
+        public function supervisorApplications() {
+            return $this->hasMany(IntroSupervisorApplication::class);
+        }
+
+        /**
+         * @return bool
+         */
+        public function allowSignups() {
+            return $this->getOpenSpots() > 0;
         }
 
         /**
@@ -115,10 +122,11 @@
         }
 
         /**
-         * @return bool
+         * @return int
          */
-        public function allowSignups() {
-            return $this->getOpenSpots() > 0;
+        public function getSignups() {
+            return $this->applications()->where('status', IntroApplication::STATUS_PAID)
+                ->orWhere('status', IntroApplication::STATUS_SEE_TRANSACTION)->count();
         }
 
         /**
@@ -149,6 +157,11 @@
             foreach ($this->applications as $application) {
                 if (!$application->delete()) {
                     throw new \Exception("Een of meerdere intro-aanmeldingen konden niet verwijderd worden");
+                }
+            }
+            foreach ($this->supervisorApplications as $application) {
+                if (!$application->delete()) {
+                    throw new \Exception("Een of meerdere intro-ouder-aanmeldingen konden niet verwijderd worden");
                 }
             }
             return parent::delete();

@@ -26,11 +26,6 @@
          */
         public function rules() {
             return [
-                'member_id'                      => 'required|integer',
-                'first_name'                     => 'required|string|max:150',
-                'last_name'                      => 'required|string|max:150',
-                'phone'                          => 'required|max:15',
-                'email'                          => 'required|email|confirmed',
                 'age_at_intro'                   => 'required|integer|min:18',
                 'shirt_size'                     => 'required|in:' . join(",", trans('intro.signup.shirt_sizes')),
                 'preferred_partner_id'           => 'nullable|integer',

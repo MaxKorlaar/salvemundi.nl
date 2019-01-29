@@ -3,93 +3,108 @@
     namespace App;
 
     use App\Helpers\HasEncryptedAttributes;
-    use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
 
     /**
- * Class IntroSupervisorApplication
- *
- * @package App
- * @property int                 $id
- * @property string              $member_id
- * @property string              $first_name
- * @property string              $last_name
- * @property string              $phone
- * @property string              $email
- * @property string              $age_at_intro
- * @property string              $shirt_size
- * @property string              $preferred_partner_id
- * @property int                 $remain_sober
- * @property int                 $drivers_license
- * @property int                 $first_aid_license
- * @property int                 $company_first_response_license
- * @property string|null         $remarks
- * @property string              $status
- * @property string              $ip_address
- * @property string|null         $email_confirmation_token
- * @property \Carbon\Carbon|null $created_at
- * @property \Carbon\Carbon|null $updated_at
- * @property-write mixed         $birthday
- * @method static Builder|IntroSupervisorApplication whereAgeAtIntro($value)
- * @method static Builder|IntroSupervisorApplication whereCompanyFirstResponseLicense($value)
- * @method static Builder|IntroSupervisorApplication whereCreatedAt($value)
- * @method static Builder|IntroSupervisorApplication whereDriversLicense($value)
- * @method static Builder|IntroSupervisorApplication whereEmail($value)
- * @method static Builder|IntroSupervisorApplication whereEmailConfirmationToken($value)
- * @method static Builder|IntroSupervisorApplication whereFirstAidLicense($value)
- * @method static Builder|IntroSupervisorApplication whereFirstName($value)
- * @method static Builder|IntroSupervisorApplication whereId($value)
- * @method static Builder|IntroSupervisorApplication whereIpAddress($value)
- * @method static Builder|IntroSupervisorApplication whereLastName($value)
- * @method static Builder|IntroSupervisorApplication whereMemberId($value)
- * @method static Builder|IntroSupervisorApplication wherePhone($value)
- * @method static Builder|IntroSupervisorApplication wherePreferredPartnerId($value)
- * @method static Builder|IntroSupervisorApplication whereRemainSober($value)
- * @method static Builder|IntroSupervisorApplication whereRemarks($value)
- * @method static Builder|IntroSupervisorApplication whereShirtSize($value)
- * @method static Builder|IntroSupervisorApplication whereStatus($value)
- * @method static Builder|IntroSupervisorApplication whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property string              $route_type
- * @method static Builder|IntroSupervisorApplication whereRouteType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroSupervisorApplication newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroSupervisorApplication newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroSupervisorApplication query()
- */
+     * Class IntroSupervisorApplication
+     *
+     * @package App
+     * @property int                             $id
+     * @property string                          $member_id
+     * @property string                          $age_at_intro
+     * @property string                          $shirt_size
+     * @property string|null                     $preferred_partner_id
+     * @property string                          $route_type
+     * @property bool                            $remain_sober
+     * @property bool                            $drivers_license
+     * @property bool                            $first_aid_license
+     * @property bool                            $company_first_response_license
+     * @property string|null                     $remarks
+     * @property string                          $ip_address
+     * @property string|null                     $email_confirmation_token
+     * @property \Illuminate\Support\Carbon|null $created_at
+     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property int|null                        $introduction_id
+     * @property string                          $status
+     * @property string|null                     $type
+     * @property-read \App\Introduction|null     $introduction
+     * @property-read \App\Member                $member
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication newModelQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication newQuery()
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication query()
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereAgeAtIntro($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereCompanyFirstResponseLicense($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereCreatedAt($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereDriversLicense($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereEmailConfirmationToken($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereFirstAidLicense($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereIntroductionId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereIpAddress($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereMemberId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication wherePreferredPartnerId($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereRemainSober($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereRemarks($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereRouteType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereShirtSize($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereStatus($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereType($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereUpdatedAt($value)
+     * @mixin \Eloquent
+     */
     class IntroSupervisorApplication extends Model {
         use HasEncryptedAttributes;
-        const STATUS_APPROVED = 'approved', STATUS_ON_HOLD = 'on_hold',
-            STATUS_NEW = 'new', STATUS_DENIED = 'denied',
-            STATUS_UNDER_REVIEW = 'under_review', STATUS_BLOCKED = 'blocked',
+        const STATUS_SIGNED_UP = 'signed_up',
             STATUS_EMAIL_UNCONFIRMED = 'email_unconfirmed';
-        public $fillable = ['member_id', 'first_name', 'last_name', 'phone', 'email', 'age_at_intro', 'shirt_size', 'route_type', 'preferred_partner_id', 'remain_sober',
+        const TYPE_SIGNUP = 'signup', TYPE_ANONYMISED = 'anonymised';
+        public $fillable = ['age_at_intro', 'shirt_size', 'route_type', 'preferred_partner_id', 'remain_sober',
                             'drivers_license', 'first_aid_license', 'company_first_response_license', 'remarks'];
-        protected $encrypted = ['first_name', 'last_name', 'phone', 'email', 'age_at_intro', 'shirt_size', 'ip_address', 'remarks'];
+        protected $encrypted = ['age_at_intro', 'shirt_size', 'ip_address', 'remarks'];
         protected $attributes = [
             'status' => self::STATUS_EMAIL_UNCONFIRMED
         ];
         protected $casts = [
-            'birthday'                       => 'date',
             'remain_sober'                   => 'boolean',
             'drivers_license'                => 'boolean',
             'first_aid_license'              => 'boolean',
             'company_first_response_license' => 'boolean',
         ];
 
-        protected $dates = [
-            'birthday'
-        ];
+        /**
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         */
+        public function introduction() {
+            return $this->belongsTo(Introduction::class);
+        }
 
         /**
-         * @param $birthday
-         *
-         * @return \Carbon\Carbon
+         * @return bool
+         * @throws \Throwable
          */
-        public function setBirthdayAttribute($birthday) {
-            try {
-                return $this->attributes['birthday'] = Carbon::createFromTimestamp(strtotime($birthday));
-            } catch (\InvalidArgumentException $exception) {
-                return $this->attributes['birthday'] = null;
+        public function anonymise() {
+            $this->type = self::TYPE_ANONYMISED;
+            $this->member()->dissociate();
+            $anonymiseFields = [
+                'preferred_partner_id', 'remarks', 'ip_address'
+            ];
+            foreach ($anonymiseFields as $field) {
+                $this[$field] = '***';
             }
+            return $this->saveOrFail();
         }
+
+        /**
+         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         */
+        public function member() {
+            return $this->belongsTo(Member::class);
+        }
+
+        /**
+         * @return bool
+         */
+        public function isAnonymised() {
+            return $this->type === self::TYPE_ANONYMISED;
+        }
+
     }

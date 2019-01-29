@@ -1,0 +1,76 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.intro.supervisor_applications.index.title', { year: introduction.year.year }) }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="introduction">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.intro.supervisor_applications.index.title', { year: introduction.year.year }) }}</h1>
+                </div>
+
+                <div class="col-12 button-container">
+                    <a href="{{ route('admin.intro.show', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.view_applications') }}</a>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>{{ trans('admin.intro.supervisor_applications.title') }}</h4>
+                    <table class="table application-list table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ trans('admin.intro.supervisor_applications.id') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.member_id') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.last_name') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.first_name') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.status') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.age_at_intro') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.route_type') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.remain_sober') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.drivers_license') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.first_aid_license') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.company_first_response_license') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.created_at') }}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for application in introduction.supervisorApplications %}
+                                <tr id="application-{{ application.id }}" class="{{ application.status|str_slug }}">
+                                    <td>{{ application.id }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.members.show', { member: application.member }) }}" target="_blank">
+                                            {{ application.member.member_id }}
+                                        </a>
+                                    </td>
+                                    <td>{{ application.member.last_name }}</td>
+                                    <td>{{ application.member.first_name }}</td>
+                                    <td>
+                                        {{ trans('admin.intro.supervisor_applications.status_' ~ application.status) }}
+                                    </td>
+                                    <td>{{ application.age_at_intro }}</td>
+                                    <td>{{ application.route_type }}</td>
+                                    <td>{{ application.remain_sober ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}</td>
+                                    <td>
+                                        {{ application.drivers_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
+                                    </td>
+                                    <td>
+                                        {{ application.first_aid_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
+                                    </td>
+                                    <td>
+                                        {{ application.company_first_response_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
+                                    </td>
+                                    <td>{{ application.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.intro.supervisor_applications.show', { intro: introduction, application: application }) }}">{{ trans('admin.intro.supervisor_applications.details') }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <small>{{ trans_choice('admin.intro.supervisor_applications.count', introduction.supervisorApplications.count, { count: introduction.supervisorApplications.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }}</small>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

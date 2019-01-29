@@ -164,14 +164,15 @@
             ]
         ],
         'intro'       => [
-            'title'                  => 'Introducties',
-            'generate_tokens'        => 'Genereer betaalverzoeken en verstuur ze per mail',
-            'send_email_reminders'   => 'Stuur herinneringen naar onbevestigde email-adressen',
-            'send_payment_reminders' => 'Stuur herinneringen naar aanmeldingen met betaalverzoek',
-            'reminders_sent'         => 'Er is een herinnering gestuurd naar :count van de :unconfirmed_count onbevestigde email-adressen. Er werden alleen herinneringen gestuurd naar aanmeldingen die het laatst bijgewerkt zijn voor :date of een laatste herinnering kregen voor :date.',
-            'payment_reminders_sent' => 'Er is een herinnering gestuurd naar :actual_count van de :count aanmeldingen die reeds een betaalverzoek hebben ontvangen. Er werden alleen herinneringen gestuurd naar aanmeldingen die het laatst bijgewerkt zijn voor :date of een laatste herinnering kregen voor :date.',
-            'tokens_generated'       => 'Voor alle bevestigde e-mailadressen zonder betaalverzoeken zijn :count unieke betaalverzoeken gegenereerd en verstuurd per mail. Ik hoop dat je niet per ongeluk op de knop drukte want holy shit deze emails gaan we dus allemaal niet meer terugkrijgen en dan zijn we flink genaaid.',
-
+            'title'                          => 'Introducties',
+            'generate_tokens'                => 'Genereer betaalverzoeken en verstuur ze per mail',
+            'send_email_reminders'           => 'Stuur herinneringen naar onbevestigde email-adressen',
+            'send_payment_reminders'         => 'Stuur herinneringen naar aanmeldingen met betaalverzoek',
+            'reminders_sent'                 => 'Er is een herinnering gestuurd naar :count van de :unconfirmed_count onbevestigde email-adressen. Er werden alleen herinneringen gestuurd naar aanmeldingen die het laatst bijgewerkt zijn voor :date of een laatste herinnering kregen voor :date.',
+            'payment_reminders_sent'         => 'Er is een herinnering gestuurd naar :actual_count van de :count aanmeldingen die reeds een betaalverzoek hebben ontvangen. Er werden alleen herinneringen gestuurd naar aanmeldingen die het laatst bijgewerkt zijn voor :date of een laatste herinnering kregen voor :date.',
+            'tokens_generated'               => 'Voor alle bevestigde e-mailadressen zonder betaalverzoeken zijn :count unieke betaalverzoeken gegenereerd en verstuurd per mail. Ik hoop dat je niet per ongeluk op de knop drukte want holy shit deze emails gaan we dus allemaal niet meer terugkrijgen en dan zijn we flink genaaid.',
+            'view_applications'              => 'Bekijk aanmeldingen',
+            'view_supervisors'               => 'Bekijk ouder-aanmeldingen',
             'id'                             => 'ID',
             'year'                           => 'Jaar',
             'price'                          => 'Prijs',
@@ -216,8 +217,50 @@
             'spreadsheet'                    => [
                 'title' => 'Introductie :year spreadsheet'
             ],
-
-            'applications' => [
+            'supervisor_applications'        => [
+                'title'                          => 'Ouder-aanmeldingen',
+                'index'                          => [
+                    'title' => 'Ouder-aanmeldingen introductie :year'
+                ],
+                'show'                           => [
+                    'title' => 'Ouder-aanmelding: :first_name :last_name',
+                ],
+                'id'                             => 'ID',
+                'created_at'                     => 'Aangemaakt op',
+                'member_id'                      => 'Lidnummer',
+                'last_name'                      => 'Achternaam',
+                'first_name'                     => 'Voornaam',
+                'email'                          => 'E-mailadres',
+                'status'                         => 'Status',
+                'status_email_unconfirmed'       => 'E-mail niet bevestigd',
+                'status_signed_up'               => 'Aangemeld',
+                'age_at_intro'                   => 'Leeftijd',
+                'shirt_size'                     => 'Shirtmaat',
+                'preferred_partner_id'           => 'Lidnummer voorkeurspartner',
+                'route_type'                     => 'Route',
+                'routes'                         => ['A', 'B', 'C'],
+                'remain_sober'                   => 'Nuchter blijven',
+                'drivers_license'                => 'Geldig rijbewijs',
+                'first_aid_license'              => 'EHBO brevet',
+                'company_first_response_license' => 'BHV brevet',
+                'remarks'                        => 'Opmerkingen',
+                'yes'                            => 'Ja',
+                'no'                             => 'Nee',
+                'details'                        => 'Details',
+                'not_applicable'                 => 'n.v.t.',
+                'anonymised_warning' => 'Deze aanmelding is automatisch geanonimiseerd. De persoonsgegevens die bij deze aanmelding horen, zijn onherstelbaar onbruikbaar gemaakt.',
+                'cannot_send_mails_right_now'    => 'Het is momenteel niet mogelijk om e-mails te sturen naar :first_name :last_name, aangezien de aanmelding al een bevestigd e-mailadres heeft.',
+                'back_to_index'                  => 'Terug naar aanmeldingen',
+                'delete_application'             => 'Verwijder aanmelding',
+                'delete'                         => [
+                    'title'        => 'Ouder-aanmelding verwijderen: :first_name :last_name',
+                    'are_you_sure' => 'Weet je zeker dat je deze ouder-aanmelding wil verwijderen? Dit kan <b>niet</b> ongedaan worden gemaakt. Alle gegevens gerelateerd aan deze aanmelding, behalve het lid van de vereniging zelf, zullen onherstelbaar worden verwijderd.',
+                    'delete'       => 'Verwijder ouder-aanmelding permanent',
+                    'deleted'      => 'De ouder-aanmelding is permanent verwijderd uit het systeem'
+                ],
+                'count' => ':count aanmelding|:count aanmeldingen, waarvan :confirmed aangemeld zijn en :email_unconfirmed geen bevestigd email-adres hebben',
+            ],
+            'applications'                   => [
                 'title'                            => 'Aanmeldingen',
                 'amount'                           => 'Aanmeldingen',
                 'reservations_amount'              => 'Reserveringen',

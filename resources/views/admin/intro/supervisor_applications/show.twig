@@ -1,0 +1,113 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.intro.supervisor_applications.show.title', { first_name: application.member.first_name, last_name: application.member.last_name }) }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="introduction application {{ application.status|str_slug }}">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>
+                        {{ trans('admin.intro.supervisor_applications.show.title', { first_name: application.member.first_name, last_name: application.member.last_name }) }}
+                    </h1>
+                    {% if session('success') %}
+                        <div class="alert alert-success text-center success-message">
+                            <span class="fa fa-check fa-2x pull-left"></span>
+                            {{ session('success')|raw }}
+                        </div>
+                    {% endif %}
+                    {% if errors.has('mail') %}
+                        <div class="warning">
+                            {{ errors.first('mail') }}
+                        </div>
+                    {% endif %}
+                    {% if application.isAnonymised() %}
+                        <div class="warning">
+                            {{ trans('admin.intro.supervisor_applications.anonymised_warning') }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-6">
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.id') }}</b>
+                        {{ application.id }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.status') }}</b>
+                        <span class="status">{{ trans('admin.intro.supervisor_applications.status_' ~ application.status) }}</span>
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.member_id') }}</b>
+                        <a href="{{ route('admin.members.show', { member: application.member }) }}" target="_blank">
+                            {{ application.member.member_id }}
+                        </a>
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.first_name') }}</b>
+                        {{ application.member.first_name }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.last_name') }}</b>
+                        {{ application.member.last_name }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.email') }}</b>
+                        {{ application.member.email }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.shirt_size') }}</b>
+                        {{ application.shirt_size }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.preferred_partner_id') }}</b>
+                        {{ application.preferred_partner_id ?? trans('admin.intro.supervisor_applications.not_applicable') }}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.age_at_intro') }}</b>
+                        {{ application.age_at_intro }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.route_type') }}</b>
+                        {{ application.route_type }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.remain_sober') }}</b>
+                        {{ application.remain_sober ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.drivers_license') }}</b>
+                        {{ application.drivers_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.first_aid_license') }}</b>
+                        {{ application.first_aid_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.company_first_response_license') }}</b>
+                        {{ application.company_first_response_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.remarks') }}</b>
+                        {{ application.remarks ?? trans('admin.intro.supervisor_applications.not_applicable') }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.created_at') }}</b>
+                        {{ application.created_at|date(trans('datetime.format.date_and_time')) }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.updated_at') }}</b>
+                        {{ application.updated_at|date(trans('datetime.format.date_and_time')) }}
+                    </div>
+                </div>
+                <div class="col-12 button-container">
+                    <a href="{{ route('admin.intro.supervisor_applications.index', { intro: introduction }) }}" class="button">{{ trans('admin.intro.supervisor_applications.back_to_index') }}</a>
+                    {% if application.isAnonymised() or application.status is constant('STATUS_EMAIL_UNCONFIRMED', application) %}
+                        <a href="{{ route('admin.intro.supervisor_applications.delete_confirmation', { intro: introduction, application: application }) }}"
+                           class="button danger pull-right">{{ trans('admin.intro.supervisor_applications.delete_application') }}</a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </main>
+    </div>
+{% endblock %}

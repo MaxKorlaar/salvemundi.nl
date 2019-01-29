@@ -82,7 +82,6 @@
         Route::post('/{introduction}/{year}/inschrijven', 'IntroController@signupByYearAndId')->name('by_id.signup.send');
 
         Route::get('inschrijven', 'IntroController@getSignupForm')->name('signup');
-        Route::post('inschrijven', 'IntroController@signup')->name('signup.send');
 
         Route::group(['prefix' => '2019', 'as' => '2019.'], function () {
             Route::get('planning', 'IntroController@get2019Schedule')->name('schedule');
@@ -90,7 +89,10 @@
 
         Route::get('papas-en-mamas', 'IntroController@getSupervisorInfo')->name('supervisor_info');
         Route::get('papas-en-mamas/inschrijven', 'IntroController@getSupervisorSignupForm')->name('supervisor_signup');
-        Route::post('papas-en-mamas/inschrijven', 'IntroController@supervisorSignup')->name('supervisor_signup.send');
+
+        Route::get('/{introduction}/{year}/papas-en-mamas', 'IntroController@getSupervisorInfoByYearAndId')->name('by_id.supervisor.info');
+        Route::get('/{introduction}/{year}/papas-en-mamas/inschrijven', 'IntroController@getSupervisorSignupFormByYearAndId')->name('by_id.supervisor.signup');
+        Route::post('/{introduction}/{year}/papas-en-mamas/inschrijven', 'IntroController@supervisorSignupByYearAndId')->name('by_id.supervisor_signup.send');
 
         Route::get('inschrijven/bevestigen/{application}/{token}', 'IntroController@confirmEmail')->name('signup.confirm_email');
         Route::get('papas-en-mamas/inschrijven/bevestigen/{application}/{token}', 'IntroController@confirmSupervisorEmail')->name('supervisor_signup.confirm_email');
@@ -130,9 +132,11 @@
         Route::post('intro/{intro}/aanmeldingen/{application}/stuur-betaal-herinnering', 'Intro\ApplicationController@sendPaymentReminder')->name('intro.applications.send_payment_reminder');
         Route::post('intro/{intro}/aanmeldingen/{application}/stuur-email-herinnering', 'Intro\ApplicationController@sendEmailConfirmationReminder')->name('intro.applications.send_email_confirmation_reminder');
         Route::get('intro/{intro}/aanmeldingen/{application}/verwijderen', 'Intro\ApplicationController@getDeleteConfirmation')->name('intro.applications.delete_confirmation');
+        Route::get('intro/{intro}/ouder-aanmeldingen/{application}/verwijderen', 'Intro\SupervisorApplicationController@getDeleteConfirmation')->name('intro.supervisor_applications.delete_confirmation');
         Route::get('intro/{intro}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.delete_confirmation');
         Route::resource('intro', 'IntroController')->names('intro');
         Route::resource('intro/{intro}/aanmeldingen', 'Intro\ApplicationController')->names('intro.applications');
+        Route::resource('intro/{intro}/ouder-aanmeldingen', 'Intro\SupervisorApplicationController')->names('intro.supervisor_applications');
 
         Route::group(['prefix' => 'winkel', 'namespace' => 'Store', 'as' => 'store.', 'middleware' => ['auth.admin']], function () {
             Route::resource('bestellingen', 'OrderController')->names('orders');

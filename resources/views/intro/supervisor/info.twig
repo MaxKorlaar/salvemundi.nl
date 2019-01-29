@@ -30,7 +30,7 @@
                     <p>
                         {{ trans('intro.supervisor.info.for_questions')|raw }}
                     </p>
-                    <a href="{{ route('intro.supervisor_signup') }}" class="button">{{ trans('intro.supervisor.info.click_to_sign_up') }}</a>
+                    <a href="{{ route('intro.by_id.supervisor.signup', { introduction: introduction, year: year }) }}" class="button">{{ trans('intro.supervisor.info.click_to_sign_up') }}</a>
                 </div>
             </div>
         </main>
