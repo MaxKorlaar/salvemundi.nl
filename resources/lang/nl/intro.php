@@ -2,7 +2,7 @@
     return [
         'info'       => [
             'closed_warning'    => 'Helaas is het niet meer mogelijk om je hier in te schrijven voor de introductie van Salve Mundi. Voor vragen kan je altijd contact opnemen met onze introcommissie: <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a>.',
-            'title'             => 'Inschrijven Intro FHICT 2018',
+            'title'             => 'Inschrijven intro FHICT 2018',
             'dates'             => '26 tot en met 30 augustus',
             'click_to_sign_up'  => 'Klik hier om je in te schrijven',
             'students_only'     => 'Deze pagina is bedoeld voor deelnemers, en niet voor begeleiding!',
@@ -30,8 +30,8 @@
 
         ],
         'signup'     => [
-            'title'                        => 'Inschrijven voor de FHICT intro van :year',
-            'signup_text'                  => 'Om de introductie te bekostigen vragen wij een contributie. Deze dient direct bij het verzenden van dit formulier aan voldaan te worden. Hiervoor vragen wij een bedrag van 60 euro + 20 euro borg voor de slaapkamer. Na afloop krijg je deze 20 euro weer terug. Wel is het handig om jezelf in te schrijven: Er zijn namelijk slechts 200 plekken voor de 550 inschrijvingen op de opleiding zelf. Het is dus belangrijk om je hier aan te melden. Zorg ook dat je een e-mail stuurt naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a> wanneer je toch een andere opleiding gaat volgen en je jezelf dus wilt afmelden. Zo houden we het voor iedereen eerlijk!',
+            'title'                        => 'Inschrijven voor de intro FHICT :year',
+            'signup_text'                  => 'Om de introductie te bekostigen vragen wij een bijdrage. Momenteel kan er alleen ingeschreven worden en vanaf 1 juli zullen de betaalverzoeken verstuurd worden. Bij inschrijving na 1 juli moet er direct betaald worden om je inschrijving te bevestigen. Hiervoor vragen wij een bedrag van € 90,-. Het is handig om jezelf zo snel mogelijk in te schrijven, er zijn namelijk slechts 200 plekken beschikbaar van de 550 studenten voor de opleiding FHICT. Indien je jezelf achteraf toch af wilt melden, doe dit dan zo snel mogelijk door een e-mail te sturen naar intro@salvemundi.nl. Zo kunnen we alle beschikbare plekken opvullen met enthousiaste studenten!',
             'signup_full_warning'          => 'Alle beschikbare plekken van deze introductie zijn helaas al bezet. Je kan je wel nog aanmelden voor de reservelijst, waardoor je de mogelijkheid om te betalen alsnog krijgt mocht er een plek beschikbaar komen.',
             'signup_full_reservation_text' => '<b>Momenteel zijn alle beschikbare plekken bezet. Je kan je daarom alleen nog maar aanmelden voor de reservelijst.</b> Om de introductie te bekostigen vragen wij een contributie, waarvoor je later een betaalverzoek ontvangt. Hiervoor vragen wij een bedrag van 60 euro + 20 euro borg voor de slaapkamer. Na afloop krijg je deze 20 euro weer terug. Het is handig om nu al kosteloos een plek te reserveren: Er zijn namelijk slechts 200 plekken voor de 550 inschrijvingen op de opleiding zelf. Het is dus belangrijk om je hier aan te melden. Zorg ook dat je een e-mail stuurt naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a> wanneer je toch een andere opleiding gaat volgen en je jezelf dus wilt afmelden. Zo houden we het voor iedereen eerlijk!',
             'signup_full_text'             => 'Alle beschikbare plekken van deze introductie zijn helaas al bezet. Het is niet mogelijk om je nog aan te melden voor deze introductie, tenzij er plekken beschikbaar komen.',
