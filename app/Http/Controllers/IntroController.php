@@ -17,6 +17,7 @@
     use App\Transaction;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Cache;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
     use Mollie\Api\Exceptions\ApiException;
@@ -227,13 +228,11 @@
                 $mail                                  = new IntroApplicationPaymentRequest($application);
                 $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
                 Mail::send($mail);
+                $applicationKey = 'admin.intro.throttle.payment_reminder:' . $application->id;
+                Cache::set($applicationKey, time(), 10080); // Zorg ervoor dat de gebruiker niet nog een herinnering kan ontvangen binnen 7 dagen
             }
             $application->saveOrFail();
-            // Sla mail naar introcommissie over
-            //            $mail = new NewIntroApplication($application);
-            //            $mail->to(config('mail.intro_to.address'), config('mail.intro_to.name'));
-            //
-            //            Mail::queue($mail);
+
             return view('intro.email_confirmation', [
                 'application' => $application
             ]);

@@ -7,8 +7,14 @@
     use App\Http\Requests\Admin\Intro\UpdateIntro;
     use App\IntroApplication;
     use App\Introduction;
+    use App\Mail\ConfirmIntroApplication;
+    use App\Mail\IntroApplicationPaymentRequest;
     use App\Year;
     use Carbon\Carbon;
+    use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Cache;
+    use Illuminate\Support\Facades\Log;
+    use Illuminate\Support\Facades\Mail;
 
     /**
      * Class IntroController
@@ -128,5 +134,94 @@
             }
             return back();
         }
+
+
+        /**
+         *
+         * @param Introduction $intro
+         * @param Request      $request
+         *
+         * @return IntroApplication
+         * @throws \Psr\SimpleCache\InvalidArgumentException
+         */
+        public function sendEmailConfirmationReminders(Introduction $intro, Request $request) {
+            $key = 'admin.intro.throttle.email_confirmation_reminders:' . $intro->id;
+            if (Cache::has($key)) {
+                return back()->withErrors(['mail' => trans('admin.intro.reminder_throttle')]);
+            }
+            $unconfirmedCount = $intro->applications()->where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)
+                ->where('type', '!=', IntroApplication::TYPE_ANONYMISED)->count();
+            $signups          = $intro->applications()->where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)
+                ->where('type', '!=', IntroApplication::TYPE_ANONYMISED)->get();
+            $count            = 0;
+            $signups->each(function (IntroApplication $application) use (&$count) {
+                $applicationKey = 'admin.intro.throttle.email_reminder:' . $application->id;
+                if (!Cache::has($applicationKey)) {
+                    $mail = new ConfirmIntroApplication($application);
+                    $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
+                    Mail::queue($mail);
+                    Cache::set($applicationKey, time(), 10080);
+                    $count++;
+                }
+            });
+
+            Cache::set($key, time(), 10080); // 10.080 minuten = 7 dagen
+
+            Log::info(trans('admin.intro.reminders_sent', [
+                'count'             => $count,
+                'unconfirmed_count' => $unconfirmedCount
+            ]), ['user' => $request->user()->official_name, 'ip' => $request->ip()]);
+            return back()->with('success', trans('admin.intro.reminders_sent', [
+                'count'             => $count,
+                'unconfirmed_count' => $unconfirmedCount,
+            ]));
+        }
+
+        /**
+         * @param Introduction $intro
+         * @param Request      $request
+         *
+         * @return \Illuminate\Http\RedirectResponse
+         * @throws \Psr\SimpleCache\InvalidArgumentException
+         */
+        public function sendPaymentReminders(Introduction $intro, Request $request) {
+            $key = 'admin.intro.throttle.payment_reminders:' . $intro->id;
+            if (Cache::has($key)) {
+                return back()->withErrors(['mail' => trans('admin.intro.reminder_throttle')]);
+            }
+            $totalCount = $intro->applications()->where('status', '=', IntroApplication::STATUS_RESERVED)
+                ->where('type', '!=', IntroApplication::TYPE_ANONYMISED)->count();
+            $signups          = $intro->applications()->where('status', '=', IntroApplication::STATUS_RESERVED)
+                ->where('type', '!=', IntroApplication::TYPE_ANONYMISED)->get();
+            $count            = 0;
+            $signups->each(function (IntroApplication $application) use (&$count) {
+                $applicationKey = 'admin.intro.throttle.payment_reminder:' . $application->id;
+                if (!Cache::has($applicationKey)) {
+                    $mail = new IntroApplicationPaymentRequest($application);
+                    if ($application->email_confirmation_token === null) {
+                        $application->email_confirmation_token = str_random(64);
+                        $application->saveOrFail();
+                    } else {
+                        $mail->subject(trans('email.intro.payment_request_reminder.subject', ['name' => $application->first_name . ' ' . $application->last_name]));
+                    }
+                    $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
+                    Mail::queue($mail);
+                    Cache::set($applicationKey, time(), 10080);
+                    $count++;
+                }
+            });
+
+            Cache::set($key, time(), 10080); // 10.080 minuten = 7 dagen
+
+            Log::info(trans('admin.intro.payment_reminders_sent', [
+                'count'             => $count,
+                'total_count' => $totalCount
+            ]), ['user' => $request->user()->official_name, 'ip' => $request->ip()]);
+            return back()->with('success', trans('admin.intro.payment_reminders_sent', [
+                'count'             => $count,
+                'total_count' => $totalCount,
+            ]));
+        }
+
 
     }

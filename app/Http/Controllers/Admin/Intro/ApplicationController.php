@@ -96,14 +96,14 @@
          */
         public function sendEmailConfirmationReminder(Introduction $intro, IntroApplication $application, Request $request) {
             if ($application->isAnonymised()) abort(400);
-            $key = 'admin.intro.throttle.email_reminder.' . $application->id . ':' . $request->user()->id;
+            $key = 'admin.intro.throttle.email_reminder:' . $application->id;
             if (Cache::has($key)) {
                 return back()->withErrors(['mail' => trans('admin.intro.applications.reminder_throttle')]);
             }
             $mail = new ConfirmIntroApplication($application);
             $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
             Mail::queue($mail);
-            Cache::set($key, time(), 120);
+            Cache::set($key, time(), 10080);
             return back()->with('success', trans('admin.intro.applications.email_confirmation_reminder_sent'));
         }
 
@@ -119,19 +119,20 @@
          */
         public function sendPaymentReminder(Introduction $intro, IntroApplication $application, Request $request) {
             if ($application->isAnonymised()) abort(400);
-            $key = 'admin.intro.throttle.payment_reminder.' . $application->id . ':' . $request->user()->id;
+            $key = 'admin.intro.throttle.payment_reminder:' . $application->id;
             if (Cache::has($key)) {
                 return back()->withErrors(['mail' => trans('admin.intro.applications.reminder_throttle')]);
             }
+            $mail = new IntroApplicationPaymentRequest($application);
             if ($application->email_confirmation_token === null) {
                 $application->email_confirmation_token = str_random(64);
                 $application->saveOrFail();
+            } else {
+                $mail->subject(trans('email.intro.payment_request_reminder.subject', ['name' => $application->first_name . ' ' . $application->last_name]));
             }
-            $mail = new IntroApplicationPaymentRequest($application);
-            $mail->subject(trans('email.intro.payment_request_reminder.subject', ['name' => $application->first_name . ' ' . $application->last_name]));
             $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
             Mail::queue($mail);
-            Cache::set($key, time(), 120);
+            Cache::set($key, time(), 10080);
             return back()->with('success', trans('admin.intro.applications.payment_reminder_sent'));
         }
 
@@ -189,36 +190,7 @@
 
         // De volgende functies zijn buiten gebruik omdat de functies nu individueel uitgevoerd kunnen worden per aanmelding.
 
-        /**
-         * @deprecated
-         *
-         * @param Request $request
-         *
-         * @return IntroApplication
-         */
-        public function sendConfirmEmailReminders(Request $request) {
-            $unconfirmedCount = IntroApplication::where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)->count();
-            $yesterday        = Carbon::yesterday()->format('Y-m-d H:i:s');
-            $signups          = IntroApplication::where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)->where('updated_at', '<', $yesterday)->get();
 
-            $signups->each(function (IntroApplication $application) {
-                $mail = new ConfirmIntroApplication($application);
-                $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
-                $application->updated_at = Carbon::now();
-                $application->saveOrFail();
-                Mail::queue($mail);
-            });
-            Log::info(trans('admin.intro.reminders_sent', [
-                'count'             => $signups->count(),
-                'unconfirmed_count' => $unconfirmedCount,
-                'date'              => $yesterday
-            ]), ['user' => $request->user()->official_name, 'ip' => $request->ip()]);
-            return back()->with('success', trans('admin.intro.reminders_sent', [
-                'count'             => $signups->count(),
-                'unconfirmed_count' => $unconfirmedCount,
-                'date'              => $yesterday
-            ]));
-        }
 
         /**
          * @deprecated

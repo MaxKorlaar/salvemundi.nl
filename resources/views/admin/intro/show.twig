@@ -6,6 +6,17 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ trans('admin.intro.show.title', { year: introduction.year.year }) }}</h1>
+                    {% if session('success') %}
+                        <div class="alert alert-success text-center success-message">
+                            <span class="fa fa-check fa-2x pull-left"></span>
+                            {{ session('success')|raw }}
+                        </div>
+                    {% endif %}
+                    {% if errors.has('mail') %}
+                        <div class="warning">
+                            {{ errors.first('mail') }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-6">
                     <div>
@@ -141,6 +152,16 @@
                     {% else %}
                         <p>{{ trans('admin.intro.cannot_delete_until_anonymised') }}</p>
                     {% endif %}
+
+                    <form action="{{ route('admin.intro.send_email_confirmation_reminders', { intro: introduction }) }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="button danger">{{ trans('admin.intro.send_email_reminders') }}</button>
+                    </form>
+                    <form action="{{ route('admin.intro.send_payment_reminders', { intro: introduction }) }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="button danger">{{ trans('admin.intro.send_payment_reminders') }}</button>
+                    </form>
+
                 </div>
             </div>
         </main>

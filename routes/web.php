@@ -128,13 +128,25 @@
         Route::resource('kamp', 'CampingController')->names('camping');
 
         //Route::get('intro/onbevestigd', 'IntroController@getUnconfirmedSignups');
-        //Route::post('intro/genereer-tokens', 'IntroController@generateTokensForUnpaidSignups')->name('intro.generate_tokens');
+
+        Route::post('intro/{intro}/stuur-email-herinneringen', 'IntroController@sendEmailConfirmationReminders')
+            ->name('intro.send_email_confirmation_reminders');
+        Route::post('intro/{intro}/stuur-betaal-herinneringen', 'IntroController@sendPaymentReminders')
+            ->name('intro.send_payment_reminders');
 
         Route::get('intro/{intro}/spreadsheet', 'Intro\ApplicationController@spreadsheet')->name('intro.spreadsheet');
-        Route::post('intro/{intro}/aanmeldingen/{application}/stuur-betaal-herinnering', 'Intro\ApplicationController@sendPaymentReminder')->name('intro.applications.send_payment_reminder');
-        Route::post('intro/{intro}/aanmeldingen/{application}/stuur-email-herinnering', 'Intro\ApplicationController@sendEmailConfirmationReminder')->name('intro.applications.send_email_confirmation_reminder');
-        Route::get('intro/{intro}/aanmeldingen/{application}/verwijderen', 'Intro\ApplicationController@getDeleteConfirmation')->name('intro.applications.delete_confirmation');
-        Route::get('intro/{intro}/ouder-aanmeldingen/{application}/verwijderen', 'Intro\SupervisorApplicationController@getDeleteConfirmation')->name('intro.supervisor_applications.delete_confirmation');
+
+        Route::post('intro/{intro}/aanmeldingen/{application}/stuur-betaal-herinnering', 'Intro\ApplicationController@sendPaymentReminder')
+            ->name('intro.applications.send_payment_reminder');
+        Route::post('intro/{intro}/aanmeldingen/{application}/stuur-email-herinnering', 'Intro\ApplicationController@sendEmailConfirmationReminder')
+            ->name('intro.applications.send_email_confirmation_reminder');
+
+        Route::get('intro/{intro}/aanmeldingen/{application}/verwijderen', 'Intro\ApplicationController@getDeleteConfirmation')
+            ->name('intro.applications.delete_confirmation');
+
+        Route::get('intro/{intro}/ouder-aanmeldingen/{application}/verwijderen', 'Intro\SupervisorApplicationController@getDeleteConfirmation')
+            ->name('intro.supervisor_applications.delete_confirmation');
+
         Route::get('intro/{intro}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.delete_confirmation');
         Route::resource('intro', 'IntroController')->names('intro');
         Route::resource('intro/{intro}/aanmeldingen', 'Intro\ApplicationController')->names('intro.applications');
