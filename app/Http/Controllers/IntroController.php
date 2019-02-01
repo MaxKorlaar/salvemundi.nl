@@ -211,6 +211,7 @@
          * @param                    $token
          *
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @throws \Psr\SimpleCache\InvalidArgumentException
          * @throws \Throwable
          */
         public function confirmEmail(IntroApplication $application, $token) {
