@@ -45,24 +45,27 @@
          */
         public function handle() {
             Log::debug('Controleren of er een introductie is waarvan de uiterlijke aanmelddatum meer dan 2 maanden geleden is...');
-            $introduction = Introduction::where('signup_close', '<', Carbon::today()->subMonths(2))->first();
-            Log::debug('Dit heb ik gevonden', [$introduction]);
-            if ($introduction !== null) {
-                $applications = $introduction->applications->where('type', '!=', IntroApplication::TYPE_ANONYMISED);
-                $applications->each(function (IntroApplication $application) {
-                    Log::debug("Anonimiseren van aanmelding", ['id' => $application->id]);
-                    $application->anonymise();
-                });
-                $applications = $introduction->supervisorApplications->where('type', '!=', IntroSupervisorApplication::TYPE_ANONYMISED);
-                $applications->each(function (IntroSupervisorApplication $application) {
-                    Log::debug("Anonimiseren van ouder-aanmelding", ['id' => $application->id]);
-                    $application->anonymise();
-                });
-                Log::debug("Aanmeldingen geanonimiseerd", ['count' => $applications->count()]);
-                $this->info("Aanmeldingen geanonimiseerd: " . $applications->count());
-                Log::info("Aanmeldingen zijn geanonimiseerd", ['intro' => $introduction]);
+            $introductions = Introduction::where('signup_close', '<', Carbon::today()->subMonths(2))->get();
+            Log::debug('Dit heb ik gevonden', [$introductions]);
+            if ($introductions->isNotEmpty()) {
+                /** @var Introduction $introduction */
+                foreach ($introductions as $introduction) {
+                    $applications = $introduction->applications->where('type', '!=', IntroApplication::TYPE_ANONYMISED);
+                    $applications->each(function (IntroApplication $application) {
+                        Log::debug("Anonimiseren van aanmelding", ['id' => $application->id]);
+                        $application->anonymise();
+                    });
+                    $applications = $introduction->supervisorApplications->where('type', '!=', IntroSupervisorApplication::TYPE_ANONYMISED);
+                    $applications->each(function (IntroSupervisorApplication $application) {
+                        Log::debug("Anonimiseren van ouder-aanmelding", ['id' => $application->id]);
+                        $application->anonymise();
+                    });
+                    Log::debug("Aanmeldingen geanonimiseerd", ['count' => $applications->count()]);
+                    $this->info("Aanmeldingen geanonimiseerd: " . $applications->count());
+                    Log::info("Aanmeldingen zijn geanonimiseerd", ['intro' => $introduction]);
+                }
             } else {
-                $this->info("Geen introductie gevonden waarbij de uiterlijke aanmelddatum < " . Carbon::today()->subMonths(2));
+                $this->info("Geen introducties gevonden waarbij de uiterlijke aanmelddatum < " . Carbon::today()->subMonths(2));
             }
         }
     }

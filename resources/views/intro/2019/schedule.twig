@@ -7,14 +7,14 @@
                 <div class="col-md-12">
                     <h1>{{ trans('intro.2019.title') }}</h1>
                     <div class="button-menu my-3">
-                        <a href="{{ route('intro.2019.info') }}">
-                            <button class="button mx-1">Algemene informatie</button>
+                        <a class="button mx-1" href="{{ route('intro.by_id.info', { introduction: introduction, year: year } ) }}">
+                            {{ trans('intro.main_info_button') }}
                         </a>
-                        <a href="{{ route('intro.2019.schedule') }}">
-                            <button class="button mx-1">Planning</button>
+                        <a class="button mx-1" href="{{ route('intro.by_id.schedule', { introduction: introduction, year: year }) }}">
+                            {{ trans('intro.schedule_button') }}
                         </a>
-                        <a href="{{ route('intro.signup') }}">
-                            <button class="button mx-1">Aanmelden</button>
+                        <a class="button mx-1" href="{{ route('intro.by_id.signup', { introduction: introduction, year: year }) }}">
+                            {{ trans('intro.sign_up_button') }}
                         </a>
                     </div>
                 </div>
@@ -42,6 +42,10 @@
                             {{ trans("intro.2019.schedule_page.friday.text")|raw }}
                         </p>
                     </div>
+                </div>
+                <div class="col-md-12">
+                    <h2>{{ trans('intro.2019.contact.title') }}</h2>
+                    <p>{{ trans('intro.2019.contact.text')|raw }}</p>
                 </div>
                 <div class="col-md-12 mb-4">
                     <div class="row">

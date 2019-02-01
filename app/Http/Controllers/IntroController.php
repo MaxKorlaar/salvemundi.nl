@@ -324,6 +324,16 @@
         }
 
         /**
+         * @return \Illuminate\Http\RedirectResponse
+         * @throws \Throwable
+         */
+        public function getSchedule() {
+            $currentIntro = Introduction::getIntroductionForCurrentYear();
+            if ($currentIntro === null) abort(404);
+            return redirect()->route('intro.by_id.schedule', ['year' => $currentIntro->year->year, 'id' => $currentIntro->id]);
+        }
+
+        /**
          * @param              $year
          * @param Introduction $introduction
          *
@@ -331,6 +341,19 @@
          */
         public function getIntroByYearAndId(Introduction $introduction, $year) {
             return view('intro.2019.info', [
+                'introduction' => $introduction,
+                'year'         => $year
+            ]);
+        }
+
+        /**
+         * @param Introduction $introduction
+         * @param              $year
+         *
+         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         */
+        public function getScheduleByYearAndId(Introduction $introduction, $year) {
+            return view('intro.2019.schedule', [
                 'introduction' => $introduction,
                 'year'         => $year
             ]);
@@ -470,14 +493,18 @@
         public function supervisorSignupByYearAndId(Introduction $introduction, $year, IntroSupervisorSignup $request) {
             if (!$introduction->reservationsAreOpen() && !$introduction->signupsAreOpen()) abort(403);
             $member = Auth::user()->member;
-            if(!$member->isCurrentlyMember()) abort(403);
+            if (!$member->isCurrentlyMember()) abort(403);
             $application                                 = new IntroSupervisorApplication($request->all());
             $application->ip_address                     = $request->ip();
             $application->email_confirmation_token       = str_random(200);
             $application->remain_sober                   = $request->has('remain_sober');
             $application->drivers_license                = $request->has('drivers_license');
             $application->first_aid_license              = $request->has('first_aid_license');
-            $application->company_first_response_license = $request->has('company_first_response_license');
+
+            if($request->get('active_in_association') === array_last(trans('intro.supervisor.signup.active_as'))) {
+                $application->active_in_association = $request->get('active_as_other');
+            }
+
             $application->member()->associate($member);
             $application->introduction()->associate($introduction);
             if (app()->environment() !== 'production') $request->flash();

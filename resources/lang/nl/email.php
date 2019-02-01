@@ -69,7 +69,7 @@
                 'instructions' => 'Het is bijna zover, de introductie van FHICT :year kan bijna van start gaan!
 Je hebt dit mailtje ontvangen omdat je jezelf hebt ingeschreven voor de introductie van :year. Hierbij krijg je dan ook van ons de link om de betaling over te kunnen maken. Wij vragen hiervoor :price euro, inclusief 20 euro borg voor de overnachting. Deze 20 euro krijg je op het einde van de intro terug.',
                 'link'         => 'Open de betaling',
-                'when_done'    => 'Het is de bedoeling dat dit voor het begin van de maand van de introductie gebeurt. Wij hopen graag iedereen die zich ingeschreven heeft terug te zien bij de introductie van FHICT :year! Wanneer de betaling succesvol is zal je aanmelding definitief bevestigd worden en zullen we je hiervan op de hoogte stellen.',
+                'when_done'    => 'Het is de bedoeling dat dit voor het begin van de maand van de introductie gebeurt. Wij hopen graag iedereen die zich ingeschreven heeft terug te zien bij de introductie van FHICT :year! Wanneer de betaling succesvol is zal je aanmelding definitief bevestigd worden en zullen we je hiervan op de hoogte stellen. Mocht je nog verdere vragen hebben, dan kan je ons altijd <a href="https://wa.me/31636142514" target="_blank">een WhatsApp-berichtje sturen op +31 6 36142514</a>.',
                 'signature'    => 'Tot dan!!
                 
 Met vriendelijke groet,
@@ -98,7 +98,7 @@ De feestcommissie van Salve Mundi'
 <li>Warme kleding voor de avond</li>
 <li>Zwemkleding</li></ul>
 Alle overige informatie is te vinden op:
-https://fontys.nl/Goede-Start/Eindhoven-1/Welkom-bij-HBO-ICT.htm',
+https://fontys.nl/Goede-Start/Eindhoven-1/Welkom-bij-HBO-ICT.htm. Mocht je nog verdere vragen hebben, dan kan je ons altijd <a href="https://wa.me/31636142514" target="_blank">een WhatsApp-berichtje sturen op +31 6 36142514</a>.',
                 'signature'    => 'Tot dan!!
                 
 Met vriendelijke groet,

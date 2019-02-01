@@ -21,17 +21,17 @@
             {% endif %}
             {% if introduction.signupsAreOpen() %}
                 {% if(introduction.allowSignups()) %}
-                    <p>{{ trans('intro.signup.signup_text')|raw }}</p>
+                    <p>{{ trans('intro.signup.signup_text', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
                 {% elseif introduction.allowReservations() %}
                     <div class="warning">
-                        {{ trans('intro.signup.signup_full_warning')|raw }}
+                        {{ trans('intro.signup.signup_full_warning', { costs: introduction.price|number_format(2, ',') })|raw }}
                     </div>
-                    <p>{{ trans('intro.signup.signup_full_reservation_text')|raw }}</p>
+                    <p>{{ trans('intro.signup.signup_full_reservation_text', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
                 {% else %}
-                    <p>{{ trans('intro.signup.signup_full_text')|raw }}</p>
+                    <p>{{ trans('intro.signup.signup_full_text', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
                 {% endif %}
             {% else %}
-                <p>{{ trans('intro.signup.reservation_text')|raw }}</p>
+                <p>{{ trans('intro.signup.reservation_text', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
             {% endif %}
 
             <div class="row justify-content-center">
@@ -104,6 +104,22 @@
                                    maxlength="15">
                             <div class="invalid-feedback">
                                 {{ errors.first('phone')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('contact_name') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.contact_name') }}" name="contact_name" value="{{ old('contact_name') }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('contact_name')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('contact_relation') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.contact_relation') }}" name="contact_relation" value="{{ old('contact_relation') }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('contact_relation')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">

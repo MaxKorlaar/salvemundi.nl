@@ -10,23 +10,36 @@
                         {{ trans('intro.supervisor.info.supervisors_only')|raw }}
                     </div>
                     {% for content in trans('intro.supervisor.info.content') %}
-                        <p>{{ content }}</p>
+                        <p>{{ content|raw }}</p>
                     {% endfor %}
+                    <h4>{{ trans('intro.supervisor.info.what_to_expect') }}</h4>
+                    <ul>
+                        {% for content in trans('intro.supervisor.info.expectations') %}
+                            <li>{{ content }}</li>
+                        {% endfor %}
+                    </ul>
+                    <h4>{{ trans('intro.supervisor.info.what_do_we_expect') }}</h4>
+                    <ul>
+                        {% for content in trans('intro.supervisor.info.our_expectations') %}
+                            <li>{{ content }}</li>
+                        {% endfor %}
+                    </ul>
+                    <h4>{{ trans('intro.supervisor.info.routes_title') }}</h4>
                     <p>{{ trans('intro.supervisor.info.three_routes') }}</p>
-                    <ol type="A">
+                    <ul>
                         {% for content in trans('intro.supervisor.info.routes') %}
                             <li>{{ content }}</li>
                         {% endfor %}
-                    </ol>
+                    </ul>
                     {% for content in trans('intro.supervisor.info.more_content') %}
                         <p>{{ content|raw }}</p>
                     {% endfor %}
-                    <p>{{ trans('intro.supervisor.info.requirements_for_signup') }}</p>
+                    {#<p>{{ trans('intro.supervisor.info.requirements_for_signup') }}</p>
                     <ol>
                         {% for content in trans('intro.supervisor.info.requirements') %}
                             <li>{{ content }}</li>
                         {% endfor %}
-                    </ol>
+                    </ol>#}
                     <p>
                         {{ trans('intro.supervisor.info.for_questions')|raw }}
                     </p>

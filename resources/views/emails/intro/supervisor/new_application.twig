@@ -225,8 +225,8 @@
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 
                                             <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;table-layout:auto;width:100%;">
-                                                {% set member_fields = ['member_id', 'first_name', 'last_name', 'phone', 'email'] %}{% set fields = ['age_at_intro', 'shirt_size', 'preferred_partner_id', 'remain_sober', 'drivers_license', 'first_aid_license', 'company_first_response_license', 'route_type',
-                                                    'remarks'] %}{% for field in member_fields %}
+                                                {% set member_fields = ['member_id', 'first_name', 'last_name', 'phone', 'city', 'email'] %}{% set fields = ['age_at_intro', 'shirt_size', 'previously_participated_as', 'active_in_association', 'gender', 'remain_sober', 'drivers_license', 'company_first_response_license',
+                                                    'route_type', 'motivation', 'remarks'] %}{% for field in member_fields %}
                                                     <tr>
                                                         <td style="padding: 1rem 1rem 0 0;font-weight:bold;">
                                                             {{ trans('intro.supervisor.signup.' ~ field)|raw }}
@@ -255,13 +255,13 @@
 
                                             <table 0="[object Object]" 1="[object Object]" 2="[object Object]" border="0" style="cellspacing:0;color:#000;font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:22px;table-layout:auto;width:100%;">
                                                 <!--<thead>
-              <tr>{% set excel_fields = ['member_id', 'last_name', 'first_name', 'phone', 'email', 'age_at_intro', 'shirt_size', 'preferred_partner_id', 'remain_sober', 'drivers_license', 'first_aid_license', 'company_first_response_license', 'route_type', 'remarks'] %}
+              <tr>{% set excel_fields = ['age_at_intro', 'shirt_size', 'previously_participated_as', 'active_in_association', 'gender', 'remain_sober', 'drivers_license', 'company_first_response_license', 'route_type', 'motivation', 'remarks'] %}
                 {% for field in excel_fields %}
                 <th>{{ trans('intro.supervisor.signup.' ~ field) }}</th>
                 {% endfor %}
               </tr>
             </thead>-->
-                                                <tbody style="user-select: all;">
+                                                <tbody style="user-select: all;font-size:10px;">
                                                     <tr>
                                                         {% for field in excel_fields %}
                                                             <td style="border:1px solid #ecedee">

@@ -57,15 +57,23 @@
                         {{ application.phone }}
                     </div>
                     <div>
+                        <b>{{ trans('admin.intro.applications.contact_name') }}</b>
+                        {{ application.contact_name }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.applications.contact_relation') }}</b>
+                        {{ application.contact_relation }}
+                    </div>
+                    <div>
                         <b>{{ trans('admin.intro.applications.contact_phone') }}</b>
                         {{ application.contact_phone }}
                     </div>
+                </div>
+                <div class="col-4">
                     <div>
                         <b>{{ trans('admin.intro.applications.birthday') }}</b>
                         {{ application.birthday|date(trans('datetime.format.date')) }}
                     </div>
-                </div>
-                <div class="col-4">
                     <div>
                         <b>{{ trans('admin.intro.applications.email') }}</b>
                         {{ application.email }}

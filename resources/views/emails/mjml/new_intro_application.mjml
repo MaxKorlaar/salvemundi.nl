@@ -15,7 +15,7 @@
 
 
           <mj-table>
-            {% set fields = ['first_name', 'last_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'same_sex_rooms', 'remarks', 'transaction_id', 'transaction_amount'] %} {% for field in fields %}
+            {% set fields = ['first_name', 'last_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_name', 'contact_relation', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'remarks', 'transaction_id', 'transaction_amount'] %} {% for field in fields %}
             <tr>
               <td style="padding: 1rem 1rem 0 0;font-weight:bold;">
                 {{ trans('intro.signup.' ~ field)|raw }}
@@ -30,7 +30,7 @@
 
           <mj-table>
             <!--<thead>
-              <tr>{% set excel_fields = ['last_name', 'first_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'same_sex_rooms', 'remarks', 'transaction_id', 'transaction_amount'] %}
+              <tr>{% set excel_fields = ['last_name', 'first_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_name', 'contact_relation', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'remarks', 'transaction_id', 'transaction_amount'] %}
                 {% for field in excel_fields %}
                 <th>{{ trans('intro.signup.' ~ field) }}</th>
                 {% endfor %}
@@ -39,7 +39,7 @@
             <tbody style="user-select: all;">
               <tr>
                 {% for field in excel_fields %}
-                <td style="border:1px solid #ecedee">
+                <td style="border:1px solid #ecedee;font-size:10px;">
                   {% if application[field] is same as(false) %} {{ trans('email.intro.new_application.false') }} {% elseif application[field] is same as(true) %} {{ trans('email.intro.new_application.true') }} {% else %} {{ application[field]|default('-') }} {% endif %}
                 </td>
                 {% endfor %}

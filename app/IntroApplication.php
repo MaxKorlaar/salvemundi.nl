@@ -71,6 +71,10 @@
      * @property-read \App\Transaction       $transaction
      * @method static Builder|IntroApplication whereCountry($value)
      * @property int|null                    $transaction_id
+     * @property string                      $contact_name
+     * @property string                      $contact_relation
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroApplication whereContactName($value)
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroApplication whereContactRelation($value)
      */
     class IntroApplication extends Model {
         use HasEncryptedAttributes;
@@ -78,10 +82,16 @@
             STATUS_RESERVED = 'reserved', STATUS_REFUNDED = 'refunded',
             STATUS_EMAIL_UNCONFIRMED = 'email_unconfirmed';
         const TYPE_RESERVATION = 'reservation', TYPE_SIGNUP = 'signup', TYPE_ANONYMISED = 'anonymised';
-        public $fillable = ['pcn', 'first_name', 'last_name', 'phone', 'email', 'address', 'city', 'postal', 'country', 'gender', 'contact_phone',
-                            'birthday', 'shirt_size', 'remarks', 'alcohol', 'extra_shirt', 'same_sex_rooms'];
-        protected $encrypted = ['pcn', 'first_name', 'last_name', 'phone', 'email', 'shirt_size', 'remarks', 'ip_address',
-                                'contact_phone', 'address', 'city', 'postal', 'country', 'gender', 'contact_phone'];
+        public $fillable = [
+            'pcn', 'first_name', 'last_name', 'phone', 'email', 'address', 'city', 'postal',
+            'country', 'gender', 'contact_phone', 'birthday', 'shirt_size', 'remarks',
+            'alcohol', 'extra_shirt', 'same_sex_rooms', 'contact_name', 'contact_relation'
+        ];
+        protected $encrypted = [
+            'pcn', 'first_name', 'last_name', 'phone', 'email', 'shirt_size', 'remarks', 'ip_address',
+            'contact_phone', 'address', 'city', 'postal', 'country',
+            'gender', 'contact_phone', 'contact_name', 'contact_relation'
+        ];
         protected $attributes = [
             'status' => self::STATUS_EMAIL_UNCONFIRMED
         ];
@@ -173,7 +183,9 @@
             $this->pcn                      = null;
             $this->type                     = self::TYPE_ANONYMISED;
             $anonymiseFields                = [
-                'first_name', 'last_name', 'phone', 'email', 'birthday', 'remarks', 'ip_address', 'contact_phone', 'address', 'postal'
+                'first_name', 'last_name', 'phone', 'email', 'birthday', 'remarks',
+                'ip_address', 'contact_phone', 'address', 'postal',
+                'contact_name', 'contact_relation'
             ];
             foreach ($anonymiseFields as $field) {
                 $this[$field] = '***';

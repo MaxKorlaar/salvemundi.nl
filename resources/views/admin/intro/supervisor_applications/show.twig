@@ -49,26 +49,47 @@
                         {{ application.member.last_name }}
                     </div>
                     <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.phone') }}</b>
+                        {{ application.member.phone }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.city') }}</b>
+                        {{ application.member.city }}
+                    </div>
+                    <div>
                         <b>{{ trans('admin.intro.supervisor_applications.email') }}</b>
                         {{ application.member.email }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.gender') }}</b>
+                        {{ application.gender }}
                     </div>
                     <div>
                         <b>{{ trans('admin.intro.supervisor_applications.shirt_size') }}</b>
                         {{ application.shirt_size }}
                     </div>
-                    <div>
+                    {#<div>
                         <b>{{ trans('admin.intro.supervisor_applications.preferred_partner_id') }}</b>
                         {{ application.preferred_partner_id ?? trans('admin.intro.supervisor_applications.not_applicable') }}
-                    </div>
-                </div>
-                <div class="col-6">
+                    </div>#}
                     <div>
                         <b>{{ trans('admin.intro.supervisor_applications.age_at_intro') }}</b>
                         {{ application.age_at_intro }}
                     </div>
+                </div>
+                <div class="col-6">
+
                     <div>
                         <b>{{ trans('admin.intro.supervisor_applications.route_type') }}</b>
                         {{ application.route_type }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.previously_participated_as') }}</b>
+                        {{ application.previously_participated_as }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.active_in_association') }}</b>
+                        {{ application.active_in_association }}
                     </div>
                     <div>
                         <b>{{ trans('admin.intro.supervisor_applications.remain_sober') }}</b>
@@ -78,13 +99,17 @@
                         <b>{{ trans('admin.intro.supervisor_applications.drivers_license') }}</b>
                         {{ application.drivers_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
                     </div>
-                    <div>
+                    {#<div>
                         <b>{{ trans('admin.intro.supervisor_applications.first_aid_license') }}</b>
-                        {{ application.first_aid_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
-                    </div>
+                        {{ application.first_aid_license }}
+                    </div>#}
                     <div>
                         <b>{{ trans('admin.intro.supervisor_applications.company_first_response_license') }}</b>
-                        {{ application.company_first_response_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
+                        {{ application.company_first_response_license }}
+                    </div>
+                    <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.motivation') }}</b>
+                        {{ application.motivation ?? trans('admin.intro.supervisor_applications.not_applicable') }}
                     </div>
                     <div>
                         <b>{{ trans('admin.intro.supervisor_applications.remarks') }}</b>

@@ -1,41 +1,44 @@
 <?php
     return [
-        'info'       => [
-            'closed_warning'    => 'Helaas is het niet meer mogelijk om je hier in te schrijven voor de introductie van Salve Mundi. Voor vragen kan je altijd contact opnemen met onze introcommissie: <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a>.',
-            'title'             => 'Inschrijven intro FHICT 2018',
-            'dates'             => '26 tot en met 30 augustus',
-            'click_to_sign_up'  => 'Klik hier om je in te schrijven',
-            'students_only'     => 'Deze pagina is bedoeld voor deelnemers, en niet voor begeleiding!',
-            'intro'             => [
-                '<h4>Hallo nieuwe studenten!</h4>',
-                'Dit jaar zal er tijdens de introductieweek de mogelijkheid zijn om te blijven overnachten. Wij vanuit Salve Mundi zijn druk bezig geweest om dit mogelijk te maken voor de nieuwe studenten. Om hier gebruik van te maken vragen wij een relatief kleine vergoeding. Nieuwe aanmeldingen dienen direct de contributie te betalen bij het verzenden van het inschrijfformulier. Hiervoor vragen wij een bedrag van 60 euro + 20 euro borg voor de slaapkamer. Na afloop krijg je deze 20 euro weer terug. De prijs is lager omdat onze school een lekkere bijdrage doet in de intro. Voor deze maximaal 60 euro krijg je: 2 nachten met vervoer van en naar de slaaplocatie, eten, een festival en veel meer. '
-            ],
-            'content'           => [
-                [
-                    'Hoe ziet de slaaplocatie eruit?',
-                    'Onze slaaplocatie is in Veldhoven. Wij zullen het vervoer regelen naar de slaaplocatie. Het pand heeft meerdere slaapruimtes waar stapelbedden staan. Je ligt hier met 4, 6 of 12 mensen op een kamer. Natuurlijk hebben we ook aan de versnaperingen gedacht, dus zal er een bar geplaatst worden en hebben we een feestzaal, waar we tot de late uurtjes door kunnen gaan. Drinken (fris en bier) kan middels consumptiemunten gehaald worden aan de bar. Deze munten zijn verkrijgbaar bij de muntenverkoop op de slaaplocatie.'
-                ],
-                [
-                    'Wat gaan we allemaal doen?',
-                    'Op woensdag worden jullie allemaal op school verwacht om kennis te maken met jullie nieuwe klas. Het is de bedoeling dat je dan alvast je overnachting spullen meeneemt en voorziet van een label met je naam. Wij zorgen er dan voor dat de spullen op de slaaplocatie aankomen.'
-                ]
-            ],
-            'more_info'         => [
-                'Tijdens deze eerste dag maken jullie kennis met jullie klasgenoten. Daarna zullen de papa’s en mama’s vanuit onze vereniging binnenkomen en nemen we jullie mee de stad in. We zullen tijdens de middag ons door Eindhoven begeven en is er natuurlijk een kans om een drankje te drinken in onze stamkroeg de Villa Fiësta. Na het middagprogramma zullen we ons met bussen begeven naar de slaaplocatie. Hier zal een kamerindeling gemaakt worden en wordt er friet met snacks gebakken. Hierna zullen we ons rustig aan begeven naar de feestzaal toe. In de feestzaal volgt een avond vol activiteiten, afsluitend met een feest.',
-                'Donderdag zullen we op tijd weer wakker worden om gezamenlijk te ontbijten. Na het ontbijt gaan we met de bus weer terug naar Eindhoven om naar het Purple festival te gaan. Dit is een festival voor alle nieuwe studenten van alle opleidingen op Fontys Hogeschool. Na een middag vol feesten en dansen zullen we in de avond weer terug gaan naar de slaaplocatie. Hier zal de feestzaal weer geopend worden zodat we nog een mooi laatste feestje kunnen geven.',
-                'Op vrijdag zullen we ook weer op tijd wakker worden om te gaan opruimen. Het is de bedoeling dat alle kamers worden geveegd en schoon worden achtergelaten door de studenten die hier geslapen hebben. Daarna zit de introductie erop en kan je op de slaaplocatie worden opgehaald of naar Eindhoven worden gebracht door onze bussen om daar te worden opgehaald.',
-                'Wil jij ook graag je introductie extra leuk maken en lijkt het je leuk om je nieuwe studiegenoten alvast te leren kennen? Twijfel dan niet en meld je aan voor het introductiekamp dat plaatsvindt van 26 augustus tot en met 30 augustus!'
-            ],
-            'supervisor_signup' => 'Ook dit jaar zoeken we weer naar leden van Salve Mundi om mee te doen als intropapa of -mama! Het is dan ook <a href="' . route('intro.supervisor_info') . '">mogelijk om je aan te melden</a> als begeleider voor de intro van 2018.'
+        'main_info_button' => 'Algemene informatie',
+        'schedule_button'  => 'Planning',
+        'sign_up_button'   => 'Inschrijven',
+        'info'             => [/** @deprecated */
+                               'closed_warning'    => 'Helaas is het niet meer mogelijk om je hier in te schrijven voor de introductie van Salve Mundi. Voor vragen kan je altijd contact opnemen met onze introcommissie: <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a>.',
+                               'title'             => 'Inschrijven intro FHICT 2019',
+                               'dates'             => '26 tot en met 30 augustus',
+                               'click_to_sign_up'  => 'Klik hier om je in te schrijven',
+                               'students_only'     => 'Deze pagina is bedoeld voor deelnemers, en niet voor begeleiding!',
+                               'intro'             => [
+                                   '<h4>Hallo nieuwe studenten!</h4>',
+                                   'Dit jaar zal er tijdens de introductieweek de mogelijkheid zijn om te blijven overnachten. Wij vanuit Salve Mundi zijn druk bezig geweest om dit mogelijk te maken voor de nieuwe studenten. Om hier gebruik van te maken vragen wij een relatief kleine vergoeding. Nieuwe aanmeldingen dienen direct de contributie te betalen bij het verzenden van het inschrijfformulier. Hiervoor vragen wij een bedrag van 60 euro + 20 euro borg voor de slaapkamer. Na afloop krijg je deze 20 euro weer terug. De prijs is lager omdat onze school een lekkere bijdrage doet in de intro. Voor deze maximaal 60 euro krijg je: 2 nachten met vervoer van en naar de slaaplocatie, eten, een festival en veel meer. '
+                               ],
+                               'content'           => [
+                                   [
+                                       'Hoe ziet de slaaplocatie eruit?',
+                                       'Onze slaaplocatie is in Veldhoven. Wij zullen het vervoer regelen naar de slaaplocatie. Het pand heeft meerdere slaapruimtes waar stapelbedden staan. Je ligt hier met 4, 6 of 12 mensen op een kamer. Natuurlijk hebben we ook aan de versnaperingen gedacht, dus zal er een bar geplaatst worden en hebben we een feestzaal, waar we tot de late uurtjes door kunnen gaan. Drinken (fris en bier) kan middels consumptiemunten gehaald worden aan de bar. Deze munten zijn verkrijgbaar bij de muntenverkoop op de slaaplocatie.'
+                                   ],
+                                   [
+                                       'Wat gaan we allemaal doen?',
+                                       'Op woensdag worden jullie allemaal op school verwacht om kennis te maken met jullie nieuwe klas. Het is de bedoeling dat je dan alvast je overnachting spullen meeneemt en voorziet van een label met je naam. Wij zorgen er dan voor dat de spullen op de slaaplocatie aankomen.'
+                                   ]
+                               ],
+                               'more_info'         => [
+                                   'Tijdens deze eerste dag maken jullie kennis met jullie klasgenoten. Daarna zullen de papa’s en mama’s vanuit onze vereniging binnenkomen en nemen we jullie mee de stad in. We zullen tijdens de middag ons door Eindhoven begeven en is er natuurlijk een kans om een drankje te drinken in onze stamkroeg de Villa Fiësta. Na het middagprogramma zullen we ons met bussen begeven naar de slaaplocatie. Hier zal een kamerindeling gemaakt worden en wordt er friet met snacks gebakken. Hierna zullen we ons rustig aan begeven naar de feestzaal toe. In de feestzaal volgt een avond vol activiteiten, afsluitend met een feest.',
+                                   'Donderdag zullen we op tijd weer wakker worden om gezamenlijk te ontbijten. Na het ontbijt gaan we met de bus weer terug naar Eindhoven om naar het Purple festival te gaan. Dit is een festival voor alle nieuwe studenten van alle opleidingen op Fontys Hogeschool. Na een middag vol feesten en dansen zullen we in de avond weer terug gaan naar de slaaplocatie. Hier zal de feestzaal weer geopend worden zodat we nog een mooi laatste feestje kunnen geven.',
+                                   'Op vrijdag zullen we ook weer op tijd wakker worden om te gaan opruimen. Het is de bedoeling dat alle kamers worden geveegd en schoon worden achtergelaten door de studenten die hier geslapen hebben. Daarna zit de introductie erop en kan je op de slaaplocatie worden opgehaald of naar Eindhoven worden gebracht door onze bussen om daar te worden opgehaald.',
+                                   'Wil jij ook graag je introductie extra leuk maken en lijkt het je leuk om je nieuwe studiegenoten alvast te leren kennen? Twijfel dan niet en meld je aan voor het introductiekamp dat plaatsvindt van 26 augustus tot en met 30 augustus!'
+                               ],
+                               'supervisor_signup' => 'Ook dit jaar zoeken we weer naar leden van Salve Mundi om mee te doen als intropapa of -mama! Het is dan ook <a href="' . route('intro.supervisor_info') . '">mogelijk om je aan te melden</a> als begeleider voor de intro van 2018.'
 
         ],
-        'signup'     => [
-            'title'                        => 'Inschrijven voor de intro FHICT :year',
-            'signup_text'                  => 'Om de introductie te bekostigen vragen wij een bijdrage. Momenteel kan er alleen ingeschreven worden en vanaf 1 juli zullen de betaalverzoeken verstuurd worden. Bij inschrijving na 1 juli moet er direct betaald worden om je inschrijving te bevestigen. Hiervoor vragen wij een bedrag van € 90,-. Het is handig om jezelf zo snel mogelijk in te schrijven, er zijn namelijk slechts 200 plekken beschikbaar van de 550 studenten voor de opleiding FHICT. Indien je jezelf achteraf toch af wilt melden, doe dit dan zo snel mogelijk door een e-mail te sturen naar intro@salvemundi.nl. Zo kunnen we alle beschikbare plekken opvullen met enthousiaste studenten!',
+        'signup'           => [
+            'title'                        => 'Inschrijven voor de intro van FHICT :year',
+            'signup_text'                  => 'Om de introductie te bekostigen vragen wij een bijdrage. Om je inschrijving te bevestigen, dien je direct na het invullen van dit formulier te betalen. Hiervoor vragen wij een bedrag van €:costs. Het is handig om jezelf zo snel mogelijk in te schrijven, er zijn namelijk slechts 200 plekken beschikbaar van de 550 studenten voor de opleiding FHICT. Indien je jezelf achteraf toch af wilt melden, doe dit dan zo snel mogelijk door <a href="https://wa.me/31636142514" target="_blank">ons een WhatsApp-berichtje te sturen</a> of een e-mail te sturen naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a>. Zo kunnen we alle beschikbare plekken opvullen met enthousiaste studenten!',
             'signup_full_warning'          => 'Alle beschikbare plekken van deze introductie zijn helaas al bezet. Je kan je wel nog aanmelden voor de reservelijst, waardoor je de mogelijkheid om te betalen alsnog krijgt mocht er een plek beschikbaar komen.',
-            'signup_full_reservation_text' => '<b>Momenteel zijn alle beschikbare plekken bezet. Je kan je daarom alleen nog maar aanmelden voor de reservelijst.</b> Om de introductie te bekostigen vragen wij een contributie, waarvoor je later een betaalverzoek ontvangt. Hiervoor vragen wij een bedrag van 60 euro + 20 euro borg voor de slaapkamer. Na afloop krijg je deze 20 euro weer terug. Het is handig om nu al kosteloos een plek te reserveren: Er zijn namelijk slechts 200 plekken voor de 550 inschrijvingen op de opleiding zelf. Het is dus belangrijk om je hier aan te melden. Zorg ook dat je een e-mail stuurt naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a> wanneer je toch een andere opleiding gaat volgen en je jezelf dus wilt afmelden. Zo houden we het voor iedereen eerlijk!',
+            'signup_full_reservation_text' => '<b>Momenteel zijn alle beschikbare plekken bezet. Je kan je daarom alleen nog maar aanmelden voor de reservelijst.</b> Om de introductie te bekostigen vragen wij een bijdrage. Momenteel kan er alleen ingeschreven worden en vanaf 1 juli zullen de betaalverzoeken verstuurd worden. Bij inschrijving na 1 juli moet er direct betaald worden om je inschrijving te bevestigen. Hiervoor vragen wij een bedrag van €:costs. Het is handig om jezelf zo snel mogelijk in te schrijven, er zijn namelijk slechts 200 plekken beschikbaar van de 550 studenten voor de opleiding FHICT. Indien je jezelf achteraf toch af wilt melden, doe dit dan zo snel mogelijk door <a href="https://wa.me/31636142514" target="_blank">ons een WhatsApp-berichtje te sturen</a> of een e-mail te sturen naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a>. Zo kunnen we alle beschikbare plekken opvullen met enthousiaste studenten!',
             'signup_full_text'             => 'Alle beschikbare plekken van deze introductie zijn helaas al bezet. Het is niet mogelijk om je nog aan te melden voor deze introductie, tenzij er plekken beschikbaar komen.',
-            'reservation_text'             => 'Om de introductie te bekostigen vragen wij een contributie, waarvoor je later een betaalverzoek ontvangt. Hiervoor vragen wij een bedrag van 60 euro + 20 euro borg voor de slaapkamer. Na afloop krijg je deze 20 euro weer terug. Het is handig om nu al kosteloos een plek te reserveren: Er zijn namelijk slechts 200 plekken voor de 550 inschrijvingen op de opleiding zelf. Het is dus belangrijk om je hier aan te melden. Zorg ook dat je een e-mail stuurt naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a> wanneer je toch een andere opleiding gaat volgen en je jezelf dus wilt afmelden. Zo houden we het voor iedereen eerlijk!',
+            'reservation_text'             => 'Om de introductie te bekostigen vragen wij een bijdrage. Momenteel kan er alleen ingeschreven worden en vanaf 1 juli zullen de betaalverzoeken verstuurd worden. Bij inschrijving na 1 juli moet er direct betaald worden om je inschrijving te bevestigen. Hiervoor vragen wij een bedrag van €:costs. Het is handig om jezelf zo snel mogelijk in te schrijven, er zijn namelijk slechts 200 plekken beschikbaar van de 550 studenten voor de opleiding FHICT. Indien je jezelf achteraf toch af wilt melden, doe dit dan zo snel mogelijk door <a href="https://wa.me/31636142514" target="_blank">ons een WhatsApp-berichtje te sturen</a> of een e-mail te sturen naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a>. Zo kunnen we alle beschikbare plekken opvullen met enthousiaste studenten!',
             'pcn'                          => 'Fontys PCN (Indien bekend)',
             'first_name'                   => 'Voornaam',
             'last_name'                    => 'Achternaam',
@@ -46,11 +49,13 @@
             'postal_code'                  => 'Postcode',
             'postal'                       => 'Postcode',
             'phone'                        => 'Telefoonnummer student',
-            'contact_phone'                => 'Telefoonnummer contactpersoon (in geval van nood)',
+            'contact_name'                 => 'Naam contactpersoon (in geval van nood)',
+            'contact_relation'             => 'Relatie tot contactpersoon',
+            'contact_phone'                => 'Telefoonnummer contactpersoon',
             'email'                        => 'E-mailadres',
             'email_confirmation'           => 'Bevestig je e-mailadres',
             'gender'                       => 'Geslacht',
-            'genders'                      => ['Man', 'Vrouw', 'Overige'],
+            'genders'                      => ['Man', 'Vrouw', 'Anders'],
             'shirt_size'                   => 'Welke shirtmaat heb je? (Unisex)',
             'shirt_sizes'                  => [
                 'S', 'M', 'L', 'XL', '2XL', '3XL'
@@ -67,7 +72,7 @@
             'transaction_amount'           => 'Bedrag transactie',
 
             'privacy_terms_signup'                  => 'Door op \'Schrijf me in\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a> en zal je worden doorgestuurd naar de betalingspagina. Het is hier mogelijk om met iDeal te betalen. Indien je de betaling annuleert zullen je gegevens direct worden verwijderd en gaat je inschrijving niet door. Het is dan mogelijk om je opnieuw in te schrijven.
-De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de overnachting. Voor de betaling dient er dan ook in totaal <b>80 euro</b> betaald te worden. <b>De 20 euro borg wordt na afloop van de intro terugbetaald.</b>',
+De contributie van de intro kost €:costs.',
             'privacy_terms_reservation'             => 'Door op \'Schrijf me in\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>. Je zal later een betaalverzoek ontvangen voor €:costs, waarmee je je reservering omzet in een geldige aanmelding.</b>',
             'privacy_terms_signup_full_reservation' => 'Door op \'Schrijf me in\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>. Indien er een plek beschikbaar komt, zal je een betaalverzoek ontvangen voor €:costs, waarmee je je reservering omzet in een geldige aanmelding. Je gegevens zullen na de introductie worden verwijderd.</b>',
 
@@ -85,12 +90,12 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
             ],
             'email_instructions' => [
                 'signup'      => 'Bedankt voor het aanmelden voor de intro van Salve Mundi! Je betaling wordt momenteel verwerkt in ons systeem, maar zodra deze succesvol is afgerond krijg je van ons een mailtje ter bevestiging. Mocht je de email niet krijgen binnen 2 werkdagen nadat de betaling is afgerond, kijk dan in je map voor ongewenste email of neem contact met ons op.',
-                'reservation' => 'Je aanmelding is echter nog niet bevestigd! Om hem geldig te maken moet je eerst nog de instructies volgen in een e-mail we je zojuist hebben gestuurd. Je aanmelding komt niet bij ons binnen indien je hem niet bevestigt via deze e-mail. Heb je na 1 werkdag nog steeds geen e-mail ontvangen? Meld je dan opnieuw aan of neem anders direct contact met ons op door een e-mail te sturen naar intro@salvemundi.nl.'
+                'reservation' => 'Je aanmelding is echter nog niet bevestigd! Om hem geldig te maken moet je eerst nog de instructies volgen in een e-mail we je zojuist hebben gestuurd. Je aanmelding komt niet bij ons binnen indien je hem niet bevestigt via deze e-mail. Heb je na 1 werkdag nog steeds geen e-mail ontvangen? Meld je dan opnieuw aan of neem anders direct contact met ons op door <a href="https://wa.me/31636142514" target="_blank">een WhatsApp-berichtje te sturen op +31 6 36142514</a> of door een e-mail te sturen naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a>.'
             ],
 
             'email_confirmed'       => 'Aanmelding introductie bevestigd',
             'thanks_for_confirming' => 'Bedankt voor het bevestigen van je e-mailadres, :name. Je aanmelding voor de intro van :year is gereserveerd bij ons.',
-            'instructions'          => 'Verder ontvang je binnenkort via dit e-mailadres de nieuwsbrief. In deze nieuwsbrief staat alles wat je moet weten over de intro. Dus houd je mail goed in de gaten. Mocht je nog vragen of opmerkingen hebben dan kan je een e-mail sturen naar intro@salvemundi.nl of onze website (salvemundi.nl) bezoeken. Wij zien al uit naar een mooi feestje.',
+            'instructions'          => 'Verder ontvang je binnenkort via dit e-mailadres de nieuwsbrief. In deze nieuwsbrief staat alles wat je moet weten over de intro. Dus houd je mail goed in de gaten. Mocht je nog vragen of opmerkingen hebben dan kan je <a href="https://wa.me/31636142514" target="_blank">een WhatsApp-berichtje sturen op +31 6 36142514</a>, een e-mail sturen naar intro@salvemundi.nl of onze website (salvemundi.nl) bezoeken. Wij zien al uit naar een mooi feestje.',
             'sent_email'            => 'Deze gegevens staan ook in de e-mail die je zojuist hebt ontvangen, waardoor je op deze pagina terecht kwam.',
 
             'email_signups_not_allowed'      => 'Aanmelding niet gelukt',
@@ -108,24 +113,53 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
             'redirecting_instructions' => 'Je wordt nu naar onze betalingsprovider Mollie doorgestuurd, om de contributie voor de intro aan ons te betalen. Als je dit hebt gedaan wordt de aanmelding automatisch bevestigd. Indien je de betaling annuleert zal de aanmelding verwijderd worden.',
 
         ],
-        'supervisor' => [
+        'supervisor'       => [
             'info'   => [
                 'title'                   => 'Aanmelden voor de intro als intropapa of -mama',
                 'supervisors_only'        => 'Deze pagina is bedoeld voor het inschrijven als papa of mama voor de intro. <a href="' . route('intro.signup') . '">Klik hier</a> om je in te schrijven als deelnemer',
                 'content'                 => [
-                    'Het heeft even geduurd, maar daar zijn we weer! De feestcommissie presenteert de nieuwe en verbeterde intro. Deze intro is een pilot en een experiment, daarbij wordt hij groter en mooier dan het voorgaande jaar. De hele intro is hartstikke leuk, maar zonder begeleiding komen we nergens. Daarom zoeken wij zoals het voorgaande jaar 42 geïnteresseerde papa\'s en mama\'s die mee willen gaan.',
-                    'Dit jaar bestaat de intro uit 2 delen. Het deel van vorig jaar, waar velen van jullie aan hebben mee gedaan of hebben begeleid, bestaat nog steeds net zoals het vorige jaar. Het verschil is dat er dit jaar een inschrijfmogelijkheid is voor 200 nieuwe studenten die zich  kunnen inschrijven voor de echte introductie. Deze introductie gaat op woensdagmiddag, nadat de andere studenten klaar zijn, door naar een slaaplocatie. Op deze slaaplocatie zal de echte introductie plaatsvinden, die wij het introkamp hebben genoemd.'
+                    'Beste (aankomende) papa’s en mama’s,<br>
+Voordat jullie het weten is het alweer tijd voor de meest geweldige week van jullie schoolcarrière.
+Jazeker, want van 26 t/m 30 augustus staat de allergrootste, spectaculairste, en leukste introductie van
+FHICT in de planning.',
                 ],
-                'three_routes'            => 'Als papa of mama kun je voor 3 routes kiezen;',
+                'what_to_expect'          => 'Wat kunnen jullie verwachten?',
+                'expectations'            => [
+                    '3 tot 5 dagen feesten, zweten en plezier!',
+                    'Toegang tot Purple Festival',
+                    'Mede Salve Mundi-leden leren kennen',
+                    'Een generale repetitie voor je toekomstige vader- of moederschap'
+                ],
+                'what_do_we_expect'       => 'Wat verwachten wij van jullie?',
+                'our_expectations'        => [
+                    'Dat je een actief en gemotiveerd lid bent',
+                    'Dat je verschillende diensten (nuchter) zult draaien',
+                    'Actieve inzet tijdens de introductie',
+                    'Energie voor 5 man',
+                    'Begeleiding van je kiddo’s',
+                    'Een kleine bijdrage van € 30,-'
+                ],
+                'routes_title'            => 'Routes',
+                'three_routes'            => 'Net als vorig jaar zijn er dit jaar ook weer verschillende routes waar jij
+als papa of mama voor kan kiezen. Omdat het aantal aanmeldingen
+waarschijnlijk hoger zal zijn dan het aantal slaapplekken, zijn er de
+volgende opties opgesteld:',
                 'routes'                  => [
-                    'Als papa/mama ben je welkom op de intro overdag, \'s avonds lig je in je eigen bed en ontmoet je de studenten de volgende dag \'s middags voor het festival.',
-                    'Als papa/mama ben je welkom op de intro overdag, maar je gaat ook mee als begeleiding naar de overnachting. Hier zal je mee feesten maar ook mee helpen opruimen. De volgende dag ga je ook mee naar het festival. Afsluitend is er nog een derde dag om de slaaplocatie in orde te maken en er voor te zorgen dat de kinderen zich richting huis begeven.',
-                    'Als papa/mama heb je geen voorkeur voor A of B: je bent flexibel en laat je door de feestcommissie inplannen waar nodig. (Dit geeft een hogere kans op toelating)'
+                    'Route A: 5 dagen (ma-vr) introductie inclusief slaapplek',
+                    'Route B: 3 dagen (ma, wo, do) introductie exclusief slaapplek.
+(zonder een bijdrage van € 30,-)',
+                    'Route C: hierbij maakt het je niet uit welke route jij wil en word
+je ingedeeld voor route A of B (waar plek is)'
                 ],
                 'more_content'            => [
-                    'De introductie zal plaatsvinden op 26 tot en met 30 augustus. Een woensdag, donderdag en vrijdag. Het niveau is dit jaar wel drastisch anders. Er is dan ook een team nodig dat goed samenwerkt en niet de agenda of planning van de feestcommissie in twijfel trekt. Dit jaar komen wij namens Salve Mundi dan ook verantwoordelijk te staan voor de planningen wanneer mensen hiervan afwijken kunnen wij hier sancties op krijgen.',
-                    'Het verschil tussen de hoeveelheid begeleiding nodig van A of B verschilt aan het aantal inschrijvingen dat we krijgen. Het introkamp gaat pas door bij een minimum van 100 inschrijvingen. Hierbij zijn er 20 B papa\'s of mama\'s nodig. Wanneer er 200 inschrijvingen zijn worden het er 40. Het kan dus zijn dat je gevraagd wordt om wat anders te doen dan dat je wens was. Wij zullen dan wel contact met je opnemen.',
-                    '<u>De papa\'s en mama\'s worden gekozen door middel van loting.</u> Er zijn namelijk bepaalde factoren welke je kansen kunnen verbeteren en of je een plek kunnen garanderen. Op het inschrijfformulier zijn bepaalde velden zoals: <i>In het bezit van een actief rijbewijs</i>, <i>ik vind het niet erg om een avond nuchter te blijven wanneer dit van mij gevraagd wordt</i> en <i>ik ben in bezit van een actief bhv/EHBO-brevet</i>. Tevens tellen recente activiteiten waarin leden buiten de feestcommissie de feestcommissie wel hebben geholpen (tijdens bijvoorbeeld de februari-intro) ook mee. Voor geen papa of mama zal een vergoeding volgen in de vorm van geld. Er zal wel op de slaaplocatie korting zijn op consumpties en nog meer.'
+                    'Het bovenste gelezen en nog niet afgeschrikt? Dan zoeken wij jou!
+Wij zoeken de meest actieve, knotsgekke, maar ook
+verantwoordelijke papa’s en mama’s die Salve Mundi te bieden heeft.',
+                    'Hierbij hebben wij hopelijk genoeg informatie gegeven om jullie
+klaar te stomen voor de introductie van 2019. Wij hopen iedereen te
+zien in augustus. Tot dan!',
+                    'Groetjes,
+De feestcommissie'
                 ],
                 'requirements_for_signup' => 'Voorwaarden voor inschrijving:',
                 'requirements'            => [
@@ -149,6 +183,7 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
                 'first_name'                     => 'Voornaam',
                 'last_name'                      => 'Achternaam',
                 'phone'                          => 'Telefoonnummer',
+                'city'                           => 'Woonplaats',
                 'email'                          => 'E-mailadres',
                 'email_confirmation'             => 'Bevestig e-mailadres',
                 'age_at_intro'                   => 'Leeftijd te 26 augustus 2019',
@@ -161,13 +196,21 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
                 'drivers_license'                => 'Ik heb een geldig rijbewijs',
                 'first_aid_license'              => 'Te 26 augustus bezit ik een actief EHBO brevet',
                 'company_first_response_license' => 'Te 26 augustus bezit ik een actief BHV brevet',
+                'first_response'                 => ['Ja', 'Nee', 'Daar heb ik wel behoefte aan'],
+                'previous_years'                 => ['Kind', 'Ouder', 'Niet van toepassing'],
+                'active_as'                      => ['Commissielid', 'Aanwezig bij activiteiten', 'Aanwezig bij feesten', 'Anders'],
                 'routes'                         => ['A', 'B', 'C'],
+                'gender'                         => 'Geslacht',
                 'genders'                        => [
-                    'Papa',
-                    'Mama'
+                    'Man', 'Vrouw', 'Anders'
                 ],
+                'motivation'                     => 'Motivatie',
+                'motivation_placeholder'         => 'Korte motivatie waarom jij mee zou mogen als intro-ouder',
+                'previously_participated_as'     => 'Voorgaande jaren meegedaan als',
+                'active_in_association'          => 'Ik zet mij in voor Salve Mundi op de volgende manier',
+                'active_as_other'                => 'Indien anders: Leg uit',
                 'route'                          => 'Route :route',
-                'route_type'                     => 'Papa/mama type (route)',
+                'route_type'                     => 'Route',
                 'remarks'                        => 'Opmerkingen',
                 'remarks_placeholder'            => 'Opmerkingen (Bijvoorbeeld allergie-informatie, medicijngebruik en eetwensen)',
                 'agree_salvemundi'               => 'Ik ga akkoord met <a target="_blank" href="' . asset('storage/Intro specifieke huisregels.pdf') . '">de introductie-voorwaarden</a>',
@@ -175,13 +218,13 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
                 'privacy_terms'                  => 'Door op \'Aanmelden\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>.',
                 'sign_up'                        => 'Aanmelden',
                 'completed'                      => 'Bijna klaar...',
-                'email_instructions'             => 'Je aanmelding is echter nog niet bevestigd! Om hem geldig te maken moet je eerst nog de instructies volgen in een e-mail we je zojuist hebben gestuurd. Indien je niet je e-mailadres bevestigt, zal je aanmelding niet worden gecontroleerd. Heb je na 5 minuten nog steeds geen e-mail ontvangen? Meld je dan opnieuw aan of neem anders direct contact met ons op door een e-mail te sturen naar intro@salvemundi.nl',
+                'email_instructions'             => 'Je aanmelding is echter nog niet bevestigd! Om hem geldig te maken moet je eerst nog de instructies volgen in een e-mail we je zojuist hebben gestuurd. Indien je niet je e-mailadres bevestigt, zal je aanmelding niet worden gecontroleerd. Heb je na 5 minuten nog steeds geen e-mail ontvangen? Meld je dan opnieuw aan of neem anders direct contact met ons op door <a href="https://wa.me/31636142514" target="_blank">een WhatsApp-berichtje te sturen op +31 6 36142514</a> of door een e-mail te sturen naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a>.',
                 'email_confirmed'                => 'Aanmelding intro-begeleider :year bevestigd',
                 'thanks_for_confirming'          => 'Bedankt voor het bevestigen van je e-mailadres, :name. Je aanmelding als papa of mama voor de intro van :year is bevestigd bij ons.',
-                'email_info'                     => 'We zullen nog contact met je opnemen indien je meedoet als begeleider. We kunnen namelijk maar een beperkt aantal intro-ouders mee laten doen met de intro van :year. Mocht je nog vragen of opmerkingen hebben dan kan je een e-mail sturen naar intro@salvemundi.nl of onze website (salvemundi.nl) bezoeken. Wij zien al uit naar een mooi feestje.'
+                'email_info'                     => 'Mocht je nog vragen of opmerkingen hebben dan kan je <a href="https://wa.me/31636142514" target="_blank">een WhatsApp-berichtje sturen op +31 6 36142514</a>, een e-mail sturen naar intro@salvemundi.nl of onze website (salvemundi.nl) bezoeken. Wij zien al uit naar een mooi feestje.'
             ]
         ],
-        '2019'       => [
+        '2019'             => [
             'title'         => 'Intro FHICT 2019',
             'info_page'     => [
                 'title'       => 'Inschrijven Intro FHICT 2019',
@@ -216,6 +259,10 @@ De contributie van de intro kost 60 euro. Hierbij komt ook 20 euro borg voor de 
                     'title' => 'Vrijdag',
                     'text'  => 'Op de vrijdag ochtend moeten we al vroeg uit de veren. Iedereen moet meehelpen met opruimen zodat we op de locatie nog een jaartje langer terug mogen komen. Hierna is het terrein goed bereikbaar, en rijden er genoeg bussen om iedereen weer netjes thuis te krijgen. <br><br>Let op! Deze planning is een momentopname. Wegens omstandigheden kan deze aangepast worden. Studenten die zich hebben ingeschreven zullen hiervan op de hoogte worden gebracht. '
                 ]
+            ],
+            'contact'       => [
+                'title' => 'Contact',
+                'text'  => 'Als je vragen hebt over deze introductie of Salve Mundi, neem dan gerust contact met ons op door <a href="https://wa.me/31636142514" target="_blank">een WhatsApp-berichtje te sturen op +31 6 36142514</a> of door een e-mail te sturen naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a>.'
             ]
         ]
     ];

@@ -11,10 +11,10 @@
                     </div>
                     {% if type == 'signup' %}
                         <h3>{{ trans('intro.signup.completed.signup') }}</h3>
-                        <p>{{ trans('intro.signup.email_instructions.signup') }}</p>
+                        <p>{{ trans('intro.signup.email_instructions.signup')|raw }}</p>
                     {% else %}
                         <h3>{{ trans('intro.signup.completed.reservation') }}</h3>
-                        <p>{{ trans('intro.signup.email_instructions.reservation') }}</p>
+                        <p>{{ trans('intro.signup.email_instructions.reservation')|raw }}</p>
                     {% endif %}
                 </div>
             </div>

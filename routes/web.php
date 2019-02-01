@@ -80,7 +80,9 @@
         Route::get('/{introduction}/{year}', 'IntroController@getIntroByYearAndId')->name('by_id.info');
         Route::get('/{introduction}/{year}/inschrijven', 'IntroController@getSignupFormByYearAndId')->name('by_id.signup');
         Route::post('/{introduction}/{year}/inschrijven', 'IntroController@signupByYearAndId')->name('by_id.signup.send');
+        Route::get('/{introduction}/{year}/planning', 'IntroController@getScheduleByYearAndId')->name('by_id.schedule');
 
+        Route::get('planning', 'IntroController@getSchedule')->name('schedule');
         Route::get('inschrijven', 'IntroController@getSignupForm')->name('signup');
 
         Route::group(['prefix' => '2019', 'as' => '2019.'], function () {

@@ -24,12 +24,12 @@
                                 <th>{{ trans('admin.intro.supervisor_applications.last_name') }}</th>
                                 <th>{{ trans('admin.intro.supervisor_applications.first_name') }}</th>
                                 <th>{{ trans('admin.intro.supervisor_applications.status') }}</th>
-                                <th>{{ trans('admin.intro.supervisor_applications.age_at_intro') }}</th>
+                                {#<th>{{ trans('admin.intro.supervisor_applications.age_at_intro') }}</th>
                                 <th>{{ trans('admin.intro.supervisor_applications.route_type') }}</th>
                                 <th>{{ trans('admin.intro.supervisor_applications.remain_sober') }}</th>
                                 <th>{{ trans('admin.intro.supervisor_applications.drivers_license') }}</th>
                                 <th>{{ trans('admin.intro.supervisor_applications.first_aid_license') }}</th>
-                                <th>{{ trans('admin.intro.supervisor_applications.company_first_response_license') }}</th>
+                                <th>{{ trans('admin.intro.supervisor_applications.company_first_response_license') }}</th>#}
                                 <th>{{ trans('admin.intro.supervisor_applications.created_at') }}</th>
                                 <th></th>
                             </tr>
@@ -48,7 +48,7 @@
                                     <td>
                                         {{ trans('admin.intro.supervisor_applications.status_' ~ application.status) }}
                                     </td>
-                                    <td>{{ application.age_at_intro }}</td>
+                                    {#<td>{{ application.age_at_intro }}</td>
                                     <td>{{ application.route_type }}</td>
                                     <td>{{ application.remain_sober ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}</td>
                                     <td>
@@ -59,7 +59,7 @@
                                     </td>
                                     <td>
                                         {{ application.company_first_response_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
-                                    </td>
+                                    </td>#}
                                     <td>{{ application.created_at|date(trans('datetime.format.date_and_time')) }}</td>
                                     <td>
                                         <a href="{{ route('admin.intro.supervisor_applications.show', { intro: introduction, application: application }) }}">{{ trans('admin.intro.supervisor_applications.details') }}</a>
