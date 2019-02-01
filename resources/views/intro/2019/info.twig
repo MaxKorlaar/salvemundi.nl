@@ -2,7 +2,7 @@
 {% block title %}Introductie FHICT {{ introduction.year.year }}{% endblock %}
 {% block content %}
     <div class="container content">
-        <main class="intro">
+        <main class="introduction">
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ trans('intro.2019.title') }}</h1>
@@ -25,7 +25,10 @@
                     </p>
                 </div>
                 <div class="col-md-6">
-                    <img alt="" src="{{ asset('images/intro2018.png') }}" class="img-fluid">
+                    <div class="youtube-wrapper">
+                        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/L-eHV0h-iqc" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
                 </div>
                 <div class="col-md-12">
                     <h2>{{ trans('intro.2019.info_page.information.title') }}</h2>
