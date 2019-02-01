@@ -28,8 +28,10 @@
          * @return void
          */
         protected function schedule(Schedule $schedule) {
-            // $schedule->command('inspire')
-            //          ->hourly();
+            $schedule->command('intro:sendmails')
+                ->dailyAt('09:00');
+            $schedule->command('intro:anonymise')
+                ->weekly();
         }
 
         /**

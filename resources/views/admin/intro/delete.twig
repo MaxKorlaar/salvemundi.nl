@@ -1,18 +1,14 @@
 {% extends 'admin/_page.twig' %}
-{% block title %}{{ application.first_name }} {{ application.last_name }}{% endblock %}
+{% block title %}{{ trans('admin.intro.delete.title', { year: introduction.year.year }) }}{% endblock %}
 {% block content %}
     <div class="container">
-        <main class="intro application">
+        <main class="introduction">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>{{ application.first_name }} {{ application.last_name }}</h1>
-                    <h3>{{ trans('admin.intro.status_' ~ application.status) }}
-                        {% if application.status == 'new' and application.email_confirmation_token == null %}
-                            – {{ trans('admin.intro.no_mail') }}
-                        {% endif %}</h3>
+                    <h1>{{ trans('admin.intro.delete.title', { year: introduction.year.year }) }}</h1>
                 </div>
                 <div class="col-md-12 text-danger">{{ trans('admin.intro.delete.are_you_sure')|raw }}</div>
-                <form class="col-md-12" action="{{ route('admin.intro.destroy', { application: application }) }}" method="POST">
+                <form class="col-md-12" action="{{ route('admin.intro.destroy', { introduction: introduction }) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <button type="submit" class="button danger">{{ trans('admin.intro.delete.delete') }}</button>

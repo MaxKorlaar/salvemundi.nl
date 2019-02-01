@@ -110,7 +110,89 @@
   margin: .5rem 0;
 }
 
-.intro {
+.introduction {
+  @keyframes fade-colors-page {
+    0%, 100% {
+      background: theme-color-level(info, -4);
+    }
+    90% {
+      background: theme-color-level(info, -10);
+    }
+  }
+  &.application {
+    &.paid {
+      h1, .status {
+        color: theme-color-level(success, 2);
+      }
+    }
+
+    &.email-unconfirmed {
+      h1, .status {
+        color: $gray-700;
+      }
+    }
+
+    &.see-transaction {
+      .col-4 div {
+        animation: fade-colors-page infinite forwards 2s;
+
+        &:nth-child(1) {
+          animation-delay: .3s;
+        }
+
+        &:nth-child(2) {
+          animation-delay: .6s;
+        }
+
+        &:nth-child(3) {
+          animation-delay: .9s;
+        }
+
+        &:nth-child(4) {
+          animation-delay: 1.2s;
+        }
+
+        &:nth-child(5) {
+          animation-delay: 1.5s;
+        }
+
+        &:nth-child(6) {
+          animation-delay: 1.8s;
+        }
+
+        &:nth-child(7) {
+          animation-delay: 2.1s;
+        }
+        &:nth-child(8) {
+          animation-delay: 2.3s;
+        }
+        &:nth-child(9) {
+          animation-delay: 2.6s;
+        }
+        &:nth-child(10) {
+          animation-delay: 2.9s;
+        }
+        &:nth-child(11) {
+          animation-delay: 3.2s;
+        }
+        &:nth-child(12) {
+          animation-delay: 3.5s;
+        }
+      }
+    }
+
+    &.refunded {
+      h1, .status {
+        color: theme-color-level(warning, 2);
+      }
+    }
+
+    &.reserved {
+      h1, .status {
+        color: theme-color-level(info, 2);
+      }
+    }
+  }
   .statistics {
     display: flex;
     flex-direction: row;
@@ -148,13 +230,15 @@
 
     &.danger {
       background-color: theme-color-level(danger);
-      color: theme-color-level(danger, 8);
+      color: #FFF;
     }
   }
 
   .spreadsheet {
     user-select: all;
-
+    th {
+      font-size: 75%;
+    }
     tr {
       td {
         padding: .1rem;
@@ -175,24 +259,77 @@
   }
 
   .application-list {
-    .approved {
-      color: theme-color-level(success, 2);
-      background: theme-color-level(success, -10);
+    .paid {
+      &, a {
+        color: theme-color-level(success, 2);
+      }
+
+      //background: theme-color-level(success, -10);
     }
 
     .email-unconfirmed {
-      color: $gray-700;
-      background: $gray-100;
+      &, a {
+        color: $gray-700;
+      }
+
+      //background: $gray-100;
     }
 
-    .under-review {
-      color: theme-color-level(warning, 2);
-      background: theme-color-level(warning, -10);
+    @keyframes fade-colors {
+      0%, 100% {
+        background: theme-color-level(info, -4);
+        //text-shadow: 0 0 10px rgba(theme-color-level(info, 3), 0);
+      }
+      90% {
+        background: theme-color-level(info, -10);
+        //text-shadow: 0 0 10px rgba(theme-color-level(info, 3), 1);
+      }
     }
 
-    .new {
-      color: theme-color-level(danger, 2);
-      background: theme-color-level(danger, -10);
+    .see-transaction {
+      //color: theme-color-level(info, 2);
+      td {
+        animation: fade-colors infinite forwards 2s;
+
+        &:nth-child(1) {
+          animation-delay: .3s;
+        }
+
+        &:nth-child(2) {
+          animation-delay: .6s;
+        }
+
+        &:nth-child(3) {
+          animation-delay: .9s;
+        }
+
+        &:nth-child(4) {
+          animation-delay: 1.2s;
+        }
+
+        &:nth-child(5) {
+          animation-delay: 1.5s;
+        }
+
+        &:nth-child(6) {
+          animation-delay: 1.8s;
+        }
+      }
+    }
+
+    .refunded {
+      &, a {
+        color: theme-color-level(warning, 2);
+      }
+
+      //background: theme-color-level(warning, -10);
+    }
+
+    .reserved {
+      &, a {
+        color: theme-color-level(info, 2);
+      }
+      //background: theme-color-level(danger, -10);
     }
   }
 }
@@ -224,8 +361,16 @@
 
       img {
         display: block;
-        width:100%;
+        width: 100%;
       }
+    }
+  }
+}
+
+form {
+  .form-check {
+    label {
+      font-weight: bold;
     }
   }
 }

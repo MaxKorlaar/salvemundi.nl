@@ -1,33 +1,51 @@
 {% extends 'partials/page.twig' %}
-{% block title %}{{ trans('intro.signup.title') }}{% endblock %}
+{% block title %}{{ trans('intro.signup.title', { year: introduction.year.year }) }}{% endblock %}
 {% block content %}
     <div class="container content">
         <main class="signup">
-            <h1>{{ trans('intro.signup.title') }}</h1>
+            <h1>{{ trans('intro.signup.title', { year: introduction.year.year }) }}</h1>
             {% if errors.has('signup') %}
                 <div class="warning">
                     {{ errors.first('signup') }}
                 </div>
             {% endif %}
             <h3 class="text-center">{{ trans('intro.info.dates') }}</h3>
-            <div class="warning">
-                {{ trans('intro.info.students_only')|raw }}
-            </div>
-            <p>
-                {{ trans('intro.signup.text')|raw }}
-            </p>
+            {% if not introduction.reservationsAreOpen() and not introduction.signupsAreOpen() %}
+                <div class="warning">
+                    {{ trans('intro.info.closed_warning')|raw }}
+                </div>
+            {% else %}
+                <div class="warning">
+                    {{ trans('intro.info.students_only')|raw }}
+                </div>
+            {% endif %}
+            {% if introduction.signupsAreOpen() %}
+                {% if(introduction.allowSignups()) %}
+                    <p>{{ trans('intro.signup.signup_text', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
+                {% elseif introduction.allowReservations() %}
+                    <div class="warning">
+                        {{ trans('intro.signup.signup_full_warning', { costs: introduction.price|number_format(2, ',') })|raw }}
+                    </div>
+                    <p>{{ trans('intro.signup.signup_full_reservation_text', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
+                {% else %}
+                    <p>{{ trans('intro.signup.signup_full_text', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
+                {% endif %}
+            {% else %}
+                <p>{{ trans('intro.signup.reservation_text', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
+            {% endif %}
+
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form action="{{ route('intro.signup.send') }}" method="POST">
+                    <form action="{{ route('intro.by_id.signup.send', { introduction: introduction, year: year }) }}" method="POST">
                         {{ csrf_field() }}
 
                         {#<div class="form-group">#}
-                            {#<input type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}"#}
-                                   {#placeholder="{{ trans('intro.signup.pcn') }}" name="pcn" value="{{ old('pcn') }}"#}
-                                   {#maxlength="6">#}
-                            {#<div class="invalid-feedback">#}
-                                {#{{ errors.first('pcn')|ucfirst }}#}
-                            {#</div>#}
+                        {#<input type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}"#}
+                        {#placeholder="{{ trans('intro.signup.pcn') }}" name="pcn" value="{{ old('pcn') }}"#}
+                        {#maxlength="6">#}
+                        {#<div class="invalid-feedback">#}
+                        {#{{ errors.first('pcn')|ucfirst }}#}
+                        {#</div>#}
                         {#</div>#}
                         <div class="form-group">
                             <input type="text" class="form-control {{ errors.has('first_name') ? 'is-invalid' }}"
@@ -64,9 +82,20 @@
                         <div class="form-group">
                             <input type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
                                    placeholder="{{ trans('intro.signup.postal_code') }}" name="postal"
-                                   value="{{ old('postal') }}" maxlength="6" pattern="^[0-9]{4}[A-Za-z]{2}$">
+                                   value="{{ old('postal') }}">
                             <div class="invalid-feedback">
                                 {{ errors.first('postal')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">{{ trans('signup.country') }}</label>
+                            <select required id="country" name="country" class="form-control {{ errors.has('country') ? 'is-invalid' }}">
+                                {% for code, name in trans('address.country') %}
+                                    <option value="{{ code }}" {{ old('country', member.country) == code ? 'selected' }}>{{ name }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">
+                                {{ errors.first('country')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -75,6 +104,22 @@
                                    maxlength="15">
                             <div class="invalid-feedback">
                                 {{ errors.first('phone')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('contact_name') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.contact_name') }}" name="contact_name" value="{{ old('contact_name') }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('contact_name')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control {{ errors.has('contact_relation') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.contact_relation') }}" name="contact_relation" value="{{ old('contact_relation') }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('contact_relation')|ucfirst }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -158,13 +203,13 @@
                             </div>
                         </div>#}
                         {#<div class="form-check">#}
-                            {#<input class="form-control form-check-input {{ errors.has('same_sex_rooms') ? 'is-invalid' }}" value="1" type="checkbox" id="same_sex_rooms" name="same_sex_rooms" {{ old('same_sex_rooms') ? 'checked' }}>#}
-                            {#<label class="form-check-label" for="same_sex_rooms">#}
-                                {#{{ trans('intro.signup.same_sex_rooms')|raw }}#}
-                            {#</label>#}
-                            {#<div class="invalid-feedback">#}
-                                {#{{ errors.first('same_sex_rooms')|ucfirst }}#}
-                            {#</div>#}
+                        {#<input class="form-control form-check-input {{ errors.has('same_sex_rooms') ? 'is-invalid' }}" value="1" type="checkbox" id="same_sex_rooms" name="same_sex_rooms" {{ old('same_sex_rooms') ? 'checked' }}>#}
+                        {#<label class="form-check-label" for="same_sex_rooms">#}
+                        {#{{ trans('intro.signup.same_sex_rooms')|raw }}#}
+                        {#</label>#}
+                        {#<div class="invalid-feedback">#}
+                        {#{{ errors.first('same_sex_rooms')|ucfirst }}#}
+                        {#</div>#}
                         {#</div>#}
 
 
@@ -185,21 +230,34 @@
                             </div>
                         </div>
                         {#<div class="form-check">#}
-                            {#<input class="form-control form-check-input {{ errors.has('agree_buitenjan') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_buitenjan" name="agree_buitenjan" {{ old('agree_buitenjan') ? 'checked' }}>#}
-                            {#<label class="form-check-label" for="agree_buitenjan">#}
-                                {#{{ trans('intro.signup.agree_buitenjan')|raw }}#}
-                            {#</label>#}
-                            {#<div class="invalid-feedback">#}
-                                {#{{ errors.first('agree_buitenjan')|ucfirst }}#}
-                            {#</div>#}
+                        {#<input class="form-control form-check-input {{ errors.has('agree_buitenjan') ? 'is-invalid' }}" required value="1" type="checkbox" id="agree_buitenjan" name="agree_buitenjan" {{ old('agree_buitenjan') ? 'checked' }}>#}
+                        {#<label class="form-check-label" for="agree_buitenjan">#}
+                        {#{{ trans('intro.signup.agree_buitenjan')|raw }}#}
+                        {#</label>#}
+                        {#<div class="invalid-feedback">#}
+                        {#{{ errors.first('agree_buitenjan')|ucfirst }}#}
                         {#</div>#}
-                        <p>{{ trans('intro.signup.privacy_terms')|raw }}</p>
+                        {#</div>#}
+
+                        {% if introduction.signupsAreOpen() and introduction.allowSignups() %}
+                            <p>{{ trans('intro.signup.privacy_terms_signup', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
+                        {% elseif not introduction.allowSignups() and introduction.allowReservations() %}
+                            <p>{{ trans('intro.signup.privacy_terms_signup_full_reservation', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
+                        {% elseif introduction.allowReservations() %}
+                            <p>{{ trans('intro.signup.privacy_terms_reservation', { costs: introduction.price|number_format(2, ',') })|raw }}</p>
+                        {% endif %}
+
+
                         <div class="form-group">
-                            {#<input type="submit" class="button" value="{{ trans('intro.signup.sign_up') }}">#}
-                            {# Request class toestaan #}
-                            <div class="warning">
-                                {{ trans('intro.info.closed_warning')|raw }}
-                            </div>
+                            {% if (introduction.reservationsAreOpen() or introduction.signupsAreOpen())
+                                and (introduction.allowSignups() or introduction.allowReservations()) %}
+                                <input type="submit" class="button" value="{{ trans('intro.signup.sign_up') }}">
+                            {% else %}
+                                {# Request class toestaan #}
+                                <div class="warning">
+                                    {{ trans('intro.info.closed_warning')|raw }}
+                                </div>
+                            {% endif %}
                         </div>
                     </form>
                 </div>

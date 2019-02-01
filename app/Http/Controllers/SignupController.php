@@ -74,7 +74,7 @@
             $application = new MemberApplication($request->session()->get('signup_data'));
 
             $picture  = $request->file('picture');
-            $filename = $request->session()->get('signup_data')['pcn'] . '-' . time() . '.' . $picture->extension();;
+            $filename = $request->session()->get('signup_data')['pcn'] . '-' . time() . '.' . $picture->extension();
             $picture->storeAs('member_photos', $filename);
             // todo Intervention gebruiken om afbeeldingen tot maximaal 4k bij 4k te verkleinen en verificatie
 

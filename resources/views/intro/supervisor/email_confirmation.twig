@@ -8,9 +8,9 @@
                     <div class="checkmark-wrapper">
                         <div class="checkmark">&check;</div>
                     </div>
-                    <h2>{{ trans('intro.supervisor.signup.email_confirmed') }}</h2>
-                    <p>{{ trans('intro.supervisor.signup.thanks_for_confirming', { name: application.first_name }) }}</p>
-                    <p>{{ trans('intro.supervisor.signup.email_info') }}</p>
+                    <h2>{{ trans('intro.supervisor.signup.email_confirmed', { year: application.introduction.year.year }) }}</h2>
+                    <p>{{ trans('intro.supervisor.signup.thanks_for_confirming', { name: application.member.first_name, year: application.introduction.year.year }) }}</p>
+                    <p>{{ trans('intro.supervisor.signup.email_info', { year: application.introduction.year.year })|raw }}</p>
                 </div>
             </div>
         </main>

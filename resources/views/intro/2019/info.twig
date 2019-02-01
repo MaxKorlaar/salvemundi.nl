@@ -1,0 +1,57 @@
+{% extends 'partials/page.twig' %}
+{% block title %}Introductie FHICT {{ introduction.year.year }}{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="introduction">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('intro.2019.title') }}</h1>
+                    <div class="button-menu my-3">
+                        <a class="button mx-1" href="{{ route('intro.by_id.info', { introduction: introduction, year: year } ) }}">
+                            {{ trans('intro.main_info_button') }}
+                        </a>
+                        <a class="button mx-1" href="{{ route('intro.by_id.schedule', { introduction: introduction, year: year }) }}">
+                            {{ trans('intro.schedule_button') }}
+                        </a>
+                        <a class="button mx-1" href="{{ route('intro.by_id.signup', { introduction: introduction, year: year }) }}">
+                            {{ trans('intro.sign_up_button') }}
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2>{{ trans('intro.2019.info_page.intro.title') }}</h2>
+                    <p>
+                        {{ trans('intro.2019.info_page.intro.text') }}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="youtube-wrapper">
+                        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/L-eHV0h-iqc" frameborder="0"
+                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h2>{{ trans('intro.2019.info_page.information.title') }}</h2>
+                    <p>{{ trans('intro.2019.info_page.information.text') }}</p>
+                </div>
+                <div class="col-md-12">
+                    <h2>{{ trans('intro.2019.contact.title') }}</h2>
+                    <p>{{ trans('intro.2019.contact.text')|raw }}</p>
+                </div>
+                <div class="col-md-12 mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image1.jpg') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image2.jpg') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image3.jpg') }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

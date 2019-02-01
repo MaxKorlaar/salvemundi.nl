@@ -43,6 +43,7 @@
      * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\User query()
+     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Store\Order[]                                               $orders
      */
     class User extends Authenticatable {
         use Notifiable, HasEncryptedAttributes;

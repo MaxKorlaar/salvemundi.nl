@@ -48,7 +48,7 @@
             'confirmation' => [
                 'title'              => 'Bestelling geplaatst',
                 'order_placed'       => 'We hebben je bestelling ontvangen',
-                'email_instructions' => 'Bedankt voor het plaatsen van je bestelling bij Salve Mundi! We hebben je bestelling ontvangen en nemen binnenkort contact met je op. Meer informatie over je bestelling is zojuist naar je e-mail-adres toegestuurd.'
+                'email_instructions' => 'Bedankt voor het plaatsen van je bestelling bij Salve Mundi! We hebben je bestelling ontvangen en nemen binnenkort contact met je op. Meer informatie over je bestelling is zojuist naar je e-mailadres toegestuurd.'
             ]
         ],
         'item'        => [

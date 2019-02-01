@@ -6,7 +6,7 @@
         'log_in'                   => 'Log in',
         'no_member_with_pcn_found' => 'We kunnen geen lid vinden met jouw PCN. Ben je al ingeschreven voor de vereniging?',
         'email'                    => 'E-mailadres',
-        'email_missing'            => 'Om gebruik te maken van de Salve Mundi website, is het nodig om toestemming te verlenen tot het gebruik van je e-mail-adres.',
+        'email_missing'            => 'Om gebruik te maken van de Salve Mundi website, is het nodig om toestemming te verlenen tot het gebruik van je e-mailadres.',
         'access_denied'            => 'Verleen toestemming tot je accountgegevens om in te loggen tot de Salve Mundi website.',
         'password'                 => 'Wachtwoord',
         'forgot_password'          => 'Wachtwoord vergeten?',

@@ -1,0 +1,100 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.intro.spreadsheet.title', { year: introduction.year.year }) }}{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <main class="introduction overview">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.intro.spreadsheet.title', { year: introduction.year.year }) }}</h1>
+                </div>
+                <div class="col-md-12">
+                    {% set excel_fields = ['last_name', 'first_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'remarks'] %}
+                    <table id="spreadsheet" class="table table-responsive table-sm application-list spreadsheet table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    {{ trans('admin.intro.applications.id') }}
+                                </th>
+                                <th>
+                                    {{ trans('admin.intro.applications.status') }}
+                                </th>
+                                {% for field in excel_fields %}
+                                    <th>{{ trans('admin.intro.applications.' ~ field) }}</th>
+                                {% endfor %}
+                                <th>
+                                    {{ trans('admin.intro.applications.internal_transaction_id') }}
+                                </th>
+                                <th>
+                                    {{ trans('admin.intro.applications.transaction_id') }}
+                                </th>
+                                <th>
+                                    {{ trans('admin.intro.applications.transaction_status') }}
+                                </th>
+                                <th>
+                                    {{ trans('admin.intro.applications.transaction_amount') }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for application in introduction.applications %}
+                                <tr class="{{ application.status|str_slug }}">
+                                    <td>
+                                        {{ application.id }}
+                                    </td>
+                                    <td>
+                                        {{ trans('admin.intro.applications.status_' ~ application.status) }}
+                                    </td>
+                                    {% for field in excel_fields %}
+                                        <td>
+                                            {% if application[field] is same as(false) %} {{ trans('admin.intro.applications.false') }} {% elseif application[field] is same as(true) %} {{ trans('admin.intro.applications.true') }} {% else %} {{ application[field]|default('-') }} {% endif %}{{ "\t" }}
+                                        </td>
+                                    {% endfor %}
+                                    <td>
+                                        {% if application.transaction %}
+                                            {{ application.transaction_id }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if application.transaction %}
+                                            <a target="_blank" href="{{ config_get('mollie.transaction_url') ~ application.transaction.transaction_id }}">
+                                                {{ application.transaction.transaction_id }}
+                                            </a>
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if application.transaction %}
+                                            {{ trans('admin.transactions.status.' ~ application.transaction.transaction_status) }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if application.transaction %}
+                                            {{ application.transaction.transaction_amount }}
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+
+                                    {#{{ trans('admin.intro.applications.status_' ~ application.status) }}#}
+                                    {#{% if application.status == 'new' and application.email_confirmation_token == null %}#}
+                                    {#– {{ trans('admin.intro.applications.no_mail') }}#}
+                                    {#{% endif %}#}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <small>{{ trans_choice('admin.intro.applications.count', introduction.applications.count, { count: introduction.applications.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }}</small>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ mix('js/spreadsheet.js') }}"></script>
+{% endblock %}

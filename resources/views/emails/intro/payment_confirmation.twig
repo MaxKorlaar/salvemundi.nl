@@ -215,7 +215,7 @@
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 
                                             <div style="font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:1;text-align:left;color:#000000;">
-                                                {{ trans('email.intro.payment_confirmation.instructions') }}
+                                                {{ trans('email.intro.payment_confirmation.instructions', { year: application.introduction.year.year }) }}
                                             </div>
 
                                         </td>
@@ -225,8 +225,8 @@
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 
                                             <div style="font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:1;text-align:left;color:#000000;">
-                                                {% set fields = ['first_name', 'last_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_phone', 'email', 'shirt_size', 'gender', 'remarks', 'transaction_amount'] %} {% for field in fields %}
-                                                    <b>{{ trans('intro.signup.' ~ field)|raw ~ ':' }}</b> {% if application[field] is same as(false) %} {{ trans('email.intro.new_application.false') }} {% elseif application[field] is same as(true) %} {{ trans('email.intro.new_application.true') }} {% else %} {{ application[field]|default('-') }} {% endif %}
+                                                {% set fields = ['first_name', 'last_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_name', 'contact_relation', 'contact_phone', 'email', 'shirt_size', 'gender', 'remarks'] %} {% for field in fields %}
+                                                    <b>{{ trans('intro.signup.' ~ field)|raw ~ ':' }}</b> {% if application[field] is same as(false) %} {{ trans('email.intro.new_application.false') }} {% elseif application[field] is same as(true) %} {{ trans('email.intro.new_application.true') }} {% elseif field == 'birthday' %} {{ application[field]|date(trans('datetime.format.date')) }} {% else %} {{ application[field]|default('-') }} {% endif %}
                                                     <br/> {% endfor %}
                                             </div>
 
@@ -237,7 +237,7 @@
                                         <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 
                                             <div style="font-family:'Helvetica Neue', Helvetica, sans-serif;font-size:16px;line-height:1;text-align:left;color:#000000;">
-                                                {{ trans('email.intro.payment_confirmation.more_info', { amount: application.transaction_amount }) }}
+                                                {{ trans('email.intro.payment_confirmation.more_info', { amount: application.transaction.transaction_amount }) }}
                                             </div>
 
                                         </td>

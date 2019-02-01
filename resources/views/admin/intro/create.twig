@@ -1,0 +1,116 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.intro.create.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="introduction">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.intro.create.title') }}</h1>
+                    <form action="{{ route('admin.intro.store') }}" method="POST" class="row">
+                        {{ csrf_field() }}
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="year_id">{{ trans('admin.intro.year') }}</label>
+                                <select required id="year_id" name="year_id" class="form-control {{ errors.has('year_id') ? 'is-invalid' }}">
+                                    {% for year in years %}
+                                        <option value="{{ year.id }}" {{ old('year_id') == year.id ? 'selected' }}>{{ year.year }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="invalid-feedback">
+                                    {{ errors.first('year_id')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="price">{{ trans('admin.intro.price') }}</label>
+                                <input step="0.01" id="price" type="number" class="form-control {{ errors.has('price') ? 'is-invalid' }}"
+                                       placeholder="12.34" name="price"
+                                       value="{{ old('price') }}">
+                                <div class="invalid-feedback">
+                                    {{ errors.first('price')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="max_signups">{{ trans('admin.intro.max_signups') }}</label>
+                                <input id="max_signups" type="number" class="form-control {{ errors.has('max_signups') ? 'is-invalid' }}"
+                                       placeholder="150" name="max_signups"
+                                       value="{{ old('max_signups') }}">
+                                <div class="invalid-feedback">
+                                    {{ errors.first('max_signups')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-control form-check-input {{ errors.has('allow_reservations_after_limit') ? 'is-invalid' }}" value="1" type="checkbox" id="allow_reservations_after_limit" name="allow_reservations_after_limit" {{ old('allow_reservations_after_limit') ? 'checked' }}>
+                                <label class="form-check-label" for="allow_reservations_after_limit">
+                                    {{ trans('admin.intro.allow_reservations_after_limit')|raw }}
+                                </label>
+                                <p class="help">
+                                    {{ trans('admin.intro.allow_reservations_help') }}
+                                </p>
+                                <div class="invalid-feedback">
+                                    {{ errors.first('allow_reservations_after_limit')|ucfirst }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="reservations_open">{{ trans('admin.intro.reservations_open') }}</label>
+                                <input id="reservations_open" type="date"
+                                       class="form-control {{ errors.has('reservations_open') ? 'is-invalid' }}"
+                                       placeholder="{{ trans('admin.intro.reservations_open_format') }}" name="reservations_open"
+                                       min="{{ reservations_open|date('Y-m-d') }}"
+                                       value="{{ old('reservations_open', reservations_open|date('Y-m-d')) }}">
+                                <div class="invalid-feedback">
+                                    {{ errors.first('reservations_open')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-control form-check-input {{ errors.has('mail_reservations') ? 'is-invalid' }}" value="1" type="checkbox" id="mail_reservations" name="mail_reservations" {{ old('mail_reservations') ? 'checked' }}>
+                                <label class="form-check-label" for="mail_reservations">
+                                    {{ trans('admin.intro.mail_reservations')|raw }}
+                                </label>
+                                <p class="help">
+                                    {{ trans('admin.intro.mail_reservations_help') }}
+                                </p>
+                                <div class="invalid-feedback">
+                                    {{ errors.first('mail_reservations')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup_open">{{ trans('admin.intro.signup_open') }}</label>
+                                <input id="signup_open" type="date"
+                                       class="form-control {{ errors.has('signup_open') ? 'is-invalid' }}"
+                                       placeholder="{{ trans('admin.intro.signup_open_format') }}" name="signup_open"
+                                       min="{{ reservations_open|date('Y-m-d') }}"
+                                       value="{{ old('signup_open', signup_open|date('Y-m-d')) }}">
+                                <div class="invalid-feedback">
+                                    {{ errors.first('signup_open')|ucfirst }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="signup_close">{{ trans('admin.intro.signup_close') }}</label>
+                                <input id="signup_close" type="date"
+                                       class="form-control {{ errors.has('signup_close') ? 'is-invalid' }}"
+                                       placeholder="{{ trans('admin.intro.signup_close_format') }}" name="signup_close"
+                                       min="{{ reservations_open|date('Y-m-d') }}"
+                                       value="{{ old('signup_close', signup_close|date('Y-m-d')) }}">
+                                <p class="warning">
+                                    {{ trans('admin.intro.anonymisation_warning') }}
+                                </p>
+                                <div class="invalid-feedback">
+                                    {{ errors.first('signup_close')|ucfirst }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="form-group">
+                                <input type="submit" class="button" value="{{ trans('admin.intro.create.create') }}">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

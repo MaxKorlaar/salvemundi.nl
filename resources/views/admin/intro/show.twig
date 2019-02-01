@@ -1,108 +1,168 @@
 {% extends 'admin/_page.twig' %}
-{% block title %}{{ application.first_name }} {{ application.last_name }}{% endblock %}
+{% block title %}{{ trans('admin.intro.show.title', { year: introduction.year.year }) }}{% endblock %}
 {% block content %}
     <div class="container">
-        <main class="intro application">
+        <main class="introduction">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>{{ application.first_name }} {{ application.last_name }}</h1>
+                    <h1>{{ trans('admin.intro.show.title', { year: introduction.year.year }) }}</h1>
+                    {% if session('success') %}
+                        <div class="alert alert-success text-center success-message">
+                            <span class="fa fa-check fa-2x pull-left"></span>
+                            {{ session('success')|raw }}
+                        </div>
+                    {% endif %}
+                    {% if errors.has('mail') %}
+                        <div class="warning">
+                            {{ errors.first('mail') }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-6">
                     <div>
                         <b>{{ trans('admin.intro.id') }}</b>
-                        {{ application.id }}
+                        {{ introduction.id }}
                     </div>
                     <div>
-                        <b>{{ trans('admin.intro.status') }}</b>
-                        {{ trans('admin.intro.status_' ~ application.status) }}
-                        {% if application.status == 'new' and application.email_confirmation_token == null %}
-                            – {{ trans('admin.intro.no_mail') }}
-                        {% endif %}
+                        <b>{{ trans('admin.intro.year') }}</b>
+                        {{ introduction.year.year }}
                     </div>
                     <div>
-                        <b>{{ trans('intro.signup.first_name') }}</b>
-                        {{ application.first_name }}
+                        <b>{{ trans('admin.intro.price') }}</b>
+                        €{{ introduction.price|number_format(2, ',') }}
                     </div>
                     <div>
-                        <b>{{ trans('intro.signup.last_name') }}</b>
-                        {{ application.last_name }}
+                        <b>{{ trans('admin.intro.max_signups') }}</b>
+                        {{ introduction.max_signups }}
                     </div>
                     <div>
-                        <b>{{ trans('intro.signup.address') }}</b>
-                        {{ application.address }}
-                    </div>
-                    <div>
-                        <b>{{ trans('intro.signup.city') }}</b>
-                        {{ application.city }}
-                    </div>
-                    <div>
-                        <b>{{ trans('intro.signup.postal') }}</b>
-                        {{ application.postal }}
-                    </div>
-                    <div>
-                        <b>{{ trans('intro.signup.phone') }}</b>
-                        {{ application.phone }}
-                    </div>
-                    <div>
-                        <b>{{ trans('intro.signup.contact_phone') }}</b>
-                        {{ application.phone }}
-                    </div>
-                    <div>
-                        <b>{{ trans('intro.signup.birthday') }}</b>
-                        {{ application.birthday|date(trans('datetime.format.date')) }}
+                        <b>{{ trans('admin.intro.allow_reservations_after_limit') }}</b>
+                        {{ introduction.allow_reservations_after_limit ? trans('admin.intro.yes') : trans('admin.intro.no') }}
                     </div>
                 </div>
                 <div class="col-6">
-
-
                     <div>
-                        <b>{{ trans('intro.signup.email') }}</b>
-                        {{ application.email }}
+                        <b>{{ trans('admin.intro.reservations_open') }}</b>
+                        {{ introduction.reservations_open|date(trans('datetime.format.date')) }}
                     </div>
                     <div>
-                        <b>{{ trans('intro.signup.pcn') }}</b>
-                        {{ application.pcn }}
+                        <b>{{ trans('admin.intro.mail_reservations') }}</b>
+                        {{ introduction.mail_reservations_at ? trans('admin.intro.yes') : trans('admin.intro.no') }}
                     </div>
                     <div>
-                        <b>{{ trans('intro.signup.shirt_size') }}</b>
-                        {{ application.shirt_size }}
+                        <b>{{ trans('admin.intro.signup_open') }}</b>
+                        {{ introduction.signup_open|date(trans('datetime.format.date')) }}
                     </div>
                     <div>
-                        <b>{{ trans('intro.signup.gender') }}</b>
-                        {{ application.gender }}
-                    </div>
-                    <div>
-                        <b>{{ trans('intro.signup.remarks') }}</b>
-                        {{ application.remarks }}
-                    </div>
-                    <div>
-                        <b>{{ trans('intro.signup.transaction_id') }}</b>
-                        <a href="{{ config_get('mollie.transaction_url') ~ application.transaction_id }}" target="_blank">{{ application.transaction_id }}</a>
-                    </div>
-                    <div>
-                        <b>{{ trans('intro.signup.transaction_amount') }}</b>
-                        {{ application.transaction_amount }}
-                    </div>
-                    <div>
-                        <b>{{ trans('admin.intro.transaction_status') }}</b>
-                        {{ application.transaction_status }}
+                        <b>{{ trans('admin.intro.signup_close') }}</b>
+                        {{ introduction.signup_close|date(trans('datetime.format.date')) }}
                     </div>
                     <div>
                         <b>{{ trans('admin.intro.created_at') }}</b>
-                        {{ application.created_at|date(trans('datetime.format.date_and_time')) }}
+                        {{ introduction.created_at|date(trans('datetime.format.date_and_time')) }}
                     </div>
                     <div>
                         <b>{{ trans('admin.intro.updated_at') }}</b>
-                        {{ application.updated_at|date(trans('datetime.format.date_and_time')) }}
+                        {{ introduction.updated_at|date(trans('datetime.format.date_and_time')) }}
                     </div>
                 </div>
+
                 <div class="col-12 button-container">
-                    <a href="{{ route('admin.intro.index') }}" class="button">{{ trans('admin.intro.back_to_index') }}</a>
-                    {% if application.status != constant('STATUS_PAID', application) and application.status != constant('STATUS_OPEN', application) %}
-                        <a href="{{ route('admin.intro.delete_confirmation', { application: application }) }}" class="button danger pull-right">{{ trans('admin.intro.delete_application') }}</a>
-                    {% endif %}
+                    <a href="{{ route('admin.intro.edit', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.edit_introduction') }}</a>
+                    <a href="{{ route('admin.intro.supervisor_applications.index', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.view_supervisors') }}</a>
+                    {#<a href="{{ route('admin.intro.delete_confirmation', { introduction: introduction }) }}" class="button danger pull-right">{{ trans('admin.intro.delete_introduction') }}</a>#}
                 </div>
 
+                <div class="col-12 text-center statistics">
+                    <div class="stat">
+                        {{ confirmed_count }}
+                        <span>
+                            {{ trans('admin.intro.applications.confirmed_amount') }}
+                        </span>
+                    </div>
+                    <div class="stat">
+                        {{ (confirmed_count / introduction.max_signups * 100)|number_format(0) }}%
+                        <span>
+                            {{ trans('admin.intro.applications.confirmed_percentage', { max_signups: introduction.max_signups }) }}
+                        </span>
+                    </div>
+                    <div class="stat">
+                        {{ reservations_count }}
+                        <span>
+                            {{ trans('admin.intro.applications.reservations_amount') }}
+                        </span>
+                    </div>
+                    <div class="stat">
+                        {{ introduction.applications.count }}
+                        <span>
+                            {{ trans('admin.intro.applications.amount') }}
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>{{ trans('admin.intro.applications.title') }}</h4>
+                    <table class="table application-list table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ trans('admin.intro.applications.id') }}</th>
+                                <th>{{ trans('admin.intro.applications.last_name') }}</th>
+                                <th>{{ trans('admin.intro.applications.first_name') }}</th>
+                                <th>{{ trans('admin.intro.applications.status') }}</th>
+                                <th>{{ trans('admin.intro.applications.transaction') }}</th>
+                                <th>{{ trans('admin.intro.applications.created_at') }}</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for application in introduction.applications %}
+                                <tr id="application-{{ application.id }}" class="{{ application.status|str_slug }}">
+                                    <td>{{ application.id }}</td>
+                                    <td>{{ application.last_name }}</td>
+                                    <td>{{ application.first_name }}</td>
+                                    <td>
+                                        {{ trans('admin.intro.applications.status_' ~ application.status) }}
+                                    </td>
+                                    <td>
+                                        {% if application.transaction %}
+                                            <a target="_blank" href="{{ config_get('mollie.transaction_url') ~ application.transaction.transaction_id }}">
+                                                {{ application.transaction_id }}
+                                                ({{ trans('admin.transactions.status.' ~ application.transaction.transaction_status) }})
+                                            </a>
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ application.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    <td>
+                                        <a href="{{ route('admin.intro.applications.show', { intro: introduction, application: application }) }}">{{ trans('admin.intro.applications.details') }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <small>{{ trans_choice('admin.intro.applications.count', introduction.applications.count, { count: introduction.applications.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }}</small>
+                    {% if introduction.isAnonymised() %}
+                        <div class="button-container">
+                            <a href="{{ route('admin.intro.delete_confirmation', { intro: introduction }) }}"
+                               class="button danger pull-right">{{ trans('admin.intro.delete_introduction') }}</a>
+                        </div>
+                    {% else %}
+                        <p>{{ trans('admin.intro.cannot_delete_until_anonymised') }}</p>
+                    {% endif %}
+
+                    <form action="{{ route('admin.intro.send_email_confirmation_reminders', { intro: introduction }) }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="button danger">{{ trans('admin.intro.send_email_reminders') }}</button>
+                    </form>
+                    <form action="{{ route('admin.intro.send_payment_reminders', { intro: introduction }) }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="button danger">{{ trans('admin.intro.send_payment_reminders') }}</button>
+                    </form>
+
+                </div>
             </div>
         </main>
     </div>

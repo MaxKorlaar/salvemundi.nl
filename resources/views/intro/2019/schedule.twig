@@ -1,0 +1,66 @@
+{% extends 'partials/page.twig' %}
+{% block title %}Planning Intro FHICT 2019{% endblock %}
+{% block content %}
+    <div class="container content">
+        <main class="intro">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('intro.2019.title') }}</h1>
+                    <div class="button-menu my-3">
+                        <a class="button mx-1" href="{{ route('intro.by_id.info', { introduction: introduction, year: year } ) }}">
+                            {{ trans('intro.main_info_button') }}
+                        </a>
+                        <a class="button mx-1" href="{{ route('intro.by_id.schedule', { introduction: introduction, year: year }) }}">
+                            {{ trans('intro.schedule_button') }}
+                        </a>
+                        <a class="button mx-1" href="{{ route('intro.by_id.signup', { introduction: introduction, year: year }) }}">
+                            {{ trans('intro.sign_up_button') }}
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h2>Planning</h2>
+                    <div>
+                        <h3>{{ trans("intro.2019.schedule_page.monday.title") }}</h3>
+                        <p>
+                            {{ trans("intro.2019.schedule_page.monday.text")|raw }}
+                        </p>
+                        <h3>{{ trans("intro.2019.schedule_page.tuesday.title") }}</h3>
+                        <p>
+                            {{ trans("intro.2019.schedule_page.tuesday.text")|raw }}
+                        </p>
+                        <h3>{{ trans("intro.2019.schedule_page.wednesday.title") }}</h3>
+                        <p>
+                            {{ trans("intro.2019.schedule_page.wednesday.text")|raw }}
+                        </p>
+                        <h3>{{ trans("intro.2019.schedule_page.thursday.title") }}</h3>
+                        <p>
+                            {{ trans("intro.2019.schedule_page.thursday.text")|raw }}
+                        </p>
+                        <h3>{{ trans("intro.2019.schedule_page.friday.title") }}</h3>
+                        <p>
+                            {{ trans("intro.2019.schedule_page.friday.text")|raw }}
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h2>{{ trans('intro.2019.contact.title') }}</h2>
+                    <p>{{ trans('intro.2019.contact.text')|raw }}</p>
+                </div>
+                <div class="col-md-12 mb-4">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image1.jpg') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image2.jpg') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <img class="img-fluid" src="{{ asset('images/intro/2019/image3.jpg') }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

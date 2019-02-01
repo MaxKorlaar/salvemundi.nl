@@ -17,7 +17,7 @@
          * @return bool
          */
         public function authorize() {
-            return false;
+            return true;
         }
 
         /**
@@ -30,8 +30,10 @@
                 'pcn'              => 'nullable|integer',
                 'first_name'       => 'required|string|max:150',
                 'last_name'        => 'required|string|max:150',
-                'phone'            => 'required|max:15',
-                'contact_phone'    => 'required|max:15',
+                'phone'            => 'required|max:15|different:contact_phone',
+                'contact_name'     => 'required|max:150',
+                'contact_relation' => 'required|max:150',
+                'contact_phone'    => 'required|max:15|different:phone',
                 'email'            => 'required|email|confirmed',
                 'birthday'         => 'required|date|before:-15 years',
                 'shirt_size'       => 'required|in:' . join(",", trans('intro.signup.shirt_sizes')),
@@ -43,7 +45,7 @@
                 'address'          => 'required|min:3|max:150',
                 'city'             => 'required|min:3|max:150',
                 'postal'           => 'required|string',
-                'country' => [
+                'country'          => [
                     'required',
                     Rule::in(array_keys(trans('address.country')))
                 ],
@@ -75,7 +77,9 @@
                 'agree_salvemundi' => trans('intro.signup.terms'),
                 'agree_buitenjan'  => trans('intro.signup.terms'),
                 'remarks'          => trans('intro.signup.remarks'),
-                'contact_phone'    => trans('intro.signup.contact_phone')
+                'contact_phone'    => trans('intro.signup.contact_phone'),
+                'contact_name'     => trans('intro.signup.contact_name'),
+                'contact_relation' => trans('intro.signup.contact_relation')
             ];
         }
     }

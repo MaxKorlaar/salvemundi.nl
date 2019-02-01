@@ -6,88 +6,40 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ trans('admin.intro.title') }}</h1>
-
-                    {% if session('success') %}
-                        <div class="alert alert-success text-center success-message">
-                            <span class="fa fa-check fa-2x pull-left"></span>
-                            {% if session('success') is iterable %}
-                                <ul>
-                                    {% for success in session('success') %}
-                                        <li>{{ success|raw }}</li>
-                                    {% endfor %}
-                                </ul>
-                            {% else %}
-                                {{ session('success')|raw }}
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                </div>
-                <div class="col-12 text-center statistics">
-                    <div class="stat">
-                        {{ applications.count }}
-                        <span>
-                            {{ trans('admin.intro.amount') }}
-                        </span>
-                    </div>
-                    <div class="stat">
-                        {{ confirmed_count }}
-                        <span>
-                            {{ trans('admin.intro.confirmed_amount') }}
-                        </span>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <small>{{ trans_choice('admin.intro.count', applications.count, { count: applications.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }} </small>
-                </div>
-                <div class="col-12 button-container">
-                    <a href="{{ route('admin.intro.spreadsheet') }}" class="button">{{ trans('admin.intro.view_spreadsheet') }}</a>
-                </div>
-                <div class="col-md-12">
-                    <table class="table application-list table-striped">
+                    <p>
+                        <a href="{{ route('admin.intro.create') }}" class="btn btn-primary">{{ trans('admin.intro.new') }}</a>
+                    </p>
+                    <table class="table introduction-list table-striped">
                         <thead>
                             <tr>
                                 <th>{{ trans('admin.intro.id') }}</th>
-                                <th>{{ trans('admin.intro.status') }}</th>
-                                <th>{{ trans('admin.intro.last_name') }}</th>
-                                <th>{{ trans('admin.intro.first_name') }}</th>
-                                <th>{{ trans('admin.intro.transaction_status') }}</th>
+                                <th>{{ trans('admin.intro.year') }}</th>
+                                <th>{{ trans('admin.intro.price') }}</th>
+                                <th>{{ trans('admin.intro.signups') }}</th>
+                                <th>{{ trans('admin.intro.reservations_open') }}</th>
+                                <th>{{ trans('admin.intro.signup_close') }}</th>
                                 <th>{{ trans('admin.intro.created_at') }}</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for application in applications %}
-                                <tr class="{{ application.status|str_slug }}">
-                                    <td>{{ application.id }}</td>
+                            {% for introduction in introductions %}
+                                <tr>
+                                    <td>{{ introduction.id }}</td>
+                                    <td>{{ introduction.year.year }}</td>
+                                    <td>€{{ introduction.price|number_format(2, ',') }}</td>
+                                    <td>{{ introduction.applications.count }}</td>
+                                    <td>{{ introduction.reservations_open }}</td>
+                                    <td>{{ introduction.signup_close }}</td>
+                                    <td>{{ introduction.created_at|date(trans('datetime.format.date_and_time')) }}</td>
                                     <td>
-                                        {{ trans('admin.intro.status_' ~ application.status) }}
-                                        {% if application.status == 'new' and application.email_confirmation_token == null %}
-                                            – {{ trans('admin.intro.no_mail') }}
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ application.last_name }}</td>
-                                    <td>{{ application.first_name }}</td>
-                                    <td>{{ application.transaction_status }}</td>
-                                    <td>{{ application.created_at|date(trans('datetime.format.date_and_time')) }}</td>
-                                    <td><a href="{{ route('admin.intro.show', { application: application }) }}">{{ trans('admin.intro.details') }}</a>
+                                        <a href="{{ route('admin.intro.show', { introduction: introduction }) }}">{{ trans('admin.intro.details') }}</a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
-                    <small>{{ trans_choice('admin.intro.count', applications.count, { count: applications.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }} </small>
-                    {#<form action="{{ route('admin.intro.generate_tokens') }}" method="POST">#}
-                        {#{{ csrf_field() }}#}
-                        {#<button type="submit" class="button danger">{{ trans('admin.intro.generate_tokens') }}</button>#}
-                    {#</form>#}
-                    {#<form action="{{ route('admin.intro.send_email_reminders') }}" method="POST">#}
-                        {#{{ csrf_field() }}#}
-                        {#<button type="submit" class="button danger">{{ trans('admin.intro.send_email_reminders') }}</button>#}
-                    {#</form>#}
-                    {#<form action="{{ route('admin.intro.send_payment_reminders') }}" method="POST">#}
-                        {#{{ csrf_field() }}#}
-                        {#<button type="submit" class="button danger">{{ trans('admin.intro.send_payment_reminders') }}</button>#}
-                    {#</form>#}
+                    <small>{{ trans_choice('admin.intro.count', introductions.count, { count: introductions.count }) }} </small>
                 </div>
             </div>
         </main>

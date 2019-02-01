@@ -23,7 +23,9 @@
          */
         public function __construct(IntroSupervisorApplication $application) {
             $this->application = $application;
-            $this->subject(trans('email.intro.supervisor.confirm_application.subject', ['name' => $application->first_name . ' ' . $application->last_name]));
+            $this->subject(trans('email.intro.supervisor.confirm_application.subject', [
+                'name' => $application->member->first_name . ' ' . $application->member->last_name
+            ]));
         }
 
         /**

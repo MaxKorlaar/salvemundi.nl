@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers;
 
+    use App\Introduction;
     use Carbon\Carbon;
     use Facebook\Exceptions\FacebookSDKException;
     use Facebook\GraphNodes\GraphNode;
@@ -20,7 +21,15 @@
          * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
          */
         public function getHomePage() {
-            return view('index');
+            $currentIntro = Cache::remember('home.current_introduction', 30, function () {
+                $introduction = Introduction::getIntroductionForCurrentYear();
+                if ($introduction === null) return false;
+                if ($introduction->reservationsAreOpen()) return $introduction;
+                return false;
+            });
+            return view('index', [
+                'introduction' => $currentIntro
+            ]);
         }
 
 

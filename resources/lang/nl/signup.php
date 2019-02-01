@@ -13,8 +13,8 @@
         'birthday'           => 'Geboortedatum',
         'birthday_format'    => 'dd-mm-jjjj (' . \Carbon\Carbon::now()->format('d-m-Y') . ')',
         'phone'              => 'Telefoonnummer',
-        'email'              => 'E-mail-adres',
-        'email_confirmation' => 'Bevestig je e-mail-adres',
+        'email'              => 'E-mailadres',
+        'email_confirmation' => 'Bevestig je e-mailadres',
         'picture'            => 'Pasfoto',
         'picture_help'       => 'Kies een pasfoto die op je ledenpasje komt te staan.
         Afbeeldingen mogen maximaal 5 MB groot zijn en moeten minimaal 200 bij 300 pixels groot zijn.',
@@ -31,9 +31,9 @@
             'blocked'              => 'Je mag je niet inschrijven met deze gegevens'
         ],
         'email_confirmed'         => 'Inschrijving bevestigd',
-        'thanks_for_confirming'   => 'Bedankt voor het bevestigen van je e-mail-adres, :name. Je bent nu écht bijna klaar:
+        'thanks_for_confirming'   => 'Bedankt voor het bevestigen van je e-mailadres, :name. Je bent nu écht bijna klaar:
         Het laatste wat we willen is dat je €25,- overmaakt naar NL97 RABO 0326 3418 11. Benoem hierbij je naam en PCN bij de beschrijving, dat maakt het voor ons overzichtelijker.',
-        'email_token_invalid'     => 'E-mail-adres al bevestigd',
+        'email_token_invalid'     => 'E-mailadres al bevestigd',
         'email_already_confirmed' => 'De link die je hebt gevolgd is (niet) meer geldig. Geen nood: Het is heel waarschijnlijk dat je dus al eens deze link hebt gevolgd en hij daarom niet meer geldig is. Als je op deze pagina bent beland nadat je op een link in een van onze e-mails hebt geklikt, hoef je je geen zorgen te maken.',
 
         // Betalingen

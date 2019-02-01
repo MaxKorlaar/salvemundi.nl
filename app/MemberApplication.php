@@ -54,6 +54,8 @@
      * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication newModelQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication newQuery()
      * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication query()
+     * @property string|null         $country
+     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereCountry($value)
      */
     class MemberApplication extends Model {
 

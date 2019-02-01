@@ -163,9 +163,6 @@
                         $mail = new CampingApplicationPaymentConfirmation($application);
                         $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
                         Mail::queue($mail);
-
-                        // Verander de aanmelding naar een werkelijk lid van de vereniging
-                        $application->transaction()->associate($transaction);
                     }
                 } else {
                     if ($payment->hasRefunds()) {

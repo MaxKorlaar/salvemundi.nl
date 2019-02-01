@@ -50,14 +50,14 @@
             'confirm_application'      => [
                 'subject'      => 'Bevestig je inschrijving voor de intro',
                 'greeting'     => 'Geachte :name,',
-                // 'instructions' => 'Tof dat je je hebt aangemeld voor het introductiekamp 2018. Het belooft een fantastische introductie te worden. Tijdens deze introductie zal je kennismaken met je studiegenoten en met het echte studentenleven. Deze introductie is georganiseerd door Salve Mundi, de studievereniging van Fontys Hogescholen ICT.',
-                'instructions' => 'Je hebt je ingeschreven voor de introductie van FHICT 2018-2019. Dit vinden wij erg leuk, maar wat wij minder leuk vinden is dat je je e-mailadres nog niet bevestigd hebt. Op deze manier kunnen wij geen betaalverzoek sturen. Wij willen je verzoeken om je e-mailadres te bevestigen zodat we een betaalverzoek kunnen sturen en hopelijk ook jou terug mogen zien bij de introductie van FHICT 2018-2019!',
+                 'instructions' => 'Tof dat een plekje hebt gereserveerd voor de introductie van FHICT in :year. Het belooft een fantastische introductie te worden. Tijdens deze introductie zal je kennismaken met je studiegenoten en met het echte studentenleven. Deze introductie is georganiseerd door Salve Mundi, de studievereniging van Fontys Hogescholen ICT.',
+                //'instructions' => 'Je hebt je ingeschreven voor de introductie van FHICT :year. Dit vinden wij erg leuk, maar wat wij minder leuk vinden is dat je je e-mailadres nog niet bevestigd hebt. Op deze manier kunnen wij geen betaalverzoek sturen. Wij willen je verzoeken om je e-mailadres te bevestigen zodat we een betaalverzoek kunnen sturen en hopelijk ook jou terug mogen zien bij de introductie van FHICT :year!',
                 'link'         => 'Bevestig je inschrijving',
-                'when_done'    => 'LET OP: je aanmelding wordt pas definitief bevestigd wanneer je hebt betaald. Hiervoor is het eerst nodig om nu direct je e-mail-adres te bevestigen. Je kan rond juli een e-mail van ons verwachten waarin we je verzoeken om aan de betaling te voldoen. Na deze betaling hoef je geen verdere acties te ondernemen.'
+                'when_done'    => 'LET OP: Je inschrijving wordt pas definitief bevestigd wanneer je hebt betaald. Hiervoor is het eerst nodig om nu direct je e-mailadres te bevestigen. Je kan rond juli een e-mail van ons verwachten waarin we je verzoeken om aan de betaling te voldoen. Na deze betaling hoef je geen verdere acties te ondernemen.'
             ],
             'new_application'          => [
                 'subject'    => 'Betaald: Nieuwe intro-inschrijving van :name',
-                'greeting'   => 'Hallo bestuur,',
+                'greeting'   => 'Hallo introcommissie,',
                 'intro_text' => 'Er is een nieuwe aanmelding voor de intro ingezonden. De gebruiker heeft betaald. Het bedrag staat hieronder vermeld.',
                 'true'       => 'Ja',
                 'false'      => 'Nee',
@@ -66,14 +66,14 @@
             'payment_request'          => [
                 'subject'      => 'Verzoek tot betaling intro FHICT',
                 'greeting'     => 'Hallo :name!',
-                'instructions' => 'Het is bijna zover, de introductie van FHICT 2018-2019 kan bijna van start gaan!
-Je hebt dit mailtje ontvangen omdat je jezelf hebt ingeschreven voor de introductie van 2018-2019. Hierbij krijg je dan ook van ons de link om de betaling over te kunnen maken. Wij vragen hiervoor 60 euro en daar komt nog 20 euro borg bij voor de overnachting. Deze 20 euro krijg je op het einde van de intro terug.',
+                'instructions' => 'Het is bijna zover, de introductie van FHICT :year kan bijna van start gaan!
+Je hebt dit mailtje ontvangen omdat je jezelf hebt ingeschreven voor de introductie van :year. Hierbij krijg je dan ook van ons de link om de betaling over te kunnen maken. Wij vragen hiervoor :price euro, inclusief 20 euro borg voor de overnachting. Deze 20 euro krijg je op het einde van de intro terug.',
                 'link'         => 'Open de betaling',
-                'when_done'    => 'Het is de bedoeling dat dit voor 1 augustus 2018 gebeurt. Wij hopen graag iedereen die zich ingeschreven heeft terug te zien bij de introductie van FHICT 2018-2019! Wanneer de betaling succesvol is zal je aanmelding definitief bevestigd worden en zullen we je hiervan op de hoogte stellen.',
+                'when_done'    => 'Het is de bedoeling dat dit voor het begin van de maand van de introductie gebeurt. Wij hopen graag iedereen die zich ingeschreven heeft terug te zien bij de introductie van FHICT :year! Wanneer de betaling succesvol is zal je aanmelding definitief bevestigd worden en zullen we je hiervan op de hoogte stellen. Mocht je nog verdere vragen hebben, dan kan je ons altijd <a href="https://wa.me/31636142514" target="_blank">een WhatsApp-berichtje sturen op +31 6 36142514</a>.',
                 'signature'    => 'Tot dan!!
                 
 Met vriendelijke groet,
-De feestcommissie Salve Mundi'
+De feestcommissie van Salve Mundi'
             ],
             'payment_request_reminder' => [
                 'subject' => 'Herinnering: Verzoek tot betaling intro FHICT'
@@ -81,8 +81,8 @@ De feestcommissie Salve Mundi'
             'payment_confirmation'     => [
                 'subject'      => 'Bedankt voor je aanmelding!',
                 'greeting'     => 'Hallo :name!',
-                'instructions' => 'Je hebt je inschrijving voltooid voor de introductie van FHICT 2018-2019 (woehoeeeee)! Je hebt je ingeschreven met de volgende gegevens:',
-                'more_info'    => 'Wij kijken erg uit om jou te ontmoeten bij de introductie op 22 augustus 2018. Je bent hier welkom om vanaf 10:00 om je spullen in te checken. Wij zorgen voor: je introductieshirt, slaapplek en natuurlijk een geweldige intro vol met leuke evenementen. Binnenkort krijg je hier meer informatie over.',
+                'instructions' => 'Je hebt je inschrijving voltooid voor de introductie van FHICT :year (woehoeeeee)! Je hebt je ingeschreven met de volgende gegevens:',
+                'more_info'    => 'Wij kijken erg uit om jou te ontmoeten bij de introductie op 26 augustus 2019. Je bent hier welkom om vanaf 10:00 om je spullen in te checken. Wij zorgen voor: je introductieshirt, slaapplek en natuurlijk een geweldige intro vol met leuke evenementen. Binnenkort krijg je hier meer informatie over.',
                 'packing_list' => 'Hier alvast een paklijst zodat je goed voorbereid bent!
                 <ul><li>Bevestiging van betaling (deze email)</li>
 <li>Douchespullen</li>
@@ -92,13 +92,13 @@ De feestcommissie Salve Mundi'
 <li>Handdoek</li>
 <li>Identificatiebewijs</li>
 <li>Lampje</li>
-<li>Pinpas (met genoeg saldo voor 3 dagen feesten)</li>
+<li>Pinpas (met genoeg saldo voor 5 dagen feesten)</li>
 <li>Slaapzak (of ander beddengoed) Er is alleen een matras en kussen aanwezig, de rest moet zelf meegenomen worden.</li>
 <li>Slippers</li>
 <li>Warme kleding voor de avond</li>
 <li>Zwemkleding</li></ul>
 Alle overige informatie is te vinden op:
-https://fontys.nl/Goede-Start/Eindhoven-1/Welkom-bij-HBO-ICT.htm',
+https://fontys.nl/Goede-Start/Eindhoven-1/Welkom-bij-HBO-ICT.htm. Mocht je nog verdere vragen hebben, dan kan je ons altijd <a href="https://wa.me/31636142514" target="_blank">een WhatsApp-berichtje sturen op +31 6 36142514</a>.',
                 'signature'    => 'Tot dan!!
                 
 Met vriendelijke groet,
@@ -108,12 +108,12 @@ De feestcommissie Salve Mundi'
                 'confirm_application' => [
                     'subject'      => 'Bevestig je inschrijving als begeleider voor de intro',
                     'greeting'     => 'Geachte :name,',
-                    'instructions' => 'Leuk dat je je hebt aangemeld als begeleider voor de intro van 2018. Het belooft een fantastische introductie te worden. Het is nodig om je inschrijving nog te bevestigen door te klikken op de link in deze e-mail.',
+                    'instructions' => 'Leuk dat je je hebt aangemeld als begeleider voor de intro van :year. Het belooft een fantastische introductie te worden. Het is nodig om je inschrijving nog te bevestigen door te klikken op de link in deze e-mail.',
                     'link'         => 'Bevestig je inschrijving',
-                    'when_done'    => 'We zullen nog contact met je opnemen indien je meedoet als begeleider. We kunnen namelijk maar een beperkt aantal intro-ouders mee laten doen met de intro van 2018.'
+                    'when_done'    => 'We zullen nog contact met je opnemen indien je meedoet als begeleider. We kunnen namelijk maar een beperkt aantal intro-ouders mee laten doen met de intro van 2019.'
                 ],
                 'new_application'     => [
-                    'subject'    => 'Papa/mama-inschrijving voor de intro van :name',
+                    'subject'    => 'Introductie papa/mama-inschrijving van :name',
                     'greeting'   => 'Hallo bestuur,',
                     'intro_text' => 'Er is een nieuwe aanmelding voor de intro als papa of mama ingezonden. De gebruiker heeft zijn/haar email-adres bevestigd.',
                     'true'       => 'Ja',

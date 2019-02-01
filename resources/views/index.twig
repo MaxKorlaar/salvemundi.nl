@@ -5,9 +5,13 @@
     {% block landing %}
         <section class="landing">
             <h1>{{ trans('home.landing.title') }}</h1>
-            <h5>{{ trans('home.landing.subtitle') }}</h5>
-            <a class="signup-btn button" href="{{ route('signup.signup') }}">{{ trans('home.signup_link') }}</a>
-            {#<a class="signup-btn button" href="{{ route('intro.info') }}">{{ trans('home.intro_signup_link') }}</a>#}
+            {% if introduction %}
+                <h5>{{ trans('home.landing.introduction_subtitle') }}</h5>
+                <a class="signup-btn button" href="{{ route('intro.info') }}">{{ trans('home.intro_signup_link') }}</a>
+            {% else %}
+                <h5>{{ trans('home.landing.subtitle') }}</h5>
+                <a class="signup-btn button" href="{{ route('signup.signup') }}">{{ trans('home.signup_link') }}</a>
+            {% endif %}
         </section>
     {% endblock %}
     {% block content %}
