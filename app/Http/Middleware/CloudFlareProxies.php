@@ -3,6 +3,7 @@
     namespace App\Http\Middleware;
 
     use Closure;
+    use Symfony\Component\HttpFoundation\Request;
 
     /**
      * Class CloudFlareProxies
@@ -36,7 +37,7 @@
                 }
             }
 
-            $request->setTrustedProxies($proxy_ips);
+            $request->setTrustedProxies($proxy_ips, Request::HEADER_X_FORWARDED_ALL);
 
             return $next($request);
         }

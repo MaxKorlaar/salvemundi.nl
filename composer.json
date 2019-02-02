@@ -19,11 +19,11 @@
     "ext-json": "*",
     "doctrine/dbal": "^2",
     "facebook/graph-sdk": "^5.6",
-    "fideloper/proxy": "~3.3",
+    "fideloper/proxy": "^4.0",
     "guzzlehttp/guzzle": "^6.3",
     "intervention/image": "^2.4",
     "intervention/imagecache": "^2.3",
-    "laravel/framework": "5.5.*",
+    "laravel/framework": "5.6.*",
     "laravel/tinker": "~1.0",
     "mollie/mollie-api-php": "^2",
     "phpoffice/phpspreadsheet": "^1.4",
@@ -40,7 +40,7 @@
     "fzaninotto/faker": "~1.4",
     "laravel/homestead": "^7.19",
     "mockery/mockery": "0.9.*",
-    "phpunit/phpunit": "~6.0",
+    "phpunit/phpunit": "^7.0",
     "squizlabs/php_codesniffer": "3.4.0"
   },
   "autoload": {
