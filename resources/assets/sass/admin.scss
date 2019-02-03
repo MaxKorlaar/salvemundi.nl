@@ -3,7 +3,15 @@
     display: block;
   }
 }
-
+.admin {
+  form {
+    .form-check {
+      label {
+        font-weight: bold;
+      }
+    }
+  }
+}
 .admin-nav, .member-nav {
   margin-top: -10px;
   margin-bottom: 10px;
@@ -363,14 +371,6 @@
         display: block;
         width: 100%;
       }
-    }
-  }
-}
-
-form {
-  .form-check {
-    label {
-      font-weight: bold;
     }
   }
 }

@@ -1,3 +1,12 @@
+form {
+  .form-check-input.form-control {
+    width: auto;
+  }
+
+  .form-check-label {
+    font-weight: normal;
+  }
+}
 .signup {
   .signup-count {
     transition: all .2s ease, opacity .5s;
@@ -64,14 +73,12 @@
 
     label {
       font-weight: bold;
+      &.form-check-label {
+        font-weight: initial;
+      }
     }
 
-    .form-check-input.form-control {
-      width: auto;
-    }
-    .form-check-label {
-      font-weight: normal;
-    }
+
 
   }
 
