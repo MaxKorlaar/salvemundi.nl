@@ -469,12 +469,7 @@ en onderwijs gerelateerde activiteiten',
                     'name'    => 'Kyle Ritchi',
                     'profile' => 'ICT & Software',
                     'image'   => 'Kyle.jpg'
-                ],
-                [
-                    'name'    => 'Bram Odenthal',
-                    'profile' => 'ICT & Technology',
-                    'image'   => 'Bram.jpg'
-                ],
+                ]
 
             ]
         ],
