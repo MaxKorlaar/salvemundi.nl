@@ -158,6 +158,11 @@
                  'priority' => 0.85,
                  'frequency' => 'monthly'
                ];
+               $pages[] = [
+                 'url' => route('intro.by_id.supervisor.info', ['intro' => $introduction, 'year' => $introduction->year->year], false),
+                 'priority' => 0.5,
+                 'frequency' => 'monthly'
+               ];
             });
 
             foreach ($pages as &$page) {

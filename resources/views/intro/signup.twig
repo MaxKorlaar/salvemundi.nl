@@ -1,5 +1,9 @@
 {% extends 'partials/page.twig' %}
 {% block title %}{{ trans('intro.signup.title', { year: introduction.year.year }) }}{% endblock %}
+{% block social_description %}{{ trans('intro.signup.description') }}{% endblock %}
+{% block social_image %}{{ asset('images/intro/2019/image1.jpg') }}{% endblock %}
+{% block social_image_width %}2985{% endblock %}
+{% block social_image_height %}1990{% endblock %}
 {% block content %}
     <div class="container content">
         <main class="signup">

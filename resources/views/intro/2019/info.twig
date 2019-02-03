@@ -1,11 +1,15 @@
 {% extends 'partials/page.twig' %}
-{% block title %}Introductie FHICT {{ introduction.year.year }}{% endblock %}
+{% block title %}{{ trans('intro.2019.info_page.title', { year: introduction.year.year }) }}{% endblock %}
+{% block social_description %}{{ trans('intro.2019.info_page.description') }}{% endblock %}
+{% block social_image %}{{ asset('images/intro/2019/image1.jpg') }}{% endblock %}
+{% block social_image_width %}2985{% endblock %}
+{% block social_image_height %}1990{% endblock %}
 {% block content %}
     <div class="container content">
         <main class="introduction">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>{{ trans('intro.2019.title') }}</h1>
+                    <h1>{{ trans('intro.2019.title', { year: introduction.year.year }) }}</h1>
                     <div class="button-menu my-3">
                         <a class="button mx-1" href="{{ route('intro.by_id.info', { introduction: introduction, year: year } ) }}">
                             {{ trans('intro.main_info_button') }}

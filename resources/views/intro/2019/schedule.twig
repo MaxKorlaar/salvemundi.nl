@@ -1,5 +1,9 @@
 {% extends 'partials/page.twig' %}
-{% block title %}Planning Intro FHICT 2019{% endblock %}
+{% block title %}{{ trans('intro.2019.schedule_page.title') }}{% endblock %}
+{% block social_description %}{{ trans('intro.2019.schedule_page.description') }}{% endblock %}
+{% block social_image %}{{ asset('images/intro/2019/image1.jpg') }}{% endblock %}
+{% block social_image_width %}2985{% endblock %}
+{% block social_image_height %}1990{% endblock %}
 {% block content %}
     <div class="container content">
         <main class="intro">

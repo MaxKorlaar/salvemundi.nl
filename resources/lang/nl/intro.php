@@ -34,6 +34,7 @@
         ],
         'signup'           => [
             'title'                        => 'Inschrijven voor de intro van FHICT :year',
+            'description'                  => 'De FHICT introductie is de leukste manier om je medestudenten te leren kennen. Op de website van studievereniging Salve Mundi is het mogelijk om je in te schrijven voor de introductie van dit jaar. Doe je dit, dan kom je een week lang in contact met je nieuwe studie, de studenten en de stad Eindhoven! Studievereniging Salve Mundi organiseert de introductie van Fontys Hogescholen ICT.',
             'signup_text'                  => 'Om de introductie te bekostigen vragen wij een bijdrage. Om je inschrijving te bevestigen, dien je direct na het invullen van dit formulier te betalen. Hiervoor vragen wij een bedrag van €:costs. Het is handig om jezelf zo snel mogelijk in te schrijven, er zijn namelijk slechts 200 plekken beschikbaar van de 550 studenten voor de opleiding FHICT. Indien je jezelf achteraf toch af wilt melden, doe dit dan zo snel mogelijk door <a href="https://wa.me/31636142514" target="_blank">ons een WhatsApp-berichtje te sturen</a> of een e-mail te sturen naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a>. Zo kunnen we alle beschikbare plekken opvullen met enthousiaste studenten!',
             'signup_full_warning'          => 'Alle beschikbare plekken van deze introductie zijn helaas al bezet. Je kan je wel nog aanmelden voor de reservelijst, waardoor je de mogelijkheid om te betalen alsnog krijgt mocht er een plek beschikbaar komen.',
             'signup_full_reservation_text' => '<b>Momenteel zijn alle beschikbare plekken bezet. Je kan je daarom alleen nog maar aanmelden voor de reservelijst.</b> Om de introductie te bekostigen vragen wij een bijdrage. Momenteel kan er alleen ingeschreven worden en vanaf 1 juli zullen de betaalverzoeken verstuurd worden. Bij inschrijving na 1 juli moet er direct betaald worden om je inschrijving te bevestigen. Hiervoor vragen wij een bedrag van €:costs. Het is handig om jezelf zo snel mogelijk in te schrijven, er zijn namelijk slechts 200 plekken beschikbaar van de 550 studenten voor de opleiding FHICT. Indien je jezelf achteraf toch af wilt melden, doe dit dan zo snel mogelijk door <a href="https://wa.me/31636142514" target="_blank">ons een WhatsApp-berichtje te sturen</a> of een e-mail te sturen naar <a href="mailto:intro@salvemundi.nl">intro@salvemundi.nl</a>. Zo kunnen we alle beschikbare plekken opvullen met enthousiaste studenten!',
@@ -116,6 +117,7 @@ De contributie van de intro kost €:costs.',
         'supervisor'       => [
             'info'   => [
                 'title'                   => 'Aanmelden voor de intro als intropapa of -mama',
+                'description'             => 'Leden van studievereniging Salve Mundi krijgen de mogelijkheid om zich aan te melden als intro-ouder voor dit jaar! We stellen hier wel een aantal eisen aan. Zonder onze leden zou de introductie niet plaats kunnen vinden. Studievereniging Salve Mundi organiseert de introductie van Fontys Hogescholen ICT.',
                 'supervisors_only'        => 'Deze pagina is bedoeld voor het inschrijven als papa of mama voor de intro. <a href="' . route('intro.signup') . '">Klik hier</a> om je in te schrijven als deelnemer',
                 'content'                 => [
                     'Beste (aankomende) papa’s en mama’s,<br>
@@ -178,6 +180,7 @@ De feestcommissie'
             ],
             'signup' => [
                 'title'                          => 'Aanmelden voor de intro als intropapa of -mama',
+                'description'                    => 'Leden van studievereniging Salve Mundi krijgen de mogelijkheid om zich aan te melden als intro-ouder voor dit jaar! Zonder onze leden zou de introductie niet plaats kunnen vinden. Studievereniging Salve Mundi organiseert de introductie van Fontys Hogescholen ICT.',
                 'instructions'                   => 'Niet alle selectievakjes zijn verplicht. Vink slechts aan wat van toepassing is voor jouw situatie.',
                 'member_id'                      => 'Lidnummer (zoals te vinden op je ledenpas)',
                 'first_name'                     => 'Voornaam',
@@ -225,9 +228,10 @@ De feestcommissie'
             ]
         ],
         '2019'             => [
-            'title'         => 'Intro FHICT 2019',
+            'title'         => 'Introductie FHICT :year',
             'info_page'     => [
-                'title'       => 'Inschrijven Intro FHICT 2019',
+                'title'       => 'Introductie FHICT :year',
+                'description' => 'De FHICT introductie is de leukste manier om je medestudenten te leren kennen. Het is een week vol avontuur en teambuilding in Eindhoven. Zo leer je ook de stad beter kennen. Wij vanuit Salve Mundi zijn druk bezig geweest om dit allemaal mogelijk te maken voor de nieuwe studenten. De introductie vindt plaats van maandag 26 augustus tot en met vrijdag 30 augustus. Houdt onze website en Facebook in de gaten voor updates! Studievereniging Salve Mundi organiseert de introductie van Fontys Hogescholen ICT.',
                 'intro'       => [
                     'title' => 'Hallo nieuwe studenten!',
                     'text'  => "De FHICT introductie is de leukste manier om je medestudenten te leren kennen. Het is een week vol avontuur en teambuilding in Eindhoven. Zo leer je ook de stad beter kennen. Wij vanuit Salve Mundi zijn druk bezig geweest om dit allemaal mogelijk te maken voor de nieuwe studenten. De introductie vindt plaats van maandag 26 augustus tot en met vrijdag 30 augustus. Houdt onze website en Facebook in de gaten voor updates!",
@@ -238,24 +242,25 @@ De feestcommissie'
                 ]
             ],
             'schedule_page' => [
-                'title'     => 'Planning',
-                'monday'    => [
+                'title'       => 'Planning',
+                'description' => 'De FHICT introductie is de leukste manier om je medestudenten te leren kennen. De introductie vindt plaats van maandag 26 augustus tot en met vrijdag 30 augustus. Op deze pagina is het mogelijk om een beknopte versie van de weekplanning te bekijken. Studievereniging Salve Mundi organiseert de introductie van Fontys Hogescholen ICT.',
+                'monday'      => [
                     'title' => 'Maandag',
                     'text'  => 'Op maandag zullen jullie zelf naar de locatie komen door middel van het openbaar vervoer of gebracht worden. Er is helaas geen parkeerruimte om zelf met de auto te komen. Een auto of fiets zal tijdens de introductie ook niet nodig zijn, er wordt namelijk gebruik gemaakt van touringcars.<br><br>Na de incheck krijgt iedereen de tijd om zijn bed klaar te maken en spullen op te bergen. Na een goede maaltijd komen de bussen iedereen ophalen om naar het Stratumseind te gaan. Hier laten we jullie kennis maken met onze stamkroeg Villa Fiesta. Tijdens deze week mogen jullie mee genieten van de korting die wij als Salve Mundi bij Villa Fiesta krijgen. '
                 ],
-                'tuesday'   => [
+                'tuesday'     => [
                     'title' => 'Dinsdag',
                     'text'  => 'Na de eerste dag worden we wakker en krijgen we een stevig ontbijt. Om iedereen goed wakker te maken bestaat de ochtend uit teambuilding. Hierbij zullen jullie in groepen verdeeld worden en leuke buiten/bos activiteiten gaan doen om elkaar beter te leren kennen. De dinsdagmiddag is verder een vrij rustige middag. De energie wordt bespaard voor de woensdag en de donderdag. <br><br>Het programma speelt zich af op onze slaaplocatie en hier gaan wij deze dag ook niet weg. Verder kun je activiteiten zoals een pubquiz en karaoke avond verwachten. Het eten wordt ook weer door ons verzorgt. '
                 ],
-                'wednesday' => [
+                'wednesday'   => [
                     'title' => 'Woensdag',
                     'text'  => 'Op woensdag gaan we ’s ochtends naar de Rachelsmolen campus. Hier zullen jullie voor het eerst met je klas voor het eerste semester samen zijn (alle studenten moeten hierbij aanwezig zijn). Ook ontmoeten alle studenten hier zijn/haar Slb’ers (Studie Loopbaan Begeleiders).<br><br>Woensdag middag gaat weer door in het thema van teambuilding, maar vooral het verkennen van Eindhoven en de kortingen welke wij presenteren namens Salve Mundi. Hierna heeft Fontys een feest georganiseerd op het stadhuisplein, gevolgd door een feest op het Stratumseind. Tot slot wordt er nog een afterparty op onze slaaplocatie gegeven, waarbij de feestbeesten dus nog door kunnen gaan, maar de wat rustigere niet verplicht zijn om mee te feesten. '
                 ],
-                'thursday'  => [
+                'thursday'    => [
                     'title' => 'Donderdag',
                     'text'  => 'Op donderdag kunt je een klein beetje uitslapen om bij te komen van de zware woensdagavond. Wederom wordt er voor een ontbijt gezorgd. Daarna zullen de touringcars vertrekken naar Purple Festival. Purple wordt georganiseerd door Fontys en is speciaal voor alle studenten van Fontys. De entreeprijs hiervoor zit inbegrepen bij de inschrijving. Hiervoor hoeven alleen mogelijke consumpties afgerekend te worden. Tot slot om de introductie af te sluiten geven we nog een laatste feest voor de studenten die niet gestopt kunnen worden. '
                 ],
-                'friday'    => [
+                'friday'      => [
                     'title' => 'Vrijdag',
                     'text'  => 'Op de vrijdag ochtend moeten we al vroeg uit de veren. Iedereen moet meehelpen met opruimen zodat we op de locatie nog een jaartje langer terug mogen komen. Hierna is het terrein goed bereikbaar, en rijden er genoeg bussen om iedereen weer netjes thuis te krijgen. <br><br>Let op! Deze planning is een momentopname. Wegens omstandigheden kan deze aangepast worden. Studenten die zich hebben ingeschreven zullen hiervan op de hoogte worden gebracht. '
                 ]
