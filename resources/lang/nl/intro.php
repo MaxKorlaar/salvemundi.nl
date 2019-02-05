@@ -67,7 +67,7 @@
             'same_sex_room'                => 'Je wordt altijd in een kamer ingedeeld met mensen van hetzelfde geslacht.',
             'remarks'                      => 'Opmerkingen',
             'remarks_placeholder'          => 'Opmerkingen (Bijvoorbeeld allergie-informatie of medicijngebruik)',
-            'agree_salvemundi'             => 'Ik ga akkoord met <a target="_blank" href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp">de voorwaarden van Salve Mundi</a> en de <a target="_blank" href="' . asset('storage/Intro specifieke huisregels.pdf') . '">intro huisregels van Salve Mundi</a>',
+            'agree_salvemundi'             => 'Ik ga akkoord met <a target="_blank" href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp">de voorwaarden van Salve Mundi</a> en de <a target="_blank" href="' . asset('storage/Intro huisregels.pdf') . '">intro huisregels van Salve Mundi</a>',
             'agree_buitenjan'              => 'Ik ga akkoord met <a target="_blank" href="' . asset('storage/Huisregels-Buitenjan.pdf') . '">de huisregels van De Buitenjan</a>',
             'transaction_id'               => 'Betalingskenmerk',
             'transaction_amount'           => 'Bedrag transactie',
@@ -160,7 +160,7 @@ verantwoordelijke papa’s en mama’s die Salve Mundi te bieden heeft.',
                     'Hierbij hebben wij hopelijk genoeg informatie gegeven om jullie
 klaar te stomen voor de introductie van 2019. Wij hopen iedereen te
 zien in augustus. Tot dan!',
-                    'Groetjes,
+                    'Groetjes,<br>
 De feestcommissie'
                 ],
                 'requirements_for_signup' => 'Voorwaarden voor inschrijving:',
@@ -216,7 +216,7 @@ De feestcommissie'
                 'route_type'                     => 'Route',
                 'remarks'                        => 'Opmerkingen',
                 'remarks_placeholder'            => 'Opmerkingen (Bijvoorbeeld allergie-informatie, medicijngebruik en eetwensen)',
-                'agree_salvemundi'               => 'Ik ga akkoord met <a target="_blank" href="' . asset('storage/Intro specifieke huisregels.pdf') . '">de introductie-voorwaarden</a>',
+                'agree_salvemundi'               => 'Ik ga akkoord met <a target="_blank" href="' . asset('storage/Intro huisregels.pdf') . '">de introductie-voorwaarden</a>',
                 'agree_intro_terms'              => 'Ik ga akkoord met <a target="_blank" href="' . route('intro.supervisor_info') . '">de voorwaarden gegeven op de informatiepagina</a> en heb alles goed doorgenomen',
                 'privacy_terms'                  => 'Door op \'Aanmelden\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>.',
                 'sign_up'                        => 'Aanmelden',
