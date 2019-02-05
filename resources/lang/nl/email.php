@@ -114,7 +114,7 @@ De feestcommissie Salve Mundi'
                 ],
                 'new_application'     => [
                     'subject'    => 'Introductie papa/mama-inschrijving van :name',
-                    'greeting'   => 'Hallo bestuur,',
+                    'greeting'   => 'Hallo introcommissie,',
                     'intro_text' => 'Er is een nieuwe aanmelding voor de intro als papa of mama ingezonden. De gebruiker heeft zijn/haar email-adres bevestigd.',
                     'true'       => 'Ja',
                     'false'      => 'Nee',

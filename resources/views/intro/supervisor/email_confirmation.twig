@@ -1,5 +1,5 @@
 {% extends 'partials/page.twig' %}
-{% block title %}{{ trans('intro.supervisor.signup.email_confirmed') }}{% endblock %}
+{% block title %}{{ trans('intro.supervisor.signup.email_confirmed', { year: application.introduction.year.year }) }}{% endblock %}
 {% block content %}
     <div class="container content">
         <main class="signup">
