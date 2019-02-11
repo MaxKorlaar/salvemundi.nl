@@ -31,7 +31,8 @@
     "predis/predis": "^1.1",
     "rcrowe/twigbridge": "^0.9.5",
     "s-ichikawa/laravel-sendgrid-driver": "^2.0",
-    "spatie/laravel-permission": "^2.29"
+    "spatie/laravel-permission": "^2.29",
+    "ext-soap": "*"
   },
   "require-dev": {
     "ajthinking/tinx": "^2.1",
