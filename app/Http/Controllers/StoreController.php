@@ -501,9 +501,9 @@ class StoreController extends Controller
                     $mutationSold = new Mutation($mutations, PaymentMethod::Mollie, TransactionType::Received, "Merch verkocht");
                     $client = new SoapClient("https://soap.e-boekhouden.nl/soap.asmx?wsdl");
 
-                    $sessionID = openSession($client);
-                    sendMutation($mutationSold, $sessionID, $client);
-                    closeSession($sessionID, $client);
+                    $sessionID = $this->openSession($client);
+                    $this->sendMutation($mutationSold, $sessionID, $client);
+                    $this->closeSession($sessionID, $client);
 
                 }
             } else {
