@@ -15,7 +15,7 @@
          *
          * @return bool
          */
-        public function authorize() {
+        public static function authorize() {
             return true;
         }
 
@@ -24,7 +24,7 @@
          *
          * @return array
          */
-        public function rules() {
+        public static function rules() {
             return [
                 'message_content' => 'required|string|min:50|max:5000',
                 'subject'         => 'required|min:5|max:40|string'

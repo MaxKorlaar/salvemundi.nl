@@ -3,7 +3,12 @@
     namespace App;
 
     use App\Helpers\HasEncryptedAttributes;
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Relations\BelongsTo;
+    use Illuminate\Support\Carbon;
+    use Throwable;
 
     /**
      * App\IntroSupervisorApplication
@@ -21,43 +26,43 @@
      * @property string|null                     $remarks
      * @property string                          $ip_address
      * @property string|null                     $email_confirmation_token
-     * @property \Illuminate\Support\Carbon|null $created_at
-     * @property \Illuminate\Support\Carbon|null $updated_at
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
      * @property int|null                        $introduction_id
      * @property string                          $status
      * @property string|null                     $type
      * @property string                          $motivation
      * @property string                          $previously_participated_as
      * @property string                          $active_in_association
-     * @property-read \App\Introduction|null     $introduction
-     * @property-read \App\Member|null           $member
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication query()
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereActiveInAssociation($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereAgeAtIntro($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereCompanyFirstResponseLicense($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereDriversLicense($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereEmailConfirmationToken($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereFirstAidLicense($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereIntroductionId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereIpAddress($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereMemberId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereMotivation($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication wherePreferredPartnerId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication wherePreviouslyParticipatedAs($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereRemainSober($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereRemarks($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereRouteType($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereShirtSize($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereStatus($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereType($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereUpdatedAt($value)
-     * @mixin \Eloquent
+     * @property-read Introduction|null          $introduction
+     * @property-read Member|null                $member
+     * @method static Builder|IntroSupervisorApplication newModelQuery()
+     * @method static Builder|IntroSupervisorApplication newQuery()
+     * @method static Builder|IntroSupervisorApplication query()
+     * @method static Builder|IntroSupervisorApplication whereActiveInAssociation($value)
+     * @method static Builder|IntroSupervisorApplication whereAgeAtIntro($value)
+     * @method static Builder|IntroSupervisorApplication whereCompanyFirstResponseLicense($value)
+     * @method static Builder|IntroSupervisorApplication whereCreatedAt($value)
+     * @method static Builder|IntroSupervisorApplication whereDriversLicense($value)
+     * @method static Builder|IntroSupervisorApplication whereEmailConfirmationToken($value)
+     * @method static Builder|IntroSupervisorApplication whereFirstAidLicense($value)
+     * @method static Builder|IntroSupervisorApplication whereId($value)
+     * @method static Builder|IntroSupervisorApplication whereIntroductionId($value)
+     * @method static Builder|IntroSupervisorApplication whereIpAddress($value)
+     * @method static Builder|IntroSupervisorApplication whereMemberId($value)
+     * @method static Builder|IntroSupervisorApplication whereMotivation($value)
+     * @method static Builder|IntroSupervisorApplication wherePreferredPartnerId($value)
+     * @method static Builder|IntroSupervisorApplication wherePreviouslyParticipatedAs($value)
+     * @method static Builder|IntroSupervisorApplication whereRemainSober($value)
+     * @method static Builder|IntroSupervisorApplication whereRemarks($value)
+     * @method static Builder|IntroSupervisorApplication whereRouteType($value)
+     * @method static Builder|IntroSupervisorApplication whereShirtSize($value)
+     * @method static Builder|IntroSupervisorApplication whereStatus($value)
+     * @method static Builder|IntroSupervisorApplication whereType($value)
+     * @method static Builder|IntroSupervisorApplication whereUpdatedAt($value)
+     * @mixin Eloquent
      * @property string                          $gender
-     * @method static \Illuminate\Database\Eloquent\Builder|IntroSupervisorApplication whereGender($value)
+     * @method static Builder|IntroSupervisorApplication whereGender($value)
      */
     class IntroSupervisorApplication extends Model {
         use HasEncryptedAttributes;
@@ -77,7 +82,7 @@
         ];
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         * @return BelongsTo
          */
         public function introduction() {
             return $this->belongsTo(Introduction::class);
@@ -85,7 +90,7 @@
 
         /**
          * @return bool
-         * @throws \Throwable
+         * @throws Throwable
          */
         public function anonymise() {
             $this->type = self::TYPE_ANONYMISED;
@@ -100,7 +105,7 @@
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         * @return BelongsTo
          */
         public function member() {
             return $this->belongsTo(Member::class);

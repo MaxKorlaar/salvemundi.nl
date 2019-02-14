@@ -3,6 +3,8 @@
     namespace App\Http\Controllers\Admin;
 
     use App\Http\Controllers\Controller;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\View\View;
 
     /**
      * Class ApplicationsController
@@ -16,9 +18,9 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function index() {
+        public static function index() {
             return view('admin.applications');
         }
     }

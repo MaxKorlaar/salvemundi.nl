@@ -6,6 +6,8 @@
     use Illuminate\Auth\AuthenticationException;
     use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
     use Illuminate\Http\Exceptions\PostTooLargeException;
+    use Illuminate\Http\Request;
+    use Illuminate\Http\Response;
     use Illuminate\Session\TokenMismatchException;
     use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
@@ -39,7 +41,7 @@
          *
          * This is a great spot to send exceptions to Sentry, Bugsnag, etc.
          *
-         * @param  \Exception $exception
+         * @param  Exception $exception
          *
          * @return void
          * @throws Exception
@@ -51,8 +53,8 @@
         /**
          * Render an exception into an HTTP response.
          *
-         * @param  \Illuminate\Http\Request $request
-         * @param  \Exception               $exception
+         * @param  Request   $request
+         * @param  Exception $exception
          *
          * @return \Symfony\Component\HttpFoundation\Response
          */
@@ -78,10 +80,10 @@
         /**
          * Convert an authentication exception into a response.
          *
-         * @param  \Illuminate\Http\Request $request
+         * @param  Request $request
          * @param AuthenticationException   $exception
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
         protected function unauthenticated($request, AuthenticationException $exception) {
             return $request->expectsJson()

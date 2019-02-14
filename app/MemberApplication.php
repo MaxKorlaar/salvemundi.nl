@@ -4,33 +4,37 @@
 
     use App\Helpers\HasEncryptedAttributes;
     use Carbon\Carbon;
+    use Eloquent;
+    use Exception;
     use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
     use Intervention\Image\Facades\Image;
+    use InvalidArgumentException;
+    use Storage;
 
     /**
      * Class MemberApplication
      *
      * @package App
-     * @property int                 $id
-     * @property string              $pcn
-     * @property string              $first_name
-     * @property string              $address
-     * @property string              $city
-     * @property string              $postal
-     * @property \Carbon\Carbon      $birthday
-     * @property string              $phone
-     * @property string              $email
-     * @property string              $status
-     * @property string              $ip_address
-     * @property string|null         $email_confirmation_token
-     * @property \Carbon\Carbon|null $created_at
-     * @property \Carbon\Carbon|null $updated_at
-     * @property string              $picture_name
-     * @property string              $last_name
-     * @property string              $transaction_id
-     * @property string              $transaction_status
-     * @property float               $transaction_amount
+     * @property int         $id
+     * @property string      $pcn
+     * @property string      $first_name
+     * @property string      $address
+     * @property string      $city
+     * @property string      $postal
+     * @property Carbon      $birthday
+     * @property string      $phone
+     * @property string      $email
+     * @property string      $status
+     * @property string      $ip_address
+     * @property string|null $email_confirmation_token
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
+     * @property string      $picture_name
+     * @property string      $last_name
+     * @property string      $transaction_id
+     * @property string      $transaction_status
+     * @property float       $transaction_amount
      * @method static Builder|MemberApplication whereAddress($value)
      * @method static Builder|MemberApplication whereBirthday($value)
      * @method static Builder|MemberApplication whereCity($value)
@@ -50,12 +54,12 @@
      * @method static Builder|MemberApplication whereTransactionId($value)
      * @method static Builder|MemberApplication whereTransactionStatus($value)
      * @method static Builder|MemberApplication whereUpdatedAt($value)
-     * @mixin \Eloquent
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication query()
+     * @mixin Eloquent
+     * @method static Builder|MemberApplication newModelQuery()
+     * @method static Builder|MemberApplication newQuery()
+     * @method static Builder|MemberApplication query()
      * @property string|null         $country
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\MemberApplication whereCountry($value)
+     * @method static Builder|MemberApplication whereCountry($value)
      */
     class MemberApplication extends Model {
 
@@ -85,12 +89,12 @@
         /**
          * @param $birthday
          *
-         * @return \Carbon\Carbon
+         * @return Carbon
          */
         public function setBirthdayAttribute($birthday) {
             try {
                 return $this->attributes['birthday'] = Carbon::createFromTimestamp(strtotime($birthday));
-            } catch (\InvalidArgumentException $exception) {
+            } catch (InvalidArgumentException $exception) {
                 return $this->attributes['birthday'] = null;
             }
         }
@@ -125,12 +129,12 @@
          * @param bool $picture
          *
          * @return bool|null
-         * @throws \Exception
+         * @throws Exception
          */
         public function delete($picture = true) {
             if ($picture) {
-                if (!\Storage::delete('member_photos/' . $this->picture_name)) {
-                    throw new \Exception("Kon pasfoto niet verwijderen bij het verwijderen van een MemberApplication");
+                if (!Storage::delete('member_photos/' . $this->picture_name)) {
+                    throw new Exception("Kon pasfoto niet verwijderen bij het verwijderen van een MemberApplication");
                 }
             }
 

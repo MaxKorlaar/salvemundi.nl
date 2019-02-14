@@ -4,7 +4,11 @@
 
     use App\Introduction;
     use App\Store\Item;
+    use Illuminate\Contracts\Routing\ResponseFactory;
+    use Illuminate\Contracts\View\Factory;
     use Illuminate\Http\Request;
+    use Illuminate\View\View;
+    use Symfony\Component\HttpFoundation\Response;
 
     /**
      * Class MetaController
@@ -15,16 +19,16 @@
         /**
          * @param Request $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getPrivacyPage(Request $request) {
+        public static function getPrivacyPage(Request $request) {
             return view('privacy');
         }
 
         /**
          * @param Request $request
          *
-         * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+         * @return ResponseFactory|Response
          */
         public function getSitemap(Request $request) {
 
@@ -140,29 +144,29 @@
                     'frequency' => 'monthly'
                 ],
             ];
-            Item::all()->each(function(Item $item) use (&$pages) {
+            Item::all()->each(function (Item $item) use (&$pages) {
                 $pages[] = [
-                  'url' => route('store.view_item', ['item' => $item->slug], false),
-                  'priority' => 0.7,
-                  'frequency' => 'weekly'
+                    'url'       => route('store.view_item', ['item' => $item->slug], false),
+                    'priority'  => 0.7,
+                    'frequency' => 'weekly'
                 ];
             });
-            Introduction::all()->each(function(Introduction $introduction) use (&$pages){
-               $pages[] = [
-                 'url' => route('intro.by_id.info', ['intro' => $introduction, 'year' => $introduction->year->year], false),
-                 'priority' => 0.85,
-                 'frequency' => 'monthly'
-               ];
-               $pages[] = [
-                 'url' => route('intro.by_id.signup', ['intro' => $introduction, 'year' => $introduction->year->year], false),
-                 'priority' => 0.85,
-                 'frequency' => 'monthly'
-               ];
-               $pages[] = [
-                 'url' => route('intro.by_id.supervisor.info', ['intro' => $introduction, 'year' => $introduction->year->year], false),
-                 'priority' => 0.5,
-                 'frequency' => 'monthly'
-               ];
+            Introduction::all()->each(function (Introduction $introduction) use (&$pages) {
+                $pages[] = [
+                    'url'       => route('intro.by_id.info', ['intro' => $introduction, 'year' => $introduction->year->year], false),
+                    'priority'  => 0.85,
+                    'frequency' => 'monthly'
+                ];
+                $pages[] = [
+                    'url'       => route('intro.by_id.signup', ['intro' => $introduction, 'year' => $introduction->year->year], false),
+                    'priority'  => 0.85,
+                    'frequency' => 'monthly'
+                ];
+                $pages[] = [
+                    'url'       => route('intro.by_id.supervisor.info', ['intro' => $introduction, 'year' => $introduction->year->year], false),
+                    'priority'  => 0.5,
+                    'frequency' => 'monthly'
+                ];
             });
 
             foreach ($pages as &$page) {

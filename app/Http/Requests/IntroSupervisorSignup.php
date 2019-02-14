@@ -15,7 +15,7 @@
          *
          * @return bool
          */
-        public function authorize() {
+        public static function authorize() {
             return true;
         }
 
@@ -24,7 +24,7 @@
          *
          * @return array
          */
-        public function rules() {
+        public static function rules() {
             return [
                 'gender'                         => 'required|in:' . join(",", trans('intro.supervisor.signup.genders')),
                 'age_at_intro'                   => 'required|integer|min:18',
@@ -54,7 +54,7 @@
             return [
                 'member_id'                      => trans('intro.supervisor.signup.member_id'),
                 'age_at_intro'                   => trans('intro.supervisor.signup.age_at_intro'),
-                'motivation'                   => trans('intro.supervisor.signup.motivation'),
+                'motivation'                     => trans('intro.supervisor.signup.motivation'),
                 'route_type'                     => trans('intro.supervisor.signup.route_type'),
                 'previously_participated_as'     => trans('intro.supervisor.signup.previously_participated_as'),
                 'company_first_response_license' => trans('intro.supervisor.signup.company_first_response_license'),

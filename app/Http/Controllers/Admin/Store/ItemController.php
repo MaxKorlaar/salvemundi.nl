@@ -6,6 +6,12 @@
     use App\Http\Requests\Admin\Store\CreateItem;
     use App\Http\Requests\Admin\Store\UpdateItem;
     use App\Store\Item;
+    use Exception;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
+    use Illuminate\Http\Response;
+    use Illuminate\View\View;
+    use Throwable;
 
     /**
      * Class ItemController
@@ -16,9 +22,9 @@
         /**
          * Display a listing of the resource.
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
-        public function index() {
+        public static function index() {
             return view('admin.store.items.index', [
                 'items' => Item::with(['stock'])->get()
             ]);
@@ -27,9 +33,9 @@
         /**
          * Show the form for creating a new resource.
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
-        public function create() {
+        public static function create() {
             return view('admin.store.items.create');
         }
 
@@ -38,8 +44,8 @@
          *
          * @param CreateItem $request
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Throwable
+         * @return RedirectResponse
+         * @throws Throwable
          */
         public function store(CreateItem $request) {
             $item       = new Item($request->all());
@@ -53,7 +59,7 @@
          *
          * @param Item $item
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function show(Item $item) {
             return redirect()->route('admin.store.items.edit', ['item' => $item]);
@@ -64,9 +70,9 @@
          *
          * @param Item $item
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
-        public function edit(Item $item) {
+        public static function edit(Item $item) {
             return view('admin.store.items.edit', ['item' => $item]);
 
         }
@@ -77,7 +83,7 @@
          * @param UpdateItem $request
          * @param Item       $item
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
         public function update(UpdateItem $request, Item $item) {
             $item->slug = str_slug($item->name);
@@ -90,8 +96,8 @@
          *
          * @param Item $item
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Exception
+         * @return RedirectResponse
+         * @throws Exception
          */
         public function destroy(Item $item) {
             $item->delete();
@@ -101,9 +107,9 @@
         /**
          * @param Item $item
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getDeleteConfirmation(Item $item) {
+        public static function getDeleteConfirmation(Item $item) {
             return view('admin.store.items.delete', ['item' => $item]);
         }
     }

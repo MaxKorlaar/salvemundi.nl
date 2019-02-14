@@ -2,8 +2,8 @@
 
     namespace App\Http\Requests;
 
-    use Illuminate\Validation\Rule;
     use Illuminate\Foundation\Http\FormRequest;
+    use Illuminate\Validation\Rule;
 
     /**
      * Class Signup
@@ -16,7 +16,7 @@
          *
          * @return bool
          */
-        public function authorize() {
+        public static function authorize() {
             return true;
         }
 
@@ -25,7 +25,7 @@
          *
          * @return array
          */
-        public function rules() {
+        public static function rules() {
             return [
                 'pcn'        => 'required|integer',
                 'first_name' => 'required|string|max:150',
@@ -33,7 +33,7 @@
                 'address'    => 'required|min:5|max:150',
                 'city'       => 'required|min:3|max:150',
                 'postal'     => 'required|string',
-                'country' => [
+                'country'    => [
                     'required',
                     Rule::in(array_keys(trans('address.country')))
                 ],

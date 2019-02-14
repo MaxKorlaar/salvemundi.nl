@@ -8,8 +8,12 @@
 
     namespace App\Http\Controllers;
 
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\View\View;
+
     /**
      * Class MerchandiseController
+     *
      * @deprecated
      *
      * @package App\Http\Controllers
@@ -18,16 +22,16 @@
 
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getMerchandise() {
+        public static function getMerchandise() {
             return view('merchandise');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getVests() {
+        public static function getVests() {
             return view('merchandise', [
                 "product" => "vest",
                 "data"    => [
@@ -38,9 +42,9 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getShirts() {
+        public static function getShirts() {
             return view('merchandise', [
                 "product" => "shirts",
                 "data"    => [

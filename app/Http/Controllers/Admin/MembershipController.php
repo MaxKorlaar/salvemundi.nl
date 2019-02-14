@@ -7,7 +7,11 @@
     use App\Member;
     use App\Membership;
     use App\Year;
+    use Illuminate\Contracts\View\Factory;
     use Illuminate\Http\Request;
+    use Illuminate\Http\Response;
+    use Illuminate\View\View;
+    use Throwable;
 
     /**
      * Class MembershipController
@@ -25,7 +29,7 @@
          *
          * @param Member $leden
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
         public function index(Member $leden) {
             return redirect()->route('admin.members.show', [$leden]);
@@ -36,9 +40,9 @@
          *
          * @param Member $leden
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function create(Member $leden) {
+        public static function create(Member $leden) {
             return view('admin.memberships.create', [
                 'member'      => $leden,
                 'valid_from'  => Membership::calculateFiscalYearStart(),
@@ -53,8 +57,8 @@
          *
          * @param Member                  $leden
          *
-         * @return \Illuminate\Http\Response
-         * @throws \Throwable
+         * @return Response
+         * @throws Throwable
          */
         public function store(CreateMembershipRequest $request, Member $leden) {
             $membership          = new Membership($request->all());
@@ -68,9 +72,9 @@
          *
          * @param  int $id
          *
-         * @return \Illuminate\Http\Response
+         * @return void
          */
-        public function show($id) {
+        public static function show($id) {
             //
         }
 
@@ -79,21 +83,21 @@
          *
          * @param  int $id
          *
-         * @return \Illuminate\Http\Response
+         * @return void
          */
-        public function edit($id) {
+        public static function edit($id) {
             //
         }
 
         /**
          * Update the specified resource in storage.
          *
-         * @param  \Illuminate\Http\Request $request
-         * @param  int                      $id
+         * @param  Request $request
+         * @param  int     $id
          *
-         * @return \Illuminate\Http\Response
+         * @return void
          */
-        public function update(Request $request, $id) {
+        public static function update(Request $request, $id) {
             //
         }
 
@@ -102,9 +106,9 @@
          *
          * @param  int $id
          *
-         * @return \Illuminate\Http\Response
+         * @return void
          */
-        public function destroy($id) {
+        public static function destroy($id) {
             //
         }
     }

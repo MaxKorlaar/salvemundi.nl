@@ -11,10 +11,16 @@
     use App\Mail\IntroApplicationPaymentRequest;
     use App\Year;
     use Carbon\Carbon;
+    use Exception;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Cache;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
+    use Illuminate\View\View;
+    use Psr\SimpleCache\InvalidArgumentException;
+    use Throwable;
 
     /**
      * Class IntroController
@@ -28,9 +34,9 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function index() {
+        public static function index() {
             return view('admin.intro.index', [
                 'introductions' => Introduction::with(['year', 'applications'])->get()
             ]);
@@ -39,7 +45,7 @@
         /**
          * @param Introduction $intro
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function show(Introduction $intro) {
             return view('admin.intro.show', [
@@ -51,7 +57,7 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function create() {
             return view('admin.intro.create', [
@@ -65,8 +71,8 @@
         /**
          * @param CreateIntro $request
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Throwable
+         * @return RedirectResponse
+         * @throws Throwable
          */
         public function store(CreateIntro $request) {
             $intro = new Introduction($request->all());
@@ -80,9 +86,9 @@
         /**
          * @param Introduction $intro
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function edit(Introduction $intro) {
+        public static function edit(Introduction $intro) {
             return view('admin.intro.edit', [
                 'years'        => Year::all(),
                 'introduction' => $intro
@@ -93,8 +99,8 @@
          * @param UpdateIntro  $request
          * @param Introduction $intro
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Throwable
+         * @return RedirectResponse
+         * @throws Throwable
          */
         public function update(UpdateIntro $request, Introduction $intro) {
             $intro->fill($request->all());
@@ -110,7 +116,7 @@
         /**
          * @param Introduction $intro
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+         * @return Factory|RedirectResponse|View
          */
         public function getDeleteConfirmation(Introduction $intro) {
             if ($intro->isAnonymised()) {
@@ -124,8 +130,8 @@
         /**
          * @param Introduction $intro
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Exception
+         * @return RedirectResponse
+         * @throws Exception
          */
         public function destroy(Introduction $intro) {
             if ($intro->isAnonymised()) {
@@ -142,7 +148,7 @@
          * @param Request      $request
          *
          * @return IntroApplication
-         * @throws \Psr\SimpleCache\InvalidArgumentException
+         * @throws InvalidArgumentException
          */
         public function sendEmailConfirmationReminders(Introduction $intro, Request $request) {
             $key = 'admin.intro.throttle.email_confirmation_reminders:' . $intro->id;
@@ -181,8 +187,8 @@
          * @param Introduction $intro
          * @param Request      $request
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Psr\SimpleCache\InvalidArgumentException
+         * @return RedirectResponse
+         * @throws InvalidArgumentException
          */
         public function sendPaymentReminders(Introduction $intro, Request $request) {
             $key = 'admin.intro.throttle.payment_reminders:' . $intro->id;
@@ -191,9 +197,9 @@
             }
             $totalCount = $intro->applications()->where('status', '=', IntroApplication::STATUS_RESERVED)
                 ->where('type', '!=', IntroApplication::TYPE_ANONYMISED)->count();
-            $signups          = $intro->applications()->where('status', '=', IntroApplication::STATUS_RESERVED)
+            $signups    = $intro->applications()->where('status', '=', IntroApplication::STATUS_RESERVED)
                 ->where('type', '!=', IntroApplication::TYPE_ANONYMISED)->get();
-            $count            = 0;
+            $count      = 0;
             $signups->each(function (IntroApplication $application) use (&$count) {
                 $applicationKey = 'admin.intro.throttle.payment_reminder:' . $application->id;
                 if (!Cache::has($applicationKey)) {
@@ -214,11 +220,11 @@
             Cache::set($key, time(), 10080); // 10.080 minuten = 7 dagen
 
             Log::info(trans('admin.intro.payment_reminders_sent', [
-                'count'             => $count,
+                'count'       => $count,
                 'total_count' => $totalCount
             ]), ['user' => $request->user()->official_name, 'ip' => $request->ip()]);
             return back()->with('success', trans('admin.intro.payment_reminders_sent', [
-                'count'             => $count,
+                'count'       => $count,
                 'total_count' => $totalCount,
             ]));
         }

@@ -6,6 +6,7 @@
     use Illuminate\Bus\Queueable;
     use Illuminate\Mail\Mailable;
     use Illuminate\Queue\SerializesModels;
+    use Throwable;
 
     /**
      * Class OrderConfirmation
@@ -24,19 +25,19 @@
          *
          * @param Order $order
          *
-         * @throws \Throwable
+         * @throws Throwable
          */
         public function __construct(Order $order) {
             $this->order = $order;
-            $total = 0;
+            $total       = 0;
             foreach ($order->items as $item) {
                 $total += $item->amount * $item->price;
             }
 
-            $this->vat     = 0.21 * $total;
-            $this->total   = $total;
+            $this->vat      = 0.21 * $total;
+            $this->total    = $total;
             $this->subtotal = $total;
-            $this->subject = trans('email.store.order_confirmation.subject', [ 'invoice' => $order->calculateInvoiceNumber() ]);
+            $this->subject  = trans('email.store.order_confirmation.subject', ['invoice' => $order->calculateInvoiceNumber()]);
         }
 
         /**

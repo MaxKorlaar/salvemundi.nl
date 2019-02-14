@@ -19,15 +19,21 @@
     use App\Store\StockImage;
     use App\Transaction;
     use App\User;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
+    use Illuminate\Http\Response;
     use Illuminate\Support\Collection;
     use Illuminate\Support\Facades\Cache;
     use Illuminate\Support\Facades\Log;
+    use Illuminate\View\View;
     use Mail;
     use Mollie\Api\Exceptions\ApiException;
+    use Mollie\Api\Exceptions\IncompatiblePlatform;
     use Mollie\Api\Resources\Payment;
     use Mollie\Api\Resources\ResourceFactory;
     use SoapClient;
+    use Throwable;
 
     /**
      * Class StoreController
@@ -41,16 +47,16 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function index() {
+        public static function index() {
             return view('store.index', ['items' => Item::with(['stock'])->get()]);
         }
 
         /**
          * @param $slug
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function viewItem($slug) {
             $item = Item::where('slug', $slug)->first();
@@ -72,8 +78,8 @@
          * @return mixed
          */
         public function getImage($slug, Stock $stock, StockImage $image) {
-            /** @var \Illuminate\Http\Response $response */
-            $response = $image->getResizedCachedImage(500, 500, true)->response();
+            /** @var Response $response */
+            $response = StockImage::getResizedCachedImage(500, 500, true)->response();
             $response->header('Cache-Control', 'public, max-age=2678400');
             return $response;
         }
@@ -86,8 +92,8 @@
          * @return mixed
          */
         public function getImageFull($slug, Stock $stock, StockImage $image) {
-            /** @var \Illuminate\Http\Response $response */
-            $response = $image->getResizedCachedImage(4000, 4000, true)->response();
+            /** @var Response $response */
+            $response = StockImage::getResizedCachedImage(4000, 4000, true)->response();
             $response->header('Cache-Control', 'public, max-age=2678400');
             return $response;
         }
@@ -95,7 +101,7 @@
         /**
          * @param AddToCart $request
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          */
         public function addToCart(AddToCart $request) {
             $item  = Item::find($request->get('item'));
@@ -124,54 +130,6 @@
             }
 
             return redirect()->route('store.cart');
-        }
-
-        /**
-         * @return Collection
-         */
-        public static function getIdealBanks() {
-            return Cache::remember('mollie.ideal.banks', 15, function () {
-                $mollie  = new PaymentHelper();
-                $methods = $mollie->methods->get(\Mollie\Api\Types\PaymentMethod::IDEAL, ["include" => "issuers,pricing"]);
-                return new Collection($methods->issuers);
-            });
-        }
-
-        /**
-         * @param Request $request
-         *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         */
-        public function viewCart(Request $request) {
-            $cart = $this->checkItemAvailability($request->session()->get('store.cart'));
-            $request->session()->put('store.cart', $cart);
-
-            $items = [];
-
-            $total = 0;
-
-            foreach ($cart as $index => $item) {
-                $items[] = [
-                    'index'   => $index,
-                    'amount'  => $item['amount'],
-                    'name'    => $item['item']->name,
-                    'variant' => $item['stock']->name,
-                    'price'   => $item['stock']->price * $item['amount']
-                ];
-                $total   += $item['stock']->price * $item['amount'];
-            }
-
-            $vat    = 0.21 * $total;
-            $user   = $request->user();
-            $member = $user->member;
-            return view('store.cart', [
-                'items'          => $items,
-                'total'          => $total,
-                'subtotal'       => $total,
-                'vat'            => $vat,
-                'banks'          => $this->getIdealBanks(),
-                'verify_address' => $this->verifyMemberAddress($member)
-            ]);
         }
 
         /**
@@ -211,17 +169,51 @@
         }
 
         /**
-         * @param         $index
          * @param Request $request
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return Factory|View
          */
-        public function removeFromCart($index, Request $request) {
-            $cart = $request->session()->get('store.cart');
-            if (isset($cart[$index])) unset($cart[$index]);
+        public function viewCart(Request $request) {
+            $cart = $this->checkItemAvailability($request->session()->get('store.cart'));
             $request->session()->put('store.cart', $cart);
 
-            return redirect()->route('store.cart');
+            $items = [];
+
+            $total = 0;
+
+            foreach ($cart as $index => $item) {
+                $items[] = [
+                    'index'   => $index,
+                    'amount'  => $item['amount'],
+                    'name'    => $item['item']->name,
+                    'variant' => $item['stock']->name,
+                    'price'   => $item['stock']->price * $item['amount']
+                ];
+                $total   += $item['stock']->price * $item['amount'];
+            }
+
+            $vat    = 0.21 * $total;
+            $user   = $request->user();
+            $member = $user->member;
+            return view('store.cart', [
+                'items'          => $items,
+                'total'          => $total,
+                'subtotal'       => $total,
+                'vat'            => $vat,
+                'banks'          => $this->getIdealBanks(),
+                'verify_address' => StoreController::verifyMemberAddress($member)
+            ]);
+        }
+
+        /**
+         * @return Collection
+         */
+        public static function getIdealBanks() {
+            return Cache::remember('mollie.ideal.banks', 15, function () {
+                $mollie  = new PaymentHelper();
+                $methods = $mollie->methods->get(\Mollie\Api\Types\PaymentMethod::IDEAL, ["include" => "issuers,pricing"]);
+                return new Collection($methods->issuers);
+            });
         }
 
         /**
@@ -229,7 +221,7 @@
          *
          * @return array|bool
          */
-        private function verifyMemberAddress(Member $member) {
+        private static function verifyMemberAddress(Member $member) {
             $invalid = [];
             $country = $member->country;
             if (!in_array($country, array_keys(trans('address.country')))) {
@@ -240,12 +232,26 @@
         }
 
         /**
+         * @param         $index
+         * @param Request $request
+         *
+         * @return RedirectResponse
+         */
+        public function removeFromCart($index, Request $request) {
+            $cart = $request->session()->get('store.cart');
+            if (isset($cart[$index])) unset($cart[$index]);
+            $request->session()->put('store.cart', $cart);
+
+            return redirect()->route('store.cart');
+        }
+
+        /**
          * @param PayCart $request
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Mollie\Api\Exceptions\ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
-         * @throws \Throwable
+         * @return RedirectResponse
+         * @throws ApiException
+         * @throws IncompatiblePlatform
+         * @throws Throwable
          */
         public function placeOrderAndPay(PayCart $request) {
             $bank = $request->get('ideal_bank');
@@ -262,7 +268,7 @@
             $user = $request->user();
 
             $member = $user->member;
-            if ($this->verifyMemberAddress($member) !== true) {
+            if (StoreController::verifyMemberAddress($member) !== true) {
                 return redirect()->back();
             }
 
@@ -375,10 +381,10 @@
         /**
          * @param Request $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+         * @return Factory|RedirectResponse|View
          * @throws ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
-         * @throws \Throwable
+         * @throws IncompatiblePlatform
+         * @throws Throwable
          */
         public function confirmPayment(Request $request) {
             //if (!$request->session()->has('camping.application')) abort(404);
@@ -404,25 +410,11 @@
          *
          * @return string
          * @throws ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
-         * @throws \Throwable
+         * @throws IncompatiblePlatform
+         * @throws Throwable
          */
         public function confirmPaymentWebhook(Order $order, Request $request) {
             return $this->updatePayment($order, $order->mollie_order_id);
-        }
-
-        /**
-         * @param Order   $order
-         * @param Request $request
-         *
-         * @return string
-         * @throws ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
-         * @throws \Throwable
-         */
-        public function confirmOrderWebhook(Order $order, Request $request) {
-            if (!$request->has('id')) abort(400);
-            return $this->updatePayment($order, $request->get('id'));
         }
 
         /**
@@ -432,8 +424,8 @@
          *
          * @return string
          * @throws ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
-         * @throws \Throwable
+         * @throws IncompatiblePlatform
+         * @throws Throwable
          */
         public function updatePayment(Order $order, $id) {
 
@@ -484,9 +476,9 @@
                             $mutationSold = new Mutation($mutations, PaymentMethod::Mollie, TransactionType::Received, "Merch verkocht");
                             $client       = new SoapClient("https://soap.e-boekhouden.nl/soap.asmx?wsdl");
 
-                            $sessionID = $this->openSession($client);
-                            $this->sendMutation($mutationSold, $sessionID, $client);
-                            $this->closeSession($sessionID, $client);
+                            $sessionID = StoreController::openSession($client);
+                            StoreController::sendMutation($mutationSold, $sessionID, $client);
+                            StoreController::closeSession($sessionID, $client);
                         }
 
                     }
@@ -505,42 +497,84 @@
             return 'OK';
         }
 
-        //TODO VERPLAAATSON
-        function openSession($client) {
-            $paramsOpenSession = array(
+        /**
+         * @param $client
+         *
+         * @return mixed
+         */
+        /**
+         * @param $client
+         *
+         * @return mixed
+         */
+        static function openSession($client) {
+            $paramsOpenSession = [
                 "Username"      => config("eboekhouden.username"),
                 "SecurityCode1" => config("eboekhouden.security_code_1"),
                 "SecurityCode2" => config("eboekhouden.security_code_2")
-            );
+            ];
 
-            $sessionID = $client->__soapCall("OpenSession", array($paramsOpenSession))->OpenSessionResult->SessionID;
+            $sessionID = $client->__soapCall("OpenSession", [$paramsOpenSession])->OpenSessionResult->SessionID;
             return $sessionID;
         }
 
-        function sendMutation($mutation, $sessionID, $client) {
-            $paramsAddMutation = array(
+        //TODO VERPLAAATSON
+
+        /**
+         * @param $mutation
+         * @param $sessionID
+         * @param $client
+         */
+        /**
+         * @param $mutation
+         * @param $sessionID
+         * @param $client
+         */
+        static function sendMutation($mutation, $sessionID, $client) {
+            $paramsAddMutation = [
                 "SessionID"     => $sessionID,
                 "SecurityCode2" => config("eboekhouden.security_code_2"),
                 "oMut"          => $mutation
-            );
+            ];
 
-            $client->__soapCall("AddMutatie", array($paramsAddMutation));
+            $client->__soapCall("AddMutatie", [$paramsAddMutation]);
         }
 
-        function closeSession($sessionID, $client) {
-            $paramCloseSession = array(
+        /**
+         * @param $sessionID
+         * @param $client
+         */
+        /**
+         * @param $sessionID
+         * @param $client
+         */
+        static function closeSession($sessionID, $client) {
+            $paramCloseSession = [
                 "SessionID" => $sessionID
-            );
+            ];
 
-            $client->__soapCall("CloseSession", array($paramCloseSession));
+            $client->__soapCall("CloseSession", [$paramCloseSession]);
         }
 
+        /**
+         * @param Order   $order
+         * @param Request $request
+         *
+         * @return string
+         * @throws ApiException
+         * @throws IncompatiblePlatform
+         * @throws Throwable
+         */
+        public function confirmOrderWebhook(Order $order, Request $request) {
+            if (!$request->has('id')) abort(400);
+            return $this->updatePayment($order, $request->get('id'));
+        }
 
         /**
          * @param Request $request
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Throwable
+         * @return RedirectResponse
+         * @throws Throwable
          */
         public function placeOrder(Request $request) {
             $cart = $this->checkItemAvailability($request->session()->get('store.cart'));

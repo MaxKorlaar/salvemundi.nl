@@ -5,7 +5,10 @@
     use App\Http\Controllers\Controller;
     use App\Http\Requests\Member\UpdateOwnInfo;
     use App\Membership;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Support\Facades\Auth;
+    use Illuminate\View\View;
 
     /**
      * Class IndexController
@@ -16,12 +19,12 @@
 
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function getAboutView() {
-            $user = Auth::user();
+            $user   = Auth::user();
             $member = $user->member;
-            if($member->country === null) {
+            if ($member->country === null) {
                 return redirect()->route('member.update_info');
             }
 
@@ -36,36 +39,35 @@
         /**
          * @return mixed
          */
-        public function getOwnPhoto() {
+        public static function getOwnPhoto() {
             $member = Auth::user()->member;
-            return $member->getResizedCachedImage(400, null, true)->response();
+            return Member::getResizedCachedImage(400, null, true)->response();
         }
 
         /**
          * @param UpdateOwnInfo $request
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          */
         public function updateOwnInfo(UpdateOwnInfo $request) {
             $member = Auth::user()->member;
-            if($request->has('country') && $member->country === null) {
+            if ($request->has('country') && $member->country === null) {
                 $member->update(['country' => $request->get('country')]);
             }
             return redirect()->route('member.about_me');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getUpdatePage() {
+        public static function getUpdatePage() {
             $user   = Auth::user();
             $member = $user->member;
             return view('member.update', [
-                'user'       => $user,
-                'member'     => $member
+                'user'   => $user,
+                'member' => $member
             ]);
         }
-
 
 
     }

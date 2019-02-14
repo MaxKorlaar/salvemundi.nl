@@ -32,7 +32,12 @@
     "rcrowe/twigbridge": "^0.9.5",
     "s-ichikawa/laravel-sendgrid-driver": "^2.0",
     "spatie/laravel-permission": "^2.29",
-    "ext-soap": "*"
+    "ext-soap": "*",
+    "ext-bcmath": "*",
+    "ext-mcrypt": "*",
+    "ext-openssl": "*",
+    "ext-xml": "*",
+    "ext-gmp": "*"
   },
   "require-dev": {
     "ajthinking/tinx": "^2.1",

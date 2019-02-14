@@ -15,13 +15,21 @@
     use App\Mail\NewIntroApplication;
     use App\Mail\NewIntroSupervisorApplication;
     use App\Transaction;
+    use Exception;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
+    use Illuminate\Routing\Redirector;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Cache;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
+    use Illuminate\View\View;
     use Mollie\Api\Exceptions\ApiException;
+    use Mollie\Api\Exceptions\IncompatiblePlatform;
     use Mollie\Api\Resources\Payment;
+    use Psr\SimpleCache\InvalidArgumentException;
+    use Throwable;
 
     /**
      * Class IntroController
@@ -35,8 +43,8 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Throwable
+         * @return Factory|View
+         * @throws Throwable
          */
         public function getSignupForm() {
             $currentIntro = Introduction::getIntroductionForCurrentYear();
@@ -45,70 +53,11 @@
         }
 
         /**
-         * @param Introduction $introduction
-         * @param IntroSignup  $request
-         *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
-         * @throws ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
-         * @throws \Throwable
-         */
-        public function signup(Introduction $introduction, IntroSignup $request) {
-            $application                 = new IntroApplication($request->all());
-            $application->same_sex_rooms = $request->has('same_sex_rooms');
-            $application->alcohol        = $request->has('alcohol');
-            $application->extra_shirt    = $request->has('extra_shirt');
-            $application->ip_address     = $request->ip();
-            $application->status         = IntroApplication::STATUS_SEE_TRANSACTION;
-            $application->type           = IntroApplication::TYPE_SIGNUP;
-            $application->saveOrFail();
-            $introduction->applications()->save($application);
-
-            if (app()->environment() !== 'production') $request->flash();
-            $request->session()->put('intro.application', $application);
-            $request->session()->save();
-
-            $mollie      = new PaymentHelper();
-            $transaction = new Transaction();
-            $transaction->save();
-
-            $payment = $mollie->payments->create([
-                "amount"      => [
-                    'currency' => 'EUR',
-                    'value'    => (string)number_format($application->calculateIntroCosts(), 2)
-                ],
-                "description" => trans($application->extra_shirt ? 'intro.signup.payment.description_extra_shirt' : 'intro.signup.payment.description',
-                    ['first_name' => $application->first_name, 'last_name' => $application->last_name, 'year' => $introduction->year->year]),
-                "redirectUrl" => route('intro.signup.confirm_payment'),
-                "webhookUrl"  => route('webhook.payment.intro', ['application' => $application]),
-                'metadata'    => [
-                    'id'             => $application->id,
-                    'transaction_id' => $transaction->id
-                ]
-            ]);
-            $transaction->update([
-                'transaction_id'     => $payment->id,
-                'transaction_status' => $payment->status,
-                'transaction_amount' => $payment->amount->value
-            ]);
-            $application->transaction()->associate($transaction);
-            $application->saveOrFail();
-            if (app()->environment() !== 'production') $request->flash();
-
-            $request->session()->put('intro.application', $application);
-            $request->session()->save();
-            return view('intro.payment_redirect', [
-                'links'        => $payment->_links,
-                'introduction' => $introduction
-            ]);
-        }
-
-        /**
          * @param Request $request
          *
-         * @return $this|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Mollie\Api\Exceptions\ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
+         * @return $this|Factory|View
+         * @throws ApiException
+         * @throws IncompatiblePlatform
          */
         public function confirmPayment(Request $request) {
             if (!$request->session()->has('intro.application')) abort(404);
@@ -138,8 +87,8 @@
          * @param Request          $request
          *
          * @return string
-         * @throws \Exception
-         * @throws \Throwable
+         * @throws Exception
+         * @throws Throwable
          */
         public function confirmPaymentWebhook(IntroApplication $application, Request $request) {
 
@@ -210,9 +159,9 @@
          * @param IntroApplication   $application
          * @param                    $token
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Psr\SimpleCache\InvalidArgumentException
-         * @throws \Throwable
+         * @return Factory|View
+         * @throws InvalidArgumentException
+         * @throws Throwable
          */
         public function confirmEmail(IntroApplication $application, $token) {
             if ($application->email_confirmation_token !== $token) {
@@ -248,8 +197,8 @@
          *
          * @param Request          $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Throwable
+         * @return Factory|View
+         * @throws Throwable
          */
         public function getPaymentPage(IntroApplication $application, $token, Request $request) {
             if ($application->email_confirmation_token !== $token ||
@@ -312,10 +261,9 @@
             ]);
         }
 
-
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Throwable
+         * @return Factory|View
+         * @throws Throwable
          */
         public function getInfo() {
             $currentIntro = Introduction::getIntroductionForCurrentYear();
@@ -324,8 +272,8 @@
         }
 
         /**
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Throwable
+         * @return RedirectResponse
+         * @throws Throwable
          */
         public function getSchedule() {
             $currentIntro = Introduction::getIntroductionForCurrentYear();
@@ -337,9 +285,9 @@
          * @param              $year
          * @param Introduction $introduction
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getIntroByYearAndId(Introduction $introduction, $year) {
+        public static function getIntroByYearAndId(Introduction $introduction, $year) {
             return view('intro.2019.info', [
                 'introduction' => $introduction,
                 'year'         => $year
@@ -350,9 +298,9 @@
          * @param Introduction $introduction
          * @param              $year
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getScheduleByYearAndId(Introduction $introduction, $year) {
+        public static function getScheduleByYearAndId(Introduction $introduction, $year) {
             return view('intro.2019.schedule', [
                 'introduction' => $introduction,
                 'year'         => $year
@@ -363,9 +311,9 @@
          * @param Introduction $introduction
          * @param              $year
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getSignupFormByYearAndId(Introduction $introduction, $year) {
+        public static function getSignupFormByYearAndId(Introduction $introduction, $year) {
             return view('intro.signup', [
                 'introduction' => $introduction,
                 'year'         => $year
@@ -377,10 +325,10 @@
          * @param              $year
          * @param IntroSignup  $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          * @throws ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
-         * @throws \Throwable
+         * @throws IncompatiblePlatform
+         * @throws Throwable
          */
         public function signupByYearAndId(Introduction $introduction, $year, IntroSignup $request) {
 
@@ -400,8 +348,67 @@
          * @param Introduction $introduction
          * @param IntroSignup  $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Throwable
+         * @return Factory|RedirectResponse|Redirector|View
+         * @throws ApiException
+         * @throws IncompatiblePlatform
+         * @throws Throwable
+         */
+        public function signup(Introduction $introduction, IntroSignup $request) {
+            $application                 = new IntroApplication($request->all());
+            $application->same_sex_rooms = $request->has('same_sex_rooms');
+            $application->alcohol        = $request->has('alcohol');
+            $application->extra_shirt    = $request->has('extra_shirt');
+            $application->ip_address     = $request->ip();
+            $application->status         = IntroApplication::STATUS_SEE_TRANSACTION;
+            $application->type           = IntroApplication::TYPE_SIGNUP;
+            $application->saveOrFail();
+            $introduction->applications()->save($application);
+
+            if (app()->environment() !== 'production') $request->flash();
+            $request->session()->put('intro.application', $application);
+            $request->session()->save();
+
+            $mollie      = new PaymentHelper();
+            $transaction = new Transaction();
+            $transaction->save();
+
+            $payment = $mollie->payments->create([
+                "amount"      => [
+                    'currency' => 'EUR',
+                    'value'    => (string)number_format($application->calculateIntroCosts(), 2)
+                ],
+                "description" => trans($application->extra_shirt ? 'intro.signup.payment.description_extra_shirt' : 'intro.signup.payment.description',
+                    ['first_name' => $application->first_name, 'last_name' => $application->last_name, 'year' => $introduction->year->year]),
+                "redirectUrl" => route('intro.signup.confirm_payment'),
+                "webhookUrl"  => route('webhook.payment.intro', ['application' => $application]),
+                'metadata'    => [
+                    'id'             => $application->id,
+                    'transaction_id' => $transaction->id
+                ]
+            ]);
+            $transaction->update([
+                'transaction_id'     => $payment->id,
+                'transaction_status' => $payment->status,
+                'transaction_amount' => $payment->amount->value
+            ]);
+            $application->transaction()->associate($transaction);
+            $application->saveOrFail();
+            if (app()->environment() !== 'production') $request->flash();
+
+            $request->session()->put('intro.application', $application);
+            $request->session()->save();
+            return view('intro.payment_redirect', [
+                'links'        => $payment->_links,
+                'introduction' => $introduction
+            ]);
+        }
+
+        /**
+         * @param Introduction $introduction
+         * @param IntroSignup  $request
+         *
+         * @return Factory|View
+         * @throws Throwable
          */
         public function makeReservation(Introduction $introduction, IntroSignup $request) {
             $application                           = new IntroApplication($request->all());
@@ -429,15 +436,15 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function get2019Schedule() {
+        public static function get2019Schedule() {
             return view('intro.2019.schedule');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Throwable
+         * @return Factory|View
+         * @throws Throwable
          */
         public function getSupervisorInfo() {
             $currentIntro = Introduction::getIntroductionForCurrentYear();
@@ -447,7 +454,7 @@
 
         /**
          * @return string
-         * @throws \Throwable
+         * @throws Throwable
          */
         public function getSupervisorSignupForm() {
             $currentIntro = Introduction::getIntroductionForCurrentYear();
@@ -459,9 +466,9 @@
          * @param Introduction $introduction
          * @param              $year
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getSupervisorInfoByYearAndId(Introduction $introduction, $year) {
+        public static function getSupervisorInfoByYearAndId(Introduction $introduction, $year) {
             return view('intro.supervisor.info', [
                 'introduction' => $introduction,
                 'year'         => $year
@@ -472,9 +479,9 @@
          * @param Introduction $introduction
          * @param              $year
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getSupervisorSignupFormByYearAndId(Introduction $introduction, $year) {
+        public static function getSupervisorSignupFormByYearAndId(Introduction $introduction, $year) {
             return view('intro.supervisor.signup', [
                 'introduction' => $introduction,
                 'year'         => $year,
@@ -487,21 +494,21 @@
          * @param                       $year
          * @param IntroSupervisorSignup $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Throwable
+         * @return Factory|View
+         * @throws Throwable
          */
         public function supervisorSignupByYearAndId(Introduction $introduction, $year, IntroSupervisorSignup $request) {
             if (!$introduction->reservationsAreOpen() && !$introduction->signupsAreOpen()) abort(403);
             $member = Auth::user()->member;
             if (!$member->isCurrentlyMember()) abort(403);
-            $application                                 = new IntroSupervisorApplication($request->all());
-            $application->ip_address                     = $request->ip();
-            $application->email_confirmation_token       = str_random(200);
-            $application->remain_sober                   = $request->has('remain_sober');
-            $application->drivers_license                = $request->has('drivers_license');
-            $application->first_aid_license              = $request->has('first_aid_license');
+            $application                           = new IntroSupervisorApplication($request->all());
+            $application->ip_address               = $request->ip();
+            $application->email_confirmation_token = str_random(200);
+            $application->remain_sober             = $request->has('remain_sober');
+            $application->drivers_license          = $request->has('drivers_license');
+            $application->first_aid_license        = $request->has('first_aid_license');
 
-            if($request->get('active_in_association') === array_last(trans('intro.supervisor.signup.active_as'))) {
+            if ($request->get('active_in_association') === array_last(trans('intro.supervisor.signup.active_as'))) {
                 $application->active_in_association = $request->get('active_as_other');
             }
 
@@ -522,8 +529,8 @@
          * @param IntroSupervisorApplication $application
          * @param                            $token
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Throwable
+         * @return Factory|View
+         * @throws Throwable
          */
         public function confirmSupervisorEmail(IntroSupervisorApplication $application, $token) {
             if ($application->email_confirmation_token !== $token) {

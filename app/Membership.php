@@ -3,34 +3,37 @@
     namespace App;
 
     use Carbon\Carbon;
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
     /**
      * App\Membership
      *
-     * @mixin \Eloquent
-     * @property int                   $id
-     * @property int                   $year_id
-     * @property int|null              $member_id
-     * @property int|null              $transaction_id
-     * @property string                $valid_from
-     * @property string                $valid_until
-     * @property \Carbon\Carbon|null   $created_at
-     * @property \Carbon\Carbon|null   $updated_at
-     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereMemberId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereTransactionId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereUpdatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereValidFrom($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereValidUntil($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Membership whereYearId($value)
-     * @property-read \App\Member|null $member
-     * @property-read \App\Transaction $transaction
-     * @property-read \App\Year        $year
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Membership query()
+     * @mixin Eloquent
+     * @property int         $id
+     * @property int         $year_id
+     * @property int|null    $member_id
+     * @property int|null    $transaction_id
+     * @property string      $valid_from
+     * @property string      $valid_until
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
+     * @method static Builder|Membership whereCreatedAt($value)
+     * @method static Builder|Membership whereId($value)
+     * @method static Builder|Membership whereMemberId($value)
+     * @method static Builder|Membership whereTransactionId($value)
+     * @method static Builder|Membership whereUpdatedAt($value)
+     * @method static Builder|Membership whereValidFrom($value)
+     * @method static Builder|Membership whereValidUntil($value)
+     * @method static Builder|Membership whereYearId($value)
+     * @property-read Member|null $member
+     * @property-read Transaction $transaction
+     * @property-read Year        $year
+     * @method static Builder|Membership newModelQuery()
+     * @method static Builder|Membership newQuery()
+     * @method static Builder|Membership query()
      */
     class Membership extends Model {
 
@@ -94,21 +97,21 @@
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         * @return BelongsTo
          */
         public function member() {
             return $this->belongsTo(Member::class);
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         * @return BelongsTo
          */
         public function year() {
             return $this->belongsTo(Year::class);
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         * @return BelongsTo
          */
         public function transaction() {
             return $this->belongsTo(Transaction::class);

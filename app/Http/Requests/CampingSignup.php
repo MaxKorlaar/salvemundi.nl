@@ -2,6 +2,7 @@
 
     namespace App\Http\Requests;
 
+    use Auth;
     use Illuminate\Foundation\Http\FormRequest;
 
     /**
@@ -15,9 +16,9 @@
          *
          * @return bool
          */
-        public function authorize() {
-            if (\Auth::check()) {
-                $member = \Auth::user()->member;
+        public static function authorize() {
+            if (Auth::check()) {
+                $member = Auth::user()->member;
                 return $member->isCurrentlyMember();
             }
             return false;
@@ -28,7 +29,7 @@
          *
          * @return array
          */
-        public function rules() {
+        public static function rules() {
             return [
                 'remarks' => 'nullable|string|max:1500',
                 //'agree_salvemundi' => 'accepted',

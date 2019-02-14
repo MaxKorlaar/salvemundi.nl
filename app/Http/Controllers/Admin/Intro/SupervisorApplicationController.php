@@ -5,7 +5,12 @@
     use App\Http\Controllers\Controller;
     use App\Introduction;
     use App\IntroSupervisorApplication;
+    use Exception;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
+    use Illuminate\Http\Response;
+    use Illuminate\View\View;
 
     /**
      * Class SupervisorApplicationController
@@ -23,7 +28,7 @@
          *
          * @param Introduction $intro
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
         public function index(Introduction $intro) {
             return view('admin.intro.supervisor_applications.index', [
@@ -38,20 +43,20 @@
         /**
          * Show the form for creating a new resource.
          *
-         * @return \Illuminate\Http\Response
+         * @return void
          */
-        public function create() {
+        public static function create() {
             abort(501);
         }
 
         /**
          * Store a newly created resource in storage.
          *
-         * @param  \Illuminate\Http\Request $request
+         * @param  Request $request
          *
-         * @return \Illuminate\Http\Response
+         * @return void
          */
-        public function store(Request $request) {
+        public static function store(Request $request) {
             abort(501);
         }
 
@@ -61,9 +66,9 @@
          * @param Introduction               $intro
          * @param IntroSupervisorApplication $ouderAanmeldingen
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
-        public function show(Introduction $intro, IntroSupervisorApplication $ouderAanmeldingen) {
+        public static function show(Introduction $intro, IntroSupervisorApplication $ouderAanmeldingen) {
             return view('admin.intro.supervisor_applications.show', [
                 'application'  => $ouderAanmeldingen,
                 'introduction' => $intro
@@ -75,21 +80,21 @@
          *
          * @param  int $id
          *
-         * @return \Illuminate\Http\Response
+         * @return void
          */
-        public function edit($id) {
+        public static function edit($id) {
             abort(501);
         }
 
         /**
          * Update the specified resource in storage.
          *
-         * @param  \Illuminate\Http\Request $request
-         * @param  int                      $id
+         * @param  Request $request
+         * @param  int     $id
          *
-         * @return \Illuminate\Http\Response
+         * @return void
          */
-        public function update(Request $request, $id) {
+        public static function update(Request $request, $id) {
             abort(501);
         }
 
@@ -97,7 +102,7 @@
          * @param Introduction               $intro
          * @param IntroSupervisorApplication $application
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+         * @return Factory|RedirectResponse|View
          */
         public function getDeleteConfirmation(Introduction $intro, IntroSupervisorApplication $application) {
             if ($application->isAnonymised() || $application->status === IntroSupervisorApplication::STATUS_EMAIL_UNCONFIRMED) {
@@ -116,8 +121,8 @@
          * @param Introduction               $intro
          * @param IntroSupervisorApplication $ouderAanmeldingen
          *
-         * @return \Illuminate\Http\Response
-         * @throws \Exception
+         * @return Response
+         * @throws Exception
          */
         public function destroy(Introduction $intro, IntroSupervisorApplication $ouderAanmeldingen) {
             if ($ouderAanmeldingen->isAnonymised() || $ouderAanmeldingen->status === IntroSupervisorApplication::STATUS_EMAIL_UNCONFIRMED) {

@@ -17,12 +17,18 @@
     use App\Membership;
     use App\Transaction;
     use App\Year;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
+    use Illuminate\Routing\Redirector;
     use Illuminate\Support\Facades\App;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
+    use Illuminate\View\View;
     use Mollie\Api\Exceptions\ApiException;
+    use Mollie\Api\Exceptions\IncompatiblePlatform;
     use SoapClient;
+    use Throwable;
 
     /**
      * Class SignupController
@@ -34,16 +40,16 @@
         /**
          * @param Request $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function index(Request $request) {
+        public static function index(Request $request) {
             return view('signup');
         }
 
         /**
          * @param Signup $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+         * @return Factory|RedirectResponse|Redirector|View
          */
         public function getConfirmationPage(Signup $request) {
             $request->session()->put('signup_data', $request->all());
@@ -53,27 +59,27 @@
         /**
          * @param Request $request
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          */
         public function getConfirmationPageWithoutSignup(Request $request) {
             if ($request->session()->get('signup_data') === null) {
-                return $this->redirectToIndex();
+                return SignupController::redirectToIndex();
             }
             return view('confirm_signup');
         }
 
         /**
-         * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+         * @return RedirectResponse|Redirector
          */
-        public function redirectToIndex() {
+        public static function redirectToIndex() {
             return redirect(route('signup.signup'));
         }
 
         /**
          * @param ConfirmSignup $request
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Throwable
+         * @return RedirectResponse
+         * @throws Throwable
          */
         public function signup(ConfirmSignup $request) {
             if ($request->session()->get('signup_data') === null) return back(); // Stuur de gebruiker weg als er geen inschrijfgegevens in de sessie zitten
@@ -137,9 +143,9 @@
         /**
          * @param Request $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Mollie\Api\Exceptions\ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
+         * @return Factory|View
+         * @throws ApiException
+         * @throws IncompatiblePlatform
          */
         public function confirmPayment(Request $request) {
             if (!$request->session()->has('signup.application')) abort(404);
@@ -162,9 +168,9 @@
          * @param Request           $request
          *
          * @return string
-         * @throws \Mollie\Api\Exceptions\ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
-         * @throws \Throwable
+         * @throws ApiException
+         * @throws IncompatiblePlatform
+         * @throws Throwable
          */
         public function confirmPaymentWebhook(MemberApplication $application, Request $request) {
 
@@ -220,9 +226,9 @@
                         if (App::environment('production')) {
                             $mutationSold = new Mutation([new cMutationRow($transaction->transaction_amount, GeneralLedgerAccount::ContributionMembersIncomes)], PaymentMethod::Mollie, TransactionType::Received, "Contributie betaald");
                             $client       = new SoapClient("https://soap.e-boekhouden.nl/soap.asmx?wsdl");
-                            $sessionID    = $this->openSession($client);
-                            $this->sendMutation($mutationSold, $sessionID, $client);
-                            $this->closeSession($sessionID, $client);
+                            $sessionID    = SignupController::openSession($client);
+                            SignupController::sendMutation($mutationSold, $sessionID, $client);
+                            SignupController::closeSession($sessionID, $client);
                         }
 
                     }
@@ -250,33 +256,62 @@
         }
 
         //TODO VERPLAAATSON
-        function openSession($client) {
-            $paramsOpenSession = array(
+
+        /**
+         * @param $client
+         *
+         * @return mixed
+         */
+        /**
+         * @param $client
+         *
+         * @return mixed
+         */
+        static function openSession($client) {
+            $paramsOpenSession = [
                 "Username"      => config("eboekhouden.username"),
                 "SecurityCode1" => config("eboekhouden.security_code_1"),
                 "SecurityCode2" => config("eboekhouden.security_code_2")
-            );
+            ];
 
-            $sessionID = $client->__soapCall("OpenSession", array($paramsOpenSession))->OpenSessionResult->SessionID;
+            $sessionID = $client->__soapCall("OpenSession", [$paramsOpenSession])->OpenSessionResult->SessionID;
             return $sessionID;
         }
 
-        function sendMutation($mutation, $sessionID, $client) {
-            $paramsAddMutation = array(
+        /**
+         * @param $mutation
+         * @param $sessionID
+         * @param $client
+         */
+        /**
+         * @param $mutation
+         * @param $sessionID
+         * @param $client
+         */
+        static function sendMutation($mutation, $sessionID, $client) {
+            $paramsAddMutation = [
                 "SessionID"     => $sessionID,
                 "SecurityCode2" => config("eboekhouden.security_code_2"),
                 "oMut"          => $mutation
-            );
+            ];
 
-            $client->__soapCall("AddMutatie", array($paramsAddMutation));
+            $client->__soapCall("AddMutatie", [$paramsAddMutation]);
         }
 
-        function closeSession($sessionID, $client) {
-            $paramCloseSession = array(
+        /**
+         * @param $sessionID
+         * @param $client
+         */
+        /**
+         * @param $sessionID
+         * @param $client
+         */
+        static function closeSession($sessionID, $client) {
+            $paramCloseSession = [
                 "SessionID" => $sessionID
-            );
+            ];
 
-            $client->__soapCall("CloseSession", array($paramCloseSession));
+            $client->__soapCall("CloseSession", [$paramCloseSession]);
         }
 
 
@@ -284,8 +319,8 @@
          * @param MemberApplication $application
          * @param string            $token
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Throwable
+         * @return Factory|View
+         * @throws Throwable
          */
         public function confirmEmail(MemberApplication $application, $token) {
             if ($application->email_confirmation_token !== $token) {

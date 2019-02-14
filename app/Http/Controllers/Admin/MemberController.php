@@ -13,12 +13,20 @@
     use App\Membership;
     use App\User;
     use App\Year;
+    use Auth;
     use Carbon\Carbon;
     use Exception;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Database\Eloquent\Collection;
+    use Illuminate\Http\RedirectResponse;
+    use Illuminate\Http\Response;
     use Illuminate\Support\Facades\Log;
+    use Illuminate\View\View;
     use Mail;
     use PhpOffice\PhpSpreadsheet\IOFactory;
     use PhpOffice\PhpSpreadsheet\Shared\Date;
+    use Throwable;
 
     /**
      * Class MemberController
@@ -59,18 +67,18 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function showImportForm() {
+        public static function showImportForm() {
             return view('admin.members.import');
         }
 
         /**
          * @param ImportMemberListRequest $request
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          * @throws Exception
-         * @throws \Throwable
+         * @throws Throwable
          */
         public function importList(ImportMemberListRequest $request) {
             //dd($request->file('member-list'));
@@ -185,7 +193,7 @@
                                     $actualYear->last_member_id = round(substr($member->member_id, 2));
                                     $actualYear->saveOrFail();
 
-                                } catch (\Throwable $e) {
+                                } catch (Throwable $e) {
                                     return back()->withErrors(['member-list' => 'Lidmaatschap ongeldig, gebruik (jaartal + s/f) (17 s, 18 f): ' . $cell->getCoordinate()]);
                                 }
                                 if ($period === 's') {
@@ -257,9 +265,9 @@
         /**
          * Display a listing of the resource.
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
-        public function index() {
+        public static function index() {
             return view('admin.members.index', [
                 'members' => Member::with(['memberships', 'user'])->orderBy('member_id')->get()
             ]);
@@ -268,9 +276,9 @@
         /**
          * Show the form for creating a new resource.
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
-        public function create() {
+        public static function create() {
             return view('admin.members.create');
         }
 
@@ -279,8 +287,8 @@
          *
          * @param CreateMember $request
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Throwable
+         * @return RedirectResponse
+         * @throws Throwable
          */
         public function store(CreateMember $request) {
 
@@ -305,9 +313,9 @@
          *
          * @param Member $leden
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
-        public function show(Member $leden) {
+        public static function show(Member $leden) {
             return view('admin.members.show', ['member' => $leden]);
         }
 
@@ -317,7 +325,7 @@
          * @return mixed
          */
         public function getPicture(Member $member) {
-            return $member->getResizedCachedImage(800, null, true)->response();
+            return Member::getResizedCachedImage(800, null, true)->response();
         }
 
         /**
@@ -326,12 +334,12 @@
          * @return mixed
          */
         public function getFullPicture(Member $member) {
-            return $member->getCachedImage(true)->response();
+            return Member::getCachedImage(true)->response();
         }
 
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function getInactiveMailForm() {
             $members      = Member::with(['memberships'])->orderBy('member_id')->get();
@@ -347,7 +355,7 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function getMailForm() {
             $members    = Member::with(['memberships'])->orderBy('member_id')->get();
@@ -370,9 +378,9 @@
         public function getInactiveMailPreview(SendMailToMembers $request) {
 
             $content = $request->get('message_content');
-            $content = $this->parseMailContents($content, \Auth::user()->member);
+            $content = MemberController::parseMailContents($content, Auth::user()->member);
             $title   = $request->get('subject');
-            $mail    = new Blank($content, $this->parseMailContents($title, \Auth::user()->member));
+            $mail    = new Blank($content, MemberController::parseMailContents($title, Auth::user()->member));
             return $mail;
         }
 
@@ -382,7 +390,7 @@
          *
          * @return mixed
          */
-        private function parseMailContents($content, Member $member) {
+        private static function parseMailContents($content, Member $member) {
             $content = nl2br($content);
             $content = str_replace('{voornaam}', $member->first_name, $content);
             $content = str_replace('{achternaam}', $member->last_name, $content);
@@ -397,16 +405,16 @@
         public function getMailPreview(SendMailToMembers $request) {
 
             $content = $request->get('message_content');
-            $content = $this->parseMailContents($content, \Auth::user()->member);
+            $content = MemberController::parseMailContents($content, Auth::user()->member);
             $title   = $request->get('subject');
-            $mail    = new Blank($content, $this->parseMailContents($title, \Auth::user()->member));
+            $mail    = new Blank($content, MemberController::parseMailContents($title, Auth::user()->member));
             return $mail;
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function spreadsheetIndex() {
+        public static function spreadsheetIndex() {
             return view('admin.members.spreadsheet', [
                 'members' => Member::with(['memberships'])->orderBy('member_id')->get()
             ]);
@@ -415,7 +423,7 @@
         /**
          * @param SendMailToMembers $request
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          */
         public function sendInactiveMail(SendMailToMembers $request) {
             $members      = Member::with(['memberships'])->orderBy('member_id')->get();
@@ -424,8 +432,8 @@
             $title        = $request->get('subject');
             $members->each(function (Member $member) use ($title, $content, &$invalidCount) {
                 if (!$member->isCurrentlyMember()) {
-                    $content = $this->parseMailContents($content, $member);
-                    $mail    = new Blank($content, $this->parseMailContents($title, $member));
+                    $content = MemberController::parseMailContents($content, $member);
+                    $mail    = new Blank($content, MemberController::parseMailContents($title, $member));
                     $mail->to($member->email, $member->first_name . ' ' . $member->last_name);
                     Mail::queue($mail);
                     $invalidCount++;
@@ -437,7 +445,7 @@
         /**
          * @param SendMailToMembers $request
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          */
         public function sendMail(SendMailToMembers $request) {
             $members    = Member::with(['memberships'])->orderBy('member_id')->get();
@@ -446,8 +454,8 @@
             $title      = $request->get('subject');
             $members->each(function (Member $member) use ($title, $content, &$validCount) {
                 if ($member->isCurrentlyMember()) {
-                    $content = $this->parseMailContents($content, $member);
-                    $mail    = new Blank($content, $this->parseMailContents($title, $member));
+                    $content = MemberController::parseMailContents($content, $member);
+                    $mail    = new Blank($content, MemberController::parseMailContents($title, $member));
                     $mail->to($member->email, $member->first_name . ' ' . $member->last_name);
                     Mail::queue($mail);
                     $validCount++;
@@ -461,9 +469,9 @@
          *
          * @param Member $leden
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function edit(Member $leden) {
+        public static function edit(Member $leden) {
             return view('admin.members.edit', ['member' => $leden]);
         }
 
@@ -473,8 +481,8 @@
          * @param UpdateMember $request
          * @param Member       $leden
          *
-         * @return \Illuminate\Http\Response
-         * @throws \Throwable
+         * @return Response
+         * @throws Throwable
          */
         public function update(UpdateMember $request, Member $leden) {
             $leden->update($request->all());
@@ -490,7 +498,7 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function deleteInactiveConfirmation() {
             $members = Member::with(['memberships'])->orderBy('member_id')->get();
@@ -503,7 +511,7 @@
         }
 
         /**
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          */
         public function deleteInactive() {
             $members      = Member::with(['memberships'])->orderBy('member_id')->get();
@@ -520,7 +528,7 @@
         /**
          * @param Member $member
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+         * @return Factory|RedirectResponse|View
          */
         public function getDeleteConfirmation(Member $member) {
             if ($member->isCurrentlyMember()) {
@@ -534,8 +542,8 @@
          *
          * @param Member $leden
          *
-         * @return \Illuminate\Http\Response
-         * @throws \Exception
+         * @return Response
+         * @throws Exception
          */
         public function destroy(Member $leden) {
             if ($leden->isCurrentlyMember()) {
@@ -546,9 +554,9 @@
         }
 
         /**
-         * @return User[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+         * @return User[]|Builder[]|Collection
          */
-        public function getMembersWithFullAccess() {
+        public static function getMembersWithFullAccess() {
             // Todo rechtensysteem implementeren
             $members = User::with(['member'])->where('rank', 'admin')->orWhere('rank', 'camping')->get();
             $return  = [];

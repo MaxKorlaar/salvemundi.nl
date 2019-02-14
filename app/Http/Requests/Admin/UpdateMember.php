@@ -17,7 +17,7 @@
          *
          * @return bool
          */
-        public function authorize() {
+        public static function authorize() {
             return true;
         }
 
@@ -26,7 +26,7 @@
          *
          * @return array
          */
-        public function rules() {
+        public static function rules() {
             return [
                 'pcn'         => 'required|integer',
                 'member_id'   => 'required|integer',
@@ -35,7 +35,7 @@
                 'address'     => 'required|min:5|max:150',
                 'city'        => 'required|min:3|max:150',
                 'postal'      => 'required|string',
-                'country' => [
+                'country'     => [
                     'required',
                     Rule::in(array_keys(trans('address.country')))
                 ],

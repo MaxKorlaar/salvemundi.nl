@@ -5,6 +5,8 @@
 
     namespace App\Helpers;
 
+    use Mollie\Api\Exceptions\ApiException;
+    use Mollie\Api\Exceptions\IncompatiblePlatform;
     use Mollie\Api\MollieApiClient;
 
     /**
@@ -17,8 +19,8 @@
         /**
          * PaymentHelper constructor.
          *
-         * @throws \Mollie\Api\Exceptions\ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
+         * @throws ApiException
+         * @throws IncompatiblePlatform
          */
         public function __construct() {
             parent::__construct();

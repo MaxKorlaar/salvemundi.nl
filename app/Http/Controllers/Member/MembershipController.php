@@ -10,11 +10,16 @@
     use App\Transaction;
     use App\Year;
     use Carbon\Carbon;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
+    use Illuminate\View\View;
     use Mollie\Api\Exceptions\ApiException;
+    use Mollie\Api\Exceptions\IncompatiblePlatform;
+    use Throwable;
 
     /**
      * Class MembershipController
@@ -23,9 +28,9 @@
      */
     class MembershipController extends Controller {
         /**
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Mollie\Api\Exceptions\ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
+         * @return RedirectResponse
+         * @throws ApiException
+         * @throws IncompatiblePlatform
          */
         public function renew() {
             $user   = Auth::user();
@@ -41,7 +46,7 @@
 
             $mollie  = new PaymentHelper();
             $payment = $mollie->payments->create([
-                "amount" => [
+                "amount"      => [
                     'currency' => 'EUR',
                     'value'    => config('mollie.renew_costs')
                 ],
@@ -67,9 +72,9 @@
         /**
          * @param Transaction $transaction
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
-         * @throws \Mollie\Api\Exceptions\ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
+         * @return Factory|RedirectResponse|View
+         * @throws ApiException
+         * @throws IncompatiblePlatform
          */
         public function confirmPayment(Transaction $transaction) {
             $user   = Auth::user();
@@ -93,7 +98,7 @@
          * @param Request $request
          *
          * @return string
-         * @throws \Throwable
+         * @throws Throwable
          */
         public function confirmPaymentWebhook(Member $member, Request $request) {
 

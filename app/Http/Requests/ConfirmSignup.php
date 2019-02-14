@@ -15,7 +15,7 @@
          *
          * @return bool
          */
-        public function authorize() {
+        public static function authorize() {
             return true;
         }
 
@@ -24,7 +24,7 @@
          *
          * @return array
          */
-        public function rules() {
+        public static function rules() {
             return [
                 'picture' => 'file|image|required|max:5000|dimensions:min_width=200,min_height=300'
             ];

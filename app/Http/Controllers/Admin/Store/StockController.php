@@ -8,8 +8,12 @@
     use App\Store\Item;
     use App\Store\Stock;
     use App\Store\StockImage;
-    use Illuminate\Http\Request;
+    use Exception;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
+    use Illuminate\Http\Response;
     use Illuminate\Http\UploadedFile;
+    use Illuminate\View\View;
 
     /**
      * Class StockController
@@ -20,9 +24,9 @@
         /**
          * Display a listing of the resource.
          *
-         * @return \Illuminate\Http\Response
+         * @return void
          */
-        public function index() {
+        public static function index() {
             //
         }
 
@@ -31,9 +35,9 @@
          *
          * @param Item $item
          *
-         * @return \Illuminate\Http\Response
+         * @return Response
          */
-        public function create(Item $item) {
+        public static function create(Item $item) {
             return view('admin.store.items.stock.create', ['item' => $item]);
         }
 
@@ -44,7 +48,7 @@
          *
          * @param Item        $item
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          */
         public function store(CreateStock $request, Item $item) {
             $stock = new Stock($request->all());
@@ -67,7 +71,7 @@
          * @param Item  $item
          * @param Stock $voorraad
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          */
         public function show(Item $item, Stock $voorraad) {
             return redirect()->route('admin.store.items.stock.edit', ['item' => $item, 'stock' => $voorraad]);
@@ -79,9 +83,9 @@
          * @param Item  $item
          * @param Stock $voorraad
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function edit(Item $item, Stock $voorraad) {
+        public static function edit(Item $item, Stock $voorraad) {
             return view('admin.store.items.stock.edit', ['item' => $item, 'stock' => $voorraad]);
         }
 
@@ -93,7 +97,7 @@
          * @return mixed
          */
         public function getImage(Item $item, Stock $voorraad, StockImage $image) {
-            return $image->getCachedImage(true)->fit(300, 300)->response();
+            return StockImage::getCachedImage(true)->fit(300, 300)->response();
         }
 
         /**
@@ -104,7 +108,7 @@
          * @return mixed
          */
         public function getImageFull(Item $item, Stock $voorraad, StockImage $image) {
-            return $image->getCachedImage(true)->response();
+            return StockImage::getCachedImage(true)->response();
         }
 
         /**
@@ -114,13 +118,13 @@
          * @param Item        $item
          * @param Stock       $voorraad
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Exception
+         * @return RedirectResponse
+         * @throws Exception
          */
         public function update(UpdateStock $request, Item $item, Stock $voorraad) {
             $voorraad->update($request->all());
 
-            if($request->file('images') !== null) {
+            if ($request->file('images') !== null) {
                 foreach ($voorraad->images as $image) {
                     $image->delete();
                 }
@@ -142,9 +146,9 @@
          * @param Item  $item
          * @param Stock $voorraad
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getDeleteConfirmation(Item $item, Stock $voorraad) {
+        public static function getDeleteConfirmation(Item $item, Stock $voorraad) {
             return view('admin.store.items.stock.delete', ['item' => $item, 'stock' => $voorraad]);
         }
 
@@ -154,8 +158,8 @@
          * @param Item  $item
          * @param Stock $voorraad
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Exception
+         * @return RedirectResponse
+         * @throws Exception
          */
         public function destroy(Item $item, Stock $voorraad) {
             $voorraad->delete();

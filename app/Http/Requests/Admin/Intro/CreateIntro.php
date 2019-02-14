@@ -15,7 +15,7 @@
          *
          * @return bool
          */
-        public function authorize() {
+        public static function authorize() {
             return true;
         }
 
@@ -24,7 +24,7 @@
          *
          * @return array
          */
-        public function rules() {
+        public static function rules() {
             return [
                 'reservations_open'              => 'required|date|after:-3 months',
                 'mail_reservations'              => 'boolean',

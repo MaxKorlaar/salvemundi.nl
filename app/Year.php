@@ -3,30 +3,33 @@
     namespace App;
 
     use Carbon\Carbon;
+    use Eloquent;
+    use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
+    use Throwable;
 
     /**
      * App\Year
      *
-     * @mixin \Eloquent
-     * @property int                 $id
-     * @property int                 $year
-     * @property int                 $last_member_id
-     * @property \Carbon\Carbon|null $created_at
-     * @property \Carbon\Carbon|null $updated_at
-     * @method static \Illuminate\Database\Eloquent\Builder|Year whereCreatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Year whereId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Year whereLastMemberId($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Year whereUpdatedAt($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|Year whereYear($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Year newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Year newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\Year query()
+     * @mixin Eloquent
+     * @property int         $id
+     * @property int         $year
+     * @property int         $last_member_id
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
+     * @method static Builder|Year whereCreatedAt($value)
+     * @method static Builder|Year whereId($value)
+     * @method static Builder|Year whereLastMemberId($value)
+     * @method static Builder|Year whereUpdatedAt($value)
+     * @method static Builder|Year whereYear($value)
+     * @method static Builder|Year newModelQuery()
+     * @method static Builder|Year newQuery()
+     * @method static Builder|Year query()
      */
     class Year extends Model {
         //
         /**
-         * @throws \Throwable
+         * @throws Throwable
          */
         public static function getCurrentYear() {
             $currentYear = Carbon::now()->year;
@@ -37,7 +40,7 @@
          * @param $requestedYear
          *
          * @return Year|Model|null
-         * @throws \Throwable
+         * @throws Throwable
          */
         public static function getYear($requestedYear) {
             $year = Year::where('year', $requestedYear)->first();
@@ -51,14 +54,14 @@
 
         /**
          * @return string
-         * @throws \Throwable
+         * @throws Throwable
          */
         public function getNewMemberID() {
             return substr($this->year, -2) . sprintf('%03d', $this->incrementMemberID());
         }
 
         /**
-         * @throws \Throwable
+         * @throws Throwable
          */
         public function incrementMemberID() {
             $this->last_member_id++;

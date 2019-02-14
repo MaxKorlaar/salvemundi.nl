@@ -5,6 +5,7 @@
 
     namespace App\Logging;
 
+    use Illuminate\Log\Logger;
     use Monolog\Handler\RotatingFileHandler;
 
     /**
@@ -16,7 +17,7 @@
         /**
          * Customize the given logger instance.
          *
-         * @param  \Illuminate\Log\Logger $logger
+         * @param  Logger $logger
          *
          * @return void
          */

@@ -40,7 +40,7 @@
          *
          * @return mixed
          */
-        public function handle() {
+        public static function handle() {
             $memberNamePermission     = Permission::create(['name' => 'view member names']);
             $memberAddressPermission  = Permission::create(['name' => 'view member addresses']);
             $memberEmailPermission    = Permission::create(['name' => 'view member emails']);

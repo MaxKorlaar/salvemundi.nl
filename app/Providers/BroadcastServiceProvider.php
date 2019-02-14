@@ -16,7 +16,7 @@
          *
          * @return void
          */
-        public function boot() {
+        public static function boot() {
             Broadcast::routes();
 
             require base_path('routes/channels.php');

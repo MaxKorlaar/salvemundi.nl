@@ -4,31 +4,34 @@
 
     use App\Helpers\HasEncryptedAttributes;
     use Carbon\Carbon;
+    use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Relations\BelongsTo;
+    use InvalidArgumentException;
 
     /**
      * App\CampingApplication
      *
-     * @property int                   $id
-     * @property string                $member_id
-     * @property string                $first_name
-     * @property string                $last_name
-     * @property string                $phone
-     * @property string                $email
-     * @property string                $status
-     * @property string                $ip_address
-     * @property string|null           $email_confirmation_token
-     * @property \Carbon\Carbon|null   $created_at
-     * @property \Carbon\Carbon|null   $updated_at
-     * @property string                $address
-     * @property string                $city
-     * @property string                $postal
-     * @property \Carbon\Carbon        $birthday
-     * @property string|null           $remarks
-     * @property string                $transaction_id
-     * @property string                $transaction_status
-     * @property float                 $transaction_amount
+     * @property int         $id
+     * @property string      $member_id
+     * @property string      $first_name
+     * @property string      $last_name
+     * @property string      $phone
+     * @property string      $email
+     * @property string      $status
+     * @property string      $ip_address
+     * @property string|null $email_confirmation_token
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
+     * @property string      $address
+     * @property string      $city
+     * @property string      $postal
+     * @property Carbon      $birthday
+     * @property string|null $remarks
+     * @property string      $transaction_id
+     * @property string      $transaction_status
+     * @property float       $transaction_amount
      * @method static Builder|CampingApplication whereAddress($value)
      * @method static Builder|CampingApplication whereBirthday($value)
      * @method static Builder|CampingApplication whereCity($value)
@@ -48,15 +51,15 @@
      * @method static Builder|CampingApplication whereTransactionId($value)
      * @method static Builder|CampingApplication whereTransactionStatus($value)
      * @method static Builder|CampingApplication whereUpdatedAt($value)
-     * @mixin \Eloquent
-     * @property-read \App\Member      $member
-     * @property-read \App\Transaction $transaction
-     * @property int|null              $camp_id
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication whereCampId($value)
-     * @property-read \App\Camp|null   $camp
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication newModelQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication newQuery()
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\CampingApplication query()
+     * @mixin Eloquent
+     * @property-read Member      $member
+     * @property-read Transaction $transaction
+     * @property int|null         $camp_id
+     * @method static Builder|CampingApplication whereCampId($value)
+     * @property-read Camp|null   $camp
+     * @method static Builder|CampingApplication newModelQuery()
+     * @method static Builder|CampingApplication newQuery()
+     * @method static Builder|CampingApplication query()
      */
     class CampingApplication extends Model {
         use HasEncryptedAttributes;
@@ -78,21 +81,21 @@
         ];
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         * @return BelongsTo
          */
         public function member() {
             return $this->belongsTo(Member::class);
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         * @return BelongsTo
          */
         public function transaction() {
             return $this->belongsTo(Transaction::class);
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         * @return BelongsTo
          */
         public function camp() {
             return $this->belongsTo(Camp::class);
@@ -101,12 +104,12 @@
         /**
          * @param $birthday
          *
-         * @return \Carbon\Carbon
+         * @return Carbon
          */
         public function setBirthdayAttribute($birthday) {
             try {
                 return $this->attributes['birthday'] = Carbon::createFromTimestamp(strtotime($birthday));
-            } catch (\InvalidArgumentException $exception) {
+            } catch (InvalidArgumentException $exception) {
                 return $this->attributes['birthday'] = null;
             }
         }

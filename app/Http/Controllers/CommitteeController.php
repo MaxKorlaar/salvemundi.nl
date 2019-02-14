@@ -2,6 +2,9 @@
 
     namespace App\Http\Controllers;
 
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\View\View;
+
     /**
      * Class CommitteeController
      *
@@ -9,115 +12,115 @@
      */
     class CommitteeController extends Controller {
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getAdministrationPage() {
+        public static function getAdministrationPage() {
             return view('committees.administration');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getFounders() {
+        public static function getFounders() {
             return view('committees.administration', [
                 'administration_title' => trans('committee.administration.founders'),
-                'administration_text' => trans('committee.administration.founders_text'),
+                'administration_text'  => trans('committee.administration.founders_text'),
             ]);
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function get2017() {
+        public static function get2017() {
             return view('committees.administration',
                 [
-                    'administration_title' => trans('committee.administration.administration_versions.2017.title'),
-                    'administration_text' => trans('committee.administration.administration_versions.2017.text'),
-                    'administration_image' => 'images/bestuur_2017.jpg',
+                    'administration_title'   => trans('committee.administration.administration_versions.2017.title'),
+                    'administration_text'    => trans('committee.administration.administration_versions.2017.text'),
+                    'administration_image'   => 'images/bestuur_2017.jpg',
                     'administration_caption' => trans('committee.administration.administration_versions.2017.caption')
                 ]);
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function get2018() {
+        public static function get2018() {
             return view('committees.administration',
                 [
-                    'administration_title' => trans('committee.administration.administration_versions.2018.title'),
-                    'administration_text' => trans('committee.administration.administration_versions.2018.text'),
-                    'administration_image' => null,
+                    'administration_title'   => trans('committee.administration.administration_versions.2018.title'),
+                    'administration_text'    => trans('committee.administration.administration_versions.2018.text'),
+                    'administration_image'   => null,
                     'administration_caption' => trans('committee.administration.administration_versions.2018.caption')
                 ]);
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getPartyPage() {
+        public static function getPartyPage() {
             return view('committees.party');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getMediaPage() {
+        public static function getMediaPage() {
             return view('committees.media');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getCampingPage() {
+        public static function getCampingPage() {
             return view('committees.camping');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getActivityPage() {
+        public static function getActivityPage() {
             return view('committees.activity');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getStudyPage() {
+        public static function getStudyPage() {
             return view('committees.study');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getInternalAffairsPage() {
+        public static function getInternalAffairsPage() {
             return view('committees.internal_affairs');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getExternalAffairsPage() {
+        public static function getExternalAffairsPage() {
             return view('committees.external_affairs');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getAlphaCentauriPage() {
+        public static function getAlphaCentauriPage() {
             return view('committees.alpha_centauri');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getTreasurePage() {
+        public static function getTreasurePage() {
             return view('committees.treasure');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getVacanciesPage() {
+        public static function getVacanciesPage() {
             return view('committees.vacancies');
         }
 

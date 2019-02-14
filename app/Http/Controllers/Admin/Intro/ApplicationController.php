@@ -7,9 +7,15 @@
     use App\Introduction;
     use App\Mail\ConfirmIntroApplication;
     use App\Mail\IntroApplicationPaymentRequest;
+    use Exception;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Cache;
     use Illuminate\Support\Facades\Mail;
+    use Illuminate\View\View;
+    use Psr\SimpleCache\InvalidArgumentException;
+    use Throwable;
 
     /**
      * Class ApplicationController
@@ -26,7 +32,7 @@
         /**
          * @param Introduction $intro
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function index(Introduction $intro) {
             return redirect()->route('admin.intro.show', [$intro]);
@@ -36,18 +42,18 @@
          * Show the form for creating a new resource.
          *
          */
-        public function create() {
+        public static function create() {
             abort(501);
         }
 
         /**
          * Store a newly created resource in storage.
          *
-         * @param  \Illuminate\Http\Request $request
-         * @param Introduction              $intro
-         * @param IntroApplication          $application
+         * @param  Request         $request
+         * @param Introduction     $intro
+         * @param IntroApplication $application
          */
-        public function store(Request $request, Introduction $intro, IntroApplication $application) {
+        public static function store(Request $request, Introduction $intro, IntroApplication $application) {
             abort(501);
         }
 
@@ -56,9 +62,9 @@
          *
          * @param IntroApplication $aanmeldingen
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function show(Introduction $intro, IntroApplication $aanmeldingen) {
+        public static function show(Introduction $intro, IntroApplication $aanmeldingen) {
             return view('admin.intro.applications.show', [
                 'application'  => $aanmeldingen,
                 'introduction' => $intro
@@ -71,18 +77,18 @@
          * @param  int $id
          *
          */
-        public function edit($id) {
+        public static function edit($id) {
             abort(501);
         }
 
         /**
          * Update the specified resource in storage.
          *
-         * @param  \Illuminate\Http\Request $request
-         * @param  int                      $id
+         * @param  Request $request
+         * @param  int     $id
          *
          */
-        public function update(Request $request, $id) {
+        public static function update(Request $request, $id) {
             abort(501);
         }
 
@@ -91,8 +97,8 @@
          * @param IntroApplication $application
          * @param Request          $request
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Psr\SimpleCache\InvalidArgumentException
+         * @return RedirectResponse
+         * @throws InvalidArgumentException
          */
         public function sendEmailConfirmationReminder(Introduction $intro, IntroApplication $application, Request $request) {
             if ($application->isAnonymised()) abort(400);
@@ -113,9 +119,9 @@
          * @param IntroApplication $application
          * @param Request          $request
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Psr\SimpleCache\InvalidArgumentException
-         * @throws \Throwable
+         * @return RedirectResponse
+         * @throws InvalidArgumentException
+         * @throws Throwable
          */
         public function sendPaymentReminder(Introduction $intro, IntroApplication $application, Request $request) {
             if ($application->isAnonymised()) abort(400);
@@ -140,7 +146,7 @@
          * @param Introduction     $intro
          * @param IntroApplication $application
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          */
         public function getDeleteConfirmation(Introduction $intro, IntroApplication $application) {
             if ($application->isAnonymised() ||
@@ -159,7 +165,7 @@
         /**
          * @param Introduction $intro
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function spreadsheet(Introduction $intro) {
             return view('admin.intro.applications.spreadsheet', [
@@ -175,8 +181,8 @@
          *
          * @param IntroApplication $aanmeldingen
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Exception
+         * @return RedirectResponse
+         * @throws Exception
          */
         public function destroy(Introduction $intro, IntroApplication $aanmeldingen) {
             if ($aanmeldingen->isAnonymised() ||
@@ -191,13 +197,12 @@
         // De volgende functies zijn buiten gebruik omdat de functies nu individueel uitgevoerd kunnen worden per aanmelding.
 
 
-
         /**
-         * @deprecated
-         *
          * @param Request $request
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
+         * @deprecated
+         *
          */
         public function sendPaymentReminders(Request $request) {
             $yesterday    = Carbon::yesterday()->format('Y-m-d H:i:s');
@@ -224,11 +229,11 @@
         }
 
         /**
-         * @deprecated
-         *
          * @param Request $request
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
+         * @deprecated
+         *
          */
         public function generateTokensForUnpaidSignups(Request $request) {
 

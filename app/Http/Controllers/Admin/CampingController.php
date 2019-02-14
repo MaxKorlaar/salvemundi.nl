@@ -8,7 +8,11 @@
     use App\Http\Requests\Admin\CreateCamp;
     use App\Year;
     use Carbon\Carbon;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
+    use Illuminate\View\View;
+    use Throwable;
 
     /**
      * Class CampingController
@@ -24,16 +28,16 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function index() {
+        public static function index() {
             return view('admin.camping.index', [
                 'camps' => Camp::with(['year', 'applications'])->get()
             ]);
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function create() {
             return view('admin.camping.create', [
@@ -46,9 +50,9 @@
         /**
          * @param Camp $kamp
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function edit(Camp $kamp) {
+        public static function edit(Camp $kamp) {
             return view('admin.camping.edit', [
                 'years' => Year::all(),
                 'camp'  => $kamp
@@ -58,9 +62,9 @@
         /**
          * @param Camp $kamp
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function show(Camp $kamp) {
+        public static function show(Camp $kamp) {
             return view('admin.camping.show', [
                 'camp' => $kamp
             ]);
@@ -70,7 +74,7 @@
          * @param Camp       $kamp
          * @param CreateCamp $request
          *
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          */
         public function update(Camp $kamp, CreateCamp $request) {
             $kamp->update($request->all());
@@ -80,8 +84,8 @@
         /**
          * @param CreateCamp $request
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \Throwable
+         * @return RedirectResponse
+         * @throws Throwable
          */
         public function store(CreateCamp $request) {
             $camp = new Camp($request->all());
@@ -94,7 +98,7 @@
          *
          * @return array
          */
-        public function getSignups(Request $request) {
+        public static function getSignups(Request $request) {
             abort(404);
             $return = [];
             CampingApplication::each(function (CampingApplication $application) use (&$return) {

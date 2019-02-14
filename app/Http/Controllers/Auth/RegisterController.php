@@ -62,7 +62,7 @@
          *
          * @param  array $data
          *
-         * @return \App\User
+         * @return User
          */
         protected function create(array $data) {
             return User::create([

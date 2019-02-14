@@ -29,7 +29,7 @@
          *
          * @return void
          */
-        public function register() {
+        public static function register() {
             //
         }
     }

@@ -4,30 +4,34 @@
 
     use App\Helpers\HasEncryptedAttributes;
     use Carbon\Carbon;
+    use Eloquent;
     use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Relations\BelongsTo;
+    use InvalidArgumentException;
+    use Throwable;
 
     /**
      * Class IntroApplication
      *
      * @package App
-     * @property int                         $id
-     * @property string|null                 $pcn
-     * @property string                      $first_name
-     * @property string                      $last_name
-     * @property string                      $phone
-     * @property string                      $email
-     * @property \Carbon\Carbon              $birthday
-     * @property string                      $shirt_size
-     * @property string                      $remarks
-     * @property bool                        $alcohol
-     * @property int                         $extra_shirt
-     * @property int                         $same_sex_rooms
-     * @property string                      $status
-     * @property string                      $ip_address
-     * @property string|null                 $email_confirmation_token
-     * @property \Carbon\Carbon|null         $created_at
-     * @property \Carbon\Carbon|null         $updated_at
+     * @property int         $id
+     * @property string|null $pcn
+     * @property string      $first_name
+     * @property string      $last_name
+     * @property string      $phone
+     * @property string      $email
+     * @property Carbon      $birthday
+     * @property string      $shirt_size
+     * @property string      $remarks
+     * @property bool        $alcohol
+     * @property int         $extra_shirt
+     * @property int         $same_sex_rooms
+     * @property string      $status
+     * @property string      $ip_address
+     * @property string|null $email_confirmation_token
+     * @property Carbon|null $created_at
+     * @property Carbon|null $updated_at
      * @method static Builder|IntroApplication whereAlcohol($value)
      * @method static Builder|IntroApplication whereBirthday($value)
      * @method static Builder|IntroApplication whereCreatedAt($value)
@@ -45,7 +49,7 @@
      * @method static Builder|IntroApplication whereShirtSize($value)
      * @method static Builder|IntroApplication whereStatus($value)
      * @method static Builder|IntroApplication whereUpdatedAt($value)
-     * @mixin \Eloquent
+     * @mixin Eloquent
      * @method static Builder|IntroApplication whereTransactionAmount($value)
      * @method static Builder|IntroApplication whereTransactionId($value)
      * @method static Builder|IntroApplication whereTransactionStatus($value)
@@ -62,19 +66,19 @@
      * @method static Builder|IntroApplication newModelQuery()
      * @method static Builder|IntroApplication newQuery()
      * @method static Builder|IntroApplication query()
-     * @property int|null                    $introduction_id
-     * @property string                      $type
+     * @property int|null               $introduction_id
+     * @property string                 $type
      * @method static Builder|IntroApplication whereIntroductionId($value)
      * @method static Builder|IntroApplication whereType($value)
-     * @property string|null                 $country
-     * @property-read \App\Introduction|null $introduction
-     * @property-read \App\Transaction       $transaction
+     * @property string|null            $country
+     * @property-read Introduction|null $introduction
+     * @property-read Transaction       $transaction
      * @method static Builder|IntroApplication whereCountry($value)
-     * @property int|null                    $transaction_id
-     * @property string                      $contact_name
-     * @property string                      $contact_relation
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroApplication whereContactName($value)
-     * @method static \Illuminate\Database\Eloquent\Builder|\App\IntroApplication whereContactRelation($value)
+     * @property int|null               $transaction_id
+     * @property string                 $contact_name
+     * @property string                 $contact_relation
+     * @method static Builder|IntroApplication whereContactName($value)
+     * @method static Builder|IntroApplication whereContactRelation($value)
      */
     class IntroApplication extends Model {
         use HasEncryptedAttributes;
@@ -127,19 +131,19 @@
         /**
          * @param $birthday
          *
-         * @return \Carbon\Carbon
+         * @return Carbon
          */
         public function setBirthdayAttribute($birthday) {
             try {
                 return $this->attributes['birthday'] = Carbon::createFromTimestamp(strtotime($birthday));
-            } catch (\InvalidArgumentException $exception) {
+            } catch (InvalidArgumentException $exception) {
                 return $this->attributes['birthday'] = null;
             }
         }
 
         /**
-         * @todo Fix function (baseer op Introduction::class)
          * @return int
+         * @todo Fix function (baseer op Introduction::class)
          */
         public function calculateIntroCosts() {
             //            $intro    = 60;
@@ -151,14 +155,14 @@
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         * @return BelongsTo
          */
         public function transaction() {
             return $this->belongsTo(Transaction::class);
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+         * @return BelongsTo
          */
         public function introduction() {
             return $this->belongsTo(Introduction::class);
@@ -176,7 +180,7 @@
         }
 
         /**
-         * @throws \Throwable
+         * @throws Throwable
          */
         public function anonymise() {
             $this->email_confirmation_token = null;

@@ -8,6 +8,9 @@
 
     namespace App\Http\Controllers;
 
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\View\View;
+
     /**
      * Class DiscountController
      *
@@ -16,16 +19,16 @@
     class DiscountController extends Controller {
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getDefaultView() {
+        public static function getDefaultView() {
             return view('discounts');
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getHappiView() {
+        public static function getHappiView() {
             return view('discounts',
                 [
                     'title'     => trans('discounts.happii.title'),
@@ -37,9 +40,9 @@
         }
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getVillaView() {
+        public static function getVillaView() {
             return view('discounts',
                 [
                     'title'     => trans('discounts.villa_fiesta.title'),

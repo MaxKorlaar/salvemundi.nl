@@ -5,9 +5,16 @@
     use App\Http\Controllers\Controller;
     use App\Member;
     use App\User;
+    use Illuminate\Contracts\View\Factory;
     use Illuminate\Foundation\Auth\AuthenticatesUsers;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Log;
+    use Illuminate\View\View;
+    use OpenIDConnectClient;
+    use OpenIDConnectClientException;
+    use Session;
+    use Throwable;
 
     /**
      * Class FHICTLoginController
@@ -23,7 +30,7 @@
         function __construct() {
             $this->redirectTo = route('member.about_me');
             require_once app_path() . '/Helpers/lib/OpenID-Connect-PHP/OpenIDConnectClient.php';
-            $this->client = new \OpenIDConnectClient(config('auth.fhict.openid_server'), config('auth.fhict.client_id'), config('auth.fhict.client_secret'));
+            $this->client = new OpenIDConnectClient(config('auth.fhict.openid_server'), config('auth.fhict.client_id'), config('auth.fhict.client_secret'));
             $this->client->addScope(explode(" ", config('auth.fhict.scopes')));
             if (config('app.env') == 'local') {
                 $this->client->setRedirectURL('http://localhost:3000/login/oauth');
@@ -37,7 +44,7 @@
         /**
          * @param Request $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
         public function getLoginView(Request $request) {
             if ($request->get('redirect') == true) {
@@ -48,7 +55,7 @@
 
 
         /**
-         * @throws \OpenIDConnectClientException
+         * @throws OpenIDConnectClientException
          */
         public function redirect() {
             $this->client->authenticate();
@@ -57,14 +64,14 @@
         /**
          * @param Request $request
          *
-         * @return \Illuminate\Http\RedirectResponse
-         * @throws \OpenIDConnectClientException
-         * @throws \Throwable
+         * @return RedirectResponse
+         * @throws OpenIDConnectClientException
+         * @throws Throwable
          */
         public function afterLoginAuth(Request $request) {
             try {
                 $this->client->authenticate();
-            } catch (\OpenIDConnectClientException $e) {
+            } catch (OpenIDConnectClientException $e) {
                 if ($e->getCode() === 403) {
                     return redirect()->route('login')->withErrors(['login' => trans('auth.access_denied')])->with('redirect', route('login.redirect'));
                 }
@@ -87,7 +94,7 @@
                 return redirect()->route('login')->withErrors(['login' => trans('auth.email_missing')])->with('redirect', route('login.redirect'));
             }
 
-            \Session::put('fhict_login_data', $data);
+            Session::put('fhict_login_data', $data);
 
             $user = User::where('username', '=', $data->preferred_username)->first();
 

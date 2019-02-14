@@ -54,7 +54,7 @@
                     ->where('type', '!=', IntroApplication::TYPE_ANONYMISED)->get();
                 $applications->each(function (IntroApplication $application) {
                     $application->email_confirmation_token = str_random(64);
-                    $mail = new IntroApplicationPaymentRequest($application);
+                    $mail                                  = new IntroApplicationPaymentRequest($application);
                     $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
                     Mail::send($mail);
                     $application->saveOrFail();

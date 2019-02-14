@@ -5,10 +5,15 @@
     use App\Introduction;
     use Carbon\Carbon;
     use Facebook\Exceptions\FacebookSDKException;
+    use Facebook\Facebook;
     use Facebook\GraphNodes\GraphNode;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
+    use Illuminate\Routing\Redirector;
     use Illuminate\Support\Facades\Cache;
     use Illuminate\Support\Facades\Log;
+    use Illuminate\View\View;
 
     /**
      * Class IndexController
@@ -18,9 +23,9 @@
     class IndexController extends Controller {
 
         /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getHomePage() {
+        public static function getHomePage() {
             $currentIntro = Cache::remember('home.current_introduction', 30, function () {
                 $introduction = Introduction::getIntroductionForCurrentYear();
                 if ($introduction === null) return false;
@@ -38,7 +43,7 @@
          *
          * @return array
          */
-        public function getFacebookEvents(Request $request) {
+        public static function getFacebookEvents(Request $request) {
             $e      = [
                 [
                     'name'            => 'Grill & Chill',
@@ -71,7 +76,7 @@ De feestcommissie',
                 ],
             ];
             $return = Cache::remember('facebook_events', 60, function () {
-                $fb = new \Facebook\Facebook([
+                $fb = new Facebook([
                     'app_id'                => config('facebook.app_id'),
                     'app_secret'            => config('facebook.secret'),
                     'default_graph_version' => 'v2.10',
@@ -146,16 +151,16 @@ De feestcommissie',
         }
 
         /**
-         * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+         * @return RedirectResponse|Redirector
          */
-        public function getDriveRedirect() {
+        public static function getDriveRedirect() {
             return redirect('https://drive.google.com/drive/folders/0Bz1jQEqeNpawdkRXRVNwVzZZbGM?usp=sharing');
         }
 
         /**
          * @return string
          */
-        public function getCancelPage() {
+        public static function getCancelPage() {
             return "ik ook bedankt <img src='" . asset('images/dep.gif') . "'>";
         }
 

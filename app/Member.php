@@ -3,13 +3,21 @@
     namespace App;
 
     use App\Helpers\HasEncryptedAttributes;
+    use Eloquent;
+    use Exception;
     use Illuminate\Database\Eloquent\Builder;
+    use Illuminate\Database\Eloquent\Collection;
     use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Relations\HasMany;
+    use Illuminate\Database\Eloquent\Relations\HasOne;
     use Illuminate\Database\Eloquent\SoftDeletes;
     use Illuminate\Support\Carbon;
     use Intervention\Image\Constraint;
     use Intervention\Image\Facades\Image;
+    use InvalidArgumentException;
     use Mollie\Api\Resources\Payment;
+    use Storage;
+    use Throwable;
 
     /**
      * Class Member
@@ -51,19 +59,18 @@
      * @method static Builder|Member whereTransactionId($value)
      * @method static Builder|Member whereTransactionStatus($value)
      * @method static Builder|Member whereUpdatedAt($value)
-     * @mixin \Eloquent
-     * @property string                                                                  $member_id
+     * @mixin Eloquent
+     * @property string                               $member_id
      * @method static Builder|Member whereMemberId($value)
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Transaction[]        $transactions
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\Membership[]         $memberships
-     * @property-read \App\User                                                          $user
-     * @property string                                                                  $card_status
-     * @property string|null                                                             $card_id
+     * @property-read Collection|Transaction[]        $transactions
+     * @property-read Collection|Membership[]         $memberships
+     * @property-read User                            $user
+     * @property string                               $card_status
+     * @property string|null                          $card_id
      * @method static Builder|Member whereCardId($value)
      * @method static Builder|Member whereCardStatus($value)
-     * @property-read \Illuminate\Database\Eloquent\Collection|\App\CampingApplication[] $campingApplications
-     * @property \Carbon\Carbon|null                                                     $deleted_at
-     * @method static bool|null forceDelete()
+     * @property-read Collection|CampingApplication[] $campingApplications
+     * @property \Carbon\Carbon|null                  $deleted_at
      * @method static \Illuminate\Database\Query\Builder|Member onlyTrashed()
      * @method static bool|null restore()
      * @method static Builder|Member whereDeletedAt($value)
@@ -95,7 +102,7 @@
          * @param MemberApplication $application
          *
          * @return Member
-         * @throws \Throwable
+         * @throws Throwable
          */
         public static function createFromApplication(MemberApplication $application) {
             $member                     = new Member();
@@ -131,7 +138,7 @@
         public function setBirthdayAttribute($birthday) {
             try {
                 return $this->attributes['birthday'] = Carbon::createFromTimestamp(strtotime($birthday));
-            } catch (\InvalidArgumentException $exception) {
+            } catch (InvalidArgumentException $exception) {
                 return $this->attributes['birthday'] = null;
             }
         }
@@ -175,7 +182,7 @@
          *
          * @return \Image|\Intervention\Image\Image
          */
-        public function getResizedCachedImage($width = null, $height = null, $returnObj = false) {
+        public static function getResizedCachedImage($width = null, $height = null, $returnObj = false) {
             return Image::cache(function ($image) use ($height, $width) {
                 /** @var \Intervention\Image\Image $image */
                 $image->make($this->getImagePath())->orientate();
@@ -190,7 +197,7 @@
          *
          * @return \Image|\Intervention\Image\Image
          */
-        public function getCachedImage($returnObj = false) {
+        public static function getCachedImage($returnObj = false) {
             return Image::cache(function ($image) {
                 /** @var \Intervention\Image\Image $image */
                 $image->make($this->getImagePath())->orientate();
@@ -202,7 +209,7 @@
          *
          * @return bool|null
          *
-         * @throws \Exception
+         * @throws Exception
          */
         public function delete() {
             if ($this->user !== null) {
@@ -213,7 +220,7 @@
 
         /**
          * @return bool|null
-         * @throws \Exception
+         * @throws Exception
          */
         public function forceDelete() {
             $this->deletePicture();
@@ -224,12 +231,12 @@
         }
 
         /**
-         * @throws \Exception
+         * @throws Exception
          */
         public function deletePicture() {
 
-            if (\Storage::exists('member_photos/' . $this->picture_name) && !\Storage::delete('member_photos/' . $this->picture_name)) {
-                throw new \Exception("Kon pasfoto niet verwijderen bij het verwijderen van een Member");
+            if (Storage::exists('member_photos/' . $this->picture_name) && !Storage::delete('member_photos/' . $this->picture_name)) {
+                throw new Exception("Kon pasfoto niet verwijderen bij het verwijderen van een Member");
             }
         }
 
@@ -237,11 +244,11 @@
          * @return bool
          */
         public function hasPicture() {
-            return \Storage::exists('member_photos/' . $this->picture_name);
+            return Storage::exists('member_photos/' . $this->picture_name);
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\HasOne
+         * @return HasOne
          */
         public function user() {
             return $this->hasOne(User::class);
@@ -255,14 +262,14 @@
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         * @return HasMany
          */
         public function memberships() {
             return $this->hasMany(Membership::class);
         }
 
         /**
-         * @return Model|\Illuminate\Database\Eloquent\Relations\HasMany|null
+         * @return Model|HasMany|null
          */
         public function getCurrentMembership() {
             return $this->memberships()->where('valid_from', '<', Carbon::today())->where('valid_until', '>', Carbon::today())->first();
@@ -283,14 +290,14 @@
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         * @return HasMany
          */
         public function transactions() {
             return $this->hasMany(Transaction::class);
         }
 
         /**
-         * @return \Illuminate\Database\Eloquent\Relations\HasMany
+         * @return HasMany
          */
         public function campingApplications() {
             return $this->hasMany(CampingApplication::class);

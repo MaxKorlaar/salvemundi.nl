@@ -1,38 +1,35 @@
 <?php
 
-namespace App\Http\Requests\Store;
+    namespace App\Http\Requests\Store;
 
-use App\Http\Controllers\StoreController;
-use Illuminate\Foundation\Http\FormRequest;
-
-/**
- * Class PayCart
- *
- * @package App\Http\Requests\Store
- */
-class PayCart extends FormRequest
-{
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return true;
-    }
+    use App\Http\Controllers\StoreController;
+    use Illuminate\Foundation\Http\FormRequest;
 
     /**
-     * Get the validation rules that apply to the request.
+     * Class PayCart
      *
-     * @return array
+     * @package App\Http\Requests\Store
      */
-    public function rules()
-    {
+    class PayCart extends FormRequest {
+        /**
+         * Determine if the user is authorized to make this request.
+         *
+         * @return bool
+         */
+        public static function authorize() {
+            return true;
+        }
 
-        $banks = StoreController::getIdealBanks();
-        return [
-            'ideal_bank' => 'required|string|in:' . $banks->implode('id', ',')
-        ];
+        /**
+         * Get the validation rules that apply to the request.
+         *
+         * @return array
+         */
+        public function rules() {
+
+            $banks = StoreController::getIdealBanks();
+            return [
+                'ideal_bank' => 'required|string|in:' . $banks->implode('id', ',')
+            ];
+        }
     }
-}

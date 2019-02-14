@@ -17,7 +17,7 @@
          *
          * @return bool
          */
-        public function authorize() {
+        public static function authorize() {
             return true;
         }
 
@@ -26,7 +26,7 @@
          *
          * @return array
          */
-        public function rules() {
+        public static function rules() {
             return [
                 'pcn'         => 'required|integer|unique:members',
                 'member_id'   => 'integer|nullable|unique:members',

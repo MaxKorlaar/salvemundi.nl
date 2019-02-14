@@ -9,11 +9,17 @@
     use App\Mail\CampingApplicationPaymentConfirmation;
     use App\Mail\NewCampingApplication;
     use App\Transaction;
+    use Illuminate\Contracts\View\Factory;
+    use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
+    use Illuminate\Routing\Redirector;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
+    use Illuminate\View\View;
     use Mollie\Api\Exceptions\ApiException;
+    use Mollie\Api\Exceptions\IncompatiblePlatform;
+    use Throwable;
 
     /**
      * Class CampingController
@@ -28,7 +34,7 @@
         }
 
         /**
-         * @return \Illuminate\Http\RedirectResponse
+         * @return RedirectResponse
          */
         public function index() {
             return redirect()->route('committees/camping');
@@ -37,9 +43,9 @@
         /**
          * @param Request $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          */
-        public function getSignupForm(Request $request) {
+        public static function getSignupForm(Request $request) {
             return view('camping.signup',
                 [
                     'signup_count' => CampingApplication::where('transaction_status', '=', 'paid')->count(),
@@ -52,8 +58,8 @@
         /**
          * @param CampingSignup $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
-         * @throws \Throwable
+         * @return Factory|RedirectResponse|Redirector|View
+         * @throws Throwable
          */
         public function signup(CampingSignup $request) {
             $member = Auth::user()->member;
@@ -88,7 +94,7 @@
             $payment = $mollie->payments->create([
                 "amount"      => [
                     'currency' => 'EUR',
-                    'value'    => (string) number_format($camp->price, 2)
+                    'value'    => (string)number_format($camp->price, 2)
                 ],
                 "description" => trans('camping.signup.payment.description', ['first_name' => $application->first_name, 'last_name' => $application->last_name]),
                 "redirectUrl" => route('camping.signup.confirm_payment'),
@@ -122,9 +128,9 @@
          * @param Request            $request
          *
          * @return string
-         * @throws \Mollie\Api\Exceptions\ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
-         * @throws \Throwable
+         * @throws ApiException
+         * @throws IncompatiblePlatform
+         * @throws Throwable
          */
         public function confirmPaymentWebhook(CampingApplication $application, Request $request) {
 
@@ -166,7 +172,7 @@
                     }
                 } else {
                     if ($payment->hasRefunds()) {
-                        $application->status             = CampingApplication::STATUS_REFUNDED;
+                        $application->status = CampingApplication::STATUS_REFUNDED;
                     }
                     $application->transaction_status = $payment->status;
                     $application->transaction_amount = $payment->amount->value;
@@ -189,9 +195,9 @@
         /**
          * @param Request $request
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+         * @return Factory|View
          * @throws ApiException
-         * @throws \Mollie\Api\Exceptions\IncompatiblePlatform
+         * @throws IncompatiblePlatform
          */
         public function confirmPayment(Request $request) {
             //if (!$request->session()->has('camping.application')) abort(404);
@@ -215,8 +221,8 @@
          * @param CampingApplication $application
          * @param                    $token
          *
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         * @throws \Throwable
+         * @return Factory|View
+         * @throws Throwable
          */
         public function confirmEmail(CampingApplication $application, $token) {
             if ($application->email_confirmation_token !== $token) {
