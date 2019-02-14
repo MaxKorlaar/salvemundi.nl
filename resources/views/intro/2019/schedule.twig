@@ -9,7 +9,7 @@
         <main class="intro">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>{{ trans('intro.2019.title') }}</h1>
+                    <h1>{{ trans('intro.2019.title', { year: introduction.year.year }) }}</h1>
                     <div class="button-menu my-3">
                         <a class="button mx-1" href="{{ route('intro.by_id.info', { introduction: introduction, year: year } ) }}">
                             {{ trans('intro.main_info_button') }}
