@@ -153,11 +153,11 @@
                         <p>{{ trans('admin.intro.cannot_delete_until_anonymised') }}</p>
                     {% endif %}
 
-                    <form action="{{ route('admin.intro.send_email_confirmation_reminders', { intro: introduction }) }}" method="POST">
+                    <form action="{{ route('admin.intro.send_email_confirmation_reminders', { intro: introduction }) }}" method="POST" data-warning="{{ trans('admin.intro.send_warning') }}">
                         {{ csrf_field() }}
                         <button type="submit" class="button danger">{{ trans('admin.intro.send_email_reminders') }}</button>
                     </form>
-                    <form action="{{ route('admin.intro.send_payment_reminders', { intro: introduction }) }}" method="POST">
+                    <form action="{{ route('admin.intro.send_payment_reminders', { intro: introduction }) }}" method="POST" data-warning="{{ trans('admin.intro.send_warning') }}">
                         {{ csrf_field() }}
                         <button type="submit" class="button danger">{{ trans('admin.intro.send_payment_reminders') }}</button>
                     </form>
@@ -166,4 +166,8 @@
             </div>
         </main>
     </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ mix('js/admin.js') }}"></script>
 {% endblock %}
