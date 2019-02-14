@@ -37,8 +37,8 @@
             'Uitjes naar bijvoorbeeld pretparken'
         ],
         'intro'                  => 'Naast deze activiteiten verzorgt Salve Mundi ook de introductie van FHICT van top tot teen.',
-        'intro_signup_header'    => 'Inschrijven intro FHICT 2018',
-        'intro_signup'           => 'Het is nu mogelijk om je in te schrijven voor de Fontys Hogescholen ICT intro van 2018, georganiseerd door Salve Mundi! Doe dit snel, want het aantal plekken is beperkt. Ben je een aankomend student dan is dit de ideale mogelijkheid om je nieuwe studiegenoten op de leukste manier te leren kennen!',
+        'intro_signup_header'    => 'Inschrijven intro FHICT :year',
+        'intro_signup'           => 'Het is nu mogelijk om je in te schrijven voor de Fontys Hogescholen ICT intro van :year, georganiseerd door Salve Mundi! Doe dit snel, want het aantal plekken is beperkt. Ben je een aankomend student dan is dit de ideale mogelijkheid om je nieuwe studiegenoten op de leukste manier te leren kennen!',
         'intro_signup_button'    => 'Meer informatie en inschrijven',
         'camping'                => [
             'header'     => 'Inschrijven kamp',
