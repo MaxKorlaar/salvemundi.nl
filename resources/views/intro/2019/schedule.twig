@@ -25,26 +25,14 @@
                 <div class="col-md-12">
                     <h2>Planning</h2>
                     <div>
-                        <h3>{{ trans("intro.2019.schedule_page.monday.title") }}</h3>
-                        <p>
-                            {{ trans("intro.2019.schedule_page.monday.text")|raw }}
-                        </p>
-                        <h3>{{ trans("intro.2019.schedule_page.tuesday.title") }}</h3>
-                        <p>
-                            {{ trans("intro.2019.schedule_page.tuesday.text")|raw }}
-                        </p>
-                        <h3>{{ trans("intro.2019.schedule_page.wednesday.title") }}</h3>
-                        <p>
-                            {{ trans("intro.2019.schedule_page.wednesday.text")|raw }}
-                        </p>
-                        <h3>{{ trans("intro.2019.schedule_page.thursday.title") }}</h3>
-                        <p>
-                            {{ trans("intro.2019.schedule_page.thursday.text")|raw }}
-                        </p>
-                        <h3>{{ trans("intro.2019.schedule_page.friday.title") }}</h3>
-                        <p>
-                            {{ trans("intro.2019.schedule_page.friday.text")|raw }}
-                        </p>
+                        {% for day in trans("intro.2019.schedule_page.days") %}
+                            <h3>{{ day.title }}</h3>
+                            {% for text in day.text %}
+                                <p>
+                                    {{ text|raw }}
+                                </p>
+                            {% endfor %}
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-md-12">
