@@ -191,7 +191,7 @@
         Route::get('leden/{member}/afbeelding/volledig', 'MemberController@getFullPicture')->name('members.full_picture');
     });
 
-    Route::get('korting', 'DiscountController@getVillaView')->name('discounts.villa_fiesta');
+    Route::get('korting', 'DiscountController@getVillaView')->name('discounts.index');
     Route::get('korting/villa-fiesta', 'DiscountController@getVillaView')->name('discounts.villa_fiesta');
     Route::get('korting/happii', 'DiscountController@getHappiView')->name('discounts.happii');
 
