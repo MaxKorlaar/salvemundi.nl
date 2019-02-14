@@ -5,26 +5,28 @@
     {% block landing %}
         <section class="landing">
             <h1>{{ trans('home.landing.title') }}</h1>
-            {% if introduction %}
-                <h5>{{ trans('home.landing.introduction_subtitle') }}</h5>
-                <a class="signup-btn button" href="{{ route('intro.info') }}">{{ trans('home.intro_signup_link') }}</a>
-            {% else %}
-                <h5>{{ trans('home.landing.subtitle') }}</h5>
-                <a class="signup-btn button" href="{{ route('signup.signup') }}">{{ trans('home.signup_link') }}</a>
-            {% endif %}
+            {#            {% if introduction %}#}
+            {#                <h5>{{ trans('home.landing.introduction_subtitle') }}</h5>#}
+            {#                <a class="signup-btn button" href="{{ route('intro.info') }}">{{ trans('home.intro_signup_link') }}</a>#}
+            {#            {% else %}#}
+            <h5>{{ trans('home.landing.subtitle') }}</h5>
+            <a class="signup-btn button" href="{{ route('signup.signup') }}">{{ trans('home.signup_link') }}</a>
+            {#            {% endif %}#}
         </section>
     {% endblock %}
     {% block content %}
         <div class="content index">
             <main>
                 <section class="description container">
-                    {#<div class="warning">#}
-                    {#<h2>{{ trans('home.intro_signup_header') }}</h2>#}
-                    {#{{ trans('home.intro_signup') }}#}
-                    {#<div class="text-center button-container">#}
-                    {#<a href="{{ route('intro.info') }}" class="button text-center">{{ trans('home.intro_signup_button') }}</a>#}
-                    {#</div>#}
-                    {#</div>#}
+                    {% if introduction %}
+                        <div class="warning">
+                            <h2>{{ trans('home.intro_signup_header', { year: introduction.year.year }) }}</h2>
+                            {{ trans('home.intro_signup', { year: introduction.year.year }) }}
+                            <div class="text-center button-container">
+                                <a href="{{ route('intro.info') }}" class="button text-center">{{ trans('home.intro_signup_button') }}</a>
+                            </div>
+                        </div>
+                    {% endif %}
                     {% for text in trans('home.welcome_text') %}
                         <p>{{ text }}</p>
                     {% endfor %}
