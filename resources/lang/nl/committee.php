@@ -307,7 +307,7 @@ en onderwijs gerelateerde activiteiten',
         ],
         'external_affairs' => [
             'title'         => 'Commissie van externe betrekkingen',
-            'title_short'   => 'Extern',
+            'title_short'   => 'Externe zaken',
             'about_text'    => [
                 'De commissie externe betrekkingen onderhoudt de contacten met alle bedrijven en partners waar wij als studievereniging mee te maken kunnen krijgen. Denk aan Fontys zelf, maar ook bijvoorbeeld de 100+ ICT-partners van Fontys Hogescholen ICT.',
                 'Deze commissie zorgt ervoor dat iedereen elkaar weet te vinden en weet wat we aan elkaar hebben.'
@@ -336,7 +336,7 @@ en onderwijs gerelateerde activiteiten',
         ],
         'activity'         => [
             'title'         => 'Activiteitencommissie',
-            'title_short'   => 'Activiteiten',
+            'title_short'   => 'Activiteitencommissie',
             'about_text'    => [
                 'De activiteitencommissie verzorgt bijna alle activiteiten buiten Villa Fiesta en kamp om. Je moet bijvoorbeeld denken aan filmavonden, karten, spelletjes avond, lan party’s en nog veel meer! Leuke activiteiten die wij samen met de leden willen delen.',
                 'Wij organiseren deze activiteiten om de band tussen studenten te versterken en zo een hechtere groep te kunnen vormen, maar ook om nieuwe vrienden te kunnen maken!',
