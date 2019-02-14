@@ -2,6 +2,11 @@
 
     namespace App\Http\Controllers;
 
+    use App\Helpers\eboekhouden\GeneralLedgerAccount;
+    use App\Helpers\eboekhouden\Models\cMutationRow;
+    use App\Helpers\eboekhouden\Models\Mutation;
+    use App\Helpers\eboekhouden\PaymentMethod;
+    use App\Helpers\eboekhouden\TransactionType;
     use App\Helpers\PaymentHelper;
     use App\Http\Requests\Store\AddToCart;
     use App\Http\Requests\Store\PayCart;
@@ -22,6 +27,7 @@
     use Mollie\Api\Exceptions\ApiException;
     use Mollie\Api\Resources\Payment;
     use Mollie\Api\Resources\ResourceFactory;
+    use SoapClient;
 
     /**
      * Class StoreController
@@ -467,23 +473,28 @@
                         $mail = new NewOrder($order);
                         $mail->to(config('mail.store_to.address'), config('mail.store_to.name'));
                         Mail::queue($mail);
-                    }
+                        if (App::environment('production')) {
+                            // Sends call to eboekhouden when a payment has been paid.
 
-                    //                        $mail = new NewCampingApplication($application);
-                    //                        $mail->to(config('mail.camping_to.address'), config('mail.camping_to.name'));
-                    //
-                    //                        Mail::queue($mail);
-                    //
-                    //                        // Stuur een bevestiging naar de gebruiker zelf
-                    //
-                    //                        $mail = new CampingApplicationPaymentConfirmation($application);
-                    //                        $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
-                    //                        Mail::queue($mail);
+                            $mutations = [];
+                            foreach ($order->items as $item) {
+                                $mutations[] = new cMutationRow($item->price * $item->amount, GeneralLedgerAccount::MerchandiseIncomes);
+                            }
+
+                            $mutationSold = new Mutation($mutations, PaymentMethod::Mollie, TransactionType::Received, "Merch verkocht");
+                            $client       = new SoapClient("https://soap.e-boekhouden.nl/soap.asmx?wsdl");
+
+                            $sessionID = $this->openSession($client);
+                            $this->sendMutation($mutationSold, $sessionID, $client);
+                            $this->closeSession($sessionID, $client);
+                        }
+
+                    }
                 } else {
                     if ($payment->isCanceled() || $payment->hasRefunds() || $payment->isExpired() || $payment->isFailed() || (!$payment->isPaid() && !$payment->isOpen())) {
                         Log::debug('De betaling is geannuleerd of is verlopen en de bestelling zal worden verwijderd', ['order' => $mollieOrder->id, 'payment' => $payment->id, 'cancelable' => $mollieOrder->isCancelable]);
                         $order->undoOrder($mollieOrder->isCancelable);
-                        if($mollieOrder->isCancelable) $mollieOrder->cancel();
+                        if ($mollieOrder->isCancelable) $mollieOrder->cancel();
                     }
                 }
 
@@ -492,6 +503,36 @@
                 abort(400);
             }
             return 'OK';
+        }
+
+        //TODO VERPLAAATSON
+        function openSession($client) {
+            $paramsOpenSession = array(
+                "Username"      => config("eboekhouden.username"),
+                "SecurityCode1" => config("eboekhouden.security_code_1"),
+                "SecurityCode2" => config("eboekhouden.security_code_2")
+            );
+
+            $sessionID = $client->__soapCall("OpenSession", array($paramsOpenSession))->OpenSessionResult->SessionID;
+            return $sessionID;
+        }
+
+        function sendMutation($mutation, $sessionID, $client) {
+            $paramsAddMutation = array(
+                "SessionID"     => $sessionID,
+                "SecurityCode2" => config("eboekhouden.security_code_2"),
+                "oMut"          => $mutation
+            );
+
+            $client->__soapCall("AddMutatie", array($paramsAddMutation));
+        }
+
+        function closeSession($sessionID, $client) {
+            $paramCloseSession = array(
+                "SessionID" => $sessionID
+            );
+
+            $client->__soapCall("CloseSession", array($paramCloseSession));
         }
 
 

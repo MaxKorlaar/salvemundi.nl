@@ -2,6 +2,11 @@
 
     namespace App\Http\Controllers;
 
+    use App\Helpers\eboekhouden\GeneralLedgerAccount;
+    use App\Helpers\eboekhouden\Models\cMutationRow;
+    use App\Helpers\eboekhouden\Models\Mutation;
+    use App\Helpers\eboekhouden\PaymentMethod;
+    use App\Helpers\eboekhouden\TransactionType;
     use App\Helpers\PaymentHelper;
     use App\Http\Requests\ConfirmSignup;
     use App\Http\Requests\Signup;
@@ -13,9 +18,11 @@
     use App\Transaction;
     use App\Year;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\App;
     use Illuminate\Support\Facades\Log;
     use Illuminate\Support\Facades\Mail;
     use Mollie\Api\Exceptions\ApiException;
+    use SoapClient;
 
     /**
      * Class SignupController
@@ -92,7 +99,7 @@
 
             $mollie  = new PaymentHelper();
             $payment = $mollie->payments->create([
-                "amount" => [
+                "amount"      => [
                     'currency' => 'EUR',
                     'value'    => config('mollie.signup_costs')
                 ],
@@ -180,6 +187,7 @@
                 ]);
 
                 if ($payment->isPaid() && !$payment->hasRefunds()) {
+
                     if ($application->transaction_status != $payment->status) {
                         // De status is pas net bijgewerkt naar betaald.
                         $application->status = MemberApplication::STATUS_NEW;
@@ -208,6 +216,15 @@
 
                         Log::debug("Member aangemaakt", [$member]);
                         $application->delete(false); // Aanmelding verwijderen, afbeelding behouden
+
+                        if (App::environment('production')) {
+                            $mutationSold = new Mutation([new cMutationRow($transaction->transaction_amount, GeneralLedgerAccount::ContributionMembersIncomes)], PaymentMethod::Mollie, TransactionType::Received, "Contributie betaald");
+                            $client       = new SoapClient("https://soap.e-boekhouden.nl/soap.asmx?wsdl");
+                            $sessionID    = $this->openSession($client);
+                            $this->sendMutation($mutationSold, $sessionID, $client);
+                            $this->closeSession($sessionID, $client);
+                        }
+
                     }
                 } else {
                     if ($payment->hasRefunds()) {
@@ -230,6 +247,36 @@
                 abort(400);
             }
             return 'OK';
+        }
+
+        //TODO VERPLAAATSON
+        function openSession($client) {
+            $paramsOpenSession = array(
+                "Username"      => config("eboekhouden.username"),
+                "SecurityCode1" => config("eboekhouden.security_code_1"),
+                "SecurityCode2" => config("eboekhouden.security_code_2")
+            );
+
+            $sessionID = $client->__soapCall("OpenSession", array($paramsOpenSession))->OpenSessionResult->SessionID;
+            return $sessionID;
+        }
+
+        function sendMutation($mutation, $sessionID, $client) {
+            $paramsAddMutation = array(
+                "SessionID"     => $sessionID,
+                "SecurityCode2" => config("eboekhouden.security_code_2"),
+                "oMut"          => $mutation
+            );
+
+            $client->__soapCall("AddMutatie", array($paramsAddMutation));
+        }
+
+        function closeSession($sessionID, $client) {
+            $paramCloseSession = array(
+                "SessionID" => $sessionID
+            );
+
+            $client->__soapCall("CloseSession", array($paramCloseSession));
         }
 
 
