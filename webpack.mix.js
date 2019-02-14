@@ -21,6 +21,7 @@ mix.setPublicPath('public')
     .js('resources/assets/js/landing.js', 'js')
     .js('resources/assets/js/store.js', 'js')
     .js('resources/assets/js/spreadsheet.js', 'js')
+    .js('resources/assets/js/admin.js', 'js')
     .extract(['vue', 'jquery', 'axios', 'popper.js', 'bootstrap'])
     .autoload({
         jquery:      ['$', 'jQuery', 'jquery'],

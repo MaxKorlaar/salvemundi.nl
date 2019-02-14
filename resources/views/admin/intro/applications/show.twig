@@ -136,7 +136,7 @@
                 <div class="col-4">
                     {% if not application.isAnonymised() %}
                         {% if application.status == constant('STATUS_EMAIL_UNCONFIRMED', application) %}
-                            <form class="button-container" method="POST"
+                            <form class="button-container" method="POST" data-warning="{{ trans('admin.intro.applications.send_warning') }}"
                                   action="{{ route('admin.intro.applications.send_email_confirmation_reminder', { intro: introduction, application: application }) }}">
                                 {{ csrf_field() }}
                                 <button type="submit" class="button danger">{{ trans('admin.intro.applications.send_email_confirmation_reminder') }}</button>
@@ -150,7 +150,7 @@
                         {% elseif application.status == constant('STATUS_RESERVED', application) %}
                             {% if introduction.signupsAreOpen() %}
                                 {% if introduction.allowSignups() %}
-                                    <form class="button-container" method="POST"
+                                    <form class="button-container" method="POST" data-warning="{{ trans('admin.intro.applications.send_warning') }}"
                                           action="{{ route('admin.intro.applications.send_payment_reminder', { intro: introduction, application: application }) }}">
                                         {{ csrf_field() }}
                                         <button type="submit" class="button danger">{{ trans('admin.intro.applications.send_payment_reminder') }}</button>
@@ -191,4 +191,8 @@
             </div>
         </main>
     </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ mix('js/admin.js') }}"></script>
 {% endblock %}

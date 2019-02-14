@@ -36,7 +36,9 @@
                 </div>
                 <div class="col-md-12">
                     <h2>{{ trans('intro.2019.info_page.information.title') }}</h2>
-                    <p>{{ trans('intro.2019.info_page.information.text') }}</p>
+                    {% for text in trans('intro.2019.info_page.information.text') %}
+                        <p>{{ text }}</p>
+                    {% endfor %}
                 </div>
                 <div class="col-md-12">
                     <h2>{{ trans('intro.2019.contact.title') }}</h2>

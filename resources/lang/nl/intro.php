@@ -216,7 +216,7 @@ De feestcommissie'
                 'route_type'                     => 'Route',
                 'remarks'                        => 'Opmerkingen',
                 'remarks_placeholder'            => 'Opmerkingen (Bijvoorbeeld allergie-informatie, medicijngebruik en eetwensen)',
-                'agree_salvemundi'               => 'Ik ga akkoord met <a target="_blank" href="' . asset('storage/Intro huisregels.pdf') . '">de introductie-voorwaarden</a>',
+                'agree_salvemundi'               => 'Ik ga akkoord met <a target="_blank" href="' . asset('storage/Intro huisregels.pdf') . '">de huisregels van de introductie</a>',
                 'agree_intro_terms'              => 'Ik ga akkoord met <a target="_blank" href="' . route('intro.supervisor_info') . '">de voorwaarden gegeven op de informatiepagina</a> en heb alles goed doorgenomen',
                 'privacy_terms'                  => 'Door op \'Aanmelden\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>.',
                 'sign_up'                        => 'Aanmelden',
@@ -238,31 +238,50 @@ De feestcommissie'
                 ],
                 'information' => [
                     'title' => 'Algemene informatie',
-                    'text'  => 'Dit jaar is de intro niet 3, maar 5 dagen! De slaaplocatie is in Mierlo. Het vervoer wordt geregeld door Salve Mundi, dus daar hoef je je niet druk om te maken. Er zijn verschillende kamers waar je met een aantal mensen kunt slapen. Ook is er een feestzaal waar een bar staat, zodat we tot in de late uurtjes door kunnen gaan. Er wordt gebruik gemaakt van consumptiebonnen voor drinken (fris, bier en wijn). De volledige planning is te vinden onder ‘planning’, maar hier is al een kleine impressie: Op maandag word je verwacht op school, ’s avonds gaan we naar onze stamkroeg Villa Fiesta op Stratumseind. Dinsdag zijn we de hele dag op onze slaaplocatie waar verschillende activiteiten zijn. Woensdag gaan we de stad in voor de beruchte crazy 88, waarna we naar het stadhuisplein gaan, nog even naar Villa Fiesta en afsluiten op de slaaplocatie met een afterparty. Donderdag is Purple Festival en gooien we nog een afterparty op de slaaplocatie. Vrijdag ruimen we met z’n allen op en kunnen we na een hele week gezelligheid naar huis.'
+                    'text'  => [
+                        'Dit jaar bestaat de intro uit 5 dagen. De slaaplocatie is gemakkelijk te bereiken met het openbaar vervoer. Vanuit onze slaaplocatie worden tijdens de introductie touringcars ingezet om alle studenten bij de evenementen te krijgen. Slapen zal gebeuren in slaapzalen met stapelbedden. Naast het slapen is er een grote evenementenzaal met een bar waar zowel alcohol (18+) als frisdrank verkocht zal worden door middel van consumptiebonnen. De locatie zit bij een bosrand en een mooi open veld. Genoeg ruimte voor activiteiten dus.',
+                        'Vanaf 16 februari gaan de onbetaalde inschrijvingen voor de introductie open. Dit betekent dat je je wel kan inschrijven om een plekje te reserveren, maar nog niet hoeft te betalen. Houd je mail goed in de gaten, vanaf 1 juli kun je de betaling voltooien en jezelf officieel inschrijven bij de introductie. Het afgelopen jaar duurde het 25 dagen voordat de introductie volledig was uitverkocht, ben er dus op tijd bij!'
+                    ]
                 ]
             ],
             'schedule_page' => [
                 'title'       => 'Planning',
                 'description' => 'De FHICT introductie is de leukste manier om je medestudenten te leren kennen. De introductie vindt plaats van maandag 26 augustus tot en met vrijdag 30 augustus. Op deze pagina is het mogelijk om een beknopte versie van de weekplanning te bekijken. Studievereniging Salve Mundi organiseert de introductie van Fontys Hogescholen ICT.',
-                'monday'      => [
-                    'title' => 'Maandag',
-                    'text'  => 'Op maandag zullen jullie zelf naar de locatie komen door middel van het openbaar vervoer of gebracht worden. Er is helaas geen parkeerruimte om zelf met de auto te komen. Een auto of fiets zal tijdens de introductie ook niet nodig zijn, er wordt namelijk gebruik gemaakt van touringcars.<br><br>Na de incheck krijgt iedereen de tijd om zijn bed klaar te maken en spullen op te bergen. Na een goede maaltijd komen de bussen iedereen ophalen om naar het Stratumseind te gaan. Hier laten we jullie kennis maken met onze stamkroeg Villa Fiesta. Tijdens deze week mogen jullie mee genieten van de korting die wij als Salve Mundi bij Villa Fiesta krijgen. '
-                ],
-                'tuesday'     => [
-                    'title' => 'Dinsdag',
-                    'text'  => 'Na de eerste dag worden we wakker en krijgen we een stevig ontbijt. Om iedereen goed wakker te maken bestaat de ochtend uit teambuilding. Hierbij zullen jullie in groepen verdeeld worden en leuke buiten/bos activiteiten gaan doen om elkaar beter te leren kennen. De dinsdagmiddag is verder een vrij rustige middag. De energie wordt bespaard voor de woensdag en de donderdag. <br><br>Het programma speelt zich af op onze slaaplocatie en hier gaan wij deze dag ook niet weg. Verder kun je activiteiten zoals een pubquiz en karaoke avond verwachten. Het eten wordt ook weer door ons verzorgt. '
-                ],
-                'wednesday'   => [
-                    'title' => 'Woensdag',
-                    'text'  => 'Op woensdag gaan we ’s ochtends naar de Rachelsmolen campus. Hier zullen jullie voor het eerst met je klas voor het eerste semester samen zijn (alle studenten moeten hierbij aanwezig zijn). Ook ontmoeten alle studenten hier zijn/haar Slb’ers (Studie Loopbaan Begeleiders).<br><br>Woensdag middag gaat weer door in het thema van teambuilding, maar vooral het verkennen van Eindhoven en de kortingen welke wij presenteren namens Salve Mundi. Hierna heeft Fontys een feest georganiseerd op het stadhuisplein, gevolgd door een feest op het Stratumseind. Tot slot wordt er nog een afterparty op onze slaaplocatie gegeven, waarbij de feestbeesten dus nog door kunnen gaan, maar de wat rustigere niet verplicht zijn om mee te feesten. '
-                ],
-                'thursday'    => [
-                    'title' => 'Donderdag',
-                    'text'  => 'Op donderdag kunt je een klein beetje uitslapen om bij te komen van de zware woensdagavond. Wederom wordt er voor een ontbijt gezorgd. Daarna zullen de touringcars vertrekken naar Purple Festival. Purple wordt georganiseerd door Fontys en is speciaal voor alle studenten van Fontys. De entreeprijs hiervoor zit inbegrepen bij de inschrijving. Hiervoor hoeven alleen mogelijke consumpties afgerekend te worden. Tot slot om de introductie af te sluiten geven we nog een laatste feest voor de studenten die niet gestopt kunnen worden. '
-                ],
-                'friday'      => [
-                    'title' => 'Vrijdag',
-                    'text'  => 'Op de vrijdag ochtend moeten we al vroeg uit de veren. Iedereen moet meehelpen met opruimen zodat we op de locatie nog een jaartje langer terug mogen komen. Hierna is het terrein goed bereikbaar, en rijden er genoeg bussen om iedereen weer netjes thuis te krijgen. <br><br>Let op! Deze planning is een momentopname. Wegens omstandigheden kan deze aangepast worden. Studenten die zich hebben ingeschreven zullen hiervan op de hoogte worden gebracht. '
+                'days' => [
+                    'monday'    => [
+                        'title' => 'Maandag',
+                        'text'  => [
+                            'Op maandag zullen jullie zelf naar de locatie komen door middel van het openbaar vervoer of gebracht worden. Er is helaas geen parkeerruimte om zelf met de auto te komen. Een auto of fiets zal tijdens de introductie ook niet nodig zijn, er wordt namelijk gebruik gemaakt van touringcars.',
+                            'Na de incheck krijgt iedereen de tijd om zijn bed klaar te maken en spullen op te bergen. Na een goede maaltijd komen de bussen iedereen ophalen om naar het Stratumseind te gaan. Hier laten we jullie kennis maken met onze stamkroeg Villa Fiesta. Tijdens deze week mogen jullie mee genieten van de korting die wij als Salve Mundi bij Villa Fiesta krijgen.'
+                        ]
+                    ],
+                    'tuesday'   => [
+                        'title' => 'Dinsdag',
+                        'text'  => [
+                            'Na de eerste dag worden we wakker en krijgen we een stevig ontbijt. Om iedereen goed wakker te maken bestaat de ochtend uit teambuilding. Hierbij zullen jullie in groepen verdeeld worden en leuke buiten/bos activiteiten gaan doen om elkaar beter te leren kennen. De dinsdagmiddag is verder een vrij rustige middag. De energie wordt bespaard voor de woensdag en de donderdag.',
+                            'Het programma speelt zich af op onze slaaplocatie en hier gaan we deze dag ook niet weg. Verder kun je activiteiten zoals een pubquiz en karaokeavond verwachten. Het eten wordt ook weer door ons verzorgd.'
+                        ]
+                    ],
+                    'wednesday' => [
+                        'title' => 'Woensdag',
+                        'text'  => [
+                            'Op woensdag gaan we ‘s ochtends naar de Rachelsmolen campus. Hier zullen jullie voor het eerst met je klas voor het eerste semester samen zijn (alle studenten moeten hierbij aanwezig zijn). Ook ontmoeten alle studenten hier zijn/haar Slb’ers (Studie Loopbaan Begeleiders).',
+                            'Woensdagmiddag gaat weer door in het thema van teambuilding, maar vooral het verkennen van Eindhoven en de kortingen welke wij presenteren namens Salve Mundi. Hierna heeft Fontys een feest georganiseerd op het Stadhuisplein, gevolgd door een feest op het Stratumseind. Tot slot wordt er nog een afterparty op onze slaaplocatie gegeven, waarbij de feestbeesten dus nog door kunnen gaan, maar de wat rustigere niet verplicht zijn om mee te feesten.'
+                        ]
+                    ],
+                    'thursday'  => [
+                        'title' => 'Donderdag',
+                        'text'  => [
+                            'Op donderdag kunt je een klein beetje uitslapen om bij te komen van de zware woensdagavond. Wederom wordt er voor een ontbijt gezorgd. Daarna zullen de touringcars vertrekken naar Purple Festival. Purple wordt georganiseerd door Fontys en is speciaal voor alle studenten van Fontys. De entreeprijs hiervoor zit inbegrepen bij de inschrijving. Hiervoor hoeven alleen mogelijke consumpties afgerekend te worden. Tot slot om de introductie af te sluiten geven we nog een laatste feest voor de studenten die niet gestopt kunnen worden.'
+                        ]
+                    ],
+                    'friday'    => [
+                        'title' => 'Vrijdag',
+                        'text'  => [
+                            'Op de vrijdag ochtend moeten we al vroeg uit de veren. Iedereen moet meehelpen met opruimen zodat we op de locatie nog een jaartje langer terug mogen komen. Hierna is het terrein goed bereikbaar, en rijden er genoeg bussen om iedereen weer netjes thuis te krijgen.',
+                            'Let op! Deze planning is een momentopname. Wegens omstandigheden kan deze aangepast worden. Studenten die zich hebben ingeschreven zullen hiervan op de hoogte worden gebracht.'
+                        ]
+                    ]
                 ]
             ],
             'contact'       => [
