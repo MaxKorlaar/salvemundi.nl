@@ -8,6 +8,17 @@
     <div class="container content">
         <main class="signup">
             <h1>{{ trans('intro.signup.title', { year: introduction.year.year }) }}</h1>
+            <div class="button-menu my-3">
+                <a class="button mx-1" href="{{ route('intro.by_id.info', { introduction: introduction, year: year } ) }}">
+                    {{ trans('intro.main_info_button') }}
+                </a>
+                <a class="button mx-1" href="{{ route('intro.by_id.schedule', { introduction: introduction, year: year }) }}">
+                    {{ trans('intro.schedule_button') }}
+                </a>
+                <a class="button mx-1" href="{{ route('intro.by_id.signup', { introduction: introduction, year: year }) }}">
+                    {{ trans('intro.sign_up_button') }}
+                </a>
+            </div>
             {% if errors.has('signup') %}
                 <div class="warning">
                     {{ errors.first('signup') }}
