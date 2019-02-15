@@ -70,6 +70,7 @@
                 <div class="col-12 button-container">
                     <a href="{{ route('admin.intro.edit', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.edit_introduction') }}</a>
                     <a href="{{ route('admin.intro.supervisor_applications.index', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.view_supervisors') }}</a>
+                    <a href="{{ route('admin.intro.spreadsheet', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.applications.view_spreadsheet') }}</a>
                     {#<a href="{{ route('admin.intro.delete_confirmation', { introduction: introduction }) }}" class="button danger pull-right">{{ trans('admin.intro.delete_introduction') }}</a>#}
                 </div>
 

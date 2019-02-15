@@ -8,7 +8,8 @@
                     <h1>{{ trans('admin.intro.spreadsheet.title', { year: introduction.year.year }) }}</h1>
                 </div>
                 <div class="col-md-12">
-                    {% set excel_fields = ['last_name', 'first_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'remarks'] %}
+                    {% set excel_fields = ['last_name', 'first_name', 'birthday', 'address', 'city', 'postal',
+                        'phone', 'contact_name', 'contact_relation', 'contact_phone', 'email', 'shirt_size', 'gender', 'remarks'] %}
                     <table id="spreadsheet" class="table table-responsive table-sm application-list spreadsheet table-striped">
                         <thead>
                             <tr>
