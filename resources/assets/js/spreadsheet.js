@@ -1,13 +1,14 @@
 require('./bootstrap');
 import 'datatables.net';
-// require('datatables.net-buttons');
-import 'jszip';
-
+import jsZip from 'jszip';
 import 'datatables.net-buttons';
-import 'datatables.net-buttons/js/buttons.colVis.js';
-import 'datatables.net-buttons/js/buttons.flash.js';
-import 'datatables.net-buttons/js/buttons.html5.js';
-import 'datatables.net-buttons/js/buttons.print.js';
+import 'datatables.net-buttons/js/buttons.colVis.min';
+import 'datatables.net-buttons/js/dataTables.buttons.min';
+import 'datatables.net-buttons/js/buttons.flash.min';
+import 'datatables.net-buttons/js/buttons.html5.min';
+
+// This line was the one missing
+window.JSZip = jsZip;
 
 $(document).ready(function () {
     let t = $('#spreadsheet').DataTable({
@@ -16,5 +17,8 @@ $(document).ready(function () {
         buttons: [
             'copy', 'excel', 'pdf'
         ]
+    });
+    $('.buttons-excel, .buttons-copy').on('click', () => {
+       alert(window.SalveMundi.copy_warning);
     });
 });

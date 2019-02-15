@@ -216,12 +216,16 @@
             'cannot_delete_until_anonymised' => 'Het is niet mogelijk om deze introductie te verwijderen totdat alle aanmeldingen geanonimiseerd zijn, of alle aanmeldingen bij deze introductie zijn verwijderd.',
             'delete_introduction'            => 'Verwijder introductie en aanmeldingen',
             'spreadsheet'                    => [
-                'title' => 'Introductie :year spreadsheet'
+                'title'        => 'Introductie :year spreadsheet',
+                'copy_warning' => "Waarschuwing: Het delen van deze gegevens is niet zomaar de bedoeling en niet geoorloofd. Je handelt hier met persoonsgegevens – Behandel deze vertrouwelijk."
             ],
             'supervisor_applications'        => [
                 'title'                          => 'Ouder-aanmeldingen',
                 'index'                          => [
                     'title' => 'Ouder-aanmeldingen introductie :year'
+                ],
+                'spreadsheet'                    => [
+                    'title' => 'Introductie :year ouder-aanmeldingen spreadsheet'
                 ],
                 'show'                           => [
                     'title' => 'Ouder-aanmelding: :first_name :last_name',
@@ -253,6 +257,8 @@
                 'remarks'                        => 'Opmerkingen',
                 'yes'                            => 'Ja',
                 'no'                             => 'Nee',
+                'true'                           => 'Ja',
+                'false'                          => 'Nee',
                 'details'                        => 'Details',
                 'not_applicable'                 => 'n.v.t.',
                 'anonymised_warning'             => 'Deze aanmelding is automatisch geanonimiseerd. De persoonsgegevens die bij deze aanmelding horen, zijn onherstelbaar onbruikbaar gemaakt.',

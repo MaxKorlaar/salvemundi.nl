@@ -1,0 +1,80 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.intro.supervisor_applications.spreadsheet.title', { year: introduction.year.year }) }}{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <main class="introduction overview">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.intro.supervisor_applications.spreadsheet.title', { year: introduction.year.year }) }}</h1>
+                </div>
+                <div class="col-md-12">
+                    {% set member_fields = ['member_id', 'first_name', 'last_name', 'phone', 'city', 'email'] %}
+                    {% set fields = ['age_at_intro', 'shirt_size', 'previously_participated_as',
+                        'active_in_association', 'gender', 'remain_sober', 'drivers_license', 'company_first_response_license',
+                        'route_type', 'motivation', 'remarks'] %}
+                    <table id="spreadsheet" class="table table-responsive table-sm application-list spreadsheet table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    {{ trans('admin.intro.applications.id') }}
+                                </th>
+                                <th>
+                                    {{ trans('admin.intro.applications.status') }}
+                                </th>
+                                {% for field in member_fields %}
+                                    <th>{{ trans('admin.intro.supervisor_applications.' ~ field) }}</th>
+                                {% endfor %}
+                                {% for field in fields %}
+                                    <th>{{ trans('admin.intro.supervisor_applications.' ~ field) }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for application in introduction.supervisorApplications %}
+                                <tr class="{{ application.status|str_slug }}">
+                                    <td>
+                                        {{ application.id }}
+                                    </td>
+                                    <td>
+                                        {{ trans('admin.intro.supervisor_applications.status_' ~ application.status) }}
+                                    </td>
+                                    {% for field in member_fields %}
+                                        <td>
+                                            {% if application.member[field] is same as(false) %}
+                                                {{ trans('admin.intro.supervisor_applications.false') }}
+                                            {% elseif application[field] is same as(true) %}
+                                                {{ trans('admin.intro.supervisor_applications.true') }}
+                                            {% else %}
+                                                {{ application.member[field]|default('-') }}
+                                            {% endif %}
+                                        </td>
+                                    {% endfor %}
+                                    {% for field in fields %}
+                                        <td>
+                                            {% if application[field] is same as(false) %}
+                                                {{ trans('admin.intro.supervisor_applications.false') }}
+                                            {% elseif application[field] is same as(true) %}
+                                                {{ trans('admin.intro.supervisor_applications.true') }}
+                                            {% else %}
+                                                {{ application[field]|default('-') }}
+                                            {% endif %}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <small>{{ trans_choice('admin.intro.supervisor_applications.count', introduction.supervisorApplications.count, { count: introduction.supervisorApplications.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }}</small>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        window.SalveMundi              = window.SalveMundi || {};
+        window.SalveMundi.copy_warning = "{{ trans('admin.intro.spreadsheet.copy_warning') }}";
+    </script>
+    <script src="{{ mix('js/spreadsheet.js') }}"></script>
+{% endblock %}

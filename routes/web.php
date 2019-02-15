@@ -147,6 +147,8 @@
         Route::get('intro/{intro}/ouder-aanmeldingen/{application}/verwijderen', 'Intro\SupervisorApplicationController@getDeleteConfirmation')
             ->name('intro.supervisor_applications.delete_confirmation');
 
+        Route::get('intro/{intro}/ouder-aanmeldingen/spreadsheet', 'Intro\SupervisorApplicationController@spreadsheet')->name('intro.supervisor_applications.spreadsheet');
+
         Route::get('intro/{intro}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.delete_confirmation');
         Route::resource('intro', 'IntroController')->names('intro');
         Route::resource('intro/{intro}/aanmeldingen', 'Intro\ApplicationController')->names('intro.applications');
