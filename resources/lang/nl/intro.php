@@ -247,7 +247,7 @@ De feestcommissie'
             'schedule_page' => [
                 'title'       => 'Planning',
                 'description' => 'De FHICT introductie is de leukste manier om je medestudenten te leren kennen. De introductie vindt plaats van maandag 26 augustus tot en met vrijdag 30 augustus. Op deze pagina is het mogelijk om een beknopte versie van de weekplanning te bekijken. Studievereniging Salve Mundi organiseert de introductie van Fontys Hogescholen ICT.',
-                'days' => [
+                'days'        => [
                     'monday'    => [
                         'title' => 'Maandag',
                         'text'  => [
@@ -263,8 +263,9 @@ De feestcommissie'
                         ]
                     ],
                     'wednesday' => [
-                        'title' => 'Woensdag',
-                        'text'  => [
+                        'title'   => 'Woensdag',
+                        'youtube' => 'https://www.youtube-nocookie.com/embed/L-eHV0h-iqc',
+                        'text'    => [
                             'Op woensdag gaan we ‘s ochtends naar de Rachelsmolen campus. Hier zullen jullie voor het eerst met je klas voor het eerste semester samen zijn (alle studenten moeten hierbij aanwezig zijn). Ook ontmoeten alle studenten hier zijn/haar Slb’ers (Studie Loopbaan Begeleiders).',
                             'Woensdagmiddag gaat weer door in het thema van teambuilding, maar vooral het verkennen van Eindhoven en de kortingen welke wij presenteren namens Salve Mundi. Hierna heeft Fontys een feest georganiseerd op het Stadhuisplein, gevolgd door een feest op het Stratumseind. Tot slot wordt er nog een afterparty op onze slaaplocatie gegeven, waarbij de feestbeesten dus nog door kunnen gaan, maar de wat rustigere niet verplicht zijn om mee te feesten.'
                         ]
