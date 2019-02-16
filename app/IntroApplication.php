@@ -208,22 +208,6 @@
          * @return array
          */
         public function getJSON() {
-            /*
-             * <td>
-                                        {% if application.transaction %}
-                                            <a target="_blank" href="{{ config_get('mollie.transaction_url') ~ application.transaction.transaction_id }}">
-                                                {{ application.transaction_id }}
-                                                ({{ trans('admin.transactions.status.' ~ application.transaction.transaction_status) }})
-                                            </a>
-                                        {% else %}
-                                            -
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ application.created_at|date(trans('datetime.format.date_and_time')) }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.intro.applications.show', { intro: introduction, application: application }) }}">{{ trans('admin.intro.applications.details') }}</a>
-                                    </td>
-             */
             return [
                 'id'             => $this->id,
                 'last_name'      => $this->last_name,

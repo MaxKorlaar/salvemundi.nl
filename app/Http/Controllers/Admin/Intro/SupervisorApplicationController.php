@@ -34,6 +34,9 @@
         public function index(Introduction $intro) {
             return view('admin.intro.supervisor_applications.index', [
                 'introduction'            => $intro,
+                'script_data' => [
+                    'applications' => $intro->getSupervisorApplicationsJSON()
+                ],
                 'confirmed_count'         => $intro->supervisorApplications()
                     ->where('status', '=', IntroSupervisorApplication::STATUS_SIGNED_UP)->count(),
                 'email_unconfirmed_count' => $intro->supervisorApplications()

@@ -18,6 +18,15 @@ new Vue({
                         if (application[property].toString().toLowerCase().includes(search)) {
                             return true;
                         }
+                    } else if (typeof application[property] === "object") {
+                        let obj = application[property];
+                        for (let property in obj) {
+                            if (typeof obj[property] === "string" || typeof obj[property] === "number") {
+                                if (obj[property].toString().toLowerCase().includes(search)) {
+                                    return true;
+                                }
+                            }
+                        }
                     }
                 }
                 return false;

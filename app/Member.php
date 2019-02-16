@@ -23,24 +23,24 @@
      * Class Member
      *
      * @package App
-     * @property int                                                                     $id
-     * @property string                                                                  $pcn
-     * @property string                                                                  $first_name
-     * @property string                                                                  $last_name
-     * @property string                                                                  $address
-     * @property string                                                                  $city
-     * @property string                                                                  $postal
-     * @property string                                                                  $birthday
-     * @property string                                                                  $phone
-     * @property string                                                                  $email
-     * @property string|null                                                             $status
-     * @property string                                                                  $ip_address
-     * @property string                                                                  $picture_name
-     * @property string                                                                  $transaction_id
-     * @property string                                                                  $transaction_status
-     * @property float                                                                   $transaction_amount
-     * @property \Carbon\Carbon|null                                                     $created_at
-     * @property \Carbon\Carbon|null                                                     $updated_at
+     * @property int                                  $id
+     * @property string                               $pcn
+     * @property string                               $first_name
+     * @property string                               $last_name
+     * @property string                               $address
+     * @property string                               $city
+     * @property string                               $postal
+     * @property string                               $birthday
+     * @property string                               $phone
+     * @property string                               $email
+     * @property string|null                          $status
+     * @property string                               $ip_address
+     * @property string                               $picture_name
+     * @property string                               $transaction_id
+     * @property string                               $transaction_status
+     * @property float                                $transaction_amount
+     * @property \Carbon\Carbon|null                  $created_at
+     * @property \Carbon\Carbon|null                  $updated_at
      * @method static Builder|Member whereAddress($value)
      * @method static Builder|Member whereBirthday($value)
      * @method static Builder|Member whereCity($value)
@@ -79,7 +79,7 @@
      * @method static Builder|Member newModelQuery()
      * @method static Builder|Member newQuery()
      * @method static Builder|Member query()
-     * @property string|null                                                             $country
+     * @property string|null                          $country
      * @method static Builder|Member whereCountry($value)
      */
     class Member extends Model {
@@ -174,6 +174,7 @@
         public function getImagePath() {
             return storage_path('app/member_photos/' . $this->picture_name);
         }
+        /** @noinspection PhpMethodMayBeStaticInspection */
 
         /**
          * @param      $width
@@ -182,7 +183,7 @@
          *
          * @return \Image|\Intervention\Image\Image
          */
-        public static function getResizedCachedImage($width = null, $height = null, $returnObj = false) {
+        public function getResizedCachedImage($width = null, $height = null, $returnObj = false) {
             return Image::cache(function ($image) use ($height, $width) {
                 /** @var \Intervention\Image\Image $image */
                 $image->make($this->getImagePath())->orientate();
@@ -191,13 +192,14 @@
                 });
             }, null, $returnObj);
         }
+        /** @noinspection PhpMethodMayBeStaticInspection */
 
         /**
          * @param bool $returnObj
          *
          * @return \Image|\Intervention\Image\Image
          */
-        public static function getCachedImage($returnObj = false) {
+        public function getCachedImage($returnObj = false) {
             return Image::cache(function ($image) {
                 /** @var \Intervention\Image\Image $image */
                 $image->make($this->getImagePath())->orientate();

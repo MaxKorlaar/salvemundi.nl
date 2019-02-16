@@ -131,7 +131,7 @@
                                 <td class="d-none d-sm-table-cell">{{ application.id }}</td>
                                 <td>{{ application.last_name }}</td>
                                 <td>{{ application.first_name }}</td>
-                                <td class="d-none d-md-table-cell" class="status">{{ application.display_status }}</td>
+                                <td class="d-none d-md-table-cell status">{{ application.display_status }}</td>
                                 <td class="d-none d-sm-table-cell" v-if="application.transaction">
                                     <a target="_blank" :href="application.transaction.url">
                                         {{ application.transaction.id }}

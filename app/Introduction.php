@@ -185,4 +185,16 @@
             });
             return $jsonApplications;
         }
+
+        /**
+         * @return array
+         */
+        public function getSupervisorApplicationsJSON() {
+            $jsonApplications = [];
+            $this->supervisorApplications->each(function ($item) use (&$jsonApplications) {
+                /** @var IntroSupervisorApplication $item */
+                $jsonApplications[] = $item->getJSON();
+            });
+            return $jsonApplications;
+        }
     }
