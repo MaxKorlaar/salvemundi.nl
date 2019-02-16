@@ -165,6 +165,7 @@
         ],
         'intro'       => [
             'title'                          => 'Introducties',
+            'loading'                        => 'laden...',
             'generate_tokens'                => 'Genereer betaalverzoeken en verstuur ze per mail',
             'send_email_reminders'           => 'Stuur herinneringen naar onbevestigde email-adressen',
             'send_payment_reminders'         => 'Stuur betaalverzoeken/herinneringen naar onbetaalde aanmeldingen',
@@ -230,6 +231,7 @@
                 'show'                           => [
                     'title' => 'Ouder-aanmelding: :first_name :last_name',
                 ],
+                'no_applications_found'          => 'Er zijn geen ouder-aanmeldingen gevonden voor deze introductie of zoekopdracht',
                 'id'                             => 'ID',
                 'created_at'                     => 'Aangemaakt op',
                 'member_id'                      => 'Lidnummer',
@@ -276,6 +278,7 @@
             'applications'                   => [
                 'title'                            => 'Aanmeldingen',
                 'search'                           => 'Zoeken',
+                'no_applications_found'            => 'Er zijn geen aanmeldingen gevonden voor deze introductie of zoekopdracht',
                 'search_placeholder'               => 'Typ een zoekterm',
                 'amount'                           => 'Aanmeldingen',
                 'reservations_amount'              => 'Reserveringen',

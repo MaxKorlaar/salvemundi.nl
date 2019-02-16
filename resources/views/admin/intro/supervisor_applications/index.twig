@@ -17,17 +17,24 @@
 
             </div>
             <div class="row">
-                <div class="col-md-12" id="intro-applications">
+                <div class="col-md-12" id="intro-applications" data-url="{{ route('admin.intro.supervisor_applications.index', { introduction: introduction }) }}">
                     <div class="row">
                         <div class="col-md">
-                            <h4>{{ trans('admin.intro.supervisor_applications.title') }}</h4>
+                            <h4>{{ trans('admin.intro.supervisor_applications.title') }}
+                                <div class="loader" v-if="loading">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </h4>
+
                         </div>
                         <div class="col-md search-bar">
                             <label for="search">{{ trans('admin.intro.applications.search') }}:</label>
                             <input id="search" placeholder="{{ trans('admin.intro.applications.search_placeholder') }}" type="text" class="form-control" v-model="search">
                         </div>
                     </div>
-                    <table class="table application-list table-striped" v-cloak>
+                    <table class="table application-list table-striped">
                         <thead>
                             <tr>
                                 <th class="d-none d-sm-table-cell">{{ trans('admin.intro.supervisor_applications.id') }}</th>
@@ -40,7 +47,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="application in filteredApplications" :id="'application-' + application.id" :class="application.status">
+                            <tr v-cloak v-for="application in filteredApplications" :id="'application-' + application.id" :class="application.status">
                                 {% verbatim %}
                                 <td class="d-none d-sm-table-cell">{{ application.id }}</td>
                                 <td>
@@ -57,6 +64,22 @@
                                     <a :href="application.link">{{ trans('admin.intro.supervisor_applications.details') }}</a>
                                 </td>
                             </tr>
+                            <template v-if="filteredApplications.length < 1">
+                                <tr class="no-applications table-warning">
+                                    <td colspan="7">
+                                        {{ trans('admin.intro.supervisor_applications.no_applications_found') }}
+                                    </td>
+                                </tr>
+                                <tr class="no-applications">
+                                    <td colspan="7" v-if="loading">
+                                        <div class="loader">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
                         </tbody>
                     </table>
                     <small>{{ trans_choice('admin.intro.supervisor_applications.count', introduction.supervisorApplications.count, { count: introduction.supervisorApplications.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }}</small>
@@ -69,7 +92,7 @@
     {{ parent() }}
     <script>
         window.SalveMundi              = window.SalveMundi || {};
-        window.SalveMundi.introduction = {{ script_data|json_encode|raw }};
+        window.SalveMundi.introduction = {};
     </script>
     <script src="{{ mix('js/intro-admin.js') }}"></script>
 {% endblock %}

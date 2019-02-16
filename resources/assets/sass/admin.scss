@@ -121,11 +121,45 @@
 }
 
 .introduction {
+  .loader {
+    display: inline-block;
+    color: theme-color-level(info, -4);
 
+    span {
+      //margin: 0 1rem;
+      width: 1rem;
+      height: 1rem;
+      display: inline-block;
+      border-radius: 100%;
+      background: theme-color-level(info, -4);
+      animation: fade 1.5s infinite both;
+
+      &:nth-child(2) {
+        animation-delay: .5s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: 1s;
+      }
+
+    }
+  }
+  .no-applications {
+    text-align: center;
+  }
   .search-bar {
     max-width: 350px;
     display: flex;
     align-items: center;
+  }
+
+  @keyframes fade-colors-text {
+    0% {
+      color: theme-color-level(info, -4);
+    }
+    50% {
+      color: theme-color-level(info, -10);
+    }
   }
 
   @keyframes fade-colors-page {
