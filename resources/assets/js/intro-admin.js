@@ -1,5 +1,4 @@
 import axios from "axios";
-import truncate from "lodash/truncate";
 
 require('./bootstrap');
 const Vue = require('vue');
