@@ -275,6 +275,8 @@
             ],
             'applications'                   => [
                 'title'                            => 'Aanmeldingen',
+                'search'                           => 'Zoeken',
+                'search_placeholder'               => 'Typ een zoekterm',
                 'amount'                           => 'Aanmeldingen',
                 'reservations_amount'              => 'Reserveringen',
                 'confirmed_amount'                 => 'Betaalde aanmeldingen',

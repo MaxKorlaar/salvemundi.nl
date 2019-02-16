@@ -173,4 +173,16 @@
             }
             return parent::delete();
         }
+
+        /**
+         * @return array
+         */
+        public function getApplicationsJSON() {
+            $jsonApplications = [];
+            $this->applications->each(function ($item) use (&$jsonApplications) {
+                /** @var IntroApplication $item */
+                $jsonApplications[] = $item->getJSON();
+            });
+            return $jsonApplications;
+        }
     }

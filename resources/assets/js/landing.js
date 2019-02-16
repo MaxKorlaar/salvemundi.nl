@@ -25,7 +25,7 @@ $(window).scroll(function () {
 if ($(window).scrollTop() > scrollThreshold) {
     $("header").removeClass("no-background");
 }
-window.Vue = require('vue');
+const Vue = require('vue');
 
 new Vue({
     el:      '#events',
