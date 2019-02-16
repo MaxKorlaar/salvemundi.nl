@@ -1,0 +1,205 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.intro.applications.edit.title', { first_name: application.first_name, last_name: application.last_name }) }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="introduction application {{ application.status|str_slug }}">
+            <form action="{{ route('admin.intro.applications.update', { intro: introduction, application: application }) }}" method="POST" class="row">
+                {{ csrf_field() }}
+                {{ method_field('PUT') }}
+
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.intro.applications.edit.title', { first_name: application.first_name, last_name: application.last_name }) }}</h1>
+                    {% if session('success') %}
+                        <div class="alert alert-success text-center success-message">
+                            <span class="fa fa-check fa-2x pull-left"></span>
+                            {{ session('success')|raw }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="first_name">{{ trans('admin.intro.applications.first_name') }}</label>
+                        <input id="first_name" type="text"
+                               class="form-control {{ errors.has('first_name') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.first_name') }}" name="first_name"
+                               value="{{ old('first_name', application.first_name) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('first_name')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">{{ trans('admin.intro.applications.last_name') }}</label>
+                        <input id="last_name" type="text"
+                               class="form-control {{ errors.has('last_name') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.last_name') }}" name="last_name"
+                               value="{{ old('last_name', application.last_name) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('last_name')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">{{ trans('admin.intro.applications.address') }}</label>
+                        <input id="address" type="text"
+                               class="form-control {{ errors.has('address') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.address') }}" name="address"
+                               value="{{ old('address', application.address) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('address')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">{{ trans('admin.intro.applications.city') }}</label>
+                        <input id="city" type="text"
+                               class="form-control {{ errors.has('city') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.city') }}" name="city"
+                               value="{{ old('city', application.city) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('city')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="postal">{{ trans('admin.intro.applications.postal') }}</label>
+                        <input id="postal" type="text"
+                               class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.postal') }}" name="postal"
+                               value="{{ old('postal', application.postal) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('postal')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">{{ trans('admin.intro.applications.country') }}</label>
+                        <select id="country" name="country" class="form-control {{ errors.has('country') ? 'is-invalid' }}">
+                            {% for code, name in trans('address.country') %}
+                                <option value="{{ code }}" {{ old('country', application.country) == code ? 'selected' }}>{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            {{ errors.first('country')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">{{ trans('admin.intro.applications.phone') }}</label>
+                        <input id="phone" type="tel"
+                               class="form-control {{ errors.has('phone') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.phone') }}" name="phone"
+                               value="{{ old('phone', application.phone) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('phone')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthday">{{ trans('admin.intro.applications.birthday') }}</label>
+                        <input id="birthday" type="date"
+                               class="form-control {{ errors.has('birthday') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.birthday') }}" name="birthday"
+                               value="{{ old('birthday', application.birthday|date('Y-m-d')) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('birthday')|ucfirst }}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="email">{{ trans('admin.intro.applications.email') }}</label>
+                        <input id="email" type="email"
+                               class="form-control {{ errors.has('email') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.email') }}" name="email"
+                               value="{{ old('email', application.email) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('email')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_name">{{ trans('admin.intro.applications.contact_name') }}</label>
+                        <input id="contact_name" type="text"
+                               class="form-control {{ errors.has('contact_name') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.contact_name') }}" name="contact_name"
+                               value="{{ old('contact_name', application.contact_name) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('contact_name')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_relation">{{ trans('admin.intro.applications.contact_relation') }}</label>
+                        <input id="contact_relation" type="text"
+                               class="form-control {{ errors.has('contact_relation') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.contact_relation') }}" name="contact_relation"
+                               value="{{ old('contact_relation', application.contact_relation) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('contact_relation')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_phone">{{ trans('admin.intro.applications.contact_phone') }}</label>
+                        <input id="contact_phone" type="tel"
+                               class="form-control {{ errors.has('contact_phone') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.contact_phone') }}" name="contact_phone"
+                               value="{{ old('contact_phone', application.contact_phone) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('contact_phone')|ucfirst }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pcn">{{ trans('admin.intro.applications.pcn') }}</label>
+                        <input id="pcn" type="text"
+                               class="form-control {{ errors.has('pcn') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.applications.pcn') }}" name="pcn"
+                               value="{{ old('pcn', application.pcn) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('pcn')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="shirt_size">{{ trans('admin.intro.applications.shirt_size') }}</label>
+                        <select required id="shirt_size" name="shirt_size" class="form-control {{ errors.has('shirt_size') ? 'is-invalid' }}">
+                            {% for size in trans('intro.signup.shirt_sizes') %}
+                                <option {{ old('shirt_size', application.shirt_size) == size ? 'selected' }}>{{ size }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            {{ errors.first('shirt_size')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">{{ trans('admin.intro.applications.gender') }}</label>
+                        <select required id="gender" name="gender" class="form-control {{ errors.has('gender') ? 'is-invalid' }}">
+                            {% for size in trans('intro.signup.genders') %}
+                                <option {{ old('gender', application.gender) == size ? 'selected' }}>{{ size }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            {{ errors.first('gender')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="remarks">{{ trans('admin.intro.applications.remarks') }}</label>
+                        <textarea id="remarks" name="remarks" maxlength="1500" placeholder="{{ trans('admin.intro.applications.remarks') }}"
+                                  class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks') }}</textarea>
+                        <div class="invalid-feedback">
+                            {{ errors.first('remarks')|ucfirst }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 button-container">
+                    <input type="submit" class="button" value="{{ trans('admin.intro.applications.edit.save') }}">
+                    <a href="{{ route('admin.intro.applications.show', { intro: introduction, application: application }) }}" class="button">
+                        {{ trans('admin.intro.applications.edit.back_to_application') }}
+                    </a>
+                    {% if application.isAnonymised() or (application.status != constant('STATUS_PAID', application)
+                        and application.status != constant('STATUS_SEE_TRANSACTION', application)) %}
+                        <a href="{{ route('admin.intro.applications.delete_confirmation', { intro: introduction, application: application }) }}"
+                           class="button danger pull-right">{{ trans('admin.intro.applications.delete_application') }}</a>
+                    {% endif %}
+                </div>
+
+            </form>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ mix('js/admin.js') }}"></script>
+{% endblock %}

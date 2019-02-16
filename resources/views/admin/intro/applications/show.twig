@@ -185,9 +185,11 @@
                 </div>
                 <div class="col-12 button-container">
                     <a href="{{ route('admin.intro.show', { intro: introduction }) }}" class="button">{{ trans('admin.intro.applications.back_to_index') }}</a>
-                    <a href="{{ route('admin.intro.applications.edit', { intro: introduction, application: application }) }}" class="button">
-                        {{ trans('admin.intro.applications.edit_application') }}
-                    </a>
+                    {% if not application.isAnonymised() %}
+                        <a href="{{ route('admin.intro.applications.edit', { intro: introduction, application: application }) }}" class="button">
+                            {{ trans('admin.intro.applications.edit_application') }}
+                        </a>
+                    {% endif %}
                     {% if application.isAnonymised() or (application.status != constant('STATUS_PAID', application)
                         and application.status != constant('STATUS_SEE_TRANSACTION', application)) %}
                         <a href="{{ route('admin.intro.applications.delete_confirmation', { intro: introduction, application: application }) }}"

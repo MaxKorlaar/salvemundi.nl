@@ -335,6 +335,13 @@
                 'cannot_send_mails_anonymised'     => 'Het is niet mogelijk om e-mails te versturen naar geanonimiseerde aanmeldingen. Geanonimiseerde aanmeldingen kunnen alleen worden verwijderd. Dit kan niet ongedaan worden gemaakt.',
                 'back_to_index'                    => 'Terug naar overzicht',
                 'view_spreadsheet'                 => 'Bekijk spreadsheet',
+                'edit_application'                 => 'Gegevens bewerken',
+                'edit'                             => [
+                    'title'               => 'Aanmelding bewerken: :first_name :last_name',
+                    'save'                => 'Opslaan',
+                    'back_to_application' => 'Terug',
+                    'success'             => 'De aanmelding is bijgewerkt',
+                ],
                 'delete'                           => [
                     'title'        => 'Aanmelding verwijderen: :first_name :last_name',
                     'are_you_sure' => 'Weet je zeker dat je deze aanmelding wil verwijderen? Dit kan <b>niet</b> ongedaan worden gemaakt. Alle gegevens gerelateerd aan deze aanmelding zullen onherstelbaar worden verwijderd. Mocht deze aanmelding gekoppeld zijn aan een Mollie-betaling, dan zal deze betaling blijven bestaan in Mollie.',
