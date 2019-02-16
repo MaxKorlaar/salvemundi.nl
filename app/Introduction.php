@@ -48,7 +48,7 @@
      */
     class Introduction extends Model {
         public $fillable = ['year_id', 'reservations_open', 'signup_open', 'signup_close', 'price', 'max_signups', 'allow_reservations_after_limit'];
-
+        public $hidden = ['applications', 'supervisorApplications'];
         public $casts = [
             'allow_reservations_after_limit' => 'boolean'
         ];
@@ -196,5 +196,38 @@
                 $jsonApplications[] = $item->getJSON();
             });
             return $jsonApplications;
+        }
+
+
+        /**
+         * @return int
+         */
+        public function getConfirmedCount() {
+            return $this->applications()->where('status', '=', IntroApplication::STATUS_PAID)->count();
+        }
+
+        /**
+         * @return int
+         */
+        public function getReservationsCount() {
+            return $this->applications()->where('status', '=', IntroApplication::STATUS_RESERVED)->count();
+        }
+
+        /**
+         * @return int
+         */
+        public function getEmailUnconfirmedCount() {
+            return $this->applications()->where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)->count();
+        }
+
+        /**
+         * @return array
+         */
+        public function getJSON() {
+            return array_merge($this->jsonSerialize(), [
+                'confirmed_count'         => $this->getConfirmedCount(),
+                'reservations_count'      => $this->getReservationsCount(),
+                'email_unconfirmed_count' => $this->getEmailUnconfirmedCount()
+            ]);
         }
     }

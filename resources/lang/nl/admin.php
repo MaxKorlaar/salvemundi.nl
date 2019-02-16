@@ -165,6 +165,7 @@
         ],
         'intro'       => [
             'title'                          => 'Introducties',
+            'loading'                        => 'laden...',
             'generate_tokens'                => 'Genereer betaalverzoeken en verstuur ze per mail',
             'send_email_reminders'           => 'Stuur herinneringen naar onbevestigde email-adressen',
             'send_payment_reminders'         => 'Stuur betaalverzoeken/herinneringen naar onbetaalde aanmeldingen',
@@ -230,6 +231,7 @@
                 'show'                           => [
                     'title' => 'Ouder-aanmelding: :first_name :last_name',
                 ],
+                'no_applications_found'          => 'Er zijn geen ouder-aanmeldingen gevonden voor deze introductie of zoekopdracht',
                 'id'                             => 'ID',
                 'created_at'                     => 'Aangemaakt op',
                 'member_id'                      => 'Lidnummer',
@@ -237,6 +239,7 @@
                 'first_name'                     => 'Voornaam',
                 'phone'                          => 'Telefoonnummer',
                 'city'                           => 'Woonplaats',
+                'country'                        => 'Land',
                 'email'                          => 'E-mailadres',
                 'status'                         => 'Status',
                 'status_email_unconfirmed'       => 'E-mail niet bevestigd',
@@ -276,6 +279,7 @@
             'applications'                   => [
                 'title'                            => 'Aanmeldingen',
                 'search'                           => 'Zoeken',
+                'no_applications_found'            => 'Er zijn geen aanmeldingen gevonden voor deze introductie of zoekopdracht',
                 'search_placeholder'               => 'Typ een zoekterm',
                 'amount'                           => 'Aanmeldingen',
                 'reservations_amount'              => 'Reserveringen',
@@ -296,6 +300,7 @@
                 'birthday'                         => 'Geboortedatum',
                 'address'                          => 'Straat en huisnummer',
                 'city'                             => 'Woonplaats',
+                'country'                          => 'Land',
                 'postal'                           => 'Postcode',
                 'phone'                            => 'Telefoonnummer student',
                 'contact_name'                     => 'Naam contactpersoon',
@@ -330,6 +335,13 @@
                 'cannot_send_mails_anonymised'     => 'Het is niet mogelijk om e-mails te versturen naar geanonimiseerde aanmeldingen. Geanonimiseerde aanmeldingen kunnen alleen worden verwijderd. Dit kan niet ongedaan worden gemaakt.',
                 'back_to_index'                    => 'Terug naar overzicht',
                 'view_spreadsheet'                 => 'Bekijk spreadsheet',
+                'edit_application'                 => 'Gegevens bewerken',
+                'edit'                             => [
+                    'title'               => 'Aanmelding bewerken: :first_name :last_name',
+                    'save'                => 'Opslaan',
+                    'back_to_application' => 'Terug',
+                    'success'             => 'De aanmelding is bijgewerkt',
+                ],
                 'delete'                           => [
                     'title'        => 'Aanmelding verwijderen: :first_name :last_name',
                     'are_you_sure' => 'Weet je zeker dat je deze aanmelding wil verwijderen? Dit kan <b>niet</b> ongedaan worden gemaakt. Alle gegevens gerelateerd aan deze aanmelding zullen onherstelbaar worden verwijderd. Mocht deze aanmelding gekoppeld zijn aan een Mollie-betaling, dan zal deze betaling blijven bestaan in Mollie.',

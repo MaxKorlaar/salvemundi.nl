@@ -3,6 +3,7 @@
     namespace App\Http\Controllers\Admin\Intro;
 
     use App\Http\Controllers\Controller;
+    use App\Http\Requests\Admin\Intro\UpdateApplication;
     use App\IntroApplication;
     use App\Introduction;
     use App\Mail\ConfirmIntroApplication;
@@ -74,22 +75,32 @@
         /**
          * Show the form for editing the specified resource.
          *
-         * @param  int $id
+         * @param Introduction     $intro
+         * @param IntroApplication $aanmeldingen
          *
+         * @return Factory|View
          */
-        public static function edit($id) {
-            abort(501);
+        public static function edit(Introduction $intro, IntroApplication $aanmeldingen) {
+            if ($aanmeldingen->isAnonymised()) return back();
+            return view('admin.intro.applications.edit', [
+                'application'  => $aanmeldingen,
+                'introduction' => $intro
+            ]);
         }
 
         /**
          * Update the specified resource in storage.
          *
-         * @param  Request $request
-         * @param  int     $id
+         * @param Introduction      $intro
+         * @param IntroApplication  $aanmeldingen
+         * @param UpdateApplication $request
          *
+         * @return RedirectResponse
          */
-        public static function update(Request $request, $id) {
-            abort(501);
+        public static function update(Introduction $intro, IntroApplication $aanmeldingen, UpdateApplication $request) {
+            if($aanmeldingen->isAnonymised()) return back();
+            $aanmeldingen->update($request->all());
+            return back()->with('success', trans('admin.intro.applications.edit.success'));
         }
 
         /**

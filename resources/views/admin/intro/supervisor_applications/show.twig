@@ -57,6 +57,10 @@
                         {{ application.member.city }}
                     </div>
                     <div>
+                        <b>{{ trans('admin.intro.supervisor_applications.country') }}</b>
+                        {{ trans('address.country.' ~ application.member.country) }}
+                    </div>
+                    <div>
                         <b>{{ trans('admin.intro.supervisor_applications.email') }}</b>
                         {{ application.member.email }}
                     </div>

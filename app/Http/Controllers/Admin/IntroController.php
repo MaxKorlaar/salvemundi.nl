@@ -45,17 +45,20 @@
         /**
          * @param Introduction $intro
          *
-         * @return Factory|View
+         * @param Request      $request
+         *
+         * @return array|Factory|View
          */
-        public function show(Introduction $intro) {
+        public function show(Introduction $intro, Request $request) {
+            if ($request->ajax()) {
+                return [
+                    'success'      => true,
+                    'applications' => $intro->getApplicationsJSON(),
+                    'introduction' => $intro->getJSON()
+                ];
+            }
             return view('admin.intro.show', [
-                'introduction'            => $intro,
-                'script_data'             => [
-                    'applications' => $intro->getApplicationsJSON()
-                ],
-                'confirmed_count'         => $intro->applications()->where('status', '=', IntroApplication::STATUS_PAID)->count(),
-                'reservations_count'      => $intro->applications()->where('status', '=', IntroApplication::STATUS_RESERVED)->count(),
-                'email_unconfirmed_count' => $intro->applications()->where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)->count()
+                'introduction'            => $intro
             ]);
         }
 

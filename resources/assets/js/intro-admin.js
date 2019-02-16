@@ -1,3 +1,5 @@
+import axios from "axios";
+
 require('./bootstrap');
 const Vue = require('vue');
 
@@ -5,10 +7,35 @@ new Vue({
     el:       '#intro-applications',
     data:     {
         loading:      true,
+        error: false,
         applications: [],
-        search:       ""
+        search:       "",
+        applications_url: "",
+        introduction: {}
     },
-    methods:  {},
+    methods:  {
+        fetchApplications() {
+            let that = this;
+            this.loading = true;
+            axios.get(this.applications_url).then(function (response) {
+                let data = response.data;
+                if(data.success) {
+                    that.applications = data.applications;
+                    that.introduction = data.introduction;
+                } else {
+                    that.error = data.error;
+                }
+            }).catch(function (error) {
+                console.error(error);
+                that.error   = true;
+            }).finally(() => {
+                that.loading = false;
+                setTimeout(() => {
+                    that.fetchApplications();
+                }, 5 * 1000);
+            });
+        }
+    },
     computed: {
         filteredApplications() {
             return this.applications.filter(application => {
@@ -34,7 +61,8 @@ new Vue({
         }
     },
     mounted() {
-        this.applications = window.SalveMundi.introduction.applications;
-        this.loading      = false;
+        this.introduction = window.SalveMundi.introduction;
+        this.applications_url = this.$el.attributes['data-url'].value;
+        this.fetchApplications();
     },
 });

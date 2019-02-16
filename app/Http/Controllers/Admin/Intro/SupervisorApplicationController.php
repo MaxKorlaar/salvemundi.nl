@@ -3,7 +3,6 @@
     namespace App\Http\Controllers\Admin\Intro;
 
     use App\Http\Controllers\Controller;
-    use App\IntroApplication;
     use App\Introduction;
     use App\IntroSupervisorApplication;
     use Exception;
@@ -29,14 +28,19 @@
          *
          * @param Introduction $intro
          *
-         * @return Response
+         * @param Request      $request
+         *
+         * @return array|Response
          */
-        public function index(Introduction $intro) {
+        public function index(Introduction $intro, Request $request) {
+            if ($request->ajax()) {
+                return [
+                    'success'      => true,
+                    'applications' => $intro->getSupervisorApplicationsJSON()
+                ];
+            }
             return view('admin.intro.supervisor_applications.index', [
                 'introduction'            => $intro,
-                'script_data' => [
-                    'applications' => $intro->getSupervisorApplicationsJSON()
-                ],
                 'confirmed_count'         => $intro->supervisorApplications()
                     ->where('status', '=', IntroSupervisorApplication::STATUS_SIGNED_UP)->count(),
                 'email_unconfirmed_count' => $intro->supervisorApplications()
