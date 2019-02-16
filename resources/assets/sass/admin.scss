@@ -3,6 +3,7 @@
     display: block;
   }
 }
+
 .admin {
   form {
     .form-check {
@@ -12,6 +13,7 @@
     }
   }
 }
+
 .admin-nav, .member-nav {
   margin-top: -10px;
   margin-bottom: 10px;
@@ -119,6 +121,13 @@
 }
 
 .introduction {
+
+  .search-bar {
+    max-width: 350px;
+    display: flex;
+    align-items: center;
+  }
+
   @keyframes fade-colors-page {
     0%, 100% {
       background: theme-color-level(info, -4);
@@ -127,6 +136,7 @@
       background: theme-color-level(info, -10);
     }
   }
+
   &.application {
     &.paid {
       h1, .status {
@@ -171,18 +181,23 @@
         &:nth-child(7) {
           animation-delay: 2.1s;
         }
+
         &:nth-child(8) {
           animation-delay: 2.3s;
         }
+
         &:nth-child(9) {
           animation-delay: 2.6s;
         }
+
         &:nth-child(10) {
           animation-delay: 2.9s;
         }
+
         &:nth-child(11) {
           animation-delay: 3.2s;
         }
+
         &:nth-child(12) {
           animation-delay: 3.5s;
         }
@@ -201,12 +216,14 @@
       }
     }
   }
+
   .statistics {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
 
     .stat {
       font-size: 4rem;
@@ -244,9 +261,11 @@
 
   .spreadsheet {
     user-select: all;
+
     th {
       font-size: 75%;
     }
+
     tr {
       td {
         padding: .1rem;
@@ -267,6 +286,17 @@
   }
 
   .application-list {
+    @include media-breakpoint-down(sm) {
+      th, td {
+        //padding: $table-cell-padding-sm;
+      }
+    }
+
+    .status {
+      word-break: break-word;
+      hyphens: auto;
+    }
+
     .paid {
       &, a {
         color: theme-color-level(success, 2);
@@ -337,6 +367,7 @@
       &, a {
         color: theme-color-level(info, 2);
       }
+
       //background: theme-color-level(danger, -10);
     }
   }

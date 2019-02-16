@@ -4,6 +4,7 @@
 
     use App\Http\Controllers\Controller;
     use App\Http\Requests\Member\UpdateOwnInfo;
+    use App\Member;
     use App\Membership;
     use Illuminate\Contracts\View\Factory;
     use Illuminate\Http\RedirectResponse;
@@ -41,7 +42,7 @@
          */
         public static function getOwnPhoto() {
             $member = Auth::user()->member;
-            return Member::getResizedCachedImage(400, null, true)->response();
+            return $member->getResizedCachedImage(400, null, true)->response();
         }
 
         /**

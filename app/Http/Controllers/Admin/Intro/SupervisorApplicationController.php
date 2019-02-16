@@ -3,6 +3,7 @@
     namespace App\Http\Controllers\Admin\Intro;
 
     use App\Http\Controllers\Controller;
+    use App\IntroApplication;
     use App\Introduction;
     use App\IntroSupervisorApplication;
     use Exception;
@@ -33,6 +34,9 @@
         public function index(Introduction $intro) {
             return view('admin.intro.supervisor_applications.index', [
                 'introduction'            => $intro,
+                'script_data' => [
+                    'applications' => $intro->getSupervisorApplicationsJSON()
+                ],
                 'confirmed_count'         => $intro->supervisorApplications()
                     ->where('status', '=', IntroSupervisorApplication::STATUS_SIGNED_UP)->count(),
                 'email_unconfirmed_count' => $intro->supervisorApplications()
@@ -114,6 +118,23 @@
             return back();
 
         }
+
+
+        /**
+         * @param Introduction $intro
+         *
+         * @return Factory|View
+         */
+        public function spreadsheet(Introduction $intro) {
+            return view('admin.intro.supervisor_applications.spreadsheet', [
+                'introduction'            => $intro,
+                'confirmed_count'         => $intro->supervisorApplications()
+                    ->where('status', '=', IntroSupervisorApplication::STATUS_SIGNED_UP)->count(),
+                'email_unconfirmed_count' => $intro->supervisorApplications()
+                    ->where('status', '=', IntroSupervisorApplication::STATUS_EMAIL_UNCONFIRMED)->count()
+            ]);
+        }
+
 
         /**
          * Remove the specified resource from storage.

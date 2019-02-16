@@ -13,29 +13,29 @@
     /**
      * App\IntroSupervisorApplication
      *
-     * @property int                             $id
-     * @property int|null                        $member_id
-     * @property string                          $age_at_intro
-     * @property string                          $shirt_size
-     * @property string|null                     $preferred_partner_id
-     * @property string                          $route_type
-     * @property bool                            $remain_sober
-     * @property bool                            $drivers_license
-     * @property string                          $first_aid_license
-     * @property string                          $company_first_response_license
-     * @property string|null                     $remarks
-     * @property string                          $ip_address
-     * @property string|null                     $email_confirmation_token
-     * @property Carbon|null $created_at
-     * @property Carbon|null $updated_at
-     * @property int|null                        $introduction_id
-     * @property string                          $status
-     * @property string|null                     $type
-     * @property string                          $motivation
-     * @property string                          $previously_participated_as
-     * @property string                          $active_in_association
-     * @property-read Introduction|null          $introduction
-     * @property-read Member|null                $member
+     * @property int                    $id
+     * @property int|null               $member_id
+     * @property string                 $age_at_intro
+     * @property string                 $shirt_size
+     * @property string|null            $preferred_partner_id
+     * @property string                 $route_type
+     * @property bool                   $remain_sober
+     * @property bool                   $drivers_license
+     * @property string                 $first_aid_license
+     * @property string                 $company_first_response_license
+     * @property string|null            $remarks
+     * @property string                 $ip_address
+     * @property string|null            $email_confirmation_token
+     * @property Carbon|null            $created_at
+     * @property Carbon|null            $updated_at
+     * @property int|null               $introduction_id
+     * @property string                 $status
+     * @property string|null            $type
+     * @property string                 $motivation
+     * @property string                 $previously_participated_as
+     * @property string                 $active_in_association
+     * @property-read Introduction|null $introduction
+     * @property-read Member|null       $member
      * @method static Builder|IntroSupervisorApplication newModelQuery()
      * @method static Builder|IntroSupervisorApplication newQuery()
      * @method static Builder|IntroSupervisorApplication query()
@@ -61,7 +61,7 @@
      * @method static Builder|IntroSupervisorApplication whereType($value)
      * @method static Builder|IntroSupervisorApplication whereUpdatedAt($value)
      * @mixin Eloquent
-     * @property string                          $gender
+     * @property string                 $gender
      * @method static Builder|IntroSupervisorApplication whereGender($value)
      */
     class IntroSupervisorApplication extends Model {
@@ -116,5 +116,25 @@
          */
         public function isAnonymised() {
             return $this->type === self::TYPE_ANONYMISED;
+        }
+
+        /**
+         * @return array
+         */
+        public function getJSON() {
+            return [
+                'id'                 => $this->id,
+                'member'             => [
+                    'member_id'  => $this->member->member_id,
+                    'last_name'  => $this->member->last_name,
+                    'first_name' => $this->member->first_name,
+                    'link'       => route('admin.members.show', ['member' => $this->member])
+                ],
+                'status'             => $this->status,
+                'display_status'     => trans('admin.intro.supervisor_applications.status_' . $this->status),
+                'created_at'         => $this->created_at,
+                'display_created_at' => $this->created_at->format(trans('datetime.format.date_and_time')),
+                'link'               => route('admin.intro.supervisor_applications.show', ['intro' => $this->introduction, 'application' => $this])
+            ];
         }
     }

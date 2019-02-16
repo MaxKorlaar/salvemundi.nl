@@ -10,62 +10,53 @@
 
                 <div class="col-12 button-container">
                     <a href="{{ route('admin.intro.show', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.view_applications') }}</a>
+                    <a href="{{ route('admin.intro.supervisor_applications.spreadsheet', { introduction: introduction }) }}" class="button">
+                        {{ trans('admin.intro.applications.view_spreadsheet') }}
+                    </a>
                 </div>
 
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <h4>{{ trans('admin.intro.supervisor_applications.title') }}</h4>
-                    <table class="table application-list table-striped">
+                <div class="col-md-12" id="intro-applications">
+                    <div class="row">
+                        <div class="col-md">
+                            <h4>{{ trans('admin.intro.supervisor_applications.title') }}</h4>
+                        </div>
+                        <div class="col-md search-bar">
+                            <label for="search">{{ trans('admin.intro.applications.search') }}:</label>
+                            <input id="search" placeholder="{{ trans('admin.intro.applications.search_placeholder') }}" type="text" class="form-control" v-model="search">
+                        </div>
+                    </div>
+                    <table class="table application-list table-striped" v-cloak>
                         <thead>
                             <tr>
-                                <th>{{ trans('admin.intro.supervisor_applications.id') }}</th>
+                                <th class="d-none d-sm-table-cell">{{ trans('admin.intro.supervisor_applications.id') }}</th>
                                 <th>{{ trans('admin.intro.supervisor_applications.member_id') }}</th>
                                 <th>{{ trans('admin.intro.supervisor_applications.last_name') }}</th>
                                 <th>{{ trans('admin.intro.supervisor_applications.first_name') }}</th>
-                                <th>{{ trans('admin.intro.supervisor_applications.status') }}</th>
-                                {#<th>{{ trans('admin.intro.supervisor_applications.age_at_intro') }}</th>
-                                <th>{{ trans('admin.intro.supervisor_applications.route_type') }}</th>
-                                <th>{{ trans('admin.intro.supervisor_applications.remain_sober') }}</th>
-                                <th>{{ trans('admin.intro.supervisor_applications.drivers_license') }}</th>
-                                <th>{{ trans('admin.intro.supervisor_applications.first_aid_license') }}</th>
-                                <th>{{ trans('admin.intro.supervisor_applications.company_first_response_license') }}</th>#}
-                                <th>{{ trans('admin.intro.supervisor_applications.created_at') }}</th>
+                                <th class="d-none d-md-table-cell">{{ trans('admin.intro.supervisor_applications.status') }}</th>
+                                <th class="d-none d-sm-table-cell">{{ trans('admin.intro.supervisor_applications.created_at') }}</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for application in introduction.supervisorApplications %}
-                                <tr id="application-{{ application.id }}" class="{{ application.status|str_slug }}">
-                                    <td>{{ application.id }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.members.show', { member: application.member }) }}" target="_blank">
-                                            {{ application.member.member_id }}
-                                        </a>
-                                    </td>
-                                    <td>{{ application.member.last_name }}</td>
-                                    <td>{{ application.member.first_name }}</td>
-                                    <td>
-                                        {{ trans('admin.intro.supervisor_applications.status_' ~ application.status) }}
-                                    </td>
-                                    {#<td>{{ application.age_at_intro }}</td>
-                                    <td>{{ application.route_type }}</td>
-                                    <td>{{ application.remain_sober ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}</td>
-                                    <td>
-                                        {{ application.drivers_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
-                                    </td>
-                                    <td>
-                                        {{ application.first_aid_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
-                                    </td>
-                                    <td>
-                                        {{ application.company_first_response_license ? trans('admin.intro.supervisor_applications.yes') : trans('admin.intro.supervisor_applications.no') }}
-                                    </td>#}
-                                    <td>{{ application.created_at|date(trans('datetime.format.date_and_time')) }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.intro.supervisor_applications.show', { intro: introduction, application: application }) }}">{{ trans('admin.intro.supervisor_applications.details') }}</a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
+                            <tr v-for="application in filteredApplications" :id="'application-' + application.id" :class="application.status">
+                                {% verbatim %}
+                                <td class="d-none d-sm-table-cell">{{ application.id }}</td>
+                                <td>
+                                    <a :href="application.member.link" target="_blank">
+                                        {{ application.member.member_id }}
+                                    </a>
+                                </td>
+                                <td>{{ application.member.last_name }}</td>
+                                <td>{{ application.member.first_name }}</td>
+                                <td class="d-none d-md-table-cell status">{{ application.display_status }}</td>
+                                <td class="d-none d-sm-table-cell">{{ application.display_created_at }}</td>
+                                {% endverbatim %}
+                                <td>
+                                    <a :href="application.link">{{ trans('admin.intro.supervisor_applications.details') }}</a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <small>{{ trans_choice('admin.intro.supervisor_applications.count', introduction.supervisorApplications.count, { count: introduction.supervisorApplications.count, confirmed: confirmed_count, email_unconfirmed: email_unconfirmed_count }) }}</small>
@@ -73,4 +64,12 @@
             </div>
         </main>
     </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        window.SalveMundi              = window.SalveMundi || {};
+        window.SalveMundi.introduction = {{ script_data|json_encode|raw }};
+    </script>
+    <script src="{{ mix('js/intro-admin.js') }}"></script>
 {% endblock %}

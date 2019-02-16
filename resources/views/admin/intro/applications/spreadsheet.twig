@@ -8,7 +8,8 @@
                     <h1>{{ trans('admin.intro.spreadsheet.title', { year: introduction.year.year }) }}</h1>
                 </div>
                 <div class="col-md-12">
-                    {% set excel_fields = ['last_name', 'first_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_phone', 'email', 'pcn', 'shirt_size', 'gender', 'remarks'] %}
+                    {% set excel_fields = ['last_name', 'first_name', 'birthday', 'address', 'city', 'postal',
+                        'phone', 'contact_name', 'contact_relation', 'contact_phone', 'email', 'shirt_size', 'gender', 'remarks'] %}
                     <table id="spreadsheet" class="table table-responsive table-sm application-list spreadsheet table-striped">
                         <thead>
                             <tr>
@@ -46,7 +47,7 @@
                                     </td>
                                     {% for field in excel_fields %}
                                         <td>
-                                            {% if application[field] is same as(false) %} {{ trans('admin.intro.applications.false') }} {% elseif application[field] is same as(true) %} {{ trans('admin.intro.applications.true') }} {% else %} {{ application[field]|default('-') }} {% endif %}{{ "\t" }}
+                                            {% if application[field] is same as(false) %} {{ trans('admin.intro.applications.false') }} {% elseif application[field] is same as(true) %} {{ trans('admin.intro.applications.true') }} {% else %} {{ application[field]|default('-') }} {% endif %}
                                         </td>
                                     {% endfor %}
                                     <td>
@@ -79,11 +80,6 @@
                                             -
                                         {% endif %}
                                     </td>
-
-                                    {#{{ trans('admin.intro.applications.status_' ~ application.status) }}#}
-                                    {#{% if application.status == 'new' and application.email_confirmation_token == null %}#}
-                                    {#– {{ trans('admin.intro.applications.no_mail') }}#}
-                                    {#{% endif %}#}
                                 </tr>
                             {% endfor %}
                         </tbody>
@@ -96,5 +92,9 @@
 {% endblock %}
 {% block scripts %}
     {{ parent() }}
+    <script>
+        window.SalveMundi              = window.SalveMundi || {};
+        window.SalveMundi.copy_warning = "{{ trans('admin.intro.spreadsheet.copy_warning') }}";
+    </script>
     <script src="{{ mix('js/spreadsheet.js') }}"></script>
 {% endblock %}

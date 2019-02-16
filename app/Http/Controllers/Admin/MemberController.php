@@ -325,7 +325,7 @@
          * @return mixed
          */
         public function getPicture(Member $member) {
-            return Member::getResizedCachedImage(800, null, true)->response();
+            return $member->getResizedCachedImage(800, null, true)->response();
         }
 
         /**
@@ -334,7 +334,7 @@
          * @return mixed
          */
         public function getFullPicture(Member $member) {
-            return Member::getCachedImage(true)->response();
+            return $member->getCachedImage(true)->response();
         }
 
 

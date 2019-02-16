@@ -6,7 +6,7 @@
 {% block social_image_height %}1990{% endblock %}
 {% block content %}
     <div class="container content">
-        <main class="intro">
+        <main class="introduction">
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ trans('intro.2019.title', { year: introduction.year.year }) }}</h1>
@@ -27,11 +27,24 @@
                     <div>
                         {% for day in trans("intro.2019.schedule_page.days") %}
                             <h3>{{ day.title }}</h3>
-                            {% for text in day.text %}
-                                <p>
-                                    {{ text|raw }}
-                                </p>
-                            {% endfor %}
+                            <div class="row">
+                                <div class="col">
+                                    {% for text in day.text %}
+                                        <p>
+                                            {{ text|raw }}
+                                        </p>
+                                    {% endfor %}
+                                </div>
+                                {% if day.youtube %}
+                                    <div class="col-lg-6 align-content-center">
+                                        <div class="youtube-wrapper">
+                                            <iframe width="560" height="315" src="{{ day.youtube }}" frameborder="0"
+                                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+
                         {% endfor %}
                     </div>
                 </div>

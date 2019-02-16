@@ -173,4 +173,28 @@
             }
             return parent::delete();
         }
+
+        /**
+         * @return array
+         */
+        public function getApplicationsJSON() {
+            $jsonApplications = [];
+            $this->applications->each(function ($item) use (&$jsonApplications) {
+                /** @var IntroApplication $item */
+                $jsonApplications[] = $item->getJSON();
+            });
+            return $jsonApplications;
+        }
+
+        /**
+         * @return array
+         */
+        public function getSupervisorApplicationsJSON() {
+            $jsonApplications = [];
+            $this->supervisorApplications->each(function ($item) use (&$jsonApplications) {
+                /** @var IntroSupervisorApplication $item */
+                $jsonApplications[] = $item->getJSON();
+            });
+            return $jsonApplications;
+        }
     }

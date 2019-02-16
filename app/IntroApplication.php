@@ -15,23 +15,23 @@
      * Class IntroApplication
      *
      * @package App
-     * @property int         $id
-     * @property string|null $pcn
-     * @property string      $first_name
-     * @property string      $last_name
-     * @property string      $phone
-     * @property string      $email
-     * @property Carbon      $birthday
-     * @property string      $shirt_size
-     * @property string      $remarks
-     * @property bool        $alcohol
-     * @property int         $extra_shirt
-     * @property int         $same_sex_rooms
-     * @property string      $status
-     * @property string      $ip_address
-     * @property string|null $email_confirmation_token
-     * @property Carbon|null $created_at
-     * @property Carbon|null $updated_at
+     * @property int                    $id
+     * @property string|null            $pcn
+     * @property string                 $first_name
+     * @property string                 $last_name
+     * @property string                 $phone
+     * @property string                 $email
+     * @property Carbon                 $birthday
+     * @property string                 $shirt_size
+     * @property string                 $remarks
+     * @property bool                   $alcohol
+     * @property int                    $extra_shirt
+     * @property int                    $same_sex_rooms
+     * @property string                 $status
+     * @property string                 $ip_address
+     * @property string|null            $email_confirmation_token
+     * @property Carbon|null            $created_at
+     * @property Carbon|null            $updated_at
      * @method static Builder|IntroApplication whereAlcohol($value)
      * @method static Builder|IntroApplication whereBirthday($value)
      * @method static Builder|IntroApplication whereCreatedAt($value)
@@ -53,11 +53,11 @@
      * @method static Builder|IntroApplication whereTransactionAmount($value)
      * @method static Builder|IntroApplication whereTransactionId($value)
      * @method static Builder|IntroApplication whereTransactionStatus($value)
-     * @property string                      $contact_phone
-     * @property string                      $gender
-     * @property string                      $address
-     * @property string                      $city
-     * @property string                      $postal
+     * @property string                 $contact_phone
+     * @property string                 $gender
+     * @property string                 $address
+     * @property string                 $city
+     * @property string                 $postal
      * @method static Builder|IntroApplication whereAddress($value)
      * @method static Builder|IntroApplication whereCity($value)
      * @method static Builder|IntroApplication whereContactPhone($value)
@@ -202,5 +202,28 @@
          */
         public function isAnonymised() {
             return $this->type === self::TYPE_ANONYMISED;
+        }
+
+        /**
+         * @return array
+         */
+        public function getJSON() {
+            return [
+                'id'             => $this->id,
+                'last_name'      => $this->last_name,
+                'first_name'     => $this->first_name,
+                'status'         => $this->status,
+                'display_status' => trans('admin.intro.applications.status_' . $this->status),
+                'transaction'    => $this->transaction ? [
+                    'id'             => $this->transaction->id,
+                    'url'            => config('mollie.transaction_url') . $this->transaction->transaction_id,
+                    'transaction_id' => $this->transaction->transaction_id,
+                    'status'         => $this->transaction->transaction_status,
+                    'display_status' => trans('admin.transactions.status.' . $this->transaction->transaction_status),
+                ] : null,
+                'created_at'     => $this->created_at,
+                'display_created_at'     => $this->created_at->format(trans('datetime.format.date_and_time')),
+                'link'           => route('admin.intro.applications.show', ['intro' => $this->introduction, 'application' => $this])
+            ];
         }
     }
