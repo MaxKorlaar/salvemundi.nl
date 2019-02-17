@@ -268,6 +268,13 @@
                 'cannot_send_mails_right_now'    => 'Het is momenteel niet mogelijk om e-mails te sturen naar :first_name :last_name, aangezien de aanmelding al een bevestigd e-mailadres heeft.',
                 'back_to_index'                  => 'Terug naar aanmeldingen',
                 'delete_application'             => 'Verwijder aanmelding',
+                'edit_application' => 'Gegevens bewerken',
+                'edit'             => [
+                    'title'               => 'Ouder-aanmelding bewerken: :first_name :last_name',
+                    'save'                => 'Opslaan',
+                    'back_to_application' => 'Terug',
+                    'success'             => 'De ouder-aanmelding is bijgewerkt',
+                ],
                 'delete'                         => [
                     'title'        => 'Ouder-aanmelding verwijderen: :first_name :last_name',
                     'are_you_sure' => 'Weet je zeker dat je deze ouder-aanmelding wil verwijderen? Dit kan <b>niet</b> ongedaan worden gemaakt. Alle gegevens gerelateerd aan deze aanmelding, behalve het lid van de vereniging zelf, zullen onherstelbaar worden verwijderd.',

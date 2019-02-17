@@ -3,6 +3,7 @@
     namespace App\Http\Controllers\Admin\Intro;
 
     use App\Http\Controllers\Controller;
+    use App\Http\Requests\Admin\Intro\UpdateSupervisorApplication;
     use App\Introduction;
     use App\IntroSupervisorApplication;
     use Exception;
@@ -86,24 +87,32 @@
         /**
          * Show the form for editing the specified resource.
          *
-         * @param  int $id
+         * @param Introduction               $intro
+         * @param IntroSupervisorApplication $ouderAanmeldingen
          *
          * @return void
          */
-        public static function edit($id) {
-            abort(501);
+        public static function edit(Introduction $intro, IntroSupervisorApplication $ouderAanmeldingen) {
+            if ($ouderAanmeldingen->isAnonymised()) return back();
+            return view('admin.intro.supervisor_applications.edit', [
+                'application'  => $ouderAanmeldingen,
+                'introduction' => $intro
+            ]);
         }
 
         /**
          * Update the specified resource in storage.
          *
-         * @param  Request $request
-         * @param  int     $id
+         * @param Introduction                $intro
+         * @param IntroSupervisorApplication  $ouderAanmeldingen
+         * @param UpdateSupervisorApplication $request
          *
          * @return void
          */
-        public static function update(Request $request, $id) {
-            abort(501);
+        public static function update(Introduction $intro, IntroSupervisorApplication $ouderAanmeldingen, UpdateSupervisorApplication $request) {
+            if ($ouderAanmeldingen->isAnonymised()) return back();
+            $ouderAanmeldingen->update($request->all());
+            return back()->with('success', trans('admin.intro.supervisor_applications.edit.success'));
         }
 
         /**
