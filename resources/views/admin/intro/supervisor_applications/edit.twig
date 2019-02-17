@@ -1,0 +1,167 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.intro.supervisor_applications.edit.title', { first_name: application.member.first_name, last_name: application.member.last_name }) }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="introduction application {{ application.status|str_slug }}">
+            <form action="{{ route('admin.intro.supervisor_applications.update', { intro: introduction, application: application }) }}" method="POST" class="row">
+                {{ csrf_field() }}
+                {{ method_field('PUT') }}
+
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.intro.supervisor_applications.edit.title', { first_name: application.member.first_name, last_name: application.member.last_name }) }}</h1>
+                    {% if session('success') %}
+                        <div class="alert alert-success text-center success-message">
+                            <span class="fa fa-check fa-2x pull-left"></span>
+                            {{ session('success')|raw }}
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="gender">{{ trans('admin.intro.supervisor_applications.gender') }}</label>
+                        <select required id="gender" name="gender" class="form-control {{ errors.has('gender') ? 'is-invalid' }}">
+                            {% for gender in trans('intro.supervisor.signup.genders') %}
+                                <option {{ old('gender', application.gender) == gender ? 'selected' }}>{{ gender }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            {{ errors.first('gender')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="shirt_size">{{ trans('admin.intro.supervisor_applications.shirt_size') }}</label>
+                        <select required id="shirt_size" name="shirt_size" class="form-control {{ errors.has('shirt_size') ? 'is-invalid' }}">
+                            {% for size in trans('intro.supervisor.signup.shirt_sizes') %}
+                                <option {{ old('shirt_size', application.shirt_size) == size ? 'selected' }}>{{ size }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            {{ errors.first('shirt_size')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="age_at_intro">{{ trans('admin.intro.supervisor_applications.age_at_intro') }}</label>
+                        <input id="age_at_intro" type="number"
+                               class="form-control {{ errors.has('age_at_intro') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.supervisor_applications.age_at_intro') }}" name="age_at_intro"
+                               value="{{ old('age_at_intro', application.age_at_intro) }}" maxlength="2">
+                        <div class="invalid-feedback">
+                            {{ errors.first('age_at_intro')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="route_type">{{ trans('admin.intro.supervisor_applications.route_type') }}</label>
+                        <select required id="route_type" name="route_type" class="form-control {{ errors.has('route_type') ? 'is-invalid' }}">
+                            {% for route in trans('intro.supervisor.signup.routes') %}
+                                <option {{ old('route_type', application.route_type) == route ? 'selected' }}>{{ route }}</option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            {{ errors.first('route_type')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="previously_participated_as">{{ trans('admin.intro.supervisor_applications.previously_participated_as') }}</label>
+                        <select required id="previously_participated_as"
+                                name="previously_participated_as" class="form-control {{ errors.has('previously_participated_as') ? 'is-invalid' }}">
+                            {% for previously_participated_as in trans('intro.supervisor.signup.previous_years') %}
+                                <option {{ old('previously_participated_as', application.previously_participated_as) == previously_participated_as ? 'selected' }}>
+                                    {{ previously_participated_as }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            {{ errors.first('previously_participated_as')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <datalist id="active_as">
+                            {% for option in trans('intro.supervisor.signup.active_as') %}
+                                <option>{{ option }}</option>
+                            {% endfor %}
+                        </datalist>
+                        <label for="active_in_association">{{ trans('admin.intro.supervisor_applications.active_in_association') }}</label>
+                        <input id="active_in_association" type="text" list="active_as"
+                               class="form-control {{ errors.has('active_in_association') ? 'is-invalid' }}"
+                               placeholder="{{ trans('admin.intro.supervisor_applications.active_in_association') }}" name="active_in_association"
+                               value="{{ old('active_in_association', application.active_in_association) }}">
+                        <div class="invalid-feedback">
+                            {{ errors.first('active_in_association')|ucfirst }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-check">
+                        <input class="form-control form-check-input {{ errors.has('remain_sober') ? 'is-invalid' }}"
+                               value="1" type="checkbox" id="remain_sober"
+                               name="remain_sober"
+                            {{ old('remain_sober', application.remain_sober) ? 'checked' }}>
+                        <label class="form-check-label" for="remain_sober">
+                            {{ trans('admin.intro.supervisor_applications.remain_sober') }}
+                        </label>
+                        <div class="invalid-feedback">
+                            {{ errors.first('remain_sober')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-control form-check-input {{ errors.has('drivers_license') ? 'is-invalid' }}"
+                               value="1" type="checkbox" id="drivers_license"
+                               name="drivers_license"
+                            {{ old('drivers_license', application.drivers_license) ? 'checked' }}>
+                        <label class="form-check-label" for="drivers_license">
+                            {{ trans('admin.intro.supervisor_applications.drivers_license') }}
+                        </label>
+                        <div class="invalid-feedback">
+                            {{ errors.first('drivers_license')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="company_first_response_license">{{ trans('admin.intro.supervisor_applications.company_first_response_license') }}</label>
+                        <select required id="company_first_response_license"
+                                name="company_first_response_license" class="form-control {{ errors.has('company_first_response_license') ? 'is-invalid' }}">
+                            {% for company_first_response_license in trans('intro.supervisor.signup.first_response') %}
+                                <option {{ old('company_first_response_license', application.company_first_response_license) == company_first_response_license ? 'selected' }}>
+                                    {{ company_first_response_license }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <div class="invalid-feedback">
+                            {{ errors.first('company_first_response_license')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="motivation">{{ trans('admin.intro.supervisor_applications.motivation') }}</label>
+                        <textarea id="motivation" name="motivation" rows="5" maxlength="1500" placeholder="{{ trans('admin.intro.supervisor_applications.motivation') }}"
+                                  class="form-control {{ errors.has('motivation') ? 'is-invalid' }}">{{ old('motivation', application.motivation) }}</textarea>
+                        <div class="invalid-feedback">
+                            {{ errors.first('motivation')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="remarks">{{ trans('admin.intro.supervisor_applications.remarks') }}</label>
+                        <textarea id="remarks" name="remarks" rows="5" maxlength="1500" placeholder="{{ trans('admin.intro.supervisor_applications.remarks') }}"
+                                  class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks', application.remarks) }}</textarea>
+                        <div class="invalid-feedback">
+                            {{ errors.first('remarks')|ucfirst }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 button-container">
+                    <input type="submit" class="button" value="{{ trans('admin.intro.supervisor_applications.edit.save') }}">
+                    <a href="{{ route('admin.intro.supervisor_applications.show', { intro: introduction, application: application }) }}" class="button">
+                        {{ trans('admin.intro.supervisor_applications.edit.back_to_application') }}
+                    </a>
+                    {% if application.isAnonymised() or application.status is constant('STATUS_EMAIL_UNCONFIRMED', application) %}
+                        <a href="{{ route('admin.intro.supervisor_applications.delete_confirmation', { intro: introduction, application: application }) }}"
+                           class="button danger pull-right">{{ trans('admin.intro.supervisor_applications.delete_application') }}</a>
+                    {% endif %}
+                </div>
+
+            </form>
+        </main>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ mix('js/admin.js') }}"></script>
+{% endblock %}

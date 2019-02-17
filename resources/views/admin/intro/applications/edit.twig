@@ -177,7 +177,7 @@
                     <div class="form-group">
                         <label for="remarks">{{ trans('admin.intro.applications.remarks') }}</label>
                         <textarea id="remarks" name="remarks" maxlength="1500" placeholder="{{ trans('admin.intro.applications.remarks') }}"
-                                  class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks') }}</textarea>
+                                  class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks', application.remarks) }}</textarea>
                         <div class="invalid-feedback">
                             {{ errors.first('remarks')|ucfirst }}
                         </div>
