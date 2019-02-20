@@ -257,16 +257,6 @@
 
         //TODO VERPLAAATSON
 
-        /**
-         * @param $client
-         *
-         * @return mixed
-         */
-        /**
-         * @param $client
-         *
-         * @return mixed
-         */
         static function openSession($client) {
             $paramsOpenSession = [
                 "Username"      => config("eboekhouden.username"),
@@ -278,16 +268,6 @@
             return $sessionID;
         }
 
-        /**
-         * @param $mutation
-         * @param $sessionID
-         * @param $client
-         */
-        /**
-         * @param $mutation
-         * @param $sessionID
-         * @param $client
-         */
         static function sendMutation($mutation, $sessionID, $client) {
             $paramsAddMutation = [
                 "SessionID"     => $sessionID,
@@ -298,14 +278,7 @@
             $client->__soapCall("AddMutatie", [$paramsAddMutation]);
         }
 
-        /**
-         * @param $sessionID
-         * @param $client
-         */
-        /**
-         * @param $sessionID
-         * @param $client
-         */
+
         static function closeSession($sessionID, $client) {
             $paramCloseSession = [
                 "SessionID" => $sessionID
