@@ -327,10 +327,8 @@ en onderwijs gerelateerde activiteiten',
                     'image'   => 'Mohammed.jpg'
                 ],
                 [
-                    'name'    => 'Mitchell Vermeulen',
+                    'name'    => 'Floris Feddema',
                     'profile' => 'ICT & Software',
-                    'text'    => '',
-                    'image'   => 'Mitchell.jpg'
                 ]
             ]
         ],
