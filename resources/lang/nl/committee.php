@@ -200,7 +200,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
         ],
         'camping'          => [
             'title'            => 'Kampcommissie',
-            'about_text'       => 'Ieder jaar organiseert de Kampcommissie een kamp voor de leden van HBO-ICT Studievereniging Salve Mundi, van eerste tot laatstejaars en zelfs alumni zijn welkom tijdens dit geweldige evenement. Het zijn elke keer weer een paar fantastische dagen die je niet mag missen! Zien wij jou op ons volgende kamp?',
+            'about_text'       => 'Ieder jaar organiseert de kampcommissie een kamp voor de leden van HBO-ICT Studievereniging Salve Mundi, van eerste tot laatstejaars en zelfs alumni zijn welkom tijdens dit geweldige evenement. Het zijn elke keer weer een paar fantastische dagen die je niet mag missen! Zien wij jou op ons volgende kamp?',
             'meet_the_members' => 'De kampeerders',
             'members'          => [
                 [
@@ -209,19 +209,9 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'profile' => 'ICT & Software'
                 ],
                 [
-                    'name'    => 'Luuk Lenaers',
-                    'image'   => 'Luuk Business.jpg',
-                    'profile' => 'ICT & Business'
-                ],
-                [
                     'name'    => 'Femke Bronstein',
                     'image'   => 'Femke.jpg',
                     'profile' => 'ICT & Media Design'
-                ],
-                [
-                    'name'    => 'Yorik van den Berkmortel', // met of zonder c 🤔
-                    'image'   => 'Yorick Business.jpg',
-                    'profile' => 'ICT & Business'
                 ],
                 [
                     'name'    => 'Youp Jansen',
