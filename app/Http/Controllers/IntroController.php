@@ -2,6 +2,11 @@
 
     namespace App\Http\Controllers;
 
+    use App\Helpers\eboekhouden\GeneralLedgerAccount;
+    use App\Helpers\eboekhouden\Models\cMutationRow;
+    use App\Helpers\eboekhouden\Models\Mutation;
+    use App\Helpers\eboekhouden\PaymentMethod;
+    use App\Helpers\eboekhouden\TransactionType;
     use App\Helpers\PaymentHelper;
     use App\Http\Requests\IntroSignup;
     use App\Http\Requests\IntroSupervisorSignup;
@@ -20,6 +25,7 @@
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\Routing\Redirector;
+    use Illuminate\Support\Facades\App;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Cache;
     use Illuminate\Support\Facades\Log;
@@ -29,6 +35,7 @@
     use Mollie\Api\Exceptions\IncompatiblePlatform;
     use Mollie\Api\Resources\Payment;
     use Psr\SimpleCache\InvalidArgumentException;
+    use SoapClient;
     use Throwable;
 
     /**
@@ -124,6 +131,14 @@
                         $mail = new IntroApplicationPaymentConfirmation($application);
                         $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
                         Mail::queue($mail);
+
+                        if (App::environment('production')) {
+                            $mutationSold = new Mutation([new cMutationRow($transaction->transaction_amount, GeneralLedgerAccount::IntroductionAugust2019)], PaymentMethod::Mollie, TransactionType::Received, "Intro contributie betaald");
+                            $client       = new SoapClient("https://soap.e-boekhouden.nl/soap.asmx?wsdl");
+                            $sessionID    = SignupController::openSession($client);
+                            SignupController::sendMutation($mutationSold, $sessionID, $client);
+                            SignupController::closeSession($sessionID, $client);
+                        }
 
                     }
                 }
@@ -549,5 +564,35 @@
                 'application' => $application
             ]);
 
+        }
+
+        static function openSession($client) {
+            $paramsOpenSession = [
+                "Username"      => config("eboekhouden.username"),
+                "SecurityCode1" => config("eboekhouden.security_code_1"),
+                "SecurityCode2" => config("eboekhouden.security_code_2")
+            ];
+
+            $sessionID = $client->__soapCall("OpenSession", [$paramsOpenSession])->OpenSessionResult->SessionID;
+            return $sessionID;
+        }
+
+        static function sendMutation($mutation, $sessionID, $client) {
+            $paramsAddMutation = [
+                "SessionID"     => $sessionID,
+                "SecurityCode2" => config("eboekhouden.security_code_2"),
+                "oMut"          => $mutation
+            ];
+
+            $client->__soapCall("AddMutatie", [$paramsAddMutation]);
+        }
+
+
+        static function closeSession($sessionID, $client) {
+            $paramCloseSession = [
+                "SessionID" => $sessionID
+            ];
+
+            $client->__soapCall("CloseSession", [$paramCloseSession]);
         }
     }

@@ -21,4 +21,5 @@
         const ContributionMembersIncomes = "8008";
         const MerchandiseIncomes = "8307";
         const KampFeb2019Incomes = "8602";
+        const IntroductionAugust2019 = "8502";
     }
