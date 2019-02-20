@@ -303,6 +303,10 @@ en onderwijs gerelateerde activiteiten',
                     'text'    => 'placeholder',
                     'image'   => 'Lucas.jpg'
                 ],
+                [
+                    'name'    => 'Camiel Friesen',
+                    'profile' => 'ICT & Technology' 
+                ]
             ]
         ],
         'external_affairs' => [
