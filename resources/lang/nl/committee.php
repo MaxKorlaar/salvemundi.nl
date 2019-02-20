@@ -119,7 +119,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                 ],
                 [
                     'name'    => 'Britt van Amelsfoort',
-                    'profile' => 'ICT & Software en Technology',
+                    'profile' => 'ICT & Technology',
                     'image'   => 'Britt.jpg',
                 ]
             ]
