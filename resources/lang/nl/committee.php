@@ -338,22 +338,12 @@ en onderwijs gerelateerde activiteiten',
             'title'         => 'Activiteitencommissie',
             'title_short'   => 'Activiteiten',
             'about_text'    => [
-                'De activiteitencommissie verzorgt bijna alle activiteiten buiten Villa Fiesta en kamp om. Je moet bijvoorbeeld denken aan filmavonden, karten, spelletjes avond, lan party’s en nog veel meer! Leuke activiteiten die wij samen met de leden willen delen.',
+                'De activiteitencommissie verzorgt bijna alle activiteiten buiten Villa Fiesta en kamp om. Je moet bijvoorbeeld denken aan filmavonden, karten, spelletjes avond, LAN-party’s en nog veel meer! Leuke activiteiten die wij samen met de leden willen delen.',
                 'Wij organiseren deze activiteiten om de band tussen studenten te versterken en zo een hechtere groep te kunnen vormen, maar ook om nieuwe vrienden te kunnen maken!',
                 'Mocht je nog leuke activiteiten weten die je met ons wil delen, stuur een mailtje naar activiteiten@salvemundi.nl, dan gaan we het er over hebben en misschien zie je jouw activiteit terug!'
             ],
             'meet_the_team' => 'De actievelingen',
             'members'       => [
-                [
-                    'name'    => 'Mitchell Vermeulen',
-                    'profile' => 'ICT & Software',
-                    'image'   => 'Mitchell.jpg'
-                ],
-                [
-                    'name'    => 'Louis Verbeet',
-                    'profile' => 'ICT & Software',
-                    'image'   => 'Louis.jpg'
-                ],
                 [
                     'name'    => 'Ella Zuidema',
                     'profile' => 'ICT & Software',
