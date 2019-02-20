@@ -178,7 +178,6 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'image'   => 'Ruud.jpg',
                     'url'     => '//ruudvissers.nl/werkportfolio/'
                 ],
-
                 [
                     'name'    => 'Kim van der Meulen',
                     'profile' => 'ICT & Software',
@@ -190,6 +189,11 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'profile' => 'ICT & Media Design',
                     'text'    => '',
                     'image'   => 'Kazimir.jpg',
+                ],
+                [
+                    'name'    => 'Michelle Cox',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => 'Michelle.jpg'
                 ]
 
             ]
@@ -305,7 +309,7 @@ en onderwijs gerelateerde activiteiten',
                 ],
                 [
                     'name'    => 'Camiel Friesen',
-                    'profile' => 'ICT & Technology' 
+                    'profile' => 'ICT & Technology'
                 ]
             ]
         ],
