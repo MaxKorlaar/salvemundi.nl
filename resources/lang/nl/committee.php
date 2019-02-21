@@ -119,7 +119,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                 ],
                 [
                     'name'    => 'Britt van Amelsfoort',
-                    'profile' => 'ICT & Software en Technology',
+                    'profile' => 'ICT & Technology',
                     'image'   => 'Britt.jpg',
                 ]
             ]
@@ -178,7 +178,6 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'image'   => 'Ruud.jpg',
                     'url'     => '//ruudvissers.nl/werkportfolio/'
                 ],
-
                 [
                     'name'    => 'Kim van der Meulen',
                     'profile' => 'ICT & Software',
@@ -190,13 +189,18 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'profile' => 'ICT & Media Design',
                     'text'    => '',
                     'image'   => 'Kazimir.jpg',
+                ],
+                [
+                    'name'    => 'Michelle Cox',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => 'Michelle.jpg'
                 ]
 
             ]
         ],
         'camping'          => [
             'title'            => 'Kampcommissie',
-            'about_text'       => 'Ieder jaar organiseert de Kampcommissie een kamp voor de leden van HBO-ICT Studievereniging Salve Mundi, van eerste tot laatstejaars en zelfs alumni zijn welkom tijdens dit geweldige evenement. Het zijn elke keer weer een paar fantastische dagen die je niet mag missen! Zien wij jou op ons volgende kamp?',
+            'about_text'       => 'Ieder jaar organiseert de kampcommissie een kamp voor de leden van HBO-ICT Studievereniging Salve Mundi, van eerste tot laatstejaars en zelfs alumni zijn welkom tijdens dit geweldige evenement. Het zijn elke keer weer een paar fantastische dagen die je niet mag missen! Zien wij jou op ons volgende kamp?',
             'meet_the_members' => 'De kampeerders',
             'members'          => [
                 [
@@ -205,19 +209,9 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'profile' => 'ICT & Software'
                 ],
                 [
-                    'name'    => 'Luuk Lenaers',
-                    'image'   => 'Luuk Business.jpg',
-                    'profile' => 'ICT & Business'
-                ],
-                [
                     'name'    => 'Femke Bronstein',
                     'image'   => 'Femke.jpg',
                     'profile' => 'ICT & Media Design'
-                ],
-                [
-                    'name'    => 'Yorik van den Berkmortel', // met of zonder c 🤔
-                    'image'   => 'Yorick Business.jpg',
-                    'profile' => 'ICT & Business'
                 ],
                 [
                     'name'    => 'Youp Jansen',
@@ -303,6 +297,10 @@ en onderwijs gerelateerde activiteiten',
                     'text'    => 'placeholder',
                     'image'   => 'Lucas.jpg'
                 ],
+                [
+                    'name'    => 'Camiel Friesen',
+                    'profile' => 'ICT & Technology'
+                ]
             ]
         ],
         'external_affairs' => [
@@ -327,10 +325,8 @@ en onderwijs gerelateerde activiteiten',
                     'image'   => 'Mohammed.jpg'
                 ],
                 [
-                    'name'    => 'Mitchell Vermeulen',
+                    'name'    => 'Floris Feddema',
                     'profile' => 'ICT & Software',
-                    'text'    => '',
-                    'image'   => 'Mitchell.jpg'
                 ]
             ]
         ],
@@ -338,22 +334,12 @@ en onderwijs gerelateerde activiteiten',
             'title'         => 'Activiteitencommissie',
             'title_short'   => 'Activiteiten',
             'about_text'    => [
-                'De activiteitencommissie verzorgt bijna alle activiteiten buiten Villa Fiesta en kamp om. Je moet bijvoorbeeld denken aan filmavonden, karten, spelletjes avond, lan party’s en nog veel meer! Leuke activiteiten die wij samen met de leden willen delen.',
+                'De activiteitencommissie verzorgt bijna alle activiteiten buiten Villa Fiesta en kamp om. Je moet bijvoorbeeld denken aan filmavonden, karten, spelletjes avond, LAN-party’s en nog veel meer! Leuke activiteiten die wij samen met de leden willen delen.',
                 'Wij organiseren deze activiteiten om de band tussen studenten te versterken en zo een hechtere groep te kunnen vormen, maar ook om nieuwe vrienden te kunnen maken!',
                 'Mocht je nog leuke activiteiten weten die je met ons wil delen, stuur een mailtje naar activiteiten@salvemundi.nl, dan gaan we het er over hebben en misschien zie je jouw activiteit terug!'
             ],
             'meet_the_team' => 'De actievelingen',
             'members'       => [
-                [
-                    'name'    => 'Mitchell Vermeulen',
-                    'profile' => 'ICT & Software',
-                    'image'   => 'Mitchell.jpg'
-                ],
-                [
-                    'name'    => 'Louis Verbeet',
-                    'profile' => 'ICT & Software',
-                    'image'   => 'Louis.jpg'
-                ],
                 [
                     'name'    => 'Ella Zuidema',
                     'profile' => 'ICT & Software',
