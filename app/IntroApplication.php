@@ -89,12 +89,14 @@
         public $fillable = [
             'pcn', 'first_name', 'last_name', 'phone', 'email', 'address', 'city', 'postal',
             'country', 'gender', 'contact_phone', 'birthday', 'shirt_size', 'remarks',
-            'alcohol', 'extra_shirt', 'same_sex_rooms', 'contact_name', 'contact_relation'
+            'alcohol', 'extra_shirt', 'same_sex_rooms', 'contact_name', 'contact_relation',
+            'allergies', 'medication', 'diet_preferences'
         ];
         protected $encrypted = [
             'pcn', 'first_name', 'last_name', 'phone', 'email', 'shirt_size', 'remarks', 'ip_address',
             'contact_phone', 'address', 'city', 'postal', 'country',
-            'gender', 'contact_phone', 'contact_name', 'contact_relation'
+            'gender', 'contact_phone', 'contact_name', 'contact_relation',
+            'allergies', 'medication', 'diet_preferences'
         ];
         protected $attributes = [
             'status' => self::STATUS_EMAIL_UNCONFIRMED

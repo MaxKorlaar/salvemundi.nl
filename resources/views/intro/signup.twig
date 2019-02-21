@@ -79,6 +79,31 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="birthday">{{ trans('intro.signup.birthday') }}</label>
+                            <input id="birthday" type="date"
+                                   class="form-control {{ errors.has('birthday') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.birthday_format') }}" name="birthday"
+                                   value="{{ old('birthday') }}" maxlength="10">
+                            <div class="invalid-feedback">
+                                {{ errors.first('birthday')|ucfirst }}
+                            </div>
+                        </div>
+                        <div>
+                            <label>{{ trans('intro.signup.gender') }}</label>
+                        </div>
+                        {% for gender in trans('intro.signup.genders') %}
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" {{ old('gender') == gender ? 'checked' }} type="radio" name="gender" id="gender_type_{{ gender }}" value="{{ gender }}">
+                                <label class="form-check-label" for="gender_type_{{ gender }}">{{ gender }}</label>
+                            </div>
+                        {% endfor %}
+                        <div class="form-group">
+                            {{ trans('intro.signup.same_sex_room') }}
+                        </div>
+                        <div class="text-danger">
+                            {{ errors.first('gender')|ucfirst }}
+                        </div>
+                        <div class="form-group">
                             <input type="text" class="form-control {{ errors.has('address') ? 'is-invalid' }}"
                                    placeholder="{{ trans('intro.signup.address') }}" name="address"
                                    value="{{ old('address') }}" maxlength="150">
@@ -121,6 +146,36 @@
                                 {{ errors.first('phone')|ucfirst }}
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <input type="email" class="form-control {{ errors.has('email') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.email') }}" name="email" value="{{ old('email') }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('email')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email"
+                                   class="form-control {{ errors.has('email_confirmation') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('intro.signup.email_confirmation') }}" name="email_confirmation"
+                                   value="{{ old('email_confirmation') }}" maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('email_confirmation')|ucfirst }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shirt_size">Welke shirtmaat heb je? (Unisex)</label>
+                            <select required id="shirt_size" name="shirt_size" class="form-control {{ errors.has('shirt_size') ? 'is-invalid' }}">
+                                {% for size in trans('intro.signup.shirt_sizes') %}
+                                    <option {{ old('shirt_size') == size ? 'selected' }}>{{ size }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">
+                                {{ errors.first('shirt_size')|ucfirst }}
+                            </div>
+                        </div>
                         <div class="form-group">
                             <input type="text" class="form-control {{ errors.has('contact_name') ? 'is-invalid' }}"
                                    placeholder="{{ trans('intro.signup.contact_name') }}" name="contact_name" value="{{ old('contact_name') }}"
@@ -143,59 +198,6 @@
                                    maxlength="15">
                             <div class="invalid-feedback">
                                 {{ errors.first('contact_phone')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control {{ errors.has('email') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('intro.signup.email') }}" name="email" value="{{ old('email') }}"
-                                   maxlength="50">
-                            <div class="invalid-feedback">
-                                {{ errors.first('email')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <input type="email"
-                                   class="form-control {{ errors.has('email_confirmation') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('intro.signup.email_confirmation') }}" name="email_confirmation"
-                                   value="{{ old('email_confirmation') }}" maxlength="50">
-                            <div class="invalid-feedback">
-                                {{ errors.first('email_confirmation')|ucfirst }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="birthday">{{ trans('intro.signup.birthday') }}</label>
-                            <input id="birthday" type="date"
-                                   class="form-control {{ errors.has('birthday') ? 'is-invalid' }}"
-                                   placeholder="{{ trans('intro.signup.birthday_format') }}" name="birthday"
-                                   value="{{ old('birthday') }}" maxlength="10">
-                            <div class="invalid-feedback">
-                                {{ errors.first('birthday')|ucfirst }}
-                            </div>
-                        </div>
-                        <div>
-                            <label>{{ trans('intro.signup.gender') }}</label>
-                        </div>
-                        {% for gender in trans('intro.signup.genders') %}
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" {{ old('gender') == gender ? 'checked' }} type="radio" name="gender" id="gender_type_{{ gender }}" value="{{ gender }}">
-                                <label class="form-check-label" for="gender_type_{{ gender }}">{{ gender }}</label>
-                            </div>
-                        {% endfor %}
-                        <div class="form-group">
-                            {{ trans('intro.signup.same_sex_room') }}
-                        </div>
-                        <div class="text-danger">
-                            {{ errors.first('gender')|ucfirst }}
-                        </div>
-                        <div class="form-group">
-                            <label for="shirt_size">Welke shirtmaat heb je? (Unisex)</label>
-                            <select required id="shirt_size" name="shirt_size" class="form-control {{ errors.has('shirt_size') ? 'is-invalid' }}">
-                                {% for size in trans('intro.signup.shirt_sizes') %}
-                                    <option {{ old('shirt_size') == size ? 'selected' }}>{{ size }}</option>
-                                {% endfor %}
-                            </select>
-                            <div class="invalid-feedback">
-                                {{ errors.first('shirt_size')|ucfirst }}
                             </div>
                         </div>
 
@@ -228,6 +230,24 @@
                         {#</div>#}
 
 
+                        <div class="form-group">
+                            <textarea name="allergies" maxlength="1500" placeholder="{{ trans('intro.signup.allergies_placeholder') }}" class="form-control {{ errors.has('allergies') ? 'is-invalid' }}">{{ old('allergies') }}</textarea>
+                            <div class="invalid-feedback">
+                                {{ errors.first('allergies')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="medication" maxlength="1500" placeholder="{{ trans('intro.signup.medication_placeholder') }}" class="form-control {{ errors.has('medication') ? 'is-invalid' }}">{{ old('medication') }}</textarea>
+                            <div class="invalid-feedback">
+                                {{ errors.first('medication')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="diet_preferences" maxlength="1500" placeholder="{{ trans('intro.signup.diet_preferences_placeholder') }}" class="form-control {{ errors.has('diet_preferences') ? 'is-invalid' }}">{{ old('diet_preferences') }}</textarea>
+                            <div class="invalid-feedback">
+                                {{ errors.first('diet_preferences')|ucfirst }}
+                            </div>
+                        </div>
                         <div class="form-group">
                             <textarea name="remarks" maxlength="1500" placeholder="{{ trans('intro.signup.remarks_placeholder') }}" class="form-control {{ errors.has('remarks') ? 'is-invalid' }}">{{ old('remarks') }}</textarea>
                             <div class="invalid-feedback">

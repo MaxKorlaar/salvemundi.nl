@@ -268,8 +268,8 @@
                 'cannot_send_mails_right_now'    => 'Het is momenteel niet mogelijk om e-mails te sturen naar :first_name :last_name, aangezien de aanmelding al een bevestigd e-mailadres heeft.',
                 'back_to_index'                  => 'Terug naar aanmeldingen',
                 'delete_application'             => 'Verwijder aanmelding',
-                'edit_application' => 'Gegevens bewerken',
-                'edit'             => [
+                'edit_application'               => 'Gegevens bewerken',
+                'edit'                           => [
                     'title'               => 'Ouder-aanmelding bewerken: :first_name :last_name',
                     'save'                => 'Opslaan',
                     'back_to_application' => 'Terug',
@@ -320,6 +320,9 @@
                 'created_at'                       => 'Aangemaakt op',
                 'updated_at'                       => 'Bijgewerkt op',
                 'remarks'                          => 'Opmerkingen',
+                'allergies'                        => 'Allergieën',
+                'medication'                       => 'Medicijnen',
+                'diet_preferences'                 => 'Dieetwensen',
                 'internal_transaction_id'          => 'Transactie-ID (intern)',
                 'transaction_status'               => 'Transactiestatus',
                 'transaction_id'                   => 'Transactie-ID',

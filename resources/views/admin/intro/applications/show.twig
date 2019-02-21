@@ -72,8 +72,6 @@
                         <b>{{ trans('admin.intro.applications.contact_phone') }}</b>
                         {{ application.contact_phone }}
                     </div>
-                </div>
-                <div class="col-4">
                     <div>
                         <b>{{ trans('admin.intro.applications.birthday') }}</b>
                         {{ application.birthday|date(trans('datetime.format.date')) }}
@@ -82,6 +80,8 @@
                         <b>{{ trans('admin.intro.applications.email') }}</b>
                         {{ application.email }}
                     </div>
+                </div>
+                <div class="col-4">
                     <div>
                         <b>{{ trans('admin.intro.applications.pcn') }}</b>
                         {{ application.pcn ?? trans('admin.intro.applications.not_applicable') }}
@@ -95,6 +95,15 @@
                         {{ application.gender }}
                     </div>
                     <div>
+                        <b>{{ trans('admin.intro.applications.allergies') }}</b>
+                        {{ application.allergies ?? trans('admin.intro.applications.not_applicable') }}
+                    </div><div>
+                        <b>{{ trans('admin.intro.applications.medication') }}</b>
+                        {{ application.medication ?? trans('admin.intro.applications.not_applicable') }}
+                    </div><div>
+                        <b>{{ trans('admin.intro.applications.diet_preferences') }}</b>
+                        {{ application.diet_preferences ?? trans('admin.intro.applications.not_applicable') }}
+                    </div><div>
                         <b>{{ trans('admin.intro.applications.remarks') }}</b>
                         {{ application.remarks ?? trans('admin.intro.applications.not_applicable') }}
                     </div>

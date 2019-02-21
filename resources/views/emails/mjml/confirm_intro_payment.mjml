@@ -14,7 +14,7 @@
                     <mj-text>{{ trans('email.intro.payment_confirmation.instructions', { year: application.introduction.year.year }) }}</mj-text>
 
                     <mj-text>
-                        {% set fields = ['first_name', 'last_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_name', 'contact_relation', 'contact_phone', 'email', 'shirt_size', 'gender', 'remarks'] %} {% for field in fields %}
+                        {% set fields = ['first_name', 'last_name', 'birthday', 'address', 'city', 'postal', 'phone', 'contact_name', 'contact_relation', 'contact_phone', 'email', 'shirt_size', 'gender', 'allergies', 'medication', 'diet_preferences', 'remarks'] %} {% for field in fields %}
                             <b>{{ trans('intro.signup.' ~ field)|raw ~ ':' }}</b>
                             {% if application[field] is same as(false) %}
                                 {{ trans('email.intro.new_application.false') }}

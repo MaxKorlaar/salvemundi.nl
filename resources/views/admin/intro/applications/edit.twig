@@ -98,9 +98,6 @@
                             {{ errors.first('birthday')|ucfirst }}
                         </div>
                     </div>
-
-                </div>
-                <div class="col-6">
                     <div class="form-group">
                         <label for="email">{{ trans('admin.intro.applications.email') }}</label>
                         <input id="email" type="email"
@@ -111,6 +108,9 @@
                             {{ errors.first('email')|ucfirst }}
                         </div>
                     </div>
+                </div>
+                <div class="col-6">
+
                     <div class="form-group">
                         <label for="contact_name">{{ trans('admin.intro.applications.contact_name') }}</label>
                         <input id="contact_name" type="text"
@@ -172,6 +172,30 @@
                         </select>
                         <div class="invalid-feedback">
                             {{ errors.first('gender')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="allergies">{{ trans('admin.intro.applications.allergies') }}</label>
+                        <textarea id="allergies" name="allergies" maxlength="1500" placeholder="{{ trans('admin.intro.applications.allergies') }}"
+                                  class="form-control {{ errors.has('allergies') ? 'is-invalid' }}">{{ old('allergies', application.allergies) }}</textarea>
+                        <div class="invalid-feedback">
+                            {{ errors.first('allergies')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="medication">{{ trans('admin.intro.applications.medication') }}</label>
+                        <textarea id="medication" name="medication" maxlength="1500" placeholder="{{ trans('admin.intro.applications.medication') }}"
+                                  class="form-control {{ errors.has('medication') ? 'is-invalid' }}">{{ old('medication', application.medication) }}</textarea>
+                        <div class="invalid-feedback">
+                            {{ errors.first('medication')|ucfirst }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="diet_preferences">{{ trans('admin.intro.applications.diet_preferences') }}</label>
+                        <textarea id="diet_preferences" name="diet_preferences" maxlength="1500" placeholder="{{ trans('admin.intro.applications.diet_preferences') }}"
+                                  class="form-control {{ errors.has('diet_preferences') ? 'is-invalid' }}">{{ old('diet_preferences', application.diet_preferences) }}</textarea>
+                        <div class="invalid-feedback">
+                            {{ errors.first('diet_preferences')|ucfirst }}
                         </div>
                     </div>
                     <div class="form-group">
