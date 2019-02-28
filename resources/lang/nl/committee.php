@@ -17,37 +17,13 @@
                     "caption" => ""
                 ],
             ],
-            'meet_the_members'          => 'Ontmoet het bestuur',
+            'meet_the_members'          => 'Het huidige bestuur',
             'members'                   => [
                 [
-                    'name'    => 'Mohammed Mighiss',
-                    'profile' => 'ICT & Technology',
-                    'text'    => 'Bij het oprichten van de vereniging werd duidelijk dat Mohammed graag aan de kennis gerelateerde vakken wilde werken. Met lesgeven en netwerken had hij ervaring en dit ging hem makkelijk af op school. Al snel bleek dat je met een netwerk op school veel verder komt dan een gemiddelde student. Dit genot en deze gemakkelijkheid wilde hij delen met iedereen zo goed als het kon. "Je kunt op van de opleiding aflopen met een papiertje, of met een vaste baan bij een miljoenen bedrijf." Mohammed is dan ook verantwoordelijk geweest voor de kennis-zaken van Salve Mundi. Bij Mohammed kan je altijd terecht voor een knuffel wanneer het minder gaat.',
-                    'image'   => 'Mohammed.jpg'
-                ],
-                [
-                    'name'    => 'Luuk Hendriks',
-                    'profile' => 'ICT & Business',
-                    'text'    => 'Voor dat de vereniging bestond was de introductie klein en schaars. De introductie stond er altijd om bekend om groot en gek te zijn. Luuk heeft dan ook de introductie als grote motivatie gehad om de vereniging op te starten. Dit werd al snel groter. Deze gezelligheid en feest sfeer hoeft niet alleen aan het begin van het jaar. "Wanneer het jaar niet gemakkelijk gaat en de lesstof moeilijk lijkt, is een vereniging met leden die eigenlijk je vrienden zijn geworden vaak het enige wat je gemotiveerd houd." Luuk is dan ook verantwoordelijk geweest voor de gezelligheid zaken van Salve Mundi. Luuk staat er vaak om bekend om hard maar eerlijk te zijn. Je weet precies waar je aan toe bent. Ook heeft hij altijd wel weer een mannetje voor iets.',
-                    'image'   => 'Luuk.jpg'
-                ],
-                [
-                    'name'    => 'Rex Treurniet',
-                    'profile' => 'ICT & Business',
-                    'text'    => 'Na het eerste half jaar en dus in het nieuwe schooljaar nam Salve Mundi voor het eerst leden aan. Hier kwamen in eens gigantisch veel geldzaken bijzetten, iets waar Mohammed en Luuk zichzelf niet als geschikt voor aankaartte. Rex is na eerst terughoudend te zijn met twee voeten in de rol van penningmeester gesprongen. Met zijn kennis als projectleider bij KPN en van boekhouding past hij goed in de rol en heeft hij de vereniging in goede banen geleid als het gaat om de bankrekening, verzekeringen en de aanmelding bij de kamer van koophandel. Rex is de papa van de vereniging en verleidt iedereen met zijn prachtige dochtertje.',
-                    'image'   => 'Rex.jpg'
-                ],
-                [
-                    'name'    => 'Mitchell Vermeulen',
-                    'profile' => 'ICT & Software',
-                    'text'    => 'Dit lid is tijdens het schrijven van deze tekst pas net een bestuurslid. Zijn stuk tekst zal dus nog tijd nodig hebben om te veranderen van beloften naar daden. Deze beloften zijn echter goed geplaatst en passen geweldig bij Salve Mundi. Aangevende: "Al voordat ik mijn eerste lesdag had gehad wist ik dat ik iets wilde doen bij een vereniging." Hij wil zich vooral bezighouden met de sociale taken. Eerder al aangegeven te hebben dat hij bij de feestcommissie wilde is zijn inzet en motivatie al duidelijk. We kijken er naar uit om zijn werk te zien.',
-                    'image'   => 'Mitchell.jpg'
-                ],
-                [
-                    'name'    => 'Ricky Muijters',
-                    'profile' => 'ICT & Software',
-                    'text'    => 'Ricky is pas kort lid van de vereniging. Na mee gedaan te hebben als deelnemer van de introductie van 2018 ging hij al snel op weg naar het worden van bestuurslid. Met zijn verse blik op de studie, en zijn nesteling binnen de eerstejaars is een vers lid binnen het bestuur nooit verkeerd. Zijn natuurlijk charisma was genoeg om de leden te overtuigen tijdens de ALV. Hij geeft aan een hoge inzet te hebben om hard te gaan werken.',
-                    'image'   => 'Ricky.jpg'
+                    'name'    => 'Joshua van Gompel',
+                    'profile' => 'ICT & Media Design',
+                    'text'    => 'Als een van de eerste leden is Joshua er al heel lang bij. Hij was aanwezig als organisator van de eerste georganiseerde introductie in 2017 en is hij al lang actief voor de vereniging met hart en ziel. Na 1,5 jaar gezocht te hebben naar zijn plek, heeft Joshua toch besloten om een functie binnen het bestuur aan te nemen. Hij neemt de plek als vicevoorzitter waarmee hij ervoor gaat zorgen dat de commissies altijd met de juiste visie van het bestuur aan de slag gaan. Daarnaast helpt hij de voorzitter met het duidelijk maken van de punten. Joshua is een goede aanwinst voor het nieuwe bestuur.',
+                    'image'   => 'Joshua_2.jpg'
                 ],
                 [
                     'name'    => 'Bastiaan Verhaar',
@@ -56,10 +32,28 @@
                     'image'   => 'Bastiaan.jpg'
                 ],
                 [
-                    'name'    => 'Joshua van Gompel',
+                    'name'    => 'Daniëlle Ooms',
                     'profile' => 'ICT & Media Design',
-                    'text'    => 'Als een van de eerste leden is Joshua er al heel lang bij. Hij was aanwezig als organisator van de eerste georganiseerde introductie in 2017 en is hij al lang actief voor de vereniging met hart en ziel. Na 1,5 jaar gezocht te hebben naar zijn plek, heeft Joshua toch besloten om een functie binnen het bestuur aan te nemen. Hij neemt de plek als vicevoorzitter waarmee hij er voor gaat zorgen dat de commissies altijd met de juiste visie van het bestuur aan de slag gaan. Daarnaast helpt hij de voorzitter met het duidelijk maken van de punten. Joshua is een goede aanwinst voor het nieuwe bestuur.',
-                    'image'   => 'Joshua_2.jpg'
+                    'text'    => '',
+                    'image'   => 'Danielle.jpg'
+                ],
+                [
+                    'name'    => 'Arno van Kessel',
+                    'profile' => 'ICT & Software',
+                    'text'    => '',
+                    'image'   => 'Arno.jpg'
+                ],
+                [
+                    'name'    => 'Mike Kotten',
+                    'profile' => 'ICT & Software',
+                    'text'    => '',
+                    'image'   => 'Mike.jpg'
+                ],
+                [
+                    'name'    => 'Alex van Dijk',
+                    'profile' => 'ICT & Media Design',
+                    'text'    => '',
+                    'image'   => 'Alex.jpg'
                 ]
             ]
         ],
@@ -151,6 +145,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     // xoxo ~Max, 2018
                     'image'   => 'Max.jpg',
                     // todo: On hover veranderen naar foto met Youp en Niek
+                    // todo: echt waar Max? :')
                     'url'     => '//maxkorlaar.nl'
                 ],
                 [
@@ -161,10 +156,10 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'url'     => '//mvdk.eu/'
                 ],
                 [
-                    'name'    => 'Bart van Lier',
+                    'name'    => 'Ruud Vissers',
                     'profile' => 'ICT & Media Design',
-                    'text'    => '',
-                    'image'   => 'Bart.jpg',
+                    'text'    => 'Semester 6 ICT & Media Design, Ruud onderhoudt samen met Max de website en verder speelt hij banjo bij Batenburg Hellbillie!',
+                    'image'   => 'Ruud.jpg',
                 ], [
                     'name'    => 'Niek van Gogh',
                     'profile' => 'ICT & Software',
@@ -194,13 +189,19 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'name'    => 'Michelle Cox',
                     'profile' => 'ICT & Media Design',
                     'image'   => 'Michelle.jpg'
+                ],
+                [
+                    'name'    => 'Bart van Lier',
+                    'profile' => 'ICT & Media Design',
+                    'text'    => '',
+                    'image'   => 'Bart.jpg'
                 ]
 
             ]
         ],
         'camping'          => [
             'title'            => 'Kampcommissie',
-            'about_text'       => 'Ieder jaar organiseert de kampcommissie een kamp voor de leden van HBO-ICT Studievereniging Salve Mundi, van eerste tot laatstejaars en zelfs alumni zijn welkom tijdens dit geweldige evenement. Het zijn elke keer weer een paar fantastische dagen die je niet mag missen! Zien wij jou op ons volgende kamp?',
+            'about_text'       => 'Ieder jaar organiseert de kampcommissie een kamp voor de leden van HBO-ICT studievereniging Salve Mundi, van eerste tot laatstejaars en zelfs alumni zijn welkom tijdens dit geweldige evenement. Het zijn elke keer weer een paar fantastische dagen die je niet mag missen! Zien wij jou op ons volgende kamp?',
             'meet_the_members' => 'De kampeerders',
             'members'          => [
                 [
@@ -217,18 +218,32 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'name'    => 'Youp Jansen',
                     'profile' => 'ICT & Business',
                     'image'   => 'Youp.jpg'
+                ],
+                [
+                    'name'    => 'Michelle Groenendijk',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => ''
+                ],
+                [
+                    'name'    => 'Floris Feddema',
+                    'profile' => 'ICT & Software',
+                    'image'   => ''
+                ],
+                [
+                    'name'    => 'Sean Metsemakers',
+                    'profile' => 'ICT & Technology',
+                    'image'   => ''
                 ]
-
             ]
         ],
         'study'            => [
             'title'         => 'Studiecommissie',
             'about_text'    => [
                 'Een studievereniging kent 3 uitgangspunten, namelijk:
-kennis gerelateerde activiteiten;
-gezelligheid gerelateerde activiteiten;
-en onderwijs gerelateerde activiteiten',
-                'Voor onderwijs gerelateerde activiteiten zijn wij de studiecommissie en houden wij ons vooral bezig met bijlessen, het verwelkomen van nieuwe studenten, studieondersteuning en verder alles wat intern op Fontys aangeboden wordt en kan worden.',
+Kennis gerelateerde activiteiten;
+Gezelligheid gerelateerde activiteiten;
+en Onderwijs gerelateerde activiteiten',
+                'Voor onderwijs gerelateerde activiteiten zijn wij de studiecommissie en houden wij ons vooral bezig met Bijlessen, het verwelkomen van nieuwe studenten, studieondersteuning en verder alles wat intern op Fontys aangeboden wordt en kan worden.',
                 'Het streven van de studiecommissie is vooral om in samenwerking met school zo veel mogelijk draagvlak te bieden voor de medestudent om zo de semesters te behalen.'
             ],
             'meet_the_team' => 'De helpende handjes',
@@ -279,7 +294,7 @@ en onderwijs gerelateerde activiteiten',
             'title'         => 'Commissie van ledenzaken',
             'title_short'   => 'Ledenzaken',
             'about_text'    => [
-                'De commissie van ledenzaken is verantwoordelijk voor het bemiddelen bij geschillen binnen de studievereniging.',
+                'De Commissie van Ledenzaken is verantwoordelijk voor het bemiddelen bij geschillen binnen de studievereniging.',
                 'Ledenzaken is een plek waar alle leden hun ei kwijt kunnen. Dit binnen een vertrouwde en onpartijdige omgeving waar privacy gewaarborgd wordt.',
                 'Momenteel met een klein team, zorgt de commissie ervoor dat iedereen zich prettig kan voelen binnen de vereniging.'
             ],
@@ -455,6 +470,11 @@ en onderwijs gerelateerde activiteiten',
                     'name'    => 'Kyle Ritchi',
                     'profile' => 'ICT & Software',
                     'image'   => 'Kyle.jpg'
+                ],
+                [
+                    'name'    => 'Sjoerd Halmans',
+                    'profile' => 'ICT & Software',
+                    'image'   => ''
                 ]
 
             ]
