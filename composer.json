@@ -34,10 +34,8 @@
     "spatie/laravel-permission": "^2.29",
     "ext-soap": "*",
     "ext-bcmath": "*",
-    "ext-mcrypt": "*",
     "ext-openssl": "*",
-    "ext-xml": "*",
-    "ext-gmp": "*"
+    "ext-xml": "*"
   },
   "require-dev": {
     "ajthinking/tinx": "^2.1",
