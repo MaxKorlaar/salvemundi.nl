@@ -85,6 +85,7 @@
             if ($request->has('mail_reservations')) {
                 $intro->mail_reservations_at = $request->get('signup_open');
             }
+            $intro->allow_reservations_after_limit = $request->has('allow_reservations_after_limit');
             $intro->saveOrFail();
             return redirect()->route('admin.intro.show', [$intro])->with('success', trans('admin.intro.create.created'));
         }
