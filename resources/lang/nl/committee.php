@@ -156,11 +156,6 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'url'     => '//mvdk.eu/'
                 ],
                 [
-                    'name'    => 'Ruud Vissers',
-                    'profile' => 'ICT & Media Design',
-                    'text'    => 'Semester 6 ICT & Media Design, Ruud onderhoudt samen met Max de website en verder speelt hij banjo bij Batenburg Hellbillie!',
-                    'image'   => 'Ruud.jpg',
-                ], [
                     'name'    => 'Niek van Gogh',
                     'profile' => 'ICT & Software',
                     'text'    => '',
