@@ -32,6 +32,8 @@
                 ->dailyAt('09:00');
             $schedule->command('intro:anonymise')
                 ->weekly();
+            $schedule->command('members:delete-trashed')
+                ->weekly();
         }
 
         /**

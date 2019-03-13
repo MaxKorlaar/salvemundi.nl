@@ -184,6 +184,9 @@
 
         Route::get('leden/inzicht-gegevens', 'MemberController@getMembersWithFullAccess');
 
+        Route::get('leden/verwijderde-leden', 'MemberController@viewDeletedMembers')->name('members.view_deleted');
+        Route::post('leden/verwijderde-leden/{member}/herstel', 'MemberController@restoreDeletedMember')->name('members.restore_deleted');
+
         Route::get('leden/verwijder-inactieve', 'MemberController@deleteInactiveConfirmation')->name('members.delete_inactive_confirmation');
         Route::delete('leden/verwijder-inactieve', 'MemberController@deleteInactive')->name('members.delete_inactive');
         Route::resource('leden', 'MemberController')->names('members');

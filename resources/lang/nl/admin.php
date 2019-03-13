@@ -108,6 +108,7 @@
             'no_user'               => 'Geen account',
             'card'                  => 'Ledenpas',
             'delete_all_inactive'   => 'Verwijder alle inactieve leden',
+            'view_deleted_members'  => 'Bekijk verwijderde leden',
             'view_spreadsheet'      => 'Bekijk spreadsheet',
             'temporary_card_number' => 'Tijdelijke pas',
             'card_status'           => [
@@ -122,6 +123,7 @@
             ],
             'created_at'            => 'Aangemaakt op',
             'updated_at'            => 'Bijgewerkt op',
+            'deleted_at'            => 'Verwijderd op',
             'count'                 => ':count lid|:count leden',
             'new'                   => 'Nieuw lid',
             'transactions'          => 'Transacties',
@@ -150,6 +152,12 @@
                 'inactive_confirmation' => 'Leden met een verlopen lidmaatschap verwijderen',
                 'following_members'     => 'De volgende leden zullen worden verwijderd uit het ledensysteem. Hun gebruikersaccounts worden verwijderd en zij kunnen hierdoor niet meer inloggen. Dit betekent ook dat ze niet meer hun lidmaatschap kunnen verlengen. Hiervoor moet een lid op tijd worden hersteld of moet een lid zichzelf opnieuw inschrijven.',
                 'inactive_deleted'      => ':count leden met een verlopen lidmaatschap zijn verwijderd'
+            ],
+            'restore_deleted'       => [
+                'title'             => 'Verwijderde leden',
+                'following_members' => 'De volgende leden zijn handmatig of automatisch door het systeem verwijderd. Deze leden zullen automatisch onherstelbaar permanent worden verwijderd uit het gehele systeem 31 dagen nadat deze als verwijderd zijn gemarkeerd. Het is bij onderstaande leden nog mogelijk om deze tijdig te herstellen. Doe je dit niet, dan zullen ze worden verwijderd.',
+                'restore'           => 'Herstellen',
+                'removal_at'        => 'Permanente verwijdering op'
             ],
             'send_email'            => [
                 'title'                       => 'Leden mailen',
