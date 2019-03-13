@@ -174,12 +174,6 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'url'     => '//ruudvissers.nl/werkportfolio/'
                 ],
                 [
-                    'name'    => 'Kim van der Meulen',
-                    'profile' => 'ICT & Software',
-                    'text'    => '',
-                    'image'   => 'Kim.jpg',
-                ],
-                [
                     'name'    => 'Kazimir Awsiej',
                     'profile' => 'ICT & Media Design',
                     'text'    => '',
@@ -420,12 +414,7 @@ en Onderwijs gerelateerde activiteiten',
                     'name'    => 'Vincent Venhuizen',
                     'profile' => 'ICT & Media Design',
                     'image'   => 'Vincent.jpg'
-                ],
-                [
-                    'name'    => 'Kim van der Meulen',
-                    'profile' => 'ICT & Software',
-                    'image'   => 'Kim.jpg',
-                ],
+                ]
             ]
         ],
         'alpha_centauri'   => [
