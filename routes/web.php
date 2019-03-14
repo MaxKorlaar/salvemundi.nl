@@ -134,6 +134,7 @@
         Route::post('intro/{intro}/stuur-betaal-herinneringen', 'IntroController@sendPaymentReminders')
             ->name('intro.send_payment_reminders');
 
+        Route::get('intro/{intro}/json', 'IntroController@getJson')->name('intro.json');
         Route::get('intro/{intro}/spreadsheet', 'Intro\ApplicationController@spreadsheet')->name('intro.spreadsheet');
 
         Route::post('intro/{intro}/aanmeldingen/{application}/stuur-betaal-herinnering', 'Intro\ApplicationController@sendPaymentReminder')
@@ -148,6 +149,7 @@
             ->name('intro.supervisor_applications.delete_confirmation');
 
         Route::get('intro/{intro}/ouder-aanmeldingen/spreadsheet', 'Intro\SupervisorApplicationController@spreadsheet')->name('intro.supervisor_applications.spreadsheet');
+        Route::get('intro/{intro}/ouder-aanmeldingen/json', 'Intro\SupervisorApplicationController@getJson')->name('intro.supervisor_applications.json');
 
         Route::get('intro/{intro}/verwijderen', 'IntroController@getDeleteConfirmation')->name('intro.delete_confirmation');
         Route::resource('intro', 'IntroController')->names('intro');

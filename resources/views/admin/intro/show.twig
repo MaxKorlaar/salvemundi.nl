@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <main class="introduction">
-            <div id="intro-applications" data-url="{{ route('admin.intro.show', { introduction: introduction }) }}">
+            <div id="intro-applications" data-url="{{ route('admin.intro.json', { introduction: introduction }) }}">
                 <div class="row">
                     <div class="col-md-12">
                         <h1>{{ trans('admin.intro.show.title', { year: introduction.year.year }) }}</h1>
