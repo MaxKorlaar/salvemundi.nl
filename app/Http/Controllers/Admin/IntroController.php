@@ -44,19 +44,26 @@
 
         /**
          * @param Introduction $intro
+         * @param Request      $request
+         *
+         * @return array
+         */
+        public function getJson(Introduction $intro, Request $request) {
+            return [
+                'success'      => true,
+                'applications' => $intro->getApplicationsJSON(),
+                'introduction' => $intro->getJSON()
+            ];
+        }
+
+        /**
+         * @param Introduction $intro
          *
          * @param Request      $request
          *
          * @return array|Factory|View
          */
-        public function show(Introduction $intro, Request $request) {
-            if ($request->ajax()) {
-                return [
-                    'success'      => true,
-                    'applications' => $intro->getApplicationsJSON(),
-                    'introduction' => $intro->getJSON()
-                ];
-            }
+        public static function show(Introduction $intro, Request $request) {
             return view('admin.intro.show', [
                 'introduction'            => $intro
             ]);

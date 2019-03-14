@@ -25,6 +25,18 @@
         }
 
         /**
+         * @param Introduction $intro
+         *
+         * @return array
+         */
+        public function getJson(Introduction $intro) {
+            return [
+                'success'      => true,
+                'applications' => $intro->getSupervisorApplicationsJSON()
+            ];
+        }
+
+        /**
          * Display a listing of the resource.
          *
          * @param Introduction $intro
@@ -34,12 +46,6 @@
          * @return array|Response
          */
         public function index(Introduction $intro, Request $request) {
-            if ($request->ajax()) {
-                return [
-                    'success'      => true,
-                    'applications' => $intro->getSupervisorApplicationsJSON()
-                ];
-            }
             return view('admin.intro.supervisor_applications.index', [
                 'introduction'            => $intro,
                 'confirmed_count'         => $intro->supervisorApplications()
@@ -61,7 +67,7 @@
         /**
          * Store a newly created resource in storage.
          *
-         * @param  Request $request
+         * @param Request $request
          *
          * @return void
          */
