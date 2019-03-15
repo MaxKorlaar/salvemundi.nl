@@ -497,6 +497,30 @@
             return back()->with('success', trans('admin.members.edit.updated'));
         }
 
+
+        /**
+         * @return Factory|View
+         */
+        public static function viewDeletedMembers() {
+            $members = Member::onlyTrashed()->orderBy('member_id')->get();
+
+            return view('admin.members.view_deleted', [
+                'members' => $members
+            ]);
+        }
+
+        /**
+         * @param $id
+         *
+         * @return RedirectResponse|void
+         */
+        public static function restoreDeletedMember($id) {
+            $member = Member::onlyTrashed()->find($id);
+            if ($member === null) return abort(403);
+            $member->restore();
+            return back()->with(['success' => trans('admin.members.restore_deleted.member_restored')]);
+        }
+
         /**
          * @return Factory|View
          */

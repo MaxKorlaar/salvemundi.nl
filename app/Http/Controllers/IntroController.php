@@ -513,6 +513,8 @@
          * @throws Throwable
          */
         public function supervisorSignupByYearAndId(Introduction $introduction, $year, IntroSupervisorSignup $request) {
+            abort(403); // TODO: TEMPFIX
+
             if (!$introduction->reservationsAreOpen() && !$introduction->signupsAreOpen()) abort(403);
             $member = Auth::user()->member;
             if (!$member->isCurrentlyMember()) abort(403);

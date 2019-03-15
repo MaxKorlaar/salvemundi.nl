@@ -1,0 +1,52 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.members.restore_deleted.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="member">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.members.restore_deleted.title') }}</h1>
+                </div>
+                <div class="col-md-12 text-danger">
+                    {{ trans('admin.members.restore_deleted.following_members') }}
+                </div>
+                <table class="table member-list table-striped">
+                    <thead>
+                        <tr>
+                            <th>{{ trans('admin.members.id') }}</th>
+                            <th>{{ trans('admin.members.member_id') }}</th>
+                            <th>{{ trans('admin.members.pcn') }}</th>
+                            <th>{{ trans('admin.members.last_name') }}</th>
+                            <th>{{ trans('admin.members.first_name') }}</th>
+                            <th>{{ trans('admin.members.member_until') }}</th>
+                            <th>{{ trans('admin.members.deleted_at') }}</th>
+                            <th>{{ trans('admin.members.restore_deleted.removal_at') }}</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for member in members %}
+                            <tr>
+                                <td>{{ member.id }}</td>
+                                <td>{{ member.member_id }}</td>
+                                <td>{{ member.pcn }}</td>
+                                <td>{{ member.last_name }}</td>
+                                <td>{{ member.first_name }}</td>
+                                <td>{{ member.memberships.last().valid_from|date(trans('datetime.format.date')) }} – {{ member.memberships.last().valid_until|date(trans('datetime.format.date')) }}</td>
+                                <td>{{ member.deleted_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                <td>{{ member.deleted_at.addDays(31)|date(trans('datetime.format.date_and_time')) }}</td>
+                                <td>
+                                    <form class="col-md-12" action="{{ route('admin.members.restore_deleted', { member: member }) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="button danger">{{ trans('admin.members.restore_deleted.restore') }}</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </main>
+    </div>
+{% endblock %}

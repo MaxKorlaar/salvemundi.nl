@@ -43,7 +43,11 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                    <small>{{ trans_choice('admin.members.count', members.count, { count: members.count }) }} &sdot; <a href="{{ route('admin.members.delete_inactive_confirmation') }}">{{ trans('admin.members.delete_all_inactive') }}</a></small>
+                    <small>{{ trans_choice('admin.members.count', members.count, { count: members.count }) }} &sdot;
+                        <a href="{{ route('admin.members.delete_inactive_confirmation') }}">{{ trans('admin.members.delete_all_inactive') }}</a>
+                                                                                                              &sdot;
+                        <a href="{{ route('admin.members.view_deleted') }}">{{ trans('admin.members.view_deleted_members') }}</a>
+                    </small>
                 </div>
             </div>
         </main>

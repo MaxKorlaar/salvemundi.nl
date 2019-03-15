@@ -44,19 +44,26 @@
 
         /**
          * @param Introduction $intro
+         * @param Request      $request
+         *
+         * @return array
+         */
+        public function getJson(Introduction $intro, Request $request) {
+            return [
+                'success'      => true,
+                'applications' => $intro->getApplicationsJSON(),
+                'introduction' => $intro->getJSON()
+            ];
+        }
+
+        /**
+         * @param Introduction $intro
          *
          * @param Request      $request
          *
          * @return array|Factory|View
          */
-        public function show(Introduction $intro, Request $request) {
-            if ($request->ajax()) {
-                return [
-                    'success'      => true,
-                    'applications' => $intro->getApplicationsJSON(),
-                    'introduction' => $intro->getJSON()
-                ];
-            }
+        public static function show(Introduction $intro, Request $request) {
             return view('admin.intro.show', [
                 'introduction'            => $intro
             ]);
@@ -85,6 +92,7 @@
             if ($request->has('mail_reservations')) {
                 $intro->mail_reservations_at = $request->get('signup_open');
             }
+            $intro->allow_reservations_after_limit = $request->has('allow_reservations_after_limit');
             $intro->saveOrFail();
             return redirect()->route('admin.intro.show', [$intro])->with('success', trans('admin.intro.create.created'));
         }
