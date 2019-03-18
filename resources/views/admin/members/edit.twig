@@ -148,22 +148,24 @@
                             </div>
                         </div>
                         {% if member.user and auth_user().can('edit member permissions') %}
-                            <div class="col-12 permissions-grid">
-
-                                {% for permission in permissions %}
-                                    <div class="form-check">
-                                        <input class="form-control form-check-input {{ errors.has('permissions.' ~ permission.name) ? 'is-invalid' }}"
-                                               value="1" type="checkbox" id="allow_reservations_after_limit"
-                                               name="{{ 'permissions[' ~ permission.name ~ ']' }}"
-                                            {{ old('permissions.' ~ permission.name, member.user.can(permission.name)) ? 'checked' }}>
-                                        <label class="form-check-label" for="{{ 'permissions[' ~ permission.name ~ ']' }}">
-                                            {{ trans('permissions.' ~ permission.name) }}
-                                        </label>
-                                        <div class="invalid-feedback">
-                                            {{ errors.first('permissions.' ~ permission.name)|ucfirst }}
+                            <div class="col-12">
+                                <h3>{{ trans('admin.members.permissions') }}</h3>
+                                <div class="permissions-grid">
+                                    {% for permission in permissions %}
+                                        <div class="form-check">
+                                            <input class="form-control form-check-input {{ errors.has('permissions.' ~ permission.name) ? 'is-invalid' }}"
+                                                   value="1" type="checkbox" id="allow_reservations_after_limit"
+                                                   name="{{ 'permissions[' ~ permission.name ~ ']' }}"
+                                                {{ old('permissions.' ~ permission.name, member.user.can(permission.name)) ? 'checked' }}>
+                                            <label class="form-check-label" for="{{ 'permissions[' ~ permission.name ~ ']' }}">
+                                                {{ trans('permissions.' ~ permission.name) }}
+                                            </label>
+                                            <div class="invalid-feedback">
+                                                {{ errors.first('permissions.' ~ permission.name)|ucfirst }}
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
+                                    {% endfor %}
+                                </div>
                             </div>
                         {% endif %}
                         <div class="col-12">
