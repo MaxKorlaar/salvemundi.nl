@@ -31,6 +31,7 @@
                 'allow_reservations_after_limit' => 'boolean',
                 'signup_open'                    => 'required|date|after:-2 months',
                 'signup_close'                   => 'required|date|after:-1 month',
+                'supervisor_signup_close'        => 'required|date|after:-1 month',
                 'year_id'                        => 'required|exists:years,id',
                 'price'                          => 'required|numeric|min:0|max:500',
                 'max_signups'                    => 'required|integer|min:1',

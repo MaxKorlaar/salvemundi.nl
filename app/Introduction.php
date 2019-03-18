@@ -45,9 +45,11 @@
      * @method static Builder|Introduction whereYearId($value)
      * @mixin Eloquent
      * @property-read Collection|IntroSupervisorApplication[] $supervisorApplications
+     * @property string                                       $supervisor_signup_close
+     * @method static Builder|Introduction whereSupervisorSignupClose($value)
      */
     class Introduction extends Model {
-        public $fillable = ['year_id', 'reservations_open', 'signup_open', 'signup_close', 'price', 'max_signups', 'allow_reservations_after_limit'];
+        public $fillable = ['year_id', 'reservations_open', 'signup_open', 'signup_close', 'supervisor_signup_close', 'price', 'max_signups', 'allow_reservations_after_limit'];
         public $hidden = ['applications', 'supervisorApplications'];
         public $casts = [
             'allow_reservations_after_limit' => 'boolean'
@@ -81,6 +83,13 @@
          */
         public function signupsAreOpen() {
             return $this->signup_open < Carbon::now() && $this->signup_close > Carbon::now();
+        }
+
+        /**
+         * @return bool
+         */
+        public function supervisorSignupsAreOpen() {
+            return $this->reservations_open < Carbon::now() && $this->supervisor_signup_close > Carbon::now();
         }
 
         /**

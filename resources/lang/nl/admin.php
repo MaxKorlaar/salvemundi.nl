@@ -197,6 +197,7 @@
             'mail_reservations'              => 'Stuur automatisch een e-mail met het verzoek om te betalen',
             'mail_reservations_help'         => 'Indien ingeschakeld zal er op de dag waarop het aanmelden mogelijk is om 09.00 een e-mail worden verstuurd naar alle studenten die een plek gereserveerd hebben voor deze introductie. Dit gebeurt eenmalig.',
             'signup_open'                    => 'Aanmelden vanaf',
+            'supervisor_signup_close'        => 'Ouders aanmelden tot',
             'signup_close'                   => 'Aanmelden tot',
             'created_at'                     => 'Gemaakt op',
             'updated_at'                     => 'Bijgewerkt op',
