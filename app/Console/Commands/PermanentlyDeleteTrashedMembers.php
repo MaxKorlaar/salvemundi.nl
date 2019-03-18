@@ -43,7 +43,8 @@
          */
         public function handle() {
             Member::onlyTrashed()->where('deleted_at', '<', Carbon::today()->subDays(31))->each(function(Member $member) {
-                $member->forceDelete();
+                $result = $member->forceDelete();
+                \Log::debug('Lid is permanent verwijderd', ['id' => $member->id, 'result' => $result]);
             });
             $this->info('Verwijderde leden zijn automatisch permanent verwijderd.');
             \Log::debug("Verwijderde leden zijn automatisch permanent verwijderd.");
