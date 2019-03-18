@@ -97,7 +97,7 @@
          * @return mixed
          */
         public function getImage(Item $item, Stock $voorraad, StockImage $image) {
-            return StockImage::getCachedImage(true)->fit(300, 300)->response();
+            return $image->getCachedImage(true)->fit(300, 300)->response();
         }
 
         /**
@@ -108,7 +108,7 @@
          * @return mixed
          */
         public function getImageFull(Item $item, Stock $voorraad, StockImage $image) {
-            return StockImage::getCachedImage(true)->response();
+            return $image->getCachedImage(true)->response();
         }
 
         /**

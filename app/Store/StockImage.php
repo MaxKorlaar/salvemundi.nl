@@ -58,6 +58,7 @@
                 $image->resize($width, $height, function (Constraint $constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
+                    $image->orientate();
                 });
             }, null, $returnObj);
         }
@@ -74,11 +75,12 @@
          *
          * @return Image|\Intervention\Image\Image
          */
-        public static function getCachedImage($returnObj = false) {
+        public function getCachedImage($returnObj = false) {
             ini_set('memory_limit', '256M');
             return Image::cache(function ($image) {
                 /** @var \Intervention\Image\Image $image */
                 $image->make($this->getImagePath());
+                $image->orientate();
             }, null, $returnObj);
         }
 
