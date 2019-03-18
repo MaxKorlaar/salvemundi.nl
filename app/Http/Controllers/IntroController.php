@@ -513,9 +513,8 @@
          * @throws Throwable
          */
         public function supervisorSignupByYearAndId(Introduction $introduction, $year, IntroSupervisorSignup $request) {
-            abort(403); // TODO: TEMPFIX
 
-            if (!$introduction->reservationsAreOpen() && !$introduction->signupsAreOpen()) abort(403);
+            if (!$introduction->supervisorSignupsAreOpen()) abort(403);
             $member = Auth::user()->member;
             if (!$member->isCurrentlyMember()) abort(403);
             $application                           = new IntroSupervisorApplication($request->all());
@@ -565,10 +564,14 @@
             return view('intro.supervisor.email_confirmation', [
                 'application' => $application
             ]);
-
         }
 
-        static function openSession($client) {
+        /**
+         * @param $client
+         *
+         * @return mixed
+         */
+        public static function openSession($client) {
             $paramsOpenSession = [
                 "Username"      => config("eboekhouden.username"),
                 "SecurityCode1" => config("eboekhouden.security_code_1"),
@@ -579,7 +582,12 @@
             return $sessionID;
         }
 
-        static function sendMutation($mutation, $sessionID, $client) {
+        /**
+         * @param $mutation
+         * @param $sessionID
+         * @param $client
+         */
+        public static function sendMutation($mutation, $sessionID, $client) {
             $paramsAddMutation = [
                 "SessionID"     => $sessionID,
                 "SecurityCode2" => config("eboekhouden.security_code_2"),
@@ -590,7 +598,11 @@
         }
 
 
-        static function closeSession($sessionID, $client) {
+        /**
+         * @param $sessionID
+         * @param $client
+         */
+        public static function closeSession($sessionID, $client) {
             $paramCloseSession = [
                 "SessionID" => $sessionID
             ];

@@ -27,7 +27,9 @@
 
 
         public function __construct() {
-            $this->middleware('auth.admin');
+            $this->middleware('permission:view introduction signups');
+            $this->middleware('permission:edit introduction signups')->only(['create', 'store', 'edit', 'update', 'sendEmailConfirmationReminder', 'sendPaymentReminder']);
+            $this->middleware('permission:delete introduction signups')->only(['destroy', 'getDeleteConfirmation']);
         }
 
         /**
@@ -204,64 +206,4 @@
             }
             return back();
         }
-
-        // De volgende functies zijn buiten gebruik omdat de functies nu individueel uitgevoerd kunnen worden per aanmelding.
-
-
-        /**
-         * @param Request $request
-         *
-         * @return RedirectResponse
-         * @deprecated
-         *
-         */
-        public function sendPaymentReminders(Request $request) {
-            $yesterday    = Carbon::yesterday()->format('Y-m-d H:i:s');
-            $signupsCount = IntroApplication::where('status', '=', IntroApplication::STATUS_NEW)->whereNotNull('email_confirmation_token')->count();
-            $signups      = IntroApplication::where('status', '=', IntroApplication::STATUS_NEW)->whereNotNull('email_confirmation_token')->where('updated_at', '<', $yesterday)->get();
-            $signups->each(function (IntroApplication $application) {
-                $mail = new IntroApplicationPaymentRequest($application);
-                $mail->subject(trans('email.intro.payment_request_reminder.subject', ['name' => $application->first_name . ' ' . $application->last_name]));
-                $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
-                Mail::send($mail);
-                $application->updated_at = Carbon::now();
-                $application->saveOrFail();
-            });
-            Log::info(trans('admin.intro.payment_reminders_sent', [
-                'count'        => $signupsCount,
-                'actual_count' => $signups->count(),
-                'date'         => $yesterday
-            ]), ['user' => $request->user()->official_name, 'ip' => $request->ip()]);
-            return back()->with('success', trans('admin.intro.payment_reminders_sent', [
-                'count'        => $signupsCount,
-                'actual_count' => $signups->count(),
-                'date'         => $yesterday
-            ]));
-        }
-
-        /**
-         * @param Request $request
-         *
-         * @return RedirectResponse
-         * @deprecated
-         *
-         */
-        public function generateTokensForUnpaidSignups(Request $request) {
-
-            //return 'denk het niet job -wilders, ooit';
-
-            $signups = IntroApplication::getUnpaidApplicationsWithoutToken();
-            $signups->each(function (IntroApplication $application) {
-                $application->email_confirmation_token = str_random(64);
-                $mail                                  = new IntroApplicationPaymentRequest($application);
-                $mail->to($application->email, $application->first_name . ' ' . $application->last_name);
-                Mail::send($mail);
-                $application->saveOrFail();
-            });
-            Log::info(trans('admin.intro.tokens_generated', ['count' => $signups->count()]),
-                ['user' => $request->user()->official_name, 'ip' => $request->ip()]);
-            return back()->with('success', trans('admin.intro.tokens_generated', ['count' => $signups->count()]));
-        }
-
-
     }

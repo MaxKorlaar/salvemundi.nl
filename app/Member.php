@@ -15,6 +15,7 @@
     use Intervention\Image\Constraint;
     use Intervention\Image\Facades\Image;
     use InvalidArgumentException;
+    use Log;
     use Mollie\Api\Resources\Payment;
     use Storage;
     use Throwable;
@@ -81,6 +82,7 @@
      * @method static Builder|Member query()
      * @property string|null                          $country
      * @method static Builder|Member whereCountry($value)
+     * @method static bool|null forceDelete()
      */
     class Member extends Model {
         use SoftDeletes;
@@ -146,7 +148,7 @@
         /**
          * Save the model to the database.
          *
-         * @param  array $options
+         * @param array $options
          *
          * @return bool
          */
@@ -221,15 +223,16 @@
         }
 
         /**
-         * @return bool|null
+         * @return int|void
          * @throws Exception
          */
-        public function forceDelete() {
+        public function reallyDelete() {
+            Log::debug('De persoon wordt nu permanent verwijderd');
             $this->deletePicture();
             if ($this->user !== null) {
                 $this->user->delete();
             }
-            return parent::forceDelete();
+            $this->forceDelete();
         }
 
         /**

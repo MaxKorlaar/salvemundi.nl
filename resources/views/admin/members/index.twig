@@ -18,8 +18,10 @@
                                 <th>{{ trans('admin.members.id') }}</th>
                                 <th>{{ trans('admin.members.member_id') }}</th>
                                 <th>{{ trans('admin.members.pcn') }}</th>
-                                <th>{{ trans('admin.members.last_name') }}</th>
-                                <th>{{ trans('admin.members.first_name') }}</th>
+                                {% if auth_user().can('view member names') %}
+                                    <th>{{ trans('admin.members.last_name') }}</th>
+                                    <th>{{ trans('admin.members.first_name') }}</th>
+                                {% endif %}
                                 <th>{{ trans('admin.members.member_until') }}</th>
                                 <th>{{ trans('admin.members.created_at') }}</th>
                                 <th></th>
@@ -31,8 +33,10 @@
                                     <td>{{ member.id }}</td>
                                     <td>{{ member.member_id }}</td>
                                     <td>{{ member.pcn }}</td>
-                                    <td>{{ member.last_name }}</td>
-                                    <td>{{ member.first_name }}</td>
+                                    {% if auth_user().can('view member names') %}
+                                        <td>{{ member.last_name }}</td>
+                                        <td>{{ member.first_name }}</td>
+                                    {% endif %}
                                     <td>{{ member.getCurrentMembership() ? member.getCurrentMembership().valid_until|date(trans('datetime.format.date')) : trans('admin.members.no_valid_membership') }}</td>
 
                                     <td>{{ member.created_at|date(trans('datetime.format.date_and_time')) }}</td>
@@ -43,10 +47,12 @@
                             {% endfor %}
                         </tbody>
                     </table>
-                    <small>{{ trans_choice('admin.members.count', members.count, { count: members.count }) }} &sdot;
-                        <a href="{{ route('admin.members.delete_inactive_confirmation') }}">{{ trans('admin.members.delete_all_inactive') }}</a>
-                                                                                                              &sdot;
-                        <a href="{{ route('admin.members.view_deleted') }}">{{ trans('admin.members.view_deleted_members') }}</a>
+                    <small>{{ trans_choice('admin.members.count', members.count, { count: members.count }) }}
+                        {% if auth_user().can('delete members') %}&sdot;
+                            <a href="{{ route('admin.members.delete_inactive_confirmation') }}">{{ trans('admin.members.delete_all_inactive') }}</a>
+                            &sdot;
+                            <a href="{{ route('admin.members.view_deleted') }}">{{ trans('admin.members.view_deleted_members') }}</a>
+                        {% endif %}
                     </small>
                 </div>
             </div>

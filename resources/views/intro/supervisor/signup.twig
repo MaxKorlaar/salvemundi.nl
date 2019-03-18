@@ -10,8 +10,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ trans('intro.supervisor.signup.title') }}</h1>
-                    {% if true or not introduction.reservationsAreOpen() and not introduction.signupsAreOpen() %}
-                        {# TODO: Einddatum toevoegen aan introduction db #}
+                    {% if not introduction.supervisorSignupsAreOpen() %}
                         <div class="warning">
                             {{ trans('intro.supervisor.info.closed_warning')|raw }}
                         </div>
@@ -266,8 +265,7 @@
                                 </div>
                             </div>
                             <p>{{ trans('intro.supervisor.signup.privacy_terms')|raw }}</p>
-                            {% if true or not introduction.reservationsAreOpen() and not introduction.signupsAreOpen() %}
-                                {# TODO: Einddatum toevoegen aan introduction db #}
+                            {% if not introduction.supervisorSignupsAreOpen() %}
                                 <div class="warning">
                                     {{ trans('intro.supervisor.info.closed_warning')|raw }}
                                 </div>

@@ -41,50 +41,54 @@
                 </div>
 
                 <div class="col-12 button-container">
-                    <a href="{{ route('admin.camping.edit', { camp: camp }) }}" class="button">{{ trans('admin.camping.edit_camp') }}</a>
+                    {% if auth_user().can('edit camps') %}
+                        <a href="{{ route('admin.camping.edit', { camp: camp }) }}" class="button">{{ trans('admin.camping.edit_camp') }}</a>
+                    {% endif %}
                     {#<a href="{{ route('admin.camping.delete_confirmation', { camp: camp }) }}" class="button danger pull-right">{{ trans('admin.camping.delete_camp') }}</a>#}
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <h4>{{ trans('admin.camping.applications.title') }}</h4>
-                    <table class="table application-list table-striped">
-                        <thead>
-                            <tr>
-                                <th>{{ trans('admin.camping.applications.id') }}</th>
-                                <th>{{ trans('admin.camping.applications.member_name') }}</th>
-                                <th>{{ trans('admin.camping.applications.transaction') }}</th>
-                                <th>{{ trans('admin.camping.applications.created_at') }}</th>
-                                <th>{{ trans('admin.camping.applications.updated_at') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for application in camp.applications %}
-                                <tr id="application-{{ application.id }}">
-                                    <td>{{ application.id }}</td>
-                                    <td>
-                                        <a href="{{ route('admin.members.show', { member: application.member }) }}">
-                                            {{ application.member.first_name }} {{ application.member.last_name }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        {% if application.transaction %}
-                                            <a href="{{ route('admin.members.show', { member: application.member }) }}#transaction-{{ application.transaction_id }}">
-                                                {{ application.transaction_id }}
-                                                ({{ trans('admin.transactions.status.' ~ application.transaction.transaction_status) }})
-                                            </a>
-                                        {% else %}
-                                            {{ trans('admin.camping.no_transaction') }}
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ application.created_at|date(trans('datetime.format.date_and_time')) }}</td>
-                                    <td>{{ application.updated_at|date(trans('datetime.format.date_and_time')) }}</td>
+                {% if auth_user().can('view camp signups') %}
+                    <div class="col-md-12">
+                        <h4>{{ trans('admin.camping.applications.title') }}</h4>
+                        <table class="table application-list table-striped">
+                            <thead>
+                                <tr>
+                                    <th>{{ trans('admin.camping.applications.id') }}</th>
+                                    <th>{{ trans('admin.camping.applications.member_name') }}</th>
+                                    <th>{{ trans('admin.camping.applications.transaction') }}</th>
+                                    <th>{{ trans('admin.camping.applications.created_at') }}</th>
+                                    <th>{{ trans('admin.camping.applications.updated_at') }}</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <small>{{ trans_choice('admin.camping.member_count', camp.applications.count, { count: camp.applications.count }) }} </small>
-                </div>
+                            </thead>
+                            <tbody>
+                                {% for application in camp.applications %}
+                                    <tr id="application-{{ application.id }}">
+                                        <td>{{ application.id }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.members.show', { member: application.member }) }}">
+                                                {{ application.member.first_name }} {{ application.member.last_name }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {% if application.transaction %}
+                                                <a href="{{ route('admin.members.show', { member: application.member }) }}#transaction-{{ application.transaction_id }}">
+                                                    {{ application.transaction_id }}
+                                                    ({{ trans('admin.transactions.status.' ~ application.transaction.transaction_status) }})
+                                                </a>
+                                            {% else %}
+                                                {{ trans('admin.camping.no_transaction') }}
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ application.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                        <td>{{ application.updated_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <small>{{ trans_choice('admin.camping.member_count', camp.applications.count, { count: camp.applications.count }) }} </small>
+                    </div>
+                {% endif %}
             </div>
         </main>
     </div>

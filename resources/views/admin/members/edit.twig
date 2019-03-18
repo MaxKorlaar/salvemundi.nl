@@ -2,7 +2,7 @@
 {% block title %}{{ trans('admin.members.edit.title') }}{% endblock %}
 {% block content %}
     <div class="container">
-        <main class="members overview">
+        <main class="member edit">
             <div class="row">
                 <div class="col-md-12">
                     <h1>{{ trans('admin.members.edit.title') }}</h1>
@@ -147,8 +147,28 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col">
+                        {% if member.user and auth_user().can('edit member permissions') %}
+                            <div class="col-12">
+                                <h3>{{ trans('admin.members.permissions') }}</h3>
+                                <div class="permissions-grid">
+                                    {% for permission in permissions %}
+                                        <div class="form-check">
+                                            <input class="form-control form-check-input {{ errors.has('permissions.' ~ permission.name) ? 'is-invalid' }}"
+                                                   value="1" type="checkbox" id="allow_reservations_after_limit"
+                                                   name="{{ 'permissions[' ~ permission.name ~ ']' }}"
+                                                {{ old('permissions.' ~ permission.name, member.user.can(permission.name)) ? 'checked' }}>
+                                            <label class="form-check-label" for="{{ 'permissions[' ~ permission.name ~ ']' }}">
+                                                {{ trans('permissions.' ~ permission.name) }}
+                                            </label>
+                                            <div class="invalid-feedback">
+                                                {{ errors.first('permissions.' ~ permission.name)|ucfirst }}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="col-12">
                             <div class="form-group">
                                 <input type="submit" class="button" value="{{ trans('admin.members.edit.edit') }}">
                             </div>

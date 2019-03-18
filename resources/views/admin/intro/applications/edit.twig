@@ -212,10 +212,12 @@
                     <a href="{{ route('admin.intro.applications.show', { intro: introduction, application: application }) }}" class="button">
                         {{ trans('admin.intro.applications.edit.back_to_application') }}
                     </a>
-                    {% if application.isAnonymised() or (application.status != constant('STATUS_PAID', application)
-                        and application.status != constant('STATUS_SEE_TRANSACTION', application)) %}
-                        <a href="{{ route('admin.intro.applications.delete_confirmation', { intro: introduction, application: application }) }}"
-                           class="button danger pull-right">{{ trans('admin.intro.applications.delete_application') }}</a>
+                    {% if auth_user().can('delete introduction signups') %}
+                        {% if application.isAnonymised() or (application.status != constant('STATUS_PAID', application)
+                            and application.status != constant('STATUS_SEE_TRANSACTION', application)) %}
+                            <a href="{{ route('admin.intro.applications.delete_confirmation', { intro: introduction, application: application }) }}"
+                               class="button danger pull-right">{{ trans('admin.intro.applications.delete_application') }}</a>
+                        {% endif %}
                     {% endif %}
                 </div>
 

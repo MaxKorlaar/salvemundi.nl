@@ -58,7 +58,7 @@
      * @method static Builder|MemberApplication newModelQuery()
      * @method static Builder|MemberApplication newQuery()
      * @method static Builder|MemberApplication query()
-     * @property string|null         $country
+     * @property string|null $country
      * @method static Builder|MemberApplication whereCountry($value)
      */
     class MemberApplication extends Model {
@@ -103,7 +103,7 @@
         /**
          * Save the model to the database.
          *
-         * @param  array $options
+         * @param array $options
          *
          * @return bool
          */

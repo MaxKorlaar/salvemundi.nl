@@ -20,12 +20,14 @@
     use Illuminate\Database\Eloquent\Builder;
     use Illuminate\Database\Eloquent\Collection;
     use Illuminate\Http\RedirectResponse;
+    use Illuminate\Http\Request;
     use Illuminate\Http\Response;
     use Illuminate\Support\Facades\Log;
     use Illuminate\View\View;
     use Mail;
     use PhpOffice\PhpSpreadsheet\IOFactory;
     use PhpOffice\PhpSpreadsheet\Shared\Date;
+    use Spatie\Permission\Models\Permission;
     use Throwable;
 
     /**
@@ -36,9 +38,13 @@
     class MemberController extends Controller {
 
         public function __construct() {
-            $this->middleware('auth.admin');
             $this->middleware('throttle:1,1')->only('sendMail');
             $this->middleware('throttle:1,1')->only('sendInactiveMail');
+
+            $this->middleware('permission:view member personal info')->only(['edit', 'getPicture', 'getFullPicture', 'spreadsheetIndex']);
+            $this->middleware('permission:edit members')->only(['create', 'store', 'edit', 'update', 'sendMail', 'sendInactiveMail']);
+            $this->middleware('permission:view members');//->only(['index', 'spreadsheetIndex', 'viewDeletedMembers', 'show']);
+            $this->middleware('permission:delete members')->only(['destroy', 'deleteInactive', 'getDeleteConfirmation', 'restoreDeletedMember']);
         }
 
 
@@ -88,16 +94,17 @@
             }
 
             if ($file->getClientOriginalExtension() != 'xls' && $file->getClientOriginalExtension() != 'xlsx') {
-                return back()->withErrors(['member-list' => trans('validation.mimes',
-                    ['attribute' => $file->getClientOriginalName(), 'values' => 'xls, xlsx']
-                )]);
+                return back()->withErrors([
+                    'member-list' => trans(
+                        'validation.mimes',
+                        ['attribute' => $file->getClientOriginalName(), 'values' => 'xls, xlsx']
+                    )]);
             }
             try {
                 $spreadsheet = IOFactory::load($file->getRealPath());
                 $sheet       = $spreadsheet->getActiveSheet();
 
                 foreach ($sheet->getRowIterator(2) as $rowNumber => $row) {
-
                     $cellIterator = $row->getCellIterator();
 
                     if (($pcn = $cellIterator->seek('J')->current()->getValue()) !== null) {
@@ -467,12 +474,15 @@
         /**
          * Show the form for editing the specified resource.
          *
-         * @param Member $leden
+         * @param Member  $leden
+         *
+         * @param Request $request
          *
          * @return Factory|View
+         * @throws Exception
          */
-        public static function edit(Member $leden) {
-            return view('admin.members.edit', ['member' => $leden]);
+        public static function edit(Member $leden, Request $request) {
+            return view('admin.members.edit', ['member' => $leden, 'permissions' => Permission::all()]);
         }
 
         /**
@@ -486,6 +496,12 @@
          */
         public function update(UpdateMember $request, Member $leden) {
             $leden->update($request->all());
+
+            if ($leden->user !== null && $request->user()->can('edit member permissions')) {
+                $permissions = array_keys($request->get('permissions'));
+                $leden->user->syncPermissions($permissions);
+            }
+
             if ($request->hasFile('picture')) {
                 $leden->deletePicture();
                 $picture  = $request->file('picture');

@@ -55,6 +55,10 @@
                             {{ introduction.signup_open|date(trans('datetime.format.date')) }}
                         </div>
                         <div>
+                            <b>{{ trans('admin.intro.supervisor_signup_close') }}</b>
+                            {{ introduction.supervisor_signup_close|date(trans('datetime.format.date')) }}
+                        </div>
+                        <div>
                             <b>{{ trans('admin.intro.signup_close') }}</b>
                             {{ introduction.signup_close|date(trans('datetime.format.date')) }}
                         </div>
@@ -69,10 +73,16 @@
                     </div>
 
                     <div class="col-12 button-container">
-                        <a href="{{ route('admin.intro.edit', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.edit_introduction') }}</a>
-                        <a href="{{ route('admin.intro.supervisor_applications.index', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.view_supervisors') }}</a>
-                        <a href="{{ route('admin.intro.spreadsheet', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.applications.view_spreadsheet') }}</a>
-                        {#<a href="{{ route('admin.intro.delete_confirmation', { introduction: introduction }) }}" class="button danger pull-right">{{ trans('admin.intro.delete_introduction') }}</a>#}
+                        {% if auth_user().can('edit introductions') %}
+                            <a href="{{ route('admin.intro.edit', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.edit_introduction') }}</a>
+                        {% endif %}
+                        {% if auth_user().can('view introduction supervisor signups') %}
+                            <a href="{{ route('admin.intro.supervisor_applications.index', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.view_supervisors') }}</a>
+                        {% endif %}
+                        {% if auth_user().can('view introduction signups') %}
+                            <a href="{{ route('admin.intro.spreadsheet', { introduction: introduction }) }}" class="button">{{ trans('admin.intro.applications.view_spreadsheet') }}</a>
+                        {% endif %}
+
                     </div>
 
                     <div class="col-12 text-center statistics" v-cloak>
@@ -124,20 +134,28 @@
                             <thead>
                                 <tr>
                                     <th class="d-none d-sm-table-cell">{{ trans('admin.intro.applications.id') }}</th>
-                                    <th>{{ trans('admin.intro.applications.last_name') }}</th>
-                                    <th>{{ trans('admin.intro.applications.first_name') }}</th>
+                                    {% if auth_user().can('view introduction signups') %}
+                                        <th>{{ trans('admin.intro.applications.last_name') }}</th>
+                                        <th>{{ trans('admin.intro.applications.first_name') }}</th>
+                                    {% endif %}
                                     <th class="d-none d-md-table-cell">{{ trans('admin.intro.applications.status') }}</th>
                                     <th class="d-none d-sm-table-cell">{{ trans('admin.intro.applications.transaction') }}</th>
                                     <th class="d-none d-sm-table-cell">{{ trans('admin.intro.applications.created_at') }}</th>
-                                    <th></th>
+                                    {% if auth_user().can('view introduction signups') %}
+                                        <th></th>
+                                    {% endif %}
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-cloak v-for="application in filteredApplications" :id="'application-' + application.id" :class="application.status">
                                     {% verbatim %}
-                                <td class="d-none d-sm-table-cell">{{ application.id }}</td>
-                                <td>{{ application.last_name }}</td>
-                                <td>{{ application.first_name }}</td>
+                                    <td class="d-none d-sm-table-cell">{{ application.id }}</td>
+                                    {% endverbatim %}
+                                    {% if auth_user().can('view introduction signups') %}
+                                        <td>{{ "{{ application.last_name }}" }}</td>
+                                        <td>{{ "{{ application.first_name }}" }}</td>
+                                    {% endif %}
+                                    {% verbatim %}
                                 <td class="d-none d-md-table-cell status">{{ application.display_status }}</td>
                                 <td class="d-none d-sm-table-cell" v-if="application.transaction">
                                     <a target="_blank" :href="application.transaction.url">
@@ -148,18 +166,20 @@
                                 <td class="d-none d-sm-table-cell" v-else>-</td>
                                 <td class="d-none d-sm-table-cell">{{ application.display_created_at }}</td>
                                 {% endverbatim %}
-                                    <td>
-                                        <a :href="application.link">{{ trans('admin.intro.applications.details') }}</a>
-                                    </td>
+                                    {% if auth_user().can('view introduction signups') %}
+                                        <td>
+                                            <a :href="application.link">{{ trans('admin.intro.applications.details') }}</a>
+                                        </td>
+                                    {% endif %}
                                 </tr>
                                 <template v-if="filteredApplications.length < 1">
                                     <tr class="no-applications table-warning">
-                                        <td colspan="8">
+                                        <td colspan="{{ auth_user().can('view introduction signups') ? 8 : 4 }}">
                                             {{ trans('admin.intro.applications.no_applications_found') }}
                                         </td>
                                     </tr>
                                     <tr class="no-applications">
-                                        <td colspan="8" v-if="loading">
+                                        <td colspan="{{ auth_user().can('view introduction signups') ? 8 : 4 }}" v-if="loading">
                                             <div class="loader">
                                                 <span></span>
                                                 <span></span>
@@ -171,29 +191,33 @@
                             </tbody>
                         </table>
                         <small>{{ trans_choice('admin.intro.applications.count', introduction.applications.count, { count: introduction.applications.count, confirmed: introduction.getConfirmedCount(), email_unconfirmed: introduction.getEmailUnconfirmedCount() }) }}</small>
-                        {% if introduction.isAnonymised() %}
-                            <div class="button-container">
-                                <a href="{{ route('admin.intro.delete_confirmation', { intro: introduction }) }}"
-                                   class="button danger pull-right">{{ trans('admin.intro.delete_introduction') }}</a>
-                            </div>
-                        {% else %}
-                            <p>{{ trans('admin.intro.cannot_delete_until_anonymised') }}</p>
+                        {% if auth_user().can('delete introductions') %}
+                            {% if introduction.isAnonymised() %}
+                                <div class="button-container">
+                                    <a href="{{ route('admin.intro.delete_confirmation', { intro: introduction }) }}"
+                                       class="button danger pull-right">{{ trans('admin.intro.delete_introduction') }}</a>
+                                </div>
+                            {% else %}
+                                <p>{{ trans('admin.intro.cannot_delete_until_anonymised') }}</p>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <form action="{{ route('admin.intro.send_email_confirmation_reminders', { intro: introduction }) }}" method="POST" data-warning="{{ trans('admin.intro.send_warning') }}">
-                        {{ csrf_field() }}
-                        <button type="submit" class="button danger">{{ trans('admin.intro.send_email_reminders') }}</button>
-                    </form>
-                    <form action="{{ route('admin.intro.send_payment_reminders', { intro: introduction }) }}" method="POST" data-warning="{{ trans('admin.intro.send_warning') }}">
-                        {{ csrf_field() }}
-                        <button type="submit" class="button danger">{{ trans('admin.intro.send_payment_reminders') }}</button>
-                    </form>
+            {% if auth_user().can('edit introductions') %}
+                <div class="row">
+                    <div class="col">
+                        <form action="{{ route('admin.intro.send_email_confirmation_reminders', { intro: introduction }) }}" method="POST" data-warning="{{ trans('admin.intro.send_warning') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" class="button danger">{{ trans('admin.intro.send_email_reminders') }}</button>
+                        </form>
+                        <form action="{{ route('admin.intro.send_payment_reminders', { intro: introduction }) }}" method="POST" data-warning="{{ trans('admin.intro.send_warning') }}">
+                            {{ csrf_field() }}
+                            <button type="submit" class="button danger">{{ trans('admin.intro.send_payment_reminders') }}</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
         </main>
     </div>
 {% endblock %}

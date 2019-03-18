@@ -11,26 +11,26 @@
     use Illuminate\Database\Eloquent\Relations\HasMany;
 
     /**
-     * App\Store\Item
-     *
-     * @mixin Eloquent
-     * @property int                                                              $id
-     * @property string                                                           $name
-     * @property string|null                                                      $slug
-     * @property string|null                                                      $description
-     * @property Carbon|null                                   $created_at
-     * @property Carbon|null                                   $updated_at
-     * @method static Builder|Item whereCreatedAt($value)
-     * @method static Builder|Item whereDescription($value)
-     * @method static Builder|Item whereId($value)
-     * @method static Builder|Item whereName($value)
-     * @method static Builder|Item whereSlug($value)
-     * @method static Builder|Item whereUpdatedAt($value)
-     * @property-read Collection|Stock[] $stock
-     * @method static Builder|Item newModelQuery()
-     * @method static Builder|Item newQuery()
-     * @method static Builder|Item query()
-     */
+ * App\Store\Item
+ *
+ * @mixin Eloquent
+ * @property int                                                              $id
+ * @property string                                                           $name
+ * @property string|null                                                      $slug
+ * @property string|null                                                      $description
+ * @property Carbon|null                                   $created_at
+ * @property Carbon|null                                   $updated_at
+ * @method static Builder|Item whereCreatedAt($value)
+ * @method static Builder|Item whereDescription($value)
+ * @method static Builder|Item whereId($value)
+ * @method static Builder|Item whereName($value)
+ * @method static Builder|Item whereSlug($value)
+ * @method static Builder|Item whereUpdatedAt($value)
+ * @property-read Collection|Stock[] $stock
+ * @method static Builder|Item newModelQuery()
+ * @method static Builder|Item newQuery()
+ * @method static Builder|Item query()
+ */
     class Item extends Model {
         protected $table = 'store_items';
         protected $fillable = ['name', 'description'];

@@ -46,7 +46,8 @@
          * @return Factory|View
          */
         public static function getSignupForm(Request $request) {
-            return view('camping.signup',
+            return view(
+                'camping.signup',
                 [
                     'signup_count' => CampingApplication::where('transaction_status', '=', 'paid')->count(),
                     'member'       => Auth::user()->member,

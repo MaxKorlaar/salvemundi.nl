@@ -35,7 +35,7 @@
         'about_me'    => [
             'title'            => 'Over mij',
             'greeting'         => 'Hallo :name!',
-            'change_your_info' => 'De onderstaande gegevens zijn bekend bij ons. Klopt er iets niet? <a href="mailto:info@salvemundi.nl">Neem dan alsjeblieft contact met ons op</a> zodat we dit kunnen oplossen.',
+            'change_your_info' => 'De onderstaande gegevens zijn bekend bij ons. Klopt er iets niet? <a href="mailto:bestuur@salvemundi.nl">Neem dan alsjeblieft contact met ons op</a> zodat we dit kunnen oplossen.',
             'member_id'        => 'Lidnummer',
             'pcn'              => 'PCN',
             'last_name'        => 'Achternaam',
