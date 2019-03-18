@@ -14,13 +14,13 @@
      * Class Camp
      *
      * @package App
-     * @property int         $id
-     * @property int         $year_id
-     * @property string      $signup_open
-     * @property string      $signup_close
-     * @property Carbon|null $created_at
-     * @property Carbon|null $updated_at
-     * @property float       $price
+     * @property int                                  $id
+     * @property int                                  $year_id
+     * @property string                               $signup_open
+     * @property string                               $signup_close
+     * @property Carbon|null                          $created_at
+     * @property Carbon|null                          $updated_at
+     * @property float                                $price
      * @method static Builder|Camp whereCreatedAt($value)
      * @method static Builder|Camp whereId($value)
      * @method static Builder|Camp wherePrice($value)
@@ -30,7 +30,7 @@
      * @method static Builder|Camp whereYearId($value)
      * @mixin Eloquent
      * @property-read Collection|CampingApplication[] $applications
-     * @property-read Year                                                          $year
+     * @property-read Year                            $year
      * @method static Builder|Camp newModelQuery()
      * @method static Builder|Camp newQuery()
      * @method static Builder|Camp query()

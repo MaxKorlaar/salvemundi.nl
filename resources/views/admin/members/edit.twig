@@ -1,162 +1,178 @@
 {% extends 'admin/_page.twig' %}
 {% block title %}{{ trans('admin.members.edit.title') }}{% endblock %}
 {% block content %}
-    <div class="container">
-        <main class="members overview">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>{{ trans('admin.members.edit.title') }}</h1>
-                    <form action="{{ route('admin.members.update', { member: member }) }}" method="POST" class="row" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                        {{ method_field('PUT') }}
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="pcn">{{ trans('admin.members.pcn') }}</label>
-                                <input id="pcn" type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}"
-                                       placeholder="{{ trans('admin.members.pcn') }}" name="pcn" value="{{ old('pcn', member.pcn) }}"
-                                       maxlength="6">
-                                <div class="invalid-feedback">
-                                    {{ errors.first('pcn')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="member_id">{{ trans('admin.members.member_id') }}</label>
-                                <input id="member_id" type="text" class="form-control {{ errors.has('member_id') ? 'is-invalid' }}"
-                                       placeholder="{{ trans('admin.members.member_id') }}" name="member_id" value="{{ old('member_id', member.member_id) }}"
-                                       maxlength="6">
-                                <div class="invalid-feedback">
-                                    {{ errors.first('member_id')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="first_name">{{ trans('admin.members.first_name') }}</label>
-                                <input id="first_name" type="text" class="form-control {{ errors.has('first_name') ? 'is-invalid' }}"
-                                       placeholder="{{ trans('admin.members.first_name') }}" name="first_name" value="{{ old('first_name', member.first_name) }}"
-                                       maxlength="50">
-                                <div class="invalid-feedback">
-                                    {{ errors.first('first_name')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="last_name">{{ trans('admin.members.last_name') }}</label>
-                                <input id="last_name" type="text" class="form-control {{ errors.has('last_name') ? 'is-invalid' }}"
-                                       placeholder="{{ trans('admin.members.last_name') }}" name="last_name" value="{{ old('last_name', member.last_name) }}"
-                                       maxlength="50">
-                                <div class="invalid-feedback">
-                                    {{ errors.first('last_name')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="address">{{ trans('admin.members.address') }}</label>
-                                <input id="address" type="text" class="form-control {{ errors.has('address') ? 'is-invalid' }}"
-                                       placeholder="{{ trans('admin.members.address') }}" name="address"
-                                       value="{{ old('address', member.address) }}" maxlength="150">
-                                <div class="invalid-feedback">
-                                    {{ errors.first('address')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="city">{{ trans('admin.members.city') }}</label>
-                                <input id="city" type="text" class="form-control {{ errors.has('city') ? 'is-invalid' }}"
-                                       placeholder="{{ trans('admin.members.city') }}" name="city" value="{{ old('city', member.city) }}"
-                                       maxlength="150">
-                                <div class="invalid-feedback">
-                                    {{ errors.first('city')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="postal">{{ trans('admin.members.postal') }}</label>
-                                <input id="postal" type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
-                                       placeholder="{{ trans('admin.members.postal') }}" name="postal"
-                                       value="{{ old('postal', member.postal) }}">
-                                <div class="invalid-feedback">
-                                    {{ errors.first('postal')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="country">{{ trans('admin.members.country') }}</label>
-                                <select required id="country" name="country" class="form-control {{ errors.has('country') ? 'is-invalid' }}">
-                                    {% for code, name in trans('address.country') %}
-                                        <option value="{{ code }}" {{ old('country', member.country) == code ? 'selected' }}>{{ name }}</option>
-                                    {% endfor %}
-                                </select>
-                                <div class="invalid-feedback">
-                                    {{ errors.first('country')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="birthday">{{ trans('admin.members.birthday') }}</label>
-                                <input id="birthday" type="date"
-                                       class="form-control {{ errors.has('birthday') ? 'is-invalid' }}"
-                                       placeholder="{{ trans('admin.members.birthday_format') }}" name="birthday"
-                                       value="{{ old('birthday', member.birthday|date('Y-m-d')) }}" maxlength="10">
-                                <div class="invalid-feedback">
-                                    {{ errors.first('birthday')|ucfirst }}
-                                </div>
+<div class="container">
+    <main class="member edit">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ trans('admin.members.edit.title') }}</h1>
+                <form action="{{ route('admin.members.update', { member: member }) }}" method="POST" class="row" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    {{ method_field('PUT') }}
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="pcn">{{ trans('admin.members.pcn') }}</label>
+                            <input id="pcn" type="text" class="form-control {{ errors.has('pcn') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('admin.members.pcn') }}" name="pcn" value="{{ old('pcn', member.pcn) }}"
+                                   maxlength="6">
+                            <div class="invalid-feedback">
+                                {{ errors.first('pcn')|ucfirst }}
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label for="card_status">{{ trans('admin.members.card') }}</label>
-                                <select required id="card_status" name="card_status" class="form-control {{ errors.has('card_status') ? 'is-invalid' }}">
-                                    {% for status, value in trans('admin.members.card_status') %}
-                                        <option value="{{ status }}" {{ old('card_status', member.card_status) == status ? 'selected' }}>{{ value }}</option>
-                                    {% endfor %}
-                                </select>
-                                <div class="invalid-feedback">
-                                    {{ errors.first('card_status')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="card_id">{{ trans('admin.members.temporary_card_number') }}</label>
-                                <input id="card_id" type="number" class="form-control {{ errors.has('card_id') ? 'is-invalid' }}"
-                                       placeholder="{{ trans('admin.members.temporary_card_number') }}" name="card_id"
-                                       value="{{ old('card_id', member.card_id) }}" maxlength="6">
-                                <div class="invalid-feedback">
-                                    {{ errors.first('card_id')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">{{ trans('admin.members.phone') }}</label>
-                                <input id="phone" type="tel" class="form-control {{ errors.has('phone') ? 'is-invalid' }}"
-                                       placeholder="{{ trans('admin.members.phone') }}" name="phone" value="{{ old('phone', member.phone) }}"
-                                       maxlength="15">
-                                <div class="invalid-feedback">
-                                    {{ errors.first('phone')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">{{ trans('admin.members.email') }}</label>
-                                <input id="email" type="email" class="form-control {{ errors.has('email') ? 'is-invalid' }}"
-                                       placeholder="{{ trans('admin.members.email') }}" name="email" value="{{ old('email', member.email) }}"
-                                       maxlength="50">
-                                <div class="invalid-feedback">
-                                    {{ errors.first('email')|ucfirst }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                {% if member.hasPicture() %}
-                                    <img class="img-fluid" src="{{ route('admin.members.picture', { member: member }) }}">
-                                {% endif %}
-                                <input type="file" class="form-control {{ errors.has('picture') ? 'is-invalid' }}" placeholder="{{ trans('admin.members.picture') }}" name="picture">
-                                <p class="help">
-                                    {{ trans('admin.members.edit.picture_help') }}
-                                </p>
-                                <div class="invalid-feedback">
-                                    {{ errors.first('picture')|ucfirst }}
-                                </div>
+                        <div class="form-group">
+                            <label for="member_id">{{ trans('admin.members.member_id') }}</label>
+                            <input id="member_id" type="text" class="form-control {{ errors.has('member_id') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('admin.members.member_id') }}" name="member_id" value="{{ old('member_id', member.member_id) }}"
+                                   maxlength="6">
+                            <div class="invalid-feedback">
+                                {{ errors.first('member_id')|ucfirst }}
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="first_name">{{ trans('admin.members.first_name') }}</label>
+                            <input id="first_name" type="text" class="form-control {{ errors.has('first_name') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('admin.members.first_name') }}" name="first_name" value="{{ old('first_name', member.first_name) }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('first_name')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">{{ trans('admin.members.last_name') }}</label>
+                            <input id="last_name" type="text" class="form-control {{ errors.has('last_name') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('admin.members.last_name') }}" name="last_name" value="{{ old('last_name', member.last_name) }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('last_name')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">{{ trans('admin.members.address') }}</label>
+                            <input id="address" type="text" class="form-control {{ errors.has('address') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('admin.members.address') }}" name="address"
+                                   value="{{ old('address', member.address) }}" maxlength="150">
+                            <div class="invalid-feedback">
+                                {{ errors.first('address')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">{{ trans('admin.members.city') }}</label>
+                            <input id="city" type="text" class="form-control {{ errors.has('city') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('admin.members.city') }}" name="city" value="{{ old('city', member.city) }}"
+                                   maxlength="150">
+                            <div class="invalid-feedback">
+                                {{ errors.first('city')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="postal">{{ trans('admin.members.postal') }}</label>
+                            <input id="postal" type="text" class="form-control {{ errors.has('postal') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('admin.members.postal') }}" name="postal"
+                                   value="{{ old('postal', member.postal) }}">
+                            <div class="invalid-feedback">
+                                {{ errors.first('postal')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">{{ trans('admin.members.country') }}</label>
+                            <select required id="country" name="country" class="form-control {{ errors.has('country') ? 'is-invalid' }}">
+                                {% for code, name in trans('address.country') %}
+                                    <option value="{{ code }}" {{ old('country', member.country) == code ? 'selected' }}>{{ name }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">
+                                {{ errors.first('country')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthday">{{ trans('admin.members.birthday') }}</label>
+                            <input id="birthday" type="date"
+                                   class="form-control {{ errors.has('birthday') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('admin.members.birthday_format') }}" name="birthday"
+                                   value="{{ old('birthday', member.birthday|date('Y-m-d')) }}" maxlength="10">
+                            <div class="invalid-feedback">
+                                {{ errors.first('birthday')|ucfirst }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="card_status">{{ trans('admin.members.card') }}</label>
+                            <select required id="card_status" name="card_status" class="form-control {{ errors.has('card_status') ? 'is-invalid' }}">
+                                {% for status, value in trans('admin.members.card_status') %}
+                                    <option value="{{ status }}" {{ old('card_status', member.card_status) == status ? 'selected' }}>{{ value }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">
+                                {{ errors.first('card_status')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="card_id">{{ trans('admin.members.temporary_card_number') }}</label>
+                            <input id="card_id" type="number" class="form-control {{ errors.has('card_id') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('admin.members.temporary_card_number') }}" name="card_id"
+                                   value="{{ old('card_id', member.card_id) }}" maxlength="6">
+                            <div class="invalid-feedback">
+                                {{ errors.first('card_id')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">{{ trans('admin.members.phone') }}</label>
+                            <input id="phone" type="tel" class="form-control {{ errors.has('phone') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('admin.members.phone') }}" name="phone" value="{{ old('phone', member.phone) }}"
+                                   maxlength="15">
+                            <div class="invalid-feedback">
+                                {{ errors.first('phone')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">{{ trans('admin.members.email') }}</label>
+                            <input id="email" type="email" class="form-control {{ errors.has('email') ? 'is-invalid' }}"
+                                   placeholder="{{ trans('admin.members.email') }}" name="email" value="{{ old('email', member.email) }}"
+                                   maxlength="50">
+                            <div class="invalid-feedback">
+                                {{ errors.first('email')|ucfirst }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {% if member.hasPicture() %}
+                                <img class="img-fluid" src="{{ route('admin.members.picture', { member: member }) }}">
+                            {% endif %}
+                            <input type="file" class="form-control {{ errors.has('picture') ? 'is-invalid' }}" placeholder="{{ trans('admin.members.picture') }}" name="picture">
+                            <p class="help">
+                                {{ trans('admin.members.edit.picture_help') }}
+                            </p>
+                            <div class="invalid-feedback">
+                                {{ errors.first('picture')|ucfirst }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 permissions-grid">
 
-                        <div class="col">
-                            <div class="form-group">
-                                <input type="submit" class="button" value="{{ trans('admin.members.edit.edit') }}">
+                        {% for permission in permissions %}
+                        <div class="form-check">
+                            <input class="form-control form-check-input {{ errors.has('permissions.' ~ permission.name) ? 'is-invalid' }}"
+                                   value="1" type="checkbox" id="allow_reservations_after_limit"
+                                   name="{{ 'permissions[' ~ permission.name ~ ']' }}"
+                                {{ old('permissions.' ~ permission.name, member.user.hasPermissionTo(permission.id)) ? 'checked' }}>
+                            <label class="form-check-label" for="{{ 'permissions[' ~ permission.name ~ ']' }}">
+                                {{ trans('permissions.' ~ permission.name) }}
+                            </label>
+                            <div class="invalid-feedback">
+                                {{ errors.first('permissions.' ~ permission.name)|ucfirst }}
                             </div>
                         </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="submit" class="button" value="{{ trans('admin.members.edit.edit') }}">
+                        </div>
+                    </div>
 
-                    </form>
-                </div>
+                </form>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+</div>
 {% endblock %}

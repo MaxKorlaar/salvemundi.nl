@@ -16,19 +16,19 @@
      * Class Introduction
      *
      * @package App
-     * @property int                                                                             $id
-     * @property int                                                                             $year_id
-     * @property string                                                                          $reservations_open
-     * @property string                                                                          $signup_open
-     * @property string                                                                          $signup_close
-     * @property string|null                        $mail_reservations_at
-     * @property \Illuminate\Support\Carbon|null    $created_at
-     * @property \Illuminate\Support\Carbon|null    $updated_at
-     * @property float                              $price
-     * @property int                                $max_signups
-     * @property int                                $allow_reservations_after_limit
-     * @property-read Collection|IntroApplication[] $applications
-     * @property-read Year                          $year
+     * @property int                                          $id
+     * @property int                                          $year_id
+     * @property string                                       $reservations_open
+     * @property string                                       $signup_open
+     * @property string                                       $signup_close
+     * @property string|null                                  $mail_reservations_at
+     * @property \Illuminate\Support\Carbon|null              $created_at
+     * @property \Illuminate\Support\Carbon|null              $updated_at
+     * @property float                                        $price
+     * @property int                                          $max_signups
+     * @property int                                          $allow_reservations_after_limit
+     * @property-read Collection|IntroApplication[]           $applications
+     * @property-read Year                                    $year
      * @method static Builder|Introduction newModelQuery()
      * @method static Builder|Introduction newQuery()
      * @method static Builder|Introduction query()
@@ -198,6 +198,16 @@
             return $jsonApplications;
         }
 
+        /**
+         * @return array
+         */
+        public function getJSON() {
+            return array_merge($this->jsonSerialize(), [
+                'confirmed_count'         => $this->getConfirmedCount(),
+                'reservations_count'      => $this->getReservationsCount(),
+                'email_unconfirmed_count' => $this->getEmailUnconfirmedCount()
+            ]);
+        }
 
         /**
          * @return int
@@ -218,16 +228,5 @@
          */
         public function getEmailUnconfirmedCount() {
             return $this->applications()->where('status', '=', IntroApplication::STATUS_EMAIL_UNCONFIRMED)->count();
-        }
-
-        /**
-         * @return array
-         */
-        public function getJSON() {
-            return array_merge($this->jsonSerialize(), [
-                'confirmed_count'         => $this->getConfirmedCount(),
-                'reservations_count'      => $this->getReservationsCount(),
-                'email_unconfirmed_count' => $this->getEmailUnconfirmedCount()
-            ]);
         }
     }

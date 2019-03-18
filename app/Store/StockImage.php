@@ -13,24 +13,24 @@
     use Storage;
 
     /**
-     * App\Store\StockImage
-     *
-     * @property int         $id
-     * @property string|null $image_name
-     * @property int         $store_stock_id
-     * @property Carbon|null $created_at
-     * @property Carbon|null $updated_at
-     * @method static Builder|StockImage whereCreatedAt($value)
-     * @method static Builder|StockImage whereId($value)
-     * @method static Builder|StockImage whereImageName($value)
-     * @method static Builder|StockImage whereStoreStockId($value)
-     * @method static Builder|StockImage whereUpdatedAt($value)
-     * @mixin Eloquent
-     * @method static Builder|StockImage newModelQuery()
-     * @method static Builder|StockImage newQuery()
-     * @method static Builder|StockImage query()
-     * @property-read Stock  $stock
-     */
+ * App\Store\StockImage
+ *
+ * @property int         $id
+ * @property string|null $image_name
+ * @property int         $store_stock_id
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|StockImage whereCreatedAt($value)
+ * @method static Builder|StockImage whereId($value)
+ * @method static Builder|StockImage whereImageName($value)
+ * @method static Builder|StockImage whereStoreStockId($value)
+ * @method static Builder|StockImage whereUpdatedAt($value)
+ * @mixin Eloquent
+ * @method static Builder|StockImage newModelQuery()
+ * @method static Builder|StockImage newQuery()
+ * @method static Builder|StockImage query()
+ * @property-read Stock  $stock
+ */
     class StockImage extends Model {
         protected $table = 'store_stock_images';
         protected $fillable = ['image_name'];

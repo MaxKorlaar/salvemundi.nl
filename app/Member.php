@@ -82,6 +82,7 @@
      * @method static Builder|Member query()
      * @property string|null                          $country
      * @method static Builder|Member whereCountry($value)
+     * @method static bool|null forceDelete()
      */
     class Member extends Model {
         use SoftDeletes;

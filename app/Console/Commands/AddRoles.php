@@ -61,6 +61,19 @@
             $storeEditPermission   = Permission::create(['name' => 'edit store items']);
             $storeDeletePermission = Permission::create(['name' => 'delete store items']);
 
+            $introViewPermission = Permission::create(['name' => 'view introductions']);
+            $introEditPermission = Permission::create(['name' => 'edit introductions']);
+            $introDeletePermission = Permission::create(['name' => 'delete introductions']);
+
+            Permission::create(['name' => 'view introduction signups']);
+            Permission::create(['name' => 'edit introduction signups']);
+            Permission::create(['name' => 'delete introduction signups']);
+
+            Permission::create(['name' => 'view introduction supervisor signups']);
+            Permission::create(['name' => 'edit introduction supervisor signups']);
+            Permission::create(['name' => 'delete introduction supervisor signups']);
+
+
             $admin = Role::create(['name' => 'admin']); // Super-admin. Heeft alle permissions automatisch
 
             //        $storemanager = Role::create(['name' => 'storemanager']); // Heeft inzicht en beheer over de winkel

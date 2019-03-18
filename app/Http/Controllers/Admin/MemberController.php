@@ -26,6 +26,7 @@
     use Mail;
     use PhpOffice\PhpSpreadsheet\IOFactory;
     use PhpOffice\PhpSpreadsheet\Shared\Date;
+    use Spatie\Permission\Models\Permission;
     use Throwable;
 
     /**
@@ -472,7 +473,7 @@
          * @return Factory|View
          */
         public static function edit(Member $leden) {
-            return view('admin.members.edit', ['member' => $leden]);
+            return view('admin.members.edit', ['member' => $leden, 'permissions' => Permission::all()]);
         }
 
         /**
@@ -486,6 +487,10 @@
          */
         public function update(UpdateMember $request, Member $leden) {
             $leden->update($request->all());
+
+            $permissions = array_keys($request->get('permissions'));
+            $leden->user->syncPermissions($permissions);
+
             if ($request->hasFile('picture')) {
                 $leden->deletePicture();
                 $picture  = $request->file('picture');

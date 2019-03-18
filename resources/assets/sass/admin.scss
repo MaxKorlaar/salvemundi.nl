@@ -411,6 +411,10 @@
   .button-container {
     margin: .5rem 0;
   }
+  .permissions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 .members {

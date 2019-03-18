@@ -13,25 +13,25 @@
     /**
      * App\CampingApplication
      *
-     * @property int         $id
-     * @property string      $member_id
-     * @property string      $first_name
-     * @property string      $last_name
-     * @property string      $phone
-     * @property string      $email
-     * @property string      $status
-     * @property string      $ip_address
-     * @property string|null $email_confirmation_token
-     * @property Carbon|null $created_at
-     * @property Carbon|null $updated_at
-     * @property string      $address
-     * @property string      $city
-     * @property string      $postal
-     * @property Carbon      $birthday
-     * @property string|null $remarks
-     * @property string      $transaction_id
-     * @property string      $transaction_status
-     * @property float       $transaction_amount
+     * @property int              $id
+     * @property string           $member_id
+     * @property string           $first_name
+     * @property string           $last_name
+     * @property string           $phone
+     * @property string           $email
+     * @property string           $status
+     * @property string           $ip_address
+     * @property string|null      $email_confirmation_token
+     * @property Carbon|null      $created_at
+     * @property Carbon|null      $updated_at
+     * @property string           $address
+     * @property string           $city
+     * @property string           $postal
+     * @property Carbon           $birthday
+     * @property string|null      $remarks
+     * @property string           $transaction_id
+     * @property string           $transaction_status
+     * @property float            $transaction_amount
      * @method static Builder|CampingApplication whereAddress($value)
      * @method static Builder|CampingApplication whereBirthday($value)
      * @method static Builder|CampingApplication whereCity($value)
@@ -117,7 +117,7 @@
         /**
          * Save the model to the database.
          *
-         * @param  array $options
+         * @param array $options
          *
          * @return bool
          */

@@ -16,13 +16,13 @@
      * App\Transaction
      *
      * @mixin Eloquent
-     * @property int                          $id
-     * @property int                          $member_id
-     * @property string                       $transaction_id
-     * @property string                       $transaction_status
-     * @property float                        $transaction_amount
-     * @property Carbon|null          $created_at
-     * @property Carbon|null     $updated_at
+     * @property int                     $id
+     * @property int                     $member_id
+     * @property string                  $transaction_id
+     * @property string                  $transaction_status
+     * @property float                   $transaction_amount
+     * @property Carbon|null             $created_at
+     * @property Carbon|null             $updated_at
      * @method static Builder|Transaction whereCreatedAt($value)
      * @method static Builder|Transaction whereId($value)
      * @method static Builder|Transaction whereMemberId($value)

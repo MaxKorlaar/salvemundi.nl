@@ -79,6 +79,12 @@
      * @property string                 $contact_relation
      * @method static Builder|IntroApplication whereContactName($value)
      * @method static Builder|IntroApplication whereContactRelation($value)
+     * @property string|null            $allergies
+     * @property string|null            $medication
+     * @property string|null            $diet_preferences
+     * @method static Builder|IntroApplication whereAllergies($value)
+     * @method static Builder|IntroApplication whereDietPreferences($value)
+     * @method static Builder|IntroApplication whereMedication($value)
      */
     class IntroApplication extends Model {
         use HasEncryptedAttributes;
@@ -114,7 +120,7 @@
         /**
          * Create a new Eloquent model instance.
          *
-         * @param  array $attributes
+         * @param array $attributes
          *
          * @return void
          */
@@ -173,7 +179,7 @@
         /**
          * Save the model to the database.
          *
-         * @param  array $options
+         * @param array $options
          *
          * @return bool
          */
@@ -211,21 +217,21 @@
          */
         public function getJSON() {
             return [
-                'id'             => $this->id,
-                'last_name'      => $this->last_name,
-                'first_name'     => $this->first_name,
-                'status'         => $this->status,
-                'display_status' => trans('admin.intro.applications.status_' . $this->status),
-                'transaction'    => $this->transaction ? [
+                'id'                 => $this->id,
+                'last_name'          => $this->last_name,
+                'first_name'         => $this->first_name,
+                'status'             => $this->status,
+                'display_status'     => trans('admin.intro.applications.status_' . $this->status),
+                'transaction'        => $this->transaction ? [
                     'id'             => $this->transaction->id,
                     'url'            => config('mollie.transaction_url') . $this->transaction->transaction_id,
                     'transaction_id' => $this->transaction->transaction_id,
                     'status'         => $this->transaction->transaction_status,
                     'display_status' => trans('admin.transactions.status.' . $this->transaction->transaction_status),
                 ] : null,
-                'created_at'     => $this->created_at,
-                'display_created_at'     => $this->created_at->format(trans('datetime.format.date_and_time')),
-                'link'           => route('admin.intro.applications.show', ['intro' => $this->introduction, 'application' => $this])
+                'created_at'         => $this->created_at,
+                'display_created_at' => $this->created_at->format(trans('datetime.format.date_and_time')),
+                'link'               => route('admin.intro.applications.show', ['intro' => $this->introduction, 'application' => $this])
             ];
         }
     }

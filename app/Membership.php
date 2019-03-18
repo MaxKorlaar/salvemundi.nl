@@ -12,14 +12,14 @@
      * App\Membership
      *
      * @mixin Eloquent
-     * @property int         $id
-     * @property int         $year_id
-     * @property int|null    $member_id
-     * @property int|null    $transaction_id
-     * @property string      $valid_from
-     * @property string      $valid_until
-     * @property Carbon|null $created_at
-     * @property Carbon|null $updated_at
+     * @property int              $id
+     * @property int              $year_id
+     * @property int|null         $member_id
+     * @property int|null         $transaction_id
+     * @property string           $valid_from
+     * @property string           $valid_until
+     * @property Carbon|null      $created_at
+     * @property Carbon|null      $updated_at
      * @method static Builder|Membership whereCreatedAt($value)
      * @method static Builder|Membership whereId($value)
      * @method static Builder|Membership whereMemberId($value)

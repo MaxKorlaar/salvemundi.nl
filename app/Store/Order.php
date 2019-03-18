@@ -15,30 +15,30 @@
     use Throwable;
 
     /**
-     * App\Store\Order
-     *
-     * @mixin Eloquent
-     * @property int                                                                  $id
-     * @property int|null                                                             $user_id
-     * @property int|null                                                             $transaction_id
-     * @property Carbon|null                                       $created_at
-     * @property Carbon|null                                       $updated_at
-     * @method static Builder|Order whereCreatedAt($value)
-     * @method static Builder|Order whereId($value)
-     * @method static Builder|Order whereTransactionId($value)
-     * @method static Builder|Order whereUpdatedAt($value)
-     * @method static Builder|Order whereUserId($value)
-     * @property-read Collection|OrderItem[] $items
-     * @property-read Transaction                                          $transaction
-     * @property-read User                                                 $user
-     * @method static Builder|Order newModelQuery()
-     * @method static Builder|Order newQuery()
-     * @method static Builder|Order query()
-     * @property string|null                                               $status
-     * @method static Builder|Order whereStatus($value)
-     * @property int|null                                                  $mollie_order_id
-     * @method static Builder|Order whereMollieOrderId($value)
-     */
+ * App\Store\Order
+ *
+ * @mixin Eloquent
+ * @property int                                                                  $id
+ * @property int|null                                                             $user_id
+ * @property int|null                                                             $transaction_id
+ * @property Carbon|null                                       $created_at
+ * @property Carbon|null                                       $updated_at
+ * @method static Builder|Order whereCreatedAt($value)
+ * @method static Builder|Order whereId($value)
+ * @method static Builder|Order whereTransactionId($value)
+ * @method static Builder|Order whereUpdatedAt($value)
+ * @method static Builder|Order whereUserId($value)
+ * @property-read Collection|OrderItem[] $items
+ * @property-read Transaction                                          $transaction
+ * @property-read User                                                 $user
+ * @method static Builder|Order newModelQuery()
+ * @method static Builder|Order newQuery()
+ * @method static Builder|Order query()
+ * @property string|null                                               $status
+ * @method static Builder|Order whereStatus($value)
+ * @property int|null                                                  $mollie_order_id
+ * @method static Builder|Order whereMollieOrderId($value)
+ */
     class Order extends Model {
         const STATUS_NONE = null, STATUS_FULFILLED = 'fulfilled', STATUS_OPEN = 'open', STATUS_SEE_TRANSACTION = 'see_transaction';
         protected $table = 'store_orders';
