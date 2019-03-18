@@ -213,13 +213,13 @@
         }
 
         /**
+         * @param bool $personal
+         *
          * @return array
          */
-        public function getJSON() {
-            return [
+        public function getJSON($personal = true) {
+            $return = [
                 'id'                 => $this->id,
-                'last_name'          => $this->last_name,
-                'first_name'         => $this->first_name,
                 'status'             => $this->status,
                 'display_status'     => trans('admin.intro.applications.status_' . $this->status),
                 'transaction'        => $this->transaction ? [
@@ -233,5 +233,10 @@
                 'display_created_at' => $this->created_at->format(trans('datetime.format.date_and_time')),
                 'link'               => route('admin.intro.applications.show', ['intro' => $this->introduction, 'application' => $this])
             ];
+            if ($personal) {
+                $return['last_name']  = $this->last_name;
+                $return['first_name'] = $this->first_name;
+            }
+            return $return;
         }
     }

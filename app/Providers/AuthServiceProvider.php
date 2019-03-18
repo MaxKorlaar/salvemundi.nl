@@ -2,7 +2,9 @@
 
     namespace App\Providers;
 
+    use App\User;
     use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+    use Illuminate\Support\Facades\Gate;
 
     /**
      * Class AuthServiceProvider
@@ -27,6 +29,10 @@
         public function boot() {
             $this->registerPolicies();
 
-            //
+
+            Gate::before(function ($user, $ability) {
+                /** @var User $user */
+                return $user->isAdministrationMember() ? true : null;
+            });
         }
     }

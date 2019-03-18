@@ -22,9 +22,9 @@
     class CampingController extends Controller {
 
         public function __construct() {
-
-            $this->middleware('auth.camping');
-
+            $this->middleware('permission:view camps');
+            $this->middleware('permission:edit camps')->only(['create', 'store', 'edit', 'update']);
+            $this->middleware('permission:delete camps')->only(['destroy', 'getDeleteConfirmation']);
         }
 
         /**

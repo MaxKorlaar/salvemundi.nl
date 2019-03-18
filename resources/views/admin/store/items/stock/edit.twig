@@ -56,7 +56,9 @@
                                         </div>
                                     {% endfor %}
                                 </div>
-                                <input type="file" class="form-control {{ (errors.get('images.*') | length or errors.has('images')) ? 'is-invalid' }}" name="images[]" multiple="multiple">
+                                {% if auth_user().can('edit store items') %}
+                                    <input type="file" class="form-control {{ (errors.get('images.*') | length or errors.has('images')) ? 'is-invalid' }}" name="images[]" multiple="multiple">
+                                {% endif %}
                                 <div class="invalid-feedback">
                                     {{ errors.first('images')|ucfirst }}
                                     {% for index in errors.get('images.*') %}
@@ -70,8 +72,12 @@
 
                         <div class="col">
                             <div class="form-group">
-                                <input type="submit" class="button" value="{{ trans('admin.store.items.stock.edit.save') }}">
-                                <a href="{{ route('admin.store.items.stock.delete_confirmation', { item: item, stock: stock }) }}" class="button delete">{{ trans('admin.store.items.stock.edit.delete') }}</a>
+                                {% if auth_user().can('edit store items') %}
+                                    <input type="submit" class="button" value="{{ trans('admin.store.items.stock.edit.save') }}">
+                                {% endif %}
+                                {% if auth_user().can('delete store items') %}
+                                    <a href="{{ route('admin.store.items.stock.delete_confirmation', { item: item, stock: stock }) }}" class="button delete">{{ trans('admin.store.items.stock.edit.delete') }}</a>
+                                {% endif %}
                             </div>
                             <div class="form-group">
                                 <a href="{{ route('admin.store.items.show', { item: item }) }}" class="button">{{ trans('admin.store.items.stock.edit.back') }}</a>

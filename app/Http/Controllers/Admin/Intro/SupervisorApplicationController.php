@@ -21,7 +21,9 @@
     class SupervisorApplicationController extends Controller {
 
         public function __construct() {
-            $this->middleware('auth.admin');
+            $this->middleware('permission:view introduction supervisor signups');
+            $this->middleware('permission:edit introduction supervisor signups')->only(['create', 'store', 'edit', 'update']);
+            $this->middleware('permission:delete introduction supervisor signups')->only(['destroy', 'getDeleteConfirmation']);
         }
 
         /**

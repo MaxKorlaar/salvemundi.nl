@@ -1,54 +1,30 @@
 <?php
 
-    namespace App\Console\Commands;
-
-    use Illuminate\Console\Command;
+    use Illuminate\Database\Migrations\Migration;
     use Spatie\Permission\Models\Permission;
     use Spatie\Permission\Models\Role;
 
     /**
-     * Class AddRoles
-     *
-     * @package App\Console\Commands
+     * Class AddPermissionModels
      */
-    class AddRoles extends Command {
+    class AddPermissionModels extends Migration {
         /**
-         * The name and signature of the console command.
-         *
-         * @var string
-         */
-        protected $signature = 'roles:create';
-
-        /**
-         * The console command description.
-         *
-         * @var string
-         */
-        protected $description = 'Add roles for the users of SalveMundi.nl';
-
-        /**
-         * Create a new command instance.
+         * Run the migrations.
          *
          * @return void
          */
-        public function __construct() {
-            parent::__construct();
-        }
-
-        /**
-         * Execute the console command.
-         *
-         * @return mixed
-         */
-        public static function handle() {
+        public static function up() {
             $memberNamePermission     = Permission::create(['name' => 'view member names']);
             $memberAddressPermission  = Permission::create(['name' => 'view member addresses']);
             $memberEmailPermission    = Permission::create(['name' => 'view member emails']);
             $memberPersonalPermission = Permission::create(['name' => 'view member personal info']);
-            $memberViewPermission     = Permission::create(['name' => 'view members']);
-            $memberEditPermission     = Permission::create(['name' => 'edit members']);
-            $memberDeletePermission   = Permission::create(['name' => 'delete members']);
 
+            $memberViewPermission = Permission::create(['name' => 'view members']);
+            $memberEditPermission = Permission::create(['name' => 'edit members']);
+
+            $memberDeletePermission = Permission::create(['name' => 'delete members']);
+            Permission::create(['name' => 'view member permissions']);
+            Permission::create(['name' => 'edit member permissions']);
             $membershipAddPermission  = Permission::create(['name' => 'add memberships']);
             $membershipViewPermission = Permission::create(['name' => 'view memberships']);
             $membershipEditPermission = Permission::create(['name' => 'edit memberships']);
@@ -61,8 +37,8 @@
             $storeEditPermission   = Permission::create(['name' => 'edit store items']);
             $storeDeletePermission = Permission::create(['name' => 'delete store items']);
 
-            $introViewPermission = Permission::create(['name' => 'view introductions']);
-            $introEditPermission = Permission::create(['name' => 'edit introductions']);
+            $introViewPermission   = Permission::create(['name' => 'view introductions']);
+            $introEditPermission   = Permission::create(['name' => 'edit introductions']);
             $introDeletePermission = Permission::create(['name' => 'delete introductions']);
 
             Permission::create(['name' => 'view introduction signups']);
@@ -73,11 +49,15 @@
             Permission::create(['name' => 'edit introduction supervisor signups']);
             Permission::create(['name' => 'delete introduction supervisor signups']);
 
-
             $admin = Role::create(['name' => 'admin']); // Super-admin. Heeft alle permissions automatisch
+        }
 
-            //        $storemanager = Role::create(['name' => 'storemanager']); // Heeft inzicht en beheer over de winkel
-            //        $storemanager->givePermissionTo('view store items', 'edit store items', 'delete store items');
-
+        /**
+         * Reverse the migrations.
+         *
+         * @return void
+         */
+        public static function down() {
+            //
         }
     }

@@ -22,6 +22,9 @@
     use Illuminate\Routing\Middleware\ThrottleRequests;
     use Illuminate\Session\Middleware\StartSession;
     use Illuminate\View\Middleware\ShareErrorsFromSession;
+    use Spatie\Permission\Middlewares\PermissionMiddleware;
+    use Spatie\Permission\Middlewares\RoleMiddleware;
+    use Spatie\Permission\Middlewares\RoleOrPermissionMiddleware;
 
     /**
      * Class Kernel
@@ -76,13 +79,16 @@
          * @var array
          */
         protected $routeMiddleware = [
-            'auth'         => Authenticate::class,
-            'auth.basic'   => AuthenticateWithBasicAuth::class,
-            'auth.admin'   => CheckAdminStatus::class,
-            'auth.camping' => CheckCampingStatus::class,
-            'bindings'     => SubstituteBindings::class,
-            'can'          => Authorize::class,
-            'guest'        => RedirectIfAuthenticated::class,
-            'throttle'     => ThrottleRequests::class,
+            'auth'               => Authenticate::class,
+            'auth.basic'         => AuthenticateWithBasicAuth::class,
+            'auth.admin'         => CheckAdminStatus::class,
+            'auth.camping'       => CheckCampingStatus::class,
+            'bindings'           => SubstituteBindings::class,
+            'can'                => Authorize::class,
+            'guest'              => RedirectIfAuthenticated::class,
+            'throttle'           => ThrottleRequests::class,
+            'role'               => RoleMiddleware::class,
+            'permission'         => PermissionMiddleware::class,
+            'role_or_permission' => RoleOrPermissionMiddleware::class,
         ];
     }

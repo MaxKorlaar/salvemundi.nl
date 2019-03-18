@@ -175,13 +175,15 @@
         }
 
         /**
+         * @param bool $personal
+         *
          * @return array
          */
-        public function getApplicationsJSON() {
+        public function getApplicationsJSON($personal = true) {
             $jsonApplications = [];
-            $this->applications->each(function ($item) use (&$jsonApplications) {
+            $this->applications->each(function ($item) use ($personal, &$jsonApplications) {
                 /** @var IntroApplication $item */
-                $jsonApplications[] = $item->getJSON();
+                $jsonApplications[] = $item->getJSON($personal);
             });
             return $jsonApplications;
         }

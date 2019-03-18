@@ -97,13 +97,16 @@
                     <div>
                         <b>{{ trans('admin.intro.applications.allergies') }}</b>
                         {{ application.allergies ?? trans('admin.intro.applications.not_applicable') }}
-                    </div><div>
+                    </div>
+                    <div>
                         <b>{{ trans('admin.intro.applications.medication') }}</b>
                         {{ application.medication ?? trans('admin.intro.applications.not_applicable') }}
-                    </div><div>
+                    </div>
+                    <div>
                         <b>{{ trans('admin.intro.applications.diet_preferences') }}</b>
                         {{ application.diet_preferences ?? trans('admin.intro.applications.not_applicable') }}
-                    </div><div>
+                    </div>
+                    <div>
                         <b>{{ trans('admin.intro.applications.remarks') }}</b>
                         {{ application.remarks ?? trans('admin.intro.applications.not_applicable') }}
                     </div>
@@ -147,62 +150,68 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    {% if not application.isAnonymised() %}
-                        {% if application.status == constant('STATUS_EMAIL_UNCONFIRMED', application) %}
-                            <form class="button-container" method="POST" data-warning="{{ trans('admin.intro.applications.send_warning') }}"
-                                  action="{{ route('admin.intro.applications.send_email_confirmation_reminder', { intro: introduction, application: application }) }}">
-                                {{ csrf_field() }}
-                                <button type="submit" class="button danger">{{ trans('admin.intro.applications.send_email_confirmation_reminder') }}</button>
-                                {% if introduction.signupsAreOpen() and introduction.allowSignups() %}
-                                    <p>
-                                        {{ trans('admin.intro.applications.automatic_payment_reminder',
-                                            { first_name: application.first_name, last_name: application.last_name }) }}
-                                    </p>
-                                {% endif %}
-                            </form>
-                        {% elseif application.status == constant('STATUS_RESERVED', application) %}
-                            {% if introduction.signupsAreOpen() %}
-                                {% if introduction.allowSignups() %}
-                                    <form class="button-container" method="POST" data-warning="{{ trans('admin.intro.applications.send_warning') }}"
-                                          action="{{ route('admin.intro.applications.send_payment_reminder', { intro: introduction, application: application }) }}">
-                                        {{ csrf_field() }}
-                                        <button type="submit" class="button danger">{{ trans('admin.intro.applications.send_payment_reminder') }}</button>
-                                    </form>
+                    {% if auth_user().can('edit introduction signups') %}
+                        {% if not application.isAnonymised() %}
+                            {% if application.status == constant('STATUS_EMAIL_UNCONFIRMED', application) %}
+                                <form class="button-container" method="POST" data-warning="{{ trans('admin.intro.applications.send_warning') }}"
+                                      action="{{ route('admin.intro.applications.send_email_confirmation_reminder', { intro: introduction, application: application }) }}">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="button danger">{{ trans('admin.intro.applications.send_email_confirmation_reminder') }}</button>
+                                    {% if introduction.signupsAreOpen() and introduction.allowSignups() %}
+                                        <p>
+                                            {{ trans('admin.intro.applications.automatic_payment_reminder',
+                                                { first_name: application.first_name, last_name: application.last_name }) }}
+                                        </p>
+                                    {% endif %}
+                                </form>
+                            {% elseif application.status == constant('STATUS_RESERVED', application) %}
+                                {% if introduction.signupsAreOpen() %}
+                                    {% if introduction.allowSignups() %}
+                                        <form class="button-container" method="POST" data-warning="{{ trans('admin.intro.applications.send_warning') }}"
+                                              action="{{ route('admin.intro.applications.send_payment_reminder', { intro: introduction, application: application }) }}">
+                                            {{ csrf_field() }}
+                                            <button type="submit" class="button danger">{{ trans('admin.intro.applications.send_payment_reminder') }}</button>
+                                        </form>
+                                    {% else %}
+                                        <p>
+                                            {{ trans('admin.intro.applications.cannot_send_mails_signups_full',
+                                                { first_name: application.first_name, last_name: application.last_name }) }}
+                                        </p>
+                                    {% endif %}
                                 {% else %}
                                     <p>
-                                        {{ trans('admin.intro.applications.cannot_send_mails_signups_full',
+                                        {{ trans('admin.intro.applications.cannot_send_mails_signups_closed',
                                             { first_name: application.first_name, last_name: application.last_name }) }}
                                     </p>
                                 {% endif %}
                             {% else %}
                                 <p>
-                                    {{ trans('admin.intro.applications.cannot_send_mails_signups_closed',
+                                    {{ trans('admin.intro.applications.cannot_send_mails_right_now',
                                         { first_name: application.first_name, last_name: application.last_name }) }}
                                 </p>
                             {% endif %}
                         {% else %}
                             <p>
-                                {{ trans('admin.intro.applications.cannot_send_mails_right_now',
-                                    { first_name: application.first_name, last_name: application.last_name }) }}
+                                {{ trans('admin.intro.applications.cannot_send_mails_anonymised') }}
                             </p>
                         {% endif %}
-                    {% else %}
-                        <p>
-                            {{ trans('admin.intro.applications.cannot_send_mails_anonymised') }}
-                        </p>
                     {% endif %}
                 </div>
                 <div class="col-12 button-container">
                     <a href="{{ route('admin.intro.show', { intro: introduction }) }}" class="button">{{ trans('admin.intro.applications.back_to_index') }}</a>
-                    {% if not application.isAnonymised() %}
-                        <a href="{{ route('admin.intro.applications.edit', { intro: introduction, application: application }) }}" class="button">
-                            {{ trans('admin.intro.applications.edit_application') }}
-                        </a>
+                    {% if auth_user().can('edit introduction signups') %}
+                        {% if not application.isAnonymised() %}
+                            <a href="{{ route('admin.intro.applications.edit', { intro: introduction, application: application }) }}" class="button">
+                                {{ trans('admin.intro.applications.edit_application') }}
+                            </a>
+                        {% endif %}
                     {% endif %}
-                    {% if application.isAnonymised() or (application.status != constant('STATUS_PAID', application)
-                        and application.status != constant('STATUS_SEE_TRANSACTION', application)) %}
-                        <a href="{{ route('admin.intro.applications.delete_confirmation', { intro: introduction, application: application }) }}"
-                           class="button danger pull-right">{{ trans('admin.intro.applications.delete_application') }}</a>
+                    {% if auth_user().can('delete introduction signups') %}
+                        {% if application.isAnonymised() or (application.status != constant('STATUS_PAID', application)
+                            and application.status != constant('STATUS_SEE_TRANSACTION', application)) %}
+                            <a href="{{ route('admin.intro.applications.delete_confirmation', { intro: introduction, application: application }) }}"
+                               class="button danger pull-right">{{ trans('admin.intro.applications.delete_application') }}</a>
+                        {% endif %}
                     {% endif %}
                 </div>
 

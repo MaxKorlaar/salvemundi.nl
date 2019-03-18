@@ -4,18 +4,26 @@
         <div class="admin-nav">
             <div class="inner container">
                 <ul class="nav">
-                    <li class="">
-                        <a href="{{ route('admin.intro.index') }}">{{ trans('admin.intro.title') }}</a>
-                    </li>
-                    <li class="">
-                        <a href="{{ route('admin.members.index') }}">{{ trans('admin.members.title') }}</a>
-                    </li>
-                    <li class="">
-                        <a href="{{ route('admin.camping.index') }}">{{ trans('admin.camping.title') }}</a>
-                    </li>
-                    <li class="">
-                        <a href="{{ route('admin.store.items.index') }}">{{ trans('admin.store.items.title') }}</a>
-                    </li>
+                    {% if auth_user().can('view introductions') %}
+                        <li class="">
+                            <a href="{{ route('admin.intro.index') }}">{{ trans('admin.intro.title') }}</a>
+                        </li>
+                    {% endif %}
+                    {% if auth_user().can('view members') %}
+                        <li class="">
+                            <a href="{{ route('admin.members.index') }}">{{ trans('admin.members.title') }}</a>
+                        </li>
+                    {% endif %}
+                    {% if auth_user().can('view camps') %}
+                        <li class="">
+                            <a href="{{ route('admin.camping.index') }}">{{ trans('admin.camping.title') }}</a>
+                        </li>
+                    {% endif %}
+                    {% if auth_user().can('view store items') %}
+                        <li class="">
+                            <a href="{{ route('admin.store.items.index') }}">{{ trans('admin.store.items.title') }}</a>
+                        </li>
+                    {% endif %}
                 </ul>
                 <div>
                     <p>

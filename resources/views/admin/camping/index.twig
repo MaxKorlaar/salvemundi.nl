@@ -7,7 +7,9 @@
                 <div class="col-md-12">
                     <h1>{{ trans('admin.camping.title') }}</h1>
                     <p>
-                        <a href="{{ route('admin.camping.create') }}" class="btn btn-primary">{{ trans('admin.camping.new') }}</a>
+                        {% if auth_user().can('edit camps') %}
+                            <a href="{{ route('admin.camping.create') }}" class="btn btn-primary">{{ trans('admin.camping.new') }}</a>
+                        {% endif %}
                     </p>
                     <table class="table camp-list table-striped">
                         <thead>

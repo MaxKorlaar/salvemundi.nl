@@ -151,9 +151,11 @@
                     <a href="{{ route('admin.intro.supervisor_applications.show', { intro: introduction, application: application }) }}" class="button">
                         {{ trans('admin.intro.supervisor_applications.edit.back_to_application') }}
                     </a>
-                    {% if application.isAnonymised() or application.status is constant('STATUS_EMAIL_UNCONFIRMED', application) %}
-                        <a href="{{ route('admin.intro.supervisor_applications.delete_confirmation', { intro: introduction, application: application }) }}"
-                           class="button danger pull-right">{{ trans('admin.intro.supervisor_applications.delete_application') }}</a>
+                    {% if auth_user().can('delete introduction supervisor signups') %}
+                        {% if application.isAnonymised() or application.status is constant('STATUS_EMAIL_UNCONFIRMED', application) %}
+                            <a href="{{ route('admin.intro.supervisor_applications.delete_confirmation', { intro: introduction, application: application }) }}"
+                               class="button danger pull-right">{{ trans('admin.intro.supervisor_applications.delete_application') }}</a>
+                        {% endif %}
                     {% endif %}
                 </div>
 

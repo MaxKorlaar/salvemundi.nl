@@ -30,7 +30,9 @@
     class IntroController extends Controller {
 
         public function __construct() {
-            $this->middleware('auth.admin');
+            $this->middleware('permission:view introductions');
+            $this->middleware('permission:edit introductions')->only(['create', 'store', 'edit', 'update', 'sendEmailConfirmationReminders', 'sendPaymentReminders']);
+            $this->middleware('permission:delete introductions')->only(['destroy', 'getDeleteConfirmation']);
         }
 
         /**
@@ -51,7 +53,7 @@
         public function getJson(Introduction $intro, Request $request) {
             return [
                 'success'      => true,
-                'applications' => $intro->getApplicationsJSON(),
+                'applications' => $intro->getApplicationsJSON($request->user()->can('view introduction signups')),
                 'introduction' => $intro->getJSON()
             ];
         }
@@ -65,7 +67,7 @@
          */
         public static function show(Introduction $intro, Request $request) {
             return view('admin.intro.show', [
-                'introduction'            => $intro
+                'introduction' => $intro
             ]);
         }
 
@@ -242,6 +244,4 @@
                 'total_count' => $totalCount,
             ]));
         }
-
-
     }

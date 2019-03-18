@@ -21,6 +21,12 @@
      * @package App\Http\Controllers\Admin\Store
      */
     class StockController extends Controller {
+
+        public function __construct() {
+            $this->middleware('permission:edit store items')->only('create', 'store', 'update');
+            $this->middleware('permission:delete store items')->only('destroy', 'getDeleteConfirmation');
+        }
+
         /**
          * Display a listing of the resource.
          *

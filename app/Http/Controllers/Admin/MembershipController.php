@@ -21,7 +21,10 @@
     class MembershipController extends Controller {
 
         public function __construct() {
-            $this->middleware('auth.admin');
+            $this->middleware('permission:view memberships');
+            $this->middleware('permission:add memberships')->only('create', 'store');
+            $this->middleware('permission:edit memberships')->only('edit', 'update');
+            $this->middleware('permission:delete memberships')->only('destroy');
         }
 
         /**

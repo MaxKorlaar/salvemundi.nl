@@ -28,7 +28,9 @@
                         </div>
                         <div class="col-6">
                             <h2>{{ trans('admin.store.items.stock.title') }}</h2>
-                            <a href="{{ route('admin.store.items.stock.create', { item: item }) }}" class="btn btn-primary">{{ trans('admin.store.items.stock.new') }}</a>
+                            {% if auth_user().can('edit store items') %}
+                                <a href="{{ route('admin.store.items.stock.create', { item: item }) }}" class="btn btn-primary">{{ trans('admin.store.items.stock.new') }}</a>
+                            {% endif %}
                             <table class="table stock-list table-striped">
                                 <thead>
                                     <tr>
@@ -57,8 +59,12 @@
 
                         <div class="col">
                             <div class="form-group">
-                                <input type="submit" class="button" value="{{ trans('admin.store.items.edit.save') }}">
-                                <a href="{{ route('admin.store.items.delete_confirmation', { item: item }) }}" class="button delete">{{ trans('admin.store.items.edit.delete') }}</a>
+                                {% if auth_user().can('edit store items') %}
+                                    <input type="submit" class="button" value="{{ trans('admin.store.items.edit.save') }}">
+                                {% endif %}
+                                {% if auth_user().can('delete store items') %}
+                                    <a href="{{ route('admin.store.items.delete_confirmation', { item: item }) }}" class="button delete">{{ trans('admin.store.items.edit.delete') }}</a>
+                                {% endif %}
                             </div>
                         </div>
 

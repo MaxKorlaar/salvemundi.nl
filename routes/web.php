@@ -156,7 +156,7 @@
         Route::resource('intro/{intro}/aanmeldingen', 'Intro\ApplicationController')->names('intro.applications');
         Route::resource('intro/{intro}/ouder-aanmeldingen', 'Intro\SupervisorApplicationController')->names('intro.supervisor_applications');
 
-        Route::group(['prefix' => 'winkel', 'namespace' => 'Store', 'as' => 'store.', 'middleware' => ['auth.admin']], function () {
+        Route::group(['prefix' => 'winkel', 'namespace' => 'Store', 'as' => 'store.', 'middleware' => ['permission:view store items']], function () {
             Route::resource('bestellingen', 'OrderController')->names('orders');
 
             Route::resource('items', 'ItemController');

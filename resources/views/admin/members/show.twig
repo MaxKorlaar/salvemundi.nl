@@ -1,11 +1,21 @@
 {% extends 'admin/_page.twig' %}
-{% block title %}{{ member.first_name }} {{ member.last_name }}{% endblock %}
+{% block title %}{% if auth_user().can('view member names') %}
+    {{ member.first_name }} {{ member.last_name }}
+{% else %}
+    {{ trans('admin.members.member') }}
+{% endif %}{% endblock %}
 {% block content %}
     <div class="container">
         <main class="member">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>{{ member.first_name }} {{ member.last_name }}</h1>
+                    <h1>
+                        {% if auth_user().can('view member names') %}
+                            {{ member.first_name }} {{ member.last_name }}
+                        {% else %}
+                            {{ trans('admin.members.member') }}
+                        {% endif %}
+                    </h1>
                 </div>
                 {% if not member.isCurrentlyMember() %}
                     <div class="col-md-12 d-flex flex-column justify-content-center">
@@ -23,53 +33,60 @@
                         <b>{{ trans('admin.members.pcn') }}</b>
                         {{ member.pcn }}
                     </div>
-                    <div>
-                        <b>{{ trans('admin.members.first_name') }}</b>
-                        {{ member.first_name }}
-                    </div>
-                    <div>
-                        <b>{{ trans('admin.members.last_name') }}</b>
-                        {{ member.last_name }}
-                    </div>
-                    <div>
-                        <b>{{ trans('admin.members.address') }}</b>
-                        {{ member.address }}
-                    </div>
-                    <div>
-                        <b>{{ trans('admin.members.city') }}</b>
-                        {{ member.city }}
-                    </div>
-                    <div>
-                        <b>{{ trans('admin.members.postal') }}</b>
-                        {{ member.postal }}
-                    </div>
-                    <div>
-                        <b>{{ trans('admin.members.country') }}</b>
-                        {{ member.country ? trans('address.country.' ~ member.country) : trans('admin.members.none_given') }}
-                    </div>
-
+                    {% if auth_user().can('view member names') %}
+                        <div>
+                            <b>{{ trans('admin.members.first_name') }}</b>
+                            {{ member.first_name }}
+                        </div>
+                        <div>
+                            <b>{{ trans('admin.members.last_name') }}</b>
+                            {{ member.last_name }}
+                        </div>
+                    {% endif %}
+                    {% if auth_user().can('view member addresses') %}
+                        <div>
+                            <b>{{ trans('admin.members.address') }}</b>
+                            {{ member.address }}
+                        </div>
+                        <div>
+                            <b>{{ trans('admin.members.city') }}</b>
+                            {{ member.city }}
+                        </div>
+                        <div>
+                            <b>{{ trans('admin.members.postal') }}</b>
+                            {{ member.postal }}
+                        </div>
+                        <div>
+                            <b>{{ trans('admin.members.country') }}</b>
+                            {{ member.country ? trans('address.country.' ~ member.country) : trans('admin.members.none_given') }}
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="col-4">
-                    <div>
-                        <b>{{ trans('admin.members.birthday') }}</b>
-                        {{ member.birthday|date(trans('datetime.format.date')) }}
-                    </div>
-                    <div>
-                        <b>{{ trans('admin.members.phone') }}</b>
-                        {{ member.phone }}
-                    </div>
-                    <div>
-                        <b>{{ trans('admin.members.email') }}</b>
-                        {{ member.email }}
-                    </div>
-                    <div>
-                        <b>{{ trans('admin.members.website_account') }}</b>
-                        {% if member.user %}
-                            <a href="{{ route('admin.users.show', { user: member.user }) }}">{{ member.user.username }}</a>
-                        {% else %}
-                            <i>{{ trans('admin.members.no_user') }}</i>
-                        {% endif %}
-                    </div>
+                    {% if auth_user().can('view member personal info') %}
+                        <div>
+                            <b>{{ trans('admin.members.birthday') }}</b>
+                            {{ member.birthday|date(trans('datetime.format.date')) }}
+                        </div>
+                        <div>
+                            <b>{{ trans('admin.members.phone') }}</b>
+                            {{ member.phone }}
+                        </div>
+                    {% endif %}
+                    {% if auth_user().can('view member emails') %}
+                        <div>
+                            <b>{{ trans('admin.members.email') }}</b>
+                            {{ member.email }}
+                        </div>
+                        <div>
+                            <b>{{ trans('admin.members.website_account') }}</b>
+                            {% if member.user %}
+                                <a href="{{ route('admin.users.show', { user: member.user }) }}">{{ member.user.username }}</a>
+                            {% else %}
+                                <i>{{ trans('admin.members.no_user') }}</i>
+                            {% endif %}
+                        </div>
+                    {% endif %}
                     <div>
                         <b>{{ trans('admin.members.card') }}</b>
                         {{ trans('admin.members.card_status.' ~ member.card_status) }}
@@ -89,167 +106,196 @@
                         {{ member.updated_at|date(trans('datetime.format.date_and_time')) }}
                     </div>
                 </div>
-                <div class="col-4">
-                    {% if member.hasPicture() %}
-                        <a download="{{ member.picture_name }}" href="{{ route('admin.members.full_picture', { member: member }) }}" target="_blank">
-                            <img class="img-fluid" src="{{ route('admin.members.picture', { member: member }) }}">
-                        </a>
+                {% if auth_user().can('view member personal info') %}
+                    <div class="col-4">
+                        {% if member.hasPicture() %}
+                            <a download="{{ member.picture_name }}" href="{{ route('admin.members.full_picture', { member: member }) }}" target="_blank">
+                                <img alt="{{ route('admin.members.picture', { member: member }) }}" class="img-fluid" src="{{ route('admin.members.picture', { member: member }) }}">
+                            </a>
+                        {% endif %}
+                        <i>{{ member.picture_name }}</i>
+                    </div>
+                {% endif %}
+                {% if auth_user().can('view member permissions') %}
+                    {% if member.user.permissions.isNotEmpty() %}
+                        <div class="col-12">
+                            <h3>{{ trans('admin.members.permissions') }}</h3>
+                            <ul class="permissions-grid">
+                                {% for permission in member.user.permissions %}
+                                    <li>
+                                        {{ trans('permissions.' ~ permission.name) }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     {% endif %}
-                    <i>{{ member.picture_name }}</i>
-                </div>
+                {% endif %}
                 <div class="col-12 button-container">
-                    <a href="{{ route('admin.members.edit', { member: member }) }}" class="button">{{ trans('admin.members.edit_member') }}</a>
-
-                    {% if not member.isCurrentlyMember() %}
-                        <a href="{{ route('admin.members.delete_confirmation', { member: member }) }}" class="button danger pull-right">{{ trans('admin.members.delete_member') }}</a>
+                    {% if auth_user().can('edit members') %}
+                        <a href="{{ route('admin.members.edit', { member: member }) }}" class="button">{{ trans('admin.members.edit_member') }}</a>
+                    {% endif %}
+                    {% if auth_user().can('delete members') %}
+                        {% if not member.isCurrentlyMember() %}
+                            <a href="{{ route('admin.members.delete_confirmation', { member: member }) }}" class="button danger pull-right">{{ trans('admin.members.delete_member') }}</a>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <h4>{{ trans('admin.members.transactions') }}</h4>
-                    <table class="table transaction-list table-striped">
-                        <thead>
-                            <tr>
-                                <th>{{ trans('admin.transactions.id') }}</th>
-                                <th>{{ trans('admin.transactions.transaction_id') }}</th>
-                                <th>{{ trans('admin.transactions.transaction_status') }}</th>
-                                <th>{{ trans('admin.transactions.transaction_amount') }}</th>
-                                <th>{{ trans('admin.transactions.created_at') }}</th>
-                                <th>{{ trans('admin.transactions.updated_at') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for transaction in member.transactions %}
-                                <tr id="transaction-{{ transaction.id }}">
-                                    <td>{{ transaction.id }}</td>
-                                    <td>
-                                        <a target="_blank" href="{{ config_get('mollie.transaction_url') ~ transaction.transaction_id }}">{{ transaction.transaction_id }}</a>
-                                    </td>
-                                    <td>{{ trans('admin.transactions.status.' ~ transaction.transaction_status) }}</td>
-                                    <td>€{{ transaction.transaction_amount|number_format(2, ',') }}</td>
-                                    <td>{{ transaction.created_at|date(trans('datetime.format.date_and_time')) }}</td>
-                                    <td>{{ transaction.updated_at|date(trans('datetime.format.date_and_time')) }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-12">
-                    <h4>{{ trans('admin.members.memberships') }}</h4>
-                    <table class="table membership-list table-striped">
-                        <thead>
-                            <tr>
-                                <th>{{ trans('admin.memberships.id') }}</th>
-                                <th>{{ trans('admin.memberships.transaction') }}</th>
-                                <th>{{ trans('admin.memberships.valid_from') }}</th>
-                                <th>{{ trans('admin.memberships.valid_until') }}</th>
-                                <th>{{ trans('admin.memberships.created_at') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for membership in member.memberships %}
+                {% if auth_user().can('view member transactions') %}
+                    <div class="col-md-12">
+                        <h4>{{ trans('admin.members.transactions') }}</h4>
+                        <table class="table transaction-list table-striped">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        {{ membership.id }}
-                                    </td>
-                                    <td>
-                                        {% if membership.transaction %}
-                                            <a href="#transaction-{{ membership.transaction_id }}">
-                                                {{ membership.transaction_id }}
-                                                ({{ trans('admin.transactions.status.' ~ membership.transaction.transaction_status) }})
-                                            </a>
-                                        {% else %}
-                                            {{ trans('admin.memberships.no_transaction') }}
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ membership.valid_from|date(trans('datetime.format.date')) }}</td>
-                                    <td>{{ membership.valid_until|date(trans('datetime.format.date')) }}</td>
-                                    <td>{{ membership.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    <th>{{ trans('admin.transactions.id') }}</th>
+                                    <th>{{ trans('admin.transactions.transaction_id') }}</th>
+                                    <th>{{ trans('admin.transactions.transaction_status') }}</th>
+                                    <th>{{ trans('admin.transactions.transaction_amount') }}</th>
+                                    <th>{{ trans('admin.transactions.created_at') }}</th>
+                                    <th>{{ trans('admin.transactions.updated_at') }}</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <div class="button-container">
-                        <a href="{{ route('admin.members.membership.create', { member: member }) }}" class="button">{{ trans('admin.memberships.create_membership') }}</a>
+                            </thead>
+                            <tbody>
+                                {% for transaction in member.transactions %}
+                                    <tr id="transaction-{{ transaction.id }}">
+                                        <td>{{ transaction.id }}</td>
+                                        <td>
+                                            <a target="_blank" href="{{ config_get('mollie.transaction_url') ~ transaction.transaction_id }}">{{ transaction.transaction_id }}</a>
+                                        </td>
+                                        <td>{{ trans('admin.transactions.status.' ~ transaction.transaction_status) }}</td>
+                                        <td>€{{ transaction.transaction_amount|number_format(2, ',') }}</td>
+                                        <td>{{ transaction.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                        <td>{{ transaction.updated_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <h4>{{ trans('admin.members.campings') }}</h4>
-                    <table class="table camping-list table-striped">
-                        <thead>
-                            <tr>
-                                <th>{{ trans('admin.camping.id') }}</th>
-                                <th>{{ trans('admin.camping.camping_id') }}</th>
-                                <th>{{ trans('admin.camping.transaction') }}</th>
-                                <th>{{ trans('admin.camping.created_at') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for camping in member.campingApplications %}
+                {% endif %}
+                {% if auth_user().can('view memberships') %}
+                    <div class="col-md-12">
+                        <h4>{{ trans('admin.members.memberships') }}</h4>
+                        <table class="table membership-list table-striped">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        {{ camping.id }}
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('admin.camping.show', { camp: camping.camp }) }}">
-                                            {{ camping.camp_id }} ({{ camping.camp.year.year }})
-                                        </a>
-                                    </td>
-                                    <td>
-                                        {% if camping.transaction %}
-                                            <a href="#transaction-{{ camping.transaction_id }}">
-                                                {{ camping.transaction_id }}
-                                                ({{ trans('admin.transactions.status.' ~ camping.transaction.transaction_status) }})
-                                            </a>
-                                        {% else %}
-                                            {{ trans('admin.camping.no_transaction') }}
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ camping.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    <th>{{ trans('admin.memberships.id') }}</th>
+                                    <th>{{ trans('admin.memberships.transaction') }}</th>
+                                    <th>{{ trans('admin.memberships.valid_from') }}</th>
+                                    <th>{{ trans('admin.memberships.valid_until') }}</th>
+                                    <th>{{ trans('admin.memberships.created_at') }}</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                <div class="col-md-12">
-                    <h4>{{ trans('admin.members.orders') }}</h4>
-                    <table class="table order-list table-striped">
-                        <thead>
-                            <tr>
-                                <th>{{ trans('admin.store.orders.id') }}</th>
-                                <th>{{ trans('admin.store.orders.current_status') }}</th>
-                                <th>{{ trans('admin.store.orders.transaction') }}</th>
-                                <th>{{ trans('admin.store.orders.created_at') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for order in member.user.orders %}
+                            </thead>
+                            <tbody>
+                                {% for membership in member.memberships %}
+                                    <tr>
+                                        <td>
+                                            {{ membership.id }}
+                                        </td>
+                                        <td>
+                                            {% if membership.transaction %}
+                                                <a href="#transaction-{{ membership.transaction_id }}">
+                                                    {{ membership.transaction_id }}
+                                                    ({{ trans('admin.transactions.status.' ~ membership.transaction.transaction_status) }})
+                                                </a>
+                                            {% else %}
+                                                {{ trans('admin.memberships.no_transaction') }}
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ membership.valid_from|date(trans('datetime.format.date')) }}</td>
+                                        <td>{{ membership.valid_until|date(trans('datetime.format.date')) }}</td>
+                                        <td>{{ membership.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% if auth_user().can('add memberships') %}
+                            <div class="button-container">
+                                <a href="{{ route('admin.members.membership.create', { member: member }) }}" class="button">{{ trans('admin.memberships.create_membership') }}</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                {% if auth_user().can('view member camps') %}
+                    <div class="col-md-12">
+                        <h4>{{ trans('admin.members.campings') }}</h4>
+                        <table class="table camping-list table-striped">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        {{ order.id }}
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('admin.store.orders.show', { order: order }) }}">
-                                            {{ trans('admin.store.orders.status.' ~ order.status) }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        {% if order.transaction %}
-                                            <a href="#transaction-{{ order.transaction_id }}">
-                                                {{ order.transaction_id }}
-                                                ({{ trans('admin.transactions.status.' ~ order.transaction.transaction_status) }})
-                                            </a>
-                                        {% else %}
-                                            {{ trans('admin.store.orders.no_transaction') }}
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ order.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    <th>{{ trans('admin.camping.id') }}</th>
+                                    <th>{{ trans('admin.camping.camping_id') }}</th>
+                                    <th>{{ trans('admin.camping.transaction') }}</th>
+                                    <th>{{ trans('admin.camping.created_at') }}</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                {% for camping in member.campingApplications %}
+                                    <tr>
+                                        <td>
+                                            {{ camping.id }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.camping.show', { camp: camping.camp }) }}">
+                                                {{ camping.camp_id }} ({{ camping.camp.year.year }})
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {% if camping.transaction %}
+                                                <a href="#transaction-{{ camping.transaction_id }}">
+                                                    {{ camping.transaction_id }}
+                                                    ({{ trans('admin.transactions.status.' ~ camping.transaction.transaction_status) }})
+                                                </a>
+                                            {% else %}
+                                                {{ trans('admin.camping.no_transaction') }}
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ camping.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                {% if auth_user().can('view member orders') %}
+                    <div class="col-md-12">
+                        <h4>{{ trans('admin.members.orders') }}</h4>
+                        <table class="table order-list table-striped">
+                            <thead>
+                                <tr>
+                                    <th>{{ trans('admin.store.orders.id') }}</th>
+                                    <th>{{ trans('admin.store.orders.current_status') }}</th>
+                                    <th>{{ trans('admin.store.orders.transaction') }}</th>
+                                    <th>{{ trans('admin.store.orders.created_at') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in member.user.orders %}
+                                    <tr>
+                                        <td>
+                                            {{ order.id }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.store.orders.show', { order: order }) }}">
+                                                {{ trans('admin.store.orders.status.' ~ order.status) }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {% if order.transaction %}
+                                                <a href="#transaction-{{ order.transaction_id }}">
+                                                    {{ order.transaction_id }}
+                                                    ({{ trans('admin.transactions.status.' ~ order.transaction.transaction_status) }})
+                                                </a>
+                                            {% else %}
+                                                {{ trans('admin.store.orders.no_transaction') }}
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ order.created_at|date(trans('datetime.format.date_and_time')) }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
             </div>
         </main>
     </div>
