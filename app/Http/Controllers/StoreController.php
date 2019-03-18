@@ -24,6 +24,7 @@
     use Illuminate\Http\Request;
     use Illuminate\Http\Response;
     use Illuminate\Support\Collection;
+    use Illuminate\Support\Facades\App;
     use Illuminate\Support\Facades\Cache;
     use Illuminate\Support\Facades\Log;
     use Illuminate\View\View;
