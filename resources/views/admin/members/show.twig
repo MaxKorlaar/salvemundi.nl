@@ -106,7 +106,7 @@
                         {{ member.updated_at|date(trans('datetime.format.date_and_time')) }}
                     </div>
                 </div>
-                {% if auth_user().can('view member personal info') %}
+                {% if auth_user().can('view member photos') %}
                     <div class="col-4">
                         {% if member.hasPicture() %}
                             <a download="{{ member.picture_name }}" href="{{ route('admin.members.full_picture', { member: member }) }}" target="_blank">

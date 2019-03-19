@@ -33,4 +33,5 @@
         'edit camps'                             => 'Bewerk kampen',
         'delete camps'                           => 'Verwijder kampen',
         'view camp signups'                      => 'Bekijk kampaanmeldingen',
+        'view member photos'                     => 'Bekijk foto\'s van leden'
     ];
