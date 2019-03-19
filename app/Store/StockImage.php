@@ -55,10 +55,10 @@
             return Image::cache(function ($image) use ($height, $width) {
                 /** @var \Intervention\Image\Image $image */
                 $image->make($this->getImagePath());
+                $image->orientate();
                 $image->resize($width, $height, function (Constraint $constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
-                    $image->orientate();
                 });
             }, null, $returnObj);
         }
