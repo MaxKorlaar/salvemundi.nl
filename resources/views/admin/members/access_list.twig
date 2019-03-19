@@ -1,0 +1,45 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.members.access_list.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="members overview">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.members.access_list.title') }}</h1>
+                    <table class="table member-list table-striped">
+                        <thead>
+                            <tr>
+                                <th>{{ trans('admin.users.username') }}</th>
+                                <th>{{ trans('admin.users.official_name') }}</th>
+                                <th>{{ trans('admin.users.permissions') }}</th>
+                                <th>{{ trans('admin.users.permissions_raw') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.official_name }}</td>
+                                    <td>
+                                        <ul>
+                                            {% for permission in user.permissions %}
+                                                <li>{{ trans('permissions.' ~ permission.name) }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            {% for permission in user.permissions %}
+                                                <li>{{ permission.name }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

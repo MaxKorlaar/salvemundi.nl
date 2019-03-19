@@ -171,7 +171,16 @@
                 'preview'                     => 'Bekijk voorbeeld van de e-mail',
                 'send'                        => 'Stuur email naar :count leden',
                 'email_sent'                  => 'E-mail verstuurd naar :members leden.'
-            ]
+            ],
+            'access_list' => [
+                'title' => 'Toegang persoonsgegevens'
+            ],
+        ],
+        'users' => [
+            'username'        => 'Gebruikersnaam',
+            'official_name'   => 'Officiële naam',
+            'permissions'     => 'Permissies',
+            'permissions_raw' => 'Permissies (ruw)'
         ],
         'intro'       => [
             'title'                          => 'Introducties',

@@ -41,10 +41,11 @@
             $this->middleware('throttle:1,1')->only('sendMail');
             $this->middleware('throttle:1,1')->only('sendInactiveMail');
 
-            $this->middleware('permission:view member personal info')->only(['edit', 'getPicture', 'getFullPicture', 'spreadsheetIndex']);
+            $this->middleware('permission:view member personal info')->only(['edit', 'getPicture', 'getFullPicture', 'spreadsheetIndex', 'getMembersWithFullAccess']);
             $this->middleware('permission:edit members')->only(['create', 'store', 'edit', 'update', 'sendMail', 'sendInactiveMail']);
             $this->middleware('permission:view members');//->only(['index', 'spreadsheetIndex', 'viewDeletedMembers', 'show']);
             $this->middleware('permission:delete members')->only(['destroy', 'deleteInactive', 'getDeleteConfirmation', 'restoreDeletedMember']);
+            $this->middleware('permission:view member permissions')->only('getMembersWithFullAccess');
         }
 
 
@@ -597,15 +598,32 @@
          * @return User[]|Builder[]|Collection
          */
         public static function getMembersWithFullAccess() {
-            // Todo rechtensysteem implementeren
-            $members = User::with(['member'])->where('rank', 'admin')->orWhere('rank', 'camping')->get();
-            $return  = [];
-            foreach ($members as $member) {
-                $return[] = [
-                    'username'      => $member->username,
-                    'official_name' => $member->official_name,
-                ];
-            }
-            return $return;
+            $members = [];
+            User::each(function (User $user) use (&$members) {
+                if ($user->hasAnyPermission(
+                    'view member names',
+                    'view member addresses',
+                    'view member emails',
+                    'view member personal info',
+                    'view members',
+                    'edit members',
+                    'view memberships',
+                    'view member transactions',
+                    'view member camps',
+                    'view member orders',
+                    'view introduction signups',
+                    'edit introduction signups',
+                    'view introduction supervisor signups',
+                    'edit introduction supervisor signups',
+                    'view camp signups',
+                    'view member photos'
+                )) {
+                    // De gebruiker heeft op minstens één manier inzicht tot persoonsgegevens
+                    $members[] = $user;
+                }
+            });
+            return view('admin.members.access_list', [
+                'users' => $members
+            ]);
         }
     }
