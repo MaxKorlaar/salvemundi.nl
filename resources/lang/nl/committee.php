@@ -132,12 +132,17 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
             // Text en url worden momenteel niet gebruikt
             'members'       => [
                 [
+                    'name'    => 'Niek van Gogh',
+                    'profile' => 'ICT & Software',
+                    'text'    => '',
+                    'image'   => 'Niek.jpg',
+                ],
+                [
                     'name'    => 'Daniëlle Ooms',
                     'profile' => 'ICT & Media Design',
                     'text'    => 'Studeert momenteel ICT & Media Design. Daniëlle maakt ontwerpen, van flyers tot kleding en runt hiernaast haar eigen mediabureau.',
                     'image'   => 'Danielle.jpg'
                 ],
-
                 [
                     'name'    => 'Max Korlaar',
                     'profile' => 'ICT & Media Design',
@@ -156,23 +161,10 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'url'     => '//mvdk.eu/'
                 ],
                 [
-                    'name'    => 'Niek van Gogh',
-                    'profile' => 'ICT & Software',
-                    'text'    => '',
-                    'image'   => 'Niek.jpg',
-                ],
-                [
                     'name'    => 'Ruud Vissers',
                     'profile' => 'ICT & Media Design',
-                    'text'    => 'Studeert momenteel ICT & Media Design. Mede verantwoordelijk voor de website maar ook voor de fotografie.',
+                    'text'    => 'Semester 6 ICT & Media Design, Ruud onderhoudt samen met Max de website en verder speelt hij banjo bij Batenburg Hellbillie!',
                     'image'   => 'Ruud.jpg',
-                    'url'     => '//ruudvissers.nl/werkportfolio/'
-                ],
-                [
-                    'name'    => 'Kim van der Meulen',
-                    'profile' => 'ICT & Software',
-                    'text'    => '',
-                    'image'   => 'Kim.jpg',
                 ],
                 [
                     'name'    => 'Kazimir Awsiej',
@@ -415,12 +407,7 @@ en Onderwijs gerelateerde activiteiten',
                     'name'    => 'Vincent Venhuizen',
                     'profile' => 'ICT & Media Design',
                     'image'   => 'Vincent.jpg'
-                ],
-                [
-                    'name'    => 'Kim van der Meulen',
-                    'profile' => 'ICT & Software',
-                    'image'   => 'Kim.jpg',
-                ],
+                ]
             ]
         ],
         'alpha_centauri'   => [
