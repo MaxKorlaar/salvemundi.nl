@@ -20,6 +20,12 @@
             'meet_the_members'          => 'Het huidige bestuur',
             'members'                   => [
                 [
+                    'name'    => 'Michelle Groenendijk',
+                    'profile' => 'ICT & Media Design',
+                    'text'    => '',
+                    'image'   => ''
+                ],
+                [
                     'name'    => 'Joshua van Gompel',
                     'profile' => 'ICT & Media Design',
                     'text'    => 'Als een van de eerste leden is Joshua er al heel lang bij. Hij was aanwezig als organisator van de eerste georganiseerde introductie in 2017 en is hij al lang actief voor de vereniging met hart en ziel. Na 1,5 jaar gezocht te hebben naar zijn plek, heeft Joshua toch besloten om een functie binnen het bestuur aan te nemen. Hij neemt de plek als vicevoorzitter waarmee hij ervoor gaat zorgen dat de commissies altijd met de juiste visie van het bestuur aan de slag gaan. Daarnaast helpt hij de voorzitter met het duidelijk maken van de punten. Joshua is een goede aanwinst voor het nieuwe bestuur.',
@@ -30,12 +36,6 @@
                     'profile' => 'ICT & Software',
                     'text'    => 'Bastiaan Verhaar is pas sinds kort een student op ICT, maar heeft al ervaring op het gebied van penningmeesterschap. Zelfs in zijn persoonlijke kringen is hij altijd bezig met de geldzaken als het gaat over vakanties en uitjes. Hij is iemand die gefocust op geld, maar vooral de duidelijkheid van de zaken er omheen. Vanaf het moment dat Bastiaan toegang kreeg tot de financiën werd er met een kritische blik gekeken naar de huidige stand van zaken. Direct had Bastiaan opmerkingen over mogelijke verbeteringen. Zijn scherpe blik op geldzaken maakt hem de juiste kandidaat voor de rol als nieuwe penningmeester binnen de studievereniging.',
                     'image'   => 'Bastiaan.jpg'
-                ],
-                [
-                    'name'    => 'Daniëlle Ooms',
-                    'profile' => 'ICT & Media Design',
-                    'text'    => '',
-                    'image'   => 'Danielle.jpg'
                 ],
                 [
                     'name'    => 'Arno van Kessel',
