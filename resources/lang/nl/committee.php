@@ -44,7 +44,7 @@
                     'image'   => 'Arno.jpg'
                 ],
                 [
-                    'name'    => 'Mike Kotten',
+                    'name'    => 'Mike Kotte',
                     'profile' => 'ICT & Software',
                     'text'    => '',
                     'image'   => 'Mike.jpg'
