@@ -203,6 +203,7 @@
     Route::get('korting/happii', 'DiscountController@getHappiView')->name('discounts.happii');
 
     Route::get('drive', 'IndexController@getDriveRedirect');
+    Route::get('kalender', 'IndexController@getCalendar');
 
     Route::get('privacybeleid', 'MetaController@getPrivacyPage')->name('privacy');
     Route::get('/sitemap.xml', 'MetaController@getSitemap')->name('sitemap');
