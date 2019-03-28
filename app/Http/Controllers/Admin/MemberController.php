@@ -41,11 +41,12 @@
             $this->middleware('throttle:1,1')->only('sendMail');
             $this->middleware('throttle:1,1')->only('sendInactiveMail');
 
-            $this->middleware('permission:view member personal info')->only(['edit', 'getPicture', 'getFullPicture', 'spreadsheetIndex', 'getMembersWithFullAccess']);
+            $this->middleware('permission:view member personal info')->only(['edit', 'spreadsheetIndex', 'getMembersWithFullAccess']);
             $this->middleware('permission:edit members')->only(['create', 'store', 'edit', 'update', 'sendMail', 'sendInactiveMail']);
             $this->middleware('permission:view members');//->only(['index', 'spreadsheetIndex', 'viewDeletedMembers', 'show']);
             $this->middleware('permission:delete members')->only(['destroy', 'deleteInactive', 'getDeleteConfirmation', 'restoreDeletedMember']);
             $this->middleware('permission:view member permissions')->only('getMembersWithFullAccess');
+            $this->middleware('permission:view member photos')->only('getPicture', 'getFullPicture');
         }
 
 
