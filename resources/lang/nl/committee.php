@@ -20,6 +20,11 @@
             'meet_the_members'          => 'Het huidige bestuur',
             'members'                   => [
                 [
+                    'name'    => 'Max Korlaar',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => '../media/Max.jpg',
+                ],
+                [
                     'name'    => 'Michelle Groenendijk',
                     'profile' => 'ICT & Media Design',
                     'text'    => '',

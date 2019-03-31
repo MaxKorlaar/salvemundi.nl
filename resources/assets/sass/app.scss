@@ -562,7 +562,7 @@ button {
           //noinspection CssOptimizeSimilarProperties
           .img {
             transition: .2s ease;
-            background-color: #FFFFFF;
+            background-color: theme-color(primary);
             display: block;
             background-blend-mode: multiply;
             height: 100%;
@@ -590,7 +590,7 @@ button {
 
           .image {
             .img {
-              //background-color: scale-color(theme-color(primary), $saturation: 10%, $lightness: 30%);
+              background-color: scale-color(theme-color(primary), $saturation: 10%, $lightness: 30%);
             }
           }
         }
