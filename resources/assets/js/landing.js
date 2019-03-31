@@ -7,10 +7,7 @@ import {debounce} from "lodash/function";
 require('./app');
 
  */
-setInterval(() => {
-    document.body.innerHTML = document.body.innerHTML.replace('Salve Mundi', 'Innovum');
-    document.body.innerHTML = document.body.innerHTML.replace('ICT', 'Engineering');
-}, 2500);
+
 let scrollThreshold = window.innerHeight - 150; // 100vh = 100% van de hoogte van het scherm
 
 $(window).on('resize', function () {
