@@ -26,3 +26,9 @@ if (token) {
 } else {
     console.error('CSRF Missing');
 }
+setInterval(() => {
+    if (document.body.innerHTML.indexOf('Salve Mundi') !== -1) {
+        document.body.innerHTML = document.body.innerHTML.replace('Salve Mundi', 'Innovum');
+        document.body.innerHTML = document.body.innerHTML.replace('ICT', 'Engineering');
+    }
+}, 2500);
