@@ -5,3 +5,7 @@
  */
 
 require('./bootstrap');
+setInterval(() => {
+    document.body.innerHTML = document.body.innerHTML.replace('Salve Mundi', 'Innovum');
+    document.body.innerHTML = document.body.innerHTML.replace('ICT', 'Engineering');
+}, 2500);
