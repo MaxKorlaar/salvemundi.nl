@@ -68,6 +68,11 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
             'meet_the_members' => 'Dit zijn de feestgangers',
             'members'          => [
                 [
+                    'name'    => 'Max Korlaar',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => '../media/Max.jpg',
+                ],
+                [
                     'name'    => 'Luuk Hendriks',
                     'profile' => 'ICT & Business',
                     'text'    => 'De voorzitter Luuk Hendriks weet binnen de feestcommissie van alles wat. Hij springt in waar nodig en leidt de organisatie in goede banen. Voor veel leden van de commissie betekent dit slechts dat hij werk op ze afschuift wat eigenlijk aan hem is opgedragen. Luuk is altijd voorzichtig geweest met het aannemen van nieuwe commissieleden. Deze leden zijn zorgvuldig gekozen om een team samen te stellen wat van alles wat kan. Tevens was ook de feestcommissie de hoofdreden dat Luuk de organisatie van Salve Mundi samen met Mohammed in gang heeft gezet. Ook bij deze commissie is de harde maar eerlijke houding van Luuk erg van toepassing. Dat betekent wel dat hij alles op alles zet voor het beste eindresultaat.',
@@ -132,6 +137,11 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
             // Text en url worden momenteel niet gebruikt
             'members'       => [
                 [
+                    'name'    => 'Max Korlaar',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => '../media/Max.jpg',
+                ],
+                [
                     'name'    => 'Niek van Gogh',
                     'profile' => 'ICT & Software',
                     'text'    => '',
@@ -192,6 +202,11 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
             'meet_the_members' => 'De kampeerders',
             'members'          => [
                 [
+                    'name'    => 'Max Korlaar',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => '../media/Max.jpg',
+                ],
+                [
                     'name'    => 'Wesley Ingenbleek',
                     'image'   => 'Wesley Software.jpg',
                     'profile' => 'ICT & Software'
@@ -235,6 +250,11 @@ en Onderwijs gerelateerde activiteiten',
             ],
             'meet_the_team' => 'De helpende handjes',
             'members'       => [
+                [
+                    'name'    => 'Max Korlaar',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => '../media/Max.jpg',
+                ],
                 [
                     'name'    => 'Mohammed Mighiss',
                     'profile' => 'ICT & Technology',
@@ -288,6 +308,11 @@ en Onderwijs gerelateerde activiteiten',
             'meet_the_team' => 'De vertrouwenspersonen',
             'members'       => [
                 [
+                    'name'    => 'Max Korlaar',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => '../media/Max.jpg',
+                ],
+                [
                     'name'    => 'Olivier Bouchoms',
                     'profile' => 'ICT & Software',
                     'text'    => 'placeholder',
@@ -314,6 +339,11 @@ en Onderwijs gerelateerde activiteiten',
             ],
             'meet_the_team' => 'Dit zijn de kletskousen',
             'members'       => [
+                [
+                    'name'    => 'Max Korlaar',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => '../media/Max.jpg',
+                ],
                 [
                     'name'    => 'Arno van Kessel',
                     'profile' => 'ICT & Software',
@@ -343,6 +373,11 @@ en Onderwijs gerelateerde activiteiten',
             'meet_the_team' => 'De actievelingen',
             'members'       => [
                 [
+                    'name'    => 'Max Korlaar',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => '../media/Max.jpg',
+                ],
+                [
                     'name'    => 'Ella Zuidema',
                     'profile' => 'ICT & Software',
                     'image'   => 'Ella.jpg'
@@ -368,6 +403,11 @@ en Onderwijs gerelateerde activiteiten',
             ],
             'meet_the_team' => 'Ontmoet de penningmeesters',
             'members'       => [
+                [
+                    'name'    => 'Max Korlaar',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => '../media/Max.jpg',
+                ],
                 [
                     'name'    => 'Rex Treurniet',
                     'profile' => 'ICT & Business',
@@ -418,6 +458,11 @@ en Onderwijs gerelateerde activiteiten',
             ],
             'meet_the_team' => 'Ontmoet de leden',
             'members'       => [
+                [
+                    'name'    => 'Max Korlaar',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => '../media/Max.jpg',
+                ],
                 [
                     'name'    => 'Jeffrey Venerius',
                     'profile' => 'ICT & Software',
