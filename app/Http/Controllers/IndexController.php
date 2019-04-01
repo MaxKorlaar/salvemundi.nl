@@ -158,13 +158,6 @@ De feestcommissie',
         }
 
         /**
-         * @return RedirectResponse|Redirector
-         */
-        public static function getCalendar() {
-            return redirect('https://calendar.google.com/calendar/embed?src=4plogfln909joljb8i9d8q8u6g%40group.calendar.google.com&ctz=Europe%2FAmsterdam');
-        }
-
-        /**
          * @return string
          */
         public static function getCancelPage() {
