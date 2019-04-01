@@ -19,8 +19,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  color: #777777;
-  font-family: "Antic Slab", Arial, Helvetica, sans-serif;
+
   > .content {
     flex: 1;
   }
@@ -562,7 +561,7 @@ button {
           //noinspection CssOptimizeSimilarProperties
           .img {
             transition: .2s ease;
-            background-color: theme-color(primary);
+            background-color: #FFFFFF;
             display: block;
             background-blend-mode: multiply;
             height: 100%;
@@ -590,7 +589,7 @@ button {
 
           .image {
             .img {
-              background-color: scale-color(theme-color(primary), $saturation: 10%, $lightness: 30%);
+              //background-color: scale-color(theme-color(primary), $saturation: 10%, $lightness: 30%);
             }
           }
         }
