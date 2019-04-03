@@ -149,7 +149,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                 [
                     'name'    => 'Max Korlaar',
                     'profile' => 'ICT & Media Design',
-                    'text'    => 'Studeert momenteel ICT & Media Design. Max is verantwoordelijk voor zowel het uiterlijk als de functionaliteit van de website, en is werkzaam als webdeveloper.', // Max was hier :)
+                    'text'    => 'Studeert momenteel ICT & Media Design. Max is verantwoordelijk voor zowel het uiterlijk als de functionaliteit van de website, en is werkzaam als webdeveloper.', // Max was hier :) //hee man, alles goed?
                     // xoxo ~Max, 2018
                     'image'   => 'Max.jpg',
                     // todo: On hover veranderen naar foto met Youp en Niek
@@ -185,7 +185,19 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'profile' => 'ICT & Media Design',
                     'text'    => '',
                     'image'   => 'Bart.jpg'
-                ]
+                ],
+                [
+                    'name'    => 'Ingo Stappershoef - ICT & Media Design',
+                    'profile' => 'ICT & Media Design',
+                    'text'    => '',
+                    'image'   => 'ingo.jpg'
+                ],
+                [
+                    'name'    => 'Ruud Willems',
+                    'profile' => 'ICT & Media Design',
+                    'text'    => '',
+                    'image'   => 'ruud2.jpg'
+                ],
 
             ]
         ],
@@ -365,6 +377,16 @@ en Onderwijs gerelateerde activiteiten',
                     'profile' => 'ICT & Software en Media Design',
                     'image'   => 'Alex.jpg'
                 ],
+                [
+                    'name'    => 'Mitchell Ton',
+                    'profile' => 'Startsemester',
+                    'image'   => 'mitchell.jpg'
+                ],
+                [
+                    'name'    => 'Stef Boelens',
+                    'profile' => 'ICT & Software',
+                    'image'   => 'stef.jpg'
+                ],
 
             ]
         ],
@@ -403,11 +425,6 @@ en Onderwijs gerelateerde activiteiten',
                     'image'   => 'GijsH.jpg'
                 ],
                 [
-                    'name'    => 'Luuk Lenaers',
-                    'profile' => 'ICT & Business',
-                    'image'   => 'Luuk.jpg'
-                ],
-                [
                     'name'    => 'Mohammed Mighiss',
                     'profile' => 'ICT & Technology',
                     'image'   => 'Mohammed.jpg'
@@ -416,7 +433,17 @@ en Onderwijs gerelateerde activiteiten',
                     'name'    => 'Vincent Venhuizen',
                     'profile' => 'ICT & Media Design',
                     'image'   => 'Vincent.jpg'
-                ]
+                ],
+                [
+                    'name'    => 'Danielle Ooms',
+                    'profile' => 'ICT & Media Design',
+                    'image'   => 'danielle.jpg'
+                ],
+                [
+                    'name'    => 'Sean Metsemakers',
+                    'profile' => 'ICT & Technology',
+                    'image'   => 'sean.jpg'
+                ],
             ]
         ],
         'alpha_centauri'   => [
