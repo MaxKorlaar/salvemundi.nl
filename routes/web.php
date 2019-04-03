@@ -200,7 +200,6 @@
 
     Route::get('korting', 'DiscountController@getDefaultView')->name('discounts.index');
     Route::get('korting/villa-fiesta', 'DiscountController@getVillaView')->name('discounts.villa_fiesta');
-    Route::get('korting/happii', 'DiscountController@getHappiView')->name('discounts.happii');
 
     Route::get('drive', 'IndexController@getDriveRedirect');
     Route::get('kalender', 'IndexController@getCalendar');

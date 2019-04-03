@@ -54,11 +54,6 @@
                     'frequency' => 'weekly'
                 ],
                 [
-                    'url'       => route('discounts.happii', [], false),
-                    'priority'  => 0.8,
-                    'frequency' => 'weekly'
-                ],
-                [
                     'url'       => route('signup.signup', [], false),
                     'priority'  => 1,
                     'frequency' => 'monthly'
