@@ -38,4 +38,13 @@ class Committee extends Model
     {
         return $this->hasMany(Member::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function contents()
+    {
+        return $this->hasMany(CommitteeContent::class);
+    }
+
 }

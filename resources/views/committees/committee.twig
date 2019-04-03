@@ -11,6 +11,12 @@
                         <div class="col-md-7">
                             <p>{{ committee.description }}</p>
                         </div>
+                        {% for content in committee.contents %}
+                            <div class="col-md-7">
+                                <h2>{{ content.title }}</h2>
+                                <p>{{ content.content }}</p>
+                            </div>
+                        {% endfor %}
                     </div>
                 </section>
             </div>
