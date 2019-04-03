@@ -47,4 +47,9 @@ class Committee extends Model
         return $this->hasMany(CommitteeContent::class);
     }
 
+    public function getRouteKeyName()
+    {
+        return 'name_short';
+    }
+
 }

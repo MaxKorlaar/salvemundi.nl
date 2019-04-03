@@ -33,8 +33,7 @@
                                         <p>{{ member.personal_message }}</p>
                                     </div>
                                     <div class="image">
-                                        <div class="img"
-                                             style="background-image: url('{{ asset('images/commissies/media/' ~ member.image) }}');">
+                                        <div class="img" style="background-image: url('{{ route('committees/member_photo', { member: member, committee: committee}) }}');">
                                         </div>
                                     </div>
                                 </div>

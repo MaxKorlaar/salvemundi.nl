@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Committee;
+use App\CommitteeMember;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
@@ -69,5 +70,10 @@ class CommitteeController extends Controller
         return view('committees.committee', [
             'committee' => $committee
         ]);
+    }
+
+
+    public function getMemberPicture(Committee $committee, CommitteeMember $member) {
+        return $member->member->getResizedCachedImage(400, null, true)->response();
     }
 }

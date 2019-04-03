@@ -43,6 +43,7 @@
         Route::get('bestuur/2018', 'CommitteeController@get2018')->name('administration.2018');
 
         Route::get('/{committee}', 'CommitteeController@getCommittee')->name('by_name');
+        Route::get('/{committee}/{member}/photo', 'CommitteeController@getMemberPicture')->name('member_photo');
 //        Route::get('feest', 'CommitteeController@getPartyPage')->name('party');
 //        Route::get('media', 'CommitteeController@getMediaPage')->name('media');
 //        Route::get('kamp', 'CommitteeController@getCampingPage')->name('camping');
