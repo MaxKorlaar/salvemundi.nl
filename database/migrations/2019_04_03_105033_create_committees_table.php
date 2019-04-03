@@ -17,6 +17,7 @@ class CreateCommitteesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('owner_id')->nullable();
             $table->string('name');
+            $table->string('name_short');
             $table->string('description');
             $table->timestamps();
         });

@@ -23,7 +23,8 @@
                             <h2>{{ trans('home.intro_signup_header', { year: introduction.year.year }) }}</h2>
                             {{ trans('home.intro_signup', { year: introduction.year.year }) }}
                             <div class="text-center button-container">
-                                <a href="{{ route('intro.info') }}" class="button text-center">{{ trans('home.intro_signup_button') }}</a>
+                                <a href="{{ route('intro.info') }}"
+                                   class="button text-center">{{ trans('home.intro_signup_button') }}</a>
                             </div>
                         </div>
                     {% endif %}
@@ -74,15 +75,20 @@
                             <h3>{{ trans('home.events.no_events') }}</h3>
                             <p>{{ trans('home.events.keep_an_eye_on_us')|raw }}</p>
                         </div>
-                        <a :href="event.url" target="_blank" v-cloak class="event" v-for="event in events" :class="{ background: event.cover }" :data-background="event.cover ? event.cover.source : null">
-                            <div class="background" v-if="event.cover" :style="{ backgroundImage: 'url(' + event.cover.source + ')', backgroundPositionY: -event.cover.offset_y + 'px' }"></div>
+                        <a :href="event.url" target="_blank" v-cloak class="event" v-for="event in events"
+                           :class="{ background: event.cover }"
+                           :data-background="event.cover ? event.cover.source : null">
+                            <div class="background" v-if="event.cover"
+                                 :style="{ backgroundImage: 'url(' + event.cover.source + ')', backgroundPositionY: -event.cover.offset_y + 'px' }"></div>
                             <div class="date-container">
                                 <div class="date">
                                     <span class="day">{{ "{{ event.date.day }}" }}</span>
                                     <span class="month">{{ "{{ event.date.month }}" }}</span>
                                 </div>
                                 <transition name="fade" mode="in-out">
-                                    <div class="place fade-enter-active fade-leave-active" v-if="event.place && showPlace" key="place" :class="{ small: event.place.name.length > 20 }">
+                                    <div class="place fade-enter-active fade-leave-active"
+                                         v-if="event.place && showPlace"
+                                         key="place" :class="{ small: event.place.name.length > 20 }">
                                         {{ "{{ event.place.name }}" }}
                                     </div>
                                     <div class="attending" v-else key="attending">
@@ -109,16 +115,10 @@
                     <p>{{ trans('home.committees.description') }}</p>
                     <hr>
                     <div class="buttons">
-                        <a href="{{ route('committees/administration') }}" class="button">{{ trans('committee.administration.title') }}</a>
-                        <a href="{{ route('committees/party') }}" class="button">{{ trans('committee.party.title') }}</a>
-                        <a href="{{ route('committees/media') }}" class="button">{{ trans('committee.media.title') }}</a>
-                        <a href="{{ route('committees/camping') }}" class="button">{{ trans('committee.camping.title') }}</a>
-                        <a href="{{ route('committees/study') }}" class="button">{{ trans('committee.study.title') }}</a>
-                        <a href="{{ route('committees/internal_affairs') }}" class="button">{{ trans('committee.internal_affairs.title_short') }}</a>
-                        <a href="{{ route('committees/activity') }}" class="button">{{ trans('committee.activity.title_short') }}</a>
-                        <a href="{{ route('committees/external_affairs') }}" class="button">{{ trans('committee.external_affairs.title_short') }}</a>
-                        <a href="{{ route('committees/alpha_centauri') }}" class="button">{{ trans('committee.alpha_centauri.title_short') }}</a>
-                        <a href="{{ route('committees/treasure') }}" class="button">{{ trans('committee.treasure.title_short') }}</a>
+                        {% for committee in committees %}
+                            <a href="{{ route('committees/by_name', { committee: committee }) }}"
+                               class="button">{{ committee.name }}</a>
+                        {% endfor %}
                     </div>
                 </section>
             </main>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CommitteeMember extends Model
 {
-    public $table = 'committeemembers';
+    public $table = 'committee_members';
 
     public $fillable = ['direction', 'image', 'personal_message'];
 
@@ -22,7 +22,7 @@ class CommitteeMember extends Model
     /**
      * @return BelongsTo
      */
-    public function user()
+    public function member()
     {
         return $this->belongsTo(Member::class);
     }

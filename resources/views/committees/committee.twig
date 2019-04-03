@@ -1,0 +1,43 @@
+{% extends 'partials/page.twig' %}
+
+{% block title %}{{ trans('committee.media.title') }}{% endblock %}
+{% block content %}
+    <div class="content">
+        <main class="committee media-committee">
+            <div class="container">
+                <h1>{{ committee.name }}</h1>
+                <section>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <p>{{ committee.description }}</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <section class="members">
+                <div class="container">
+                    <h2>{{ trans('committee.media.meet_the_team') }}</h2>
+                    <div class="grid">
+                        {% for member in committee.members %}
+                            <div class="member has-image">
+                                <div class="inner {{ member.reverse ? 'reverse' }}">
+                                    <div class="content">
+                                        <h4>{{ member.member.first_name }} {{ member.member.last_name }}</h4>
+                                        <h5>{{ member.direction }}</h5>
+                                        <p>{{ member.personal_message }}</p>
+                                    </div>
+                                    <div class="image">
+                                        <div class="img"
+                                             style="background-image: url('{{ asset('images/commissies/media/' ~ member.image) }}');">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+{% endblock %}
