@@ -28,20 +28,6 @@
         /**
          * @return Factory|View
          */
-        public static function getHappiView() {
-            return view('discounts',
-                [
-                    'title'     => trans('discounts.happii.title'),
-                    'image_url' => "images/promo/happii.svg",
-                    'discounts' => trans('discounts.happii.discounts'),
-                    'text'      => trans('discounts.happii.text')
-                ]
-            );
-        }
-
-        /**
-         * @return Factory|View
-         */
         public static function getVillaView() {
             return view('discounts',
                 [
