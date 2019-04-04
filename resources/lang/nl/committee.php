@@ -187,7 +187,7 @@ Het is en ware grondslag geweest over hoe de intro de komende jaren eruit zal ko
                     'image'   => 'Bart.jpg'
                 ],
                 [
-                    'name'    => 'Ingo Stappershoef - ICT & Media Design',
+                    'name'    => 'Ingo Stappershoef',
                     'profile' => 'ICT & Media Design',
                     'text'    => '',
                     'image'   => 'ingo.jpg'
@@ -437,7 +437,7 @@ en Onderwijs gerelateerde activiteiten',
                 [
                     'name'    => 'Danielle Ooms',
                     'profile' => 'ICT & Media Design',
-                    'image'   => 'danielle.jpg'
+                    'image'   => 'Danielle.jpg'
                 ],
                 [
                     'name'    => 'Sean Metsemakers',
