@@ -73,7 +73,8 @@ class CommitteeController extends Controller
     }
 
 
-    public function getMemberPicture(Committee $committee, CommitteeMember $member) {
+    public function getMemberPicture(Committee $committee, CommitteeMember $member)
+    {
         return $member->member->getResizedCachedImage(400, null, true)->response();
     }
 }

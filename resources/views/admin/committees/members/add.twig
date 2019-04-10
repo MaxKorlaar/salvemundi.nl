@@ -1,0 +1,34 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.committees.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="committees overview mb-4">
+            <h1>{{ trans('admin.committees.members.add_member') }}</h1>
+            <p>{{ trans('admin.committees.members.add_description') }}</p>
+
+            {% if error %}
+
+                <h2>EERRROOROROROR</h2>
+
+            {% endif %}
+
+            <form method="post" action="{{ route('admin.committees.members.add', { committee: committee }) }}">
+                {{ csrf_field() }}
+                <div class="form-group">
+                    <label for="memberId">Lidnummer</label>
+                    <input type="number" class="form-control" id="memberId" name="memberId" placeholder="Lidnummer">
+                    <small id="memberIdHelp" class="form-text text-muted">Dit is het lidnummer van het nieuwe commissie
+                        lid
+                    </small>
+                </div>
+                <a href="" class="btn btn-primary">
+                    <button type="submit">Zoek lid</button>
+                </a>
+            </form>
+
+            {% if user %}
+
+            {% endif %}
+        </main>
+    </div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.committees.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="committees overview">
+            <div class="row mb-4">                {#todo remove bottom#}
+                <div class="col-md-12">
+                    <h1>{{ trans('admin.committees.title') }}</h1>
+                    <p>
+                        {% if auth_user().can('edit committees') %}
+                            <a href="{{ route('admin.committees.create') }}"
+                               class="btn btn-primary">{{ trans('admin.committees.new') }}</a>
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="col-md-12">
+                    <h2>{{ trans('admin.committees.current') }}</h2>
+                    {% for committee in committees %}
+                        <a class="btn btn-primary"
+                           href="{{ route('admin.committees.overview', {committee: committee}) }}">{{ committee.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}

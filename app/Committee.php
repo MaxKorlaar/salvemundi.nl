@@ -4,6 +4,7 @@ namespace App;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -32,11 +33,11 @@ class Committee extends Model
     }
 
     /**
-     * @return HasMany
+     * @return BelongsTo
      */
     public function owner()
     {
-        return $this->hasMany(Member::class);
+        return $this->belongsTo(Member::class);
     }
 
     /**

@@ -1,0 +1,49 @@
+{% extends 'admin/_page.twig' %}
+{% block title %}{{ trans('admin.committees.title') }}{% endblock %}
+{% block content %}
+    <div class="container">
+        <main class="committees overview mb-4">
+            <h1>{{ committee.name }}</h1>
+            <p>{{ trans('admin.committees.chairman') }}
+                : {{ committee.owner.first_name }} {{ committee.owner.last_name }}</p>
+
+            <h2>{{ trans('admin.committees.members') }}</h2>
+            <ul>
+                {% for member in committee.members %}
+                    <li>
+                        <a href="{{ route('admin.members.show', { member: member.member }) }}">{{ member.member.first_name }} {{ member.member.last_name }}</a>
+                    </li>
+                {% endfor %}
+                <li><a href="{{ route('admin.committees.members.add', { committee: committee}) }}">{{ trans('admin.committees.add_member') }}</a></li>
+            </ul>
+
+            <h2>{{ trans('admin.committees.contents') }}</h2>
+
+
+            <div class="accordion" id="content_accordion">
+                {% for content in committee.contents %}
+                    <div class="card">
+                        <div class="card-header">
+                            <a class="btn btn-primary" href="#" type="button" data-toggle="collapse"
+                               data-target="#content_{{ committee.id }}">
+                                {{ content.title }}
+                            </a>
+
+                            <a class="btn btn-primary" type="button"
+                               href="{{ route('admin.committees.contents.edit', { committee: committee, content: content}) }}">
+                                Edit
+                            </a>
+                        </div>
+
+                        <div id="content_{{ committee.id }}" class="collapse show"
+                             data-parent="#content_accordion">
+                            <div class="card-body">
+                                {{ content.content }}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
+{% endblock %}
