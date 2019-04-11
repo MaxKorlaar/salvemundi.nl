@@ -4,7 +4,6 @@
 
     use App\Http\Controllers\Controller;
     use App\Http\Requests\Member\UpdateOwnInfo;
-    use App\Member;
     use App\Membership;
     use Illuminate\Contracts\View\Factory;
     use Illuminate\Http\RedirectResponse;
@@ -19,12 +18,15 @@
     class IndexController extends Controller {
 
 
+        /**
+         * @return Factory|View
+         */
         public function getIndexView() {
-            $user = Auth::user();
+            $user   = Auth::user();
             $member = $user->member;
 
             return view('member.index', [
-                'user' => $user,
+                'user'   => $user,
                 'member' => $member
             ]);
         }
@@ -79,6 +81,4 @@
                 'member' => $member
             ]);
         }
-
-
     }
