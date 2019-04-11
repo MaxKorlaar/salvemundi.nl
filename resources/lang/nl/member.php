@@ -60,5 +60,11 @@
             'renew_membership_button'          => 'Verleng mijn lidmaatschap',
             'renew_terms'                      => 'Door je lidmaatschap te verlengen ga je akkoord met de <a target="_blank" href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp">algemene voorwaarden</a> van Salve Mundi en ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>.',
             'payment_redirect'                 => 'Door op \'Verleng mijn lidmaatschap\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>, en zal je worden doorgestuurd naar de betalingspagina. Het is hier mogelijk om met iDeal te betalen. Indien je de betaling annuleert zal je lidmaatschap niet worden verlengd. Het is dan mogelijk om het opnieuw te proberen.',
+        ],
+        'index'       => [
+            'title'        => 'Welkom',
+            'greeting'     => 'Welkom terug :name!',
+            'not_a_member' => 'Volgens ons systeem ben je op het moment niet in het bezit van een actief lidmaatschap. Hierdoor ben je eigenlijk geen lid van de vereniging totdat je weer contributie betaalt voor het huidige schooljaar.',
+            'welcome_text' => 'Welkom terug op de website van Salve Mundi. Je bent momenteel ingelogd in ons ledensysteem. Wijzig je gegevens of verleng je lidmaatschap op de pagina <a href="' . route('member.about_me') . '">Mijn account</a>.',
         ]
     ];

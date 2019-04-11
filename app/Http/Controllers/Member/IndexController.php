@@ -19,6 +19,16 @@
     class IndexController extends Controller {
 
 
+        public function getIndexView() {
+            $user = Auth::user();
+            $member = $user->member;
+
+            return view('member.index', [
+                'user' => $user,
+                'member' => $member
+            ]);
+        }
+
         /**
          * @return Factory|View
          */
@@ -29,7 +39,7 @@
                 return redirect()->route('member.update_info');
             }
 
-            return view('member.index', [
+            return view('member.about_me', [
                 'user'       => $user,
                 'member'     => $member,
                 'year_from'  => Membership::calculateFiscalYearStart(),

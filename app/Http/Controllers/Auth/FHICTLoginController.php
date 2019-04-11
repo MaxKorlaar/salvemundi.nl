@@ -31,7 +31,7 @@
          * FHICTLoginController constructor.
          */
         public function __construct() {
-            $this->redirectTo = route('member.about_me');
+            $this->redirectTo = route('member.index');
             require_once app_path() . '/Helpers/lib/OpenID-Connect-PHP/OpenIDConnectClient.php';
             $this->client = new OpenIDConnectClient(config('auth.fhict.openid_server'), config('auth.fhict.client_id'), config('auth.fhict.client_secret'));
             $this->client->addScope(explode(" ", config('auth.fhict.scopes')));

@@ -106,6 +106,8 @@
     Route::post('/webhook/betaling/intro/{application}', 'IntroController@confirmPaymentWebhook')->name('webhook.payment.intro');
 
     Route::group(['prefix' => 'lid', 'namespace' => 'Member', 'as' => 'member.', 'middleware' => ['auth']], function () {
+        Route::get('/', 'IndexController@getIndexView')->name('index');
+
         Route::get('over-mij', 'IndexController@getAboutView')->name('about_me');
         Route::get('over-mij/foto', 'IndexController@getOwnPhoto')->name('own_photo');
 
