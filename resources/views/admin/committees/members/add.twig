@@ -6,10 +6,13 @@
             <h1>{{ trans('admin.committees.members.add_member') }}</h1>
             <p>{{ trans('admin.committees.members.add_description') }}</p>
 
-            {% if error %}
 
-                <h2>EERRROOROROROR</h2>
-
+            {% if errors.has('already_is_member') %}
+                <div class="col-md-12 d-flex flex-column justify-content-center sticky-top">
+                    <div class="warning">
+                        {{ errors.first('already_is_member') }}
+                    </div>
+                </div>
             {% endif %}
 
             <form method="post" action="{{ route('admin.committees.members.add', { committee: committee }) }}">
@@ -22,13 +25,9 @@
                     </small>
                 </div>
                 <a href="" class="btn btn-primary">
-                    <button type="submit">Zoek lid</button>
+                    <button type="submit">Voeg lid toe</button>
                 </a>
             </form>
-
-            {% if user %}
-
-            {% endif %}
         </main>
     </div>
 {% endblock %}

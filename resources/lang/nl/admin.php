@@ -462,7 +462,7 @@ return [
             'added_member' => 'Je hebt ":name" toegevoegd aan de :committee'
         ],
         'errors' => [
-            'already_is_member' => ":name is already a member of the :committee"
+            'already_is_member' => ":name is al lid van de :committee"
         ]
     ]
 ];

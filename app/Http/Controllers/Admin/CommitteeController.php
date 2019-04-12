@@ -61,22 +61,15 @@ class CommitteeController extends Controller
         if ($committee->members()->where("member_id", $member->id)->exists()) {
             return redirect()->route('admin.committees.members.add', [
                 'committee' => $committee
-            ])->with([
-                "error" => trans('admin.committees.errors.already_is_member', [
-                    "name" => $member->first_name,
-                    "committee" => $committee->name
-                ])
-            ]);
+            ])->withErrors(["already_is_member" => trans('admin.committees.errors.already_is_member', [
+                'name' => $member->first_name,
+                'committee' => $committee->name
+            ])]);
         } else {
             $committee->members()->save($committeeMember);
 
             return redirect()->route('admin.committees.overview', [
                 'committee' => $committee
-            ])->with([
-                "success" => trans('admin.committees.success.added_member', [
-                    "name" => $member->first_name,
-                    "committee" => $committee->name
-                ])
             ]);
         }
     }

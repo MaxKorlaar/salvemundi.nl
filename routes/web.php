@@ -196,6 +196,7 @@ Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admi
     Route::get('committees/create', 'CommitteeController@getCommitteeCreationPage')->name('committees.create');
     Route::get('committees/{committee}/view', 'CommitteeController@getCommitteeOverview')->name('committees.overview');
     Route::get('committees/{committee}/edit', 'CommitteeController@getEditCommitteePage')->name('committees.edit');
+
     Route::get('committees/{committee}/members/add', 'CommitteeController@getAddMemberPage')->name('committees.members.add');
     Route::post('committees/{committee}/members/add', 'CommitteeController@addMember')->name('committees.members.add');
 
