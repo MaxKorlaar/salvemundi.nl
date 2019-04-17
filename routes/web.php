@@ -203,9 +203,8 @@ Route::group(['prefix' => 'administratie', 'namespace' => 'Admin', 'as' => 'admi
     Route::get('committees/{committee}/{content}/edit', 'CommitteeController@getEditCommitteePage')->name('committees.contents.edit');
 });
 
-Route::get('korting', 'DiscountController@getDefaultView')->name('discounts.index');
-Route::get('korting/villa-fiesta', 'DiscountController@getVillaView')->name('discounts.villa_fiesta');
-Route::get('korting/happii', 'DiscountController@getHappiView')->name('discounts.happii');
+    Route::get('korting', 'DiscountController@getDefaultView')->name('discounts.index');
+    Route::get('korting/villa-fiesta', 'DiscountController@getVillaView')->name('discounts.villa_fiesta');
 
 Route::get('drive', 'IndexController@getDriveRedirect');
 Route::get('kalender', 'IndexController@getCalendar');
