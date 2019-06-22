@@ -43,7 +43,7 @@ composer:
 npm:
   stage: preparation
   image: edbizarro/gitlab-ci-pipeline-php:latest
-  script
+  script:
     - npm prune
     - npm install
   artifacts:
