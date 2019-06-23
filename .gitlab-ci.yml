@@ -40,22 +40,6 @@ composer:
     paths:
       - vendor/
 
-npm:
-  stage: preparation
-  image: edbizarro/gitlab-ci-pipeline-php:latest
-  script:
-    - npm update node-sass@latest
-    - npm prune
-    - npm install
-  artifacts:
-    paths:
-      - node_modules/
-    expire_in: 1 days
-    when: always
-  cache:
-    paths:
-      - node_modules/
-
 build-assets:
   stage: building
   image: edbizarro/gitlab-ci-pipeline-php:7.2
