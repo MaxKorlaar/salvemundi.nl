@@ -46,7 +46,6 @@ build-assets:
   # Download the artifacts for these jobs
   dependencies:
     - composer
-    - npm
   script:
     - npm run production --progress false
   artifacts:
@@ -68,7 +67,6 @@ db-seeding:
   # Download the artifacts for these jobs
   dependencies:
     - composer
-    - npm
   script:
     - php artisan migrate:fresh --seed
   artifacts:
