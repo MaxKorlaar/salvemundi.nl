@@ -1,7 +1,7 @@
 <?php
     return [
         'title'              => 'Aanmelden',
-        'text'               => 'Om Salve Mundi te bekostigen, vragen we een vergoeding van €20,- per jaar voor het lidmaatschap en een eenmalige vergoeding van €5,- voor de ledenpas.',
+        'text'               => 'Om Salve Mundi te bekostigen, vragen we een vergoeding van €20,- per jaar voor het lidmaatschap',
         'pcn'                => 'Fontys PCN',
         'first_name'         => 'Voornaam',
         'last_name'          => 'Achternaam',
@@ -32,7 +32,7 @@
         ],
         'email_confirmed'         => 'Inschrijving bevestigd',
         'thanks_for_confirming'   => 'Bedankt voor het bevestigen van je e-mailadres, :name. Je bent nu écht bijna klaar:
-        Het laatste wat we willen is dat je €25,- overmaakt naar NL97 RABO 0326 3418 11. Benoem hierbij je naam en PCN bij de beschrijving, dat maakt het voor ons overzichtelijker.',
+        Het laatste wat we willen is dat je €20,- overmaakt naar NL97 RABO 0326 3418 11. Benoem hierbij je naam en PCN bij de beschrijving, dat maakt het voor ons overzichtelijker.',
         'email_token_invalid'     => 'E-mailadres al bevestigd',
         'email_already_confirmed' => 'De link die je hebt gevolgd is (niet) meer geldig. Geen nood: Het is heel waarschijnlijk dat je dus al eens deze link hebt gevolgd en hij daarom niet meer geldig is. Als je op deze pagina bent beland nadat je op een link in een van onze e-mails hebt geklikt, hoef je je geen zorgen te maken.',
 
