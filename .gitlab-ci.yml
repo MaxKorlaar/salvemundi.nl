@@ -44,8 +44,6 @@ npm:
   stage: preparation
   image: edbizarro/gitlab-ci-pipeline-php:latest
   script:
-    - npm update node-sass@latest
-    - npm prune
     - npm install
   artifacts:
     paths:
