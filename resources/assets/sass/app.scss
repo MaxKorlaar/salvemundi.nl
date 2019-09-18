@@ -53,6 +53,11 @@ a {
   }
 }
 
+a.knaek:hover() {
+  background: none;
+  color: none;
+}
+
 button {
   @extend a;
 }
