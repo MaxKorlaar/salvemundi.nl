@@ -42,7 +42,7 @@
     "barryvdh/laravel-ide-helper": "^2.5",
     "filp/whoops": "~2.0",
     "fzaninotto/faker": "~1.4",
-    "laravel/homestead": "^7.19",
+    "laravel/homestead": "^9.1",
     "mockery/mockery": "0.9.*",
     "phpunit/phpunit": "^7.0",
     "squizlabs/php_codesniffer": "3.4.0"
