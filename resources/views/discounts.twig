@@ -7,12 +7,6 @@
             <p>{{ trans('discounts.intro') }}</p>
             <h3>{{ trans('discounts.action_text') }}</h3>
 
-            <div class="my-4 buttons">
-                <a class="button" href="{{ route('discounts.villa_fiesta') }}">
-                    {{ trans('discounts.villa_fiesta.title') }}
-                </a>
-            </div>
-
             {% if discounts is not null %}
                 <h3>{{ title }}</h3>
                 <table class="table table-responsive table-discounts">
@@ -20,7 +14,7 @@
                         <tr>
                             <th scope="col"></th>
                             <th scope="col"><img alt="Logo {{ title }}" src="{{ asset(image_url) }}"/></th>
-                            <th scope="col"><img alt="Logo Salve Mundi" src="{{ asset('images/logo_paars.svg') }}"/></th>
+                            <th scope="col"><img alt="Logo Media Meiden" src="{{ asset('images/logo_paars.svg') }}"/></th>
                         </tr>
                     </thead>
                     {% for discount in discounts %}

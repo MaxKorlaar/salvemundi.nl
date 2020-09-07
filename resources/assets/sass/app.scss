@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
 // Variables
 @import "variables";
 // Bootstrap
@@ -53,9 +55,9 @@ a {
   }
 }
 
-a.knaek:hover() {
+a.knaek:hover {
   background: none;
-  color: none;
+  color: unset;
 }
 
 button {
@@ -83,7 +85,7 @@ button {
   text-align: center;
   color: white;
   background-color: lighten($brand-primary, 10%);
-  background-image: url(../images/images/landing_image_kamp.jpg);
+  background-image: url(../images/endgame-3-2000.jpg);
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;

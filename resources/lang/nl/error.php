@@ -20,5 +20,5 @@
         'not_implemented' => 'Deze functionaliteit is momenteel nog niet beschikbaar',
         'contact_max' => '<a href="mailto:m.korlaar@fontys.nl">Neem alsjeblieft contact op om dit probleem samen te verhelpen</a>',
         'website_comment' => 'Vraag of opmerking over de website?',
-        'be_right_back' => "Hoi, we hebben de boel eventjes platgegooid voor onderhoud!\nWe zijn zo weer terug, en altijd te bereiken via media@salvemundi.nl."
+        'be_right_back' => "Hoi, we hebben de boel eventjes platgegooid voor onderhoud!\nWe zijn zo weer terug, en altijd te bereiken via media@mediameiden.korlaar.net."
     ];

@@ -10,7 +10,7 @@ $panel-default-border: $laravel-border-color;
 $panel-inner-border: $laravel-border-color;
 
 // Brands
-$brand-primary: #663265;
+$brand-primary: #49b518;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
@@ -72,19 +72,19 @@ $colors: (
 ) !default;
 
 $theme-colors: (
-        primary: $brand-primary,
-        secondary: $gray-600,
-        success: $green,
-        info: $cyan,
-        warning: $yellow,
-        danger: $red,
-        light: $gray-100,
-        dark: $gray-800
+  primary: $brand-primary,
+  secondary: $gray-600,
+  success: $green,
+  info: $cyan,
+  warning: $yellow,
+  danger: $red,
+  light: $gray-100,
+  dark: $gray-800
 ) !default;
 
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-family-sans-serif: helvetica, sans-serif;
+$font-family-sans-serif: 'Indie Flower', sans-serif;
 $font-size-base: 1rem;
 $line-height-base: 1.6;
 $text-color: #636b6f;

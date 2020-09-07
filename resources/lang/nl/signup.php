@@ -1,7 +1,10 @@
 <?php
+
+    use Carbon\Carbon;
+
     return [
         'title'              => 'Aanmelden',
-        'text'               => 'Om Salve Mundi te bekostigen, vragen we een vergoeding van €20,- per jaar voor het lidmaatschap',
+        'text'               => 'Om MediaMeiden te bekostigen, vragen we een vergoeding van €20,- per jaar voor het lidmaatschap',
         'pcn'                => 'Fontys PCN',
         'first_name'         => 'Voornaam',
         'last_name'          => 'Achternaam',
@@ -11,7 +14,7 @@
         'postal'             => 'Postcode',
         'country'            => 'Land',
         'birthday'           => 'Geboortedatum',
-        'birthday_format'    => 'dd-mm-jjjj (' . \Carbon\Carbon::now()->format('d-m-Y') . ')',
+        'birthday_format'    => 'dd-mm-jjjj (' . Carbon::now()->format('d-m-Y') . ')',
         'phone'              => 'Telefoonnummer',
         'email'              => 'E-mailadres',
         'email_confirmation' => 'Bevestig je e-mailadres',
@@ -20,7 +23,7 @@
         Afbeeldingen mogen maximaal 5 MB groot zijn en moeten minimaal 200 bij 300 pixels groot zijn.',
         'sign_up'            => 'Versturen',
         'please_confirm'     => 'Controleer alsjeblieft de onderstaande gegevens voordat je de inschrijving verstuurt. Het kost ons extra tijd om fouten later te corrigeren.',
-        'i_agree_terms'      => 'Door verder te gaan met je inschrijving ga je akkoord met de <a target="_blank" href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp">algemene voorwaarden</a> van Salve Mundi en ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>.',
+        'i_agree_terms'      => 'Door verder te gaan met je inschrijving ga je akkoord met de <a target="_blank" href="https://drive.google.com/uc?export=open&id=1ZGaXvr1_b0ToqtzQDqTl0YaGmoymvUpp">algemene voorwaarden</a> van MediaMeiden en ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>.',
         'payment_redirect'   => 'Door op \'Door naar betalen\' te klikken ga je akkoord met de opslag en verwerking van je persoonsgegevens volgens ons <a href="' . route('privacy') . '" target="_blank">privacybeleid</a>, en zal je worden doorgestuurd naar de betalingspagina. Het is hier mogelijk om met iDeal te betalen. Indien je de betaling annuleert zullen je gegevens direct worden verwijderd en gaat je inschrijving niet door. Het is dan mogelijk om je opnieuw in te schrijven.',
         'confirm'            => 'Door naar betalen',
 
@@ -38,7 +41,7 @@
 
         // Betalingen
         'payment'                 => [
-            'description' => 'Contributie Salve Mundi, ledenpas voor :first_name :last_name',
+            'description' => 'Contributie MediaMeiden, ledenpas voor :first_name :last_name',
             'failed'      => 'Er is iets misgegaan tijdens het verwerken van de transactie. De betaling is mogelijk geannuleerd of verlopen. Probeer het nogmaals'
         ],
         'transaction_id'          => 'Transactie-ID',
@@ -50,5 +53,5 @@
         // Na de betaling
 
         'completed'          => 'Inschrijving verzonden',
-        'email_instructions' => 'Bedankt voor het aanmelden voor Salve Mundi! Je betaling wordt momenteel verwerkt in ons systeem, maar zodra deze succesvol is afgerond krijg je van ons een mailtje ter bevestiging. Mocht je de email niet krijgen binnen 2 werkdagen nadat de betaling is afgerond, kijk dan in je map voor ongewenste email of neem contact met ons op.',
+        'email_instructions' => 'Bedankt voor het aanmelden voor MediaMeiden! Je betaling wordt momenteel verwerkt in ons systeem, maar zodra deze succesvol is afgerond krijg je van ons een mailtje ter bevestiging. Mocht je de email niet krijgen binnen 2 werkdagen nadat de betaling is afgerond, kijk dan in je map voor ongewenste email of neem contact met ons op.',
     ];

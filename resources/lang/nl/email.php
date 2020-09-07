@@ -3,7 +3,7 @@
         'confirm_application'    => [
             'subject'      => 'Bevestig je inschrijving',
             'greeting'     => 'Hoi :name,',
-            'instructions' => 'Om je inschrijving én email-adres bij Salve Mundi te bevestigen hoef je nu alleen nog maar op de link in dit bericht te klikken.
+            'instructions' => 'Om je inschrijving én email-adres bij MediaMeiden te bevestigen hoef je nu alleen nog maar op de link in dit bericht te klikken.
       Heb je deze email niet aangevraagd? Dan kan je hem gerust negeren.',
             'not_complete' => 'Je inschrijving is echter nog niet compleet. We willen graag dat je nog €25,- overmaakt naar NL97 RABO 0326 3418 11. Benoem hierbij je naam en PCN bij de beschrijving, dat maakt het voor ons overzichtelijker. ',
             'when_done'    => 'Als je dit allemaal hebt gedaan, ontvang je zo snel mogelijk je pasje.',
@@ -12,23 +12,23 @@
         'new_member_application' => [
             'subject'    => 'Nieuwe inschrijving van :name',
             'greeting'   => 'Hallo bestuur,',
-            'intro_text' => 'Er is een nieuwe aanmelding voor Salve Mundi ingezonden. De gebruiker heeft betaald voor de inschrijving. Meer informatie over de transactie kan gevonden worden op Mollie.com.',
+            'intro_text' => 'Er is een nieuwe aanmelding voor MediaMeiden ingezonden. De gebruiker heeft betaald voor de inschrijving. Meer informatie over de transactie kan gevonden worden op Mollie.com.',
             'sent_from'  => 'Deze aanmelding is verzonden vanaf :ip.',
         ],
         'signup'                 => [
             'payment_confirmation' => [
                 'subject'      => 'Bedankt voor je inschrijving!',
                 'greeting'     => 'Hoi :name,',
-                'instructions' => 'Goed nieuws! We hebben zojuist je betaling ontvangen en dat betekent dat we automatisch je aanmelding hebben bevestigd. Welkom bij Salve Mundi!',
-                'more_info'    => 'Dus ter bevestiging: We hebben zojuist 25 euro van je ontvangen en deze gekoppeld aan je aanmelding. Deze kosten bestaan uit 20 euro voor het lidmaatschap voor 1 jaar en 5 euro voor je ledenpas. Je zal nog van ons horen, maar wees niet bang om vragen te stellen aan ons door te mailen naar info@salvemundi.nl of door ons aan te spreken op school.'
+                'instructions' => 'Goed nieuws! We hebben zojuist je betaling ontvangen en dat betekent dat we automatisch je aanmelding hebben bevestigd. Welkom bij MediaMeiden!',
+                'more_info'    => 'Dus ter bevestiging: We hebben zojuist 25 euro van je ontvangen en deze gekoppeld aan je aanmelding. Deze kosten bestaan uit 20 euro voor het lidmaatschap voor 1 jaar en 5 euro voor je ledenpas. Je zal nog van ons horen, maar wees niet bang om vragen te stellen aan ons door te mailen naar info@mediameiden.korlaar.net of door ons aan te spreken op school.'
             ],
         ],
         'membership'             => [
             'payment_confirmation' => [
                 'subject'            => 'Bedankt voor het verlengen van je lidmaatschap!',
                 'greeting'           => 'Hoi :name,',
-                'membership_renewed' => 'Fantastisch nieuws! We hebben zojuist je betaling ontvangen en dat betekent dat we automatisch je lidmaatschap hebben verlengd van Salve Mundi.
-                We heten je van harte nogmaals een jaar welkom bij Salve Mundi. Je lidmaatschap is geldig tot en met :valid_until. Meer informatie over je lidmaatschappen kan je vinden op onze website.'
+                'membership_renewed' => 'Fantastisch nieuws! We hebben zojuist je betaling ontvangen en dat betekent dat we automatisch je lidmaatschap hebben verlengd van MediaMeiden.
+                We heten je van harte nogmaals een jaar welkom bij MediaMeiden. Je lidmaatschap is geldig tot en met :valid_until. Meer informatie over je lidmaatschappen kan je vinden op onze website.'
             ]
         ],
         'camping'                => [
@@ -36,7 +36,7 @@
                 'subject'      => 'Bedankt voor je aanmelding!',
                 'greeting'     => 'Hoi :name,',
                 'instructions' => 'Goed nieuws! We hebben zojuist je betaling ontvangen en dat betekent dat we automatisch je aanmelding hebben bevestigd. Het lijkt er dus op dat je meegaat op kamp, gezellig!',
-                'more_info'    => 'Dus ter bevestiging: We hebben zojuist :amount euro van je ontvangen en deze gekoppeld aan je aanmelding. Je zal nog van ons horen, maar wees niet bang om vragen te stellen aan ons door te mailen naar kamp@salvemundi.nl of door ons aan te spreken op school. Blijf vooral ook de Facebook-pagina van het kamp in de gaten houden voor de laatste updates!'
+                'more_info' => 'Dus ter bevestiging: We hebben zojuist :amount euro van je ontvangen en deze gekoppeld aan je aanmelding. Je zal nog van ons horen, maar wees niet bang om vragen te stellen aan ons door te mailen naar kamp@mediameiden.korlaar.net of door ons aan te spreken op school. Blijf vooral ook de Facebook-pagina van het kamp in de gaten houden voor de laatste updates!'
             ],
             'new_application'      => [
                 'subject'    => 'Nieuwe kamp-aanmelding van :name',
@@ -50,7 +50,7 @@
             'confirm_application'      => [
                 'subject'      => 'Bevestig je inschrijving voor de intro',
                 'greeting'     => 'Geachte :name,',
-                 'instructions' => 'Tof dat een plekje hebt gereserveerd voor de introductie van FHICT in :year. Het belooft een fantastische introductie te worden. Tijdens deze introductie zal je kennismaken met je studiegenoten en met het echte studentenleven. Deze introductie is georganiseerd door Salve Mundi, de studievereniging van Fontys Hogescholen ICT.',
+                'instructions' => 'Tof dat een plekje hebt gereserveerd voor de introductie van FHICT in :year. Het belooft een fantastische introductie te worden. Tijdens deze introductie zal je kennismaken met je studiegenoten en met het echte studentenleven. Deze introductie is georganiseerd door MediaMeiden, de studievereniging van Fontys Hogescholen ICT.',
                 //'instructions' => 'Je hebt je ingeschreven voor de introductie van FHICT :year. Dit vinden wij erg leuk, maar wat wij minder leuk vinden is dat je je e-mailadres nog niet bevestigd hebt. Op deze manier kunnen wij geen betaalverzoek sturen. Wij willen je verzoeken om je e-mailadres te bevestigen zodat we een betaalverzoek kunnen sturen en hopelijk ook jou terug mogen zien bij de introductie van FHICT :year!',
                 'link'         => 'Bevestig je inschrijving',
                 'when_done'    => 'LET OP: Je inschrijving wordt pas definitief bevestigd wanneer je hebt betaald. Hiervoor is het eerst nodig om nu direct je e-mailadres te bevestigen. Je kan rond juli een e-mail van ons verwachten waarin we je verzoeken om aan de betaling te voldoen. Na deze betaling hoef je geen verdere acties te ondernemen.'
@@ -73,7 +73,7 @@ Je hebt dit mailtje ontvangen omdat je jezelf hebt ingeschreven voor de introduc
                 'signature'    => 'Tot dan!!
                 
 Met vriendelijke groet,
-De feestcommissie van Salve Mundi'
+De feestcommissie van MediaMeiden'
             ],
             'payment_request_reminder' => [
                 'subject' => 'Herinnering: Verzoek tot betaling intro FHICT'
@@ -102,7 +102,7 @@ https://fontys.nl/Goede-Start/Eindhoven-1/Welkom-bij-HBO-ICT.htm. Mocht je nog v
                 'signature'    => 'Tot dan!!
                 
 Met vriendelijke groet,
-De feestcommissie Salve Mundi'
+De feestcommissie MediaMeiden'
             ],
             'supervisor'               => [
                 'confirm_application' => [
@@ -125,27 +125,27 @@ De feestcommissie Salve Mundi'
 
         'store' => [
             'order_confirmation' => [
-                'subject' => 'Bevestiging van bestelling :invoice',
-                'item_name' => 'Product',
-                'amount'    => 'Aantal',
-                'price'     => 'Prijs',
-                'greeting' => 'Hallo :name,',
-                'intro_text' => 'Hartelijk bedankt voor het plaatsen van je bestelling bij Salve Mundi. We hebben je bestelling ontvangen en zullen binnenkort contact opnemen over het afronden van je aankopen. Alvast veel plezier toegewenst met je producten!',
+                'subject'    => 'Bevestiging van bestelling :invoice',
+                'item_name'  => 'Product',
+                'amount'     => 'Aantal',
+                'price'      => 'Prijs',
+                'greeting'   => 'Hallo :name,',
+                'intro_text' => 'Hartelijk bedankt voor het plaatsen van je bestelling bij MediaMeiden. We hebben je bestelling ontvangen en zullen binnenkort contact opnemen over het afronden van je aankopen. Alvast veel plezier toegewenst met je producten!',
             ],
             'new_order' => [
-                'subject' => 'Nieuwe bestelling: :invoice',
-                'item_name' => 'Product',
-                'amount'    => 'Aantal',
-                'price'     => 'Prijs',
-                'greeting' => 'Hallo mediacommissie,',
-                'intro_text' => 'Er is onlangs een bestelling geplaatst door :name (:email).',
+                'subject'             => 'Nieuwe bestelling: :invoice',
+                'item_name'           => 'Product',
+                'amount'              => 'Aantal',
+                'price'               => 'Prijs',
+                'greeting'            => 'Hallo mediacommissie,',
+                'intro_text'          => 'Er is onlangs een bestelling geplaatst door :name (:email).',
                 'no_payment_attached' => 'Er is geen betaling gekoppeld aan deze bestelling.',
-                'payment_status' => 'Er is een betaling gekoppeld aan deze bestelling. De status hiervan is: :status'
+                'payment_status'      => 'Er is een betaling gekoppeld aan deze bestelling. De status hiervan is: :status'
             ]
         ],
 
         'signature'  => 'Met vriendelijke groet,
-    s.v. Salve Mundi
-    https://salvemundi.nl',
-        'disclaimer' => "Dit bericht is automatisch verzonden. Antwoorden is hierop niet mogelijk.\nSalve Mundi, Rachelsmolen 1, Gebouw R1, 5612MA Eindhoven, KvK nr. 70280606"
+    s.v. MediaMeiden
+    https://mediameiden.korlaar.net',
+        'disclaimer' => "Dit bericht is automatisch verzonden. Antwoorden is hierop niet mogelijk.\nMediaMeiden, Rachelsmolen 1, Gebouw R1, 5612MA Eindhoven, KvK nr. 70280606"
     ];

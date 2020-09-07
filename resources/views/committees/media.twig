@@ -1391,16 +1391,16 @@ I had virtually no rehearsal for that.
                     <h2>{{ trans('committee.media.meet_the_team') }}</h2>
                     <div class="grid">
                         {% for member in trans('committee.media.members') %}
-                            {#href="{{ member.url }}" target="_blank"#}
+                            {# href="{{ member.url }}" target="_blank" #}
                             <div class="member has-image" id="{{ member.name|str_slug }}">
                                 <div class="inner {{ member.reverse ? 'reverse' }}">
                                     <div class="content">
                                         <h4>{{ member.name }}</h4>
                                         <h5>{{ member.profile }}</h5>
-                                        {#<p>{{ member.text }}</p>#}
+                                        {# <p>{{ member.text }}</p> #}
                                     </div>
                                     <div class="image">
-                                        <div class="img" style="background-image: url('{{ asset('images/commissies/media/' ~ member.image) }}');">
+                                        <div class="img" style="background-image: url('{{ asset('images/commissies/' ~ member.image) }}');">
                                         </div>
                                     </div>
                                 </div>
