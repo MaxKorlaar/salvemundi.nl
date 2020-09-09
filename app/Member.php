@@ -125,7 +125,8 @@
             $member->transaction_id     = $application->transaction_id;
             $member->transaction_amount = $application->transaction_amount;
             $member->transaction_status = $application->transaction_status;
-            $year                       = Year::getCurrentYear();
+            $member->card_status = self::NO_CARD;
+            $year = Year::getCurrentYear();
             $member->member_id          = $year->getNewMemberID();
             $member->saveOrFail();
 

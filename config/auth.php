@@ -102,9 +102,9 @@
         'fhict' => [
             'openid_server' => 'https://identity.fhict.nl',
             'api_url'       => 'https://api.fhict.nl',
-            'client_id'     => 'i380671-SalveMundi',
+            'client_id'     => 'i380671-associatio',
             'client_secret' => env('FONTYS_API_SECRET'),
-            'scopes'        => 'fhict fhict_personal openid profile email'
+            'scopes'        => 'fhict fhict_personal openid profile email roles'
         ]
 
     ];

@@ -10,6 +10,7 @@
     use App\Helpers\PaymentHelper;
     use App\Http\Requests\ConfirmSignup;
     use App\Http\Requests\Signup;
+    use App\Mail\ConfirmApplication;
     use App\Mail\MemberApplicationPaymentConfirmation;
     use App\Mail\NewMemberApplication;
     use App\Member;
@@ -18,6 +19,7 @@
     use App\Transaction;
     use App\Year;
     use Illuminate\Contracts\View\Factory;
+    use Illuminate\Foundation\Application;
     use Illuminate\Http\RedirectResponse;
     use Illuminate\Http\Request;
     use Illuminate\Routing\Redirector;
@@ -78,7 +80,7 @@
         /**
          * @param ConfirmSignup $request
          *
-         * @return RedirectResponse
+         * @return Factory|Application|RedirectResponse|View
          * @throws Throwable
          */
         public function signup(ConfirmSignup $request) {
@@ -99,6 +101,14 @@
             $application->transaction_amount       = 0;
 
             $application->saveOrFail();
+
+            if (!config('mollie.enabled')) {
+                $mail = new ConfirmApplication($application);
+                $mail->to($application->email, $application->first_name . $application->last_name);
+                Mail::queue($mail);
+
+                return view('signup_confirmation');
+            }
 
             $transaction = new Transaction();
             $transaction->save();
@@ -295,7 +305,7 @@
          * @return Factory|View
          * @throws Throwable
          */
-        public function confirmEmail(MemberApplication $application, $token) {
+        public function confirmEmail(MemberApplication $application, string $token) {
             if ($application->email_confirmation_token !== $token) {
                 return view('signup.email_token_invalid');
             }
@@ -309,7 +319,15 @@
 
             Mail::queue($mail);
 
-            //dd($application);
+            // Verander de aanmelding naar een werkelijk lid van de vereniging
+            $member = Member::createFromApplication($application);
+
+            $membership          = Membership::createNewMembership();
+            $membership->year_id = Year::getCurrentYear()->id;
+            $member->memberships()->save($membership);
+
+            Log::debug("Member aangemaakt", [$member]);
+            $application->delete(false); // Aanmelding verwijderen, afbeelding behouden
 
             return view('signup.email_confirmation', [
                 'application' => $application

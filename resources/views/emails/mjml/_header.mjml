@@ -1,4 +1,4 @@
-<mj-section background-color="#663265">
+<mj-section background-color="#49b518">
   <mj-column>
     <mj-image src="{{ asset('images/logo_wit_klein.png') }}" alt="{{ config_get('app.name') }}" width="100px" padding=""></mj-image>
   </mj-column>

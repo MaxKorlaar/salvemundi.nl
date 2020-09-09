@@ -2,6 +2,7 @@
 
     namespace App\Http\Controllers\Auth;
 
+    use App;
     use App\Http\Controllers\Controller;
     use App\Member;
     use App\User;
@@ -35,22 +36,24 @@
             require_once app_path() . '/Helpers/lib/OpenID-Connect-PHP/OpenIDConnectClient.php';
             $this->client = new OpenIDConnectClient(config('auth.fhict.openid_server'), config('auth.fhict.client_id'), config('auth.fhict.client_secret'));
             $this->client->addScope(explode(" ", config('auth.fhict.scopes')));
-            if (config('app.env') == 'local') {
-                $this->client->setRedirectURL('http://localhost:3000/login/oauth');
+
+            if (App::environment('local')) {
+                $this->client->setRedirectURL('https://localhost/login/oauth');
                 //                $this->client->setRedirectURL('https://salvemundi.nl/login/oauth');
             } else {
                 $this->client->setRedirectURL(route('login.redirect_url'));
             }
+
             $this->middleware('guest')->except(['logout']);
         }
 
         /**
          * @param Request $request
          *
-         * @return Factory|View
+         * @return Factory|RedirectResponse|View
          */
         public function getLoginView(Request $request) {
-            if ($request->get('redirect') == true) {
+            if ($request->get('redirect') === 'true') {
                 return redirect()->route('login.redirect');
             }
             return view('auth.login');

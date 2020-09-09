@@ -34,6 +34,7 @@
     //    if (!class_exists('Crypt_RSA')) {
     //        user_error('Unable to find phpseclib Crypt/RSA.php.  Ensure phpseclib is installed and in include_path');
     //    }
+    use phpseclib\Crypt\RSA;
 
     /**
      * A wrapper around base64_decode which decodes Base64URL-encoded data,
@@ -251,8 +252,6 @@
          * @throws OpenIDConnectClientException
          */
         private function requestTokens($code) {
-
-
             $token_endpoint = $this->getProviderConfigValue("token_endpoint");
             $grant_type     = "authorization_code";
 
@@ -266,8 +265,7 @@
 
             // Convert token params to string format
             $token_params = http_build_query($token_params, null, '&');
-            return json_decode($this->fetchURL($token_endpoint, $token_params));
-
+            return json_decode($this->fetchURL($token_endpoint, $token_params), false);
         }
 
         /**
@@ -511,10 +509,10 @@
                 $rsa->loadKey($public_key_xml, Crypt_RSA::PUBLIC_FORMAT_XML);
                 $rsa->signatureMode = Crypt_RSA::SIGNATURE_PKCS1;
             } else {
-                $rsa = new \phpseclib\Crypt\RSA();
+                $rsa = new RSA();
                 $rsa->setHash($hashtype);
-                $rsa->loadKey($public_key_xml, \phpseclib\Crypt\RSA::PUBLIC_FORMAT_XML);
-                $rsa->signatureMode = \phpseclib\Crypt\RSA::SIGNATURE_PKCS1;
+                $rsa->loadKey($public_key_xml, RSA::PUBLIC_FORMAT_XML);
+                $rsa->signatureMode = RSA::SIGNATURE_PKCS1;
             }
             return $rsa->verify($payload, $signature);
         }
@@ -628,7 +626,7 @@
         }
 
         /**
-         * @param $url Sets redirect URL for auth flow
+         * @param $url string Sets redirect URL for auth flow
          */
         public function setRedirectURL($url) {
             if (filter_var($url, FILTER_VALIDATE_URL) !== false) {

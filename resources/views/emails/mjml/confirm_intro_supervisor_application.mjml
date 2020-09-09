@@ -13,7 +13,7 @@
 
           <mj-text>{{ trans('email.intro.supervisor.confirm_application.instructions', { year: application.introduction.year.year }) }}</mj-text>
 
-          <mj-button background-color="#663265" href="{{ route('intro.supervisor_signup.confirm_email', { id: application.id, token: application.email_confirmation_token }) }}">{{ trans('email.intro.supervisor.confirm_application.link') }}
+          <mj-button background-color="#49b518" href="{{ route('intro.supervisor_signup.confirm_email', { id: application.id, token: application.email_confirmation_token }) }}">{{ trans('email.intro.supervisor.confirm_application.link') }}
           </mj-button>
 
           <mj-text>{{ trans('email.intro.supervisor.confirm_application.when_done')|raw }}

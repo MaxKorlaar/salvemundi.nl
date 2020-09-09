@@ -13,7 +13,7 @@
 
           <mj-text>{{ trans('email.intro.payment_request.instructions', { year: application.introduction.year.year, price: application.calculateIntroCosts() }) }}</mj-text>
 
-          <mj-button background-color="#663265" href="{{ route('intro.signup.payment_request', { application: application, token: application.email_confirmation_token }) }}">{{ trans('email.intro.payment_request.link') }}
+          <mj-button background-color="#49b518" href="{{ route('intro.signup.payment_request', { application: application, token: application.email_confirmation_token }) }}">{{ trans('email.intro.payment_request.link') }}
           </mj-button>
 
           <mj-text>{{ trans('email.intro.payment_request.when_done', { year: application.introduction.year.year, price: application.calculateIntroCosts() })|raw }}

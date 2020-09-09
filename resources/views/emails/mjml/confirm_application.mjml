@@ -13,7 +13,7 @@
 
           <mj-text>{{ trans('email.confirm_application.instructions') }}</mj-text>
 
-          <mj-button background-color="#663265" href="{{ route('signup.confirm_email', { id: application.id, token: application.email_confirmation_token }) }}">{{ trans('email.confirm_application.link') }}
+          <mj-button background-color="#49b518" href="{{ route('signup.confirm_email', { id: application.id, token: application.email_confirmation_token }) }}">{{ trans('email.confirm_application.link') }}
           </mj-button>
 
           <mj-text>{{ trans('email.confirm_application.not_complete') }}</mj-text>

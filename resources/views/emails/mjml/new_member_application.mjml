@@ -45,7 +45,7 @@
             </tbody>
           </mj-table>
 
-          <!--<mj-button background-color="#663265" href="{{ route('signup.confirm_email', { id: application.id, token: application.email_confirmation_token }) }}">{{ trans('email.confirm_application.link') }}
+          <!--<mj-button background-color="#49b518" href="{{ route('signup.confirm_email', { id: application.id, token: application.email_confirmation_token }) }}">{{ trans('email.confirm_application.link') }}
           </mj-button>-->
 
           <mj-text>{{ trans('email.new_member_application.sent_from', { ip: application.ip_address}) }}</mj-text>

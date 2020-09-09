@@ -5,8 +5,8 @@
             'greeting'     => 'Hoi :name,',
             'instructions' => 'Om je inschrijving én email-adres bij MediaMeiden te bevestigen hoef je nu alleen nog maar op de link in dit bericht te klikken.
       Heb je deze email niet aangevraagd? Dan kan je hem gerust negeren.',
-            'not_complete' => 'Je inschrijving is echter nog niet compleet. We willen graag dat je nog €25,- overmaakt naar NL97 RABO 0326 3418 11. Benoem hierbij je naam en PCN bij de beschrijving, dat maakt het voor ons overzichtelijker. ',
-            'when_done'    => 'Als je dit allemaal hebt gedaan, ontvang je zo snel mogelijk je pasje.',
+            'not_complete' => 'Je inschrijving is nu bijna compleet.',
+            'when_done'    => 'Als je dit allemaal hebt gedaan, ontvang je zo snel mogelijk een bedankje.',
             'link'         => 'Bevestig je inschrijving',
         ],
         'new_member_application' => [
@@ -145,7 +145,7 @@ De feestcommissie MediaMeiden'
         ],
 
         'signature'  => 'Met vriendelijke groet,
-    s.v. MediaMeiden
+    MediaMeiden
     https://mediameiden.korlaar.net',
-        'disclaimer' => "Dit bericht is automatisch verzonden. Antwoorden is hierop niet mogelijk.\nMediaMeiden, Rachelsmolen 1, Gebouw R1, 5612MA Eindhoven, KvK nr. 70280606"
+        'disclaimer' => "Dit bericht is automatisch verzonden. Antwoorden is hierop niet mogelijk.\nMediaMeiden, 's-Hertogenbosch"
     ];

@@ -31,7 +31,7 @@
          *
          * @return $this
          */
-        public function build() {
+        public function build(): self {
             return $this->view('emails.confirm_application')->text('emails.plaintext.confirm_application');
         }
     }
