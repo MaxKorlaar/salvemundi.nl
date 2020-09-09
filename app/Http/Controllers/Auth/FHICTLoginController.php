@@ -53,7 +53,7 @@
          * @return Factory|RedirectResponse|View
          */
         public function getLoginView(Request $request) {
-            if ($request->get('redirect') === 'true') {
+            if ((bool)$request->get('redirect') === true) {
                 return redirect()->route('login.redirect');
             }
             return view('auth.login');
